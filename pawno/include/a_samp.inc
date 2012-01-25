@@ -266,6 +266,9 @@ native ShowPlayerDialog(playerid, dialogid, style, caption[], info[], button1[],
 #define KEY_ANALOG_DOWN			(4096)
 #define KEY_ANALOG_LEFT			(8192)
 #define KEY_ANALOG_RIGHT		(16384)
+#define KEY_YES					(65536)
+#define KEY_NO					(131072)
+#define KEY_CTRL_BACK			(262144)
 
 #define KEY_UP					(-128)
 #define KEY_DOWN				(128)
@@ -319,6 +322,8 @@ forward OnVehicleStreamIn(vehicleid, forplayerid);
 forward OnVehicleStreamOut(vehicleid, forplayerid);
 forward OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]);
 forward OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid);
+forward OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid);
+forward OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ);
 
 #define CLICK_SOURCE_SCOREBOARD		0
 forward OnPlayerClickPlayer(playerid, clickedplayerid, source);
