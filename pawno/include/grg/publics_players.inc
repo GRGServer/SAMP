@@ -89,12 +89,16 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					if (strlen(inputtext) >= REGISTER_MINPASSWORD && strlen(inputtext) <= REGISTER_MAXPASSWORD)
 					{
-						new query[1024];
+						new query[256];
 						new playerName[MAX_PLAYER_NAME];
 						GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
-						format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`, `Level`, `AdminLevel`) VALUE ('%s', '%s', '%d', '%d')", mySQLEscapeString(playerName), md5(inputtext), REGISTER_LEVEL, REGISTER_ADMINLEVEL);
+						format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`) VALUES ('%s', '%s')", mySQLEscapeString(playerName), md5(inputtext));
+						print(query);
 						mysql_query(query);
 						SetPVarInt(playerid, "UserID", strval(getMySQLValue("users", "UserID", "Username", mySQLEscapeString(playerName))));// TODO: Read UserID from mysql_insert_id() (Not available in the current plugin release)
+						SetPVarInt(playerid, "Level", REGISTER_LEVEL);
+						SetPVarInt(playerid, "AdminLevel", REGISTER_ADMINLEVEL);
+						savePlayer(playerid);
 						SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
 						SpawnPlayer(playerid);
 					}
