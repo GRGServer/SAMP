@@ -1,13 +1,15 @@
 #include <a_samp>
 #include <mysql>
+#include <MD5>
+#include <grg/functions>
 
 #include <grg/config>
 
 #define COLOR_YELLOW		0xFFFF00AA
 #define COLOR_RED		0xAA3333AA
 
-#define LoginDialog		1
-#define RegisterDialog		2
+#define DIALOG_LOGIN		1
+#define DIALOG_REGISTER		2
 
 
 enum Info
@@ -52,19 +54,23 @@ public OnPlayerRequestClass(playerid, classid)
 
 public OnPlayerConnect(playerid)
 {
- 	if(mysql_CheckAccount(playerid) == 0)
+	new query[256];
+	new playerName[MAX_PLAYER_NAME];
+	SendClientMessage(playerid,COLOR_YELLOW, "Script by Aerox_Tobi and Programie");
+	GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
+	format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", mySQLEscapeString(playerName));
+	mysql_query(query);
+	mysql_store_result();
+ 	if (strval(getMySQLField("UserID")))
 	{
-		SendClientMessage(playerid,COLOR_YELLOW, "Script edit by Aerox_Tobi and Programie ");
-		ShowPlayerDialog(playerid,RegisterDialog, DIALOG_STYLE_INPUT, "Register", "Du bist noch nicht Registriert!\r\nGib hier dein passwort ein.", "Fertig", "Abbrechen");
-		return 1;
+		ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, "Registrieren", "Du bist noch nicht Registriert!\nBitte gebe ein neues Passwort für deinen Account ein.", "OK", "Abbrechen");
 	}
-	else if(mysql_CheckAccount(playerid) == 1)
+	else
 	{
-		SendClientMessage(playerid, COLOR_YELLOW,"Scripting By Aerox_Tobi and Programie");
-		ShowPlayerDialog(playerid,LoginDialog,DIALOG_STYLE_INPUT,"Login","Deine Daten wurden Gefunden\n\nGeb hier dien Passwort ein!","Eintretten","Abbrechen");
-		return 1;
+		ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Login", "Bitte gebe dein Passwort für deinen Account ein.", "OK", "Abbrechen");
 	}
-	return 1;
+	mysql_free_result();
+	return true;
 }
 
 public OnPlayerDisconnect(playerid, reason)
@@ -75,69 +81,75 @@ public OnPlayerDisconnect(playerid, reason)
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	new cmd[256];
-//	new tmp[256];
-	new idx;
-	cmd = strtok(inputtext, idx);
-	if(strval(inputtext))
+	new index;
+	cmd = strtok(inputtext, index);
+	if (strval(inputtext))
 	{
-		if(dialogid == 1)
-	   	{
-			if(response == 0)
+		switch (dialogid)
+		{
+			case DIALOG_LOGIN:
 			{
-				SendClientMessage(playerid,COLOR_RED,"Du kannst nun das Spiel Beenden!");
-				Kick(playerid);
-			}
-			if(response == 1)
-			{
-				if(strlen(inputtext) == 0)
+				if (response)
 				{
-					ShowPlayerDialog(playerid,LoginDialog,DIALOG_STYLE_INPUT,"Login","Das Angegebene Passwort war Falsch.\nBitte log dich jetzt mit dem richtigen Passwort ein:","Login","Abbrechen");
-					return 1;
-				}
-				else
-				{
-					new SpielerName[MAX_PLAYER_NAME];
-					GetPlayerName(playerid, SpielerName, MAX_PLAYER_NAME);
-					if(!strcmp(inputtext, mysql_ReturnPasswort(SpielerName), true))
+					if (!strlen(inputtext))
 					{
-						SetPVarInt(playerid,"Eingeloggt",1);
-						LoadPlayer(playerid);
-						SpawnPlayer(playerid);
-						return 1;
+						ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Login", "Kein Passwort eingegeben!\nBitte versuche es erneut.", "OK", "Abbrechen");
 					}
 					else
 					{
-						ShowPlayerDialog(playerid,LoginDialog,DIALOG_STYLE_INPUT,"Login","Das war das Falsche Passwort.\nBitte log dich jetzt mit dem richtigen Passwort ein:","Login","Abbrechen");
-						return 1;
+						new playerName[MAX_PLAYER_NAME];
+						new query[256];
+						GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
+						format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", mySQLEscapeString(playerName));
+						mysql_query(query);
+						mysql_store_result();
+						if (!strcmp(MD5_Hash(inputtext), getMySQLField("Password"), true))
+						{
+							SetPVarInt(playerid, "UserID", strval(getMySQLField("UserID")));
+							LoadPlayer(playerid);
+							SpawnPlayer(playerid);
+						}
+						else
+						{
+							ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Login", "Das angegebene Passwort ist falsch!\nBtte versuche es erneut.", "OK", "Abbrechen");
+						}
+						mysql_free_result();
 					}
-				}
-			}
-		}
-		if(dialogid == 2)
-		{
-			if(response == 0)
-			{
-				SendClientMessage(playerid,COLOR_RED,"Du kannst nun SAMP beenden!");
-				Kick(playerid);
-			}
-			if(response == 1)
-			{
-   				if(strlen(inputtext) == 0)
-				{
-					ShowPlayerDialog(playerid,RegisterDialog,DIALOG_STYLE_INPUT,"Register","Das angegebene Passwort war zu Kurz...\nBitte Registrier dich jetzt mit einem Passwort:","Register","Abbrechen");
-					return 1;
 				}
 				else
 				{
-					CreateAccount(playerid, inputtext);
-					SetPVarInt(playerid,"Eingeloggt",1);
-					SpawnPlayer(playerid);
-					return 1;
+					SendClientMessage(playerid, COLOR_RED, "Du kannst nun das Spiel beenden!");
+					Kick(playerid);
 				}
+				return true;
+			}
+			case DIALOG_REGISTER:
+			{
+				if (response)
+				{
+					if (strlen(inputtext) >= MINPASSWORD && strlen(inputtext) <= MAXPASSWORD)
+					{
+						CreateAccount(playerid, inputtext);
+						SetPVarInt(playerid,"Eingeloggt",1);
+						SpawnPlayer(playerid);
+					}
+					else
+					{
+						new string[256];
+						format(string, sizeof(string), "Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", MINPASSWORD, MAXPASSWORD);
+						ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, "Registrieren", string, "OK", "Abbrechen");
+					}
+				}
+				else
+				{
+					SendClientMessage(playerid, COLOR_RED, "Du kannst nun das Spiel beenden!");
+					Kick(playerid);
+				}
+				return true;
 			}
 		}
 	}
-	return 1;
+	return true;
 }
 
 public OnPlayerSpawn(playerid)
@@ -167,49 +179,7 @@ public OnPlayerText(playerid, text[])
 
 public OnPlayerCommandText(playerid, cmdtext[])
 {
-	new inputtext[256];
-	new cmd[256];
-	if (!strcmp(cmd,"/register",true))
-	{
-		if(strlen(inputtext) == 0)
-		{
-		   	ShowPlayerDialog(playerid,RegisterDialog,DIALOG_STYLE_INPUT,"Register","Das angegebene Passwort war zu Kurz...\nBitte Registrier dich jetzt mit einem Passwort:","Register","Abbrechen");
-		   	return 1;
-		}
-		else
-		{
-		   	CreateAccount(playerid, inputtext);
-			SetPVarInt(playerid,"Eingeloggt",1);
-			SpawnPlayer(playerid);
-		}
-		return 1;
-	}
-	if (!strcmp(cmd,"/login",true))
-	{
-		if(strlen(inputtext) == 0)
-		{
-			ShowPlayerDialog(playerid,LoginDialog,DIALOG_STYLE_INPUT,"Login","Das angegeben Passwort war falsch\nBitte erneut eingeben!","Login","Abbrechen");
-			return 1;
-		}
-		else
-		{
-			new SpielerName[MAX_PLAYER_NAME];
-			GetPlayerName(playerid, SpielerName, MAX_PLAYER_NAME);
-			if(!strcmp(inputtext, mysql_ReturnPasswort(SpielerName), true))
-			{
-				SetPVarInt(playerid,"Eingeloggt",1);
-				LoadPlayer(playerid);
-				SpawnPlayer(playerid);
-				return 1;
-			}
-			else
-			{
-				ShowPlayerDialog(playerid,LoginDialog,DIALOG_STYLE_INPUT,"Login","Das war das Falsche Passwort.\nBitte log dich jetzt mit dem richtigen Passwort ein:","Login","Abbrechen");
-			}
-		}
-		return 1;
-	}
-	return 0;
+	return 1;
 }
 
 public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)

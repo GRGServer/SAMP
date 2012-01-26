@@ -2,3 +2,6 @@
 #define MYSQL_USERNAME		"grgserver"
 #define MYSQL_PASSWORD		"2RuvHtYb7KRh6PVt"
 #define MYSQL_DATABASE		"grgserver"
+
+#define MINPASSWORD		3
+#define MAXPASSWORD		20
