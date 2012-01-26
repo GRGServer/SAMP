@@ -38,7 +38,7 @@ stock getMySQLField(field[])
 
 stock mySQLEscapeString(string[])
 {
-	new escapedString[1024];
+	new escapedString[128];
 	mysql_real_escape_string(string, escapedString);
 	return escapedString;
 }
