@@ -1,12 +1,17 @@
+// SAMP standard includes
 #include <a_samp>
-#include <mysql>
+
+// Custom includes
 #include <irc>
 #include <MD5>
+#include <mysql>
+#include <zcmd>
 
+// GRG includes
 #include <grg/constants>
 #include <grg/config>
-
 #include <grg/functions>
+#include <grg/commands>
 
 new ircBot;
 
@@ -38,7 +43,6 @@ public OnPlayerConnect(playerid)
 {
 	new query[256];
 	new playerName[MAX_PLAYER_NAME];
-	SendClientMessage(playerid,COLOR_YELLOW, "Script by Aerox_Tobi and Programie");
 	GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
 	format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", mySQLEscapeString(playerName));
 	mysql_query(query);
@@ -115,7 +119,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					SendClientMessage(playerid, COLOR_RED, "Du kannst nun das Spiel beenden!");
+					SendClientMessage(playerid, COLOR_INFO, "Du kannst nun das Spiel beenden!");
 					Kick(playerid);
 				}
 				return true;
@@ -132,7 +136,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`, `Level`, `AdminLevel`) VALUE ('%s', '%s', '%d', '%d')", mySQLEscapeString(playerName), md5(inputtext), REGISTER_LEVEL, REGISTER_ADMINLEVEL);
 						mysql_query(query);
 						SetPVarInt(playerid, "UserID", strval(getMySQLValue("users", "UserID", "Username", mySQLEscapeString(playerName))));// TODO: Read UserID from mysql_insert_id() (Not available in the current plugin release)
-						SendClientMessage(playerid, COLOR_YELLOW, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
+						SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
 						SpawnPlayer(playerid);
 					}
 					else
@@ -144,7 +148,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					SendClientMessage(playerid, COLOR_RED, "Du kannst nun das Spiel beenden!");
+					SendClientMessage(playerid, COLOR_INFO, "Du kannst nun das Spiel beenden!");
 					Kick(playerid);
 				}
 				return true;
