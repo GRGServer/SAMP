@@ -23,7 +23,7 @@
 // Command returns
 enum
 {
-	COMMAND_UNKNOWN_ERROR
+	COMMAND_UNKNOWN_ERROR,
 	COMMAND_OK
 }
 
@@ -31,7 +31,7 @@ enum
 // Dialogs
 enum
 {
-	DIALOG_LOGIN
+	DIALOG_LOGIN,
 	DIALOG_REGISTER
 }
 
