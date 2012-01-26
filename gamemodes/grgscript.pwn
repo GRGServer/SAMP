@@ -6,7 +6,6 @@
 
 #define LoginDialog 1
 #define RegisterDialog 2
-#define ErrorDialog 3
 
 #define SQL_HOST   "localhost"
 #define SQL_USER   "grgserver"
@@ -34,7 +33,7 @@ main()
 public OnGameModeInit()
 {
 	mysql_init();
-    mysql_connect(SQL_HOST, SQL_USER, SQL_DATA, SQL_PASS);
+    mysql_connect(SQL_HOST, SQL_USER, SQL_PASS, SQL_DATA);
 	SetGameModeText("GRG Server");
 	AddPlayerClass(0, 1958.3783, 1343.1572, 15.3746, 269.1425, 0, 0, 0, 0, 0, 0);
 	return 1;
@@ -84,7 +83,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	cmd = strtok(inputtext, idx);
 	if(strval(inputtext))
 	{
-		if(dialogid == LoginDialog)
+		if(dialogid == 1)
 	   	{
 			if(response == 0)
 	        {
@@ -117,7 +116,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	            }
 			}
 		}
-		if(dialogid == RegisterDialog)
+		if(dialogid == 2)
         {
 			if(response == 0)
 	        {
@@ -171,10 +170,47 @@ public OnPlayerText(playerid, text[])
 
 public OnPlayerCommandText(playerid, cmdtext[])
 {
-	if (!strcmp("/admins",cmdtext,true,10))
+	new inputtext[256];
+	new cmd[256];
+	if (!strcmp(cmd,"/register",true))
 	{
-
+		if(strlen(inputtext) == 0)
+	    {
+		   	ShowPlayerDialog(playerid,RegisterDialog,DIALOG_STYLE_INPUT,"Register","Das angegebene Passwort war zu Kurz...\nBitte Registrier dich jetzt mit einem Passwort:","Register","Abbrechen");
+	       	return 1;
+	    }
+	    else
+	    {
+	       	CreateAccount(playerid, inputtext);
+	        SetPVarInt(playerid,"Eingeloggt",1);
+	        SpawnPlayer(playerid);
+	    }
 		return 1;
+	}
+	if (!strcmp(cmd,"/login",true))
+	{
+	    if(strlen(inputtext) == 0)
+	    {
+	        ShowPlayerDialog(playerid,LoginDialog,DIALOG_STYLE_INPUT,"Login","Das angegeben Passwort war falsch\nBitte erneut eingeben!","Login","Abbrechen");
+	        return 1;
+		}
+		else
+		{
+    		new SpielerName[MAX_PLAYER_NAME];
+	        GetPlayerName(playerid, SpielerName, MAX_PLAYER_NAME);
+	        if(!strcmp(inputtext, mysql_ReturnPasswort(SpielerName), true))
+	        {
+	        	SetPVarInt(playerid,"Eingeloggt",1);
+	            LoadPlayer(playerid);
+	            SpawnPlayer(playerid);
+	            return 1;
+	        }
+	        else
+	        {
+	        	ShowPlayerDialog(playerid,LoginDialog,DIALOG_STYLE_INPUT,"Login","Das war das Falsche Passwort.\nBitte log dich jetzt mit dem richtigen Passwort ein:","Login","Abbrechen");
+			}
+	    }
+	    return 1;
 	}
 	return 0;
 }
@@ -435,7 +471,7 @@ stock CreateAccount(playerid, pass[])
     mysql_real_escape_string(lName,lName);
     mysql_real_escape_string(pass,pass);
     printf("Hier ist er registriert");
-    format(query, sizeof(query), "INSERT INTO `users` (`Username`,`Password`,`Level`,`AdminLevel`) VALUE ('%d','%s','%s','%d','%d')",lName,pass,GRG_Player[playerid][Level],GRG_Player[playerid][AdminLevel]);
+    format(query, sizeof(query), "INSERT INTO `users` (`Username`,`Password`,`Level`,`AdminLevel`) VALUE ('%s','%s','%d','%d')",lName,pass,GRG_Player[playerid][Level],GRG_Player[playerid][AdminLevel]);
     mysql_query(query);
     SavePlayer(playerid);
     printf("Er hat nun Registriert");
