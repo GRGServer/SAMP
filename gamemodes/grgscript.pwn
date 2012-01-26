@@ -1,5 +1,6 @@
 #include <a_samp>
 #include <mysql>
+#include <irc>
 #include <MD5>
 
 #include <grg/constants>
@@ -7,6 +8,7 @@
 
 #include <grg/functions>
 
+new ircBot;
 
 main()
 {
@@ -19,6 +21,7 @@ public OnGameModeInit()
 {
 	mysql_init();
 	mysql_connect(MYSQL_HOST, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE);
+	ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_USERNAME, IRC_USERNAME, IRC_USERNAME, IRC_SSL);
 	SetGameModeText("GRG Server");
 	AddPlayerClass(0, 1958.3783, 1343.1572, 15.3746, 269.1425, 0, 0, 0, 0, 0, 0);
 	return true;
@@ -27,6 +30,7 @@ public OnGameModeInit()
 public OnGameModeExit()
 {
 	mysql_close();
+	IRC_Quit(ircBot, "SAMP-Server IRC chat relay");
 	return true;
 }
 
@@ -127,7 +131,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
 						format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`, `Level`, `AdminLevel`) VALUE ('%s', '%s', '%d', '%d')", mySQLEscapeString(playerName), md5(inputtext), REGISTER_LEVEL, REGISTER_ADMINLEVEL);
 						mysql_query(query);
-						SetPVarInt(playerid, "UserID", getMySQLValue("users", "UserID", "Username", mySQLEscapeString(playerName)));// TODO: Read UserID from mysql_insert_id() (Not available in the current plugin release)
+						SetPVarInt(playerid, "UserID", strval(getMySQLValue("users", "UserID", "Username", mySQLEscapeString(playerName))));// TODO: Read UserID from mysql_insert_id() (Not available in the current plugin release)
 						SendClientMessage(playerid, COLOR_YELLOW, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
 						SpawnPlayer(playerid);
 					}
@@ -148,4 +152,15 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		}
 	}
 	return true;
+}
+
+public IRC_OnConnect(botid, ip[], port)
+{
+	IRC_JoinChannel(botid, IRC_CHANNEL);
+}
+
+public IRC_OnJoinChannel(botid, channel[])
+{
+	IRC_Say(botid, channel, "Hello!");
+	IRC_Say(botid, channel, "I'm an IRC chat relay for the SAMP-Server 'GRGServer'.");
 }
