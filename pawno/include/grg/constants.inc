@@ -28,3 +28,10 @@
 // Dialogs
 #define DIALOG_LOGIN					1
 #define DIALOG_REGISTER					2
+
+
+// Spawn properties
+#define SPAWN_POSX						1958.3783
+#define SPAWN_POSY						1343.1572
+#define SPAWN_POSZ						15.3746
+#define SPAWN_ANGLE						269.1425
