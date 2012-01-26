@@ -127,7 +127,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
 						format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`, `Level`, `AdminLevel`) VALUE ('%s', '%s', '%d', '%d')", mySQLEscapeString(playerName), md5(inputtext), REGISTER_LEVEL, REGISTER_ADMINLEVEL);
 						mysql_query(query);
-						SetPVarInt(playerid, "UserID", 1);// TODO: Read UserID from inserted ID (mysql_insert_id() in some languages like PHP)
+						SetPVarInt(playerid, "UserID", getMySQLValue("users", "UserID", "Username", mySQLEscapeString(playerName)));// TODO: Read UserID from mysql_insert_id() (Not available in the current plugin release)
 						SendClientMessage(playerid, COLOR_YELLOW, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
 						SpawnPlayer(playerid);
 					}
