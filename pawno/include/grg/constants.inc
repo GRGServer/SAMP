@@ -21,13 +21,19 @@
 
 
 // Command returns
-#define COMMAND_UNKNOWN_ERROR			0
-#define COMMAND_OK						1
+enum
+{
+	COMMAND_UNKNOWN_ERROR
+	COMMAND_OK
+}
 
 
 // Dialogs
-#define DIALOG_LOGIN					1
-#define DIALOG_REGISTER					2
+enum
+{
+	DIALOG_LOGIN
+	DIALOG_REGISTER
+}
 
 
 // Spawn properties
