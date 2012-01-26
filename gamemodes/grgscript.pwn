@@ -89,7 +89,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", mySQLEscapeString(playerName));
 						mysql_query(query);
 						mysql_store_result();
-						if (!strcmp(MD5_Hash(inputtext), getMySQLField("Password"), true))
+						if (!strcmp(md5(inputtext), getMySQLField("Password"), true))
 						{
 							SetPVarInt(playerid, "UserID", strval(getMySQLField("UserID")));
 						}
@@ -125,7 +125,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new query[1024];
 						new playerName[MAX_PLAYER_NAME];
 						GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
-						format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`, `Level`, `AdminLevel`) VALUE ('%s', '%s', '%d', '%d')", mySQLEscapeString(playerName), mySQLEscapeString(password), REGISTER_LEVEL, REGISTER_ADMINLEVEL);
+						format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`, `Level`, `AdminLevel`) VALUE ('%s', '%s', '%d', '%d')", mySQLEscapeString(playerName), md5(inputtext), REGISTER_LEVEL, REGISTER_ADMINLEVEL);
 						mysql_query(query);
 						SetPVarInt(playerid, "UserID", 1);// TODO: Read UserID from inserted ID (mysql_insert_id() in some languages like PHP)
 						SendClientMessage(playerid, COLOR_YELLOW, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");

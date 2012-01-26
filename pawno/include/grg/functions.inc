@@ -17,6 +17,18 @@ stock strtok(const string[], &index)
 	return result;
 }
 
+stock val2str(value)
+{
+	new string[256];
+	valstr(string, value);
+	return string;
+}
+
+stock md5(string[])
+{
+	return MD5_Hash(string, true);
+}
+
 stock getMySQLField(field[])
 {
 	new value[256];
@@ -55,19 +67,19 @@ stock savePlayerValue(playerid, fieldName[])
 		case PLAYER_VARTYPE_INT:
 			format(value, sizeof(value), "%d", GetPVarInt(playerid, fieldName));
 		case PLAYER_VARTYPE_STRING:
-			format(value, sizeof(value), "%s", GetPVarString(playerid, fieldName));
+			GetPVarString(playerid, fieldName, value, sizeof(value));
 		case PLAYER_VARTYPE_FLOAT:
 			format(value, sizeof(value), "%f", GetPVarFloat(playerid, fieldName));
 		default:
 			format(value, sizeof(value), "");
 	}
-	setMySQLValue("users", fieldName, value, "UserID", GetPVarInt(playerid, "UserID"));
+	setMySQLValue("users", fieldName, value, "UserID", val2str(GetPVarInt(playerid, "UserID")));
 }
 
 stock loadPlayerValue(playerid, fieldName[], pVarType)
 {
 	new value[256];
-	format(value, sizeof(value), "%s", getMySQLValue("users", fieldName, "UserID", GetPVarInt(playerid, "UserID")));
+	format(value, sizeof(value), "%s", getMySQLValue("users", fieldName, "UserID", val2str(GetPVarInt(playerid, "UserID"))));
 	switch (pVarType)
 	{
 		case PLAYER_VARTYPE_INT:
