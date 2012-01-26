@@ -39,7 +39,9 @@ stock getMySQLField(field[])
 stock mySQLEscapeString(string[])
 {
 	new escapedString[128];
-	mysql_real_escape_string(string, escapedString);
+	printf("Escape: %s", string);
+	printf("Result: %d", mysql_real_escape_string(string, escapedString));
+	printf("Escaped: %s", escapedString);
 	return escapedString;
 }
 
