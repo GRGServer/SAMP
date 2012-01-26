@@ -1,3 +1,22 @@
+stock strtok(const string[], &index)
+{
+	new length = strlen(string);
+	while ((index < length) && (string[index] <= ' '))
+	{
+		index++;
+	}
+
+	new offset = index;
+	new result[20];
+	while ((index < length) && (string[index] > ' ') && ((index - offset) < (sizeof(result) - 1)))
+	{
+		result[index - offset] = string[index];
+		index++;
+	}
+	result[index - offset] = EOS;
+	return result;
+}
+
 stock getMySQLField(field[])
 {
 	new value[256];
@@ -10,4 +29,64 @@ stock mySQLEscapeString(string[])
 	new escapedString[1024];
 	mysql_real_escape_string(string, escapedString);
 	return escapedString;
+}
+
+stock getMySQLValue(table[], field[], checkColumn[], checkValue[])
+{
+	new query[256];
+	format(query, sizeof(query), "SELECT `%s` FROM `%s` WHERE `%s` = '%s'", mySQLEscapeString(field), mySQLEscapeString(table), mySQLEscapeString(checkColumn), mySQLEscapeString(checkValue));
+	mysql_query(query);
+	mysql_store_result();
+	return getMySQLField(field);
+}
+
+stock setMySQLValue(table[], field[], value[], checkColumn[], checkValue[])
+{
+	new query[256];
+	format(query, sizeof(query), "UPDATE `%s` SET `%s` = '%d' WHERE `%s` = '%s'", mySQLEscapeString(table), mySQLEscapeString(field), mySQLEscapeString(value), mySQLEscapeString(checkColumn), mySQLEscapeString(checkValue));
+	mysql_query(query);
+}
+
+stock savePlayerValue(playerid, fieldName[])
+{
+	new value[256];
+	switch (GetPVarType(playerid, fieldName))
+	{
+		case PLAYER_VARTYPE_INT:
+			format(value, sizeof(value), "%d", GetPVarInt(playerid, fieldName));
+		case PLAYER_VARTYPE_STRING:
+			format(value, sizeof(value), "%s", GetPVarString(playerid, fieldName));
+		case PLAYER_VARTYPE_FLOAT:
+			format(value, sizeof(value), "%f", GetPVarFloat(playerid, fieldName));
+		default:
+			format(value, sizeof(value), "");
+	}
+	setMySQLValue("users", fieldName, value, "UserID", GetPVarInt(playerid, "UserID"));
+}
+
+stock loadPlayerValue(playerid, fieldName[], pVarType)
+{
+	new value[256];
+	format(value, sizeof(value), "%s", getMySQLValue("users", fieldName, "UserID", GetPVarInt(playerid, "UserID")));
+	switch (pVarType)
+	{
+		case PLAYER_VARTYPE_INT:
+			SetPVarInt(playerid, fieldName, strval(value));
+		case PLAYER_VARTYPE_STRING:
+			SetPVarString(playerid, fieldName, value);
+		case PLAYER_VARTYPE_FLOAT:
+			SetPVarFloat(playerid, fieldName, 0.0);// TODO: Convert string value to float
+	}
+}
+
+stock savePlayer(playerid)
+{
+	savePlayerValue(playerid, "Level");
+	savePlayerValue(playerid, "AdminLevel");
+}
+
+stock loadPlayer(playerid)
+{
+	loadPlayerValue(playerid, "Level", PLAYER_VARTYPE_INT);
+	loadPlayerValue(playerid, "AdminLevel", PLAYER_VARTYPE_INT);
 }
