@@ -99,7 +99,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					new playerName[MAX_PLAYER_NAME];
 					GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
 					printf("Got name: %s", playerName);
-					format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`) VALUES ('%s', '%s')", playerName, md5(inputtext));
+					format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`) VALUES ('%s', '%s')", mySQLEscapeString(playerName), inputtext);
 					printf("Register Query: %s", query);
 					mysql_query(query);
 					SetPVarInt(playerid, "UserID", strval(getMySQLValue("users", "UserID", "Username", mySQLEscapeString(playerName))));// TODO: Read UserID from mysql_insert_id() (Not available in the current plugin release)
