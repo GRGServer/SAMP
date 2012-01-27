@@ -35,7 +35,6 @@ enum
 	DIALOG_REGISTER
 }
 
-
 // Spawn properties
 #define SPAWN_POSX						1958.3783
 #define SPAWN_POSY						1343.1572
