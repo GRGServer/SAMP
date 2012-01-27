@@ -24,11 +24,6 @@ stock val2str(value)
 	return string;
 }
 
-stock md5(string[])
-{
-	return MD5_Hash(string, true);
-}
-
 stock getMySQLField(field[])
 {
 	new value[256];

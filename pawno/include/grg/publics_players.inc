@@ -37,15 +37,12 @@ public OnPlayerRequestClass(playerid, classid)
 
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
-	printf("OnDialogResponse(%d, %d, %d, %d, %s)", playerid, dialogid, response, listitem, inputtext);
 	switch (dialogid)
 	{
 		case DIALOG_LOGIN:
 		{
-			print("DIALOG_LOGIN");
 			if (response)
 			{
-				print("BUTTON: OK");
 				if (strlen(inputtext))
 				{
 					new playerName[MAX_PLAYER_NAME];
@@ -54,33 +51,28 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", mySQLEscapeString(playerName));
 					mysql_query(query);
 					mysql_store_result();
-					if (!strcmp(md5(inputtext), getMySQLField("Password"), true))
+					if (!strcmp(MD5_Hash(inputtext, true), getMySQLField("Password"), true))
 					{
-						print("LOGIN PW OK");
 						SetPVarInt(playerid, "UserID", strval(getMySQLField("UserID")));
 					}
 					else
 					{
-						print("LOGIN PW ERROR");
 						ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Login", "Das angegebene Passwort ist falsch!\nBtte versuche es erneut.", "OK", "Abbrechen");
 					}
 					mysql_free_result();
 					if (GetPVarInt(playerid, "UserID"))
 					{
-						printf("Got UserID: %d", GetPVarInt(playerid, "UserID"));
 						loadPlayer(playerid);
 						SpawnPlayer(playerid);
 					}
 				}
 				else
 				{
-					print("NO LOGIN PW");
 					ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Login", "Kein Passwort eingegeben!\nBitte versuche es erneut.", "OK", "Abbrechen");
 				}
 			}
 			else
 			{
-				print("BUTTON: CANCEL");
 				SendClientMessage(playerid, COLOR_INFO, "Du kannst nun das Spiel beenden!");
 				Kick(playerid);
 			}
@@ -88,19 +80,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		}
 		case DIALOG_REGISTER:
 		{
-			print("DIALOG_REGISTER");
 			if (response)
 			{
-				print("BUTTON: OK");
 				if (strlen(inputtext) >= REGISTER_MINPASSWORD && strlen(inputtext) <= REGISTER_MAXPASSWORD)
 				{
-					print("PW LEN OK");
 					new query[256];
 					new playerName[MAX_PLAYER_NAME];
 					GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
-					printf("Got name: %s", playerName);
-					format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`) VALUES ('%s', '%s')", mySQLEscapeString(playerName), MD5_Hash(inputtext));
-					printf("Register Query: %s", query);
+					format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`) VALUES ('%s', '%s')", mySQLEscapeString(playerName), MD5_Hash(inputtext, true));
 					mysql_query(query);
 					SetPVarInt(playerid, "UserID", strval(getMySQLValue("users", "UserID", "Username", mySQLEscapeString(playerName))));// TODO: Read UserID from mysql_insert_id() (Not available in the current plugin release)
 					SetPVarInt(playerid, "Level", REGISTER_LEVEL);
@@ -111,7 +98,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					print("PW LEN ERROR");
 					new string[256];
 					format(string, sizeof(string), "Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_MINPASSWORD, REGISTER_MAXPASSWORD);
 					ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, "Registrieren", string, "OK", "Abbrechen");
@@ -119,13 +105,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			else
 			{
-				print("BUTTON: CANCEL");
 				SendClientMessage(playerid, COLOR_INFO, "Du kannst nun das Spiel beenden!");
 				Kick(playerid);
 			}
 			return true;
 		}
 	}
-	print("DIALOG NO ID");
+
 	return false;
 }
