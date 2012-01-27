@@ -63,6 +63,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					if (GetPVarInt(playerid, "UserID"))
 					{
 						loadPlayer(playerid);
+						printf("Player logged in: %s (UserID: %d)", playerName, GetPVarInt(playerid, "UserID"));
+						SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich eingeloggt.");
 						SpawnPlayer(playerid);
 					}
 				}
@@ -95,6 +97,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					SetPVarInt(playerid, "AdminLevel", REGISTER_ADMINLEVEL);
 					print("PVar set");
 					savePlayer(playerid);
+					printf("Player registered: %s (UserID: %d)", playerName, GetPVarInt(playerid, "UserID"));
 					SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
 					SpawnPlayer(playerid);
 				}
