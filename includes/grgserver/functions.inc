@@ -1,4 +1,4 @@
-stock getPlayerNameEx(playerid)
+stock getPlayerName(playerid)
 {
 	new playerName[MAX_PLAYER_NAME];
 	GetPlayerName(playerid, playerName, sizeof(playerName));
@@ -11,7 +11,7 @@ stock getPlayerByName(playerName[])
 	{
 		if (IsPlayerConnected(playerID))
 		{
-			if (!strcmp(getPlayerNameEx(playerID), playerName, true))
+			if (!strcmp(getPlayerName(playerID), playerName, true))
 			{
 				return playerID;
 			}

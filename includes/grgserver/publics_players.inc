@@ -126,7 +126,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 		case COMMAND_ACCESS_DENIED:
 		{
 			SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht die nötigen Rechte um diesen Befehl zu verwenden!");
-			printf("%s tried to execute %s with admin level %d but has not the required permission!", getPlayerNameEx(playerid), cmdtext, GetPVarInt(playerid, "AdminLevel"));
+			printf("%s tried to execute %s with admin level %d but has not the required permission!", getPlayerName(playerid), cmdtext, GetPVarInt(playerid, "AdminLevel"));
 		}
 		case COMMAND_NOT_FOUND:
 			SendClientMessage(playerid, COLOR_ERROR, "Befehl nicht gefunden!");
