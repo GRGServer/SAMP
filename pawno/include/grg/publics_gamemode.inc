@@ -1,6 +1,6 @@
 public OnGameModeInit()
 {
-	mysql_init();
+	mysql_init(LOG_ALL, true);
 	mysql_connect(MYSQL_HOST, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE);
 	//ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_USERNAME, IRC_USERNAME, IRC_USERNAME, IRC_SSL);
 	SetGameModeText("GRG Server");
