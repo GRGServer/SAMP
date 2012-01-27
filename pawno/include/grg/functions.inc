@@ -51,6 +51,7 @@ stock setMySQLValue(table[], field[], value[], checkColumn[], checkValue[])
 {
 	new query[256];
 	format(query, sizeof(query), "UPDATE `%s` SET `%s` = '%d' WHERE `%s` = '%s'", mySQLEscapeString(table), mySQLEscapeString(field), mySQLEscapeString(value), mySQLEscapeString(checkColumn), mySQLEscapeString(checkValue));
+	printf("SetMySQLValue: %s", query);
 	mysql_query(query);
 }
 
