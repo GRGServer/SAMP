@@ -17,6 +17,28 @@ stock strtok(const string[], &index)
 	return result;
 }
 
+stock getPlayerNameEx(playerid)
+{
+	new playerName[MAX_PLAYER_NAME];
+	GetPlayerName(playerid, playerName, sizeof(playerName));
+	return playerName;
+}
+
+stock getPlayerByName(playerName[])
+{
+	for (new playerID; playerID < MAX_PLAYERS; playerID++)
+	{
+		if (IsPlayerConnected(playerID))
+		{
+			if (!strcmp(getPlayerNameEx(playerID), playerName, true))
+			{
+				return playerID;
+			}
+		}
+	}
+	return INVALID_PLAYERID;
+}
+
 stock val2str(value)
 {
 	new string[256];
@@ -90,7 +112,7 @@ stock loadPlayerValue(playerid, fieldName[], pVarType)
 		case PLAYER_VARTYPE_STRING:
 			SetPVarString(playerid, fieldName, value);
 		case PLAYER_VARTYPE_FLOAT:
-			SetPVarFloat(playerid, fieldName, 0.0);// TODO: Convert string value to float
+			SetPVarFloat(playerid, fieldName, floatstr(value));// TODO: Convert string value to float
 	}
 }
 

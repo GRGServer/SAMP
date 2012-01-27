@@ -1,5 +1,9 @@
+// Admin levels
+#define ADMINLEVEL_SERVERADMIN			1338
+
+
 // Colors
-//#define COLOR_ERROR						0xA00000AA
+#define COLOR_ERROR						0xA00000AA
 //#define COLOR_ME						0x00FF40AA
 //#define COLOR_PM						0x804000AA
 //#define COLOR_SYSTEM					0xC0C0C0AA
@@ -9,7 +13,7 @@
 //#define COLOR_LIST_ITEM					0x33AA33AA
 //#define COLOR_IRC						0xA000FFAA
 #define COLOR_INFO						0xFF8C55FF
-//#define COLOR_USAGE						0x008000AA
+#define COLOR_USAGE						0x008000AA
 //#define COLOR_NICKNAME					0x2986CEFF
 //#define COLOR_JOINLEAVE					0x74E80099
 //#define COLOR_WARN						0xBE615099
@@ -23,8 +27,9 @@
 // Command returns
 enum
 {
-	COMMAND_UNKNOWN_ERROR,
-	COMMAND_OK
+	COMMAND_NOT_FOUND,
+	COMMAND_OK,
+	COMMAND_ACCESS_DENIED
 }
 
 
@@ -40,3 +45,7 @@ enum
 #define SPAWN_POSY						1343.1572
 #define SPAWN_POSZ						15.3746
 #define SPAWN_ANGLE						269.1425
+
+
+// Misc
+#define INVALID_PLAYERID				-1

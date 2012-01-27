@@ -6,11 +6,10 @@ Install NppExec plugin
 
 Select Plugins > NppExec > Execute...
 
-
 Paste the following code:
 
 NPP_SAVE
 cd $(CURRENT_DIRECTORY)
-"X:\Projects\SAMP-Server\pawno\pawncc.exe" "$(FILE_NAME)" -; -(
+"<Path to SAMP-Root>\tools\pawn\pawncc.exe" "$(FILE_NAME)" "-i<Path to SAMP-Root>\includes" -; -(
 
 Save

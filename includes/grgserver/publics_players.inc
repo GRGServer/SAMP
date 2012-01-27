@@ -116,3 +116,22 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 	return false;
 }
+
+public OnPlayerCommandPerformed(playerid, cmdtext[], success)
+{
+	switch (success)
+	{
+		case COMMAND_OK:
+			return true;// Command executed successfully, do nothing
+		case COMMAND_ACCESS_DENIED:
+		{
+			SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht die nötigen Rechte um diesen Befehl zu verwenden!");
+			printf("%s tried to execute %s with admin level %d but has not the required permission!", getPlayerNameEx(playerid), cmdtext, GetPVarInt(playerid, "AdminLevel"));
+		}
+		case COMMAND_NOT_FOUND:
+			SendClientMessage(playerid, COLOR_ERROR, "Befehl nicht gefunden!");
+		default:
+			printf("Unknown command return code from %s", cmdtext);
+	}
+	return true;
+}
