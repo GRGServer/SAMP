@@ -21,6 +21,7 @@ stock val2str(value)
 {
 	new string[256];
 	valstr(string, value);
+	printf("val2str(%d): %s", value, string);
 	return string;
 }
 
@@ -57,6 +58,7 @@ stock setMySQLValue(table[], field[], value[], checkColumn[], checkValue[])
 
 stock savePlayerValue(playerid, fieldName[])
 {
+	printf("SavePlayerValue(%d, %s)", playerid, fieldName);
 	new value[256];
 	switch (GetPVarType(playerid, fieldName))
 	{
@@ -69,6 +71,7 @@ stock savePlayerValue(playerid, fieldName[])
 		default:
 			format(value, sizeof(value), "");
 	}
+	printf("Value: %s", value);
 	setMySQLValue("users", fieldName, value, "UserID", val2str(GetPVarInt(playerid, "UserID")));
 }
 
