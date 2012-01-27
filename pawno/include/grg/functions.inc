@@ -42,10 +42,13 @@ stock mySQLEscapeString(string[])
 stock getMySQLValue(table[], field[], checkColumn[], checkValue[])
 {
 	new query[256];
+	new string[256];
 	format(query, sizeof(query), "SELECT `%s` FROM `%s` WHERE `%s` = '%s'", mySQLEscapeString(field), mySQLEscapeString(table), mySQLEscapeString(checkColumn), mySQLEscapeString(checkValue));
 	mysql_query(query);
 	mysql_store_result();
-	return getMySQLField(field);
+	format(string, sizeof(string), "%s", getMySQLField(field));
+	mysql_free_result();
+	return string;
 }
 
 stock setMySQLValue(table[], field[], value[], checkColumn[], checkValue[])
