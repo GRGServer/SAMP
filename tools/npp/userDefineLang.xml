@@ -1,5 +1,5 @@
 <NotepadPlus>
-    <UserLang name="Pawn" ext="pwn">
+    <UserLang name="Pawn" ext="inc pwn">
         <Settings>
             <Global caseIgnored="yes" />
             <TreatAsSymbol comment="no" commentLine="no" />

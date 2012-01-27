@@ -1,6 +1,6 @@
 Copy pawn.api to %PROGRAMFILES%\Notepad++\plugins\APIs
 
-Copy insertExt.ini and userDefineLang.xml to %APPDATA%\Notepad++
+Copy insertExt.ini, langs.xml and userDefineLang.xml to %APPDATA%\Notepad++
 
 Install NppExec plugin
 
