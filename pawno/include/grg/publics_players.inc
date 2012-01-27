@@ -89,18 +89,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
 					format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`) VALUES ('%s', '%s')", mySQLEscapeString(playerName), MD5_Hash(inputtext, true));
 					mysql_query(query);
-					printf("Register Query: %s", query);
-					mysql_store_result();
-					print("Result stored");
 					SetPVarInt(playerid, "UserID", mysql_insert_id());
 					printf("UserID: %d", GetPVarInt(playerid, "UserID"));
-					mysql_free_result();
-					print("Result freed");
 					SetPVarInt(playerid, "Level", REGISTER_LEVEL);
 					SetPVarInt(playerid, "AdminLevel", REGISTER_ADMINLEVEL);
 					print("PVar set");
 					savePlayer(playerid);
-					print("Player saved");
 					SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
 					SpawnPlayer(playerid);
 				}
