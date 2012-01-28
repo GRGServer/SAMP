@@ -28,6 +28,12 @@ stock val2str(value)
 	return string;
 }
 
+stock fetchMySQLRow()
+{
+	new Line[1024];
+	return samp_mysql_fetch_row(Line);
+}
+
 stock getMySQLField(field[])
 {
 	new value[256];
@@ -143,6 +149,18 @@ stock teleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle = 0.0
 		}
 	}
 	return false;
+}
+
+stock startNPCPlayback(npcPlayerID, recordingName[], recordingType, autoRepeat)
+{
+	new string[256];
+	format(string, sizeof(string), "%s %d %d", recordingName, recordingType, autoRepeat);
+	SendClientMessage(npcPlayerID, COLOR_NPCCOMMAND, string);
+}
+
+stock sendNPCCommand(npcPlayerID, command[])
+{
+	SendClientMessage(npcPlayerID, COLOR_NPCCOMMAND, command);
 }
 
 stock CmdUsageMsg(playerid, command[], ...)

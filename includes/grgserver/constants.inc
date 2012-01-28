@@ -22,6 +22,7 @@
 //#define COLOR_USERUNKNOWN				0xFFFF00AA
 //#define COLOR_USER						0x33AA33AA
 //#define COLOR_3DLABEL_PICKUP			0xFF8000AA
+#define COLOR_NPCCOMMAND				0x00000000
 
 
 // Command returns
@@ -41,6 +42,7 @@ enum
 	DIALOG_LOGIN,
 	DIALOG_REGISTER
 }
+
 
 // Spawn properties
 #define SPAWN_POSX						1958.3783

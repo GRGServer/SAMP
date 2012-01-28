@@ -1,20 +1,32 @@
 public OnPlayerConnect(playerid)
 {
 	new query[256];
-	new playerName[MAX_PLAYER_NAME];
-	GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
-	format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", mySQLEscapeString(playerName));
-	mysql_query(query);
-	mysql_store_result();
- 	if (strval(getMySQLField("UserID")))
+	if (IsPlayerNPC(playerid))
 	{
-		ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Login", "Bitte gebe das Passwort von deinen Account ein.", "OK", "Abbrechen");
+		format(query, sizeof(query), "SELECT * FROM `npcs` WHERE `Name` = '%s'", mySQLEscapeString(getPlayerName(playerid)));
+		mysql_query(query);
+		mysql_store_result();
+		if (strval(getMySQLField("StartOnConnect")))
+		{
+			startNPCPlayback(playerid, getMySQLField("Recording"), strval(getMySQLField("Type")), strval(getMySQLField("AutoRepeat")));
+		}
+		mysql_free_result();
 	}
 	else
 	{
-		ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, "Registrieren", "Du bist noch nicht registriert!\nBitte gebe ein neues Passwort für deinen Account ein.", "OK", "Abbrechen");
+		format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", mySQLEscapeString(getPlayerName(playerid)));
+		mysql_query(query);
+		mysql_store_result();
+		if (strval(getMySQLField("UserID")))
+		{
+			ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Login", "Bitte gebe das Passwort von deinen Account ein.", "OK", "Abbrechen");
+		}
+		else
+		{
+			ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, "Registrieren", "Du bist noch nicht registriert!\nBitte gebe ein neues Passwort für deinen Account ein.", "OK", "Abbrechen");
+		}
+		mysql_free_result();
 	}
-	mysql_free_result();
 	return true;
 }
 
