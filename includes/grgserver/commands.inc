@@ -160,7 +160,7 @@ CMD:veh(playerid, params[])
 					return COMMAND_OK;
 				}
 			}
-			// TODO: Get ModelID by name
+			modelID = strval(getMySQLValue("vehicles", "ModelID", "Name", vehicleName));
 		}
 	}
 	printf("VN %s, M %d, C1 %d, C2 %d", vehicleName, modelID, color1, color2);
