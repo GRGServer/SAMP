@@ -23,7 +23,8 @@
 #include <grgserver/config>// Configuration #data like IRC and MySQL credentials
 #include <grgserver/globals>// Globally used variables like ircBot (Variables which are shared between multiple functions)
 #include <grgserver/functions>// Stock functions
-#include <grgserver/publics_gamemode>// Publics like OnGameModeInit or OnGameModeExit
+//#include <grgserver/publics_gamemode>// Publics like OnGameModeInit or OnGameModeExit
+#include <grgserver/publics_filterscript>// Publics like OnFilterScriptInit or OnFilterScriptExit
 #include <grgserver/publics_irc>// IRC publics like IRC_OnConnect
 #include <grgserver/publics_players>// Player publics like OnPlayerText
 #include <grgserver/commands>// Player commands like /about
