@@ -22,6 +22,7 @@
 //#define COLOR_USERUNKNOWN				0xFFFF00AA
 //#define COLOR_USER						0x33AA33AA
 //#define COLOR_3DLABEL_PICKUP			0xFF8000AA
+#define COLOR_GRAD 						0xB4B5B7FF
 
 
 // Command returns

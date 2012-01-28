@@ -47,3 +47,80 @@ CMD:makeadmin(playerid, params[])
 	}
 	return COMMAND_OK;
 }
+
+CMD:gotobsn(playerid, params[])
+{
+	if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
+	{
+		if (GetPlayerState(playerid) == 2)
+		{
+			new tmpcar = GetPlayerVehicleID(playerid);
+			SetVehiclePos(tmpcar, 1204.7445,-881.0291,43.0703);
+			TelePos[playerid][0] = 0.0;TelePos[playerid][1] = 0.0;
+		}
+		else
+		{
+			SetPlayerPos(playerid, 1199.4624,-914.1083,48.0625);
+		}
+		SendClientMessage(playerid, COLOR_GRAD, "Du hast dich Teleportiert !");
+		SetPlayerInterior(playerid,0);
+	}
+	return COMMAND_OK;
+}
+CMD:gotols(playerid, params[])
+{
+	if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
+	{
+		if (GetPlayerState(playerid) == 2)
+		{
+			new tmpcar = GetPlayerVehicleID(playerid);
+			SetVehiclePos(tmpcar, 1529.6,-1691.2,13.3);
+			TelePos[playerid][0] = 0.0;TelePos[playerid][1] = 0.0;
+		}
+		else
+		{
+			SetPlayerPos(playerid, 1529.6,-1691.2,13.3);
+		}
+		SendClientMessage(playerid, COLOR_GRAD, "Du hast dich Teleportiert !");
+		SetPlayerInterior(playerid,0);
+	}
+	return COMMAND_OK;
+}
+CMD:gotolv(playerid, params[])
+{
+	if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
+	{
+		if (GetPlayerState(playerid) == 2)
+		{
+			new tmpcar = GetPlayerVehicleID(playerid);
+			SetVehiclePos(tmpcar, 1699.2, 1435.1, 10.7);
+			TelePos[playerid][0] = 0.0;TelePos[playerid][1] = 0.0;
+		}
+		else
+		{
+			SetPlayerPos(playerid, 1699.2,1435.1, 10.7);
+		}
+		SendClientMessage(playerid, COLOR_GRAD, "Du hast dich Teleportiert");
+		SetPlayerInterior(playerid,0);
+	}
+	return COMMAND_OK;
+}
+CMD:gotosf(playerid, params[])
+{
+	if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
+	{
+		if (GetPlayerState(playerid) == 2)
+		{
+			new tmpcar = GetPlayerVehicleID(playerid);
+			SetVehiclePos(tmpcar, -1417.0,-295.8,14.1);
+			TelePos[playerid][0] = 0.0;TelePos[playerid][1] = 0.0;
+		}
+		else
+		{
+			SetPlayerPos(playerid, -1417.0,-295.8,14.1);
+		}
+		SendClientMessage(playerid, COLOR_GRAD, "Du hast dich Teleportiert");
+		SetPlayerInterior(playerid,0);
+	}
+	return COMMAND_OK;
+}
