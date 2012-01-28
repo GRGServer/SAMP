@@ -109,21 +109,53 @@ stock loadPlayer(playerid)
 	loadPlayerValue(playerid, "AdminLevel", PLAYER_VARTYPE_INT);
 }
 
-strtok(const string[], &index)
+stock teleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle = 0.0, interior = -1, virtualWorld = -1)
 {
-	new length = strlen(string);
-	while ((index < length) && (string[index] <= ' '))
+	switch (GetPlayerState(playerID))
 	{
-		index++;
+		case PLAYER_STATE_ONFOOT:
+		{
+			SetPlayerPos(playerID, posX, posY, posZ);
+			SetPlayerFacingAngle(playerID, angle);
+			if (interior != -1)
+			{
+				SetPlayerInterior(playerID, interior);
+			}
+			if (virtualWorld != -1)
+			{
+				SetPlayerVirtualWorld(playerID, virtualWorld);
+			}
+			return true;
+		}
+		case PLAYER_STATE_DRIVER, PLAYER_STATE_PASSENGER:
+		{
+			new vehicleID = GetPlayerVehicleID(playerID);
+			SetVehiclePos(vehicleID, posX, posY, posZ);
+			if (interior != -1)
+			{
+				LinkVehicleToInterior(vehicleID, interior);
+			}
+			if (virtualWorld != -1)
+			{
+				SetVehicleVirtualWorld(vehicleID, virtualWorld);
+			}
+			return true;
+		}
 	}
+	return false;
+}
 
-	new offset = index;
-	new result[20];
-	while ((index < length) && (string[index] > ' ') && ((index - offset) < (sizeof(result) - 1)))
+stock CmdUsageMsg(playerid, command[], ...)
+{
+	new string[256];
+	new value[256];
+	new parameters;
+	parameters = numargs();
+	format(string, sizeof(string), "Verwendung: /%s", command);
+	for (new index = 2; index < parameters; index++)
 	{
-		result[index - offset] = string[index];
-		index++;
+		GetStringArg(index, value);
+		format(string, sizeof(string), "%s %s", string, value);
 	}
-	result[index - offset] = EOS;
-	return result;
+	SendClientMessage(playerid, COLOR_USAGE, string);
 }

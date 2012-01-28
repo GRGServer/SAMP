@@ -8,6 +8,16 @@
 #include <sscanf>
 #include <zcmd>
 
+// Get argument as string
+#define GetStringArg(%0,%1); \
+    for(new i_%0 = 0; ; ++i_%0) \
+    { \
+        if((%1[i_%0] = getarg((%0), i_%0)) != EOS) \
+            continue; \
+        else \
+            break; \
+    }
+
 // GRG Server includes
 #include <grgserver/constants>// Constants like colors, dialog IDs, command returns, etc.
 #include <grgserver/config>// Configuration #data like IRC and MySQL credentials

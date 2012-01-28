@@ -12,7 +12,7 @@ CMD:makeadmin(playerid, params[])
 	{
 		if (!sscanf(params, "sd", playerName, level))
 		{
-			SendClientMessage(playerid, COLOR_USAGE, "Verwendung: /makeadmin [Spielername] [level(1-1337)]");
+			CmdUsageMsg(playerid, "makeadmin", "Spielername", "level (1-1337)");
 		}
 		new targetPlayerID = getPlayerByName(playerName);
 		if (targetPlayerID == INVALID_PLAYERID)
@@ -40,142 +40,159 @@ CMD:makeadmin(playerid, params[])
 				SendClientMessage(playerid, COLOR_ERROR, "Level muss zwischen 1 und 1337 sein!");
 			}
 		}
+		return COMMAND_OK;
 	}
 	else
 	{
 		return COMMAND_ACCESS_DENIED;
 	}
-	return COMMAND_OK;
 }
 
 CMD:gotobsn(playerid, params[])
 {
 	if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
 	{
-		if (GetPlayerState(playerid) == 2)
+		if (teleportTo(playerid, 1204.7445, -881.0291, 43.0703, 0.0, 0))
 		{
-			new tmpcar = GetPlayerVehicleID(playerid);
-			SetVehiclePos(tmpcar, 1204.7445,-881.0291,43.0703);
-			TelePos[playerid][0] = 0.0;TelePos[playerid][1] = 0.0;
+			return COMMAND_TELEPORTED;
 		}
 		else
 		{
-			SetPlayerPos(playerid, 1199.4624,-914.1083,48.0625);
+			SendClientMessage(playerid, COLOR_ERROR, "Beim Teleportieren ist ein Fehler aufgetreten! Bitte erneut versuchen.");
+			return COMMAND_ERROR;
 		}
-		SendClientMessage(playerid, COLOR_GRAD, "Du hast dich Teleportiert !");
-		SetPlayerInterior(playerid,0);
 	}
-	return COMMAND_OK;
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
 }
+
 CMD:gotols(playerid, params[])
 {
 	if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
 	{
-		if (GetPlayerState(playerid) == 2)
+		if (teleportTo(playerid, 1529.6, -1691.2, 13.3, 0.0, 0))
 		{
-			new tmpcar = GetPlayerVehicleID(playerid);
-			SetVehiclePos(tmpcar, 1529.6,-1691.2,13.3);
-			TelePos[playerid][0] = 0.0;TelePos[playerid][1] = 0.0;
+			return COMMAND_TELEPORTED;
 		}
 		else
 		{
-			SetPlayerPos(playerid, 1529.6,-1691.2,13.3);
+			SendClientMessage(playerid, COLOR_ERROR, "Beim Teleportieren ist ein Fehler aufgetreten! Bitte erneut versuchen.");
+			return COMMAND_ERROR;
 		}
-		SendClientMessage(playerid, COLOR_GRAD, "Du hast dich Teleportiert !");
-		SetPlayerInterior(playerid,0);
 	}
-	return COMMAND_OK;
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
 }
+
 CMD:gotolv(playerid, params[])
 {
 	if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
 	{
-		if (GetPlayerState(playerid) == 2)
+		if (teleportTo(playerid, 1699.2, 1435.1, 10.7, 0.0, 0))
 		{
-			new tmpcar = GetPlayerVehicleID(playerid);
-			SetVehiclePos(tmpcar, 1699.2, 1435.1, 10.7);
-			TelePos[playerid][0] = 0.0;TelePos[playerid][1] = 0.0;
+			return COMMAND_TELEPORTED;
 		}
 		else
 		{
-			SetPlayerPos(playerid, 1699.2,1435.1, 10.7);
+			SendClientMessage(playerid, COLOR_ERROR, "Beim Teleportieren ist ein Fehler aufgetreten! Bitte erneut versuchen.");
+			return COMMAND_ERROR;
 		}
-		SendClientMessage(playerid, COLOR_GRAD, "Du hast dich Teleportiert");
-		SetPlayerInterior(playerid,0);
 	}
-	return COMMAND_OK;
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
 }
+
 CMD:gotosf(playerid, params[])
 {
 	if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
 	{
-		if (GetPlayerState(playerid) == 2)
+		if (teleportTo(playerid, -1417.0, -295.8, 14.1, 0.0, 0))
 		{
-			new tmpcar = GetPlayerVehicleID(playerid);
-			SetVehiclePos(tmpcar, -1417.0,-295.8,14.1);
-			TelePos[playerid][0] = 0.0;TelePos[playerid][1] = 0.0;
+			return COMMAND_TELEPORTED;
 		}
 		else
 		{
-			SetPlayerPos(playerid, -1417.0,-295.8,14.1);
+			SendClientMessage(playerid, COLOR_ERROR, "Beim Teleportieren ist ein Fehler aufgetreten! Bitte erneut versuchen.");
+			return COMMAND_ERROR;
 		}
-		SendClientMessage(playerid, COLOR_GRAD, "Du hast dich Teleportiert");
-		SetPlayerInterior(playerid,0);
 	}
-	return COMMAND_OK;
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
 }
+
 CMD:veh(playerid, params[])
 {
-	new string[256];
 	if(GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
 	{
 		return COMMAND_ACCESS_DENIED;
 	}
-	tmp = strtok(params, idx);
-	if(!strlen(tmp))
-	{
-		SendClientMessage(playerid, COLOR_GRAD, "USAGE: /veh [carid] [color1] [color2]");
-		return 1;
-	}
-	new car;
-	car = strval(tmp);
-	if(car < 400 || car > 611) 
-	{ 
-		SendClientMessage(playerid, COLOR_GRAD, "Du kannst nur Zahlen verwenden zwischen 400 und 611!"); 
-		return 1; 
-	}
-	tmp = strtok(params, idx);
-	if(!strlen(tmp))
-	{
-		SendClientMessage(playerid, COLOR_GRAD, "USAGE: /veh [carid] [color1] [color2]");
-		return 1;
-	}
+	new vehicleName[256];
+	new modelID;
 	new color1;
-	color1 = strval(tmp);
-	if(color1 < 0 || color1 > 126) 
-	{ 
-		SendClientMessage(playerid, COLOR_GRAD, "Es gibt nur Farben zwischen 0 und 126!");
-		return 1; 
-	}
-	tmp = strtok(params, idx);
-	if(!strlen(tmp))
-	{
-		SendClientMessage(playerid, COLOR_GRAD, "USAGE: /veh [carid] [color1] [color2]");
-		return 1;
-	}
 	new color2;
-	color2 = strval(tmp);
-	if(color2 < 0 || color2 > 126) 
-	{ 
-		SendClientMessage(playerid, COLOR_GRAD, "Es gibt nur Farben zwischen 0 und 126!"); 
-		return 1; 
+	if (sscanf(params, "ddd", modelID, color1, color2))
+	{
+		if (!sscanf(params, "d", modelID))
+		{
+			color1 = random(126);
+			color2 = random(126);
+		}
+		else
+		{
+			if (sscanf(params, "sdd", vehicleName, color1, color2))
+			{
+				if (!sscanf(params, "s", vehicleName))
+				{
+					color1 = random(126);
+					color2 = random(126);
+				}
+				else
+				{
+					CmdUsageMsg(playerid, "veh", "ModelID/Name", "[Color1]", "[Color2]");
+					return COMMAND_OK;
+				}
+			}
+			// TODO: Get ModelID by name
+		}
 	}
-	new Float:X,Float:Y,Float:Z;
-	GetPlayerPos(playerid, X,Y,Z);
-	new carid = CreateVehicle(car, X,Y,Z, 0.0, color1, color2, -1);
-	CreatedCars[CreatedCar] = carid;
-	CreatedCar ++;
-	format(string, sizeof(string), "   Vehicle %d spawned.", carid);
-	SendClientMessage(playerid, COLOR_GRAD, string);	
-	return COMMAND_OK;
+	if (modelID >= 400 && modelID <= 611)
+	{
+		if (color1 >= 0 && color1 <= 126 && color2 >= 0 && color2 <= 126)
+		{
+			new Float:posX;
+			new Float:posY;
+			new Float:posZ;
+			GetPlayerPos(playerid, posX, posY, posZ);
+			new vehicleID = CreateVehicle(modelID, posX, posY, posZ, 0.0, color1, color2, -1);
+			LinkVehicleToInterior(vehicleID, GetPlayerInterior(playerid));
+			SetVehicleVirtualWorld(vehicleID, GetPlayerVirtualWorld(playerid));
+			printf("%s spawned a vehicle (ModelID: %d)", getPlayerName(playerid), modelID);
+			SendClientMessage(playerid, COLOR_INFO, "Das Fahrzeug wurde gespawnt");
+			return COMMAND_OK;
+		}
+		else
+		{
+			SendClientMessage(playerid, COLOR_ERROR, "Die Farbe muss zwischen 0 und 126 sein!");
+		}
+	}
+	else
+	{
+		if (strlen(vehicleName))
+		{
+			SendClientMessage(playerid, COLOR_ERROR, "Das Fahrzeug wurde nicht gefunden!");
+		}
+		else
+		{
+			SendClientMessage(playerid, COLOR_ERROR, "Die ModelID muss zwischen 400 und 611 sein!");
+		}
+	}
+	return COMMAND_ERROR;
 }

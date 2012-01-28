@@ -124,8 +124,12 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 {
 	switch (success)
 	{
+		case COMMAND_ERROR:
+			return true;// Command occured an error (Player not found, invalid ID, etc.) -> Nothing to do yet
 		case COMMAND_OK:
-			return true;// Command executed successfully, do nothing
+			return true;// Command executed successfully -> Do nothing
+		case COMMAND_TELEPORTED:
+			SendClientMessage(playerid, COLOR_INFO, "Du wurdest teleportiert!");
 		case COMMAND_ACCESS_DENIED:
 		{
 			SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht die nötigen Rechte um diesen Befehl zu verwenden!");
