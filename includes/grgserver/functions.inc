@@ -31,7 +31,7 @@ stock val2str(value)
 stock fetchMySQLRow()
 {
 	new Line[1024];
-	return samp_mysql_fetch_row(Line);
+	return mysql_fetch_row(Line);
 }
 
 stock getMySQLField(field[])
