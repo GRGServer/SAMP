@@ -8,7 +8,22 @@ public OnPlayerConnect(playerid)
 		mysql_store_result();
 		if (strval(getMySQLField("StartOnConnect")))
 		{
-			startNPCPlayback(playerid, getMySQLField("Recording"), strval(getMySQLField("Type")), strval(getMySQLField("AutoRepeat")));
+			new modelID;
+			new playbackType;
+			new vehicleID;
+			modelID = strval(getMySQLField("VehicleModelID"));
+			if (modelID)
+			{
+				playbackType = PLAYER_RECORDING_TYPE_DRIVER;
+				vehicleID = CreateVehicle(modelID, 0.0, 0.0, 0.0, 0.0, random(126), random(126), 1);
+				PutPlayerInVehicle(playerid, vehicleID, 0);
+				SetPVarInt(playerid, "VehicleID", vehicleID);
+			}
+			else
+			{
+				playbackType = PLAYER_RECORDING_TYPE_ONFOOT;
+			}
+			startNPCPlayback(playerid, getMySQLField("Recording"), playbackType, strval(getMySQLField("AutoRepeat")));
 		}
 		mysql_free_result();
 	}
