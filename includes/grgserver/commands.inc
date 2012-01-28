@@ -124,3 +124,59 @@ CMD:gotosf(playerid, params[])
 	}
 	return COMMAND_OK;
 }
+CMD:veh(playerid, params[])
+{
+	new string[256];
+	if(GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
+	{
+		SendClientMessage(playerid, COLOR_GRAD, "   Du bist nicht Autoresiert für diesen Befehl!");
+		return 1;
+	}
+	tmp = strtok(params, idx);
+	if(!strlen(tmp))
+	{
+		SendClientMessage(playerid, COLOR_GRAD, "USAGE: /veh [carid] [color1] [color2]");
+		return 1;
+	}
+	new car;
+	car = strval(tmp);
+	if(car < 400 || car > 611) 
+	{ 
+		SendClientMessage(playerid, COLOR_GRAD, "Du kannst nur Zahlen verwenden zwischen 400 und 611!"); 
+		return 1; 
+	}
+	tmp = strtok(params, idx);
+	if(!strlen(tmp))
+	{
+		SendClientMessage(playerid, COLOR_GRAD, "USAGE: /veh [carid] [color1] [color2]");
+		return 1;
+	}
+	new color1;
+	color1 = strval(tmp);
+	if(color1 < 0 || color1 > 126) 
+	{ 
+		SendClientMessage(playerid, COLOR_GRAD, "Es gibt nur Farben zwischen 0 und 126!");
+		return 1; 
+	}
+	tmp = strtok(params, idx);
+	if(!strlen(tmp))
+	{
+		SendClientMessage(playerid, COLOR_GRAD, "USAGE: /veh [carid] [color1] [color2]");
+		return 1;
+	}
+	new color2;
+	color2 = strval(tmp);
+	if(color2 < 0 || color2 > 126) 
+	{ 
+		SendClientMessage(playerid, COLOR_GRAD, "Es gibt nur Farben zwischen 0 und 126!"); 
+		return 1; 
+	}
+	new Float:X,Float:Y,Float:Z;
+	GetPlayerPos(playerid, X,Y,Z);
+	new carid = CreateVehicle(car, X,Y,Z, 0.0, color1, color2, -1);
+	CreatedCars[CreatedCar] = carid;
+	CreatedCar ++;
+	format(string, sizeof(string), "   Vehicle %d spawned.", carid);
+	SendClientMessage(playerid, COLOR_GRAD, string);	
+	return COMMAND_OK;
+}
