@@ -136,7 +136,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 			printf("%s tried to execute %s with admin level %d but has not the required permission!", getPlayerName(playerid), cmdtext, GetPVarInt(playerid, "AdminLevel"));
 		}
 		case COMMAND_NOT_FOUND:
-			SendClientMessage(playerid, COLOR_ERROR, "Befehl nicht gefunden!");
+			return false;
 		default:
 			printf("Unknown command return code from %s", cmdtext);
 	}
