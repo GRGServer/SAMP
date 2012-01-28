@@ -130,7 +130,7 @@ CMD:gotosf(playerid, params[])
 
 CMD:veh(playerid, params[])
 {
-	if(GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
+	if(GetPVarInt(playerid, "AdminLevel") < ADMINLEVEL_SERVERADMIN)
 	{
 		return COMMAND_ACCESS_DENIED;
 	}
@@ -163,6 +163,7 @@ CMD:veh(playerid, params[])
 			// TODO: Get ModelID by name
 		}
 	}
+	printf("VN %s, M %d, C1 %d, C2 %d", vehicleName, modelID, color1, color2);
 	if (modelID >= 400 && modelID <= 611)
 	{
 		if (color1 >= 0 && color1 <= 126 && color2 >= 0 && color2 <= 126)
