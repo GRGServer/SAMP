@@ -129,7 +129,6 @@ CMD:veh(playerid, params[])
 	new string[256];
 	if(GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
 	{
-		SendClientMessage(playerid, COLOR_GRAD, "   Du bist nicht Autoresiert für diesen Befehl!");
 		return COMMAND_ACCESS_DENIED;
 	}
 	tmp = strtok(params, idx);
