@@ -1,11 +1,10 @@
-// SAMP standard includes
 #include <a_samp>
-
-// Note: Everything elese moved to a filter script
+#include <grgserver/compiler>
 
 main()
 {
-	print("\n----------------------------------");
-	print("GRG Server");
-	print("----------------------------------\n");
+	print("\n*** GRG Server Game Mode ***\n");
+	printf("SVN Revision %d", COMPILER_SVN_REVISION);
+	printf("Compile date: %s %s", COMPILER_DATE, COMPILER_TIME);
+	print("\nCopyright 2012 GRG Server\n");
 }

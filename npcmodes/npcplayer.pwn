@@ -1,6 +1,7 @@
 #include <a_npc>
 #include <sscanf>
 #include <grgserver/constants>
+#include <grgserver/compiler>
 
 new recordingName[256];
 new playbackType;
@@ -8,9 +9,10 @@ new autoRepeat;
 
 main()
 {
-	print("\n----------------------------------");
-	print("GRG Server NPC Player");
-	print("----------------------------------\n");
+	print("\n*** GRG Server NPC Player ***\n");
+	printf("SVN Revision %d", COMPILER_SVN_REVISION);
+	printf("Compile date: %s %s", COMPILER_DATE, COMPILER_TIME);
+	print("\nCopyright 2012 GRG Server\n");
 }
 
 public OnClientMessage(color, text[])

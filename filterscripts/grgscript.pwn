@@ -20,7 +20,7 @@
 
 // GRG Server includes
 #include <grgserver/constants>// Constants like colors, dialog IDs, command returns, etc.
-#include <grgserver/svn>// SVN specific constants like the current revision
+#include <grgserver/compiler>// Constants updated before compiling (Compiling time, SVN revision, etc.)
 #include <grgserver/config>// Configuration #data like IRC and MySQL credentials
 #include <grgserver/globals>// Globally used variables like ircBot (Variables which are shared between multiple functions)
 #include <grgserver/functions>// Stock functions
@@ -29,3 +29,11 @@
 #include <grgserver/publics_irc>// IRC publics like IRC_OnConnect
 #include <grgserver/publics_players>// Player publics like OnPlayerText
 #include <grgserver/commands>// Player commands like /about
+
+main()
+{
+	print("\n*** GRG Server Filter Script ***\n");
+	printf("SVN Revision %d", COMPILER_SVN_REVISION);
+	printf("Compile date: %s %s", COMPILER_DATE, COMPILER_TIME);
+	print("\nCopyright 2012 GRG Server\n");
+}
