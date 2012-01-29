@@ -115,6 +115,12 @@ stock loadPlayer(playerid)
 	loadPlayerValue(playerid, "AdminLevel", PLAYER_VARTYPE_INT);
 }
 
+stock setPlayerMoney(playerID, amount)
+{
+	ResetPlayerMoney(playerID);
+	GivePlayerMoney(playeriID, amount);
+}
+
 stock isAdmin(playerID, adminLevel)
 {
 	return GetPVarInt(playerID, "AdminLevel") >= adminLevel;

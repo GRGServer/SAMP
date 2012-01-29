@@ -28,4 +28,5 @@
 #include <grgserver/publics_filterscript>// Publics like OnFilterScriptInit or OnFilterScriptExit
 #include <grgserver/publics_irc>// IRC publics like IRC_OnConnect
 #include <grgserver/publics_players>// Player publics like OnPlayerText
+#include <grgserver/publics_timer>// Timers to update various stuff like world time
 #include <grgserver/commands>// Player commands like /about
