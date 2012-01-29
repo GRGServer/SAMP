@@ -17,7 +17,7 @@ CMD:controlnpc(playerid, params[])
 		{
 			if (sscanf(params, "ss", playerName, command))
 			{
-				CmdUsageMsg(playerid, "controlnpc", "playerName", "command(start|stop|pause|resume)", "[recordingName]", "[playbackType]", "[autoRepeat]");
+				CmdUsageMsg(playerid, "controlnpc", "playerName", "command(connect|start|stop|pause|resume)", "[recordingName]", "[playbackType]", "[autoRepeat]");
 				SendClientMessage(playerid, COLOR_INFO, "Hinweis: recordingName, playbackType und autoRepeat wird nur für den Befehl 'start' benötigt.");
 				return COMMAND_USAGE;
 			}
@@ -35,21 +35,29 @@ CMD:controlnpc(playerid, params[])
 			}
 			if (type)
 			{
+				SendClientMessage(playerid, COLOR_INFO, "Wiedergabe gestartet");
 				startNPCPlayback(getPlayerID(playerName), recordingName, type, autoRepeat);
 				return COMMAND_OK;
 			}
+			else
+			{
+				return COMMAND_ERROR;
+			}
 		}
-		else
+		if (!strcmp(command, "connect", true))
 		{
-			sendNPCCommand(getPlayerID(playerName), command);
+			SendClientMessage(playerid, COLOR_INFO, "NPC verbunden");
+			ConnectNPC(playerName, "npcplayer");
 			return COMMAND_OK;
 		}
+		SendClientMessage(playerid, COLOR_INFO, "Befehl gesendet");
+		sendNPCCommand(getPlayerID(playerName), command);
+		return COMMAND_OK;
 	}
 	else
 	{
 		return COMMAND_ACCESS_DENIED;
 	}
-	return COMMAND_ERROR;
 }
 
 CMD:goto(playerid, params[])
@@ -265,17 +273,26 @@ CMD:recnpc(playerid, params[])
 		}
 		if (strlen(playbackName1))
 		{
-			addNPCRecorderPlayback(playerid, playbackName1, recordingType);
+			if (!addNPCRecorderPlayback(playerid, playbackName1, recordingType))
+			{
+				return COMMAND_ERROR;
+			}
 			npcs++;
 		}
 		if (strlen(playbackName2))
 		{
-			addNPCRecorderPlayback(playerid, playbackName2, recordingType);
+			if (!addNPCRecorderPlayback(playerid, playbackName2, recordingType))
+			{
+				return COMMAND_ERROR;
+			}
 			npcs++;
 		}
 		if (strlen(playbackName3))
 		{
-			addNPCRecorderPlayback(playerid, playbackName3, recordingType);
+			if (!addNPCRecorderPlayback(playerid, playbackName3, recordingType))
+			{
+				return COMMAND_ERROR;
+			}
 			npcs++;
 		}
 		StartRecordingPlayerData(playerid, recordingType, recordingName);

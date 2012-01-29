@@ -181,18 +181,28 @@ stock addNPCRecorderPlayback(playerID, recordingName[], recordingType)
 {
 	new npcPlayerName[MAX_PLAYER_NAME];
 	format(npcPlayerName, sizeof(npcPlayerName), "%s_NPC1", getPlayerName(playerID));
-	ConnectNPC(npcPlayerName, "npcplayer");
 	new npcPlayerID = getPlayerID(npcPlayerName);
-	if (recordingType == PLAYER_RECORDING_TYPE_DRIVER)
+	if (npcPlayerID == INVALID_PLAYERID)
 	{
-		new modelID = strval(getMySQLValue("npcs", "VehicleModelID", "Recording", recordingName));
-		if (modelID)
-		{
-			PutPlayerInVehicle(npcPlayerID, CreateVehicle(modelID, 0.0, 0.0, 0.0, 0.0, random(126), random(126), 1), 0);
-		}
+		new string[256];
+		format(string, sizeof(string), "Der NPC '%s' ist nicht verbunden! Verwende /controlnpc %s connect und versuche es erneut.", npcPlayerName, npcPlayerName);
+		SendClientMessage(playerID, COLOR_ERROR, string);
 	}
-	SetPVarInt(npcPlayerID, "RecordNPCForPlayer", playerID);
-	startNPCPlayback(npcPlayerID, recordingName, recordingType, false);
+	else
+	{
+		if (recordingType == PLAYER_RECORDING_TYPE_DRIVER)
+		{
+			new modelID = strval(getMySQLValue("npcs", "VehicleModelID", "Recording", recordingName));
+			if (modelID)
+			{
+				PutPlayerInVehicle(npcPlayerID, CreateVehicle(modelID, 0.0, 0.0, 0.0, 0.0, random(126), random(126), 1), 0);
+			}
+		}
+		SetPVarInt(npcPlayerID, "RecordNPCForPlayer", playerID);
+		startNPCPlayback(npcPlayerID, recordingName, recordingType, false);
+		return true;
+	}
+	return false;
 }
 
 stock writeChatToDatabase(playerID, text[])
