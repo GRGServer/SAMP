@@ -96,6 +96,20 @@ CMD:makeadmin(playerid, params[])
 	}
 }
 
+CMD:rc(playerid, params[])
+{
+	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		printf("%s sent a RCON command: %s", getPlayerName(playerid), params);
+		SendRconCommand(params);
+		return COMMAND_OK;
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
+}
+
 CMD:goto(playerid, params[])
 {
 	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
