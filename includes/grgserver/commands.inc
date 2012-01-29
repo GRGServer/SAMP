@@ -52,64 +52,6 @@ CMD:controlnpc(playerid, params[])
 	return COMMAND_ERROR;
 }
 
-CMD:makeadmin(playerid, params[])
-{
-	new playerName[MAX_PLAYER_NAME];
-	new level;
-	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
-	{
-		if (!sscanf(params, "sd", playerName, level))
-		{
-			CmdUsageMsg(playerid, "makeadmin", "Spielername", "level (1-1337)");
-		}
-		new targetPlayerID = getPlayerID(playerName);
-		if (targetPlayerID == INVALID_PLAYERID)
-		{
-			SendClientMessage(playerid, COLOR_ERROR, "Spieler nicht gefunden!");
-		}
-		else
-		{
-			if (level >= 1 && level <= 1337)
-			{
-				new string[256];
-				new adminPlayerName[MAX_PLAYER_NAME];
-				new targetPlayerName[MAX_PLAYER_NAME];
-				GetPlayerName(playerid, adminPlayerName, sizeof(adminPlayerName));
-				GetPlayerName(targetPlayerID, targetPlayerName, sizeof(targetPlayerName));
-				SetPVarInt(targetPlayerID, "AdminLevel", level);
-				format(string, sizeof(string), "Du hast Admin Level %d von %s bekommen!", level, adminPlayerName);
-				SendClientMessage(targetPlayerID, COLOR_INFO, string);
-				format(string, sizeof(string), "Du hast Admin Level %d an %s gegeben!", level, targetPlayerName);
-				SendClientMessage(playerid, COLOR_INFO, string);
-				printf("%s got admin level %d by %s", targetPlayerName, level, adminPlayerName);
-			}
-			else
-			{
-				SendClientMessage(playerid, COLOR_ERROR, "Level muss zwischen 1 und 1337 sein!");
-			}
-		}
-		return COMMAND_OK;
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
-}
-
-CMD:rc(playerid, params[])
-{
-	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
-	{
-		printf("%s sent a RCON command: %s", getPlayerName(playerid), params);
-		SendRconCommand(params);
-		return COMMAND_OK;
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
-}
-
 CMD:goto(playerid, params[])
 {
 	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
@@ -175,6 +117,64 @@ CMD:gotolv(playerid, params[])
 CMD:gotosf(playerid, params[])
 {
 	return adminTeleport(playerid, -1417.0, -295.8, 14.1, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
+}
+
+CMD:makeadmin(playerid, params[])
+{
+	new playerName[MAX_PLAYER_NAME];
+	new level;
+	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		if (!sscanf(params, "sd", playerName, level))
+		{
+			CmdUsageMsg(playerid, "makeadmin", "Spielername", "level (1-1337)");
+		}
+		new targetPlayerID = getPlayerID(playerName);
+		if (targetPlayerID == INVALID_PLAYERID)
+		{
+			SendClientMessage(playerid, COLOR_ERROR, "Spieler nicht gefunden!");
+		}
+		else
+		{
+			if (level >= 1 && level <= 1337)
+			{
+				new string[256];
+				new adminPlayerName[MAX_PLAYER_NAME];
+				new targetPlayerName[MAX_PLAYER_NAME];
+				GetPlayerName(playerid, adminPlayerName, sizeof(adminPlayerName));
+				GetPlayerName(targetPlayerID, targetPlayerName, sizeof(targetPlayerName));
+				SetPVarInt(targetPlayerID, "AdminLevel", level);
+				format(string, sizeof(string), "Du hast Admin Level %d von %s bekommen!", level, adminPlayerName);
+				SendClientMessage(targetPlayerID, COLOR_INFO, string);
+				format(string, sizeof(string), "Du hast Admin Level %d an %s gegeben!", level, targetPlayerName);
+				SendClientMessage(playerid, COLOR_INFO, string);
+				printf("%s got admin level %d by %s", targetPlayerName, level, adminPlayerName);
+			}
+			else
+			{
+				SendClientMessage(playerid, COLOR_ERROR, "Level muss zwischen 1 und 1337 sein!");
+			}
+		}
+		return COMMAND_OK;
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
+}
+
+CMD:rc(playerid, params[])
+{
+	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		printf("%s sent a RCON command: %s", getPlayerName(playerid), params);
+		SendRconCommand(params);
+		return COMMAND_OK;
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
 }
 
 CMD:veh(playerid, params[])

@@ -66,6 +66,16 @@ stock setMySQLValue(table[], field[], value[], checkColumn[], checkValue[])
 	mysql_query(query);
 }
 
+stock getUserDBValue(playerID, fieldName[])
+{
+	return getMySQLValue("users", fieldName, "UserID", val2str(GetPVarInt(playerID, "UserID")));
+}
+
+stock setUserDBValue(playerID, fieldName[], value[])
+{
+	setMySQLValue("users", fieldName, value, "UserID", val2str(GetPVarInt(playerID, "UserID")));
+}
+
 stock savePlayerValue(playerID, fieldName[])
 {
 	new value[256];
@@ -80,21 +90,19 @@ stock savePlayerValue(playerID, fieldName[])
 		default:
 			format(value, sizeof(value), "");
 	}
-	setMySQLValue("users", fieldName, value, "UserID", val2str(GetPVarInt(playerID, "UserID")));
+	setUserDBValue(playerID, fieldName, value);
 }
 
 stock loadPlayerValue(playerID, fieldName[], pVarType)
 {
-	new value[256];
-	format(value, sizeof(value), "%s", getMySQLValue("users", fieldName, "UserID", val2str(GetPVarInt(playerID, "UserID"))));
 	switch (pVarType)
 	{
 		case PLAYER_VARTYPE_INT:
-			SetPVarInt(playerID, fieldName, strval(value));
+			SetPVarInt(playerID, fieldName, strval(getUserDBValue(playerID, fieldName)));
 		case PLAYER_VARTYPE_STRING:
-			SetPVarString(playerID, fieldName, value);
+			SetPVarString(playerID, fieldName, getUserDBValue(playerID, fieldName));
 		case PLAYER_VARTYPE_FLOAT:
-			SetPVarFloat(playerID, fieldName, floatstr(value));// TODO: Convert string value to float
+			SetPVarFloat(playerID, fieldName, floatstr(getUserDBValue(playerID, fieldName)));
 	}
 }
 
@@ -102,14 +110,14 @@ stock savePlayer(playerID)
 {
 	savePlayerValue(playerID, "Level");
 	savePlayerValue(playerID, "AdminLevel");
-	setMySQLValue("users", "Money", val2str(GetPlayerMoney(playerID)), "UserID", val2str(GetPVarInt(playerID, "UserID")));
+	setUserDBValue(playerID, "Money", val2str(GetPlayerMoney(playerID)));
 }
 
 stock loadPlayer(playerID)
 {
 	loadPlayerValue(playerID, "Level", PLAYER_VARTYPE_INT);
 	loadPlayerValue(playerID, "AdminLevel", PLAYER_VARTYPE_INT);
-	setPlayerMoney(playerID, strval(getMySQLValue("users", "Money", "UserID", val2str(GetPVarInt(playerID, "UserID")))));
+	setPlayerMoney(playerID, strval(getUserDBValue(playerID, "Money")));
 }
 
 stock setPlayerMoney(playerID, amount)
