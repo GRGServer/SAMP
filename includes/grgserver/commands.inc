@@ -167,7 +167,7 @@ CMD:printpvar(playerid, params[])
 {
 	new string[256];
 	new name[256];
-	if (!sscanf(playerid, "s", name))
+	if (!sscanf(params, "s", name))
 	{
 		GetPVarString(playerid, name, string, sizeof(string));
 		format(string, sizeof(string), "Inhalt der Player Variable '%s': %s", name, string);
