@@ -7,12 +7,12 @@ public OnFilterScriptInit()
 	SetGameModeText(string);
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	mysql_query("SELECT * FROM `npcs` WHERE `AutoConnect` = '1'");
-	mysql_store_result();
+	/*mysql_store_result();
 	while (mysql_retrieve_row())
 	{
 		ConnectNPC(getMySQLField("Name"), "npcplayer");
 	}
-	mysql_free_result();
+	mysql_free_result();*/
 	return true;
 }
 
