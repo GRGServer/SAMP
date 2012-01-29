@@ -159,6 +159,8 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 			return true;// Command executed successfully -> Do nothing
 		case COMMAND_TELEPORTED:
 			SendClientMessage(playerid, COLOR_INFO, "Du wurdest teleportiert!");
+		case COMMAND_NPC_ONLY:
+			SendClientMessage(playerid, COLOR_ERROR, "Diese Befehl ist nur für NPCs verfügbar!");
 		case COMMAND_ACCESS_DENIED:
 		{
 			SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht die nötigen Rechte um diesen Befehl zu verwenden!");

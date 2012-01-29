@@ -54,6 +54,10 @@ public OnRecordingPlaybackEnd()
 	{
 		StartRecordingPlayback(playbackType, recordingName);
 	}
+	else
+	{
+		SendCommand("/npccmd stopped");
+	}
 }
 
 public OnNPCEnterVehicle(vehicleid,seatid)
@@ -69,13 +73,5 @@ public OnNPCExitVehicle()
 	if (playbackType == PLAYER_RECORDING_TYPE_DRIVER)
 	{
 		StopRecordingPlayback();
-	}
-}
-
-public OnNPCSpawn()
-{
-	if (playbackType == PLAYER_RECORDING_TYPE_ONFOOT)
-	{
-	    StartRecordingPlayback(playbackType, recordingName);
 	}
 }
