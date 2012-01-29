@@ -169,8 +169,7 @@ CMD:printpvar(playerid, params[])
 	new name[256];
 	if (!sscanf(params, "s", name))
 	{
-		GetPVarString(playerid, name, string, sizeof(string));
-		format(string, sizeof(string), "Inhalt der Player Variable '%s': %s", name, string);
+		format(string, sizeof(string), "Inhalt der Player Variable '%s': %s", name, val2str(GetPVarInt(playerid, name)));
 		SendClientMessage(playerid, COLOR_INFO, string);
 	}
 	else
