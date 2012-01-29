@@ -6,6 +6,7 @@
 #include <MD5>
 #include <mysql>
 #include <sscanf>
+#include <YSF>
 #include <zcmd>
 
 // Get argument as string
