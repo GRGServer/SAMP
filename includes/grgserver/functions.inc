@@ -107,18 +107,23 @@ stock savePlayer(playerid)
 {
 	savePlayerValue(playerid, "Level");
 	savePlayerValue(playerid, "AdminLevel");
+	savePlayerValue(playerid, "Money");
+	GetPlayerMoney(playerid);
 }
 
 stock loadPlayer(playerid)
 {
+	new amount;
 	loadPlayerValue(playerid, "Level", PLAYER_VARTYPE_INT);
 	loadPlayerValue(playerid, "AdminLevel", PLAYER_VARTYPE_INT);
+	loadPlayerValue(playerid, "Money", PLAYER_VARTYPE_INT);
+	setPlayerMoney(playerid,amount);
 }
 
 stock setPlayerMoney(playerID, amount)
 {
 	ResetPlayerMoney(playerID);
-	GivePlayerMoney(playeriID, amount);
+	GivePlayerMoney(playerID, amount);
 }
 
 stock isAdmin(playerID, adminLevel)
