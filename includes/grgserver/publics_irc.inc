@@ -17,7 +17,7 @@ public IRC_OnJoinChannel(botid, channel[])
 public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 {
 	new string[256];
-	if (!strcmp(message[0], "!", true))
+	if (message[0] == '!')
 	{
 		if (!strcmp(message, "!help", true))
 		{
