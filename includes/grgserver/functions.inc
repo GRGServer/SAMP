@@ -51,13 +51,11 @@ stock getMySQLValue(table[], field[], checkColumn[], checkValue[])
 {
 	new query[256];
 	new string[256];
-	printf("getMySQLValue(%s, %s, %s, %s)", table, field, checkColumn, checkValue);
 	format(query, sizeof(query), "SELECT `%s` FROM `%s` WHERE `%s` = '%s'", mySQLEscapeString(field), mySQLEscapeString(table), mySQLEscapeString(checkColumn), mySQLEscapeString(checkValue));
 	mysql_query(query);
 	mysql_store_result();
 	format(string, sizeof(string), "%s", getMySQLField(field));
 	mysql_free_result();
-	printf("Result: %s", string);
 	return string;
 }
 

@@ -78,7 +78,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", mySQLEscapeString(playerName));
 					mysql_query(query);
 					mysql_store_result();
-					if (!strcmp(MD5_Hash(inputtext, true), getMySQLField("Password"), true))
+					if (!strcmp(md5(inputtext), getMySQLField("Password"), true))
 					{
 						SetPVarInt(playerid, "UserID", strval(getMySQLField("UserID")));
 					}
@@ -116,7 +116,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					new query[256];
 					new playerName[MAX_PLAYER_NAME];
 					GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
-					format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`) VALUES ('%s', '%s')", mySQLEscapeString(playerName), MD5_Hash(inputtext, true));
+					format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`) VALUES ('%s', '%s')", mySQLEscapeString(playerName), md5(inputtext));
 					mysql_query(query);
 					SetPVarInt(playerid, "UserID", mysql_insert_id());
 					printf("UserID: %d", GetPVarInt(playerid, "UserID"));

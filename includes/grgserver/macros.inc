@@ -7,5 +7,7 @@
 			break; \
 	}
 
+#define md5(%0) MD5_Hash(%0, true)
+
 #define getUserDBValue(%0,%1) getMySQLValue("users", %1, "UserID", val2str(GetPVarInt(%0, "UserID")))
 #define setUserDBValue(%0,%1,%3) setMySQLValue("users", %1, %3, "UserID", val2str(GetPVarInt(%0, "UserID")))
