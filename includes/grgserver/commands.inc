@@ -19,7 +19,7 @@ CMD:controlnpc(playerid, params[])
 			{
 				CmdUsageMsg(playerid, "controlnpc", "playerName", "command(start|stop|pause|resume)", "[recordingName]", "[playbackType]", "[autoRepeat]");
 				SendClientMessage(playerid, COLOR_INFO, "Hinweis: recordingName, playbackType und autoRepeat wird nur für den Befehl 'start' benötigt.");
-				return COMMAND_OK;
+				return COMMAND_USAGE;
 			}
 		}
 		if (!strcmp(command, "start", true))
@@ -63,7 +63,7 @@ CMD:goto(playerid, params[])
 			if(sscanf(params, "s",playerName))
 			{
 				CmdUsageMsg(playerid,"goto","PlayerID/Name");
-				return COMMAND_OK;
+				return COMMAND_USAGE;
 			}
 			else
 			{
@@ -128,6 +128,7 @@ CMD:makeadmin(playerid, params[])
 		if (!sscanf(params, "sd", playerName, level))
 		{
 			CmdUsageMsg(playerid, "makeadmin", "Spielername", "level (1-1337)");
+			return COMMAND_USAGE;
 		}
 		new targetPlayerID = getPlayerID(playerName);
 		if (targetPlayerID == INVALID_PLAYERID)
@@ -177,6 +178,72 @@ CMD:rc(playerid, params[])
 	}
 }
 
+CMD:recnpc(playerid, params[])
+{
+	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		new npcs;
+		new recordingType;
+		new recordingName[256];
+		new playbackName1[256];
+		new playbackName2[256];
+		new playbackName3[256];
+		new name[256];
+		new string[256];
+		if (sscanf(params, "ssss", recordingName, playbackName1, playbackName2, playbackName3))
+		{
+			if (sscanf(params, "sss", recordingName, playbackName1, playbackName2))
+			{
+				if (sscanf(params, "ss", recordingName, playbackName1))
+				{
+					if (sscanf(params, "s", recordingName))
+					{
+						CmdUsageMsg(playerid, "recnpc", "recordingName", "[playbackName1]", "[playbackName2]", "[playbackName3]");
+						return COMMAND_USAGE;
+					}
+				}
+			}
+		}
+		if (IsPlayerInAnyVehicle(playerid))
+		{
+			recordingType = PLAYER_RECORDING_TYPE_DRIVER;
+		}
+		else
+		{
+			recordingType = PLAYER_RECORDING_TYPE_ONFOOT;
+		}
+		if (strlen(playbackName1))
+		{
+			format(name, sizeof(name), "%s_NPC1", getPlayerName(playerid));
+			ConnectNPC(name, "npcplayer");
+			startNPCPlayback(getPlayerID(name), playbackName1, recordingType, false);
+			npcs++;
+		}
+		if (strlen(playbackName2))
+		{
+			format(name, sizeof(name), "%s_NPC2", getPlayerName(playerid));
+			ConnectNPC(name, "npcplayer");
+			startNPCPlayback(getPlayerID(name), playbackName2, recordingType, false);
+			npcs++;
+		}
+		if (strlen(playbackName3))
+		{
+			format(name, sizeof(name), "%s_NPC3", getPlayerName(playerid));
+			ConnectNPC(name, "npcplayer");
+			startNPCPlayback(getPlayerID(name), playbackName3, recordingType, false);
+			npcs++;
+		}
+		StartRecordingPlayerData(playerid, recordingType, recordingName);
+		format(string, sizeof(string), "Aufnahme '%s' mit %d weiteren NPCs gestartet", recordingName, npcs);
+		SendClientMessage(playerid, COLOR_INFO, string);
+		return COMMAND_OK;
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
+}
+
 CMD:veh(playerid, params[])
 {
 	if(GetPVarInt(playerid, "AdminLevel") < ADMINLEVEL_SERVERADMIN)
@@ -206,7 +273,7 @@ CMD:veh(playerid, params[])
 				else
 				{
 					CmdUsageMsg(playerid, "veh", "ModelID/Name", "[Color1]", "[Color2]");
-					return COMMAND_OK;
+					return COMMAND_USAGE;
 				}
 			}
 			modelID = strval(getMySQLValue("vehicles", "ModelID", "Name", vehicleName));

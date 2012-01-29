@@ -153,6 +153,8 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 	{
 		case COMMAND_ERROR:
 			return true;// Command occured an error (Player not found, invalid ID, etc.) -> Nothing to do yet
+		case COMMAND_USAGE:
+			return true;// Command usage message displayed -> Nothing to do yet
 		case COMMAND_OK:
 			return true;// Command executed successfully -> Do nothing
 		case COMMAND_TELEPORTED:
