@@ -9,6 +9,8 @@ public OnFilterScriptInit()
 	new string[256];
 	format(string, sizeof(string), "GRG Server (SVN Revision %d)", COMPILER_SVN_REVISION);
 	SetGameModeText(string);
+	print("Starting timers");
+	SetTimer("timer_slow", 5000, true);
 	print("Adding player classes");
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	print("Connecting NPCs");
