@@ -163,6 +163,13 @@ stock sendNPCCommand(npcPlayerID, command[])
 	SendClientMessage(npcPlayerID, COLOR_NPCCOMMAND, command);
 }
 
+stock writeChatToDatabase(playerid, text[])
+{
+	new query[512];
+	format(query, sizeof(query), "INSERT INTO `chatlog` (`UserID`, `Time`, `Text`) VALUES('%d', NOW(), '%s')", GetPVarInt(playerid, "UserID"), mySQLEscapeString(text));
+	mysql_query(query);
+}
+
 stock CmdUsageMsg(playerid, command[], ...)
 {
 	new string[256];

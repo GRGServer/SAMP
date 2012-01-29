@@ -6,5 +6,5 @@ public IRC_OnConnect(botid, ip[], port)
 public IRC_OnJoinChannel(botid, channel[])
 {
 	IRC_Say(botid, channel, "Hello!");
-	IRC_Say(botid, channel, "I'm an IRC chat relay for the SAMP-Server 'GRGServer'.");
+	IRC_Say(botid, channel, "I'm an IRC chat relay for GRG Server.");
 }

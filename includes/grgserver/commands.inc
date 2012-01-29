@@ -163,7 +163,6 @@ CMD:veh(playerid, params[])
 			modelID = strval(getMySQLValue("vehicles", "ModelID", "Name", vehicleName));
 		}
 	}
-	printf("VN %s, M %d, C1 %d, C2 %d", vehicleName, modelID, color1, color2);
 	if (modelID >= 400 && modelID <= 611)
 	{
 		if (color1 >= 0 && color1 <= 126 && color2 >= 0 && color2 <= 126)
@@ -175,6 +174,7 @@ CMD:veh(playerid, params[])
 			new vehicleID = CreateVehicle(modelID, posX, posY, posZ, 0.0, color1, color2, -1);
 			LinkVehicleToInterior(vehicleID, GetPlayerInterior(playerid));
 			SetVehicleVirtualWorld(vehicleID, GetPlayerVirtualWorld(playerid));
+			PutPlayerInVehicle(playerid, vehicleID, 0);
 			printf("%s spawned a vehicle (ModelID: %d)", getPlayerName(playerid), modelID);
 			SendClientMessage(playerid, COLOR_INFO, "Das Fahrzeug wurde gespawnt");
 			return COMMAND_OK;

@@ -169,3 +169,12 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 	}
 	return true;
 }
+
+public OnPlayerText(playerid, text[])
+{
+	new string[256];
+	format(string, sizeof(string), "[%s] %s", getPlayerName(playerid), text);
+	IRC_Say(ircBot, IRC_CHANNEL, string);
+	writeChatToDatabase(playerid, text);
+	return true;
+}
