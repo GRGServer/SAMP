@@ -28,17 +28,16 @@ stock val2str(value)
 	return string;
 }
 
-/* Not required for this MySQL plugin
 stock fetchMySQLRow()
 {
 	new Line[1024];
 	return mysql_fetch_row(Line);
-}*/
+}
 
 stock getMySQLField(field[])
 {
 	new value[256];
-	mysql_get_field(field, value);
+	mysql_fetch_field(field, value);
 	return value;
 }
 
