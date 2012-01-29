@@ -29,11 +29,3 @@
 #include <grgserver/publics_irc>// IRC publics like IRC_OnConnect
 #include <grgserver/publics_players>// Player publics like OnPlayerText
 #include <grgserver/commands>// Player commands like /about
-
-main()
-{
-	print("\n*** GRG Server Filter Script ***\n");
-	printf("SVN Revision %d", COMPILER_SVN_REVISION);
-	printf("Compile date: %s %s", COMPILER_DATE, COMPILER_TIME);
-	print("\nCopyright 2012 GRG Server\n");
-}
