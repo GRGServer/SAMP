@@ -57,6 +57,7 @@ stock getMySQLValue(table[], field[], checkColumn[], checkValue[])
 	mysql_store_result();
 	format(string, sizeof(string), "%s", getMySQLField(field));
 	mysql_free_result();
+	printf("Result: %s", string);
 	return string;
 }
 
