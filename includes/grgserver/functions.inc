@@ -68,17 +68,6 @@ stock setMySQLValue(table[], field[], value[], checkColumn[], checkValue[])
 	mysql_query(query);
 }
 
-stock getUserDBValue(playerID, fieldName[])
-{
-	printf("getUserDBValue(%d, %s)", playerID, fieldName);
-	return getMySQLValue("users", fieldName, "UserID", val2str(GetPVarInt(playerID, "UserID")));
-}
-
-stock setUserDBValue(playerID, fieldName[], value[])
-{
-	setMySQLValue("users", fieldName, value, "UserID", val2str(GetPVarInt(playerID, "UserID")));
-}
-
 stock savePlayerValue(playerID, fieldName[])
 {
 	new value[256];
@@ -206,7 +195,7 @@ stock CmdUsageMsg(playerID, command[], ...)
 	format(string, sizeof(string), "Verwendung: /%s", command);
 	for (new index = 2; index < parameters; index++)
 	{
-		GetStringArg(index, value);
+		getStringArg(index, value);
 		format(string, sizeof(string), "%s %s", string, value);
 	}
 	SendClientMessage(playerID, COLOR_USAGE, string);
