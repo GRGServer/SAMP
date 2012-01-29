@@ -20,6 +20,69 @@ stock getPlayerID(playerName[])
 	return INVALID_PLAYERID;
 }
 
+stock str_replace(search[], replace[], source[])
+{
+	new newnick[256];
+	new newlen;
+	for (new i; i < strlen(source); i++)
+	{
+		if (strlen(search) > 1 && i != (strlen(source) - 1))
+		{
+			new matched = 1;
+			new start = i;
+			for (new s=0; s < strlen(search) && matched == 1; s++)
+			{
+				if (source[i] != search[s] && s == 0)
+				{
+					newnick[newlen] = source[i];
+					matched = 0;
+				} else
+				{
+					if (source[i] == search[s])
+					{
+						i++;
+					} else
+					{
+						matched = 0;
+					}
+				}
+			}
+			if (matched == 0)
+			{
+				for (start=start; start <= i; start++)
+				{
+					newnick[newlen] = source[start];
+					newlen++;
+				}
+			} else
+			{
+				for (new r; r < strlen(replace); r++)
+				{
+					newnick[newlen] = replace[r];
+					newlen++;
+				}
+				i = (start + (strlen(search) - 1));
+			}
+		} else
+		{
+			if (strlen(search) == 1 && source[i] == search[0])
+			{
+				for (new r; r < strlen(replace); r++)
+				{
+					newnick[newlen] = replace[r];
+					newlen++;
+				}
+			} else
+			{
+				newnick[newlen] = source[i];
+				newlen++;
+			}
+		}
+	}
+	newnick[newlen] = EOS;
+	return newnick;
+}
+
 stock val2str(value)
 {
 	new string[256];
@@ -47,11 +110,11 @@ stock mySQLEscapeString(string[])
 	return escapedString;
 }
 
-stock getMySQLValue(table[], field[], checkColumn[], checkValue[])
+stock getMySQLValue(table[], field[], checkColumn[], checkValue[], whereOperator[] = "=")
 {
 	new query[256];
 	new string[256];
-	format(query, sizeof(query), "SELECT `%s` FROM `%s` WHERE `%s` = '%s'", mySQLEscapeString(field), mySQLEscapeString(table), mySQLEscapeString(checkColumn), mySQLEscapeString(checkValue));
+	format(query, sizeof(query), "SELECT `%s` FROM `%s` WHERE `%s` %s '%s'", mySQLEscapeString(field), mySQLEscapeString(table), mySQLEscapeString(checkColumn), whereOperator, mySQLEscapeString(checkValue));
 	mysql_query(query);
 	mysql_store_result();
 	format(string, sizeof(string), "%s", getMySQLField(field));

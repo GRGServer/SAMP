@@ -298,12 +298,20 @@ CMD:recnpc(playerid, params[])
 		StartRecordingPlayerData(playerid, recordingType, recordingName);
 		format(string, sizeof(string), "Aufnahme '%s' mit %d weiteren NPCs gestartet", recordingName, npcs);
 		SendClientMessage(playerid, COLOR_INFO, string);
+		SendClientMessage(playerid, COLOR_INFO, "Verwende /stoprec zum stoppen.");
 		return COMMAND_OK;
 	}
 	else
 	{
 		return COMMAND_ACCESS_DENIED;
 	}
+}
+
+CMD:stoprec(playerid, params[])
+{
+	StopRecordingPlayerData(playerid);
+	SendClientMessage(playerid, COLOR_INFO, "Aufnahme gestoppt");
+	return COMMAND_OK;
 }
 
 CMD:veh(playerid, params[])
@@ -338,7 +346,7 @@ CMD:veh(playerid, params[])
 					return COMMAND_USAGE;
 				}
 			}
-			modelID = strval(getMySQLValue("vehicles", "ModelID", "Name", vehicleName));
+			modelID = strval(getMySQLValue("vehicles", "ModelID", "Name", str_replace("*", "%%", vehicleName), "LIKE"));
 		}
 	}
 	if (modelID >= 400 && modelID <= 611)
