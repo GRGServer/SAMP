@@ -5,10 +5,6 @@ public OnFilterScriptInit()
 	mysql_connect(MYSQL_HOST, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE);
 	print("Connecting to IRC server");
 	ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_USERNAME, IRC_USERNAME, IRC_USERNAME, IRC_SSL);
-	print("Setting game mode text");
-	new string[256];
-	format(string, sizeof(string), "GRG Server (SVN Revision %d)", COMPILER_SVN_REVISION);
-	SetGameModeText(string);
 	print("Starting timers");
 	SetTimer("timer_slow", 5000, true);
 	print("Adding player classes");
@@ -21,6 +17,16 @@ public OnFilterScriptInit()
 		ConnectNPC(getMySQLField("Name"), "npcplayer");
 	}
 	mysql_free_result();
+	print("Misc stuff");
+	new string[256];
+	format(string, sizeof(string), "GRG Server (SVN Revision %d)", COMPILER_SVN_REVISION);
+	SetGameModeText(string);
+	new File:svnRevisionFile = fopen("svn_revision", io_write);
+	if (svnRevisionFile)
+	{
+		fwrite(svnRevisionFile, val2str(COMPILER_SVN_REVISION));
+		fclose(svnRevisionFile);
+	}
 	print("Complete");
 	return true;
 }
