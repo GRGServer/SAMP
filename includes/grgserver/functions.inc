@@ -1,7 +1,7 @@
-stock getPlayerName(playerid)
+stock getPlayerName(playerID)
 {
 	new playerName[MAX_PLAYER_NAME];
-	GetPlayerName(playerid, playerName, sizeof(playerName));
+	GetPlayerName(playerID, playerName, sizeof(playerName));
 	return playerName;
 }
 
@@ -69,55 +69,52 @@ stock setMySQLValue(table[], field[], value[], checkColumn[], checkValue[])
 	mysql_query(query);
 }
 
-stock savePlayerValue(playerid, fieldName[])
+stock savePlayerValue(playerID, fieldName[])
 {
-	printf("SavePlayerValue(%d, %s)", playerid, fieldName);
+	printf("SavePlayerValue(%d, %s)", playerID, fieldName);
 	new value[256];
-	switch (GetPVarType(playerid, fieldName))
+	switch (GetPVarType(playerID, fieldName))
 	{
 		case PLAYER_VARTYPE_INT:
-			format(value, sizeof(value), "%d", GetPVarInt(playerid, fieldName));
+			format(value, sizeof(value), "%d", GetPVarInt(playerID, fieldName));
 		case PLAYER_VARTYPE_STRING:
-			GetPVarString(playerid, fieldName, value, sizeof(value));
+			GetPVarString(playerID, fieldName, value, sizeof(value));
 		case PLAYER_VARTYPE_FLOAT:
-			format(value, sizeof(value), "%f", GetPVarFloat(playerid, fieldName));
+			format(value, sizeof(value), "%f", GetPVarFloat(playerID, fieldName));
 		default:
 			format(value, sizeof(value), "");
 	}
 	printf("Value: %s", value);
-	setMySQLValue("users", fieldName, value, "UserID", val2str(GetPVarInt(playerid, "UserID")));
+	setMySQLValue("users", fieldName, value, "UserID", val2str(GetPVarInt(playerID, "UserID")));
 }
 
-stock loadPlayerValue(playerid, fieldName[], pVarType)
+stock loadPlayerValue(playerID, fieldName[], pVarType)
 {
 	new value[256];
-	format(value, sizeof(value), "%s", getMySQLValue("users", fieldName, "UserID", val2str(GetPVarInt(playerid, "UserID"))));
+	format(value, sizeof(value), "%s", getMySQLValue("users", fieldName, "UserID", val2str(GetPVarInt(playerID, "UserID"))));
 	switch (pVarType)
 	{
 		case PLAYER_VARTYPE_INT:
-			SetPVarInt(playerid, fieldName, strval(value));
+			SetPVarInt(playerID, fieldName, strval(value));
 		case PLAYER_VARTYPE_STRING:
-			SetPVarString(playerid, fieldName, value);
+			SetPVarString(playerID, fieldName, value);
 		case PLAYER_VARTYPE_FLOAT:
-			SetPVarFloat(playerid, fieldName, floatstr(value));// TODO: Convert string value to float
+			SetPVarFloat(playerID, fieldName, floatstr(value));// TODO: Convert string value to float
 	}
 }
 
-stock savePlayer(playerid)
+stock savePlayer(playerID)
 {
-	savePlayerValue(playerid, "Level");
-	savePlayerValue(playerid, "AdminLevel");
-	savePlayerValue(playerid, "Money");
-	GetPlayerMoney(playerid);
+	savePlayerValue(playerID, "Level");
+	savePlayerValue(playerID, "AdminLevel");
+	setMySQLValue("users", "Money", GetPlayerMoney(playerID), "UserID", val2str(GetPVarInt(playerID, "UserID")));
 }
 
-stock loadPlayer(playerid)
+stock loadPlayer(playerID)
 {
-	new amount;
-	loadPlayerValue(playerid, "Level", PLAYER_VARTYPE_INT);
-	loadPlayerValue(playerid, "AdminLevel", PLAYER_VARTYPE_INT);
-	loadPlayerValue(playerid, "Money", PLAYER_VARTYPE_INT);
-	setPlayerMoney(playerid,amount);
+	loadPlayerValue(playerID, "Level", PLAYER_VARTYPE_INT);
+	loadPlayerValue(playerID, "AdminLevel", PLAYER_VARTYPE_INT);
+	setPlayerMoney(playerID, strval(getMySQLValue("users", "Money", "UserID", val2str(GetPVarInt(playerID, "UserID")))));
 }
 
 stock setPlayerMoney(playerID, amount)
@@ -187,14 +184,14 @@ stock sendNPCCommand(npcPlayerID, command[])
 	SendClientMessage(npcPlayerID, COLOR_NPCCOMMAND, command);
 }
 
-stock writeChatToDatabase(playerid, text[])
+stock writeChatToDatabase(playerID, text[])
 {
 	new query[512];
-	format(query, sizeof(query), "INSERT INTO `chatlog` (`UserID`, `Time`, `Text`) VALUES('%d', NOW(), '%s')", GetPVarInt(playerid, "UserID"), mySQLEscapeString(text));
+	format(query, sizeof(query), "INSERT INTO `chatlog` (`UserID`, `Time`, `Text`) VALUES('%d', NOW(), '%s')", GetPVarInt(playerID, "UserID"), mySQLEscapeString(text));
 	mysql_query(query);
 }
 
-stock CmdUsageMsg(playerid, command[], ...)
+stock CmdUsageMsg(playerID, command[], ...)
 {
 	new string[256];
 	new value[256];
@@ -206,5 +203,5 @@ stock CmdUsageMsg(playerid, command[], ...)
 		GetStringArg(index, value);
 		format(string, sizeof(string), "%s %s", string, value);
 	}
-	SendClientMessage(playerid, COLOR_USAGE, string);
+	SendClientMessage(playerID, COLOR_USAGE, string);
 }
