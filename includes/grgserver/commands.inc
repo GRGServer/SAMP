@@ -163,6 +163,23 @@ CMD:makeadmin(playerid, params[])
 	}
 }
 
+CMD:printpvar(playerid, params[])
+{
+	new string[256];
+	new name[256];
+	if (!sscanf(playerid, "s", name))
+	{
+		GetPVarString(playerid, name, string, sizeof(string));
+		format(string, sizeof(string), "Inhalt der Player Variable '%s': %s", name, string);
+		SendClientMessage(playerid, COLOR_INFO, string);
+	}
+	else
+	{
+		CmdUsageMsg(playerid, "printpvar", "Variable");
+	}
+	return COMMAND_OK;
+}
+
 CMD:rc(playerid, params[])
 {
 	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
