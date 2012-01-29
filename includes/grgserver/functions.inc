@@ -5,7 +5,7 @@ stock getPlayerName(playerid)
 	return playerName;
 }
 
-stock getPlayerByName(playerName[])
+stock getPlayerID(playerName[])
 {
 	for (new playerID; playerID < MAX_PLAYERS; playerID++)
 	{

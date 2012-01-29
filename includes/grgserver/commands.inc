@@ -14,7 +14,7 @@ CMD:makeadmin(playerid, params[])
 		{
 			CmdUsageMsg(playerid, "makeadmin", "Spielername", "level (1-1337)");
 		}
-		new targetPlayerID = getPlayerByName(playerName);
+		new targetPlayerID = getPlayerID(playerName);
 		if (targetPlayerID == INVALID_PLAYERID)
 		{
 			SendClientMessage(playerid, COLOR_ERROR, "Spieler nicht gefunden!");
@@ -46,6 +46,50 @@ CMD:makeadmin(playerid, params[])
 	{
 		return COMMAND_ACCESS_DENIED;
 	}
+}
+
+CMD:goto(playerid, params[])
+{
+	new playerID;
+	new playerName[MAX_PLAYER_NAME];
+	if(sscanf(params,"d",playerID))
+	{
+		if(sscanf(params, "s",playerName))
+		{
+			CmdUsageMsg(playerid,"goto","PlayerID/Name");
+			return COMMAND_OK;
+		}
+		else
+		{
+			playerID = getPlayerID(playerName);
+		}
+	}
+	if(playerID != INVALID_PLAYERID && IsPlayerConnected(playerID))
+	{
+		new Float:playerx,Float:playery,Float:playerz,Float:angle;
+		if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
+		{
+			GetPlayerPos(playerID, playerx, playery, playerz);
+			GetPlayerFacingAngle(playerID, angle);
+			if(teleportTo(playerid,playerx,playery+2, playerz,angle,GetPlayerInterior(playerID),GetPlayerVirtualWorld(playerID)))
+			{
+				return COMMAND_TELEPORTED;
+			}
+			else
+			{
+				return COMMAND_ERROR;
+			}
+		}
+		else
+		{
+			return COMMAND_ACCESS_DENIED;
+		}
+	}
+	else
+	{
+		SendClientMessage(playerid,COLOR_ERROR,"Ungueltige PlayerID");
+	}
+	return COMMAND_OK;
 }
 
 CMD:gotobsn(playerid, params[])

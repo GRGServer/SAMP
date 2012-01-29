@@ -1,4 +1,4 @@
-public IRC_OnConnect(botid, ip[], port)
+/*public IRC_OnConnect(botid, ip[], port)
 {
 	print("Connected to IRC server");
 	IRC_JoinChannel(botid, IRC_CHANNEL);
@@ -17,4 +17,4 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 	format(string, sizeof(string), "[IRC] %s: %s", user, message);
 	SendClientMessageToAll(COLOR_IRC, string);
 	writeChatToDatabase(INVALID_PLAYERID, string);
-}
+}*/
