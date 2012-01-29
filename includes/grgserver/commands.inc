@@ -4,11 +4,59 @@ CMD:about(playerid, params[])
 	return COMMAND_OK;
 }
 
+CMD:controlnpc(playerid, params[])
+{
+	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		new playerName[MAX_PLAYER_NAME];
+		new command[256];
+		new recordingName[256];
+		new playbackType[256];
+		new autoRepeat;
+		if (sscanf(params, "ssssd", playerName, command, recordingName, playbackType, autoRepeat))
+		{
+			if (sscanf(params, "ss", playerName, command))
+			{
+				CmdUsageMsg(playerid, "controlnpc", "playerName", "command(start|stop|pause|resume)", "[recordingName]", "[playbackType]", "[autoRepeat]");
+				SendClientMessage(playerid, COLOR_INFO, "Hinweis: recordingName, playbackType und autoRepeat wird nur für den Befehl 'start' benötigt.");
+				return COMMAND_OK;
+			}
+		}
+		if (!strcmp(command, "start", true))
+		{
+			new type;
+			if (!strcmp(playbackType, "onfoot", true) || !strcmp(playbackType, "foot"))
+			{
+				type = PLAYER_RECORDING_TYPE_ONFOOT;
+			}
+			if (!strcmp(playbackType, "driver", true))
+			{
+				type = PLAYER_RECORDING_TYPE_DRIVER;
+			}
+			if (type)
+			{
+				startNPCPlayback(getPlayerID(playerName), recordingName, type, autoRepeat);
+				return COMMAND_OK;
+			}
+		}
+		else
+		{
+			sendNPCCommand(getPlayerID(playerName), command);
+			return COMMAND_OK;
+		}
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
+	return COMMAND_ERROR;
+}
+
 CMD:makeadmin(playerid, params[])
 {
 	new playerName[MAX_PLAYER_NAME];
 	new level;
-	if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
+	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		if (!sscanf(params, "sd", playerName, level))
 		{
@@ -50,28 +98,31 @@ CMD:makeadmin(playerid, params[])
 
 CMD:goto(playerid, params[])
 {
-	new playerID;
-	new playerName[MAX_PLAYER_NAME];
-	if(sscanf(params,"d",playerID))
+	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
-		if(sscanf(params, "s",playerName))
+		new playerID;
+		new playerName[MAX_PLAYER_NAME];
+		if(sscanf(params,"d",playerID))
 		{
-			CmdUsageMsg(playerid,"goto","PlayerID/Name");
-			return COMMAND_OK;
+			if(sscanf(params, "s",playerName))
+			{
+				CmdUsageMsg(playerid,"goto","PlayerID/Name");
+				return COMMAND_OK;
+			}
+			else
+			{
+				playerID = getPlayerID(playerName);
+			}
 		}
-		else
+		if (playerID != INVALID_PLAYERID && IsPlayerConnected(playerID))
 		{
-			playerID = getPlayerID(playerName);
-		}
-	}
-	if(playerID != INVALID_PLAYERID && IsPlayerConnected(playerID))
-	{
-		new Float:playerx,Float:playery,Float:playerz,Float:angle;
-		if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
-		{
-			GetPlayerPos(playerID, playerx, playery, playerz);
+			new Float:posX;
+			new Float:posY;
+			new Float:posZ;
+			new Float:angle;
+			GetPlayerPos(playerID, posX, posY, posZ);
 			GetPlayerFacingAngle(playerID, angle);
-			if(teleportTo(playerid,playerx,playery+2, playerz,angle,GetPlayerInterior(playerID),GetPlayerVirtualWorld(playerID)))
+			if (teleportTo(playerid, posX, posY + 2, posZ, angle, GetPlayerInterior(playerID), GetPlayerVirtualWorld(playerID)))
 			{
 				return COMMAND_TELEPORTED;
 			}
@@ -82,94 +133,34 @@ CMD:goto(playerid, params[])
 		}
 		else
 		{
-			return COMMAND_ACCESS_DENIED;
+			SendClientMessage(playerid, COLOR_ERROR, "Spieler nicht gefunden!");
 		}
+		return COMMAND_OK;
 	}
 	else
 	{
-		SendClientMessage(playerid,COLOR_ERROR,"Ungueltige PlayerID");
+		return COMMAND_ACCESS_DENIED;
 	}
-	return COMMAND_OK;
 }
 
 CMD:gotobsn(playerid, params[])
 {
-	if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
-	{
-		if (teleportTo(playerid, 1204.7445, -881.0291, 43.0703, 0.0, 0))
-		{
-			return COMMAND_TELEPORTED;
-		}
-		else
-		{
-			SendClientMessage(playerid, COLOR_ERROR, "Beim Teleportieren ist ein Fehler aufgetreten! Bitte erneut versuchen.");
-			return COMMAND_ERROR;
-		}
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
+	return adminTeleport(playerid, 1204.7445, -881.0291, 43.0703, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
 CMD:gotols(playerid, params[])
 {
-	if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
-	{
-		if (teleportTo(playerid, 1529.6, -1691.2, 13.3, 0.0, 0))
-		{
-			return COMMAND_TELEPORTED;
-		}
-		else
-		{
-			SendClientMessage(playerid, COLOR_ERROR, "Beim Teleportieren ist ein Fehler aufgetreten! Bitte erneut versuchen.");
-			return COMMAND_ERROR;
-		}
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
+	return adminTeleport(playerid, 1529.6, -1691.2, 13.3, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
 CMD:gotolv(playerid, params[])
 {
-	if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
-	{
-		if (teleportTo(playerid, 1699.2, 1435.1, 10.7, 0.0, 0))
-		{
-			return COMMAND_TELEPORTED;
-		}
-		else
-		{
-			SendClientMessage(playerid, COLOR_ERROR, "Beim Teleportieren ist ein Fehler aufgetreten! Bitte erneut versuchen.");
-			return COMMAND_ERROR;
-		}
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
+	return adminTeleport(playerid, 1699.2, 1435.1, 10.7, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
 CMD:gotosf(playerid, params[])
 {
-	if (GetPVarInt(playerid, "AdminLevel") >= ADMINLEVEL_SERVERADMIN)
-	{
-		if (teleportTo(playerid, -1417.0, -295.8, 14.1, 0.0, 0))
-		{
-			return COMMAND_TELEPORTED;
-		}
-		else
-		{
-			SendClientMessage(playerid, COLOR_ERROR, "Beim Teleportieren ist ein Fehler aufgetreten! Bitte erneut versuchen.");
-			return COMMAND_ERROR;
-		}
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
+	return adminTeleport(playerid, -1417.0, -295.8, 14.1, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
 CMD:veh(playerid, params[])

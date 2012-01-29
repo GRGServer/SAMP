@@ -115,7 +115,12 @@ stock loadPlayer(playerid)
 	loadPlayerValue(playerid, "AdminLevel", PLAYER_VARTYPE_INT);
 }
 
-stock teleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle = 0.0, interior = -1, virtualWorld = -1)
+stock isAdmin(playerID, adminLevel)
+{
+	return GetPVarInt(playerID, "AdminLevel") >= adminLevel;
+}
+
+stock teleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, virtualWorld)
 {
 	switch (GetPlayerState(playerID))
 	{
@@ -123,32 +128,40 @@ stock teleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle = 0.0
 		{
 			SetPlayerPos(playerID, posX, posY, posZ);
 			SetPlayerFacingAngle(playerID, angle);
-			if (interior != -1)
-			{
-				SetPlayerInterior(playerID, interior);
-			}
-			if (virtualWorld != -1)
-			{
-				SetPlayerVirtualWorld(playerID, virtualWorld);
-			}
+			SetPlayerInterior(playerID, interior);
+			SetPlayerVirtualWorld(playerID, virtualWorld);
 			return true;
 		}
 		case PLAYER_STATE_DRIVER, PLAYER_STATE_PASSENGER:
 		{
 			new vehicleID = GetPlayerVehicleID(playerID);
 			SetVehiclePos(vehicleID, posX, posY, posZ);
-			if (interior != -1)
-			{
-				LinkVehicleToInterior(vehicleID, interior);
-			}
-			if (virtualWorld != -1)
-			{
-				SetVehicleVirtualWorld(vehicleID, virtualWorld);
-			}
+			LinkVehicleToInterior(vehicleID, interior);
+			SetVehicleVirtualWorld(vehicleID, virtualWorld);
 			return true;
 		}
 	}
 	return false;
+}
+
+stock adminTeleport(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, virtualWorld, adminLevel)
+{
+	if (isAdmin(playerID, adminLevel))
+	{
+		if (teleportTo(playerID, posX, posY, posZ, angle, interior, virtualWorld))
+		{
+			return COMMAND_TELEPORTED;
+		}
+		else
+		{
+			SendClientMessage(playerID, COLOR_ERROR, "Beim Teleportieren ist ein Fehler aufgetreten! Bitte versuche es erneut.");
+			return COMMAND_ERROR;
+		}
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
 }
 
 stock startNPCPlayback(npcPlayerID, recordingName[], recordingType, autoRepeat)

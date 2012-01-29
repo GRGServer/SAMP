@@ -20,6 +20,7 @@
 
 // GRG Server includes
 #include <grgserver/constants>// Constants like colors, dialog IDs, command returns, etc.
+#include <grgserver/svn>// SVN specific constants like the current revision
 #include <grgserver/config>// Configuration #data like IRC and MySQL credentials
 #include <grgserver/globals>// Globally used variables like ircBot (Variables which are shared between multiple functions)
 #include <grgserver/functions>// Stock functions
