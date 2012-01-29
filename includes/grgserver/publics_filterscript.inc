@@ -1,7 +1,7 @@
 public OnFilterScriptInit()
 {
 	print("Connecting to MySQL server");
-	mysql_init(LOG_ALL, true);
+	mysql_init(LOG_ONLY_ERRORS, true);
 	mysql_connect(MYSQL_HOST, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE);
 	print("Connecting to IRC server");
 	ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_USERNAME, IRC_USERNAME, IRC_USERNAME, IRC_SSL);

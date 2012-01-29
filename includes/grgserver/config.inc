@@ -4,7 +4,7 @@
 #define IRC_SSL					false
 #define IRC_USERNAME			"samp-server"
 #define IRC_PASSWORD			"R8I09ym2ZzeHp4tcPVMj"
-#define IRC_CHANNEL				"grgserver"
+#define IRC_CHANNEL				"#grgserver"
 
 
 // MySQL credentials
