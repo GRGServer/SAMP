@@ -107,7 +107,7 @@ stock savePlayer(playerID)
 {
 	savePlayerValue(playerID, "Level");
 	savePlayerValue(playerID, "AdminLevel");
-	setMySQLValue("users", "Money", GetPlayerMoney(playerID), "UserID", val2str(GetPVarInt(playerID, "UserID")));
+	setMySQLValue("users", "Money", val2str(GetPlayerMoney(playerID)), "UserID", val2str(GetPVarInt(playerID, "UserID")));
 }
 
 stock loadPlayer(playerID)
