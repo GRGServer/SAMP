@@ -24,7 +24,6 @@ stock val2str(value)
 {
 	new string[256];
 	format(string, sizeof(string), "%d", value);
-	printf("val2str(%d): %s", value, string);
 	return string;
 }
 
@@ -63,15 +62,12 @@ stock getMySQLValue(table[], field[], checkColumn[], checkValue[])
 stock setMySQLValue(table[], field[], value[], checkColumn[], checkValue[])
 {
 	new query[1024];
-	printf("setMySQLValue(%s, %s, %s, %s, %s)", table, field, value, checkColumn, checkValue);
 	format(query, sizeof(query), "UPDATE `%s` SET `%s` = '%s' WHERE `%s` = '%s'", mySQLEscapeString(table), mySQLEscapeString(field), mySQLEscapeString(value), mySQLEscapeString(checkColumn), mySQLEscapeString(checkValue));
-	printf("SetMySQLValue: %s", query);
 	mysql_query(query);
 }
 
 stock savePlayerValue(playerID, fieldName[])
 {
-	printf("SavePlayerValue(%d, %s)", playerID, fieldName);
 	new value[256];
 	switch (GetPVarType(playerID, fieldName))
 	{
@@ -84,7 +80,6 @@ stock savePlayerValue(playerID, fieldName[])
 		default:
 			format(value, sizeof(value), "");
 	}
-	printf("Value: %s", value);
 	setMySQLValue("users", fieldName, value, "UserID", val2str(GetPVarInt(playerID, "UserID")));
 }
 
