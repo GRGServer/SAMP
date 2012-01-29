@@ -2,7 +2,7 @@
 #include <a_samp>
 
 // Custom includes
-//#include <irc>
+#include <irc>
 #include <MD5>
 #include <mysql>
 #include <sscanf>
