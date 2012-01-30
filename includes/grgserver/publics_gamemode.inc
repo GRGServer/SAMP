@@ -27,6 +27,10 @@ public OnGameModeInit()
 		fwrite(svnRevisionFile, val2str(COMPILER_SVN_REVISION));
 		fclose(svnRevisionFile);
 	}
+	new playerid;
+    new engine,lights,alarm,doors,bonnet,boot,objective;
+    new vid = GetPlayerVehicleID(playerid);
+	GetVehicleParamsEx(vid,engine,lights,alarm,doors,bonnet,boot,objective);
 	print("Complete");
 	return true;
 }

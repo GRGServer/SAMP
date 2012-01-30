@@ -127,6 +127,33 @@ CMD:gotosf(playerid, params[])
 	return adminTeleport(playerid, -1417.0, -295.8, 14.1, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
+CMD:motor(playerid, params[])
+{
+	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER) return COMMAND_OK;
+	new engine,lights,alarm,doors,bonnet,boot,objective;
+	new string[256];
+	new playername[MAX_PLAYER_NAME];
+	new vid = GetPlayerVehicleID(playerid);
+	GetPlayerName(playerid, playername, sizeof(playername));
+	GetVehicleParamsEx(vid,engine,lights,alarm,doors,bonnet,boot,objective);
+	if(vid != INVALID_VEHICLE_ID)
+	{
+		if(engine == VEHICLE_PARAMS_ON)
+		{
+			SetVehicleParamsEx(vid,VEHICLE_PARAMS_OFF,lights,alarm,doors,bonnet,boot,objective);
+			format(string, sizeof(string),"%s schaltet den Motor ab.",playername);
+			SendClientMessage(playerid,COLOR_CHATOWN,string);
+		}
+		else
+		{
+			SetVehicleParamsEx(vid,VEHICLE_PARAMS_ON,lights,alarm,doors,bonnet,boot,objective);
+			format(string, sizeof(string),"%s betätigt die Zündung. Der Motor springt an.",playername);
+			SendClientMessage(playerid,COLOR_CHATOWN,string);
+		}
+	}
+	return COMMAND_OK;
+}
+
 CMD:makeadmin(playerid, params[])
 {
 	new playerName[MAX_PLAYER_NAME];
