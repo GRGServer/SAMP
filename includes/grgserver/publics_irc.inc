@@ -59,14 +59,14 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 	return true;
 }
 
-public IRC_OnUserDisconnect(botid, user[], host[], message[])
+public IRC_OnUserJoinChannel(botid, channel[], user[], host[])
 {
 	new string[256];
 	format(string, sizeof(string), "%s hat den IRC Channel betreten", user);
 	SendClientMessageToAll(COLOR_JOINLEAVE, string);
 }
 
-public IRC_OnUserJoinChannel(botid, channel[], user[], host[])
+public IRC_OnUserLeaveChannel(botid, channel[], user[], host[], message[])
 {
 	new string[256];
 	format(string, sizeof(string), "%s hat den IRC Channel verlassen", user);
