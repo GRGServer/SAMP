@@ -42,8 +42,12 @@ public OnPlayerConnect(playerid)
 		}
 		mysql_free_result();
 		new string[256];
+		SendClientMessage(playerid, COLOR_SYSTEM, "Willkommen auf GRG Server!");
+		format(string, sizeof(string), "Auf diesem Server läuft aktuell Revision %d unserer Gamemode.", COMPILER_SVN_REVISION);
+		SendClientMessage(playerid, COLOR_SYSTEM, string);
 		format(string, sizeof(string), "%s hat den Server betreten", getPlayerName(playerid));
-		SendClientMessageToAll(COLOR_JOINLEAVE, string);
+		sendClientMessageToAllExcept(playerid, COLOR_JOINLEAVE, string);
+		IRC_Say(ircBot, IRC_CHANNEL, string);
 	}
 	return true;
 }
@@ -57,6 +61,7 @@ public OnPlayerDisconnect(playerid, reason)
 	new string[256];
 	format(string, sizeof(string), "%s hat den Server verlassen", getPlayerName(playerid));
 	SendClientMessageToAll(COLOR_JOINLEAVE, string);
+	IRC_Say(ircBot, IRC_CHANNEL, string);
 	return true;
 }
 
@@ -185,6 +190,8 @@ public OnPlayerText(playerid, text[])
 	new string[256];
 	format(string, sizeof(string), "[%s] %s", getPlayerName(playerid), text);
 	IRC_Say(ircBot, IRC_CHANNEL, string);
+	sendClientMessageToAllExcept(playerid, COLOR_CHAT, string);
+	SendClientMessage(playerid, COLOR_CHATOWN, string);
 	writeChatToDatabase(playerid, text);
-	return true;
+	return false;
 }

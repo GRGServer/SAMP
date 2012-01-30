@@ -179,6 +179,17 @@ stock setPlayerMoney(playerID, amount)
 	GivePlayerMoney(playerID, amount);
 }
 
+stock sendClientMessageToAllExcept(exceptPlayerID, color, message[])
+{
+	for (new playerID; playerID < MAX_PLAYERS; playerID++)
+	{
+		if (playerID != exceptPlayerID && IsPlayerConnected(playerID))
+		{
+			SendClientMessage(playerID, color, message);
+		}
+	}
+}
+
 stock isAdmin(playerID, adminLevel)
 {
 	return GetPVarInt(playerID, "AdminLevel") >= adminLevel;

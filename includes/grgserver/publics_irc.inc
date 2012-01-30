@@ -6,12 +6,7 @@ public IRC_OnConnect(botid, ip[], port)
 
 public IRC_OnJoinChannel(botid, channel[])
 {
-	new string[256];
 	print("IRC channel joined");
-	IRC_Say(botid, channel, "Hello!");
-	IRC_Say(botid, channel, "I'm an IRC chat relay for GRG Server.");
-	format(string, sizeof(string), "Current running SVN revision: %d", COMPILER_SVN_REVISION);
-	IRC_Say(botid, channel, string);
 }
 
 public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
@@ -21,7 +16,13 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 	{
 		if (!strcmp(message, "!help", true))
 		{
-			IRC_Say(botid, user, "Befehle: !help, !list");
+			IRC_Say(botid, user, "Befehle: !help, !info, !list");
+			return true;
+		}
+		if (!strcmp(message, "!info", true))
+		{
+			format(string, sizeof(string), "Aktuelle Script Revision: %d (%s %s)", COMPILER_SVN_REVISION, COMPILER_DATE, COMPILER_TIME);
+			IRC_Say(botid, user, string);
 			return true;
 		}
 		if (!strcmp(message, "!list", true))
@@ -56,4 +57,18 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 		writeChatToDatabase(INVALID_PLAYERID, string);
 	}
 	return true;
+}
+
+public IRC_OnUserDisconnect(botid, user[], host[], message[])
+{
+	new string[256];
+	format(string, sizeof(string), "%s hat den IRC Channel betreten", user);
+	SendClientMessageToAll(COLOR_JOINLEAVE, string);
+}
+
+public IRC_OnUserJoinChannel(botid, channel[], user[], host[])
+{
+	new string[256];
+	format(string, sizeof(string), "%s hat den IRC Channel verlassen", user);
+	SendClientMessageToAll(COLOR_JOINLEAVE, string);
 }
