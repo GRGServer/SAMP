@@ -172,6 +172,22 @@ CMD:makeadmin(playerid, params[])
 	}
 }
 
+CMD:me(playerid, params[])
+{
+	if (strlen(params))
+	{
+		new string[256];
+		format(string, sizeof(string), "*%s %s", getPlayerName(playerid), params);
+		SendClientMessageToAll(COLOR_ME, string);
+		return COMMAND_OK;
+	}
+	else
+	{
+		CmdUsageMsg(playerid, "me", "Text");
+		return COMMAND_USAGE;
+	}
+}
+
 CMD:npccmd(playerid, params[])
 {
 	if (IsPlayerNPC(playerid))

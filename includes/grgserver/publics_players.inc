@@ -41,6 +41,9 @@ public OnPlayerConnect(playerid)
 			ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, "Registrieren", "Du bist noch nicht registriert!\nBitte gebe ein neues Passwort für deinen Account ein.", "OK", "Abbrechen");
 		}
 		mysql_free_result();
+		new string[256];
+		format(string, sizeof(string), "%s hat den Server betreten", getPlayerName(playerid));
+		SendClientMessageToAll(COLOR_JOINLEAVE, string);
 	}
 	return true;
 }
@@ -51,6 +54,9 @@ public OnPlayerDisconnect(playerid, reason)
 	{
 		savePlayer(playerid);
 	}
+	new string[256];
+	format(string, sizeof(string), "%s hat den Server verlassen", getPlayerName(playerid));
+	SendClientMessageToAll(COLOR_JOINLEAVE, string);
 	return true;
 }
 
