@@ -127,6 +127,53 @@ CMD:gotosf(playerid, params[])
 	return adminTeleport(playerid, -1417.0, -295.8, 14.1, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
+CMD:kick(playerid, params[])
+{
+	new playerName[MAX_PLAYER_NAME];
+	new result[64];
+	new giveplayerid;
+	new giveplayer[MAX_PLAYER_NAME];
+	new string[256];
+	if(!sscanf(params, "s", playerName, result))
+	{
+		CmdUsageMsg(playerid, "kick", "Spielername", "grund");
+		return COMMAND_USAGE;
+	}
+	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		if(IsPlayerConnected(giveplayerid))
+		{
+			if(giveplayerid != INVALID_PLAYER_ID)
+			{
+				if(!sscanf(params, "r", playerName, result))
+				{
+					CmdUsageMsg(playerid, "kick", "spielername", "grund");
+					return COMMAND_USAGE;
+				}
+				else
+				{
+					GetPlayerName(giveplayerid, giveplayer, sizeof(giveplayer));
+					GetPlayerName(playerid, playerName, sizeof(playerName));
+					format(string, sizeof(string), "%s wurde von %s gekickt, Grund: %s", giveplayer, playerName, result);
+					Kick(giveplayerid);
+					format(string, sizeof(string), "%s wurde gekickt von %s, Grund: %s", giveplayer, playerName, (result));
+					SendClientMessageToAll(COLOR_ERROR, string);
+					return COMMAND_OK;
+				}
+			}
+		}
+		else
+		{
+			return COMMAND_ERROR;
+		}
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
+	return COMMAND_OK;
+}
+
 CMD:motor(playerid, params[])
 {
 	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER) return COMMAND_OK;
