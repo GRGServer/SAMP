@@ -147,11 +147,6 @@ CMD:kick(playerid, params[])
 			{
 				if(!sscanf(params, "r", playerName, result))
 				{
-					CmdUsageMsg(playerid, "kick", "spielername", "grund");
-					return COMMAND_USAGE;
-				}
-				else
-				{
 					GetPlayerName(giveplayerid, giveplayer, sizeof(giveplayer));
 					GetPlayerName(playerid, playerName, sizeof(playerName));
 					format(string, sizeof(string), "%s wurde von %s gekickt, Grund: %s", giveplayer, playerName, result);
@@ -159,6 +154,11 @@ CMD:kick(playerid, params[])
 					format(string, sizeof(string), "%s wurde gekickt von %s, Grund: %s", giveplayer, playerName, (result));
 					SendClientMessageToAll(COLOR_ERROR, string);
 					return COMMAND_OK;
+				}
+				else
+				{
+					CmdUsageMsg(playerid, "kick", "spielername", "grund");
+					return COMMAND_USAGE;
 				}
 			}
 		}
