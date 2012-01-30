@@ -299,7 +299,7 @@ stock getVehicleEngineState(vehicleID)
 	return engine;
 }
 
-stock setVehicleEngineState(vehicleID)
+stock setVehicleEngineState(vehicleID, newState)
 {
 	new engine;
 	new lights;
@@ -309,7 +309,7 @@ stock setVehicleEngineState(vehicleID)
 	new boot;
 	new objective;
 	GetVehicleParamsEx(vehicleID, engine, lights, alarm, doors, bonnet, boot, objective);
-	SetVehicleParamsEx(vehicleID, engine, lights, alarm, doors, bonnet, boot, objective);
+	SetVehicleParamsEx(vehicleID, newState, lights, alarm, doors, bonnet, boot, objective);
 }
 
 stock CmdUsageMsg(playerID, command[], ...)
