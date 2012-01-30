@@ -247,6 +247,7 @@ CMD:motor(playerid, params[])
 		SendClientMessage(playerid, COLOR_ERROR, "Du bist nicht der Fahrer dieses Fahrzeugs!");
 		return COMMAND_ERROR;
 	}
+	new vehicleID;
 	if (getVehicleEngineState(vehicleID))
 	{
 		setVehicleEngineState(vehicleID, false);
