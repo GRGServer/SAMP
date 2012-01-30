@@ -174,33 +174,6 @@ CMD:kick(playerid, params[])
 	return COMMAND_OK;
 }
 
-CMD:motor(playerid, params[])
-{
-	if(GetPlayerState(playerid) != PLAYER_STATE_DRIVER) return COMMAND_OK;
-	new engine,lights,alarm,doors,bonnet,boot,objective;
-	new string[256];
-	new playername[MAX_PLAYER_NAME];
-	new vid = GetPlayerVehicleID(playerid);
-	GetPlayerName(playerid, playername, sizeof(playername));
-	GetVehicleParamsEx(vid,engine,lights,alarm,doors,bonnet,boot,objective);
-	if(vid != INVALID_VEHICLE_ID)
-	{
-		if(engine == VEHICLE_PARAMS_ON)
-		{
-			SetVehicleParamsEx(vid,VEHICLE_PARAMS_OFF,lights,alarm,doors,bonnet,boot,objective);
-			format(string, sizeof(string),"%s schaltet den Motor ab.",playername);
-			SendClientMessage(playerid,COLOR_CHATOWN,string);
-		}
-		else
-		{
-			SetVehicleParamsEx(vid,VEHICLE_PARAMS_ON,lights,alarm,doors,bonnet,boot,objective);
-			format(string, sizeof(string),"%s betätigt die Zündung. Der Motor springt an.",playername);
-			SendClientMessage(playerid,COLOR_CHATOWN,string);
-		}
-	}
-	return COMMAND_OK;
-}
-
 CMD:makeadmin(playerid, params[])
 {
 	new playerName[MAX_PLAYER_NAME];
@@ -260,6 +233,31 @@ CMD:me(playerid, params[])
 		CmdUsageMsg(playerid, "me", "Text");
 		return COMMAND_USAGE;
 	}
+}
+
+CMD:motor(playerid, params[])
+{
+	if (!IsPlayerInAnyVehicle(playerid))
+	{
+		SendClientMessage(playerid, COLOR_ERROR, "Du bist in keine Fahrzeug!");
+		return COMMAND_ERROR;
+	}
+	if (GetPlayerState(playerid) != PLAYER_STATE_DRIVER)
+	{
+		SendClientMessage(playerid, COLOR_ERROR, "Du bist nicht der Fahrer dieses Fahrzeugs!");
+		return COMMAND_ERROR;
+	}
+	if (getVehicleEngineState(vehicleID))
+	{
+		setVehicleEngineState(vehicleID, false);
+		SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde ausgeschalten.");
+	}
+	else
+	{
+		setVehicleEngineState(vehicleID, true);
+		SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde gestartet.");
+	}
+	return COMMAND_OK;
 }
 
 CMD:npccmd(playerid, params[])
