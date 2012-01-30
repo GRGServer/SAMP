@@ -308,8 +308,8 @@ stock setVehicleEngineState(vehicleID, state)
 	new bonnet;
 	new boot;
 	new objective;
-	GetVehicleParamsEx(vehicleID, engine, lights, alarm, doors, bonnet, boot, objective);
-	SetVehicleParamsEx(vehicleID, state, lights, alarm, doors, bonnet, boot, objective);
+	//GetVehicleParamsEx(vehicleID, engine, lights, alarm, doors, bonnet, boot, objective);
+	//SetVehicleParamsEx(vehicleID, state, lights, alarm, doors, bonnet, boot, objective);
 }
 
 stock CmdUsageMsg(playerID, command[], ...)
