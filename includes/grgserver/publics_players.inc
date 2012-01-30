@@ -195,3 +195,20 @@ public OnPlayerText(playerid, text[])
 	writeChatToDatabase(playerid, text);
 	return false;
 }
+
+public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
+{
+	if (!ispassenger)
+	{
+		new engine;
+		new lights;
+		new alarm;
+		new doors;
+		new bonnet;
+		new boot;
+		new objective;
+		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
+		SetVehicleParamsEx(vehicleid, false, lights, alarm, doors, bonnet, boot, objective);
+	}
+	return true;
+}
