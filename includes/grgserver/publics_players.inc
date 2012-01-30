@@ -198,17 +198,18 @@ public OnPlayerText(playerid, text[])
 
 public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 {
-	if (!ispassenger)
+	if (!ispassenger && !IsPlayerNPC(playerid))
 	{
-		new engine;
-		new lights;
-		new alarm;
-		new doors;
-		new bonnet;
-		new boot;
-		new objective;
-		GetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boot, objective);
-		SetVehicleParamsEx(vehicleid, false, lights, alarm, doors, bonnet, boot, objective);
+		setVehicleEngineState(vehicleid, false);
+	}
+	return true;
+}
+
+public OnPlayerExitVehicle(playerid, vehicleid)
+{
+	if (GetPlayerState(playerid) == PLAYER_STATE_DRIVER && !IsPlayerNPC(playerid))
+	{
+		setVehicleEngineState(vehicleid, false);
 	}
 	return true;
 }

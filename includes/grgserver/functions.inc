@@ -286,6 +286,19 @@ stock writeChatToDatabase(playerID, text[])
 	mysql_query(query);
 }
 
+stock setVehicleEngineState(vehicleID, state)
+{
+	new engine;
+	new lights;
+	new alarm;
+	new doors;
+	new bonnet;
+	new boot;
+	new objective;
+	GetVehicleParamsEx(vehicleID, engine, lights, alarm, doors, bonnet, boot, objective);
+	SetVehicleParamsEx(vehicleID, state, lights, alarm, doors, bonnet, boot, objective);
+}
+
 stock CmdUsageMsg(playerID, command[], ...)
 {
 	new string[256];
