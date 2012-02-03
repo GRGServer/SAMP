@@ -6,4 +6,5 @@ public timer_slow()
 	new second;
 	gettime(hour, minute, second);
 	SetWorldTime(hour);
+	mysql_ping();
 }

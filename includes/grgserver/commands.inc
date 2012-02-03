@@ -180,7 +180,7 @@ CMD:makeadmin(playerid, params[])
 	new level;
 	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
-		if (!sscanf(params, "sd", playerName, level))
+		if (!sscanf(params, "sd", playerName, level))// TODO: s can be replaced by u to directly get the PlayerID if the user types the name or ID of a player (sd -> ud)
 		{
 			CmdUsageMsg(playerid, "makeadmin", "Spielername", "level (1-1337)");
 			return COMMAND_USAGE;

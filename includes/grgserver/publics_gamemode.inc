@@ -1,8 +1,8 @@
 public OnGameModeInit()
 {
 	print("Connecting to MySQL server");
-	mysql_init(LOG_ONLY_ERRORS, true);
-	mysql_connect(MYSQL_HOST, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE);
+	new MySQL:mysqlConnection = mysql_init(LOG_ONLY_ERRORS, true);
+	mysql_connect(MYSQL_HOST, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE, mysqlConnection, true);
 	print("Connecting to IRC server");
 	ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_USERNAME, IRC_USERNAME, IRC_USERNAME, IRC_SSL);
 	print("Starting timers");
