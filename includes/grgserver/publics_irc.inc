@@ -4,6 +4,13 @@ public IRC_OnConnect(botid, ip[], port)
 	IRC_JoinChannel(botid, IRC_CHANNEL);
 }
 
+public IRC_OnDisconnect(botid, ip[], port, reason[])
+{
+	printf("Disconnected from IRC server: %s", reason);
+	print("Reconnecting to IRC server");
+	ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_USERNAME, IRC_USERNAME, IRC_USERNAME, IRC_SSL);
+}
+
 public IRC_OnJoinChannel(botid, channel[])
 {
 	print("IRC channel joined");
