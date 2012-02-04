@@ -3,7 +3,7 @@
 #define IRC_PORT				6667
 #define IRC_SSL					false
 #define IRC_USERNAME			"samp-server"
-#define IRC_CHANNEL				"#grgserver@conference.selfcoders.com"
+#define IRC_CHANNEL				"#grgserver"
 
 
 // MySQL credentials
