@@ -2,7 +2,7 @@
 #define IRC_HOST				"127.0.0.1"
 #define IRC_PORT				6667
 #define IRC_SSL					false
-#define IRC_USERNAME			"samp-server"
+#define IRC_USERNAME			"grgserver"
 #define IRC_CHANNEL				"#grgserver"
 
 
