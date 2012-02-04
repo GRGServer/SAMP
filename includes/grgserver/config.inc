@@ -1,10 +1,9 @@
 // IRC credentials
-#define IRC_HOST				"srv1.selfcoders.com"
+#define IRC_HOST				"127.0.0.1"
 #define IRC_PORT				6667
 #define IRC_SSL					false
 #define IRC_USERNAME			"samp-server"
-#define IRC_PASSWORD			"R8I09ym2ZzeHp4tcPVMj"
-#define IRC_CHANNEL				"#grgserver"
+#define IRC_CHANNEL				"#grgserver@conference.selfcoders.com"
 
 
 // MySQL credentials
