@@ -19,20 +19,24 @@ public IRC_OnJoinChannel(botid, channel[])
 public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 {
 	new string[256];
-	if (message[0] == '!')
+	new userName[256];
+	new text[256];
+	regex_replace(message, "\\[(.*)\\] (.*)", "\\1", userName, sizeof(userName));
+	regex_replace(message, "\\[(.*)\\] (.*)", "\\2", text, sizeof(text));
+	if (text[0] == '!')
 	{
-		if (!strcmp(message, "!help", true))
+		if (!strcmp(text, "!help", true))
 		{
 			IRC_Say(botid, user, "Befehle: !help, !info, !list");
 			return true;
 		}
-		if (!strcmp(message, "!info", true))
+		if (!strcmp(text, "!info", true))
 		{
 			format(string, sizeof(string), "Aktuelle Script Revision: %d (%s %s)", COMPILER_SVN_REVISION, COMPILER_DATE, COMPILER_TIME);
 			IRC_Say(botid, user, string);
 			return true;
 		}
-		if (!strcmp(message, "!list", true))
+		if (!strcmp(text, "!list", true))
 		{
 			new npcsOnline;
 			new playersOnline;
@@ -59,8 +63,9 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 	}
 	else
 	{
-		format(string, sizeof(string), "[IRC] %s: %s", user, message);
+		format(string, sizeof(string), "[IRC] %s: %s", userName, text);
 		SendClientMessageToAll(COLOR_IRC, string);
+		print(string);
 		writeChatToDatabase(INVALID_PLAYERID, string);
 	}
 	return true;

@@ -5,6 +5,7 @@
 #include <irc>
 #include <MD5>
 #include <mysql>
+#include <regex>
 #include <sscanf>
 #include <zcmd>
 
