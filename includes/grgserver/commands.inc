@@ -447,7 +447,7 @@ CMD:stoprec(playerid, params[])
 
 CMD:veh(playerid, params[])
 {
-	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	if (!isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		return COMMAND_ACCESS_DENIED;
 	}
