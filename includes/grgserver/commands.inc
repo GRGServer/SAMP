@@ -404,7 +404,7 @@ CMD:saveveh(playerid, params[])
 	new price;
 	if (sscanf(params, "d", price))
 	{
-		CmdUsageMsg(playerid, "saveveh", "price");
+		CmdUsageMsg(playerid, "saveveh", "Preis");
 		return COMMAND_USAGE;
 	}
 	if (price >= 0)
@@ -422,7 +422,7 @@ CMD:saveveh(playerid, params[])
 			GetPlayerFacingAngle(playerid, angle);
 			format(query, sizeof(query), "INSERT INTO `savedvehicles` (`PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `ModelID`, `Price`) VALUES('%f', '%f', '%f', '%f', '%d', '%d', '%d')", posX, posY, posZ, angle, GetPlayerInterior(playerid), modelID, price);
 			mysql_query(query);
-			format(string, sizeof(string), "Fahrzeug wurde unter der ID %d speichert", mysql_insert_id());
+			format(string, sizeof(string), "Fahrzeug wurde unter der ID %d gespeichert", mysql_insert_id());
 			SendClientMessage(playerid, COLOR_INFO, string);
 			return COMMAND_OK;
 		}
@@ -433,7 +433,7 @@ CMD:saveveh(playerid, params[])
 	}
 	else
 	{
-		SendClientMessage(playerid, COLOR_ERROR, "Preis darf nicht negativ sein!");
+		SendClientMessage(playerid, COLOR_ERROR, "Der Preis darf nicht negativ sein!");
 	}
 	return COMMAND_ERROR;
 }
