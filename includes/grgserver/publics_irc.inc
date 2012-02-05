@@ -13,6 +13,12 @@ public IRC_OnDisconnect(botid, ip[], port, reason[])
 
 public IRC_OnJoinChannel(botid, channel[])
 {
+	if (svnRevisionChanged)
+	{
+		new string[256];
+		format(string, sizeof(string), "GRG Server wurde auf r%d geupdatet", COMPILER_SVN_REVISION);
+		IRC_Say(botid, IRC_CHANNEL, string);
+	}
 	print("IRC channel joined");
 }
 

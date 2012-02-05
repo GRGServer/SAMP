@@ -1,1 +1,2 @@
 new ircBot;
+new svnRevisionChanged;

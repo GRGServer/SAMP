@@ -19,13 +19,28 @@ public OnGameModeInit()
 	mysql_free_result();
 	print("Misc stuff");
 	new string[256];
-	format(string, sizeof(string), "GRG Server (SVN Revision %d)", COMPILER_SVN_REVISION);
+	format(string, sizeof(string), "GRG Server r%d", COMPILER_SVN_REVISION);
 	SetGameModeText(string);
-	new File:svnRevisionFile = fopen("svn_revision", io_write);
-	if (svnRevisionFile)
+	new File:svnRevisionFile;
+	new oldSvnRevision[256];
+	if (fexist("svn_revision"))
 	{
-		fwrite(svnRevisionFile, val2str(COMPILER_SVN_REVISION));
-		fclose(svnRevisionFile);
+		svnRevisionFile = fopen("svn_revision", io_read);
+		if (svnRevisionFile)
+		{
+			fread(svnRevisionFile, oldSvnRevision, sizeof(oldSvnRevision));
+			fclose(svnRevisionFile);
+		}
+	}
+	if (strval(oldSvnRevision) != COMPILER_SVN_REVISION)
+	{
+		svnRevisionChanged = true;
+		svnRevisionFile = fopen("svn_revision", io_write);
+		if (svnRevisionFile)
+		{
+			fwrite(svnRevisionFile, val2str(COMPILER_SVN_REVISION));
+			fclose(svnRevisionFile);
+		}
 	}
 	print("Complete");
 	return true;
