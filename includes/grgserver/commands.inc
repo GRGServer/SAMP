@@ -239,8 +239,7 @@ CMD:motor(playerid, params[])
 {
 	if (!IsPlayerInAnyVehicle(playerid))
 	{
-		SendClientMessage(playerid, COLOR_ERROR, "Du bist in keine Fahrzeug!");
-		return COMMAND_ERROR;
+		return COMMAND_NOT_IN_VEHICLE;
 	}
 	if (GetPlayerState(playerid) != PLAYER_STATE_DRIVER)
 	{
@@ -396,6 +395,49 @@ CMD:recnpc(playerid, params[])
 	}
 }
 
+CMD:saveveh(playerid, params[])
+{
+	if (!isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
+	new price;
+	if (sscanf(params, "d", price))
+	{
+		CmdUsageMsg(playerid, "saveveh", "price");
+		return COMMAND_USAGE;
+	}
+	if (price >= 0)
+	{
+		if (IsPlayerInAnyVehicle(playerid))
+		{
+			new string[256];
+			new query[256];
+			new Float:posX;
+			new Float:posY;
+			new Float:posZ;
+			new Float:angle;
+			new modelID = GetVehicleModel(GetPlayerVehicleID(playerid));
+			GetPlayerPos(playerid, posX, posY, posZ);
+			GetPlayerFacingAngle(playerid, angle);
+			format(query, sizeof(query), "INSERT INTO `savedvehicles` (`PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `ModelID`, `Price`) VALUES('%f', '%f', '%f', '%f', '%d', '%d', '%d')", posX, posY, posZ, angle, GetPlayerInterior(playerid), modelID, price);
+			mysql_query(query);
+			format(string, sizeof(string), "Fahrzeug wurde unter der ID %d speichert", mysql_insert_id());
+			SendClientMessage(playerid, COLOR_INFO, string);
+			return COMMAND_OK;
+		}
+		else
+		{
+			return COMMAND_NOT_IN_VEHICLE;
+		}
+	}
+	else
+	{
+		SendClientMessage(playerid, COLOR_ERROR, "Preis darf nicht negativ sein!");
+	}
+	return COMMAND_ERROR;
+}
+
 CMD:stoprec(playerid, params[])
 {
 	StopRecordingPlayerData(playerid);
@@ -405,7 +447,7 @@ CMD:stoprec(playerid, params[])
 
 CMD:veh(playerid, params[])
 {
-	if(GetPVarInt(playerid, "AdminLevel") < ADMINLEVEL_SERVERADMIN)
+	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		return COMMAND_ACCESS_DENIED;
 	}
