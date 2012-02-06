@@ -1,15 +1,15 @@
 public OnGameModeInit()
 {
-	print("Connecting to MySQL server");
+	print("Connecting to MySQL server...");
 	new MySQL:mysqlConnection = mysql_init(LOG_ONLY_ERRORS, true);
 	mysql_connect(MYSQL_HOST, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE, mysqlConnection, true);
-	print("Connecting to IRC server");
+	print("Connecting to IRC server...");
 	ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_USERNAME, IRC_USERNAME, IRC_USERNAME, IRC_SSL);
-	print("Starting timers");
+	print("Starting timers...");
 	SetTimer("timer_slow", 5000, true);
-	print("Adding player classes");
+	print("Adding player classes...");
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
-	print("Connecting NPCs");
+	print("Connecting NPCs...");
 	mysql_query("SELECT * FROM `npcs` WHERE `AutoConnect` = '1'");
 	mysql_store_result();
 	while (fetchMySQLRow())
@@ -17,7 +17,16 @@ public OnGameModeInit()
 		ConnectNPC(getMySQLField("Name"), "npcplayer");
 	}
 	mysql_free_result();
-	print("Misc stuff");
+	print("Spawing saved vehicles...");
+	mysql_query("SELECT * FROM `savedvehicles`");
+	mysql_store_result();
+	while (fetchMySQLRow())
+	{
+		new vehicleID = CreateVehicle(strval(getMySQLField("ModelID")), floatstr(getMySQLField("PosX")), floatstr(getMySQLField("PosY")), floatstr(getMySQLField("PosZ")), floatstr(getMySQLField("Angle")), random(126), random(126), -1);
+		LinkVehicleToInterior(vehicleID, strval(getMySQLField("Interior")));
+	}
+	mysql_free_result();
+	print("Doing misc stuff...");
 	new string[256];
 	format(string, sizeof(string), "GRG Server r%d", COMPILER_SVN_REVISION);
 	SetGameModeText(string);
@@ -42,7 +51,7 @@ public OnGameModeInit()
 			fclose(svnRevisionFile);
 		}
 	}
-	print("Complete");
+	print("Gamemode loading complete");
 	return true;
 }
 
