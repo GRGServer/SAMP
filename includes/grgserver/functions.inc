@@ -296,7 +296,6 @@ stock getVehicleEngineState(vehicleID)
 	new boot;
 	new objective;
 	GetVehicleParamsEx(vehicleID, engine, lights, alarm, doors, bonnet, boot, objective);
-	printf("Engine state of %d: %d", vehicleID, engine);
 	return engine;
 }
 
@@ -310,7 +309,6 @@ stock setVehicleEngineState(vehicleID, newState)
 	new boot;
 	new objective;
 	GetVehicleParamsEx(vehicleID, engine, lights, alarm, doors, bonnet, boot, objective);
-	printf("Changed engine state of %d from %d to %d", vehicleID, engine, newState);
 	SetVehicleParamsEx(vehicleID, newState, lights, alarm, doors, bonnet, boot, objective);
 }
 

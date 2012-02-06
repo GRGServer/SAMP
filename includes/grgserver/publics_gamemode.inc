@@ -57,10 +57,10 @@ public OnGameModeInit()
 
 public OnGameModeExit()
 {
-	print("Disconnecting from MySQL server");
+	print("Disconnecting from MySQL server...");
 	mysql_close();
-	print("Disconnecting from IRC server");
+	print("Disconnecting from IRC server...");
 	IRC_Quit(ircBot, "SAMP-Server IRC chat relay");
-	print("Complete");
+	print("Gamemode unloading complete");
 	return true;
 }
