@@ -420,7 +420,7 @@ CMD:saveveh(playerid, params[])
 			new vehicleID = GetPlayerVehicleID(playerid);
 			new modelID = GetVehicleModel(vehicleID);
 			GetVehiclePos(vehicleID, posX, posY, posZ);
-			GetPlayerFacingAngle(playerid, angle);
+			GetVehicleZAngle(playerid, angle);
 			format(query, sizeof(query), "INSERT INTO `savedvehicles` (`PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `ModelID`, `Price`) VALUES('%f', '%f', '%f', '%f', '%d', '%d', '%d')", posX, posY, posZ, angle, GetPlayerInterior(playerid), modelID, price);
 			mysql_query(query);
 			format(string, sizeof(string), "Fahrzeug wurde unter der ID %d gespeichert", mysql_insert_id());
