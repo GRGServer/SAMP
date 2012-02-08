@@ -151,6 +151,32 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			return true;
 		}
+		case DIALOG_BUYVEHICLE:
+		{
+			if(response)
+			{
+				new string[256];
+				new vehicleID = vehicles[GetPlayerVehicleID(playerid)];
+				new money = strval(getMySQLValue("savedvehicles", "Price", "ID", val2str(vehicleID)));
+				if(money >= GetPlayerMoney(playerid))
+				{
+					GivePlayerMoney(playerid,-money);
+					setMySQLValue("savedvehicles","ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(vehicleID));
+					savePlayer(playerid);
+				}
+				else
+				{
+					format(string,sizeof(string),"Du benötigst $%d für dieses Fahrzeug! Leider besitzt du $%d. Dies Reicht nicht aus.", money, GetPlayerMoney(playerid));
+					SendClientMessage(playerid, COLOR_ERROR, string);
+					RemovePlayerFromVehicle(playerid);
+				}
+			}
+			else
+			{
+				SendClientMessage(playerid,COLOR_INFO,"Du hast den Vorgang abgebrochen");
+				RemovePlayerFromVehicle(playerid);
+			}
+		}
 	}
 
 	return false;
@@ -202,6 +228,28 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 	{
 		setVehicleEngineState(vehicleid, false);
 	}
+	if(!ispassenger)
+	{
+		if(vehicles[vehicleid])
+		{
+			new string[256];
+			new ownerUserID = strval(getMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleid])));
+			if(ownerUserID == GetPVarInt(playerid, "UserID"))
+			{
+				return true;
+			}
+			if(ownerUserID)
+			{
+				SendClientMessage(playerid,COLOR_ERROR,"Dieses Fahrzeug besitzt bereits ein Spieler");
+				RemovePlayerFromVehicle(playerid);
+			}
+			else
+			{
+				format(string,sizeof(string),"Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", getMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleid])));
+				ShowPlayerDialog(playerid,DIALOG_BUYVEHICLE,DIALOG_STYLE_MSGBOX,"Fahrzeug Kaufen",string,"Ja","Nein");
+			}
+		}
+	}
 	return true;
 }
 
@@ -210,6 +258,16 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	if (GetPlayerState(playerid) == PLAYER_STATE_DRIVER && !IsPlayerNPC(playerid))
 	{
 		setVehicleEngineState(vehicleid, false);
+	}
+	if(vehicles[vehicleid])
+	{
+		new query[256];
+		new Float:posX; 
+		new Float:posY;
+		new Float:posZ;
+		GetVehiclePos(vehicleid, posX, posY, posZ);
+		format(query,sizeof(query),"UPDATE `savedvehicles` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Interior` = '%d' WHERE `ID` = '%d'",posX, posY, posZ, GetPlayerInterior(playerid), vehicles[vehicleid]);
+		mysql_query(query);
 	}
 	return true;
 }

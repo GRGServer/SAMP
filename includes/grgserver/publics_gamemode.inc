@@ -23,6 +23,7 @@ public OnGameModeInit()
 	while (fetchMySQLRow())
 	{
 		new vehicleID = CreateVehicle(strval(getMySQLField("ModelID")), floatstr(getMySQLField("PosX")), floatstr(getMySQLField("PosY")), floatstr(getMySQLField("PosZ")), floatstr(getMySQLField("Angle")), random(126), random(126), -1);
+		vehicles[vehicleID] = strval(getMySQLField("ID"));
 		LinkVehicleToInterior(vehicleID, strval(getMySQLField("Interior")));
 	}
 	mysql_free_result();
