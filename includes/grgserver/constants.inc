@@ -53,5 +53,5 @@ enum
 
 
 // Timers
-#define TIMER_FAST						1000
+#define TIMER_FAST						250
 #define TIMER_SLOW						5000

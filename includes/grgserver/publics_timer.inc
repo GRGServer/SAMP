@@ -10,9 +10,32 @@ public timer_fast()
 				new Float:velocityX;
 				new Float:velocityY;
 				new Float:velocityZ;
+				new Float:health;
 				new string[256];
-				GetVehicleVelocity(GetPlayerVehicleID(playerID), velocityX, velocityY, velocityZ);
-				format(string, sizeof(string), "%d Km/h", floatround(floatsqroot(floatabs(floatpower(velocityX + velocityY + velocityZ, 2))) * 100 * 1.61));
+				new healthColor;
+				new speed;
+				new healthPercentage;
+				new vehicleID = GetPlayerVehicleID(playerID);
+				GetVehicleVelocity(vehicleID, velocityX, velocityY, velocityZ);
+				GetVehicleHealth(vehicleID, health);
+				speed = floatround(floatsqroot(floatabs(floatpower(velocityX + velocityY + velocityZ, 2))) * 100 * 1.61);
+				healthPercentage = floatround(health /10);
+				if (healthPercentage > 65)
+				{
+					healthColor = 'g';
+				}
+				else
+				{
+					if (healthPercentage > 40)
+					{
+						healthColor = 'y';
+					}
+					else
+					{
+						healthColor = 'r';
+					}
+				}
+				format(string, sizeof(string), "Geschwindigkeit: %d Km/h~n~Zustand: ~%c~%d%%~w~", speed, healthColor, healthPercentage);
 				TextDrawSetString(textDrawSpeedo[playerID], string);
 				TextDrawShowForPlayer(playerID, textDrawSpeedo[playerID]);
 			}

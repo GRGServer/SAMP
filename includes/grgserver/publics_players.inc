@@ -48,9 +48,14 @@ public OnPlayerConnect(playerid)
 		format(string, sizeof(string), "%s hat den Server betreten", getPlayerName(playerid));
 		sendClientMessageToAllExcept(playerid, COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
-		textDrawSpeedo[playerid] = TextDrawCreate(TEXTDRAW_SPEEDO_POSX, TEXTDRAW_SPEEDO_POSY, "_");
-		TextDrawFont(textDrawSpeedo[playerid], 2);
-		TextDrawShowForPlayer(playerid, textDrawSpeedo[playerid]);
+		textDrawSpeedo[playerid] = TextDrawCreate(500, 400, "_");
+		TextDrawAlignment(textDrawSpeedo[playerid], 1);
+		TextDrawLetterSize(textDrawSpeedo[playerid], 0.3, 0.9);
+		TextDrawFont(textDrawSpeedo[playerid], 1);
+		TextDrawSetShadow(textDrawSpeedo[playerid], 2);
+		TextDrawTextSize(textDrawSpeedo[playerid], 635, 475);
+		TextDrawBoxColor(textDrawSpeedo[playerid], 0x00000080);
+		TextDrawUseBox(textDrawSpeedo[playerid], true);
 	}
 	return true;
 }
