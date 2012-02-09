@@ -24,7 +24,7 @@ public timer_fast()
 				printf("Speed: %d", speed);
 				healthPercentage = floatround(health /10);
 				printf("Health: %d", healthPercentage);
-				fuelPercentage = floatround((vehicles[vehicleID][vehicles_currentFuel] / vehicleModels[GetVehicleModel(vehicleID)][vehicleModels_maxFuel]) * 100);
+				fuelPercentage = floatround(vehicles[vehicleID][vehicles_currentFuel] / vehicleModels[GetVehicleModel(vehicleID)][vehicleModels_maxFuel]);
 				printf("Fuel: %d", fuelPercentage);
 				if (healthPercentage > 65)
 				{
