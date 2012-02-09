@@ -219,6 +219,28 @@ CMD:makeadmin(playerid, params[])
 	}
 }
 
+CMD:money(playerid, params[])
+{
+	if(isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		new money;
+		if(!sscanf(params, "d", money))
+		{
+			GivePlayerMoney(playerid, money);
+			return COMMAND_OK;
+		}
+		else
+		{
+			CmdUsageMsg(playerid, "money", "Wert");
+			return COMMAND_USAGE;
+		}
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
+}
+
 CMD:me(playerid, params[])
 {
 	if (strlen(params))
