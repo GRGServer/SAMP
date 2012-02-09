@@ -62,6 +62,7 @@ public timer_fast()
 					}
 				}
 				format(string, sizeof(string), "Geschwindigkeit: %d Km/h~n~Zustand: ~%c~%d%%~w~~n~Tank: ~%c~%d%%~w~", speed, healthColor, healthPercentage, fuelColor, fuelPercentage);
+				print(string);
 				TextDrawSetString(textDrawSpeedo[playerID], string);
 				TextDrawShowForPlayer(playerID, textDrawSpeedo[playerID]);
 			}
