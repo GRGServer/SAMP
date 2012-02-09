@@ -14,6 +14,7 @@ public timer_fast()
 				GetVehicleVelocity(GetPlayerVehicleID(playerID), velocityX, velocityY, velocityZ);
 				format(string, sizeof(string), "%d Km/h", floatround(floatsqroot(floatabs(floatpower(velocityX + velocityY + velocityZ, 2))) * 100 * 1.61));
 				TextDrawSetString(textDrawSpeedo[playerID], string);
+				TextDrawShowForPlayer(playerID, textDrawSpeedo[playerID]);
 			}
 			else
 			{
