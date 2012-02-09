@@ -49,6 +49,9 @@ public OnPlayerConnect(playerid)
 		sendClientMessageToAllExcept(playerid, COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
 	}
+	Speedometer[playerid] = TextDrawCreate(10.0, 200.0, "");
+	TextDrawFont(Speedometer[playerid], 2);
+	TextDrawShowForPlayer(playerid, Speedometer[playerid]);
 	return true;
 }
 
@@ -221,6 +224,21 @@ public OnPlayerText(playerid, text[])
 	SendClientMessage(playerid, COLOR_CHATOWN, string);
 	writeChatToDatabase(playerid, text);
 	return false;
+}
+
+public OnPlayerStateChange(playerid, newstate, oldstate)
+{
+	KillTimer(speede[playerid]);
+	TextDrawSetString(Speedometer[playerid], "");
+	if(newstate == 2)
+	{
+		speede[playerid] = SetTimerEx("speedo", 255, true, "i", playerid);
+	}
+	else if(newstate == 3)
+	{
+		speede[playerid] = SetTimerEx("speedo", 255, true, "i", playerid);
+	}
+	return 1;
 }
 
 public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)

@@ -28,15 +28,6 @@ public OnGameModeInit()
 		LinkVehicleToInterior(vehicleID, strval(getMySQLField("Interior")));
 	}
 	mysql_free_result();
-	print("Creating speedometer TextDraws...");
-	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
-	{
-		speedo[playerID] = TextDrawCreate(510, 370, "Km/h: ---");
-		TextDrawLetterSize(speedo[playerID], 0.4, 1.1);
-		TextDrawFont(speedo[playerID], 1);
-		TextDrawSetShadow(speedo[playerID], 2);
-		TextDrawSetOutline(speedo[playerID], 1);
-	}
 	print("Doing misc stuff...");
 	new string[256];
 	format(string, sizeof(string), "GRG Server r%d", COMPILER_SVN_REVISION);
@@ -73,10 +64,6 @@ public OnGameModeExit()
 	print("Disconnecting from IRC server...");
 	IRC_Quit(ircBot, "SAMP-Server IRC chat relay");
 	print("Destroying speedometer TextDraws...");
-	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
-	{
-		TextDrawDestroy(speedo[playerID]);
-	}
 	print("Gamemode unloading complete");
 	return true;
 }
