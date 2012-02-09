@@ -18,3 +18,8 @@
 #define REGISTER_MAXPASSWORD	20
 #define REGISTER_LEVEL			1
 #define REGISTER_ADMINLEVEL		0
+
+
+// TextDraw configuration
+#define TEXTDRAW_SPEEDO_POSX	10.0
+#define TEXTDRAW_SPEEDO_POSY	200.0
