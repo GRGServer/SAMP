@@ -18,13 +18,22 @@ public OnGameModeInit()
 		ConnectNPC(GetMySQLField("Name"), "npcplayer");
 	}
 	mysql_free_result();
+	print("Loading vehicle models...");
+	mysql_query("SELECT * FROM `vehiclemodels`");
+	mysql_store_result();
+	while (FetchMySQLRow())
+	{
+		new index = strval(GetMySQLField("ModelID")) - 400;
+		vehicleModels[index][vehicleModels_maxFuel] = strval(GetMySQLField("MaxFuel"));
+	}
+	mysql_free_result();
 	print("Spawing saved vehicles...");
 	mysql_query("SELECT * FROM `savedvehicles`");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
 		new vehicleID = CreateVehicle(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), random(126), random(126), -1);
-		vehicles[vehicleID] = strval(GetMySQLField("ID"));
+		vehicles[vehicleID][vehicles_saveID] = strval(GetMySQLField("ID"));
 		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
 	}
 	mysql_free_result();

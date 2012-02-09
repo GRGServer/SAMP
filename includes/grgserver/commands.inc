@@ -157,7 +157,7 @@ CMD:makeadmin(playerid, params[])
 	new level;
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
-		if (!sscanf(params, "ud", targetPlayerID, level))
+		if (sscanf(params, "ud", targetPlayerID, level))
 		{
 			CmdUsageMsg(playerid, "makeadmin", "Spielername", "level (1-1337)");
 			return COMMAND_USAGE;
@@ -479,7 +479,7 @@ CMD:veh(playerid, params[])
 					return COMMAND_USAGE;
 				}
 			}
-			modelID = strval(GetMySQLValue("vehicles", "ModelID", "Name", str_replace("*", "%%", vehicleName), "LIKE"));
+			modelID = strval(GetMySQLValue("vehiclemodels", "ModelID", "Name", str_replace("*", "%%", vehicleName), "LIKE"));
 		}
 	}
 	if (modelID >= 400 && modelID <= 611)

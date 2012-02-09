@@ -104,12 +104,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if (response)
 			{
 				new string[256];
-				new vehicleID = vehicles[GetPlayerVehicleID(playerid)];
-				new price = strval(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicleID)));
+				new saveID = vehicles[GetPlayerVehicleID(playerid)][vehicles_saveID];
+				new price = strval(GetMySQLValue("savedvehicles", "Price", "ID", val2str(saveID)));
 				if (price <= GetPVarInt(playerid, "Money"))
 				{
 					SetPlayerMoney(playerid, GetPVarInt(playerid, "Money") - price);
-					SetMySQLValue("savedvehicles", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(vehicleID));
+					SetMySQLValue("savedvehicles", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(saveID));
 					SavePlayer(playerid);
 				}
 				else
@@ -252,10 +252,10 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 	}
 	if (!ispassenger)
 	{
-		if (vehicles[vehicleid])
+		if (vehicles[vehicleid][vehicles_saveID])
 		{
 			new string[256];
-			new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleid])));
+			new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleid][vehicles_saveID])));
 			if (ownerUserID == GetPVarInt(playerid, "UserID"))
 			{
 				return true;
@@ -267,7 +267,7 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 			}
 			else
 			{
-				format(string,sizeof(string), "Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleid])));
+				format(string,sizeof(string), "Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleid][vehicles_saveID])));
 				ShowPlayerDialog(playerid, DIALOG_BUYVEHICLE,DIALOG_STYLE_MSGBOX, "Fahrzeug Kaufen", string, "Ja", "Nein");
 			}
 		}
@@ -281,14 +281,14 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	{
 		SetVehicleEngineState(vehicleid, false);
 	}
-	if (vehicles[vehicleid])
+	if (vehicles[vehicleid][vehicles_saveID])
 	{
 		new query[256];
 		new Float:posX; 
 		new Float:posY;
 		new Float:posZ;
 		GetVehiclePos(vehicleid, posX, posY, posZ);
-		format(query, sizeof(query), "UPDATE `savedvehicles` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Interior` = '%d' WHERE `ID` = '%d'", posX, posY, posZ, GetPlayerInterior(playerid), vehicles[vehicleid]);
+		format(query, sizeof(query), "UPDATE `savedvehicles` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Interior` = '%d' WHERE `ID` = '%d'", posX, posY, posZ, GetPlayerInterior(playerid), vehicles[vehicleid][vehicles_saveID]);
 		mysql_query(query);
 	}
 	return true;

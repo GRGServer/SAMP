@@ -13,13 +13,16 @@ public timer_fast()
 				new Float:health;
 				new string[256];
 				new healthColor;
+				new fuelColor;
 				new speed;
 				new healthPercentage;
+				new fuelPercentage;
 				new vehicleID = GetPlayerVehicleID(playerID);
 				GetVehicleVelocity(vehicleID, velocityX, velocityY, velocityZ);
 				GetVehicleHealth(vehicleID, health);
 				speed = floatround(floatsqroot(floatabs(floatpower(velocityX + velocityY + velocityZ, 2))) * 100 * 1.61);
 				healthPercentage = floatround(health /10);
+				fuelPercentage = floatround(vehicles[vehicleID][vehicles_currentFuel] / vehicleModels[GetVehicleModel(vehicleID)][vehicleModels_maxFuel]);
 				if (healthPercentage > 65)
 				{
 					healthColor = 'g';
@@ -33,13 +36,32 @@ public timer_fast()
 					else
 					{
 						healthColor = 'r';
+						if (healthPercentage < 30)
+						{
+							if (GetVehicleEngineState(vehicleID))
+							{
+								SetVehicleEngineState(vehicleID, false);
+								GameTextForPlayer(playerID, "Dein Fahrzeug ist kaputt!", 3000, 6);
+							}
+						}
 					}
 				}
-				if (healthPercentage <= 30)
+				if (fuelPercentage > 70)
 				{
-					SetVehicleEngineState(vehicleID, false);
+					fuelColor = 'g';
 				}
-				format(string, sizeof(string), "Geschwindigkeit: %d Km/h~n~Zustand: ~%c~%d%%~w~", speed, healthColor, healthPercentage);
+				else
+				{
+					if (fuelPercentage > 30)
+					{
+						fuelColor = 'y';
+					}
+					else
+					{
+						fuelColor = 'r';
+					}
+				}
+				format(string, sizeof(string), "Geschwindigkeit: %d Km/h~n~Zustand: ~%c~%d%%~w~~n~Tank: ~%c~%d%%~w~", speed, healthColor, healthPercentage, fuelColor, fuelPercentage);
 				TextDrawSetString(textDrawSpeedo[playerID], string);
 				TextDrawShowForPlayer(playerID, textDrawSpeedo[playerID]);
 			}

@@ -13,6 +13,7 @@
 #include <grgserver/constants>// Constants like colors, dialog IDs, command returns, etc.
 #include <grgserver/compiler>// Constants updated before compiling (Compiling time, SVN revision, etc.)
 #include <grgserver/config>// Configuration data like IRC and MySQL credentials
+#include <grgserver/structures>// Structures for arrays like vehicles
 #include <grgserver/globals>// Globally used variables like ircBot (Variables which are shared between multiple functions)
 #include <grgserver/macros>// Macros like GetStringArg
 #include <grgserver/basicfunctions> // Ported functions like str_replace
