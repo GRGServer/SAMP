@@ -164,6 +164,12 @@ stock savePlayer(playerID)
 	savePlayerValue(playerID, "Level");
 	savePlayerValue(playerID, "AdminLevel");
 	setUserDBValue(playerID, "Money", val2str(GetPlayerMoney(playerID)));
+	new query[256];
+	new Float:posX;
+	new Float:posY;
+	new Float:posZ;
+	format(query, sizeof(query), "UPDATE `users` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f' WHERE `UserID` = '%d'", posX, posY, posZ, GetPVarInt(playerid, "UserID"));
+	mysql_query(query);
 }
 
 stock loadPlayer(playerID)
@@ -171,6 +177,7 @@ stock loadPlayer(playerID)
 	loadPlayerValue(playerID, "Level", PLAYER_VARTYPE_INT);
 	loadPlayerValue(playerID, "AdminLevel", PLAYER_VARTYPE_INT);
 	setPlayerMoney(playerID, strval(getUserDBValue(playerID, "Money")));
+	SetPlayerPos(playerID, floatstr(getUserDBValue(playerID, "PosX")), floatstr(getUserDBValue(playerID, "PosY")), floatstr(getUserDBValue(playerID, "PosZ")));
 }
 
 stock setPlayerMoney(playerID, amount)
