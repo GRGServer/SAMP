@@ -60,7 +60,6 @@ public OnGameModeInit()
 		TextDrawSetShadow(Tacho[i], 2);
 		TextDrawSetOutline(Tacho[i],1);
 	}
-	distanze = floatsqroot(floatpower(floatabs(floatsub(X1, X2)), 2)+floatpower(floatabs(floatsub(Y1, Y2)), 2)+floatpower(floatabs(floatsub(Z1, Z2)), 2));
 	print("Gamemode loading complete");
 	return true;
 }
