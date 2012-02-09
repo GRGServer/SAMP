@@ -48,23 +48,27 @@ public OnPlayerConnect(playerid)
 		format(string, sizeof(string), "%s hat den Server betreten", getPlayerName(playerid));
 		sendClientMessageToAllExcept(playerid, COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
+		textDrawSpeedo[playerid] = TextDrawCreate(10.0, 200.0, "");
+		TextDrawFont(textDrawSpeedo[playerid], 2);
+		TextDrawShowForPlayer(playerid, textDrawSpeedo[playerid]);
 	}
-	Speedometer[playerid] = TextDrawCreate(10.0, 200.0, "");
-	TextDrawFont(Speedometer[playerid], 2);
-	TextDrawShowForPlayer(playerid, Speedometer[playerid]);
 	return true;
 }
 
 public OnPlayerDisconnect(playerid, reason)
 {
-	if (GetPVarInt(playerid, "UserID"))
+	if (!IsPlayerNPC(playerid))
 	{
-		savePlayer(playerid);
+		if (GetPVarInt(playerid, "UserID"))
+		{
+			savePlayer(playerid);
+		}
+		new string[256];
+		format(string, sizeof(string), "%s hat den Server verlassen", getPlayerName(playerid));
+		SendClientMessageToAll(COLOR_JOINLEAVE, string);
+		IRC_Say(ircBot, IRC_CHANNEL, string);
+		TextDrawDestroy(textDrawSpeedo[playerid]);
 	}
-	new string[256];
-	format(string, sizeof(string), "%s hat den Server verlassen", getPlayerName(playerid));
-	SendClientMessageToAll(COLOR_JOINLEAVE, string);
-	IRC_Say(ircBot, IRC_CHANNEL, string);
 	return true;
 }
 

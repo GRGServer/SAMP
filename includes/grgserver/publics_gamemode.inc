@@ -63,7 +63,6 @@ public OnGameModeExit()
 	mysql_close();
 	print("Disconnecting from IRC server...");
 	IRC_Quit(ircBot, "SAMP-Server IRC chat relay");
-	print("Destroying speedometer TextDraws...");
 	print("Gamemode unloading complete");
 	return true;
 }
