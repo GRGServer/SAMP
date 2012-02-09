@@ -8,16 +8,16 @@ CMD:controlnpc(playerid, params[])
 {
 	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
-		new playerName[MAX_PLAYER_NAME];
 		new command[256];
 		new recordingName[256];
 		new playbackType[256];
 		new autoRepeat;
-		if (sscanf(params, "ssssd", playerName, command, recordingName, playbackType, autoRepeat))
+		new targetPlayerID;
+		if (sscanf(params, "usssd", targetPlayerID, command, recordingName, playbackType, autoRepeat))
 		{
-			if (sscanf(params, "ss", playerName, command))
+			if (sscanf(params, "us", targetPlayerID, command))
 			{
-				CmdUsageMsg(playerid, "controlnpc", "playerName", "command(connect|start|stop|pause|resume)", "[recordingName]", "[playbackType]", "[autoRepeat]");
+				CmdUsageMsg(playerid, "controlnpc", "PlayerID/Name", "command(connect|start|stop|pause|resume)", "[recordingName]", "[playbackType]", "[autoRepeat]");
 				SendClientMessage(playerid, COLOR_INFO, "Hinweis: recordingName, playbackType und autoRepeat wird nur für den Befehl 'start' benötigt.");
 				return COMMAND_USAGE;
 			}
@@ -36,7 +36,7 @@ CMD:controlnpc(playerid, params[])
 			if (type)
 			{
 				SendClientMessage(playerid, COLOR_INFO, "Wiedergabe gestartet");
-				startNPCPlayback(getPlayerID(playerName), recordingName, type, autoRepeat);
+				startNPCPlayback(targetPlayerID, recordingName, type, autoRepeat);
 				return COMMAND_OK;
 			}
 			else
@@ -47,11 +47,11 @@ CMD:controlnpc(playerid, params[])
 		if (!strcmp(command, "connect", true))
 		{
 			SendClientMessage(playerid, COLOR_INFO, "NPC verbunden");
-			ConnectNPC(playerName, "npcplayer");
+			ConnectNPC(getPlayerName(targetPlayerID), "npcplayer");
 			return COMMAND_OK;
 		}
 		SendClientMessage(playerid, COLOR_INFO, "Befehl gesendet");
-		sendNPCCommand(getPlayerID(playerName), command);
+		sendNPCCommand(targetPlayerID, command);
 		return COMMAND_OK;
 	}
 	else
@@ -64,29 +64,21 @@ CMD:goto(playerid, params[])
 {
 	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
-		new playerID;
-		new playerName[MAX_PLAYER_NAME];
-		if(sscanf(params,"d",playerID))
+		new targetPlayerID;
+		if (sscanf(params, "u", targetPlayerID))
 		{
-			if(sscanf(params, "s",playerName))
-			{
-				CmdUsageMsg(playerid,"goto","PlayerID/Name");
-				return COMMAND_USAGE;
-			}
-			else
-			{
-				playerID = getPlayerID(playerName);
-			}
+			CmdUsageMsg(playerid, "goto", "PlayerID/Name");
+			return COMMAND_USAGE;
 		}
-		if (playerID != INVALID_PLAYERID && IsPlayerConnected(playerID))
+		if (IsPlayerConnected(targetPlayerID))
 		{
 			new Float:posX;
 			new Float:posY;
 			new Float:posZ;
 			new Float:angle;
-			GetPlayerPos(playerID, posX, posY, posZ);
-			GetPlayerFacingAngle(playerID, angle);
-			if (teleportTo(playerid, posX, posY + 2, posZ, angle, GetPlayerInterior(playerID), GetPlayerVirtualWorld(playerID)))
+			GetPlayerPos(targetPlayerID, posX, posY, posZ);
+			GetPlayerFacingAngle(targetPlayerID, angle);
+			if (teleportTo(playerid, posX, posY, posZ, angle, GetPlayerInterior(targetPlayerID), GetPlayerVirtualWorld(targetPlayerID)))
 			{
 				return COMMAND_TELEPORTED;
 			}
@@ -129,41 +121,27 @@ CMD:gotosf(playerid, params[])
 
 CMD:kick(playerid, params[])
 {
-	new playerName[MAX_PLAYER_NAME];
-	new result[64];
-	new giveplayerid;
-	new giveplayer[MAX_PLAYER_NAME];
+	new targetPlayerID;
+	new reason[256];
 	new string[256];
-	if(!sscanf(params, "s", playerName, result))
-	{
-		CmdUsageMsg(playerid, "kick", "Spielername", "grund");
-		return COMMAND_USAGE;
-	}
 	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
-		if(IsPlayerConnected(giveplayerid))
+		if (sscanf(params, "us", targetPlayerID, reason))
 		{
-			if(giveplayerid != INVALID_PLAYER_ID)
-			{
-				if(!sscanf(params, "r", playerName, result))
-				{
-					GetPlayerName(giveplayerid, giveplayer, sizeof(giveplayer));
-					GetPlayerName(playerid, playerName, sizeof(playerName));
-					format(string, sizeof(string), "%s wurde von %s gekickt, Grund: %s", giveplayer, playerName, result);
-					Kick(giveplayerid);
-					format(string, sizeof(string), "%s wurde gekickt von %s, Grund: %s", giveplayer, playerName, (result));
-					SendClientMessageToAll(COLOR_ERROR, string);
-					return COMMAND_OK;
-				}
-				else
-				{
-					CmdUsageMsg(playerid, "kick", "spielername", "grund");
-					return COMMAND_USAGE;
-				}
-			}
+			CmdUsageMsg(playerid, "kick", "Spielername/ID", "Grund");
+			return COMMAND_USAGE;
+		}
+		if (IsPlayerConnected(targetPlayerID))
+		{
+			Kick(targetPlayerID);
+			format(string, sizeof(string), "%s wurde von %s gekickt, Grund: %s", getPlayerName(targetPlayerID), getPlayerName(playerid), reason);
+			SendClientMessageToAll(COLOR_ERROR, string);
+			printf("%s has been kicked by %s, Reason: %s", getPlayerName(targetPlayerID), getPlayerName(playerid), reason);
+			return COMMAND_OK;
 		}
 		else
 		{
+			SendClientMessage(playerid, COLOR_ERROR, "Der Spieler wurde nicht gefunden!");
 			return COMMAND_ERROR;
 		}
 	}
@@ -171,26 +149,20 @@ CMD:kick(playerid, params[])
 	{
 		return COMMAND_ACCESS_DENIED;
 	}
-	return COMMAND_OK;
 }
 
 CMD:makeadmin(playerid, params[])
 {
-	new playerName[MAX_PLAYER_NAME];
+	new targetPlayerID;
 	new level;
 	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
-		if (!sscanf(params, "sd", playerName, level))// TODO: s can be replaced by u to directly get the PlayerID if the user types the name or ID of a player (sd -> ud)
+		if (!sscanf(params, "ud", targetPlayerID, level))
 		{
 			CmdUsageMsg(playerid, "makeadmin", "Spielername", "level (1-1337)");
 			return COMMAND_USAGE;
 		}
-		new targetPlayerID = getPlayerID(playerName);
-		if (targetPlayerID == INVALID_PLAYERID)
-		{
-			SendClientMessage(playerid, COLOR_ERROR, "Spieler nicht gefunden!");
-		}
-		else
+		if (IsPlayerConnected(targetPlayerID))
 		{
 			if (level >= 1 && level <= 1337)
 			{
@@ -205,13 +177,19 @@ CMD:makeadmin(playerid, params[])
 				format(string, sizeof(string), "Du hast Admin Level %d an %s gegeben!", level, targetPlayerName);
 				SendClientMessage(playerid, COLOR_INFO, string);
 				printf("%s got admin level %d by %s", targetPlayerName, level, adminPlayerName);
+				return COMMAND_OK;
 			}
 			else
 			{
 				SendClientMessage(playerid, COLOR_ERROR, "Level muss zwischen 1 und 1337 sein!");
+				return COMMAND_ERROR;
 			}
 		}
-		return COMMAND_OK;
+		else
+		{
+			SendClientMessage(playerid, COLOR_ERROR, "Spieler nicht gefunden!");
+			return COMMAND_ERROR;
+		}
 	}
 	else
 	{
@@ -221,10 +199,10 @@ CMD:makeadmin(playerid, params[])
 
 CMD:money(playerid, params[])
 {
-	if(isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		new money;
-		if(!sscanf(params, "d", money))
+		if (!sscanf(params, "d", money))
 		{
 			GivePlayerMoney(playerid, money);
 			return COMMAND_OK;
@@ -340,6 +318,7 @@ CMD:rc(playerid, params[])
 	{
 		printf("%s sent a RCON command: %s", getPlayerName(playerid), params);
 		SendRconCommand(params);
+		SendClientMessage(playerid, COLOR_INFO, "Der Befehl wurde ausgeführt");
 		return COMMAND_OK;
 	}
 	else
