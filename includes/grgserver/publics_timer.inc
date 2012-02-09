@@ -22,7 +22,7 @@ public timer_fast()
 				GetVehicleHealth(vehicleID, health);
 				speed = floatround(floatsqroot(floatabs(floatpower(velocityX + velocityY + velocityZ, 2))) * 100 * 1.61);
 				healthPercentage = floatround(health /10);
-				fuelPercentage = floatround(vehicles[vehicleID][vehicles_currentFuel] / vehicleModels[GetVehicleModel(vehicleID)][vehicleModels_maxFuel]);
+				fuelPercentage = floatround((vehicles[vehicleID][vehicles_currentFuel] / vehicleModels[GetVehicleModel(vehicleID)][vehicleModels_maxFuel]) * 100);
 				if (healthPercentage > 65)
 				{
 					healthColor = 'g';
