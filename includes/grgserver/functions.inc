@@ -168,6 +168,7 @@ stock savePlayer(playerID)
 	new Float:posX;
 	new Float:posY;
 	new Float:posZ;
+	GetPlayerPos(playerID, posX, posY, posZ);
 	format(query, sizeof(query), "UPDATE `users` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f' WHERE `UserID` = '%d'", posX, posY, posZ, GetPVarInt(playerID, "UserID"));
 	mysql_query(query);
 }

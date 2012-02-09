@@ -126,6 +126,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					if (GetPVarInt(playerid, "UserID"))
 					{
 						loadPlayer(playerid);
+						format(query, sizeof(query), "UPDATE `users` SET `LoginTime` = NOW() WHERE `UserID` = '%d'", GetPVarInt(playerid, "UserID"));
+						mysql_query(query);
 						printf("Player logged in: %s (UserID: %d)", playerName, GetPVarInt(playerid, "UserID"));
 						SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich eingeloggt.");
 						SpawnPlayer(playerid);
@@ -152,7 +154,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					new query[256];
 					new playerName[MAX_PLAYER_NAME];
 					GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
-					format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`) VALUES ('%s', '%s')", mySQLEscapeString(playerName), md5(inputtext));
+					format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`, `RegisterTime`) VALUES ('%s', '%s', NOW())", mySQLEscapeString(playerName), md5(inputtext));
 					mysql_query(query);
 					SetPVarInt(playerid, "UserID", mysql_insert_id());
 					SetPVarInt(playerid, "Level", REGISTER_LEVEL);
