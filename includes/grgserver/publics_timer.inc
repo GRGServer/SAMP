@@ -21,8 +21,11 @@ public timer_fast()
 				GetVehicleVelocity(vehicleID, velocityX, velocityY, velocityZ);
 				GetVehicleHealth(vehicleID, health);
 				speed = floatround(floatsqroot(floatabs(floatpower(velocityX + velocityY + velocityZ, 2))) * 100 * 1.61);
+				printf("Speed: %d", speed);
 				healthPercentage = floatround(health /10);
+				printf("Health: %d", healthPercentage);
 				fuelPercentage = floatround((vehicles[vehicleID][vehicles_currentFuel] / vehicleModels[GetVehicleModel(vehicleID)][vehicleModels_maxFuel]) * 100);
+				printf("Fuel: %d", fuelPercentage);
 				if (healthPercentage > 65)
 				{
 					healthColor = 'g';
@@ -46,6 +49,7 @@ public timer_fast()
 						}
 					}
 				}
+				printf("Health Color: %c", healthColor);
 				if (fuelPercentage > 70)
 				{
 					fuelColor = 'g';
@@ -61,6 +65,7 @@ public timer_fast()
 						fuelColor = 'r';
 					}
 				}
+				printf("Fuel Color: %c", fuelColor);
 				format(string, sizeof(string), "Geschwindigkeit: %d Km/h~n~Zustand: ~%c~%d%%~w~~n~Tank: ~%c~%d%%~w~", speed, healthColor, healthPercentage, fuelColor, fuelPercentage);
 				print(string);
 				TextDrawSetString(textDrawSpeedo[playerID], string);
