@@ -14,8 +14,8 @@ public TachoTimer()
 			new Float:z2[MAX_PLAYERS];
 			GetVehiclePos(GetPlayerVehicleID(i), x1[i], y1[i], z1[i]); 
 			distanz = floatsqroot(floatpower(floatabs(floatsub(x1[i], x2[i])), 2)+floatpower(floatabs(floatsub(y1[i], y2[i])), 2)+floatpower(floatabs(floatsub(z1[i], z2[i])), 2)); 
-			speed = (distanz / (TACHOTIMER/1000)) * 3.6; //Meter/Sekunde in Kilometer/Stunde
-			new Tachostring[20]; // definiert den String
+			speed = (distanz / (TACHOTIMER/1000)) * 3.6;
+			new Tachostring[20];
 			format(Tachostring, sizeof(Tachostring), "Km/h: %d", floatround(speed)); 
 			TextDrawSetString(Tacho[i], Tachostring); 
 			GetVehiclePos(GetPlayerVehicleID(i), x2[i], y2[i], z2[i]);

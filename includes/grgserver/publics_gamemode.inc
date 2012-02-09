@@ -54,7 +54,7 @@ public OnGameModeInit()
 	}
 	for(new i = 0; i < MAX_PLAYERS; i++)
 	{
-		Tacho[i] = TextDrawCreate(300, 370, "Km/h:---");
+		Tacho[i] = TextDrawCreate(510, 370, "Km/h:---");
 		TextDrawLetterSize(Tacho[i], 0.4, 1.1);
 		TextDrawFont(Tacho[i], 1);
 		TextDrawSetShadow(Tacho[i], 2);
