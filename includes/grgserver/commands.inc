@@ -6,7 +6,7 @@ CMD:about(playerid, params[])
 
 CMD:controlnpc(playerid, params[])
 {
-	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		new command[256];
 		new recordingName[256];
@@ -36,7 +36,7 @@ CMD:controlnpc(playerid, params[])
 			if (type)
 			{
 				SendClientMessage(playerid, COLOR_INFO, "Wiedergabe gestartet");
-				startNPCPlayback(targetPlayerID, recordingName, type, autoRepeat);
+				StartNPCPlayback(targetPlayerID, recordingName, type, autoRepeat);
 				return COMMAND_OK;
 			}
 			else
@@ -47,11 +47,11 @@ CMD:controlnpc(playerid, params[])
 		if (!strcmp(command, "connect", true))
 		{
 			SendClientMessage(playerid, COLOR_INFO, "NPC verbunden");
-			ConnectNPC(getPlayerName(targetPlayerID), "npcplayer");
+			ConnectNPC(GetPlayerNameEx(targetPlayerID), "npcplayer");
 			return COMMAND_OK;
 		}
 		SendClientMessage(playerid, COLOR_INFO, "Befehl gesendet");
-		sendNPCCommand(targetPlayerID, command);
+		SendNPCCommand(targetPlayerID, command);
 		return COMMAND_OK;
 	}
 	else
@@ -62,7 +62,7 @@ CMD:controlnpc(playerid, params[])
 
 CMD:goto(playerid, params[])
 {
-	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		new targetPlayerID;
 		if (sscanf(params, "u", targetPlayerID))
@@ -78,7 +78,7 @@ CMD:goto(playerid, params[])
 			new Float:angle;
 			GetPlayerPos(targetPlayerID, posX, posY, posZ);
 			GetPlayerFacingAngle(targetPlayerID, angle);
-			if (teleportTo(playerid, posX, posY, posZ, angle, GetPlayerInterior(targetPlayerID), GetPlayerVirtualWorld(targetPlayerID)))
+			if (TeleportTo(playerid, posX, posY, posZ, angle, GetPlayerInterior(targetPlayerID), GetPlayerVirtualWorld(targetPlayerID)))
 			{
 				return COMMAND_TELEPORTED;
 			}
@@ -101,22 +101,22 @@ CMD:goto(playerid, params[])
 
 CMD:gotobsn(playerid, params[])
 {
-	return adminTeleport(playerid, 1204.7445, -881.0291, 43.0703, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
+	return AdminTeleport(playerid, 1204.7445, -881.0291, 43.0703, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
 CMD:gotols(playerid, params[])
 {
-	return adminTeleport(playerid, 1529.6, -1691.2, 13.3, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
+	return AdminTeleport(playerid, 1529.6, -1691.2, 13.3, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
 CMD:gotolv(playerid, params[])
 {
-	return adminTeleport(playerid, 1699.2, 1435.1, 10.7, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
+	return AdminTeleport(playerid, 1699.2, 1435.1, 10.7, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
 CMD:gotosf(playerid, params[])
 {
-	return adminTeleport(playerid, -1417.0, -295.8, 14.1, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
+	return AdminTeleport(playerid, -1417.0, -295.8, 14.1, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
 CMD:kick(playerid, params[])
@@ -124,7 +124,7 @@ CMD:kick(playerid, params[])
 	new targetPlayerID;
 	new reason[256];
 	new string[256];
-	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		if (sscanf(params, "us", targetPlayerID, reason))
 		{
@@ -134,9 +134,9 @@ CMD:kick(playerid, params[])
 		if (IsPlayerConnected(targetPlayerID))
 		{
 			Kick(targetPlayerID);
-			format(string, sizeof(string), "%s wurde von %s gekickt, Grund: %s", getPlayerName(targetPlayerID), getPlayerName(playerid), reason);
+			format(string, sizeof(string), "%s wurde von %s gekickt, Grund: %s", GetPlayerNameEx(targetPlayerID), GetPlayerNameEx(playerid), reason);
 			SendClientMessageToAll(COLOR_ERROR, string);
-			printf("%s has been kicked by %s, Reason: %s", getPlayerName(targetPlayerID), getPlayerName(playerid), reason);
+			printf("%s has been kicked by %s, Reason: %s", GetPlayerNameEx(targetPlayerID), GetPlayerNameEx(playerid), reason);
 			return COMMAND_OK;
 		}
 		else
@@ -155,7 +155,7 @@ CMD:makeadmin(playerid, params[])
 {
 	new targetPlayerID;
 	new level;
-	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		if (!sscanf(params, "ud", targetPlayerID, level))
 		{
@@ -199,12 +199,12 @@ CMD:makeadmin(playerid, params[])
 
 CMD:money(playerid, params[])
 {
-	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		new money;
 		if (!sscanf(params, "d", money))
 		{
-			GivePlayerMoney(playerid, money);
+			GivePlayerMoneyEx(playerid, money);
 			return COMMAND_OK;
 		}
 		else
@@ -224,7 +224,7 @@ CMD:me(playerid, params[])
 	if (strlen(params))
 	{
 		new string[256];
-		format(string, sizeof(string), "*%s %s", getPlayerName(playerid), params);
+		format(string, sizeof(string), "*%s %s", GetPlayerNameEx(playerid), params);
 		SendClientMessageToAll(COLOR_ME, string);
 		return COMMAND_OK;
 	}
@@ -247,14 +247,14 @@ CMD:motor(playerid, params[])
 		return COMMAND_ERROR;
 	}
 	new vehicleID = GetPlayerVehicleID(playerid);
-	if (getVehicleEngineState(vehicleID))
+	if (GetVehicleEngineState(vehicleID))
 	{
-		setVehicleEngineState(vehicleID, false);
+		SetVehicleEngineState(vehicleID, false);
 		SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde ausgeschalten.");
 	}
 	else
 	{
-		setVehicleEngineState(vehicleID, true);
+		SetVehicleEngineState(vehicleID, true);
 		SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde gestartet.");
 	}
 	return COMMAND_OK;
@@ -276,7 +276,7 @@ CMD:npccmd(playerid, params[])
 					new realPlayerID = GetPVarInt(playerid, "RecordNPCForPlayer");
 					DeletePVar(playerid, "RecordNPCForPlayer");
 					Kick(playerid);
-					format(string, sizeof(string), "Die Wiedergabe von NPC '%s' wurde gestoppt.", getPlayerName(playerid));
+					format(string, sizeof(string), "Die Wiedergabe von NPC '%s' wurde gestoppt.", GetPlayerNameEx(playerid));
 					SendClientMessage(realPlayerID, COLOR_INFO, string);
 					for (new playerID; playerID < MAX_PLAYERS; playerID++)
 					{
@@ -314,9 +314,9 @@ CMD:npccmd(playerid, params[])
 
 CMD:rc(playerid, params[])
 {
-	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
-		printf("%s sent a RCON command: %s", getPlayerName(playerid), params);
+		printf("%s sent a RCON command: %s", GetPlayerNameEx(playerid), params);
 		SendRconCommand(params);
 		SendClientMessage(playerid, COLOR_INFO, "Der Befehl wurde ausgeführt");
 		return COMMAND_OK;
@@ -329,7 +329,7 @@ CMD:rc(playerid, params[])
 
 CMD:recnpc(playerid, params[])
 {
-	if (isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		new npcs;
 		new recordingType;
@@ -362,7 +362,7 @@ CMD:recnpc(playerid, params[])
 		}
 		if (strlen(playbackName1))
 		{
-			if (!addNPCRecorderPlayback(playerid, playbackName1, recordingType))
+			if (!AddNPCRecorderPlayback(playerid, playbackName1, recordingType))
 			{
 				return COMMAND_ERROR;
 			}
@@ -370,7 +370,7 @@ CMD:recnpc(playerid, params[])
 		}
 		if (strlen(playbackName2))
 		{
-			if (!addNPCRecorderPlayback(playerid, playbackName2, recordingType))
+			if (!AddNPCRecorderPlayback(playerid, playbackName2, recordingType))
 			{
 				return COMMAND_ERROR;
 			}
@@ -378,7 +378,7 @@ CMD:recnpc(playerid, params[])
 		}
 		if (strlen(playbackName3))
 		{
-			if (!addNPCRecorderPlayback(playerid, playbackName3, recordingType))
+			if (!AddNPCRecorderPlayback(playerid, playbackName3, recordingType))
 			{
 				return COMMAND_ERROR;
 			}
@@ -398,7 +398,7 @@ CMD:recnpc(playerid, params[])
 
 CMD:saveveh(playerid, params[])
 {
-	if (!isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	if (!IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		return COMMAND_ACCESS_DENIED;
 	}
@@ -449,7 +449,7 @@ CMD:stoprec(playerid, params[])
 
 CMD:veh(playerid, params[])
 {
-	if (!isAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	if (!IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		return COMMAND_ACCESS_DENIED;
 	}
@@ -479,7 +479,7 @@ CMD:veh(playerid, params[])
 					return COMMAND_USAGE;
 				}
 			}
-			modelID = strval(getMySQLValue("vehicles", "ModelID", "Name", str_replace("*", "%%", vehicleName), "LIKE"));
+			modelID = strval(GetMySQLValue("vehicles", "ModelID", "Name", str_replace("*", "%%", vehicleName), "LIKE"));
 		}
 	}
 	if (modelID >= 400 && modelID <= 611)
@@ -494,7 +494,7 @@ CMD:veh(playerid, params[])
 			LinkVehicleToInterior(vehicleID, GetPlayerInterior(playerid));
 			SetVehicleVirtualWorld(vehicleID, GetPlayerVirtualWorld(playerid));
 			PutPlayerInVehicle(playerid, vehicleID, 0);
-			printf("%s spawned a vehicle (ModelID: %d)", getPlayerName(playerid), modelID);
+			printf("%s spawned a vehicle (ModelID: %d)", GetPlayerNameEx(playerid), modelID);
 			SendClientMessage(playerid, COLOR_INFO, "Das Fahrzeug wurde gespawnt");
 			return COMMAND_OK;
 		}

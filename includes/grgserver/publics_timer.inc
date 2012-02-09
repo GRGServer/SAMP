@@ -35,6 +35,10 @@ public timer_fast()
 						healthColor = 'r';
 					}
 				}
+				if (healthPercentage <= 30)
+				{
+					SetVehicleEngineState(vehicleID, false);
+				}
 				format(string, sizeof(string), "Geschwindigkeit: %d Km/h~n~Zustand: ~%c~%d%%~w~", speed, healthColor, healthPercentage);
 				TextDrawSetString(textDrawSpeedo[playerID], string);
 				TextDrawShowForPlayer(playerID, textDrawSpeedo[playerID]);

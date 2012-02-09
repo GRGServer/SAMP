@@ -3,15 +3,15 @@ public OnPlayerConnect(playerid)
 	new query[256];
 	if (IsPlayerNPC(playerid))
 	{
-		format(query, sizeof(query), "SELECT * FROM `npcs` WHERE `Name` = '%s'", mySQLEscapeString(getPlayerName(playerid)));
+		format(query, sizeof(query), "SELECT * FROM `npcs` WHERE `Name` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
 		mysql_query(query);
 		mysql_store_result();
-		if (strval(getMySQLField("StartOnConnect")))
+		if (strval(GetMySQLField("StartOnConnect")))
 		{
 			new modelID;
 			new playbackType;
 			new vehicleID;
-			modelID = strval(getMySQLField("VehicleModelID"));
+			modelID = strval(GetMySQLField("VehicleModelID"));
 			if (modelID)
 			{
 				playbackType = PLAYER_RECORDING_TYPE_DRIVER;
@@ -23,16 +23,16 @@ public OnPlayerConnect(playerid)
 			{
 				playbackType = PLAYER_RECORDING_TYPE_ONFOOT;
 			}
-			startNPCPlayback(playerid, getMySQLField("Recording"), playbackType, strval(getMySQLField("AutoRepeat")));
+			StartNPCPlayback(playerid, GetMySQLField("Recording"), playbackType, strval(GetMySQLField("AutoRepeat")));
 		}
 		mysql_free_result();
 	}
 	else
 	{
-		format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", mySQLEscapeString(getPlayerName(playerid)));
+		format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
 		mysql_query(query);
 		mysql_store_result();
-		if (strval(getMySQLField("UserID")))
+		if (strval(GetMySQLField("UserID")))
 		{
 			ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Login", "Bitte gebe das Passwort von deinen Account ein.", "OK", "Abbrechen");
 		}
@@ -45,8 +45,8 @@ public OnPlayerConnect(playerid)
 		SendClientMessage(playerid, COLOR_SYSTEM, "Willkommen auf GRG Server!");
 		format(string, sizeof(string), "Auf diesem Server läuft aktuell Revision %d unserer Gamemode.", COMPILER_SVN_REVISION);
 		SendClientMessage(playerid, COLOR_SYSTEM, string);
-		format(string, sizeof(string), "%s hat den Server betreten", getPlayerName(playerid));
-		sendClientMessageToAllExcept(playerid, COLOR_JOINLEAVE, string);
+		format(string, sizeof(string), "%s hat den Server betreten", GetPlayerNameEx(playerid));
+		SendClientMessageToAllExcept(playerid, COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
 		textDrawSpeedo[playerid] = TextDrawCreate(500, 400, "_");
 		TextDrawAlignment(textDrawSpeedo[playerid], 1);
@@ -66,10 +66,10 @@ public OnPlayerDisconnect(playerid, reason)
 	{
 		if (GetPVarInt(playerid, "UserID"))
 		{
-			savePlayer(playerid);
+			SavePlayer(playerid);
 		}
 		new string[256];
-		format(string, sizeof(string), "%s hat den Server verlassen", getPlayerName(playerid));
+		format(string, sizeof(string), "%s hat den Server verlassen", GetPlayerNameEx(playerid));
 		SendClientMessageToAll(COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
 		TextDrawDestroy(textDrawSpeedo[playerid]);
@@ -85,6 +85,16 @@ public OnPlayerRequestClass(playerid, classid)
 	return true;
 }
 
+public OnPlayerSpawn(playerid)
+{
+	if (!GetPVarInt(playerid, "WasSpawned"))
+	{
+		LoadPlayer(playerid);
+		SetPVarInt(playerid, "WasSpawned", true);
+	}
+	return true;
+}
+
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
@@ -95,16 +105,16 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				new string[256];
 				new vehicleID = vehicles[GetPlayerVehicleID(playerid)];
-				new price = strval(getMySQLValue("savedvehicles", "Price", "ID", val2str(vehicleID)));
-				if (price <= GetPlayerMoney(playerid))
+				new price = strval(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicleID)));
+				if (price <= GetPVarInt(playerid, "Money"))
 				{
-					GivePlayerMoney(playerid, -price);
-					setMySQLValue("savedvehicles", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(vehicleID));
-					savePlayer(playerid);
+					SetPlayerMoney(playerid, GetPVarInt(playerid, "Money") - price);
+					SetMySQLValue("savedvehicles", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(vehicleID));
+					SavePlayer(playerid);
 				}
 				else
 				{
-					format(string,sizeof(string), "Du benötigst $%d für dieses Fahrzeug! Leider hast du nur $%d.", price, GetPlayerMoney(playerid));
+					format(string,sizeof(string), "Du benötigst $%d für dieses Fahrzeug! Leider hast du nur $%d.", price, GetPVarInt(playerid, "Money"));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 					RemovePlayerFromVehicle(playerid);
 				}
@@ -123,12 +133,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					new playerName[MAX_PLAYER_NAME];
 					new query[256];
 					GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
-					format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", mySQLEscapeString(playerName));
+					format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(playerName));
 					mysql_query(query);
 					mysql_store_result();
-					if (!strcmp(md5(inputtext), getMySQLField("Password"), true))
+					if (!strcmp(MD5(inputtext), GetMySQLField("Password"), true))
 					{
-						SetPVarInt(playerid, "UserID", strval(getMySQLField("UserID")));
+						SetPVarInt(playerid, "UserID", strval(GetMySQLField("UserID")));
 					}
 					else
 					{
@@ -137,7 +147,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					mysql_free_result();
 					if (GetPVarInt(playerid, "UserID"))
 					{
-						loadPlayer(playerid);
 						format(query, sizeof(query), "UPDATE `users` SET `LoginTime` = NOW() WHERE `UserID` = '%d'", GetPVarInt(playerid, "UserID"));
 						mysql_query(query);
 						printf("Player logged in: %s (UserID: %d)", playerName, GetPVarInt(playerid, "UserID"));
@@ -166,12 +175,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					new query[256];
 					new playerName[MAX_PLAYER_NAME];
 					GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
-					format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`, `RegisterTime`) VALUES ('%s', '%s', NOW())", mySQLEscapeString(playerName), md5(inputtext));
+					format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`, `RegisterTime`) VALUES ('%s', '%s', NOW())", MySQLEscapeString(playerName), MD5(inputtext));
 					mysql_query(query);
 					SetPVarInt(playerid, "UserID", mysql_insert_id());
 					SetPVarInt(playerid, "Level", REGISTER_LEVEL);
 					SetPVarInt(playerid, "AdminLevel", REGISTER_ADMINLEVEL);
-					savePlayer(playerid);
+					SavePlayer(playerid);
 					printf("Player registered: %s (UserID: %d)", playerName, GetPVarInt(playerid, "UserID"));
 					SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
 					SpawnPlayer(playerid);
@@ -214,7 +223,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 		case COMMAND_ACCESS_DENIED:
 		{
 			SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht die nötigen Rechte um diesen Befehl zu verwenden!");
-			printf("%s tried to execute %s with admin level %d but has not the required permission!", getPlayerName(playerid), cmdtext, GetPVarInt(playerid, "AdminLevel"));
+			printf("%s tried to execute %s with admin level %d but has not the required permission!", GetPlayerNameEx(playerid), cmdtext, GetPVarInt(playerid, "AdminLevel"));
 		}
 		case COMMAND_NOT_FOUND:
 			return false;
@@ -227,11 +236,11 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 public OnPlayerText(playerid, text[])
 {
 	new string[256];
-	format(string, sizeof(string), "[%s] %s", getPlayerName(playerid), text);
+	format(string, sizeof(string), "[%s] %s", GetPlayerNameEx(playerid), text);
 	IRC_Say(ircBot, IRC_CHANNEL, string);
-	sendClientMessageToAllExcept(playerid, COLOR_CHAT, string);
+	SendClientMessageToAllExcept(playerid, COLOR_CHAT, string);
 	SendClientMessage(playerid, COLOR_CHATOWN, string);
-	writeChatToDatabase(playerid, text);
+	WriteChatToDatabase(playerid, text);
 	return false;
 }
 
@@ -239,14 +248,14 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 {
 	if (!ispassenger && !IsPlayerNPC(playerid))
 	{
-		setVehicleEngineState(vehicleid, false);
+		SetVehicleEngineState(vehicleid, false);
 	}
 	if (!ispassenger)
 	{
 		if (vehicles[vehicleid])
 		{
 			new string[256];
-			new ownerUserID = strval(getMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleid])));
+			new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleid])));
 			if (ownerUserID == GetPVarInt(playerid, "UserID"))
 			{
 				return true;
@@ -258,7 +267,7 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 			}
 			else
 			{
-				format(string,sizeof(string), "Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", getMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleid])));
+				format(string,sizeof(string), "Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleid])));
 				ShowPlayerDialog(playerid, DIALOG_BUYVEHICLE,DIALOG_STYLE_MSGBOX, "Fahrzeug Kaufen", string, "Ja", "Nein");
 			}
 		}
@@ -270,7 +279,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 {
 	if (GetPlayerState(playerid) == PLAYER_STATE_DRIVER && !IsPlayerNPC(playerid))
 	{
-		setVehicleEngineState(vehicleid, false);
+		SetVehicleEngineState(vehicleid, false);
 	}
 	if (vehicles[vehicleid])
 	{

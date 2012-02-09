@@ -1,17 +1,17 @@
-stock getPlayerName(playerID)
+stock GetPlayerNameEx(playerID)
 {
 	new playerName[MAX_PLAYER_NAME];
 	GetPlayerName(playerID, playerName, sizeof(playerName));
 	return playerName;
 }
 
-stock getPlayerID(playerName[])
+stock GetPlayerID(playerName[])
 {
 	for (new playerID; playerID < MAX_PLAYERS; playerID++)
 	{
 		if (IsPlayerConnected(playerID))
 		{
-			if (!strcmp(getPlayerName(playerID), playerName, true))
+			if (!strcmp(GetPlayerNameEx(playerID), playerName, true))
 			{
 				return playerID;
 			}
@@ -20,116 +20,46 @@ stock getPlayerID(playerName[])
 	return INVALID_PLAYERID;
 }
 
-stock str_replace(search[], replace[], source[])
-{
-	new newnick[256];
-	new newlen;
-	for (new i; i < strlen(source); i++)
-	{
-		if (strlen(search) > 1 && i != (strlen(source) - 1))
-		{
-			new matched = 1;
-			new start = i;
-			for (new s=0; s < strlen(search) && matched == 1; s++)
-			{
-				if (source[i] != search[s] && s == 0)
-				{
-					newnick[newlen] = source[i];
-					matched = 0;
-				} else
-				{
-					if (source[i] == search[s])
-					{
-						i++;
-					} else
-					{
-						matched = 0;
-					}
-				}
-			}
-			if (matched == 0)
-			{
-				for (start=start; start <= i; start++)
-				{
-					newnick[newlen] = source[start];
-					newlen++;
-				}
-			} else
-			{
-				for (new r; r < strlen(replace); r++)
-				{
-					newnick[newlen] = replace[r];
-					newlen++;
-				}
-				i = (start + (strlen(search) - 1));
-			}
-		} else
-		{
-			if (strlen(search) == 1 && source[i] == search[0])
-			{
-				for (new r; r < strlen(replace); r++)
-				{
-					newnick[newlen] = replace[r];
-					newlen++;
-				}
-			} else
-			{
-				newnick[newlen] = source[i];
-				newlen++;
-			}
-		}
-	}
-	newnick[newlen] = EOS;
-	return newnick;
-}
-
-stock val2str(value)
-{
-	new string[256];
-	format(string, sizeof(string), "%d", value);
-	return string;
-}
-
-stock fetchMySQLRow()
+stock FetchMySQLRow()
 {
 	new Line[1024];
 	return mysql_fetch_row(Line);
 }
 
-stock getMySQLField(field[])
+stock GetMySQLField(field[])
 {
 	new value[256];
 	mysql_fetch_field(field, value);
 	return value;
 }
 
-stock mySQLEscapeString(string[])
+stock MySQLEscapeString(string[])
 {
 	new escapedString[256];
 	mysql_real_escape_string(string, escapedString);
 	return escapedString;
 }
 
-stock getMySQLValue(table[], field[], checkColumn[], checkValue[], whereOperator[] = "=")
+stock GetMySQLValue(table[], field[], checkColumn[], checkValue[], whereOperator[] = "=")
 {
 	new query[256];
 	new string[256];
-	format(query, sizeof(query), "SELECT `%s` FROM `%s` WHERE `%s` %s '%s'", mySQLEscapeString(field), mySQLEscapeString(table), mySQLEscapeString(checkColumn), whereOperator, mySQLEscapeString(checkValue));
+	format(query, sizeof(query), "SELECT `%s` FROM `%s` WHERE `%s` %s '%s'", MySQLEscapeString(field), MySQLEscapeString(table), MySQLEscapeString(checkColumn), whereOperator, MySQLEscapeString(checkValue));
 	mysql_query(query);
 	mysql_store_result();
-	format(string, sizeof(string), "%s", getMySQLField(field));
+	format(string, sizeof(string), "%s", GetMySQLField(field));
 	mysql_free_result();
 	return string;
 }
 
-stock setMySQLValue(table[], field[], value[], checkColumn[], checkValue[])
+stock SetMySQLValue(table[], field[], value[], checkColumn[], checkValue[])
 {
 	new query[1024];
-	format(query, sizeof(query), "UPDATE `%s` SET `%s` = '%s' WHERE `%s` = '%s'", mySQLEscapeString(table), mySQLEscapeString(field), mySQLEscapeString(value), mySQLEscapeString(checkColumn), mySQLEscapeString(checkValue));
+	format(query, sizeof(query), "UPDATE `%s` SET `%s` = '%s' WHERE `%s` = '%s'", MySQLEscapeString(table), MySQLEscapeString(field), MySQLEscapeString(value), MySQLEscapeString(checkColumn), MySQLEscapeString(checkValue));
 	mysql_query(query);
 }
 
-stock savePlayerValue(playerID, fieldName[])
+stock SavePlayerValue(playerID, fieldName[])
 {
 	new value[256];
 	switch (GetPVarType(playerID, fieldName))
@@ -143,27 +73,27 @@ stock savePlayerValue(playerID, fieldName[])
 		default:
 			format(value, sizeof(value), "");
 	}
-	setUserDBValue(playerID, fieldName, value);
+	SetUserDBValue(playerID, fieldName, value);
 }
 
-stock loadPlayerValue(playerID, fieldName[], pVarType)
+stock LoadPlayerValue(playerID, fieldName[], pVarType)
 {
 	switch (pVarType)
 	{
 		case PLAYER_VARTYPE_INT:
-			SetPVarInt(playerID, fieldName, strval(getUserDBValue(playerID, fieldName)));
+			SetPVarInt(playerID, fieldName, strval(GetUserDBValue(playerID, fieldName)));
 		case PLAYER_VARTYPE_STRING:
-			SetPVarString(playerID, fieldName, getUserDBValue(playerID, fieldName));
+			SetPVarString(playerID, fieldName, GetUserDBValue(playerID, fieldName));
 		case PLAYER_VARTYPE_FLOAT:
-			SetPVarFloat(playerID, fieldName, floatstr(getUserDBValue(playerID, fieldName)));
+			SetPVarFloat(playerID, fieldName, floatstr(GetUserDBValue(playerID, fieldName)));
 	}
 }
 
-stock savePlayer(playerID)
+stock SavePlayer(playerID)
 {
-	savePlayerValue(playerID, "Level");
-	savePlayerValue(playerID, "AdminLevel");
-	setUserDBValue(playerID, "Money", val2str(GetPlayerMoney(playerID)));
+	SavePlayerValue(playerID, "Level");
+	SavePlayerValue(playerID, "AdminLevel");
+	SavePlayerValue(playerID, "Money");
 	new query[256];
 	new Float:posX;
 	new Float:posY;
@@ -173,21 +103,30 @@ stock savePlayer(playerID)
 	mysql_query(query);
 }
 
-stock loadPlayer(playerID)
+stock LoadPlayer(playerID)
 {
-	loadPlayerValue(playerID, "Level", PLAYER_VARTYPE_INT);
-	loadPlayerValue(playerID, "AdminLevel", PLAYER_VARTYPE_INT);
-	setPlayerMoney(playerID, strval(getUserDBValue(playerID, "Money")));
-	SetPlayerPos(playerID, floatstr(getUserDBValue(playerID, "PosX")), floatstr(getUserDBValue(playerID, "PosY")), floatstr(getUserDBValue(playerID, "PosZ")));
+	LoadPlayerValue(playerID, "Level", PLAYER_VARTYPE_INT);
+	LoadPlayerValue(playerID, "AdminLevel", PLAYER_VARTYPE_INT);
+	LoadPlayerValue(playerID, "Money", PLAYER_VARTYPE_INT);
+	SetPlayerPos(playerID, floatstr(GetUserDBValue(playerID, "PosX")), floatstr(GetUserDBValue(playerID, "PosY")), floatstr(GetUserDBValue(playerID, "PosZ")));
+	SetPlayerMoney(playerID, GetPVarInt(playerID, "Money"));
 }
 
-stock setPlayerMoney(playerID, amount)
+stock SetPlayerMoney(playerID, amount)
 {
+	SetPVarInt(playerID, "Money", amount);
 	ResetPlayerMoney(playerID);
 	GivePlayerMoney(playerID, amount);
 }
 
-stock sendClientMessageToAllExcept(exceptPlayerID, color, message[])
+stock GivePlayerMoneyEx(playerID, amount)
+{
+	SetPVarInt(playerID, "Money", GetPVarInt(playerID, "Money") + amount);
+	ResetPlayerMoney(playerID);
+	GivePlayerMoney(playerID, GetPVarInt(playerID, "Money"));
+}
+
+stock SendClientMessageToAllExcept(exceptPlayerID, color, message[])
 {
 	for (new playerID; playerID < MAX_PLAYERS; playerID++)
 	{
@@ -198,12 +137,12 @@ stock sendClientMessageToAllExcept(exceptPlayerID, color, message[])
 	}
 }
 
-stock isAdmin(playerID, adminLevel)
+stock IsAdmin(playerID, adminLevel)
 {
 	return GetPVarInt(playerID, "AdminLevel") >= adminLevel;
 }
 
-stock teleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, virtualWorld)
+stock TeleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, virtualWorld)
 {
 	switch (GetPlayerState(playerID))
 	{
@@ -227,11 +166,11 @@ stock teleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, inte
 	return false;
 }
 
-stock adminTeleport(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, virtualWorld, adminLevel)
+stock AdminTeleport(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, virtualWorld, adminLevel)
 {
-	if (isAdmin(playerID, adminLevel))
+	if (IsAdmin(playerID, adminLevel))
 	{
-		if (teleportTo(playerID, posX, posY, posZ, angle, interior, virtualWorld))
+		if (TeleportTo(playerID, posX, posY, posZ, angle, interior, virtualWorld))
 		{
 			return COMMAND_TELEPORTED;
 		}
@@ -247,23 +186,23 @@ stock adminTeleport(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, i
 	}
 }
 
-stock startNPCPlayback(npcPlayerID, recordingName[], recordingType, autoRepeat)
+stock StartNPCPlayback(npcPlayerID, recordingName[], recordingType, autoRepeat)
 {
 	new string[256];
 	format(string, sizeof(string), "%s %d %d", recordingName, recordingType, autoRepeat);
 	SendClientMessage(npcPlayerID, COLOR_NPCCOMMAND, string);
 }
 
-stock sendNPCCommand(npcPlayerID, command[])
+stock SendNPCCommand(npcPlayerID, command[])
 {
 	SendClientMessage(npcPlayerID, COLOR_NPCCOMMAND, command);
 }
 
-stock addNPCRecorderPlayback(playerID, recordingName[], recordingType)
+stock AddNPCRecorderPlayback(playerID, recordingName[], recordingType)
 {
 	new npcPlayerName[MAX_PLAYER_NAME];
-	format(npcPlayerName, sizeof(npcPlayerName), "%s_NPC1", getPlayerName(playerID));
-	new npcPlayerID = getPlayerID(npcPlayerName);
+	format(npcPlayerName, sizeof(npcPlayerName), "%s_NPC1", GetPlayerNameEx(playerID));
+	new npcPlayerID = GetPlayerID(npcPlayerName);
 	if (npcPlayerID == INVALID_PLAYERID)
 	{
 		new string[256];
@@ -274,27 +213,27 @@ stock addNPCRecorderPlayback(playerID, recordingName[], recordingType)
 	{
 		if (recordingType == PLAYER_RECORDING_TYPE_DRIVER)
 		{
-			new modelID = strval(getMySQLValue("npcs", "VehicleModelID", "Recording", recordingName));
+			new modelID = strval(GetMySQLValue("npcs", "VehicleModelID", "Recording", recordingName));
 			if (modelID)
 			{
 				PutPlayerInVehicle(npcPlayerID, CreateVehicle(modelID, 0.0, 0.0, 0.0, 0.0, random(126), random(126), 1), 0);
 			}
 		}
 		SetPVarInt(npcPlayerID, "RecordNPCForPlayer", playerID);
-		startNPCPlayback(npcPlayerID, recordingName, recordingType, false);
+		StartNPCPlayback(npcPlayerID, recordingName, recordingType, false);
 		return true;
 	}
 	return false;
 }
 
-stock writeChatToDatabase(playerID, text[])
+stock WriteChatToDatabase(playerID, text[])
 {
 	new query[512];
-	format(query, sizeof(query), "INSERT INTO `chatlog` (`UserID`, `Time`, `Text`) VALUES('%d', NOW(), '%s')", GetPVarInt(playerID, "UserID"), mySQLEscapeString(text));
+	format(query, sizeof(query), "INSERT INTO `chatlog` (`UserID`, `Time`, `Text`) VALUES('%d', NOW(), '%s')", GetPVarInt(playerID, "UserID"), MySQLEscapeString(text));
 	mysql_query(query);
 }
 
-stock getVehicleEngineState(vehicleID)
+stock GetVehicleEngineState(vehicleID)
 {
 	new engine;
 	new lights;
@@ -307,7 +246,7 @@ stock getVehicleEngineState(vehicleID)
 	return engine;
 }
 
-stock setVehicleEngineState(vehicleID, newState)
+stock SetVehicleEngineState(vehicleID, newState)
 {
 	new engine;
 	new lights;
@@ -317,7 +256,10 @@ stock setVehicleEngineState(vehicleID, newState)
 	new boot;
 	new objective;
 	GetVehicleParamsEx(vehicleID, engine, lights, alarm, doors, bonnet, boot, objective);
-	SetVehicleParamsEx(vehicleID, newState, lights, alarm, doors, bonnet, boot, objective);
+	if (engine != newState)
+	{
+		SetVehicleParamsEx(vehicleID, newState, lights, alarm, doors, bonnet, boot, objective);
+	}
 }
 
 stock CmdUsageMsg(playerID, command[], ...)
@@ -329,7 +271,7 @@ stock CmdUsageMsg(playerID, command[], ...)
 	format(string, sizeof(string), "Verwendung: /%s", command);
 	for (new index = 2; index < parameters; index++)
 	{
-		getStringArg(index, value);
+		GetStringArg(index, value);
 		format(string, sizeof(string), "%s %s", string, value);
 	}
 	SendClientMessage(playerID, COLOR_USAGE, string);

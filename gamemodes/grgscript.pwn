@@ -12,12 +12,12 @@
 // GRG Server includes
 #include <grgserver/constants>// Constants like colors, dialog IDs, command returns, etc.
 #include <grgserver/compiler>// Constants updated before compiling (Compiling time, SVN revision, etc.)
-#include <grgserver/config>// Configuration #data like IRC and MySQL credentials
+#include <grgserver/config>// Configuration data like IRC and MySQL credentials
 #include <grgserver/globals>// Globally used variables like ircBot (Variables which are shared between multiple functions)
-#include <grgserver/macros>// Macros like getStringArg
-#include <grgserver/functions>// Stock functions
+#include <grgserver/macros>// Macros like GetStringArg
+#include <grgserver/basicfunctions> // Ported functions like str_replace
+#include <grgserver/functions>// Stock functions like LoadPlayer
 #include <grgserver/publics_gamemode>// Publics like OnGameModeInit or OnGameModeExit
-//#include <grgserver/publics_filterscript>// Publics like OnFilterScriptInit or OnFilterScriptExit
 #include <grgserver/publics_irc>// IRC publics like IRC_OnConnect
 #include <grgserver/publics_players>// Player publics like OnPlayerText
 #include <grgserver/publics_timer>// Timers to update various stuff like world time

@@ -13,19 +13,19 @@ public OnGameModeInit()
 	print("Connecting NPCs...");
 	mysql_query("SELECT * FROM `npcs` WHERE `AutoConnect` = '1'");
 	mysql_store_result();
-	while (fetchMySQLRow())
+	while (FetchMySQLRow())
 	{
-		ConnectNPC(getMySQLField("Name"), "npcplayer");
+		ConnectNPC(GetMySQLField("Name"), "npcplayer");
 	}
 	mysql_free_result();
 	print("Spawing saved vehicles...");
 	mysql_query("SELECT * FROM `savedvehicles`");
 	mysql_store_result();
-	while (fetchMySQLRow())
+	while (FetchMySQLRow())
 	{
-		new vehicleID = CreateVehicle(strval(getMySQLField("ModelID")), floatstr(getMySQLField("PosX")), floatstr(getMySQLField("PosY")), floatstr(getMySQLField("PosZ")), floatstr(getMySQLField("Angle")), random(126), random(126), -1);
-		vehicles[vehicleID] = strval(getMySQLField("ID"));
-		LinkVehicleToInterior(vehicleID, strval(getMySQLField("Interior")));
+		new vehicleID = CreateVehicle(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), random(126), random(126), -1);
+		vehicles[vehicleID] = strval(GetMySQLField("ID"));
+		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
 	}
 	mysql_free_result();
 	print("Doing misc stuff...");
