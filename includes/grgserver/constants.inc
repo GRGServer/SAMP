@@ -50,3 +50,6 @@ enum
 
 // Misc
 #define INVALID_PLAYERID				-1
+
+// Tacho
+#define TACHOTIMER 1000

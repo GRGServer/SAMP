@@ -52,6 +52,15 @@ public OnGameModeInit()
 			fclose(svnRevisionFile);
 		}
 	}
+	for(new i = 0; i < MAX_PLAYERS; i++)
+	{
+		Tacho[i] = TextDrawCreate(300, 370, "Km/h:---");
+		TextDrawLetterSize(Tacho[i], 0.4, 1.1);
+		TextDrawFont(Tacho[i], 1);
+		TextDrawSetShadow(Tacho[i], 2);
+		TextDrawSetOutline(Tacho[i],1);
+	}
+	distanze = floatsqroot(floatpower(floatabs(floatsub(X1, X2)), 2)+floatpower(floatabs(floatsub(Y1, Y2)), 2)+floatpower(floatabs(floatsub(Z1, Z2)), 2));
 	print("Gamemode loading complete");
 	return true;
 }
