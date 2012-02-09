@@ -6,7 +6,8 @@ public OnGameModeInit()
 	print("Connecting to IRC server...");
 	ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_USERNAME, IRC_USERNAME, IRC_USERNAME, IRC_SSL);
 	print("Starting timers...");
-	SetTimer("timer_slow", 5000, true);
+	SetTimer("timer_fast", TIMER_FAST, true);
+	SetTimer("timer_slow", TIMER_SLOW, true);
 	print("Adding player classes...");
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	print("Connecting NPCs...");

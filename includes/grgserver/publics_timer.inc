@@ -1,32 +1,31 @@
-forward TachoTimer();
-public TachoTimer()
+forward timer_fast();
+public timer_fast()// FIXME
 {
-	for(new i = 0; i < MAX_PLAYERS; i++)
+	for(new playerID = 0; playerID < MAX_PLAYERS; playerID++)
 	{
-		if(IsPlayerNPC(i) && IsPlayerInAnyVehicle(i))
+		if (IsPlayerConnected(playerID))
 		{
-			new Float:distanz, Float:speed; 
-			new Float:x1[MAX_PLAYERS]; 
-			new Float:y1[MAX_PLAYERS]; 
-			new Float:z1[MAX_PLAYERS];
-			new Float:x2[MAX_PLAYERS];
-			new Float:y2[MAX_PLAYERS];
-			new Float:z2[MAX_PLAYERS];
-			GetVehiclePos(GetPlayerVehicleID(i), x1[i], y1[i], z1[i]); 
-			distanz = floatsqroot(floatpower(floatabs(floatsub(x1[i], x2[i])), 2)+floatpower(floatabs(floatsub(y1[i], y2[i])), 2)+floatpower(floatabs(floatsub(z1[i], z2[i])), 2)); 
-			speed = (distanz / (TACHOTIMER/1000)) * 3.6;
-			new Tachostring[20];
-			format(Tachostring, sizeof(Tachostring), "Km/h: %d", floatround(speed)); 
-			TextDrawSetString(Tacho[i], Tachostring); 
-			GetVehiclePos(GetPlayerVehicleID(i), x2[i], y2[i], z2[i]);
-			TextDrawShowForPlayer(i, Tacho[i]);
-		}
-		else
-		{
-			TextDrawHideForPlayer(i, Tacho[i]);
+			if (!IsPlayerNPC(playerID) && IsPlayerInAnyVehicle(playerID))
+			{
+				// Requires fix (Will *not* work!)
+				/*new Float:vehiclePosX;
+				new Float:vehiclePosY;
+				new Float:vehiclePosZ;
+				GetVehiclePos(GetPlayerVehicleID(playerID), vehiclePosX, vehiclePosY, vehiclePosZ);
+				new Float:distance = floatsqroot(floatpower(floatabs(floatsub(vehiclePosX, x2[i])), 2)+floatpower(floatabs(floatsub(vehiclePosY, y2[i])), 2)+floatpower(floatabs(floatsub(vehiclePosZ, z2[i])), 2));
+				speed = (distanz / (TACHOTIMER/1000)) * 3.6;
+				new Tachostring[20];
+				format(Tachostring, sizeof(Tachostring), "Km/h: %d", floatround(speed));
+				TextDrawSetString(Tacho[i], Tachostring);
+				GetVehiclePos(GetPlayerVehicleID(i), x2[i], y2[i], z2[i]);
+				TextDrawShowForPlayer(i, Tacho[i]);*/
+			}
+			else
+			{
+				//TextDrawHideForPlayer(playerID, Tacho[i]);
+			}
 		}
 	}
-	return COMMAND_OK;
 }
 
 forward timer_slow();
@@ -37,6 +36,5 @@ public timer_slow()
 	new second;
 	gettime(hour, minute, second);
 	SetWorldTime(hour);
-	SetTimer("TachoTimer",TACHOTIMER,1);
 	mysql_ping();
 }
