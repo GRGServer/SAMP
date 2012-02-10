@@ -18,3 +18,7 @@
 #define REGISTER_MAXPASSWORD		20
 #define REGISTER_LEVEL				1
 #define REGISTER_ADMINLEVEL			0
+
+
+// Vehicle configuration
+#define VEHICLE_MINHEALTH			30

@@ -254,8 +254,17 @@ CMD:motor(playerid, params[])
 	}
 	else
 	{
-		SetVehicleEngineState(vehicleID, true);
-		SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde gestartet.");
+		new Float:health;
+		GetVehicleHealth(vehicleID, health);
+		if (health < VEHICLE_MINHEALTH)
+		{
+			SendClientMessage(playerid, COLOR_ERROR, "Der Motor deines Fahrzeuges konnte nicht gestartet werden (Motorschaden)!");
+		}
+		else
+		{
+			SetVehicleEngineState(vehicleID, true);
+			SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde gestartet.");
+		}
 	}
 	return COMMAND_OK;
 }

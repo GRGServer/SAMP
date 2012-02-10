@@ -36,14 +36,14 @@ public timer_fast()
 					else
 					{
 						healthColor = 'r';
-						if (healthPercentage < 30)
-						{
-							if (GetVehicleEngineState(vehicleID))
-							{
-								SetVehicleEngineState(vehicleID, false);
-								GameTextForPlayer(playerID, "Dein Fahrzeug ist kaputt!", 3000, 6);
-							}
-						}
+					}
+				}
+				if (healthPercentage < VEHICLE_MINHEALTH)
+				{
+					if (GetVehicleEngineState(vehicleID))
+					{
+						SetVehicleEngineState(vehicleID, false);
+						GameTextForPlayer(playerID, "Dein Fahrzeug ist kaputt!", 3000, 5);
 					}
 				}
 				if (fuelPercentage > 70)
@@ -64,7 +64,7 @@ public timer_fast()
 				if (vehicles[vehicleID][vehicles_currentFuel] <= 0)
 				{
 					SetVehicleEngineState(vehicleID, false);
-					GameTextForPlayer(playerID, "Der Tank von deinem fahrzeug ist leer!", 3000, 6);
+					GameTextForPlayer(playerID, "Der Tank von deinem Fahrzeug ist leer!", 3000, 5);
 				}
 				format(string, sizeof(string), "Geschwindigkeit: %d Km/h~n~Zustand: ~%c~%d%%~w~~n~Tank: ~%c~%d%%~w~", speed, healthColor, healthPercentage, fuelColor, fuelPercentage);
 				TextDrawSetString(textDrawSpeedo[playerID], string);
