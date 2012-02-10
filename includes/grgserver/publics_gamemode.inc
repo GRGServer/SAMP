@@ -47,6 +47,11 @@ public OnGameModeInit()
 	TextDrawTextSize(textDrawSpeedoColumn1, 635, 475);
 	TextDrawBoxColor(textDrawSpeedoColumn1, 0x00000080);
 	TextDrawUseBox(textDrawSpeedoColumn1, true);
+	textDrawClock = TextDrawCreate(547, 24, "_");
+	TextDrawSetShadow(textDrawClock, 0);
+	TextDrawSetOutline(textDrawClock, 2);
+	TextDrawLetterSize(textDrawClock, 0.6, 1.8);
+	TextDrawFont(textDrawClock, 3);
 	print("Doing misc stuff...");
 	new string[256];
 	format(string, sizeof(string), "GRG Server r%d", COMPILER_SVN_REVISION);

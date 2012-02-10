@@ -83,10 +83,23 @@ public timer_fast()
 forward timer_slow();
 public timer_slow()
 {
+	new clockString[6];
 	new hour;
 	new minute;
 	new second;
+	new hourZero;
+	new minuteZero;
 	gettime(hour, minute, second);
+	if (hour < 10)
+	{
+		hourZero = '0';
+	}
+	if (minute < 10)
+	{
+		minuteZero = '0';
+	}
+	format(clockString, sizeof(clockString), "%c%d:%c%d", hourZero, hour, minuteZero, minute);
+	TextDrawSetString(textDrawClock, clockString);
 	SetWorldTime(hour);
 	mysql_ping();
 }
