@@ -83,9 +83,9 @@ public timer_fast()
 forward timer_slow();
 public timer_slow()
 {
-	new clockString[5];
-	new hourString[2];
-	new minuteString[2];
+	new clockString[6];
+	new hourString[3];
+	new minuteString[3];
 	new hour;
 	new minute;
 	new second;
