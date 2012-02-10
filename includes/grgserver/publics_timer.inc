@@ -99,7 +99,8 @@ public timer_slow()
 		minuteZero = '0';
 	}
 	format(clockString, sizeof(clockString), "%c%d:%c%d", hourZero, hour, minuteZero, minute);
-	//TextDrawSetString(textDrawClock, clockString);
+	TextDrawSetString(textDrawClock, clockString);
+	TextDrawShowForAll(textDrawClock);
 	SetWorldTime(hour);
 	mysql_ping();
 }

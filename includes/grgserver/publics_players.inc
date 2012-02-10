@@ -54,7 +54,6 @@ public OnPlayerConnect(playerid)
 		TextDrawFont(textDrawSpeedoColumn2[playerid], 1);
 		TextDrawSetShadow(textDrawSpeedoColumn2[playerid], 2);
 		TextDrawTextSize(textDrawSpeedoColumn2[playerid], 635, 475);
-		TextDrawShowForPlayer(playerid, textDrawClock);
 	}
 	return true;
 }

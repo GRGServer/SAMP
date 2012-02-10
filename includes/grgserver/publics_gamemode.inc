@@ -47,7 +47,7 @@ public OnGameModeInit()
 	TextDrawTextSize(textDrawSpeedoColumn1, 635, 475);
 	TextDrawBoxColor(textDrawSpeedoColumn1, 0x00000080);
 	TextDrawUseBox(textDrawSpeedoColumn1, true);
-	textDrawClock = TextDrawCreate(547, 24, "DEBUG");
+	textDrawClock = TextDrawCreate(547, 25, "_");
 	TextDrawSetShadow(textDrawClock, 0);
 	TextDrawSetOutline(textDrawClock, 2);
 	TextDrawLetterSize(textDrawClock, 0.6, 1.8);
