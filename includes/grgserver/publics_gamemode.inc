@@ -39,7 +39,7 @@ public OnGameModeInit()
 	}
 	mysql_free_result();
 	print("Creating server wide TextDraws...");
-	textDrawSpeedoColumn1 = TextDrawCreate(500, 400, "Geschwindigkeit:~n~Zustand:~n~Tank:");
+	textDrawSpeedoColumn1 = TextDrawCreate(490, 400, "Geschwindigkeit:~n~Zustand:~n~Tank:");
 	TextDrawAlignment(textDrawSpeedoColumn1, 1);
 	TextDrawLetterSize(textDrawSpeedoColumn1, 0.3, 0.9);
 	TextDrawFont(textDrawSpeedoColumn1, 1);

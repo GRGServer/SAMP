@@ -48,7 +48,7 @@ public OnPlayerConnect(playerid)
 		format(string, sizeof(string), "%s hat den Server betreten", GetPlayerNameEx(playerid));
 		SendClientMessageToAllExcept(playerid, COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
-		textDrawSpeedoColumn2[playerid] = TextDrawCreate(590, 400, "_");
+		textDrawSpeedoColumn2[playerid] = TextDrawCreate(580, 400, "_");
 		TextDrawAlignment(textDrawSpeedoColumn2[playerid], 1);
 		TextDrawLetterSize(textDrawSpeedoColumn2[playerid], 0.3, 0.9);
 		TextDrawFont(textDrawSpeedoColumn2[playerid], 1);
