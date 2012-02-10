@@ -83,22 +83,24 @@ public timer_fast()
 forward timer_slow();
 public timer_slow()
 {
-	new clockString[10];
+	new clockString[5];
+	new hourString[2];
+	new minuteString[2];
 	new hour;
 	new minute;
 	new second;
-	new hourZero;
-	new minuteZero;
 	gettime(hour, minute, second);
+	format(hourString, sizeof(hourString), "%2d", hour);
+	format(minuteString, sizeof(minuteString), "%2d", minute);
 	if (hour < 10)
 	{
-		hourZero = '0';
+		hourString[0] = '0';
 	}
 	if (minute < 10)
 	{
-		minuteZero = '0';
+		minuteString[0] = '0';
 	}
-	format(clockString, sizeof(clockString), "T%c%d:%c%d", hourZero, hour, minuteZero, minute);
+	format(clockString, sizeof(clockString), "%s:%s", hourString, minuteString);
 	TextDrawSetString(textDrawClock, clockString);
 	TextDrawShowForAll(textDrawClock);
 	SetWorldTime(hour);
