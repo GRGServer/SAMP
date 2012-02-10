@@ -102,7 +102,6 @@ public timer_slow()
 	}
 	format(clockString, sizeof(clockString), "%s:%s", hourString, minuteString);
 	TextDrawSetString(textDrawClock, clockString);
-	TextDrawShowForAll(textDrawClock);
 	SetWorldTime(hour);
 	mysql_ping();
 }

@@ -54,6 +54,7 @@ public OnPlayerConnect(playerid)
 		TextDrawFont(textDrawSpeedoColumn2[playerid], 1);
 		TextDrawSetShadow(textDrawSpeedoColumn2[playerid], 2);
 		TextDrawTextSize(textDrawSpeedoColumn2[playerid], 635, 475);
+		TextDrawShowForPlayer(playerid, textDrawClock);
 	}
 	return true;
 }
@@ -71,6 +72,7 @@ public OnPlayerDisconnect(playerid, reason)
 		SendClientMessageToAll(COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
 		TextDrawHideForPlayer(playerid, textDrawSpeedoColumn1);
+		TextDrawHideForPlayer(playerid, textDrawClock);
 		TextDrawDestroy(textDrawSpeedoColumn2[playerid]);
 	}
 	return true;
@@ -90,6 +92,21 @@ public OnPlayerSpawn(playerid)
 	{
 		LoadPlayer(playerid);
 		SetPVarInt(playerid, "WasSpawned", true);
+	}
+	return true;
+}
+
+public OnPlayerUpdate(playerid)
+{
+	if (IsPlayerInAnyVehicle(playerid))
+	{
+		new vehicleID = GetPlayerVehicleID(playerid);
+		new Float:health;
+		GetVehicleHealth(vehicleID, health);
+		if (health < VEHICLE_MINHEALTH)
+		{
+			SetVehicleHealth(vehicleID, VEHICLE_MINHEALTH);
+		}
 	}
 	return true;
 }

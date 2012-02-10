@@ -72,7 +72,7 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 		format(string, sizeof(string), "[IRC] %s: %s", userName, text);
 		SendClientMessageToAll(COLOR_IRC, string);
 		print(string);
-		WriteChatToDatabase(INVALID_PLAYERID, string);
+		WriteChatToDatabase(INVALID_PLAYER_ID, string);
 	}
 	return true;
 }

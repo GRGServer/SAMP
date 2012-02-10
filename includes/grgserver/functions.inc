@@ -17,7 +17,7 @@ stock GetPlayerID(playerName[])
 			}
 		}
 	}
-	return INVALID_PLAYERID;
+	return INVALID_PLAYER_ID;
 }
 
 stock FetchMySQLRow()
@@ -203,7 +203,7 @@ stock AddNPCRecorderPlayback(playerID, recordingName[], recordingType)
 	new npcPlayerName[MAX_PLAYER_NAME];
 	format(npcPlayerName, sizeof(npcPlayerName), "%s_NPC1", GetPlayerNameEx(playerID));
 	new npcPlayerID = GetPlayerID(npcPlayerName);
-	if (npcPlayerID == INVALID_PLAYERID)
+	if (npcPlayerID == INVALID_PLAYER_ID)
 	{
 		new string[256];
 		format(string, sizeof(string), "Der NPC '%s' ist nicht verbunden! Verwende /controlnpc %s connect und versuche es erneut.", npcPlayerName, npcPlayerName);
