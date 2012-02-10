@@ -96,21 +96,6 @@ public OnPlayerSpawn(playerid)
 	return true;
 }
 
-public OnPlayerUpdate(playerid)
-{
-	if (IsPlayerInAnyVehicle(playerid))
-	{
-		new vehicleID = GetPlayerVehicleID(playerid);
-		new Float:health;
-		GetVehicleHealth(vehicleID, health);
-		if (health < VEHICLE_MINHEALTH)
-		{
-			SetVehicleHealth(vehicleID, VEHICLE_MINHEALTH);
-		}
-	}
-	return true;
-}
-
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)

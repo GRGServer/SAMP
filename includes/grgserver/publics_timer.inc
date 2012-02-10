@@ -38,8 +38,9 @@ public timer_fast()
 						healthColor = 'r';
 					}
 				}
-				if (healthPercentage < VEHICLE_MINHEALTH)
+				if (healthPercentage <= VEHICLE_MINHEALTH)
 				{
+					SetVehicleHealth(vehicleID, VEHICLE_MINHEALTH * 10);
 					if (GetVehicleEngineState(vehicleID))
 					{
 						SetVehicleEngineState(vehicleID, false);
