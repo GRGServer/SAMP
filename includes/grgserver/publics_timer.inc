@@ -40,7 +40,7 @@ public timer_fast()
 				}
 				if (healthPercentage <= VEHICLE_MINHEALTH)
 				{
-					SetVehicleHealth(vehicleID, VEHICLE_MINHEALTH * 10);
+					SetVehicleHealth(vehicleID, floatmul(VEHICLE_MINHEALTH, 10));
 					if (GetVehicleEngineState(vehicleID))
 					{
 						SetVehicleEngineState(vehicleID, false);
