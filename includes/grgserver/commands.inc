@@ -491,6 +491,7 @@ CMD:veh(playerid, params[])
 			new Float:posZ;
 			GetPlayerPos(playerid, posX, posY, posZ);
 			new vehicleID = CreateVehicle(modelID, posX, posY, posZ, 0.0, color1, color2, -1);
+			vehicles[vehicleID][vehicles_currentFuel] = vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel];
 			LinkVehicleToInterior(vehicleID, GetPlayerInterior(playerid));
 			SetVehicleVirtualWorld(vehicleID, GetPlayerVirtualWorld(playerid));
 			PutPlayerInVehicle(playerid, vehicleID, 0);

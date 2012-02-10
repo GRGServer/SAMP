@@ -34,6 +34,7 @@ public OnGameModeInit()
 	{
 		new vehicleID = CreateVehicle(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), random(126), random(126), -1);
 		vehicles[vehicleID][vehicles_saveID] = strval(GetMySQLField("ID"));
+		vehicles[vehicleID][vehicles_currentFuel] = strval(GetMySQLField("CurrentFuel"));
 		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
 	}
 	mysql_free_result();

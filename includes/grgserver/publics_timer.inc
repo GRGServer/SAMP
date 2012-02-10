@@ -61,6 +61,11 @@ public timer_fast()
 						fuelColor = 'r';
 					}
 				}
+				if (vehicles[vehicleID][vehicles_currentFuel] <= 0)
+				{
+					SetVehicleEngineState(vehicleID, false);
+					GameTextForPlayer(playerID, "Der Tank von deinem fahrzeug ist leer!", 3000, 6);
+				}
 				format(string, sizeof(string), "Geschwindigkeit: %d Km/h~n~Zustand: ~%c~%d%%~w~~n~Tank: ~%c~%d%%~w~", speed, healthColor, healthPercentage, fuelColor, fuelPercentage);
 				TextDrawSetString(textDrawSpeedo[playerID], string);
 				TextDrawShowForPlayer(playerID, textDrawSpeedo[playerID]);
