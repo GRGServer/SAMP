@@ -1,6 +1,6 @@
 #include <a_npc>
 #include <sscanf>
-#include <grgserver/constants>
+#include <grgserver/config>
 #include <grgserver/compiler>
 
 new recordingName[256];
