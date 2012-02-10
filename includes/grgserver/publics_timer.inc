@@ -42,7 +42,7 @@ public timer_fast()
 				{
 					if (GetVehicleEngineState(vehicleID))
 					{
-						SetVehicleHealth(vehicleID, float(VEHICLE_MINHEALTH) * 10.0);
+						SetVehicleHealth(vehicleID, float(VEHICLE_MINHEALTH * 10));
 						SetVehicleEngineState(vehicleID, false);
 						GameTextForPlayer(playerID, "Dein Fahrzeug ist kaputt!", 3000, 5);
 					}
