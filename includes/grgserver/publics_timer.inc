@@ -66,13 +66,15 @@ public timer_fast()
 					SetVehicleEngineState(vehicleID, false);
 					GameTextForPlayer(playerID, "Der Tank von deinem Fahrzeug ist leer!", 3000, 5);
 				}
-				format(string, sizeof(string), "Geschwindigkeit: %d Km/h~n~Zustand: ~%c~%d%%~w~~n~Tank: ~%c~%d%%~w~", speed, healthColor, healthPercentage, fuelColor, fuelPercentage);
-				TextDrawSetString(textDrawSpeedo[playerID], string);
-				TextDrawShowForPlayer(playerID, textDrawSpeedo[playerID]);
+				format(string, sizeof(string), "%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~", speed, healthColor, healthPercentage, fuelColor, fuelPercentage);
+				TextDrawSetString(textDrawSpeedoColumn2[playerID], string);
+				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn1);
+				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn2[playerID]);
 			}
 			else
 			{
-				TextDrawHideForPlayer(playerID, textDrawSpeedo[playerID]);
+				TextDrawHideForPlayer(playerID, textDrawSpeedoColumn1);
+				TextDrawHideForPlayer(playerID, textDrawSpeedoColumn2[playerID]);
 			}
 		}
 	}

@@ -48,14 +48,12 @@ public OnPlayerConnect(playerid)
 		format(string, sizeof(string), "%s hat den Server betreten", GetPlayerNameEx(playerid));
 		SendClientMessageToAllExcept(playerid, COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
-		textDrawSpeedo[playerid] = TextDrawCreate(500, 400, "_");
-		TextDrawAlignment(textDrawSpeedo[playerid], 1);
-		TextDrawLetterSize(textDrawSpeedo[playerid], 0.3, 0.9);
-		TextDrawFont(textDrawSpeedo[playerid], 1);
-		TextDrawSetShadow(textDrawSpeedo[playerid], 2);
-		TextDrawTextSize(textDrawSpeedo[playerid], 635, 475);
-		TextDrawBoxColor(textDrawSpeedo[playerid], 0x00000080);
-		TextDrawUseBox(textDrawSpeedo[playerid], true);
+		textDrawSpeedoColumn2[playerid] = TextDrawCreate(570, 400, "_");
+		TextDrawAlignment(textDrawSpeedoColumn2[playerid], 1);
+		TextDrawLetterSize(textDrawSpeedoColumn2[playerid], 0.3, 0.9);
+		TextDrawFont(textDrawSpeedoColumn2[playerid], 1);
+		TextDrawSetShadow(textDrawSpeedoColumn2[playerid], 2);
+		TextDrawTextSize(textDrawSpeedoColumn2[playerid], 635, 475);
 	}
 	return true;
 }
@@ -72,7 +70,8 @@ public OnPlayerDisconnect(playerid, reason)
 		format(string, sizeof(string), "%s hat den Server verlassen", GetPlayerNameEx(playerid));
 		SendClientMessageToAll(COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
-		TextDrawDestroy(textDrawSpeedo[playerid]);
+		TextDrawHideForPlayer(playerid, textDrawSpeedoColumn1);
+		TextDrawDestroy(textDrawSpeedoColumn2[playerid]);
 	}
 	return true;
 }

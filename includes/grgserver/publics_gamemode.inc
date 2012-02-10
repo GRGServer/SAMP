@@ -38,6 +38,15 @@ public OnGameModeInit()
 		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
 	}
 	mysql_free_result();
+	print("Creating server wide TextDraws...");
+	textDrawSpeedoColumn1 = TextDrawCreate(500, 400, "Geschwindigkeit:~n~Zustand:~n~Tank:");
+	TextDrawAlignment(textDrawSpeedoColumn1, 1);
+	TextDrawLetterSize(textDrawSpeedoColumn1, 0.3, 0.9);
+	TextDrawFont(textDrawSpeedoColumn1, 1);
+	TextDrawSetShadow(textDrawSpeedoColumn1, 2);
+	TextDrawTextSize(textDrawSpeedoColumn1, 635, 475);
+	TextDrawBoxColor(textDrawSpeedoColumn1, 0x00000080);
+	TextDrawUseBox(textDrawSpeedoColumn1, true);
 	print("Doing misc stuff...");
 	new string[256];
 	format(string, sizeof(string), "GRG Server r%d", COMPILER_SVN_REVISION);
