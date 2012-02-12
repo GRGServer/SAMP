@@ -68,7 +68,6 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 		{
 			new vehicleID = GetPlayerVehicleID(playerid);
 			new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel], vehicles[vehicleID][vehicles_currentFuel]);
-			printf("GASSTATION %f - %f = %f", vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel], vehicles[vehicleID][vehicles_currentFuel], maximum);
 			if (maximum > 0)
 			{
 				new string[256];
