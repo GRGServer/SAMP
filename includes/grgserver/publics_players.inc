@@ -62,207 +62,25 @@ public OnPlayerConnect(playerid)
 
 public OnPlayerPickUpPickup(playerid,pickupid)
 {
-	if(pickupid == Tanke1)
+	switch (pickups[pickupid][pickups_type])
 	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+		case PICKUPTYPE_GASSTATION:
+		{
+			new vehicleID = GetPlayerVehicleID(playerid);
+			new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel], vehicles[vehicleID][vehicles_currentFuel]);
+			if (maximum > 0)
+			{
+				new string[256];
+				format(string, sizeof(string), "Wie viel möchtest du tanken (0 - %d)?", maximum);
+				ShowPlayerDialog(playerid, DIALOG_REFUEL, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", "Abbrechen");
+			}
+			else
+			{
+				SendClientMessage(playerid, COLOR_ERROR, "Der Tank ist bereits voll!");
+			}
+		}
 	}
-	if(pickupid == Tanke2)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke3)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke4)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke5)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke6)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke7)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke8)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke9)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke10)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke11)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke12)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke13)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke14)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke15)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke16)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke17)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke18)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke19)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke20)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke21)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke22)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke23)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke24)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke25)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke26)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke27)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke28)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke29)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke30)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke31)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke32)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke33)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke34)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke35)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke36)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke37)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke38)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke39)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	if(pickupid == Tanke40)
-	{
-		TogglePlayerControllable(playerid, 0);
-		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
-	}
-	return 1;
+	return true;
 }
 
 public OnPlayerDisconnect(playerid, reason)
@@ -307,50 +125,22 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
 	{
-		case DIALOG_TANK1:
-		{
-			new fuelPercentage;
-			if(response)
-			{
-				if(strlen(inputtext))
-				{
-					if(fuelPercentage <= 100)
-					{
-						TogglePlayerControllable(playerid, 0);
-						GameTextForPlayer(playerid, "Dein Fahrzeug wird Betankt bitte warten.....", 3000, 4);
-					}
-					else
-					{
-						TogglePlayerControllable(playerid, 1);
-						GameTextForPlayer(playerid, "Dein Fahrzeug hat einen Vollen Tank!", 3000, 4);
-					}
-				}
-				else
-				{
-					SendClientMessage(playerid, COLOR_ERROR,"Du musst eine Tankfüllung eingeben!");
-				}
-			}
-			else
-			{
-				TogglePlayerControllable(playerid, 0);
-			}
-		}
 		case DIALOG_BUYVEHICLE:
 		{
 			if (response)
 			{
 				new string[256];
 				new saveID = vehicles[GetPlayerVehicleID(playerid)][vehicles_saveID];
-				new price = strval(GetMySQLValue("savedvehicles", "Price", "ID", val2str(saveID)));
-				if (price <= GetPVarInt(playerid, "Money"))
+				new Float:price = floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(saveID)));
+				if (price <= GetPVarFloat(playerid, "Money"))
 				{
-					SetPlayerMoney(playerid, GetPVarInt(playerid, "Money") - price);
+					SetPlayerMoney(playerid, floatsub(GetPVarFloat(playerid, "Money"), price));
 					SetMySQLValue("savedvehicles", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(saveID));
 					SavePlayer(playerid);
 				}
 				else
 				{
-					format(string,sizeof(string), "Du benötigst $%d für dieses Fahrzeug! Leider hast du nur $%d.", price, GetPVarInt(playerid, "Money"));
+					format(string,sizeof(string), "Du benötigst $%f für dieses Fahrzeug! Leider hast du nur $%f.", price, GetPVarFloat(playerid, "Money"));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 					RemovePlayerFromVehicle(playerid);
 				}
@@ -401,6 +191,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				Kick(playerid);
 			}
 			return true;
+		}
+		case DIALOG_REFUEL:
+		{
+			if (response && strlen(inputtext))
+			{
+				new Float:amount = floatstr(inputtext);
+				new vehicleID = GetPlayerVehicleID(playerid);
+				new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel], vehicles[vehicleID][vehicles_currentFuel]);
+				if (amount > maximum)
+				{
+					amount = maximum;
+				}
+				TogglePlayerControllable(playerid, false);
+				SetVehicleEngineState(vehicleID, false);
+				GameTextForPlayer(playerid, "Dein Fahrzeug wird getankt. Bitte warten...", 3000, 4);
+				timer_refuelVehicle(playerid, amount);
+			}
 		}
 		case DIALOG_REGISTER:
 		{

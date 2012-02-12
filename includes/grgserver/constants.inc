@@ -15,8 +15,15 @@ enum
 // Dialogs
 enum
 {
-	DIALOG_TANK1,
 	DIALOG_BUYVEHICLE,
 	DIALOG_LOGIN,
+	DIALOG_REFUEL,
 	DIALOG_REGISTER
+}
+
+
+// Pickup types
+enum
+{
+	PICKUPTYPE_GASSTATION
 }

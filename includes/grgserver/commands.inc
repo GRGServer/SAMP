@@ -255,7 +255,7 @@ CMD:money(playerid, params[])
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		new money;
-		if (!sscanf(params, "d", money))
+		if (!sscanf(params, "f", money))
 		{
 			GivePlayerMoneyEx(playerid, money);
 			return COMMAND_OK;

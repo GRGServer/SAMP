@@ -16,6 +16,10 @@
 #define COLOR_NPCCOMMAND			0x00000000
 
 
+// Gas station configuration
+#define GASSTATION_REFUELSPEED		500// Time per liter
+
+
 // Help configuration
 #define HELP_COMMANDSPERLINE		5
 
@@ -35,6 +39,10 @@
 #define MYSQL_DATABASE				"grgserver"
 
 
+// Pickups
+#define PICKUP_GASSTATION			1239
+
+
 // Register values
 #define REGISTER_MINPASSWORD		3
 #define REGISTER_MAXPASSWORD		20
@@ -50,8 +58,9 @@
 
 
 // Timers
-#define TIMER_FAST					250
-#define TIMER_SLOW					5000
+#define TIMER_FAST					250// 1/4 seconds (Update fuel usage calculation on change!)
+#define TIMER_SLOW					5000// 5 seconds
+#define TIMER_HOURLY				3600000// 1 hour
 
 
 // Vehicle configuration

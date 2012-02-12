@@ -107,23 +107,23 @@ stock LoadPlayer(playerID)
 {
 	LoadPlayerValue(playerID, "Level", PLAYER_VARTYPE_INT);
 	LoadPlayerValue(playerID, "AdminLevel", PLAYER_VARTYPE_INT);
-	LoadPlayerValue(playerID, "Money", PLAYER_VARTYPE_INT);
+	LoadPlayerValue(playerID, "Money", PLAYER_VARTYPE_FLOAT);
 	SetPlayerPos(playerID, floatstr(GetUserDBValue(playerID, "PosX")), floatstr(GetUserDBValue(playerID, "PosY")), floatstr(GetUserDBValue(playerID, "PosZ")));
-	SetPlayerMoney(playerID, GetPVarInt(playerID, "Money"));
+	SetPlayerMoney(playerID, GetPVarFloat(playerID, "Money"));
 }
 
-stock SetPlayerMoney(playerID, amount)
+stock SetPlayerMoney(playerID, Float:amount)
 {
-	SetPVarInt(playerID, "Money", amount);
+	SetPVarFloat(playerID, "Money", amount);
 	ResetPlayerMoney(playerID);
-	GivePlayerMoney(playerID, amount);
+	GivePlayerMoney(playerID, floatround(amount, floatround_tozero) * 100);
 }
 
-stock GivePlayerMoneyEx(playerID, amount)
+stock GivePlayerMoneyEx(playerID, Float:amount)
 {
-	SetPVarInt(playerID, "Money", GetPVarInt(playerID, "Money") + amount);
+	SetPVarFloat(playerID, "Money", floatadd(GetPVarFloat(playerID, "Money"), amount));
 	ResetPlayerMoney(playerID);
-	GivePlayerMoney(playerID, GetPVarInt(playerID, "Money"));
+	GivePlayerMoney(playerID, floatround(GetPVarFloat(playerID, "Money"), floatround_tozero) * 100);
 }
 
 stock SendClientMessageToAllExcept(exceptPlayerID, color, message[])
@@ -260,6 +260,11 @@ stock SetVehicleEngineState(vehicleID, newState)
 	{
 		SetVehicleParamsEx(vehicleID, newState, lights, alarm, doors, bonnet, boot, objective);
 	}
+}
+
+stock UpdateGasPrice()
+{
+	gasPrice = float(150 + random(10)) / 100;
 }
 
 stock CmdUsageMsg(playerID, command[], ...)

@@ -18,11 +18,21 @@ public timer_fast()
 				new healthPercentage;
 				new fuelPercentage;
 				new vehicleID = GetPlayerVehicleID(playerID);
+				new vehicleModelIndex = GetVehicleModel(vehicleID) - 400;
 				GetVehicleVelocity(vehicleID, velocityX, velocityY, velocityZ);
 				GetVehicleHealth(vehicleID, health);
 				speed = floatround(floatsqroot(floatabs(floatpower(velocityX + velocityY + velocityZ, 2))) * 100 * 1.61);
 				healthPercentage = floatround(health /10);
-				fuelPercentage = floatround((vehicles[vehicleID][vehicles_currentFuel] / vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel]) * 100);
+				if (vehicles[vehicleID][vehicles_currentFuel] <= 0)
+				{
+					SetVehicleEngineState(vehicleID, false);
+					GameTextForPlayer(playerID, "Der Tank von deinem Fahrzeug ist leer!", 3000, 5);
+				}
+				else
+				{
+					vehicles[vehicleID][vehicles_currentFuel] -= (speed / 60 / 60 / 4) * (vehicleModels[vehicleModelIndex][vehicleModels_fuelUsage] / 100);
+				}
+				fuelPercentage = floatround((vehicles[vehicleID][vehicles_currentFuel] / vehicleModels[vehicleModelIndex][vehicleModels_maxFuel]) * 100);
 				if (healthPercentage > 65)
 				{
 					healthColor = 'g';
@@ -62,11 +72,6 @@ public timer_fast()
 						fuelColor = 'r';
 					}
 				}
-				if (vehicles[vehicleID][vehicles_currentFuel] <= 0)
-				{
-					SetVehicleEngineState(vehicleID, false);
-					GameTextForPlayer(playerID, "Der Tank von deinem Fahrzeug ist leer!", 3000, 5);
-				}
 				format(string, sizeof(string), "%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~", speed, healthColor, healthPercentage, fuelColor, fuelPercentage);
 				TextDrawSetString(textDrawSpeedoColumn2[playerID], string);
 				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn1);
@@ -105,4 +110,36 @@ public timer_slow()
 	TextDrawSetString(textDrawClock, clockString);
 	SetWorldTime(hour);
 	mysql_ping();
+}
+
+forward timer_hourly();
+public timer_hourly()
+{
+	UpdateGasPrice();
+}
+
+forward timer_refuelVehicle(playerID, Float:amount);
+public timer_refuelVehicle(playerID, Float:amount)
+{
+	new vehicleID = GetPlayerVehicleID(playerID);
+	if (GetPVarFloat(playerID, "Money") >= gasPrice)
+	{
+		vehicles[vehicleID][vehicles_currentFuel] += 1;
+		GivePlayerMoneyEx(playerID, -gasPrice);
+		if (amount > 0 && vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel] - vehicles[vehicleID][vehicles_currentFuel])
+		{
+			SetTimerEx("timer_refuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, floatsub(amount, 1));
+			return true;
+		}
+		else
+		{
+			SendClientMessage(playerID, COLOR_INFO, "Dein Fahrzeug wurde getankt.");
+		}
+	}
+	else
+	{
+		SendClientMessage(playerID, COLOR_ERROR, "Du hast nicht genügend Geld!");
+	}
+	TogglePlayerControllable(playerID, true);
+	return true;
 }
