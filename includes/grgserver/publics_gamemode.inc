@@ -1,5 +1,7 @@
 public OnGameModeInit()
 {
+	new gameModeTextString[256];
+	format(gameModeTextString, sizeof(gameModeTextString), "GRG Server r%d", COMPILER_SVN_REVISION);
 	print("Connecting to MySQL server...");
 	new MySQL:mysqlConnection = mysql_init(LOG_ONLY_ERRORS, true);
 	mysql_connect(MYSQL_HOST, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE, mysqlConnection, true);
@@ -52,10 +54,15 @@ public OnGameModeInit()
 	TextDrawSetOutline(textDrawClock, 2);
 	TextDrawLetterSize(textDrawClock, 0.6, 1.8);
 	TextDrawFont(textDrawClock, 3);
+	textDrawBottomBanner = TextDrawCreate(0, 440, gameModeTextString);
+	TextDrawLetterSize(textDrawBottomBanner, 0.3, 0.9);
+	TextDrawFont(textDrawBottomBanner, 1);
+	TextDrawSetShadow(textDrawBottomBanner, 2);
+	TextDrawTextSize(textDrawBottomBanner, 640, 480);
+	TextDrawBoxColor(textDrawBottomBanner, 0x00000080);
+	TextDrawUseBox(textDrawBottomBanner, true);
 	print("Doing misc stuff...");
-	new string[256];
-	format(string, sizeof(string), "GRG Server r%d", COMPILER_SVN_REVISION);
-	SetGameModeText(string);
+	SetGameModeText(gameModeTextString);
 	new File:svnRevisionFile;
 	new oldSvnRevision[256];
 	if (fexist("svn_revision"))

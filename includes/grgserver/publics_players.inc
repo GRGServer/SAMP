@@ -55,6 +55,7 @@ public OnPlayerConnect(playerid)
 		TextDrawSetShadow(textDrawSpeedoColumn2[playerid], 2);
 		TextDrawTextSize(textDrawSpeedoColumn2[playerid], 635, 475);
 		TextDrawShowForPlayer(playerid, textDrawClock);
+		TextDrawShowForPlayer(playerid, textDrawBottomBanner);
 	}
 	return true;
 }
@@ -73,6 +74,7 @@ public OnPlayerDisconnect(playerid, reason)
 		IRC_Say(ircBot, IRC_CHANNEL, string);
 		TextDrawHideForPlayer(playerid, textDrawSpeedoColumn1);
 		TextDrawHideForPlayer(playerid, textDrawClock);
+		TextDrawHideForPlayer(playerid, textDrawBottomBanner);
 		TextDrawDestroy(textDrawSpeedoColumn2[playerid]);
 	}
 	return true;
