@@ -1,21 +1,23 @@
 // Admin levels
-#define ADMINLEVEL_SERVERADMIN			1338
+#define ADMINLEVEL_SERVERADMIN		1338
 
 
 // Colors
-#define COLOR_ERROR						0xA00000AA
-#define COLOR_ME						0x00FF40AA
-//#define COLOR_PM						0x804000AA
-#define COLOR_SYSTEM					0xC0C0C0AA
-#define COLOR_CHAT						0xFFFFFFAA
-#define COLOR_CHATOWN					0xAAAAAAAA
-#define COLOR_IRC						0x33AA33AA
-#define COLOR_INFO						0xFF8C55FF
-#define COLOR_USAGE						0x008000AA
-#define COLOR_JOINLEAVE					0x74E80099
-//#define COLOR_ADMIN						0xFF4000FF
-//#define COLOR_AFK						0x0000CCAA
-#define COLOR_NPCCOMMAND				0x00000000
+#define COLOR_ERROR					0xA00000AA
+#define COLOR_ME					0x00FF40AA
+//#define COLOR_PM					0x804000AA
+#define COLOR_SYSTEM				0xC0C0C0AA
+#define COLOR_CHAT					0xFFFFFFAA
+#define COLOR_CHATOWN				0xAAAAAAAA
+#define COLOR_IRC					0x33AA33AA
+#define COLOR_INFO					0xFF8C55FF
+#define COLOR_USAGE					0x008000AA
+#define COLOR_JOINLEAVE				0x74E80099
+#define COLOR_NPCCOMMAND			0x00000000
+
+
+// Help configuration
+#define HELP_COMMANDSPERLINE		5
 
 
 // IRC credentials

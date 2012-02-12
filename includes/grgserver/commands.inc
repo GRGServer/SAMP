@@ -4,6 +4,39 @@ CMD:about(playerid, params[])
 	return COMMAND_OK;
 }
 
+CMD:cmds(playerid, params[])
+{
+	if (fexist("commands.txt"))
+	{
+		new string[256];
+		new line[256];
+		new count;
+		new File:commands = fopen("commands.txt", io_read);
+		while (fread(commands, string))
+		{
+			count++;
+			if (count == 1)
+			{
+				format(line, sizeof(line), "/%s", string);
+			}
+			else
+			{
+				format(line, sizeof(line), "%s /%s", line, string);
+			}
+			if (count == HELP_COMMANDSPERLINE)
+			{
+				count = 0;
+				SendClientMessage(playerid, COLOR_INFO, line);
+			}
+		}
+		return COMMAND_OK;
+	}
+	else
+	{
+		return COMMAND_ERROR;
+	}
+}
+
 CMD:controlnpc(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
@@ -131,6 +164,12 @@ CMD:gotolv(playerid, params[])
 CMD:gotosf(playerid, params[])
 {
 	return AdminTeleport(playerid, -1417.0, -295.8, 14.1, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
+}
+
+CMD:help(playerid, params[])
+{
+	SendClientMessage(playerid, COLOR_INFO, "Verwende /cmds um eine Liste an Befehlen zu sehen.");
+	return COMMAND_OK;
 }
 
 CMD:kick(playerid, params[])
