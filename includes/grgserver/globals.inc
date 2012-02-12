@@ -7,3 +7,4 @@ new Text:textDrawSpeedoColumn2[MAX_PLAYERS];
 new Text:textDrawClock;
 new Text:textDrawBottomBanner;
 new TankPickup = 1239;
+new Tanke1;

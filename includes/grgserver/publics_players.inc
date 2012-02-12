@@ -60,6 +60,16 @@ public OnPlayerConnect(playerid)
 	return true;
 }
 
+public OnPlayerPickUpPickup(playerid,pickupid)
+{
+	if(pickupid == Tanke1)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	return 1;
+}
+
 public OnPlayerDisconnect(playerid, reason)
 {
 	if (!IsPlayerNPC(playerid))
@@ -102,6 +112,30 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
 	{
+		case DIALOG_TANK1:
+		{
+			new fuelPercentage;
+			if(response)
+			{
+				if(strlen(inputtext))
+				{
+					if(fuelPercentage <= 100)
+					{
+						TogglePlayerControllable(playerid, 0);
+						GameTextForPlayer(playerid, "Dein Fahrzeug wird Betankt bitte warten.....", 3000, 4);
+					}
+					else
+					{
+						TogglePlayerControllable(playerid, 1);
+						GameTextForPlayer(playerid, "Dein Fahrzeug hat einen Vollen Tank!", 3000, 4);
+					}
+				}
+				else
+				{
+					SendClientMessage(playerid, COLOR_ERROR,"Du musst eine Tankfüllung eingeben!");
+				}
+			}
+		}
 		case DIALOG_BUYVEHICLE:
 		{
 			if (response)
