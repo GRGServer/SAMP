@@ -31,9 +31,6 @@ public timer_fast()
 				else
 				{
 					vehicles[vehicleID][vehicles_currentFuel] = floatsub(vehicles[vehicleID][vehicles_currentFuel], floatdiv(speed, 60 * 60 * 4) * floatdiv(vehicleModels[vehicleModelIndex][vehicleModels_fuelUsage], 100));
-					printf("CALC1: %d / 60 / 60 / 4 = %f", speed, floatdiv(speed, 60 * 60 * 4));
-					printf("CALC2: %f / 100 = %f", vehicleModels[vehicleModelIndex][vehicleModels_fuelUsage], floatdiv(vehicleModels[vehicleModelIndex][vehicleModels_fuelUsage], 100));
-					printf("NEW FUEL: %f", vehicles[vehicleID][vehicles_currentFuel]);
 				}
 				fuelPercentage = floatround((vehicles[vehicleID][vehicles_currentFuel] / vehicleModels[vehicleModelIndex][vehicleModels_maxFuel]) * 100);
 				if (healthPercentage > 65)

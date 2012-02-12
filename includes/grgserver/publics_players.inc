@@ -331,7 +331,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 		new Float:posY;
 		new Float:posZ;
 		GetVehiclePos(vehicleid, posX, posY, posZ);
-		format(query, sizeof(query), "UPDATE `savedvehicles` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Interior` = '%d' WHERE `ID` = '%d'", posX, posY, posZ, GetPlayerInterior(playerid), vehicles[vehicleid][vehicles_saveID]);
+		format(query, sizeof(query), "UPDATE `savedvehicles` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Interior` = '%d', `CurrentFuel` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, GetPlayerInterior(playerid), vehicles[vehicleid][vehicles_currentFuel], vehicles[vehicleid][vehicles_saveID]);
 		mysql_query(query);
 	}
 	return true;

@@ -31,7 +31,7 @@ public OnGameModeInit()
 		vehicleModels[index][vehicleModels_maxFuel] = floatstr(GetMySQLField("MaxFuel"));
 	}
 	mysql_free_result();
-	print("Spawing saved vehicles...");
+	print("Loading saved vehicles...");
 	mysql_query("SELECT * FROM `savedvehicles`");
 	mysql_store_result();
 	while (FetchMySQLRow())
