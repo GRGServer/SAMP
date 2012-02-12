@@ -60,6 +60,20 @@ CMD:controlnpc(playerid, params[])
 	}
 }
 
+CMD:gmx(playerid, params[])
+{
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		SendClientMessage(playerid, COLOR_INFO, "Gamemode neugestartet");
+		SendRconCommand("gmx");
+		return COMMAND_OK;
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
+}
+
 CMD:goto(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
