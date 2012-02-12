@@ -67,6 +67,201 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 		TogglePlayerControllable(playerid, 0);
 		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
 	}
+	if(pickupid == Tanke2)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke3)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke4)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke5)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke6)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke7)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke8)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke9)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke10)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke11)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke12)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke13)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke14)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke15)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke16)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke17)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke18)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke19)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke20)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke21)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke22)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke23)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke24)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke25)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke26)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke27)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke28)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke29)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke30)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke31)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke32)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke33)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke34)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke35)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke36)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke37)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke38)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke39)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
+	if(pickupid == Tanke40)
+	{
+		TogglePlayerControllable(playerid, 0);
+		ShowPlayerDialog(playerid, DIALOG_TANK1, DIALOG_STYLE_INPUT, "Tanken", "Wie viel Lieter willst du tanken?","Tanken","Abbrechen");
+	}
 	return 1;
 }
 
@@ -134,6 +329,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					SendClientMessage(playerid, COLOR_ERROR,"Du musst eine Tankfüllung eingeben!");
 				}
+			}
+			else
+			{
+				TogglePlayerControllable(playerid, 0);
 			}
 		}
 		case DIALOG_BUYVEHICLE:
