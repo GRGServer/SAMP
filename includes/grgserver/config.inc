@@ -40,7 +40,7 @@
 
 
 // Pickups
-#define PICKUP_GASSTATION			1239
+#define PICKUP_GASSTATION			1008
 
 
 // Register values
