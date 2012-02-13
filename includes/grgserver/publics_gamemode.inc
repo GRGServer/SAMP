@@ -38,7 +38,7 @@ public OnGameModeInit()
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new vehicleID = CreateVehicle(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), random(126), random(126), -1);
+		new vehicleID = CreateVehicle(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1);
 		vehicles[vehicleID][vehicles_saveID] = strval(GetMySQLField("ID"));
 		vehicles[vehicleID][vehicles_currentFuel] = floatstr(GetMySQLField("CurrentFuel"));
 		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
