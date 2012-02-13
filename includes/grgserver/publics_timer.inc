@@ -150,3 +150,9 @@ public timer_refuelVehicle(playerID, Float:totalAmount)
 	TogglePlayerControllable(playerID, true);
 	return true;
 }
+
+forward timer_spawnPlayer(playerID);
+public timer_spawnPlayer(playerID)
+{
+	SpawnPlayer(playerID);
+}
