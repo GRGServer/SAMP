@@ -11,7 +11,9 @@ public OnGameModeInit()
 	SetTimer("timer_fast", TIMER_FAST, true);
 	SetTimer("timer_slow", TIMER_SLOW, true);
 	SetTimer("timer_hourly", TIMER_HOURLY, true);
-	print("Adding player classes...");
+	print("Adding dummy player classes...");
+	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
+	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	print("Connecting NPCs...");
 	mysql_query("SELECT * FROM `npcs` WHERE `AutoConnect` = '1'");
