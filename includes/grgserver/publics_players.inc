@@ -91,10 +91,7 @@ public OnPlayerDisconnect(playerid, reason)
 {
 	if (!IsPlayerNPC(playerid))
 	{
-		if (GetPVarInt(playerid, "UserID"))
-		{
-			SavePlayer(playerid);
-		}
+		SavePlayer(playerid);
 		new string[256];
 		format(string, sizeof(string), "%s hat den Server verlassen", GetPlayerNameEx(playerid));
 		SendClientMessageToAll(COLOR_JOINLEAVE, string);
@@ -328,15 +325,6 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	{
 		SetVehicleEngineState(vehicleid, false);
 	}
-	if (vehicles[vehicleid][vehicles_saveID])
-	{
-		new query[256];
-		new Float:posX; 
-		new Float:posY;
-		new Float:posZ;
-		GetVehiclePos(vehicleid, posX, posY, posZ);
-		format(query, sizeof(query), "UPDATE `savedvehicles` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Interior` = '%d', `CurrentFuel` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, GetPlayerInterior(playerid), vehicles[vehicleid][vehicles_currentFuel], vehicles[vehicleid][vehicles_saveID]);
-		mysql_query(query);
-	}
+	SaveVehicle(vehicleid, GetPlayerInterior(playerid));
 	return true;
 }

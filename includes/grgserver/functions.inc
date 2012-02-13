@@ -91,16 +91,19 @@ stock LoadPlayerValue(playerID, fieldName[], pVarType)
 
 stock SavePlayer(playerID)
 {
-	SavePlayerValue(playerID, "Level");
-	SavePlayerValue(playerID, "AdminLevel");
-	SavePlayerValue(playerID, "Money");
-	new query[256];
-	new Float:posX;
-	new Float:posY;
-	new Float:posZ;
-	GetPlayerPos(playerID, posX, posY, posZ);
-	format(query, sizeof(query), "UPDATE `users` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f' WHERE `UserID` = '%d'", posX, posY, posZ, GetPVarInt(playerID, "UserID"));
-	mysql_query(query);
+	if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && GetPVarInt(playerID, "UserID"))
+	{
+		SavePlayerValue(playerID, "Level");
+		SavePlayerValue(playerID, "AdminLevel");
+		SavePlayerValue(playerID, "Money");
+		new query[256];
+		new Float:posX;
+		new Float:posY;
+		new Float:posZ;
+		GetPlayerPos(playerID, posX, posY, posZ);
+		format(query, sizeof(query), "UPDATE `users` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f' WHERE `UserID` = '%d'", posX, posY, posZ, GetPVarInt(playerID, "UserID"));
+		mysql_query(query);
+	}
 }
 
 stock LoadPlayer(playerID)
@@ -259,6 +262,20 @@ stock SetVehicleEngineState(vehicleID, newState)
 	if (engine != newState)
 	{
 		SetVehicleParamsEx(vehicleID, newState, lights, alarm, doors, bonnet, boot, objective);
+	}
+}
+
+stock SaveVehicle(vehicleID, interior)
+{
+	if (vehicles[vehicleID][vehicles_saveID])
+	{
+		new query[256];
+		new Float:posX; 
+		new Float:posY;
+		new Float:posZ;
+		GetVehiclePos(vehicleID, posX, posY, posZ);
+		format(query, sizeof(query), "UPDATE `savedvehicles` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Interior` = '%d', `CurrentFuel` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, interior, vehicles[vehicleID][vehicles_currentFuel], vehicles[vehicleID][vehicles_saveID]);
+		mysql_query(query);
 	}
 }
 

@@ -104,6 +104,16 @@ public OnGameModeInit()
 
 public OnGameModeExit()
 {
+	print("Saving players...");
+	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+	{
+		SavePlayer(playerID);
+	}
+	print("Saving vehicles...");
+	for (new vehicleID = 0; vehicleID < MAX_VEHICLES; vehicleID++)
+	{
+		SaveVehicle(vehicleID, 0);// TODO: Get interior of the vehicle?
+	}
 	print("Disconnecting from MySQL server...");
 	mysql_close();
 	print("Disconnecting from IRC server...");
