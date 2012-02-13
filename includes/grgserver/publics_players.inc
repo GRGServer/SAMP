@@ -71,7 +71,7 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 			if (maximum > 0)
 			{
 				new string[256];
-				format(string, sizeof(string), "Wie viel möchtest du tanken (0 - %d)?", floatround(maximum));
+				format(string, sizeof(string), "Wie viel möchtest du tanken (0 - %s)?", FormatNumber(maximum, 2, 0, '.'));
 				ShowPlayerDialog(playerid, DIALOG_REFUEL, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", "Abbrechen");
 			}
 			else

@@ -72,7 +72,7 @@ public timer_fast()
 						fuelColor = 'r';
 					}
 				}
-				format(string, sizeof(string), "%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~~n~%fl", speed, healthColor, healthPercentage, fuelColor, fuelPercentage, vehicleModels[vehicleModelIndex][vehicleModels_fuelUsage]);
+				format(string, sizeof(string), "%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~~n~%sl", speed, healthColor, healthPercentage, fuelColor, fuelPercentage, FormatNumber(vehicleModels[vehicleModelIndex][vehicleModels_fuelUsage], 1, '.', ','));
 				TextDrawSetString(textDrawSpeedoColumn2[playerID], string);
 				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn1);
 				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn2[playerID]);
