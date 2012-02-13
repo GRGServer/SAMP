@@ -111,19 +111,19 @@ stock FormatNumber( { _, Float, Text3D, Menu, Text, DB, DBResult, bool, File, he
 	}
 	else if ( iTag == tagof( hex: ) || iTag == tagof( Hex: ) )
 	{
-		format( s_szReturn, sizeof( s_szReturn ), HEX_PREFIX "%04h%04h", ( xVariable & ( 0xFFFF0000 ) ) >>> 16, xVariable & ( 0x0000FFFF ) );
+		format( s_szReturn, sizeof( s_szReturn ), "0x%04h%04h", ( xVariable & ( 0xFFFF0000 ) ) >>> 16, xVariable & ( 0x0000FFFF ) );
 		
 		return s_szReturn;
 	}
 	else if ( iTag == tagof( bit: ) || iTag == tagof( Bit: ) )
 	{
-		format( s_szReturn, sizeof( s_szReturn ), BIT_PREFIX "%08b%08b%08b%08b", ( xVariable & 0xFF000000 ) >>> 24, ( xVariable & 0x00FF0000 ) >>> 16, ( xVariable & 0x0000FF00 ) >>> 8, ( xVariable & 0x000000FF ) );
+		format( s_szReturn, sizeof( s_szReturn ), "0b%08b%08b%08b%08b", ( xVariable & 0xFF000000 ) >>> 24, ( xVariable & 0x00FF0000 ) >>> 16, ( xVariable & 0x0000FF00 ) >>> 8, ( xVariable & 0x000000FF ) );
 		
 		return s_szReturn;
 	}
 	else if ( iTag == tagof( bit_byte: ) )
 	{
-		format( s_szReturn, sizeof( s_szReturn ), BIT_PREFIX "%08b", ( xVariable & 0x000000FF ) );
+		format( s_szReturn, sizeof( s_szReturn ), "0b%08b", ( xVariable & 0x000000FF ) );
 		
 		return s_szReturn;
 	}
