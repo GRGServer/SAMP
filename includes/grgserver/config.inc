@@ -52,13 +52,13 @@
 
 
 // Spawn properties
-#define SPAWN_POSX					1958.3783
-#define SPAWN_POSY					1343.1572
-#define SPAWN_POSZ					15.3746
-#define SPAWN_ANGLE					269.1425
-#define SPAWN_CAMERAPOSX			1958.3783
-#define SPAWN_CAMERAPOSY			1343.1572
-#define SPAWN_CAMERAPOSZ			15.3746
+#define SPAWN_POSX					2032.0778
+#define SPAWN_POSY					1344.0790
+#define SPAWN_POSZ					10.8203
+#define SPAWN_ANGLE					270.0
+#define SPAWN_CAMERAPOSX			SPAWN_POSX + 5
+#define SPAWN_CAMERAPOSY			SPAWN_POSY + 5
+#define SPAWN_CAMERAPOSZ			SPAWN_POSZ + 3
 
 
 // Timers
