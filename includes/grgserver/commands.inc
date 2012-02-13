@@ -22,7 +22,7 @@ CMD:addpickup(playerid, params[])
 		GetPlayerPos(playerid,PosX,PosY,PosZ);
 		format(query, sizeof(query), "INSERT INTO `pickups` (`PosX`, `PosY`, `PosZ`, `Type`) VALUES('%f', '%f', '%f', '%s')", PosX, PosY, PosZ, type);
 		mysql_query(query);
-		format(string, sizeof(string), "Fahrzeug wurde unter der ID %d gespeichert", mysql_insert_id());
+		format(string, sizeof(string), "Pickup wurde unter der ID %d gespeichert", mysql_insert_id());
 		SendClientMessage(playerid, COLOR_INFO, string);
 	}
 	else
