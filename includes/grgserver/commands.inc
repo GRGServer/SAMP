@@ -15,7 +15,7 @@ ACMD:addpickup(playerid, params[])
 		new Float:posZ;
 		if (sscanf(params, "s", type))
 		{
-			CmdUsageMsg(playerid, "addpickup", "BANK/GASSTATION");
+			CmdUsageMsg(playerid, "addpickup", "BANK/GASSTATION/HOUSE");
 			return COMMAND_USAGE;
 		}
 		format(type, sizeof(type), "%s", strtoupper(type));

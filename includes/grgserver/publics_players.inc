@@ -64,6 +64,14 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 {
 	switch (pickups[pickupid][pickups_type])
 	{
+		case PICKUPTYPE_HOUSESELL:
+		{
+			SendClientMessage(playerid, COLOR_INFO, "Du stehst in einem Zu kaufendes Haus Pickup");
+		}
+		case PICKUPTYPE_HOUSEBUY:
+		{
+			SendClientMessage(playerid, COLOR_INFO, "Du stehst in einem Verkauften Haus Pickup");
+		}
 		case PICKUPTYPE_BANK:
 		{
 			SendClientMessage(playerid, COLOR_INFO, "Du stehst in einem Bank Pickup");
