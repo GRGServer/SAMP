@@ -124,27 +124,23 @@ public timer_refuelVehicle(playerID, Float:amount)
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (GetPVarFloat(playerID, "Money") >= gasPrice)
 	{
-		vehicles[vehicleID][vehicles_currentFuel] = floatadd(vehicles[vehicleID][vehicles_currentFuel], 1.0);
-		GivePlayerMoneyEx(playerID, -gasPrice);
 		new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel], vehicles[vehicleID][vehicles_currentFuel]);
-		if (amount > 0 && maximum > 0)
+		if (amount > 0)
 		{
 			if (maximum < 1)
 			{
-				amount = maximum;
+				vehicles[vehicleID][vehicles_currentFuel] = floatadd(vehicles[vehicleID][vehicles_currentFuel], maximum);
+				GivePlayerMoneyEx(playerID, -(gasPrice * maximum));
 			}
 			else
 			{
-				amount = floatsub(amount, 1.0);
+				vehicles[vehicleID][vehicles_currentFuel] = floatadd(vehicles[vehicleID][vehicles_currentFuel], 1.0);
+				GivePlayerMoneyEx(playerID, -gasPrice);
+				SetTimerEx("timer_refuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, floatsub(amount, 1.0));
+				return true;
 			}
-			printf("REFUEL: %f - %f = %f -> %f", vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel], vehicles[vehicleID][vehicles_currentFuel], maximum, amount);
-			SetTimerEx("timer_refuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, amount);
-			return true;
 		}
-		else
-		{
-			SendClientMessage(playerID, COLOR_INFO, "Dein Fahrzeug wurde getankt.");
-		}
+		SendClientMessage(playerID, COLOR_INFO, "Dein Fahrzeug wurde getankt.");
 	}
 	else
 	{

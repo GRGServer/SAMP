@@ -27,7 +27,7 @@ public OnGameModeInit()
 	while (FetchMySQLRow())
 	{
 		new index = strval(GetMySQLField("ModelID")) - 400;
-		vehicleModels[index][vehicleModels_fuelUsage] = floatstr(GetMySQLField("MaxFuel"));
+		vehicleModels[index][vehicleModels_fuelUsage] = floatstr(GetMySQLField("FuelUsage"));
 		vehicleModels[index][vehicleModels_maxFuel] = floatstr(GetMySQLField("MaxFuel"));
 	}
 	mysql_free_result();
@@ -70,7 +70,7 @@ public OnGameModeInit()
 	}
 	mysql_free_result();
 	print("Creating server wide TextDraws...");
-	textDrawSpeedoColumn1 = TextDrawCreate(490, 400, "Geschwindigkeit:~n~Zustand:~n~Tank:~n~Verbrauch/100km:");
+	textDrawSpeedoColumn1 = TextDrawCreate(480, 400, "Geschwindigkeit:~n~Zustand:~n~Tank:~n~Verbrauch/100km:");
 	TextDrawAlignment(textDrawSpeedoColumn1, 1);
 	TextDrawLetterSize(textDrawSpeedoColumn1, 0.3, 0.9);
 	TextDrawFont(textDrawSpeedoColumn1, 1);
