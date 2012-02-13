@@ -40,10 +40,10 @@
 
 
 // Pickups
-#define PICKUP_GASSTATION			1008
 #define PICKUP_BANK					1559
-#define PICKUP_HOUSESELL			1273
-#define PICKUP_HOUSEBUY				1272
+#define PICKUP_GASSTATION			1008
+#define PICKUP_HOUSEAVAILABLE		1273
+#define PICKUP_HOUSEBOUGHT			1272
 
 
 // Register values

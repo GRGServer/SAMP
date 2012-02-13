@@ -97,6 +97,7 @@ stock SavePlayer(playerID)
 		SavePlayerValue(playerID, "Level");
 		SavePlayerValue(playerID, "AdminLevel");
 		SavePlayerValue(playerID, "Money");
+		SavePlayerValue(playerID, "Skin");
 		new query[256];
 		new Float:posX;
 		new Float:posY;
@@ -112,8 +113,10 @@ stock LoadPlayer(playerID)
 	LoadPlayerValue(playerID, "Level", PLAYER_VARTYPE_INT);
 	LoadPlayerValue(playerID, "AdminLevel", PLAYER_VARTYPE_INT);
 	LoadPlayerValue(playerID, "Money", PLAYER_VARTYPE_FLOAT);
+	LoadPlayerValue(playerID, "Skin", PLAYER_VARTYPE_INT);
 	SetPlayerPos(playerID, floatstr(GetUserDBValue(playerID, "PosX")), floatstr(GetUserDBValue(playerID, "PosY")), floatstr(GetUserDBValue(playerID, "PosZ")));
 	SetPlayerMoney(playerID, GetPVarFloat(playerID, "Money"));
+	SetPlayerSkin(playerID, GetPVarInt(playerID, "Skin"));
 }
 
 stock SetPlayerMoney(playerID, Float:amount)
@@ -312,6 +315,12 @@ stock AddPickup(type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 		pickupTypeID = PICKUPTYPE_GASSTATION;
 		modelID = PICKUP_GASSTATION;
 		spawnType = 14;
+	}
+	if (!strcmp(type, "HOUSE", true))
+	{
+		pickupTypeID = PICKUPTYPE_HOUSE;
+		modelID = PICKUP_HOUSEAVAILABLE;
+		spawnType = 23;
 	}
 	if (pickupTypeID == -1)
 	{

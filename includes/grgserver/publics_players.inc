@@ -64,13 +64,9 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 {
 	switch (pickups[pickupid][pickups_type])
 	{
-		case PICKUPTYPE_HOUSESELL:
+		case PICKUPTYPE_HOUSE:
 		{
-			SendClientMessage(playerid, COLOR_INFO, "Du stehst in einem Zu kaufendes Haus Pickup");
-		}
-		case PICKUPTYPE_HOUSEBUY:
-		{
-			SendClientMessage(playerid, COLOR_INFO, "Du stehst in einem Verkauften Haus Pickup");
+			SendClientMessage(playerid, COLOR_INFO, "Du stehst in einem Haus Pickup");
 		}
 		case PICKUPTYPE_BANK:
 		{
@@ -114,6 +110,10 @@ public OnPlayerDisconnect(playerid, reason)
 
 public OnPlayerRequestClass(playerid, classid)
 {
+	if (!GetPVarInt(playerid, "AllowSkinSelection"))
+	{
+		return false;
+	}
 	new previousClassID = GetPVarInt(playerid, "PreviousClassID");
 	new direction;
 	switch (classid)
@@ -150,7 +150,7 @@ public OnPlayerRequestClass(playerid, classid)
 		}
 	}
 	SetPVarInt(playerid, "PreviousClassID", classid);
-	new skinID = GetPVarInt(playerid, "SkinID");
+	new skinID = GetPVarInt(playerid, "Skin");
 	switch (direction)
 	{
 		case -1:
@@ -178,7 +178,7 @@ public OnPlayerRequestClass(playerid, classid)
 			while (!IsValidSkin(skinID));
 		}
 	}
-	SetPVarInt(playerid, "SkinID", skinID);
+	SetPVarInt(playerid, "Skin", skinID);
 	SetPlayerSkin(playerid, skinID);
 	new string[256];
 	format(string, sizeof(string), "Player/ClassID/Direction/SkinID: %s/%d/%d/%d", GetPlayerNameEx(playerid), classid, direction, skinID);
@@ -187,6 +187,12 @@ public OnPlayerRequestClass(playerid, classid)
 	SetPlayerFacingAngle(playerid, SPAWN_ANGLE);
 	SetPlayerCameraPos(playerid, SPAWN_CAMERAPOSX, SPAWN_CAMERAPOSY, SPAWN_CAMERAPOSZ);
 	SetPlayerCameraLookAt(playerid, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ);
+	return true;
+}
+
+public OnPlayerRequestSpawn(playerid)
+{
+	SetPVarInt(playerid, "AllowSkinSelection", false);
 	return true;
 }
 
@@ -256,7 +262,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						mysql_query(query);
 						printf("Player logged in: %s (UserID: %d)", playerName, GetPVarInt(playerid, "UserID"));
 						SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich eingeloggt.");
-						SpawnPlayer(playerid);
 					}
 				}
 				else
@@ -303,9 +308,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					SetPVarInt(playerid, "Level", REGISTER_LEVEL);
 					SetPVarInt(playerid, "AdminLevel", REGISTER_ADMINLEVEL);
 					SavePlayer(playerid);
+					SetPVarInt(playerid, "AllowSkinSelection", true);
 					printf("Player registered: %s (UserID: %d)", playerName, GetPVarInt(playerid, "UserID"));
 					SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
-					SpawnPlayer(playerid);
+					SendClientMessage(playerid, COLOR_INFO, "Bitte wähle deinen Spieler aus.");
 				}
 				else
 				{
