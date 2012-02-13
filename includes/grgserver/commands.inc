@@ -18,7 +18,7 @@ CMD:addpickup(playerid, params[])
 			CmdUsageMsg(playerid, "addpickup", "BANK/GASSTATION");
 			return COMMAND_USAGE;
 		}
-		format(type, sizeof(type), strtoupper(type));
+		//format(type, sizeof(type), strtoupper(type));
 		GetPlayerPos(playerid, posX, posY, posZ);
 		new id = AddPickup(type, posX, posY, posZ, true);
 		if (id > 0)
