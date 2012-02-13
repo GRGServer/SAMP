@@ -70,9 +70,10 @@ stock val2str(value)
 
 stock strtoupper(string[])
 {
+	new upperString[256];
 	for (new character = 0; character < strlen(string); character++)
 	{
-		string[character] = toupper(string[character]);
+		upperString[character] = toupper(string[character]);
 	}
-	return string;
+	return upperString;
 }
