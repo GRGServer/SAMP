@@ -4,6 +4,33 @@ CMD:about(playerid, params[])
 	return COMMAND_OK;
 }
 
+CMD:addpickup(playerid, params[])
+{
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		new type;
+		if (sscanf(params, "u",type))
+		{
+			CmdUsageMsg(playerid, "addpickup", "type");
+			return COMMAND_USAGE;
+		}
+		new string[256];
+		new query[256];
+		new Float:PosX;
+		new Float:PosY;
+		new Float:PosZ;
+		GetPlayerPos(playerid,PosX,PosY,PosZ);
+		format(query, sizeof(query), "INSERT INTO `pickups` (`PosX`, `PosY`, `PosZ`, `Type`) VALUES('%f', '%f', '%f', '%s')", PosX, PosY, PosZ, type);
+		mysql_query(query);
+		format(string, sizeof(string), "Fahrzeug wurde unter der ID %d gespeichert", mysql_insert_id());
+		SendClientMessage(playerid, COLOR_INFO, string);
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
+	return COMMAND_OK;
+}
 CMD:cmds(playerid, params[])
 {
 	if (fexist("commands.txt"))
