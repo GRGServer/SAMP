@@ -53,16 +53,27 @@ CMD:cmds(playerid, params[])
 			new command[256];
 			if (!sscanf(string, "cs", type, command))
 			{
-				if (type == 'P' || (type == 'A' && IsAdmin(playerid, ADMINLEVEL_SERVERADMIN)))
+				new showCommand;
+				if (type == 'P')
+				{
+					showCommand = true;
+					format(command, sizeof(command), "{00FF00}%s", command);
+				}
+				if (type == 'A' && IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+				{
+					showCommand = true;
+					format(command, sizeof(command), "{A00000}%s", command);
+				}
+				if (showCommand)
 				{
 					count++;
 					if (count == 1)
 					{
-						format(line, sizeof(line), "/%s", command);
+						format(line, sizeof(line), "%s", command);
 					}
 					else
 					{
-						format(line, sizeof(line), "%s /%s", line, command);
+						format(line, sizeof(line), "%s %s", line, command);
 					}
 					if (count == HELP_COMMANDSPERLINE)
 					{
@@ -213,6 +224,20 @@ CMD:help(playerid, params[])
 {
 	SendClientMessage(playerid, COLOR_INFO, "Verwende /cmds um eine Liste an Befehlen zu sehen.");
 	return COMMAND_OK;
+}
+
+ACMD:jetpack(playerid, params[])
+{
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USEJETPACK);
+		SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen JetPack!");
+		return COMMAND_OK;
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
 }
 
 ACMD:kick(playerid, params[])
