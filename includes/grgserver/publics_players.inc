@@ -112,6 +112,7 @@ public OnPlayerRequestClass(playerid, classid)
 {
 	if (!GetPVarInt(playerid, "AllowSkinSelection"))
 	{
+		SpawnPlayer(playerid);
 		return false;
 	}
 	new previousClassID = GetPVarInt(playerid, "PreviousClassID");
@@ -193,15 +194,16 @@ public OnPlayerRequestClass(playerid, classid)
 public OnPlayerRequestSpawn(playerid)
 {
 	SetPVarInt(playerid, "AllowSkinSelection", false);
+	SetPVarInt(playerid, "LoadOnSpawn", false);
 	return true;
 }
 
 public OnPlayerSpawn(playerid)
 {
-	if (!GetPVarInt(playerid, "WasSpawned"))
+	if (GetPVarInt(playerid, "LoadOnSpawn"))
 	{
 		LoadPlayer(playerid);
-		SetPVarInt(playerid, "WasSpawned", true);
+		SetPVarInt(playerid, "LoadOnSpawn", false);
 	}
 	return true;
 }
@@ -262,6 +264,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						mysql_query(query);
 						printf("Player logged in: %s (UserID: %d)", playerName, GetPVarInt(playerid, "UserID"));
 						SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich eingeloggt.");
+						SetPVarInt(playerid, "LoadOnSpawn", true);
 					}
 				}
 				else
