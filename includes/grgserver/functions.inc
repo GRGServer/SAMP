@@ -262,6 +262,46 @@ stock SetVehicleEngineState(vehicleID, newState)
 	}
 }
 
+stock AddPickup(type[], Float:posX, Float:posY, Float:posZ, saveToDB)
+{
+	new pickupTypeID = -1;
+	new modelID;
+	new spawnType;
+	new pickup;
+	if (!strcmp(type, "BANK", true))
+	{
+		pickupTypeID = PICKUPTYPE_BANK;
+		modelID = PICKUP_BANK;
+		spawnType = 23;
+	}
+	if (!strcmp(type, "GASSTATION", true))
+	{
+		pickupTypeID = PICKUPTYPE_GASSTATION;
+		modelID = PICKUP_GASSTATION;
+		spawnType = 14;
+	}
+	if (pickupTypeID == -1)
+	{
+		return -1;
+	}
+	else
+	{
+		pickup = CreatePickup(modelID, spawnType, posX, posY, posZ);
+		pickups[pickup][pickups_type] = pickupTypeID;
+		if (saveToDB)
+		{
+			new query[256];
+			format(query, sizeof(query), "INSERT INTO `pickups` (`PosX`, `PosY`, `PosZ`, `Type`) VALUES('%f', '%f', '%f', '%s')", posX, posY, posZ, type);
+			mysql_query(query);
+			return mysql_insert_id();
+		}
+		else
+		{
+			return -2;
+		}
+	}
+}
+
 stock UpdateGasPrice()
 {
 	gasPrice = float(150 + random(10)) / 100;

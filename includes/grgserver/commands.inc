@@ -8,29 +8,37 @@ CMD:addpickup(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
-		new type;
+		new type[256];
+		new string[256];
+		new Float:posX;
+		new Float:posY;
+		new Float:posZ;
 		if (sscanf(params, "s", type))
 		{
-			CmdUsageMsg(playerid, "addpickup", "type");
+			CmdUsageMsg(playerid, "addpickup", "BANK/GASSTATION");
 			return COMMAND_USAGE;
 		}
-		new string[256];
-		new query[256];
-		new Float:PosX;
-		new Float:PosY;
-		new Float:PosZ;
-		GetPlayerPos(playerid,PosX,PosY,PosZ);
-		format(query, sizeof(query), "INSERT INTO `pickups` (`PosX`, `PosY`, `PosZ`, `Type`) VALUES('%f', '%f', '%f', '%s')", PosX, PosY, PosZ, type);
-		mysql_query(query);
-		format(string, sizeof(string), "Pickup wurde unter der ID %d gespeichert", mysql_insert_id());
-		SendClientMessage(playerid, COLOR_INFO, string);
+		format(type, sizeof(type), strtoupper(type));
+		GetPlayerPos(playerid, posX, posY, posZ);
+		new id = AddPickup(type, posX, posY, posZ, true);
+		if (id > 0)
+		{
+			format(string, sizeof(string), "Das Pickup %s wurde unter der ID %d gespeichert", type, id);
+			SendClientMessage(playerid, COLOR_INFO, string);
+			return COMMAND_OK;
+		}
+		else
+		{
+			SendClientMessage(playerid, COLOR_ERROR, "Ungültiger Typ!");
+			return COMMAND_ERROR;
+		}
 	}
 	else
 	{
 		return COMMAND_ACCESS_DENIED;
 	}
-	return COMMAND_OK;
 }
+
 CMD:cmds(playerid, params[])
 {
 	if (fexist("commands.txt"))

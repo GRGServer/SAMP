@@ -47,30 +47,9 @@ public OnGameModeInit()
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new modelID = -1;
-		new type;
-		new pickup;
-		switch (strval(GetMySQLField("Type")))
+		if (AddPickup(GetMySQLField("Type"), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), false) == -1)
 		{
-			case PICKUPTYPE_GASSTATION:
-			{
-				modelID = PICKUP_GASSTATION;
-				type = 14;
-			}
-			case PICKUPTYPE_BANK:
-			{
-				modelID = PICKUP_BANK;
-				type = 1;
-			}
-		}
-		if (modelID == -1)
-		{
-			printf("Invalid pickup type: %d", strval(GetMySQLField("Type")));
-		}
-		else
-		{
-			pickup = CreatePickup(modelID, type, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")));
-			pickups[pickup][pickups_type] = strval(GetMySQLField("Type"));
+			printf("Invalid pickup type: %s", GetMySQLField("Type"));
 		}
 	}
 	mysql_free_result();

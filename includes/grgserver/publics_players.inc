@@ -64,6 +64,10 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 {
 	switch (pickups[pickupid][pickups_type])
 	{
+		case PICKUPTYPE_BANK:
+		{
+			SendClientMessage(playerid, COLOR_INFO, "Du stehst in einem Bank Pickup");
+		}
 		case PICKUPTYPE_GASSTATION:
 		{
 			new vehicleID = GetPlayerVehicleID(playerid);
@@ -78,10 +82,6 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 			{
 				SendClientMessage(playerid, COLOR_ERROR, "Der Tank ist bereits voll!");
 			}
-		}
-		case PICKUPTYPE_BANK:
-		{
-			SendClientMessage(playerid,COLOR_SYSTEM,"Du stehst in einem Bank Pickup");
 		}
 	}
 	return true;

@@ -67,3 +67,12 @@ stock val2str(value)
 	format(string, sizeof(string), "%d", value);
 	return string;
 }
+
+stock strtoupper(string[])
+{
+	for (new character = 0; character < strlen(string); character++)
+	{
+		string[character] = toupper(string[character]);
+	}
+	return string;
+}
