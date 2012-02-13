@@ -9,7 +9,7 @@ CMD:addpickup(playerid, params[])
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		new type;
-		if (sscanf(params, "u",type))
+		if (sscanf(params, "s",type))
 		{
 			CmdUsageMsg(playerid, "addpickup", "type");
 			return COMMAND_USAGE;
