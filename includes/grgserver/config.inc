@@ -41,6 +41,7 @@
 
 // Pickups
 #define PICKUP_GASSTATION			1008
+#define PICKUP_BANK					1559
 
 
 // Register values

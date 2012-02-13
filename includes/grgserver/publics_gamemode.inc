@@ -57,6 +57,11 @@ public OnGameModeInit()
 				modelID = PICKUP_GASSTATION;
 				type = 14;
 			}
+			case PICKUPTYPE_BANK:
+			{
+				modelID = PICKUP_BANK;
+				type = 1;
+			}
 		}
 		if (modelID == -1)
 		{
