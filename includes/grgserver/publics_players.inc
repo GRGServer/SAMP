@@ -147,7 +147,7 @@ public OnPlayerRequestClass(playerid, classid)
 	{
 		case -1:
 		{
-			while (!IsValidSkin(skinID))
+			do
 			{
 				skinID--;
 				if (skinID < 0)
@@ -155,10 +155,11 @@ public OnPlayerRequestClass(playerid, classid)
 					skinID = 298;
 				}
 			}
+			while (!IsValidSkin(skinID));
 		}
 		case 1:
 		{
-			while (!IsValidSkin(skinID))
+			do
 			{
 				skinID++;
 				if (skinID > 298)
@@ -166,10 +167,14 @@ public OnPlayerRequestClass(playerid, classid)
 					skinID = 0;
 				}
 			}
+			while (!IsValidSkin(skinID));
 		}
 	}
 	SetPVarInt(playerid, "SkinID", skinID);
-	printf("Player/ClassID/Direction/SkinID: %s/%d/%d/%d", GetPlayerNameEx(playerid), classid, direction, skinID);
+	SetPlayerSkin(playerid, skinID);
+	new string[256];
+	format(string, sizeof(string), "Player/ClassID/Direction/SkinID: %s/%d/%d/%d", GetPlayerNameEx(playerid), classid, direction, skinID);
+	SendClientMessage(playerid, COLOR_SYSTEM, string);
 	SetPlayerPos(playerid, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ);
 	SetPlayerFacingAngle(playerid, SPAWN_ANGLE);
 	SetPlayerCameraPos(playerid, SPAWN_CAMERAPOSX, SPAWN_CAMERAPOSY, SPAWN_CAMERAPOSZ);
