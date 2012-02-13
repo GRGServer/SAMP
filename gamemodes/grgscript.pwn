@@ -2,6 +2,7 @@
 #include <a_samp>
 
 // Custom includes
+#include <formatnumber>
 #include <irc>
 #include <MD5>
 #include <mysql>

@@ -118,27 +118,29 @@ public timer_hourly()
 	UpdateGasPrice();
 }
 
-forward timer_refuelVehicle(playerID, Float:amount);
-public timer_refuelVehicle(playerID, Float:amount)
+forward timer_refuelVehicle(playerID, Float:totalAmount);
+public timer_refuelVehicle(playerID, Float:totalAmount)
 {
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (GetPVarFloat(playerID, "Money") >= gasPrice)
 	{
 		new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel], vehicles[vehicleID][vehicles_currentFuel]);
-		if (amount > 0)
+		printf("MAX: %f", maximum);
+		if (totalAmount > 0 && maximum > 0)
 		{
+			new Float:amount;
 			if (maximum < 1)
 			{
-				vehicles[vehicleID][vehicles_currentFuel] = floatadd(vehicles[vehicleID][vehicles_currentFuel], maximum);
-				GivePlayerMoneyEx(playerID, -(gasPrice * maximum));
+				amount = maximum;
 			}
 			else
 			{
-				vehicles[vehicleID][vehicles_currentFuel] = floatadd(vehicles[vehicleID][vehicles_currentFuel], 1.0);
-				GivePlayerMoneyEx(playerID, -gasPrice);
-				SetTimerEx("timer_refuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, floatsub(amount, 1.0));
-				return true;
+				amount = 1.0;
 			}
+			vehicles[vehicleID][vehicles_currentFuel] = floatadd(vehicles[vehicleID][vehicles_currentFuel], amount);
+			GivePlayerMoneyEx(playerID, -floatmul(gasPrice, amount));
+			SetTimerEx("timer_refuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, floatsub(totalAmount, 1.0));
+			return true;
 		}
 		SendClientMessage(playerID, COLOR_INFO, "Dein Fahrzeug wurde getankt.");
 	}
