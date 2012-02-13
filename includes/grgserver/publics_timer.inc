@@ -72,7 +72,7 @@ public timer_fast()
 						fuelColor = 'r';
 					}
 				}
-				format(string, sizeof(string), "%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~", speed, healthColor, healthPercentage, fuelColor, fuelPercentage);
+				format(string, sizeof(string), "%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~~n~%fl", speed, healthColor, healthPercentage, fuelColor, fuelPercentage, vehicleModels[vehicleModelIndex][vehicleModels_fuelUsage]);
 				TextDrawSetString(textDrawSpeedoColumn2[playerID], string);
 				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn1);
 				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn2[playerID]);
@@ -137,6 +137,7 @@ public timer_refuelVehicle(playerID, Float:amount)
 			{
 				amount = floatsub(amount, 1.0);
 			}
+			printf("REFUEL: %f - %f = %f -> %f", vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel], vehicles[vehicleID][vehicles_currentFuel], maximum, amount);
 			SetTimerEx("timer_refuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, amount);
 			return true;
 		}
