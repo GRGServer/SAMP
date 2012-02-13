@@ -8,6 +8,7 @@ CMD:addpickup(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
+		new upperCaseType[256];
 		new type[256];
 		new string[256];
 		new Float:posX;
@@ -18,12 +19,12 @@ CMD:addpickup(playerid, params[])
 			CmdUsageMsg(playerid, "addpickup", "BANK/GASSTATION");
 			return COMMAND_USAGE;
 		}
-		format(type, sizeof(type), "%s", strtoupper(type));
+		format(upperCaseType, sizeof(upperCaseType), "%s", strtoupper(type));
 		GetPlayerPos(playerid, posX, posY, posZ);
-		new id = AddPickup(type, posX, posY, posZ, true);
+		new id = AddPickup(upperCaseType, posX, posY, posZ, true);
 		if (id > 0)
 		{
-			format(string, sizeof(string), "Das Pickup %s wurde unter der ID %d gespeichert", type, id);
+			format(string, sizeof(string), "Das Pickup %s wurde unter der ID %d gespeichert", upperCaseType, id);
 			SendClientMessage(playerid, COLOR_INFO, string);
 			return COMMAND_OK;
 		}
