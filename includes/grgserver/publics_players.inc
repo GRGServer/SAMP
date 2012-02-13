@@ -109,9 +109,9 @@ public OnPlayerDisconnect(playerid, reason)
 
 public OnPlayerRequestClass(playerid, classid)
 {
-	SetPlayerPos(playerid, 1958.3783, 1343.1572, 15.3746);
-	SetPlayerCameraPos(playerid, 1958.3783, 1343.1572, 15.3746);
-	SetPlayerCameraLookAt(playerid, 1958.3783, 1343.1572, 15.3746);
+	SetPlayerPos(playerid, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ);
+	SetPlayerCameraPos(playerid, SPAWN_CAMERAPOSX, SPAWN_CAMERAPOSY, SPAWN_CAMERAPOSZ);
+	SetPlayerCameraLookAt(playerid, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ);
 	return true;
 }
 

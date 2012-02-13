@@ -10,9 +10,20 @@
 #include <sscanf>
 #include <zcmd>
 
+// Compile time constants (Updated from build script before compiling)
+#tryinclude <grgserver/compiler>// Constants updated before compiling (Compiling time, SVN revision, etc.) -> Only used on srv2
+#if !defined COMPILER_DATE
+	#define COMPILER_DATE "UNDEFINED"
+#endif
+#if !defined COMPILER_TIME
+	#define COMPILER_TIME ""
+#endif
+#if !defined COMPILER_SVN_REVISION
+	#define COMPILER_SVN_REVISION -1
+#endif
+
 // GRG Server includes
 #include <grgserver/constants>// Constants like colors, dialog IDs, command returns, etc.
-#include <grgserver/compiler>// Constants updated before compiling (Compiling time, SVN revision, etc.)
 #include <grgserver/config>// Configuration data like IRC and MySQL credentials
 #include <grgserver/structures>// Structures for arrays like vehicles
 #include <grgserver/globals>// Globally used variables like ircBot (Variables which are shared between multiple functions)

@@ -4,7 +4,7 @@ CMD:about(playerid, params[])
 	return COMMAND_OK;
 }
 
-CMD:addpickup(playerid, params[])
+ACMD:addpickup(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
@@ -49,19 +49,27 @@ CMD:cmds(playerid, params[])
 		new File:commands = fopen("commands.txt", io_read);
 		while (fread(commands, string))
 		{
-			count++;
-			if (count == 1)
+			new type;
+			new command[256];
+			if (!sscanf(string, "cs", type, command))
 			{
-				format(line, sizeof(line), "/%s", string);
-			}
-			else
-			{
-				format(line, sizeof(line), "%s /%s", line, string);
-			}
-			if (count == HELP_COMMANDSPERLINE)
-			{
-				count = 0;
-				SendClientMessage(playerid, COLOR_INFO, line);
+				if (type == 'P' || (type == 'A' && IsAdmin(playerid, ADMINLEVEL_SERVERADMIN)))
+				{
+					count++;
+					if (count == 1)
+					{
+						format(line, sizeof(line), "/%s", command);
+					}
+					else
+					{
+						format(line, sizeof(line), "%s /%s", line, command);
+					}
+					if (count == HELP_COMMANDSPERLINE)
+					{
+						count = 0;
+						SendClientMessage(playerid, COLOR_INFO, line);
+					}
+				}
 			}
 		}
 		return COMMAND_OK;
@@ -72,7 +80,7 @@ CMD:cmds(playerid, params[])
 	}
 }
 
-CMD:controlnpc(playerid, params[])
+ACMD:controlnpc(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
@@ -128,7 +136,7 @@ CMD:controlnpc(playerid, params[])
 	}
 }
 
-CMD:gmx(playerid, params[])
+ACMD:gmx(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
@@ -142,7 +150,7 @@ CMD:gmx(playerid, params[])
 	}
 }
 
-CMD:goto(playerid, params[])
+ACMD:goto(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
@@ -181,22 +189,22 @@ CMD:goto(playerid, params[])
 	}
 }
 
-CMD:gotobsn(playerid, params[])
+ACMD:gotobsn(playerid, params[])
 {
 	return AdminTeleport(playerid, 1204.7445, -881.0291, 43.0703, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
-CMD:gotols(playerid, params[])
+ACMD:gotols(playerid, params[])
 {
 	return AdminTeleport(playerid, 1529.6, -1691.2, 13.3, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
-CMD:gotolv(playerid, params[])
+ACMD:gotolv(playerid, params[])
 {
 	return AdminTeleport(playerid, 1699.2, 1435.1, 10.7, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
-CMD:gotosf(playerid, params[])
+ACMD:gotosf(playerid, params[])
 {
 	return AdminTeleport(playerid, -1417.0, -295.8, 14.1, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
@@ -207,7 +215,7 @@ CMD:help(playerid, params[])
 	return COMMAND_OK;
 }
 
-CMD:kick(playerid, params[])
+ACMD:kick(playerid, params[])
 {
 	new targetPlayerID;
 	new reason[256];
@@ -239,7 +247,7 @@ CMD:kick(playerid, params[])
 	}
 }
 
-CMD:makeadmin(playerid, params[])
+ACMD:makeadmin(playerid, params[])
 {
 	new targetPlayerID;
 	new level;
@@ -285,7 +293,7 @@ CMD:makeadmin(playerid, params[])
 	}
 }
 
-CMD:money(playerid, params[])
+ACMD:money(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
@@ -357,7 +365,7 @@ CMD:motor(playerid, params[])
 	return COMMAND_OK;
 }
 
-CMD:npccmd(playerid, params[])
+NCMD:npccmd(playerid, params[])
 {
 	if (IsPlayerNPC(playerid))
 	{
@@ -409,7 +417,7 @@ CMD:npccmd(playerid, params[])
 	}
 }
 
-CMD:rc(playerid, params[])
+ACMD:rc(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
@@ -424,7 +432,7 @@ CMD:rc(playerid, params[])
 	}
 }
 
-CMD:recnpc(playerid, params[])
+ACMD:recnpc(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
@@ -493,7 +501,7 @@ CMD:recnpc(playerid, params[])
 	}
 }
 
-CMD:saveveh(playerid, params[])
+ACMD:saveveh(playerid, params[])
 {
 	if (!IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
@@ -537,14 +545,21 @@ CMD:saveveh(playerid, params[])
 	return COMMAND_ERROR;
 }
 
-CMD:stoprec(playerid, params[])
+ACMD:stoprec(playerid, params[])
 {
-	StopRecordingPlayerData(playerid);
-	SendClientMessage(playerid, COLOR_INFO, "Aufnahme gestoppt");
-	return COMMAND_OK;
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		StopRecordingPlayerData(playerid);
+		SendClientMessage(playerid, COLOR_INFO, "Aufnahme gestoppt");
+		return COMMAND_OK;
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
 }
 
-CMD:veh(playerid, params[])
+ACMD:veh(playerid, params[])
 {
 	if (!IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
