@@ -106,7 +106,68 @@ public OnPlayerDisconnect(playerid, reason)
 
 public OnPlayerRequestClass(playerid, classid)
 {
-	printf("Player/ClassID: %s/%d", GetPlayerNameEx(playerid), classid);
+	new previousClassID = GetPVarInt(playerid, "PreviousClassID");
+	new direction;
+	switch (classid)
+	{
+		case 0:
+		{
+			switch (previousClassID)
+			{
+				case 1:
+					direction--;
+				case 2:
+					direction++;
+			}
+		}
+		case 1:
+		{
+			switch (previousClassID)
+			{
+				case 2:
+					direction--;
+				case 0:
+					direction++;
+			}
+		}
+		case 2:
+		{
+			switch (previousClassID)
+			{
+				case 0:
+					direction--;
+				case 1:
+					direction++;
+			}
+		}
+	}
+	new skinID = GetPVarInt(playerid, "SkinID");
+	switch (direction)
+	{
+		case -1:
+		{
+			while (!IsValidSkin(skinID))
+			{
+				skinID--;
+				if (skinID < 0)
+				{
+					skinID = 298;
+				}
+			}
+		}
+		case 1:
+		{
+			while (!IsValidSkin(skinID))
+			{
+				skinID++;
+				if (skinID > 298)
+				{
+					skinID = 0;
+				}
+			}
+		}
+	}
+	printf("Player/ClassID/Direction/SkinID: %s/%d/%d/%d", GetPlayerNameEx(playerid), classid, direction, skinID);
 	SetPlayerPos(playerid, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ);
 	SetPlayerFacingAngle(playerid, SPAWN_ANGLE);
 	SetPlayerCameraPos(playerid, SPAWN_CAMERAPOSX, SPAWN_CAMERAPOSY, SPAWN_CAMERAPOSZ);
