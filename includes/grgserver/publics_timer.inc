@@ -125,7 +125,7 @@ public timer_refuelVehicle(playerID, Float:totalAmount)
 	if (GetPVarFloat(playerID, "Money") >= gasPrice)
 	{
 		new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel], vehicles[vehicleID][vehicles_currentFuel]);
-		printf("MAX: %f", maximum);
+		printf("AMOUNT: %f, MAX: %f", totalAmount, maximum);
 		if (totalAmount > 0 && maximum > 0)
 		{
 			new Float:amount;

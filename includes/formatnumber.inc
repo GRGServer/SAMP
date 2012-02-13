@@ -1,74 +1,7 @@
-/*
-	FormatNumber by Slice.
-	-------------------------
-	Usage:
-		FormatNumber( number, decimals, thousand seperator, decimal point )
-		
-		number - This can be any variable type (float, integer, bool, etc.)
-			If you want the value to be printed as HEX, tag the variable with hex. Example:
-				new myvariable = 5312851;
-				
-				FormatNumber( hex:myvariable ); // gives 0x00511153
-				
-				Additionaly, you can print out the bits of either the first byte or the whole cell by using the following tags: bit:, bit_byte:
-			
-			If you get a type error, tag the variable with _. Example:
-				new omgomg:specialVariable = omgomg:5;
-				
-				FormatNumber( _:specialVariable ); // gives 5
-		
-		decimals - The number of decimals to show
-			new mynumber = 50;
-			
-			FormatNumber( mynumber, 2 ); // gives 50.00
-			
-			new Float:myfloat = 123.456;
-			
-			FormatNumber( myfloat, 0 ); // gives 123
-		
-		thousand seperator - char between thousands
-			new mynumber = 5000000000;
-			
-			FormatNumber( myfloat ); // gives 5 000 000 000
-			FormatNumber( myfloat, 0, ',' ); // gives 5,000,000,000
-			FormatNumber( myfloat, 0, 0 ); // gives 5000000000
-		
-		decimal point - duh
-			new myfloat = 50.0;
-			
-			FormatNumber( myfloat, 2, ' ', ',' ); // gives 50,00
-			FormatNumber( myfloat, 2, ' ', '~' ); // gives 50~00
-		
-		You can set these constants __before__ including this file:
-		
-		HEX_PREFIX - default value "0x". Example:
-			#define HEX_PREFIX "#"
-			
-			#include <formatnumber.inc>
-			
-			FormatNumber( hex:50000 ); // gives #0000C350
-		
-		BIT_PREFIX - default value: "0b"
-		
-		DEFAULT_DECIMAL_COUNT - default value: 8
-		
-		DEFAULT_THOUSAND_SEP - default value: ' '
-		
-		DEFAULT_DECIMAL_POINT - default value: '.'
-*/
-
 #if defined _formatnumber_included
 	#endinput
 #else
 	#define _formatnumber_included
-#endif
-
-#if !defined HEX_PREFIX
-	#define HEX_PREFIX  "0x"
-#endif
-
-#if !defined BIT_PREFIX
-	#define BIT_PREFIX  "0b"
 #endif
 
 #if !defined DEFAULT_DECIMAL_COUNT
