@@ -1,6 +1,6 @@
 CMD:about(playerid, params[])
 {
-	SendClientMessage(playerid, COLOR_INFO, "Created by Aerox_Tobi (aerox@grgserver.de) and Programie (programie@selfcoders.com)");
+	SendClientMessage(playerid, COLOR_INFO, "Created by Aerox_Tobi (aerox@grgserver.net) and Programie (programie@selfcoders.com)");
 	return COMMAND_OK;
 }
 
@@ -9,7 +9,7 @@ CMD:addpickup(playerid, params[])
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		new type;
-		if (sscanf(params, "s",type))
+		if (sscanf(params, "s", type))
 		{
 			CmdUsageMsg(playerid, "addpickup", "type");
 			return COMMAND_USAGE;
