@@ -141,6 +141,7 @@ public OnPlayerRequestClass(playerid, classid)
 			}
 		}
 	}
+	SetPVarInt(playerid, "PreviousClassID", classid);
 	new skinID = GetPVarInt(playerid, "SkinID");
 	switch (direction)
 	{
@@ -167,6 +168,7 @@ public OnPlayerRequestClass(playerid, classid)
 			}
 		}
 	}
+	SetPVarInt(playerid, "SkinID", skinID);
 	printf("Player/ClassID/Direction/SkinID: %s/%d/%d/%d", GetPlayerNameEx(playerid), classid, direction, skinID);
 	SetPlayerPos(playerid, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ);
 	SetPlayerFacingAngle(playerid, SPAWN_ANGLE);
