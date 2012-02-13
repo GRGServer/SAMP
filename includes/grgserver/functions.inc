@@ -93,6 +93,7 @@ stock SavePlayer(playerID)
 {
 	if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && GetPVarInt(playerID, "UserID"))
 	{
+		printf("Saving player %s", GetPlayerNameEx(playerID));
 		SavePlayerValue(playerID, "Level");
 		SavePlayerValue(playerID, "AdminLevel");
 		SavePlayerValue(playerID, "Money");
@@ -283,6 +284,7 @@ stock SaveVehicle(vehicleID, interior)
 {
 	if (vehicles[vehicleID][vehicles_saveID])
 	{
+		printf("Saving vehicle %d", vehicleID);
 		new query[256];
 		new Float:posX; 
 		new Float:posY;
