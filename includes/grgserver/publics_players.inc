@@ -393,6 +393,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						mysql_query(query);
 						printf("Player logged in: %s (UserID: %d)", playerName, GetPVarInt(playerid, "UserID"));
 						LoadPlayer(playerid);
+						SetSpawnPlayer(playerid);
 						SetTimerEx("timer_spawnPlayer", 10, false, "i", playerid);
 						SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich eingeloggt.");
 					}
@@ -405,6 +406,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			else
 			{
 				SendClientMessage(playerid, COLOR_INFO, "Du kannst nun das Spiel beenden!");
+				Kick(playerid);
 			}
 			return true;
 		}
@@ -455,12 +457,28 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			else
 			{
 				SendClientMessage(playerid, COLOR_INFO, "Du kannst nun das Spiel beenden!");
+				Kick(playerid);
 			}
 			return true;
 		}
 	}
 
 	return false;
+}
+
+forward SetSpawnPlayer(playerid);
+public SetSpawnPlayer(playerid)
+{
+	new query[256];
+	format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
+	mysql_query(query);
+	mysql_store_result();
+	if (strval(GetMySQLField("UserID")))
+	{
+		SetPlayerPos(playerid, floatstr(GetUserDBValue(playerid, "PosX")), floatstr(GetUserDBValue(playerid, "PosY")), floatstr(GetUserDBValue(playerid, "PosZ")));
+		SendClientMessage(playerid,COLOR_INFO,"Du bist nun an deinem Letzten logout Gespawnt!");
+	}
+	return true;
 }
 
 public OnPlayerCommandPerformed(playerid, cmdtext[], success)
