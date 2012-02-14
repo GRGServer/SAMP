@@ -319,17 +319,21 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				new ownerUserID = strval(GetMySQLValue("house", "OwnerUserID", "ID", val2str(houses[playerid][houses_saveID])));
-				new Float:price = floatstr(GetMySQLValue("house", "Price", "ID", val2str(houses_saveID)));
-				if(ownerUserID == 0)
+				for (new pickupID; pickupID < MAX_PICKUPS; pickupID++)
 				{
-					SetPlayerMoney(playerid, floatsub(GetPVarFloat(playerid, "Money"), price));
-					SetMySQLValue("house", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(houses_saveID));
-					SavePlayer(playerid);
-				}
-				else
-				{
-					SendClientMessage(playerid,COLOR_ERROR,"Dieses Haus ist bereits Verkauft!");
+					new ownerUserID = strval(GetMySQLValue("house", "OwnerUserID", "ID", val2str(houses[playerid][houses_saveID])));
+					new Float:price = floatstr(GetMySQLValue("house", "Price", "ID", val2str(houses_saveID)));
+					if(ownerUserID == 0)
+					{
+						SetPlayerMoney(playerid, floatsub(GetPVarFloat(playerid, "Money"), price));
+						SetMySQLValue("house", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(houses_saveID));
+						SavePlayer(playerid);
+						pickups[pickupID][pickups_type] = PICKUP_HOUSEBOUGHT;
+					}
+					else
+					{
+						SendClientMessage(playerid,COLOR_ERROR,"Dieses Haus ist bereits Verkauft!");
+					}
 				}
 			}
 			else
