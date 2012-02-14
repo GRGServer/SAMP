@@ -54,6 +54,10 @@ public OnPlayerConnect(playerid)
 		TextDrawFont(textDrawSpeedoColumn2[playerid], 1);
 		TextDrawSetShadow(textDrawSpeedoColumn2[playerid], 2);
 		TextDrawTextSize(textDrawSpeedoColumn2[playerid], 635, 475);
+		textDrawRadioStation[playerid] = TextDrawCreate(5, 400, "_");
+		TextDrawLetterSize(textDrawRadioStation[playerid], 0.3, 0.9);
+		TextDrawFont(textDrawRadioStation[playerid], 1);
+		TextDrawSetShadow(textDrawRadioStation[playerid], 2);
 		TextDrawShowForPlayer(playerid, textDrawClock);
 		TextDrawShowForPlayer(playerid, textDrawBottomBanner);
 	}
@@ -109,6 +113,7 @@ public OnPlayerDisconnect(playerid, reason)
 		TextDrawHideForPlayer(playerid, textDrawClock);
 		TextDrawHideForPlayer(playerid, textDrawBottomBanner);
 		TextDrawDestroy(textDrawSpeedoColumn2[playerid]);
+		TextDrawDestroy(textDrawRadioStation[playerid]);
 	}
 	return true;
 }
