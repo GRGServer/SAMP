@@ -319,20 +319,24 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				for (new pickupID; pickupID < MAX_PICKUPS; pickupID++)
+				new saveID = houses[playerid][houses_saveID];
+				new Float:price = floatstr(GetMySQLValue("house", "Price", "ID", val2str(houses_saveID)));
+				new ownerUserID = strval(GetMySQLValue("house", "OwnerUserID", "ID", val2str(houses[playerid][houses_saveID])));
+				if(price <= GetPVarFloat(playerid, "Money"))
 				{
-					new ownerUserID = strval(GetMySQLValue("house", "OwnerUserID", "ID", val2str(houses[playerid][houses_saveID])));
-					new Float:price = floatstr(GetMySQLValue("house", "Price", "ID", val2str(houses_saveID)));
-					if(ownerUserID == 0)
+					for (new pickupID; pickupID < MAX_PICKUPS; pickupID++)
 					{
-						SetPlayerMoney(playerid, floatsub(GetPVarFloat(playerid, "Money"), price));
-						SetMySQLValue("house", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(houses_saveID));
-						SavePlayer(playerid);
-						pickups[pickupID][pickups_type] = PICKUP_HOUSEBOUGHT;
-					}
-					else
-					{
-						SendClientMessage(playerid,COLOR_ERROR,"Dieses Haus ist bereits Verkauft!");
+						if(ownerUserID == 0)
+						{
+							SetPlayerMoney(playerid, floatsub(GetPVarFloat(playerid, "Money"), price));
+							SetMySQLValue("house", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(saveID));
+							SavePlayer(playerid);
+							pickups[pickupID][pickups_type] = PICKUP_HOUSEBOUGHT;
+						}
+						else
+						{
+							SendClientMessage(playerid,COLOR_ERROR,"Dieses Haus ist bereits Verkauft!");
+						}
 					}
 				}
 			}
@@ -477,6 +481,10 @@ public SetSpawnPlayer(playerid)
 	{
 		SetPlayerPos(playerid, floatstr(GetUserDBValue(playerid, "PosX")), floatstr(GetUserDBValue(playerid, "PosY")), floatstr(GetUserDBValue(playerid, "PosZ")));
 		SendClientMessage(playerid,COLOR_INFO,"Du bist nun an deinem Letzten logout Gespawnt!");
+	}
+	else
+	{
+		SendClientMessage(playerid,COLOR_ERROR,"Du bist nicht Registriert und kannst somit nicht Spawnen!");
 	}
 	return true;
 }
