@@ -359,8 +359,9 @@ stock PlayRadioStation(playerID, id)
 		SetPVarInt(playerID, "RadioOn", true);
 		SetPVarInt(playerID, "LastRadioStation", id);
 		new name[256];
-		format(name, sizeof(name), "%s", GetMySQLValue("radiostation", "Name", "ID", val2str(id)));
+		format(name, sizeof(name), "%s", GetMySQLValue("radiostations", "Name", "ID", val2str(id)));
 		PlayAudioStreamForPlayer(playerID, GetMySQLValue("radiostations", "URL", "ID", val2str(id)));
+		printf("Playing stream from %s", GetMySQLValue("radiostations", "URL", "ID", val2str(id)));
 		TextDrawSetString(textDrawRadioStation[playerID], name);
 		TextDrawShowForPlayer(playerID, textDrawRadioStation[playerID]);
 		new string[256];
