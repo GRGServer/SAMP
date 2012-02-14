@@ -17,3 +17,8 @@ enum enum_vehicleModels
 	Float:vehicleModels_fuelUsage,
 	Float:vehicleModels_maxFuel
 }
+
+enum enum_houses
+{
+	houses_saveID
+}

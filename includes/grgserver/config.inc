@@ -71,3 +71,7 @@
 
 // Vehicle configuration
 #define VEHICLE_MINHEALTH			30
+
+// Key Press Conrigurtion
+#define PRESSED(%0) \
+	(((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
