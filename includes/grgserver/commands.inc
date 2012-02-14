@@ -39,51 +39,6 @@ ACMD:addpickup(playerid, params[])
 	}
 }
 
-CMD:radio(playerid, params[])
-{
-	if(IsPlayerInAnyVehicle(playerid))
-	{
-		new VID = GetPlayerVehicleID(playerid);
-		if(channels[VID] == 0)
-		{
-			channels[VID] = 1;
-			KillTimer(timer_radio);
-			entftextdraw(playerid);
-			closed[playerid] = 1;
-			PlayAudioStreamForPlayer(playerid, "http://gffstream.ic.llnwd.net/stream/gffstream_stream_wdr_einslive_a");//1LIVE
-			SendClientMessage(playerid,COLOR_INFO,"Du kannst nun mit der NUM8 u. NUM2 Taste den Radiosender ändern! Radio ausschalten: /radio");
-			timer_radio = TextDrawShowForPlayer(playerid,LIVE);
-			timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-		}
-		else
-		{
-			channels[VID] = 0;
-			KillTimer(timer_radio);
-			entftextdraw(playerid);
-			TextDrawShowForPlayer(playerid,RADIOAUS);
-			StopAudioStreamForPlayer(playerid);
-			timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-		}
-	}
-	return COMMAND_OK;
-}
-
-CMD:dradio(playerid, params[])
-{
-	if(IsPlayerInAnyVehicle(playerid))
-	{
-		if(closed[playerid] != 1)
-		{
-			ShowPlayerDialog(playerid,DIALOG_RADIO,DIALOG_STYLE_LIST,"Wähle einen Sender","1LIVE\nYouFM ->\n89.0 RTL\nPlanet Radio\nTechnoBase FM\n{FF0000}Radio aus","Auswählen", "Abbrechen");
-		}
-		else
-		{
-			SendClientMessage(playerid,0xFF0000FF,"Um Bugs zu vermeiden ist der Command für 3 Sekunden gesperrt!");
-		}
-	}
-	return COMMAND_OK;
-}
-
 CMD:cmds(playerid, params[])
 {
 	if (fexist("commands.txt"))
@@ -385,20 +340,6 @@ ACMD:money(playerid, params[])
 	}
 }
 
-CMD:autobestellen(playerid, params[])
-{
-	new JobID = GetPVarInt(playerid, "UserID");
-	if(JobID == 1)
-	{
-		ShowPlayerDialog(playerid,DIALOG_CARORDER,DIALOG_STYLE_LIST,"Auto Bestellen","Landstalker\nBravura\nBuffalo\nLinerunner\nPerenniel\nSentinel\nFiretruck\n","Bestellen","Abbrechen");
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
-	return COMMAND_OK;
-}
-
 CMD:me(playerid, params[])
 {
 	if (strlen(params))
@@ -498,6 +439,44 @@ NCMD:npccmd(playerid, params[])
 	else
 	{
 		return COMMAND_NPC_ONLY;
+	}
+}
+
+CMD:ordervehicle(playerid, params[])
+{
+	new JobID = GetPVarInt(playerid, "UserID");
+	if(JobID == 1)
+	{
+		ShowPlayerDialog(playerid, DIALOG_ORDERVEHICLE, DIALOG_STYLE_LIST, "Fahrzeug Bestellen", "Landstalker\nBravura\nBuffalo\nLinerunner\nPerenniel\nSentinel\nFiretruck", "Bestellen", "Abbrechen");
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
+	return COMMAND_OK;
+}
+
+CMD:radio(playerid, params[])
+{
+	if (IsPlayerInAnyVehicle(playerid))
+	{
+		new stations[1024];
+		mysql_query("SELECT * FROM `radiostations`");
+		mysql_store_result();
+		while (FetchMySQLRow())
+		{
+			if (strlen(stations))
+			{
+				format(stations, sizeof(stations), "%s\n", stations);
+			}
+			format(stations, sizeof(stations), "%s%s", stations, GetMySQLField("Name"));
+		}
+		ShowPlayerDialog(playerid, DIALOG_RADIO, DIALOG_STYLE_LIST, "Radiosender wählen", stations, "OK", "Abbrechen");
+		return COMMAND_OK;
+	}
+	else
+	{
+		return COMMAND_NOT_IN_VEHICLE;
 	}
 }
 

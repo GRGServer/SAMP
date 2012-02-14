@@ -66,10 +66,12 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 	{
 		case PICKUPTYPE_HOUSE:
 		{
+			/* TODO: Write working code
 			new string[256];
-			new Float:price = floatstr(GetMySQLValue("house", "Price", "ID", val2str(houses_saveID)));
+			new Float:price = floatstr(GetMySQLValue("houses", "Price", "ID", val2str(houses_saveID)));
 			format(string,sizeof(string),"Möchtest du dieses Haus für $%d kaufen?", price);
 			ShowPlayerDialog(playerid,DIALOG_HOUSE,DIALOG_STYLE_MSGBOX,"Haus Kaufen",string,"Kaufen", "Abbrechen");
+			*/
 		}
 		case PICKUPTYPE_BANK:
 		{
@@ -193,165 +195,32 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
 	{
-		case DIALOG_CARORDER:
+		case DIALOG_BUYVEHICLE:
 		{
-			if(response)
+			if (response)
 			{
-				switch(listitem)
+				new string[256];
+				new saveID = vehicles[GetPlayerVehicleID(playerid)][vehicles_saveID];
+				new Float:price = floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(saveID)));
+				if (price <= GetPVarFloat(playerid, "Money"))
 				{
-					case 0:
-					{
-					}
-					case 1:
-					{
-					}
-					case 2:
-					{
-					}
-					case 3:
-					{
-					}
-					case 4:
-					{
-					}
-					case 5:
-					{
-					}
-					case 6:
-					{
-					}
-					case 7:
-					{
-					}
+					SetPlayerMoney(playerid, floatsub(GetPVarFloat(playerid, "Money"), price));
+					SetMySQLValue("savedvehicles", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(saveID));
+					SavePlayer(playerid);
+				}
+				else
+				{
+					format(string,sizeof(string), "Du benötigst $%f für dieses Fahrzeug! Leider hast du nur $%f.", price, GetPVarFloat(playerid, "Money"));
+					SendClientMessage(playerid, COLOR_ERROR, string);
+					RemovePlayerFromVehicle(playerid);
 				}
 			}
 			else
 			{
-				SendClientMessage(playerid,COLOR_INFO,"Du hast den vorgang abgebrochen!");
+				RemovePlayerFromVehicle(playerid);
 			}
 		}
-		case DIALOG_RADIO:
-		{
-			new VID = GetPlayerVehicleID(playerid);
-			if(response)
-			{
-				switch(listitem)
-				{
-					case 0:
-					{
-						KillTimer(timer_radio);
-						entftextdraw(playerid);
-						closed[playerid] = 1;
-						channels[VID] = 1;
-						StopAudioStreamForPlayer(playerid);
-						PlayAudioStreamForPlayer(playerid, "http://gffstream.ic.llnwd.net/stream/gffstream_stream_wdr_einslive_a");//1LIVE
-						TextDrawShowForPlayer(playerid,LIVE);
-						timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-					}
-					case 1:
-					{
-						ShowPlayerDialog(playerid,DIALOG_RADIO1,DIALOG_STYLE_LIST,"Wähle einen Sender","YouFM Live\nYouFM Rock\nYouFM Club\nYouFM Black\n{FF0000}<- Zurück","Auswählen", "Abbrechen");
-					}
-					case 2:
-					{
-						KillTimer(timer_radio);
-						entftextdraw(playerid);
-						closed[playerid] = 1;
-						channels[VID] = 6;
-						StopAudioStreamForPlayer(playerid);
-						TextDrawShowForPlayer(playerid,RTL);
-						timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-						PlayAudioStreamForPlayer(playerid, "http://mp3.89.0rtl.de/listen.pls"); // 89.0 RTL
-					}
-					case 3:
-					{
-						channels[VID] = 7;
-						KillTimer(timer_radio);
-						entftextdraw(playerid);
-						closed[playerid] = 1;
-						StopAudioStreamForPlayer(playerid);
-						PlayAudioStreamForPlayer(playerid, "http://streams.planetradio.de/planetradio/mp3/hqlivestream.m3u"); // Planet Radio
-						TextDrawShowForPlayer(playerid,radioplanet);
-						timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-					}
-					case 4:
-					{
-						KillTimer(timer_radio);
-						entftextdraw(playerid);
-						closed[playerid] = 1;
-						channels[VID] = 8;
-						StopAudioStreamForPlayer(playerid);
-						TextDrawShowForPlayer(playerid,technobase);
-						timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-						PlayAudioStreamForPlayer(playerid, "http://listen.technobase.fm/dsl.pls"); // Technobase
-					}
-					case 5:
-					{
-						channels[VID] = 0;
-						KillTimer(timer_radio);
-						entftextdraw(playerid);
-						TextDrawShowForPlayer(playerid,RADIOAUS);
-						StopAudioStreamForPlayer(playerid);
-						timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-					}
-				}
-			}
-		}
-		case DIALOG_RADIO1:
-		{
-			new VID = GetPlayerVehicleID(playerid);
-			switch(listitem)
-			{
-				case 0:
-				{
-					KillTimer(timer_radio);
-					entftextdraw(playerid);
-					closed[playerid] = 1;
-					channels[VID] = 2;
-					StopAudioStreamForPlayer(playerid);
-					TextDrawShowForPlayer(playerid,YOUFM);
-					timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-					PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_2.m3u");//YOU FM LIVE
-				}
-				case 1:
-				{
-					KillTimer(timer_radio);
-					entftextdraw(playerid);
-					closed[playerid]=1;
-					channels[VID]=3;
-					StopAudioStreamForPlayer(playerid);
-					TextDrawShowForPlayer(playerid,YOUFM2);
-					timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-					PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_rock.m3u"); // YOU FM ROCK
-				}
-				case 2:
-				{
-					KillTimer(timer_radio);
-					entftextdraw(playerid);
-					closed[playerid]=1;
-					channels[VID]=4;
-					StopAudioStreamForPlayer(playerid);
-					TextDrawShowForPlayer(playerid,YOUFM3);
-					timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-					PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_club.m3u"); // YOU FM CLUB
-				}
-				case 3:
-				{
-					KillTimer(timer_radio);
-					entftextdraw(playerid);
-					closed[playerid]=1;
-					channels[VID]=5;
-					StopAudioStreamForPlayer(playerid);
-					TextDrawShowForPlayer(playerid,YOUFM4);
-					timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-					PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_black.m3u"); // YOU FM BLACK
-				}
-				case 4:
-				{
-					ShowPlayerDialog(playerid,DIALOG_RADIO,DIALOG_STYLE_LIST,"Wähle einen Sender","1LIVE\nYouFM ->\n89.0 RTL\nPlanet Radio\nTechnoBase FM\n{FF0000}Radio aus","Auswählen", "Abbrechen");
-				}
-			}
-		}
+		/* TODO: Write working code
 		case DIALOG_HOUSE:
 		{
 			if (response)
@@ -381,32 +250,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				SendClientMessage(playerid,COLOR_INFO,"Vorgang abgebrochen!");
 			}
-		}
-		case DIALOG_BUYVEHICLE:
-		{
-			if (response)
-			{
-				new string[256];
-				new saveID = vehicles[GetPlayerVehicleID(playerid)][vehicles_saveID];
-				new Float:price = floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(saveID)));
-				if (price <= GetPVarFloat(playerid, "Money"))
-				{
-					SetPlayerMoney(playerid, floatsub(GetPVarFloat(playerid, "Money"), price));
-					SetMySQLValue("savedvehicles", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(saveID));
-					SavePlayer(playerid);
-				}
-				else
-				{
-					format(string,sizeof(string), "Du benötigst $%f für dieses Fahrzeug! Leider hast du nur $%f.", price, GetPVarFloat(playerid, "Money"));
-					SendClientMessage(playerid, COLOR_ERROR, string);
-					RemovePlayerFromVehicle(playerid);
-				}
-			}
-			else
-			{
-				RemovePlayerFromVehicle(playerid);
-			}
-		}
+		}*/
 		case DIALOG_LOGIN:
 		{
 			if (response)
@@ -450,6 +294,50 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				Kick(playerid);
 			}
 			return true;
+		}
+		case DIALOG_ORDERVEHICLE:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+					}
+					case 1:
+					{
+					}
+					case 2:
+					{
+					}
+					case 3:
+					{
+					}
+					case 4:
+					{
+					}
+					case 5:
+					{
+					}
+					case 6:
+					{
+					}
+					case 7:
+					{
+					}
+				}
+			}
+			else
+			{
+				SendClientMessage(playerid,COLOR_INFO,"Du hast den vorgang abgebrochen!");
+			}
+		}
+		case DIALOG_RADIO:
+		{
+			if (response)
+			{
+				PlayRadioStation(playerid, strval(GetMySQLValue("radiostations", "ID", "Name", inputtext)));
+			}
 		}
 		case DIALOG_REFUEL:
 		{
@@ -594,97 +482,9 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 			}
 		}
 	}
-	switch(channels[vehicleid])
+	if (GetPVarInt(playerid, "RadioOn") && GetPVarInt(playerid, "LastRadioStation"))
 	{
-		case 0:
-		{
-			KillTimer(timer_radio);
-			entftextdraw(playerid);
-			TextDrawShowForPlayer(playerid,RADIOAUS);
-			timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-			StopAudioStreamForPlayer(playerid);
-			SendClientMessage(playerid,COLOR_INFO,"Tippe /radio um das Radio einzuschalten!");
-		}
-		case 1:
-		{
-			KillTimer(timer_radio);
-			entftextdraw(playerid);
-			closed[playerid] = 1;
-			StopAudioStreamForPlayer(playerid);
-			PlayAudioStreamForPlayer(playerid, "http://gffstream.ic.llnwd.net/stream/gffstream_stream_wdr_einslive_a");//1LIVE
-			TextDrawShowForPlayer(playerid,LIVE);
-			timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-		}
-		case 2:
-		{
-			KillTimer(timer_radio);
-			entftextdraw(playerid);
-			closed[playerid] = 1;
-			StopAudioStreamForPlayer(playerid);
-			PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_2.m3u");//YOU FM LIVE
-			TextDrawShowForPlayer(playerid,YOUFM);
-			timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-		}
-		case 3:
-		{
-			KillTimer(timer_radio);
-			entftextdraw(playerid);
-			closed[playerid] = 1;
-			StopAudioStreamForPlayer(playerid);
-			PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_rock.m3u"); // YOU FM ROCK
-			TextDrawShowForPlayer(playerid,YOUFM2);
-			timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-		}
-		case 4:
-		{
-			KillTimer(timer_radio);
-			entftextdraw(playerid);
-			closed[playerid] = 1;
-			StopAudioStreamForPlayer(playerid);
-			PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_club.m3u"); // YOU FM CLUB
-			TextDrawShowForPlayer(playerid,YOUFM3);
-			timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-		}
-		case 5:
-		{
-			KillTimer(timer_radio);
-			entftextdraw(playerid);
-			closed[playerid] = 1;
-			StopAudioStreamForPlayer(playerid);
-			PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_black.m3u"); // YOU FM BLACK
-			TextDrawShowForPlayer(playerid,YOUFM4);
-			timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-		}
-		case 6:
-		{
-			KillTimer(timer_radio);
-			entftextdraw(playerid);
-			closed[playerid] = 1;
-			StopAudioStreamForPlayer(playerid);
-			PlayAudioStreamForPlayer(playerid, "http://mp3.89.0rtl.de/listen.pls"); // 89.0 RTL
-			TextDrawShowForPlayer(playerid,RTL);
-			timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-		}
-		case 7:
-		{
-			KillTimer(timer_radio);
-			entftextdraw(playerid);
-			closed[playerid] = 1;
-			StopAudioStreamForPlayer(playerid);
-			PlayAudioStreamForPlayer(playerid, "http://streams.planetradio.de/planetradio/mp3/hqlivestream.m3u"); // Planet Radio
-			TextDrawShowForPlayer(playerid,radioplanet);
-			timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-		}
-		case 8:
-		{
-			KillTimer(timer_radio);
-			entftextdraw(playerid);
-			closed[playerid] = 1;
-			StopAudioStreamForPlayer(playerid);
-			PlayAudioStreamForPlayer(playerid, "http://listen.technobase.fm/dsl.pls"); // TechnoBase
-			TextDrawShowForPlayer(playerid,technobase);
-			timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-		}
+		PlayRadioStation(playerid, GetPVarInt(playerid, "LastRadioStation"));
 	}
 	return true;
 }
@@ -711,225 +511,4 @@ public OnVehicleRespray(playerid, vehicleid, color1, color2)
 	vehicles[vehicleid][vehicles_color1] = color1;
 	vehicles[vehicleid][vehicles_color2] = color2;
 	return true;
-}
-
-public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
-{
-	new VID = GetPlayerVehicleID(playerid);
-	if(IsPlayerInAnyVehicle(playerid))
-	{
-		if(channels[VID] != 0)
-		{
-			if(PRESSED(KEY_ANALOG_UP))
-			{
-				if(closed[playerid] != 1)
-				{
-					switch(channels[VID])
-					{
-						case 1:
-						{
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID]=8;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,technobase);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://listen.technobase.fm/dsl.pls"); // Technobase
-						}
-						case 2:
-						{
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID]=1;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,LIVE);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://gffstream.ic.llnwd.net/stream/gffstream_stream_wdr_einslive_a");//1LIVE
-						}
-						case 3:
-						{
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID] = 2;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,YOUFM);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_2.m3u");//YOU FM LIVE
-						}
-						case 4:
-						{
-			 				KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID] = 2;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,YOUFM2);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_rock.m3u"); // YOU FM ROCK
-						}
-						case 5:
-						{
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID] = 2;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,YOUFM3);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_club.m3u"); // YOU FM CLUB
-						}
-						case 6:
-						{
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID] = 2;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,YOUFM4);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_black.m3u"); // YOU FM BLACK
-						}
-						case 7:
-						{
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID] = 2;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,RTL);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://mp3.89.0rtl.de/listen.pls"); // 89.0 RTL
-						}
-						case 8:
-						{
-							channels[VID] = 2;
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,radioplanet);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://streams.planetradio.de/planetradio/mp3/hqlivestream.m3u"); // Planet Radio
-						}
-					}
-				}
-				return 1;
-			}
-			if(PRESSED(KEY_ANALOG_DOWN))
-			{
-				if(closed[playerid] != 1)
-				{
-					switch(channels[VID])
-					{
-						case 1:
-						{
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID] = 2;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,YOUFM);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_2.m3u");//YOU FM LIVE
-						}
-						case 2:
-						{
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID] = 2;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,YOUFM2);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_rock.m3u"); // YOU FM ROCK
-						}
-						case 3:
-						{
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID] = 2;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,YOUFM3);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_club.m3u"); // YOU FM CLUB
-						}
-						case 4:
-						{
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID] = 2;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,YOUFM4);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://metafiles.gl-systemhaus.de/hr/youfm_black.m3u"); // YOU FM BLACK
-						}
-						case 5:
-						{
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID] = 2;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,RTL);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://mp3.89.0rtl.de/listen.pls"); // 89.0 RTL
-						}
-						case 6:
-						{
-							channels[VID] = 2;
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							StopAudioStreamForPlayer(playerid);
-							PlayAudioStreamForPlayer(playerid, "http://streams.planetradio.de/planetradio/mp3/hqlivestream.m3u"); // Planet Radio
-							TextDrawShowForPlayer(playerid,radioplanet);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-						}
-						case 7:
-						{
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID] = 2;
-							StopAudioStreamForPlayer(playerid);
-							TextDrawShowForPlayer(playerid,technobase);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-							PlayAudioStreamForPlayer(playerid, "http://listen.technobase.fm/dsl.pls"); // Technobase
-						}
-						case 8:
-						{
-							KillTimer(timer_radio);
-							entftextdraw(playerid);
-							closed[playerid] = 1;
-							channels[VID] = 1;
-							StopAudioStreamForPlayer(playerid);
-							PlayAudioStreamForPlayer(playerid, "http://gffstream.ic.llnwd.net/stream/gffstream_stream_wdr_einslive_a");//1LIVE
-							TextDrawShowForPlayer(playerid,LIVE);
-							timer_radio = SetTimerEx("entftextdraw", 2500, false, "i",playerid);
-						}
-					}
-				}
-			}
-		}
-	}
-	return 1;
-}
-forward entftextdraw(playerid);
-public entftextdraw(playerid)
-{
-	TextDrawHideForPlayer(playerid,radioplanet);
-	TextDrawHideForPlayer(playerid,LIVE);
-	TextDrawHideForPlayer(playerid,YOUFM);
-	TextDrawHideForPlayer(playerid,YOUFM2);
-	TextDrawHideForPlayer(playerid,YOUFM3);
-	TextDrawHideForPlayer(playerid,YOUFM4);
-	TextDrawHideForPlayer(playerid,RTL);
-	TextDrawHideForPlayer(playerid,RADIOAUS);
-	TextDrawHideForPlayer(playerid,technobase);
- 	closed[playerid] = 0;
 }

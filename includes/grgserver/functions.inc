@@ -352,6 +352,27 @@ stock AddPickup(type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 	}
 }
 
+stock PlayRadioStation(playerID, id)
+{
+	if (id)
+	{
+		SetPVarInt(playerID, "RadioOn", true);
+		SetPVarInt(playerID, "LastRadioStation", id);
+		new name[256];
+		format(name, sizeof(name), "%s", GetMySQLValue("radiostation", "Name", "ID", val2str(id)));
+		PlayAudioStreamForPlayer(playerID, GetMySQLValue("radiostations", "URL", "ID", val2str(id)));
+		TextDrawSetString(textDrawRadioStation[playerID], name);
+		TextDrawShowForPlayer(playerID, textDrawRadioStation[playerID]);
+		new string[256];
+		format(string, sizeof(string), "Du hörst jetzt %s", name);
+		SendClientMessage(playerID, COLOR_INFO, string);
+	}
+	else
+	{
+		SendClientMessage(playerID, COLOR_ERROR, "Ungültiger Radiosender!");
+	}
+}
+
 stock UpdateGasPrice()
 {
 	gasPrice = float(150 + random(10)) / 100;

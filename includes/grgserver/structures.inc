@@ -20,5 +20,6 @@ enum enum_vehicleModels
 
 enum enum_houses
 {
-	houses_saveID
+	houses_saveID,
+	houses_pickupID
 }

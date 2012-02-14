@@ -15,5 +15,7 @@
 
 #define MD5(%0) MD5_Hash(%0, true)
 
+#define IsKeyPressed(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))// Not used yet
+
 #define GetUserDBValue(%0,%1) GetMySQLValue("users", %1, "UserID", val2str(GetPVarInt(%0, "UserID")))
 #define SetUserDBValue(%0,%1,%3) SetMySQLValue("users", %1, %3, "UserID", val2str(GetPVarInt(%0, "UserID")))
