@@ -385,6 +385,20 @@ ACMD:money(playerid, params[])
 	}
 }
 
+CMD:autobestellen(playerid, params[])
+{
+	new JobID = GetPVarInt(playerid, "UserID");
+	if(JobID == 1)
+	{
+		ShowPlayerDialog(playerid,DIALOG_CARORDER,DIALOG_STYLE_LIST,"Auto Bestellen","Landstalker\nBravura\nBuffalo\nLinerunner\nPerenniel\nSentinel\nFiretruck\n","Bestellen","Abbrechen");
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
+	return COMMAND_OK;
+}
+
 CMD:me(playerid, params[])
 {
 	if (strlen(params))

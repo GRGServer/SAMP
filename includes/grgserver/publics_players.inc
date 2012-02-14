@@ -193,6 +193,43 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
 	{
+		case DIALOG_CARORDER:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 0:
+					{
+					}
+					case 1:
+					{
+					}
+					case 2:
+					{
+					}
+					case 3:
+					{
+					}
+					case 4:
+					{
+					}
+					case 5:
+					{
+					}
+					case 6:
+					{
+					}
+					case 7:
+					{
+					}
+				}
+			}
+			else
+			{
+				SendClientMessage(playerid,COLOR_INFO,"Du hast den vorgang abgebrochen!");
+			}
+		}
 		case DIALOG_RADIO:
 		{
 			new VID = GetPlayerVehicleID(playerid);
