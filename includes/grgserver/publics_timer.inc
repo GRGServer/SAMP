@@ -155,4 +155,5 @@ forward timer_spawnPlayer(playerID);
 public timer_spawnPlayer(playerID)
 {
 	SpawnPlayer(playerID);
+	SetPlayerPos(playerID, floatstr(GetUserDBValue(playerID, "PosX")), floatstr(GetUserDBValue(playerID, "PosY")), floatstr(GetUserDBValue(playerID, "PosZ")));
 }
