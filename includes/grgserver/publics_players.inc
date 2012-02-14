@@ -394,3 +394,16 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	SaveVehicle(vehicleid, GetPlayerInterior(playerid));
 	return true;
 }
+
+public OnVehiclePaintjob(playerid, vehicleid, paintjobid)
+{
+	vehicles[vehicleid][vehicles_paintjobID] = paintjobid;
+	return true;
+}
+
+public OnVehicleRespray(playerid, vehicleid, color1, color2)
+{
+	vehicles[vehicleid][vehicles_color1] = color1;
+	vehicles[vehicleid][vehicles_color2] = color2;
+	return true;
+}

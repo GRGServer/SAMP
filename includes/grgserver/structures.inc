@@ -6,7 +6,10 @@ enum enum_pickups
 enum enum_vehicles
 {
 	vehicles_saveID,
-	Float:vehicles_currentFuel
+	Float:vehicles_currentFuel,
+	vehicles_paintjobID,
+	vehicles_color1,
+	vehicles_color2
 }
 
 enum enum_vehicleModels
