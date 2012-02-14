@@ -54,7 +54,7 @@ public OnPlayerConnect(playerid)
 		TextDrawFont(textDrawSpeedoColumn2[playerid], 1);
 		TextDrawSetShadow(textDrawSpeedoColumn2[playerid], 2);
 		TextDrawTextSize(textDrawSpeedoColumn2[playerid], 635, 475);
-		textDrawRadioStation[playerid] = TextDrawCreate(635, 440, "_");
+		textDrawRadioStation[playerid] = TextDrawCreate(635, 435, "_");
 		TextDrawAlignment(textDrawRadioStation[playerid], 3);
 		TextDrawLetterSize(textDrawRadioStation[playerid], 0.3, 0.9);
 		TextDrawFont(textDrawRadioStation[playerid], 1);
@@ -523,4 +523,14 @@ public OnPlayerStateChange(playerid, newstate, oldstate)
 	{
 		StopRadioStation(playerid);
 	}
+}
+
+public OnPlayerUpdate(playerid)
+{
+	if (savePlayers[playerid])
+	{
+		SavePlayer(playerid);
+		savePlayers[playerid] = false;
+	}
+	return true;
 }

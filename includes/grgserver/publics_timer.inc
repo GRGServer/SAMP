@@ -112,6 +112,15 @@ public timer_slow()
 	mysql_ping();
 }
 
+forward timer_everyMinute();
+public timer_everyMinute()
+{
+	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+	{
+		savePlayers[playerID] = IsLoggedIn(playerID);
+	}
+}
+
 forward timer_hourly();
 public timer_hourly()
 {

@@ -66,6 +66,7 @@
 // Timers
 #define TIMER_FAST					250// 1/4 seconds (Update fuel usage calculation on change!)
 #define TIMER_SLOW					5000// 5 seconds
+#define TIMER_EVERYMINUTE			60000// 1 minute
 #define TIMER_HOURLY				3600000// 1 hour
 
 

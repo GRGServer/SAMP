@@ -20,6 +20,11 @@ stock GetPlayerID(playerName[])
 	return INVALID_PLAYER_ID;
 }
 
+stock IsLoggedIn(playerID)
+{
+	return (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && GetPVarInt(playerID, "UserID"));
+}
+
 stock FetchMySQLRow()
 {
 	new Line[1024];
@@ -91,7 +96,7 @@ stock LoadPlayerValue(playerID, fieldName[], pVarType)
 
 stock SavePlayer(playerID)
 {
-	if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && GetPVarInt(playerID, "UserID"))
+	if (IsLoggedIn(playerID))
 	{
 		printf("Saving player %s", GetPlayerNameEx(playerID));
 		SavePlayerValue(playerID, "Level");
