@@ -54,12 +54,12 @@ public OnPlayerConnect(playerid)
 		TextDrawFont(textDrawSpeedoColumn2[playerid], 1);
 		TextDrawSetShadow(textDrawSpeedoColumn2[playerid], 2);
 		TextDrawTextSize(textDrawSpeedoColumn2[playerid], 635, 475);
-		textDrawRadioStation[playerid] = TextDrawCreate(5, 400, "_");
+		textDrawRadioStation[playerid] = TextDrawCreate(635, 440, "_");
+		TextDrawAlignment(textDrawRadioStation[playerid], 3);
 		TextDrawLetterSize(textDrawRadioStation[playerid], 0.3, 0.9);
 		TextDrawFont(textDrawRadioStation[playerid], 1);
 		TextDrawSetShadow(textDrawRadioStation[playerid], 2);
 		TextDrawShowForPlayer(playerid, textDrawClock);
-		TextDrawShowForPlayer(playerid, textDrawBottomBanner);
 	}
 	return true;
 }
@@ -111,7 +111,6 @@ public OnPlayerDisconnect(playerid, reason)
 		IRC_Say(ircBot, IRC_CHANNEL, string);
 		TextDrawHideForPlayer(playerid, textDrawSpeedoColumn1);
 		TextDrawHideForPlayer(playerid, textDrawClock);
-		TextDrawHideForPlayer(playerid, textDrawBottomBanner);
 		TextDrawDestroy(textDrawSpeedoColumn2[playerid]);
 		TextDrawDestroy(textDrawRadioStation[playerid]);
 	}
@@ -501,7 +500,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 		SetVehicleEngineState(vehicleid, false);
 	}
 	SaveVehicle(vehicleid, GetPlayerInterior(playerid));
-	StopAudioStreamForPlayer(playerid);
+	StopRadioStation(playerid);
 	return true;
 }
 
@@ -516,4 +515,12 @@ public OnVehicleRespray(playerid, vehicleid, color1, color2)
 	vehicles[vehicleid][vehicles_color1] = color1;
 	vehicles[vehicleid][vehicles_color2] = color2;
 	return true;
+}
+
+public OnPlayerStateChange(playerid, newstate, oldstate)
+{
+	if (oldstate == PLAYER_STATE_DRIVER || oldstate == PLAYER_STATE_PASSENGER)
+	{
+		StopRadioStation(playerid);
+	}
 }

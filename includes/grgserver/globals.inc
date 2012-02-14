@@ -4,7 +4,6 @@ new svnRevisionChanged;
 new Float:gasPrice;
 new Text:textDrawSpeedoColumn1;
 new Text:textDrawClock;
-new Text:textDrawBottomBanner;
 
 
 // Arrays

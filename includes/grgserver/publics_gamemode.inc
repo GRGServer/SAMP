@@ -69,13 +69,6 @@ public OnGameModeInit()
 	TextDrawSetOutline(textDrawClock, 2);
 	TextDrawLetterSize(textDrawClock, 0.6, 1.8);
 	TextDrawFont(textDrawClock, 3);
-	textDrawBottomBanner = TextDrawCreate(0, 440, gameModeTextString);
-	TextDrawLetterSize(textDrawBottomBanner, 0.3, 0.9);
-	TextDrawFont(textDrawBottomBanner, 1);
-	TextDrawSetShadow(textDrawBottomBanner, 2);
-	TextDrawTextSize(textDrawBottomBanner, 640, 480);
-	TextDrawBoxColor(textDrawBottomBanner, 0x00000080);
-	TextDrawUseBox(textDrawBottomBanner, true);
 	print("Doing misc stuff...");
 	SetGameModeText(gameModeTextString);
 	new File:svnRevisionFile;

@@ -361,7 +361,6 @@ stock PlayRadioStation(playerID, id)
 		new name[256];
 		format(name, sizeof(name), "%s", GetMySQLValue("radiostations", "Name", "ID", val2str(id)));
 		PlayAudioStreamForPlayer(playerID, GetMySQLValue("radiostations", "URL", "ID", val2str(id)));
-		printf("Playing stream from %s", GetMySQLValue("radiostations", "URL", "ID", val2str(id)));
 		TextDrawSetString(textDrawRadioStation[playerID], name);
 		TextDrawShowForPlayer(playerID, textDrawRadioStation[playerID]);
 		new string[256];
@@ -372,6 +371,12 @@ stock PlayRadioStation(playerID, id)
 	{
 		SendClientMessage(playerID, COLOR_ERROR, "Ungültiger Radiosender!");
 	}
+}
+
+stock StopRadioStation(playerID)
+{
+	StopAudioStreamForPlayer(playerID);
+	TextDrawHideForPlayer(playerID, textDrawRadioStation[playerID]);
 }
 
 stock UpdateGasPrice()
