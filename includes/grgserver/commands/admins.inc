@@ -1,34 +1,18 @@
 ACMD:addhouse(playerid, params[])
 {
 	new name[256];
-	new string[256];
-	new query[256];
 	new Float:price;
-	new Float:posX;
-	new Float:posY;
-	new Float:posZ;
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		if (sscanf(params, "sf", name, price))
 		{
-			CmdUsageMsg(playerid, "addhouse", "Haus Name", "Preis", "InteriorID");
+			CmdUsageMsg(playerid, "addhouse", "Name", "Preis");
 			return COMMAND_USAGE;
 		}
-		GetPlayerPos(playerid, posX, posY, posZ);
-		new pickupID = AddPickup("HOUSE", posX, posY, posZ, true);
-		if (pickupID > 0)
-		{
-			format(query, sizeof(query), "INSERT INTO `houses` (`PickupID`, `Name`, `Price`) VALUES ('%d', '%s', '%f')", pickupID, name, price);
-			mysql_query(query);
-			format(string, sizeof(string), "Das Haus %s wurde mit dem Preis %d unter der ID %d gespeichert", name, price, mysql_insert_id());
-			SendClientMessage(playerid, COLOR_INFO, string);
-			return COMMAND_OK;
-		}
-		else
-		{
-			SendClientMessage(playerid, COLOR_ERROR, "Fehler beim Erstellen des Pickups!");
-			return COMMAND_ERROR;
-		}
+		SetPVarString(playerid, "AddHouse_Name", name);
+		SetPVarFloat(playerid, "AddHouse_Price", price);
+		ShowDialog(playerid, DIALOG_ADDHOUSE);
+		return COMMAND_OK;
 	}
 	else
 	{

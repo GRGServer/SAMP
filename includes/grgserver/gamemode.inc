@@ -93,6 +93,7 @@ public OnGameModeInit()
 			fclose(svnRevisionFile);
 		}
 	}
+	DisableInteriorEnterExits();
 	UpdateGasPrice();
 	print("Gamemode loading complete");
 	return true;

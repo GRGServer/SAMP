@@ -2,6 +2,36 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
 	{
+		case DIALOG_ADDHOUSE:
+		{
+			if (response)
+			{
+				/*
+				new string[256];
+				new query[256];
+				new name[256];
+				new Float:price = GetPVarFloat(playerid, "AddHouse_Price");
+				new Float:posX;
+				new Float:posY;
+				new Float:posZ;
+				GetPVarString(playerid, "AddHouse_Name", name, sizeof(name));
+				GetPlayerPos(playerid, posX, posY, posZ);
+				new pickupID = AddPickup("HOUSE", posX, posY, posZ, true);
+				if (pickupID > 0)
+				{
+					format(query, sizeof(query), "INSERT INTO `houses` (`PickupID`, `Name`, `Price`) VALUES ('%d', '%s', '%f')", pickupID, name, price);
+					mysql_query(query);
+					format(string, sizeof(string), "Das Haus %s wurde mit dem Preis %s unter der ID %d gespeichert", name, FormatNumber(price, 2, '.', ','), mysql_insert_id());
+					SendClientMessage(playerid, COLOR_INFO, string);
+				}
+				else
+				{
+					SendClientMessage(playerid, COLOR_ERROR, "Fehler beim Erstellen des Pickups!");
+				}*/
+			}
+			DeletePVar(playerid, "AddHouse_Name");
+			DeletePVar(playerid, "AddHouse_Price");
+		}
 		case DIALOG_BUYVEHICLE:
 		{
 			if (response)

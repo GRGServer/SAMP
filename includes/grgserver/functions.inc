@@ -396,6 +396,22 @@ stock ShowDialog(playerID, dialogID, ...)
 {
 	switch (dialogID)
 	{
+		case DIALOG_ADDHOUSE:
+		{
+			new interiors[10240];
+			mysql_query("SELECT * FROM `interiors`");
+			mysql_store_result();
+			while (FetchMySQLRow())
+			{
+				if (strlen(interiors))
+				{
+					format(interiors, sizeof(interiors), "%s\n", interiors);
+				}
+				format(interiors, sizeof(interiors), "%s%s", interiors, GetMySQLField("Name"));
+				print(interiors);
+			}
+			ShowPlayerDialog(playerID, DIALOG_ADDHOUSE, DIALOG_STYLE_LIST, "Ziel auswählen", interiors, "OK", "Abbrechen");
+		}
 		case DIALOG_BUYHOUSE:
 		{
 			new string[256];
