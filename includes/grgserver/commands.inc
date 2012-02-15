@@ -6,36 +6,33 @@ CMD:about(playerid, params[])
 
 ACMD:addhouse(playerid, params[])
 {
-	new interior[256];
-	new housename[256];
+	new name[256];
 	new string[256];
 	new query[256];
-	new type[256];
 	new price[256];
-	new Float:PosX;
-	new Float:PosY;
-	new Float:PosZ;
-	if(IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	new Float:posX;
+	new Float:posY;
+	new Float:posZ;
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
-		if(sscanf(params, "ssdd", type, housename, price, interior))
+		if (sscanf(params, "sf", name, price))
 		{
-			CmdUsageMsg(playerid, "addhouse", "Type:HOUSE", "Haus Name", "Preis", "InteriorID");
+			CmdUsageMsg(playerid, "addhouse", "Haus Name", "Preis", "InteriorID");
 			return COMMAND_USAGE;
 		}
-		format(type, sizeof(type), "%s", strtoupper(type));
-		GetPlayerPos(playerid, PosX, PosY, PosZ);
-		new id = AddPickup(type, PosX, PosY, PosZ, true);
-		if (id > 0)
+		GetPlayerPos(playerid, posX, posY, posZ);
+		new pickupID = AddPickup("HOUSE", posX, posY, posZ, true);
+		if (pickupID > 0)
 		{
-			format(query, sizeof(query), "INSERT INTO `houses`(`HouseName`, `PosX`, `PosY`, `PosZ`, `Price`, `Interior`) VALUES ('%s', '%f', '%f', '%f', '%d', '%d')", housename, PosX, PosY, PosZ, price, interior);
+			format(query, sizeof(query), "INSERT INTO `houses` (`PickupID`, `Name`, `Price`) VALUES ('%d', '%s', '%f')", pickupID, name, price);
 			mysql_query(query);
-			format(string, sizeof(string), "Das House %s wurde unter der ID %d mit dem Preis %d und dem Interior %d gespeichert",housename, id, price, interior);
+			format(string, sizeof(string), "Das Haus %s wurde mit dem Preis %d unter der ID %d gespeichert", name, price, mysql_insert_id());
 			SendClientMessage(playerid, COLOR_INFO, string);
 			return COMMAND_OK;
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_ERROR, "Ungültiges Interior");
+			SendClientMessage(playerid, COLOR_ERROR, "Fehler beim Erstellen des Pickups!");
 			return COMMAND_ERROR;
 		}
 	}
@@ -44,6 +41,7 @@ ACMD:addhouse(playerid, params[])
 		return COMMAND_ACCESS_DENIED;
 	}
 }
+
 ACMD:addpickup(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))

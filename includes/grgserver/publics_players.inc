@@ -70,12 +70,38 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 	{
 		case PICKUPTYPE_HOUSE:
 		{
-			/* TODO: Write working code
-			new string[256];
-			new Float:price = floatstr(GetMySQLValue("houses", "Price", "ID", val2str(houses_saveID)));
-			format(string,sizeof(string),"Möchtest du dieses Haus für $%d kaufen?", price);
-			ShowPlayerDialog(playerid,DIALOG_HOUSE,DIALOG_STYLE_MSGBOX,"Haus Kaufen",string,"Kaufen", "Abbrechen");
-			*/
+			new ownerUserID = strval(GetMySQLValue("houses", "OwnerUserID", "PickupID", val2str(pickupid)));
+			if (ownerUserID)
+			{
+				if (ownerUserID == GetPVarInt(playerid, "UserID"))
+				{
+					new options[1024];
+					format(options, sizeof(options), "Betreten");// Item 0
+					format(options, sizeof(options), "%s\nVerkaufen", options);// Item 1
+					ShowPlayerDialog(playerid, DIALOG_HOUSEOPTIONS, DIALOG_STYLE_LIST, "Hausoptionen", options, "OK", "Abbrechen");
+				}
+				else
+				{
+					new string[256];
+					format(string, sizeof(string), "Dieses Haus wurde bereits von %s gekauft.", GetMySQLValue("users", "Username", "UserID", val2str(ownerUserID)));
+					SendClientMessage(playerid, COLOR_ERROR, string);
+				}
+			}
+			else
+			{
+				new string[256];
+				new Float:price = floatstr(GetMySQLValue("houses", "Price", "PickupID", val2str(pickupid)));
+				if (price <= GetPVarFloat(playerid, "Money"))
+				{
+					format(string, sizeof(string), "Dieses Haus kann noch gekauft werden.\n\nPreis: %s", FormatNumber(price, 2, '.', ','));
+					ShowPlayerDialog(playerid, DIALOG_BUYHOUSE, DIALOG_STYLE_MSGBOX, "Haus kaufen", string, "Kaufen", "Abbrechen");
+				}
+				else
+				{
+					format(string, sizeof(string), "Du hast nicht genügend Geld, um dieses Haus zu kaufen! Du benötigst mindestens $%s.", FormatNumber(price, 2, '.', ','));
+					SendClientMessage(playerid, COLOR_ERROR, string);
+				}
+			}
 		}
 		case PICKUPTYPE_BANK:
 		{
@@ -268,6 +294,27 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SendClientMessage(playerid,COLOR_INFO,"Vorgang abgebrochen!");
 			}
 		}*/
+		case DIALOG_HOUSEOPTIONS:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0:// Enter
+					{
+						SendClientMessage(playerid, COLOR_SYSTEM, "Haus betreten");
+					}
+					case 1:// Sell
+					{
+						SendClientMessage(playerid, COLOR_SYSTEM, "Haus verkaufen");
+					}
+					default:
+					{
+						SendClientMessage(playerid, COLOR_ERROR, "Ungültige Auswahl!");
+					}
+				}
+			}
+		}
 		case DIALOG_LOGIN:
 		{
 			if (response)
