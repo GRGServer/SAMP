@@ -1,9 +1,3 @@
-CMD:about(playerid, params[])
-{
-	SendClientMessage(playerid, COLOR_INFO, "Created by Aerox_Tobi (aerox@grgserver.net) and Programie (programie@selfcoders.com)");
-	return COMMAND_OK;
-}
-
 ACMD:addhouse(playerid, params[])
 {
 	new name[256];
@@ -67,65 +61,13 @@ ACMD:addpickup(playerid, params[])
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_ERROR, "UngÃ¼ltiger Typ!");
+			SendClientMessage(playerid, COLOR_ERROR, "Ungültiger Typ!");
 			return COMMAND_ERROR;
 		}
 	}
 	else
 	{
 		return COMMAND_ACCESS_DENIED;
-	}
-}
-
-CMD:cmds(playerid, params[])
-{
-	if (fexist("commands.txt"))
-	{
-		new string[256];
-		new line[256];
-		new count;
-		new File:commands = fopen("commands.txt", io_read);
-		while (fread(commands, string))
-		{
-			new type;
-			new command[256];
-			if (!sscanf(string, "cs", type, command))
-			{
-				new showCommand;
-				if (type == 'P')
-				{
-					showCommand = true;
-					format(command, sizeof(command), "{00FF00}%s", command);
-				}
-				if (type == 'A' && IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
-				{
-					showCommand = true;
-					format(command, sizeof(command), "{A00000}%s", command);
-				}
-				if (showCommand)
-				{
-					count++;
-					if (count == 1)
-					{
-						format(line, sizeof(line), "%s", command);
-					}
-					else
-					{
-						format(line, sizeof(line), "%s %s", line, command);
-					}
-					if (count == HELP_COMMANDSPERLINE)
-					{
-						count = 0;
-						SendClientMessage(playerid, COLOR_INFO, line);
-					}
-				}
-			}
-		}
-		return COMMAND_OK;
-	}
-	else
-	{
-		return COMMAND_ERROR;
 	}
 }
 
@@ -143,7 +85,7 @@ ACMD:controlnpc(playerid, params[])
 			if (sscanf(params, "us", targetPlayerID, command))
 			{
 				CmdUsageMsg(playerid, "controlnpc", "PlayerID/Name", "command(connect|start|stop|pause|resume)", "[recordingName]", "[playbackType]", "[autoRepeat]");
-				SendClientMessage(playerid, COLOR_INFO, "Hinweis: recordingName, playbackType und autoRepeat wird nur fÃ¼r den Befehl 'start' benÃ¶tigt.");
+				SendClientMessage(playerid, COLOR_INFO, "Hinweis: recordingName, playbackType und autoRepeat wird nur für den Befehl 'start' benötigt.");
 				return COMMAND_USAGE;
 			}
 		}
@@ -258,18 +200,12 @@ ACMD:gotosf(playerid, params[])
 	return AdminTeleport(playerid, -1417.0, -295.8, 14.1, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
 }
 
-CMD:help(playerid, params[])
-{
-	SendClientMessage(playerid, COLOR_INFO, "Verwende /cmds um eine Liste an Befehlen zu sehen.");
-	return COMMAND_OK;
-}
-
 ACMD:jetpack(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USEJETPACK);
-		SendClientMessage(playerid, COLOR_INFO, "Viel SpaÃŸ mit deinem neuen JetPack!");
+		SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen JetPack!");
 		return COMMAND_OK;
 	}
 	else
@@ -378,153 +314,13 @@ ACMD:money(playerid, params[])
 	}
 }
 
-CMD:me(playerid, params[])
-{
-	if (strlen(params))
-	{
-		new string[256];
-		format(string, sizeof(string), "*%s %s", GetPlayerNameEx(playerid), params);
-		SendClientMessageToAll(COLOR_ME, string);
-		return COMMAND_OK;
-	}
-	else
-	{
-		CmdUsageMsg(playerid, "me", "Text");
-		return COMMAND_USAGE;
-	}
-}
-
-CMD:motor(playerid, params[])
-{
-	if (!IsPlayerInAnyVehicle(playerid))
-	{
-		return COMMAND_NOT_IN_VEHICLE;
-	}
-	if (GetPlayerState(playerid) != PLAYER_STATE_DRIVER)
-	{
-		SendClientMessage(playerid, COLOR_ERROR, "Du bist nicht der Fahrer dieses Fahrzeugs!");
-		return COMMAND_ERROR;
-	}
-	new vehicleID = GetPlayerVehicleID(playerid);
-	if (GetVehicleEngineState(vehicleID))
-	{
-		SetVehicleEngineState(vehicleID, false);
-		SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde ausgeschalten.");
-	}
-	else
-	{
-		new Float:health;
-		GetVehicleHealth(vehicleID, health);
-		if (health < VEHICLE_MINHEALTH)
-		{
-			SendClientMessage(playerid, COLOR_ERROR, "Der Motor deines Fahrzeuges konnte nicht gestartet werden (Motorschaden)!");
-		}
-		else
-		{
-			SetVehicleEngineState(vehicleID, true);
-			SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde gestartet.");
-		}
-	}
-	return COMMAND_OK;
-}
-
-NCMD:npccmd(playerid, params[])
-{
-	if (IsPlayerNPC(playerid))
-	{
-		new command[256];
-		if (!sscanf(params, "s", command))
-		{
-			if (!strcmp(command, "stopped", true))
-			{
-				if (GetPVarType(playerid, "RecordNPCForPlayer") == PLAYER_VARTYPE_INT)
-				{
-					new string[256];
-					new npcs;
-					new realPlayerID = GetPVarInt(playerid, "RecordNPCForPlayer");
-					DeletePVar(playerid, "RecordNPCForPlayer");
-					Kick(playerid);
-					format(string, sizeof(string), "Die Wiedergabe von NPC '%s' wurde gestoppt.", GetPlayerNameEx(playerid));
-					SendClientMessage(realPlayerID, COLOR_INFO, string);
-					for (new playerID; playerID < MAX_PLAYERS; playerID++)
-					{
-						if (IsPlayerNPC(playerID))
-						{
-							if (GetPVarType(playerID, "RecordNPCForPlayer") == PLAYER_VARTYPE_INT)
-							{
-								if (GetPVarInt(playerID, "RecordNPCForPlayer") == realPlayerID)
-								{
-									npcs++;
-								}
-							}
-						}
-					}
-					if (npcs)
-					{
-						format(string, sizeof(string), "Es werden noch %d weitere NPCs fÃ¼r diese Aufnahme verwendet.", npcs);
-						SendClientMessage(realPlayerID, COLOR_INFO, string);
-					}
-					else
-					{
-						StopRecordingPlayerData(realPlayerID);
-						SendClientMessage(realPlayerID, COLOR_INFO, "Der letzte NPC hat die Aufnahme gestoppt!");
-					}
-				}
-			}
-		}
-		return COMMAND_OK;
-	}
-	else
-	{
-		return COMMAND_NPC_ONLY;
-	}
-}
-
-CMD:ordervehicle(playerid, params[])
-{
-	new JobID = GetPVarInt(playerid, "UserID");
-	if(JobID == 1)
-	{
-		ShowPlayerDialog(playerid, DIALOG_ORDERVEHICLE, DIALOG_STYLE_LIST, "Fahrzeug Bestellen", "Landstalker\nBravura\nBuffalo\nLinerunner\nPerenniel\nSentinel\nFiretruck", "Bestellen", "Abbrechen");
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
-	return COMMAND_OK;
-}
-
-CMD:radio(playerid, params[])
-{
-	if (IsPlayerInAnyVehicle(playerid))
-	{
-		new stations[1024];
-		mysql_query("SELECT * FROM `radiostations`");
-		mysql_store_result();
-		while (FetchMySQLRow())
-		{
-			if (strlen(stations))
-			{
-				format(stations, sizeof(stations), "%s\n", stations);
-			}
-			format(stations, sizeof(stations), "%s%s", stations, GetMySQLField("Name"));
-		}
-		ShowPlayerDialog(playerid, DIALOG_RADIO, DIALOG_STYLE_LIST, "Radiosender wÃ¤hlen", stations, "OK", "Abbrechen");
-		return COMMAND_OK;
-	}
-	else
-	{
-		return COMMAND_NOT_IN_VEHICLE;
-	}
-}
-
 ACMD:rc(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
 		printf("%s sent a RCON command: %s", GetPlayerNameEx(playerid), params);
 		SendRconCommand(params);
-		SendClientMessage(playerid, COLOR_INFO, "Der Befehl wurde ausgefÃ¼hrt");
+		SendClientMessage(playerid, COLOR_INFO, "Der Befehl wurde ausgeführt");
 		return COMMAND_OK;
 	}
 	else

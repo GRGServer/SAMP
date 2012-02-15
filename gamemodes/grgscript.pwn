@@ -34,7 +34,9 @@
 #include <grgserver/publics_irc>// IRC publics like IRC_OnConnect
 #include <grgserver/publics_players>// Player publics like OnPlayerText
 #include <grgserver/publics_timer>// Timers to update various stuff like world time
-#include <grgserver/commands>// Player commands like /about
+#include <grgserver/commands_admins>// Admin commands like /addpickup
+#include <grgserver/commands_npcs>// NPC commands like /npccmd
+#include <grgserver/commands_players>// Player commands like /radio
 
 main()
 {
