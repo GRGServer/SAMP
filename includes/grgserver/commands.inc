@@ -4,6 +4,46 @@ CMD:about(playerid, params[])
 	return COMMAND_OK;
 }
 
+ACMD:addhouse(playerid, params[])
+{
+	new interior[256];
+	new housename[256];
+	new string[256];
+	new query[256];
+	new type[256];
+	new Float:price;
+	new Float:PosX;
+	new Float:PosY;
+	new Float:PosZ;
+	if(IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		if(sscanf(params, "sdd", housename, price, interior))
+		{
+			CmdUsageMsg(playerid, "addhouse", "Haus Name", "Preis", "InteriorID");
+			return COMMAND_USAGE;
+		}
+		format(type, sizeof(type), "%s", strtoupper(type));
+		GetPlayerPos(playerid, PosX, PosY, PosZ);
+		new id = AddPickup(type, PosX, PosY, PosZ, true);
+		if (id > 0)
+		{
+			format(query, sizeof(query), "INSERT INTO `houses` (`HouseName`, `PosX`, `PosY`, `PosZ`, `Price`, `Interior`, `OwnerUserID`) VALUES('%s', '%f', '%f', '%f', '%f', '%d')", housename, PosX, PosY, PosZ, price, interior);
+			mysql_query(query);
+			format(string, sizeof(string), "Das House %s wurde unter der ID %d mit dem Preis %d und dem Interior %d gespeichert",housename, id, price, interior);
+			SendClientMessage(playerid, COLOR_INFO, string);
+			return COMMAND_OK;
+		}
+		else
+		{
+			SendClientMessage(playerid, COLOR_ERROR, "Ungültiges Interior");
+			return COMMAND_ERROR;
+		}
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
+}
 ACMD:addpickup(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
