@@ -197,9 +197,13 @@ public OnPlayerRequestClass(playerid, classid)
 
 public OnPlayerSpawn(playerid)
 {
-	SetPlayerPos(playerid, floatstr(GetUserDBValue(playerid, "PosX")), floatstr(GetUserDBValue(playerid, "PosY")), floatstr(GetUserDBValue(playerid, "PosZ")));
-	SetPlayerFacingAngle(playerid, floatstr(GetUserDBValue(playerid, "Angle")));
-	SetPlayerInterior(playerid, strval(GetUserDBValue(playerid, "Interior")));
+	if (GetPVarInt(playerid, "SpawnAfterLogin"))
+	{
+		DeletePVar(playerid, "SpawnAfterLogin");
+		SetPlayerPos(playerid, floatstr(GetUserDBValue(playerid, "PosX")), floatstr(GetUserDBValue(playerid, "PosY")), floatstr(GetUserDBValue(playerid, "PosZ")));
+		SetPlayerFacingAngle(playerid, floatstr(GetUserDBValue(playerid, "Angle")));
+		SetPlayerInterior(playerid, strval(GetUserDBValue(playerid, "Interior")));
+	}
 	return true;
 }
 
@@ -290,7 +294,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						mysql_query(query);
 						printf("Player logged in: %s (UserID: %d)", playerName, GetPVarInt(playerid, "UserID"));
 						LoadPlayer(playerid);
-						// SetTimerEx("timer_spawnPlayer", 10, false, "i", playerid);
+						SetPVarInt(playerid, "SpawnAfterLogin", true);
 						SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich eingeloggt.");
 					}
 				}
