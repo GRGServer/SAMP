@@ -107,8 +107,10 @@ stock SavePlayer(playerID)
 		new Float:posX;
 		new Float:posY;
 		new Float:posZ;
+		new Float:angle;
 		GetPlayerPos(playerID, posX, posY, posZ);
-		format(query, sizeof(query), "UPDATE `users` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f' WHERE `UserID` = '%d'", posX, posY, posZ, GetPVarInt(playerID, "UserID"));
+		GetPlayerFacingAngle(playerID, angle);
+		format(query, sizeof(query), "UPDATE `users` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Angle` = '%f', `Interior` = '%d' WHERE `UserID` = '%d'", posX, posY, posZ, angle, GetPlayerInterior(playerID), GetPVarInt(playerID, "UserID"));
 		mysql_query(query);
 	}
 }
@@ -119,7 +121,6 @@ stock LoadPlayer(playerID)
 	LoadPlayerValue(playerID, "AdminLevel", PLAYER_VARTYPE_INT);
 	LoadPlayerValue(playerID, "Money", PLAYER_VARTYPE_FLOAT);
 	LoadPlayerValue(playerID, "Skin", PLAYER_VARTYPE_INT);
-	SetPlayerPos(playerID, floatstr(GetUserDBValue(playerID, "PosX")), floatstr(GetUserDBValue(playerID, "PosY")), floatstr(GetUserDBValue(playerID, "PosZ")));
 	SetPlayerMoney(playerID, GetPVarFloat(playerID, "Money"));
 	SetPlayerSkin(playerID, GetPVarInt(playerID, "Skin"));
 }

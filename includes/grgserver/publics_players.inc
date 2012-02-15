@@ -195,6 +195,14 @@ public OnPlayerRequestClass(playerid, classid)
 	return true;
 }
 
+public OnPlayerSpawn(playerid)
+{
+	SetPlayerPos(playerid, floatstr(GetUserDBValue(playerid, "PosX")), floatstr(GetUserDBValue(playerid, "PosY")), floatstr(GetUserDBValue(playerid, "PosZ")));
+	SetPlayerFacingAngle(playerid, floatstr(GetUserDBValue(playerid, "Angle")));
+	SetPlayerInterior(playerid, strval(GetUserDBValue(playerid, "Interior")));
+	return true;
+}
+
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
