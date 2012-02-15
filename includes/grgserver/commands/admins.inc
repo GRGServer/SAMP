@@ -3,7 +3,7 @@ ACMD:addhouse(playerid, params[])
 	new name[256];
 	new string[256];
 	new query[256];
-	new price[256];
+	new Float:price;
 	new Float:posX;
 	new Float:posY;
 	new Float:posZ;
