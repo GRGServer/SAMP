@@ -25,6 +25,13 @@ stock IsLoggedIn(playerID)
 	return (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && GetPVarInt(playerID, "UserID"));
 }
 
+stock GetPVarStringEx(playerID, name[])
+{
+	new string[256];
+	GetPVarString(playerID, name, string, sizeof(string));
+	return string;
+}
+
 stock FetchMySQLRow()
 {
 	new Line[1024];
@@ -383,6 +390,75 @@ stock StopRadioStation(playerID)
 {
 	StopAudioStreamForPlayer(playerID);
 	TextDrawHideForPlayer(playerID, textDrawRadioStation[playerID]);
+}
+
+stock ShowDialog(playerID, dialogID, ...)
+{
+	switch (dialogID)
+	{
+		case DIALOG_BUYHOUSE:
+		{
+			new string[256];
+			new price[256];
+			GetStringArg(2, price);
+			format(string, sizeof(string), "Dieses Haus kann noch gekauft werden.\n\nPreis: %s", price);
+			ShowPlayerDialog(playerID, DIALOG_BUYHOUSE, DIALOG_STYLE_MSGBOX, "Haus kaufen", string, "Kaufen", "Abbrechen");
+		}
+		case DIALOG_BUYVEHICLE:
+		{
+			new string[256];
+			new price[256];
+			GetStringArg(2, price);
+			format(string, sizeof(string), "Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", price);
+			ShowPlayerDialog(playerID, DIALOG_BUYVEHICLE, DIALOG_STYLE_MSGBOX, "Fahrzeug Kaufen", string, "Ja", "Nein");
+		}
+		case DIALOG_HOUSEOPTIONS:
+		{
+			new options[1024];
+			format(options, sizeof(options), "Betreten");// Item 0
+			format(options, sizeof(options), "%s\nVerkaufen", options);// Item 1
+			ShowPlayerDialog(playerID, DIALOG_HOUSEOPTIONS, DIALOG_STYLE_LIST, "Hausoptionen", options, "OK", "Abbrechen");
+		}
+		case DIALOG_LOGIN:
+		{
+			ShowPlayerDialog(playerID, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login", "Bitte gebe das Passwort von deinen Account ein.", "OK", "Abbrechen");
+		}
+		case DIALOG_ORDERVEHICLE:
+		{
+			ShowPlayerDialog(playerID, DIALOG_ORDERVEHICLE, DIALOG_STYLE_LIST, "Fahrzeug bestellen", "Landstalker\nBravura\nBuffalo\nLinerunner\nPerenniel\nSentinel\nFiretruck", "Bestellen", "Abbrechen");
+		}
+		case DIALOG_RADIO:
+		{
+			new stations[1024];
+			mysql_query("SELECT * FROM `radiostations`");
+			mysql_store_result();
+			while (FetchMySQLRow())
+			{
+				if (strlen(stations))
+				{
+					format(stations, sizeof(stations), "%s\n", stations);
+				}
+				format(stations, sizeof(stations), "%s%s", stations, GetMySQLField("Name"));
+			}
+			ShowPlayerDialog(playerID, DIALOG_RADIO, DIALOG_STYLE_LIST, "Radiosender wählen", stations, "OK", "Abbrechen");
+		}
+		case DIALOG_REFUEL:
+		{
+			new string[256];
+			new maximum[256];
+			GetStringArg(2, maximum);
+			format(string, sizeof(string), "Wie viel möchtest du tanken (0 - %s)?", maximum);
+			ShowPlayerDialog(playerID, DIALOG_REFUEL, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", "Abbrechen");
+		}
+		case DIALOG_REGISTER_STEP1:
+		{
+			ShowPlayerDialog(playerID, DIALOG_REGISTER_STEP1, DIALOG_STYLE_PASSWORD, "Registrieren", "Du bist noch nicht registriert!\nBitte gebe ein neues Passwort für deinen Account ein.", "OK", "Abbrechen");
+		}
+		case DIALOG_REGISTER_STEP2:
+		{
+			ShowPlayerDialog(playerID, DIALOG_REGISTER_STEP2, DIALOG_STYLE_PASSWORD, "Passwort wiederholen", "Gebe erneut das Passwort ein.", "Registrieren", "Zurück");
+		}
+	}
 }
 
 stock UpdateGasPrice()

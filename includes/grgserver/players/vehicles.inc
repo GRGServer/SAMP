@@ -8,7 +8,6 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 	{
 		if (vehicles[vehicleid][vehicles_saveID])
 		{
-			new string[256];
 			new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleid][vehicles_saveID])));
 			if (ownerUserID == GetPVarInt(playerid, "UserID"))
 			{
@@ -21,8 +20,8 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 			}
 			else
 			{
-				format(string,sizeof(string), "Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleid][vehicles_saveID])));
-				ShowPlayerDialog(playerid, DIALOG_BUYVEHICLE,DIALOG_STYLE_MSGBOX, "Fahrzeug Kaufen", string, "Ja", "Nein");
+				ShowDialog(playerid, DIALOG_BUYVEHICLE, FormatNumber(floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleid][vehicles_saveID]))), 2, '.', ','));
+				
 			}
 		}
 	}

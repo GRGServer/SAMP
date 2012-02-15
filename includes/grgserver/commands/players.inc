@@ -117,7 +117,7 @@ CMD:ordervehicle(playerid, params[])
 	new JobID = GetPVarInt(playerid, "UserID");
 	if(JobID == 1)
 	{
-		ShowPlayerDialog(playerid, DIALOG_ORDERVEHICLE, DIALOG_STYLE_LIST, "Fahrzeug Bestellen", "Landstalker\nBravura\nBuffalo\nLinerunner\nPerenniel\nSentinel\nFiretruck", "Bestellen", "Abbrechen");
+		ShowDialog(playerid, DIALOG_ORDERVEHICLE);
 	}
 	else
 	{
@@ -130,18 +130,7 @@ CMD:radio(playerid, params[])
 {
 	if (IsPlayerInAnyVehicle(playerid))
 	{
-		new stations[1024];
-		mysql_query("SELECT * FROM `radiostations`");
-		mysql_store_result();
-		while (FetchMySQLRow())
-		{
-			if (strlen(stations))
-			{
-				format(stations, sizeof(stations), "%s\n", stations);
-			}
-			format(stations, sizeof(stations), "%s%s", stations, GetMySQLField("Name"));
-		}
-		ShowPlayerDialog(playerid, DIALOG_RADIO, DIALOG_STYLE_LIST, "Radiosender wählen", stations, "OK", "Abbrechen");
+		ShowDialog(playerid, DIALOG_RADIO);
 		return COMMAND_OK;
 	}
 	else

@@ -9,10 +9,7 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 			{
 				if (ownerUserID == GetPVarInt(playerid, "UserID"))
 				{
-					new options[1024];
-					format(options, sizeof(options), "Betreten");// Item 0
-					format(options, sizeof(options), "%s\nVerkaufen", options);// Item 1
-					ShowPlayerDialog(playerid, DIALOG_HOUSEOPTIONS, DIALOG_STYLE_LIST, "Hausoptionen", options, "OK", "Abbrechen");
+					ShowDialog(playerid, DIALOG_HOUSEOPTIONS);
 				}
 				else
 				{
@@ -27,8 +24,7 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 				new Float:price = floatstr(GetMySQLValue("houses", "Price", "PickupID", val2str(pickupid)));
 				if (price <= GetPVarFloat(playerid, "Money"))
 				{
-					format(string, sizeof(string), "Dieses Haus kann noch gekauft werden.\n\nPreis: %s", FormatNumber(price, 2, '.', ','));
-					ShowPlayerDialog(playerid, DIALOG_BUYHOUSE, DIALOG_STYLE_MSGBOX, "Haus kaufen", string, "Kaufen", "Abbrechen");
+					ShowDialog(playerid, DIALOG_BUYHOUSE, FormatNumber(price, 2, '.', ','));
 				}
 				else
 				{
@@ -47,9 +43,7 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 			new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel], vehicles[vehicleID][vehicles_currentFuel]);
 			if (maximum > 0)
 			{
-				new string[256];
-				format(string, sizeof(string), "Wie viel möchtest du tanken (0 - %s)?", FormatNumber(maximum, 2, 0, '.'));
-				ShowPlayerDialog(playerid, DIALOG_REFUEL, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", "Abbrechen");
+				ShowDialog(playerid, DIALOG_REFUEL, FormatNumber(maximum, 2, 0, '.'));
 			}
 			else
 			{

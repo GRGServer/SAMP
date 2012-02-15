@@ -34,11 +34,11 @@ public OnPlayerConnect(playerid)
 		mysql_store_result();
 		if (strval(GetMySQLField("UserID")))
 		{
-			ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Login", "Bitte gebe das Passwort von deinen Account ein.", "OK", "Abbrechen");
+			ShowDialog(playerid, DIALOG_LOGIN);
 		}
 		else
 		{
-			ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, "Registrieren", "Du bist noch nicht registriert!\nBitte gebe ein neues Passwort für deinen Account ein.", "OK", "Abbrechen");
+			ShowDialog(playerid, DIALOG_REGISTER_STEP1);
 		}
 		mysql_free_result();
 		new string[256];

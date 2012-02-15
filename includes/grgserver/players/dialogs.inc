@@ -97,7 +97,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					else
 					{
-						ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Login", "Das angegebene Passwort ist falsch!\nBtte versuche es erneut.", "OK", "Abbrechen");
+						SendClientMessage(playerid, COLOR_ERROR, "Das angegebene Passwort ist falsch! Btte versuche es erneut.");
+						ShowDialog(playerid, DIALOG_LOGIN);
 					}
 					mysql_free_result();
 					if (GetPVarInt(playerid, "UserID"))
@@ -112,7 +113,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, "Login", "Kein Passwort eingegeben!\nBitte versuche es erneut.", "OK", "Abbrechen");
+					SendClientMessage(playerid, COLOR_ERROR, "Kein Passwort eingegeben! Bitte versuche es erneut.");
+					ShowDialog(playerid, DIALOG_LOGIN);
 				}
 			}
 			else
@@ -183,11 +185,34 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				timer_refuelVehicle(playerid, amount);
 			}
 		}
-		case DIALOG_REGISTER:
+		case DIALOG_REGISTER_STEP1:
 		{
 			if (response)
 			{
 				if (strlen(inputtext) >= REGISTER_MINPASSWORD && strlen(inputtext) <= REGISTER_MAXPASSWORD)
+				{
+					SetPVarString(playerid, "RegisterPassword", inputtext);
+					ShowDialog(playerid, DIALOG_REGISTER_STEP2);
+				}
+				else
+				{
+					new string[256];
+					format(string, sizeof(string), "Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_MINPASSWORD, REGISTER_MAXPASSWORD);
+					SendClientMessage(playerid, COLOR_ERROR, string);
+					ShowDialog(playerid, DIALOG_REGISTER_STEP1);
+				}
+			}
+			else
+			{
+				SendClientMessage(playerid, COLOR_INFO, "Du kannst nun das Spiel beenden!");
+				Kick(playerid);
+			}
+		}
+		case DIALOG_REGISTER_STEP2:
+		{
+			if (response)
+			{
+				if (!strcmp(inputtext, GetPVarStringEx(playerid, "RegisterPassword")))
 				{
 					new query[256];
 					new playerName[MAX_PLAYER_NAME];
@@ -205,15 +230,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					new string[256];
-					format(string, sizeof(string), "Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_MINPASSWORD, REGISTER_MAXPASSWORD);
-					ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, "Registrieren", string, "OK", "Abbrechen");
+					SendClientMessage(playerid, COLOR_ERROR, "Die eingegebenen Passwörter stimmen nicht überein! Bitte versuche es erneut.");
+					ShowDialog(playerid, DIALOG_REGISTER_STEP1);
 				}
 			}
 			else
 			{
-				SendClientMessage(playerid, COLOR_INFO, "Du kannst nun das Spiel beenden!");
-				Kick(playerid);
+				ShowDialog(playerid, DIALOG_REGISTER_STEP1);
 			}
 			return true;
 		}
