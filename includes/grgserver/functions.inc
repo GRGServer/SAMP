@@ -399,14 +399,7 @@ stock ShowDialog(playerID, dialogID, ...)
 		case DIALOG_ADDHOUSE:
 		{
 			print("Allocating string buffer...");
-			print("1024 bytes...");
-			new interiors[1024];
-			print("2048 bytes...");
-			new interiors2[2048];
-			print("3072 bytes...");
-			new interiors3[3072];
-			print("4096 bytes...");
-			new interiors4[4096];
+			new interiors[2048];
 			print("Qurying MySQL Server...");
 			mysql_query("SELECT * FROM `interiors`");
 			print("Storing result...");
