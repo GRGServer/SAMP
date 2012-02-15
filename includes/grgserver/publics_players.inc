@@ -198,8 +198,8 @@ public OnPlayerRequestClass(playerid, classid)
 public OnPlayerSpawn(playerid)
 {
 	SetPlayerPos(playerid, floatstr(GetUserDBValue(playerid, "PosX")), floatstr(GetUserDBValue(playerid, "PosY")), floatstr(GetUserDBValue(playerid, "PosZ")));
-	//SetPlayerFacingAngle(playerid, floatstr(GetUserDBValue(playerid, "Angle")));
-	//SetPlayerInterior(playerid, strval(GetUserDBValue(playerid, "Interior")));
+	SetPlayerFacingAngle(playerid, floatstr(GetUserDBValue(playerid, "Angle")));
+	SetPlayerInterior(playerid, strval(GetUserDBValue(playerid, "Interior")));
 	return true;
 }
 
