@@ -18,8 +18,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					else
 					{
-						printf("DIALOG_ADDHOUSE: %d (%s)", listitem, inputtext);
-						/*
 						new string[256];
 						new query[256];
 						new name[256];
@@ -32,15 +30,15 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new pickupID = AddPickup("HOUSE", posX, posY, posZ, true);
 						if (pickupID > 0)
 						{
-							format(query, sizeof(query), "INSERT INTO `houses` (`PickupID`, `Name`, `Price`) VALUES ('%d', '%s', '%f')", pickupID, name, price);
+							format(query, sizeof(query), "INSERT INTO `houses` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%s', '%s', '%f')", pickupID, GetMySQLValue("interiors", "ID", "Name", inputtext), name, price);
 							mysql_query(query);
-							format(string, sizeof(string), "Das Haus %s wurde mit dem Preis %s unter der ID %d gespeichert", name, FormatNumber(price, 2, '.', ','), mysql_insert_id());
+							format(string, sizeof(string), "Das Haus %s (Preis: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", name, FormatNumber(price, 2, '.', ','), inputtext, mysql_insert_id());
 							SendClientMessage(playerid, COLOR_INFO, string);
 						}
 						else
 						{
 							SendClientMessage(playerid, COLOR_ERROR, "Fehler beim Erstellen des Pickups!");
-						}*/
+						}
 					}
 				}
 			}
