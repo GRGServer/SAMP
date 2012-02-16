@@ -56,6 +56,22 @@ CMD:cmds(playerid, params[])
 	}
 }
 
+CMD:exit(playerid, params[])
+{ 
+	new IsInInterior = GetPVarInt(playerid, "Interior");
+	if(IsInInterior >= 0)
+	{
+		mysql_query("SELECT * FROM `pickups`");
+		mysql_store_result();
+		new Float: PosX = GetPVarFloat(playerid, "PosX");
+		new Float: PosY = GetPVarFloat(playerid, "PosY");
+		new Float: PosZ = GetPVarFloat(playerid, "PosZ");
+		SetPlayerPos(playerid, PosX, PosY, PosZ);
+		SetPlayerInterior(playerid, 0);
+		SetPlayerVirtualWorld(playerid, 0);
+	}
+}
+
 CMD:help(playerid, params[])
 {
 	SendClientMessage(playerid, COLOR_INFO, "Verwende /cmds um eine Liste an Befehlen zu sehen.");
@@ -114,7 +130,7 @@ CMD:motor(playerid, params[])
 
 CMD:ordervehicle(playerid, params[])
 {
-	new JobID = GetPVarInt(playerid, "UserID");
+	new JobID = GetPVarInt(playerid, "JobID");
 	if(JobID == 1)
 	{
 		ShowDialog(playerid, DIALOG_ORDERVEHICLE);
