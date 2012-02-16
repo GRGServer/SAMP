@@ -400,9 +400,7 @@ stock ShowDialog(playerID, dialogID, ...)
 		{
 			new interiors[2048];
 			new query[256];
-			new startID;
-			print(val2str(getarg(2)));
-			format(query, sizeof(query), "SELECT * FROM `interiors` LIMIT %d,75", startID);
+			format(query, sizeof(query), "SELECT * FROM `interiors` LIMIT %d,75", getarg(2));
 			mysql_query(query);
 			mysql_store_result();
 			while (FetchMySQLRow())
@@ -412,6 +410,14 @@ stock ShowDialog(playerID, dialogID, ...)
 					format(interiors, sizeof(interiors), "%s\n", interiors);
 				}
 				format(interiors, sizeof(interiors), "%s%s", interiors, GetMySQLField("Name"));
+			}
+			if (getarg(2))
+			{
+				format(interiors, sizeof(interiors), "%s\nZurück", interiors);
+			}
+			else
+			{
+				format(interiors, sizeof(interiors), "%s\nWeiter", interiors);
 			}
 			ShowPlayerDialog(playerID, DIALOG_ADDHOUSE, DIALOG_STYLE_LIST, "Ziel auswählen", interiors, "OK", "Abbrechen");
 		}
