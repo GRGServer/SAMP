@@ -398,24 +398,20 @@ stock ShowDialog(playerID, dialogID, ...)
 	{
 		case DIALOG_ADDHOUSE:
 		{
-			print("Allocating string buffer...");
 			new interiors[2048];
-			print("Qurying MySQL Server...");
-			mysql_query("SELECT * FROM `interiors`");
-			print("Storing result...");
+			new query[256];
+			new startID;
+			print(val2str(getarg(2)));
+			format(query, sizeof(query), "SELECT * FROM `interiors` LIMIT %d,75", startID);
+			mysql_query(query);
 			mysql_store_result();
-			print("Fetching row...");
 			while (FetchMySQLRow())
 			{
-				print("Row fetched");
 				if (strlen(interiors))
 				{
-					print("Not first row");
 					format(interiors, sizeof(interiors), "%s\n", interiors);
 				}
-				print("Add to variable");
 				format(interiors, sizeof(interiors), "%s%s", interiors, GetMySQLField("Name"));
-				print(interiors);
 			}
 			ShowPlayerDialog(playerID, DIALOG_ADDHOUSE, DIALOG_STYLE_LIST, "Ziel auswählen", interiors, "OK", "Abbrechen");
 		}

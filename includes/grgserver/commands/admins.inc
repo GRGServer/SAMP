@@ -11,7 +11,7 @@ ACMD:addhouse(playerid, params[])
 		}
 		SetPVarString(playerid, "AddHouse_Name", name);
 		SetPVarFloat(playerid, "AddHouse_Price", price);
-		ShowDialog(playerid, DIALOG_ADDHOUSE);
+		ShowDialog(playerid, DIALOG_ADDHOUSE, 123);
 		return COMMAND_OK;
 	}
 	else
