@@ -2,6 +2,32 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 {
 	switch (pickups[pickupid][pickups_type])
 	{
+		case PICKUPTYPE_HOUSEBOUGHT:
+		{
+			mysql_query("SELECT * FROM `pickups`");
+			mysql_store_result();
+			while (FetchMySQLRow())
+			{
+				new Float:PosX = floatstr(GetMySQLField("PosX"));
+				new Float:PosY = floatstr(GetMySQLField("PosY"));
+				new Float:PosZ = floatstr(GetMySQLField("PosZ"));
+				SetPlayerPos(playerid,PosX,PosY,PosZ);
+			}
+			mysql_query("SELECT * FROM `interiors`");
+			mysql_store_result();
+			while (FetchMySQLRow())
+			{
+				new interior = strval(GetMySQLField("Interior"));
+				SetPlayerInterior(playerid, interior);
+			}
+			mysql_query("SELECT * FROM `houses`");
+			mysql_store_result();
+			while (FetchMySQLRow())
+			{
+				new houseID = strval(GetMySQLField("ID"));
+				SetPlayerVirtualWorld(playerid, houseID);
+			}
+		}
 		case PICKUPTYPE_HOUSE:
 		{
 			new ownerUserID = strval(GetMySQLValue("houses", "OwnerUserID", "PickupID", val2str(pickupid)));
