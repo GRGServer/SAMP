@@ -110,6 +110,24 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 0:// Enter
 					{
 						SendClientMessage(playerid, COLOR_SYSTEM, "Haus betreten");
+						mysql_query("SELECT * FROM `interiors`");
+						mysql_store_result();
+						while (FetchMySQLRow())
+						{
+							new Float:PosX = floatstr(GetMySQLField("PosX"));
+							new Float:PosY = floatstr(GetMySQLField("PosY"));
+							new Float:PosZ = floatstr(GetMySQLField("PosZ"));
+							new interior = strval(GetMySQLField("Interior"));
+							SetPlayerPos(playerid,PosX,PosY,PosZ);
+							SetPlayerInterior(playerid, interior);
+						}
+						mysql_query("SELECT * FROM `houses`");
+						mysql_store_result();
+						while (FetchMySQLRow())
+						{
+							new houseID = strval(GetMySQLField("ID"));
+							SetPlayerVirtualWorld(playerid, houseID);
+						}
 					}
 					case 1:// Sell
 					{
