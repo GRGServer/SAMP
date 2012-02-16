@@ -412,6 +412,7 @@ stock ShowDialog(playerID, dialogID, ...)
 				page = 1;
 			}
 			format(query, sizeof(query), "SELECT * FROM `interiors` LIMIT %d,75", startID);
+			printf("Query for page %d: %s", page, query);
 			mysql_query(query);
 			mysql_store_result();
 			while (FetchMySQLRow())
