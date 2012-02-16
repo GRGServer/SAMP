@@ -21,7 +21,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new string[256];
 						new query[256];
 						new name[256];
-						new Float:price;
+						new Float:price = GetPVarFloat(playerid, "AddHouse_Price");
 						new Float:posX;
 						new Float:posY;
 						new Float:posZ;

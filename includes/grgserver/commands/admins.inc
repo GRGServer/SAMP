@@ -4,13 +4,13 @@ ACMD:addhouse(playerid, params[])
 	new Float:price;
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
 	{
-		if (sscanf(params, "s", name))
+		if (sscanf(params, "sf", name, price))
 		{
 			CmdUsageMsg(playerid, "addhouse", "Name", "Preis");
 			return COMMAND_USAGE;
 		}
 		SetPVarString(playerid, "AddHouse_Name", name);
-		// SetPVarFloat(playerid, "AddHouse_Price", price);
+		SetPVarFloat(playerid, "AddHouse_Price", price);
 		ShowDialog(playerid, DIALOG_ADDHOUSE, 0);
 		return COMMAND_OK;
 	}
