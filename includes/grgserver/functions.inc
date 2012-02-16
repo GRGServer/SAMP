@@ -399,8 +399,19 @@ stock ShowDialog(playerID, dialogID, ...)
 		case DIALOG_ADDHOUSE:
 		{
 			new interiors[2048];
+			new string[256];
 			new query[256];
-			format(query, sizeof(query), "SELECT * FROM `interiors` LIMIT %d,75", getarg(2));
+			new startID = getarg(2);
+			new page;
+			if (startID)
+			{
+				page = 2;
+			}
+			else
+			{
+				page = 1;
+			}
+			format(query, sizeof(query), "SELECT * FROM `interiors` LIMIT %d,75", startID);
 			mysql_query(query);
 			mysql_store_result();
 			while (FetchMySQLRow())
@@ -411,15 +422,19 @@ stock ShowDialog(playerID, dialogID, ...)
 				}
 				format(interiors, sizeof(interiors), "%s%s", interiors, GetMySQLField("Name"));
 			}
-			if (getarg(2))
+			switch (page)
 			{
-				format(interiors, sizeof(interiors), "%s\nZurück", interiors);
+				case 1:
+				{
+					format(interiors, sizeof(interiors), "%s\nWeiter", interiors);
+				}
+				case 2:
+				{
+					format(interiors, sizeof(interiors), "%s\nZurück", interiors);
+				}
 			}
-			else
-			{
-				format(interiors, sizeof(interiors), "%s\nWeiter", interiors);
-			}
-			ShowPlayerDialog(playerID, DIALOG_ADDHOUSE, DIALOG_STYLE_LIST, "Ziel auswählen", interiors, "OK", "Abbrechen");
+			format(string, sizeof(string), "Ziel auswählen (Seite %d)", page);
+			ShowPlayerDialog(playerID, DIALOG_ADDHOUSE, DIALOG_STYLE_LIST, string, interiors, "OK", "Abbrechen");
 		}
 		case DIALOG_BUYHOUSE:
 		{
