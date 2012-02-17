@@ -37,15 +37,15 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 		{
 			mysql_query("SELECT * FROM `interiors`");
 			mysql_store_result();
-			while (FetchMySQLRow())
-			{
-				new Float:PosX = floatstr(GetMySQLField("PosX"));
-				new Float:PosY = floatstr(GetMySQLField("PosY"));
-				new Float:PosZ = floatstr(GetMySQLField("PosZ"));
-				new interior = strval(GetMySQLField("Interior"));
-				SetPlayerPos(playerid,PosX,PosY,PosZ);
-				SetPlayerInterior(playerid, interior);
-			}
+			new Float:PosX = floatstr(GetMySQLField("PosX"));
+			new Float:PosY = floatstr(GetMySQLField("PosY"));
+			new Float:PosZ = floatstr(GetMySQLField("PosZ"));
+			new Float:Angle = floatstr(GetMySQLField("Angle"));
+			new Interior = strval(GetMySQLField("Interior"));
+			printf("Player Set to: PosX = %f, PosY = %f, PosZ = %f, Angle = %f, InteriorID = %d" ,PosX,PosY,PosZ,Angle,Interior);
+			SetPlayerPos(playerid, PosX, PosY, PosZ);
+			SetPlayerFacingAngle(playerid, Angle);
+			SetPlayerInterior(playerid, Interior);
 			mysql_query("SELECT * FROM `banks`");
 			mysql_store_result();
 			while (FetchMySQLRow())

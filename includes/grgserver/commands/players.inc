@@ -58,14 +58,16 @@ CMD:cmds(playerid, params[])
 
 CMD:exit(playerid, params[])
 { 
-	new IsInInterior = GetPVarInt(playerid, "Interior");
+	mysql_query("SELECT * FROM `houses`");
+	mysql_store_result();
+	new IsInInterior = strval(GetMySQLField("Interior"));
 	if(IsInInterior >= 0)
 	{
 		mysql_query("SELECT * FROM `pickups`");
 		mysql_store_result();
-		new Float: PosX = GetPVarFloat(playerid, "PosX");
-		new Float: PosY = GetPVarFloat(playerid, "PosY");
-		new Float: PosZ = GetPVarFloat(playerid, "PosZ");
+		new Float:PosX = floatstr(GetMySQLField("PosX"));
+		new Float:PosY = floatstr(GetMySQLField("PosY"));
+		new Float:PosZ = floatstr(GetMySQLField("PosZ"));
 		SetPlayerPos(playerid, PosX, PosY, PosZ);
 		SetPlayerInterior(playerid, 0);
 		SetPlayerVirtualWorld(playerid, 0);
