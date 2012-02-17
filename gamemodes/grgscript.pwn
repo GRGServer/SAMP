@@ -33,3 +33,5 @@
 #include <grgserver/commands/admins>// Admin commands like /addpickup
 #include <grgserver/commands/npcs>// NPC commands like /npccmd
 #include <grgserver/commands/players>// Player commands like /radio
+
+main(){}
