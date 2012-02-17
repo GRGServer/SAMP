@@ -2,6 +2,36 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
 	{
+		case DIALOG_SHOWINTERIOR:
+		{
+			if(response)
+			{
+				if(!strcmp(inputtext, "Zurück", true))
+				{
+					ShowDialog(playerid, DIALOG_SHOWINTERIOR, 0);
+				}
+				else
+				{
+					if(!strcmp(inputtext, "Weiter", true))
+					{
+						ShowDialog(playerid, DIALOG_SHOWINTERIOR, 75);
+					}
+					else
+					{
+						mysql_query("SELECT * FROM `interiors`");
+						mysql_store_result();
+						new Float:PosX = floatstr(GetMySQLField("PosX"));
+						new Float:PosY = floatstr(GetMySQLField("PosX"));
+						new Float:PosZ = floatstr(GetMySQLField("PosX"));
+						new Float:Angle = floatstr(GetMySQLField("Angle"));
+						new Interior = strval(GetMySQLField("Interior"));
+						SetPlayerPos(playerid, PosX, PosY, PosZ);
+						SetPlayerFacingAngle(playerid, Angle);
+						SetPlayerInterior(playerid, Interior);
+					}
+				}
+			}
+		}
 		case DIALOG_ADDHOUSE:
 		{
 			if (response)

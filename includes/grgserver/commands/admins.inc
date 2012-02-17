@@ -20,6 +20,12 @@ ACMD:addhouse(playerid, params[])
 	}
 }
 
+ACMD:showinterior(playerid, params[])
+{
+	ShowDialog(playerid, DIALOG_SHOWINTERIOR, 0);
+	return COMMAND_OK;
+}
+
 ACMD:addpickup(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
