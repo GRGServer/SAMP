@@ -1,6 +1,28 @@
 public OnGameModeInit()
 {
 	new gameModeTextString[256];
+	new File:svnRevisionFile;
+	new oldSvnRevision[256];
+	print("Checking SVN stuff...");
+	if (fexist("svn_revision"))
+	{
+		svnRevisionFile = fopen("svn_revision", io_read);
+		if (svnRevisionFile)
+		{
+			fread(svnRevisionFile, oldSvnRevision, sizeof(oldSvnRevision));
+			fclose(svnRevisionFile);
+		}
+	}
+	if (strval(oldSvnRevision) != COMPILER_SVN_REVISION)
+	{
+		svnRevisionChanged = true;
+		svnRevisionFile = fopen("svn_revision", io_write);
+		if (svnRevisionFile)
+		{
+			fwrite(svnRevisionFile, val2str(COMPILER_SVN_REVISION));
+			fclose(svnRevisionFile);
+		}
+	}
 	format(gameModeTextString, sizeof(gameModeTextString), "GRG Server r%d", COMPILER_SVN_REVISION);
 	print("Connecting to MySQL server...");
 	new MySQL:mysqlConnection = mysql_init(LOG_ONLY_ERRORS, true);
@@ -72,27 +94,6 @@ public OnGameModeInit()
 	TextDrawFont(textDrawClock, 3);
 	print("Doing misc stuff...");
 	SetGameModeText(gameModeTextString);
-	new File:svnRevisionFile;
-	new oldSvnRevision[256];
-	if (fexist("svn_revision"))
-	{
-		svnRevisionFile = fopen("svn_revision", io_read);
-		if (svnRevisionFile)
-		{
-			fread(svnRevisionFile, oldSvnRevision, sizeof(oldSvnRevision));
-			fclose(svnRevisionFile);
-		}
-	}
-	if (strval(oldSvnRevision) != COMPILER_SVN_REVISION)
-	{
-		svnRevisionChanged = true;
-		svnRevisionFile = fopen("svn_revision", io_write);
-		if (svnRevisionFile)
-		{
-			fwrite(svnRevisionFile, val2str(COMPILER_SVN_REVISION));
-			fclose(svnRevisionFile);
-		}
-	}
 	DisableInteriorEnterExits();
 	UpdateGasPrice();
 	print("Gamemode loading complete");
