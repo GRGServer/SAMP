@@ -50,7 +50,7 @@ public OnGameModeInit()
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		if (AddPickup(GetMySQLField("Type"), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), false) == -1)
+		if (AddPickup(strval(GetMySQLField("ID")), GetMySQLField("Type"), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), false) == -1)
 		{
 			printf("Invalid pickup type: %s", GetMySQLField("Type"));
 		}

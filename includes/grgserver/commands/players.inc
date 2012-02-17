@@ -57,20 +57,31 @@ CMD:cmds(playerid, params[])
 }
 
 CMD:exit(playerid, params[])
-{ 
-	mysql_query("SELECT * FROM `houses`");
-	mysql_store_result();
-	new IsInInterior = strval(GetMySQLField("Interior"));
-	if(IsInInterior >= 0)
+{
+	new query[256];
+	new currentBankID = GetPVarInt(playerid, "CurrentBankID");
+	new currentHouseID = GetPVarInt(playerid, "CurrentHouseID");
+	if (currentBankID || currentHouseID)
 	{
-		mysql_query("SELECT * FROM `pickups`");
+		if (currentBankID)
+		{
+			format(query, sizeof(query), "SELECT * FROM `banks` WHERE `ID` = '%d'", currentBankID);
+		}
+		if (currentHouseID)
+		{
+			format(query, sizeof(query), "SELECT * FROM `houses` WHERE `ID` = '%d'", currentHouseID);
+		}
+		mysql_query(query);
 		mysql_store_result();
-		new Float:PosX = floatstr(GetMySQLField("PosX"));
-		new Float:PosY = floatstr(GetMySQLField("PosY"));
-		new Float:PosZ = floatstr(GetMySQLField("PosZ"));
-		SetPlayerPos(playerid, PosX, PosY, PosZ);
+		SetPlayerPos(playerid, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")));
 		SetPlayerInterior(playerid, 0);
 		SetPlayerVirtualWorld(playerid, 0);
+		return COMMAND_OK;
+	}
+	else
+	{
+		SendClientMessage(playerid, COLOR_ERROR, "Du bist in keinem Haus!");
+		return COMMAND_ERROR;
 	}
 }
 
@@ -133,7 +144,7 @@ CMD:motor(playerid, params[])
 CMD:ordervehicle(playerid, params[])
 {
 	new JobID = GetPVarInt(playerid, "JobID");
-	if(JobID == 1)
+	if (JobID == JOB_VEHICLEDEALER)
 	{
 		ShowDialog(playerid, DIALOG_ORDERVEHICLE);
 	}

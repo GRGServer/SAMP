@@ -1,11 +1,11 @@
-stock GetPlayerNameEx(playerID)
+GetPlayerNameEx(playerID)
 {
 	new playerName[MAX_PLAYER_NAME];
 	GetPlayerName(playerID, playerName, sizeof(playerName));
 	return playerName;
 }
 
-stock GetPlayerID(playerName[])
+GetPlayerID(playerName[])
 {
 	for (new playerID; playerID < MAX_PLAYERS; playerID++)
 	{
@@ -20,39 +20,39 @@ stock GetPlayerID(playerName[])
 	return INVALID_PLAYER_ID;
 }
 
-stock IsLoggedIn(playerID)
+IsLoggedIn(playerID)
 {
 	return (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && GetPVarInt(playerID, "UserID"));
 }
 
-stock GetPVarStringEx(playerID, name[])
+GetPVarStringEx(playerID, name[])
 {
 	new string[256];
 	GetPVarString(playerID, name, string, sizeof(string));
 	return string;
 }
 
-stock FetchMySQLRow()
+FetchMySQLRow()
 {
 	new Line[1024];
 	return mysql_fetch_row(Line);
 }
 
-stock GetMySQLField(field[])
+GetMySQLField(field[])
 {
 	new value[256];
 	mysql_fetch_field(field, value);
 	return value;
 }
 
-stock MySQLEscapeString(string[])
+MySQLEscapeString(string[])
 {
 	new escapedString[256];
 	mysql_real_escape_string(string, escapedString);
 	return escapedString;
 }
 
-stock GetMySQLValue(table[], field[], checkColumn[], checkValue[], whereOperator[] = "=")
+GetMySQLValue(table[], field[], checkColumn[], checkValue[], whereOperator[] = "=")
 {
 	new query[256];
 	new string[256];
@@ -64,14 +64,14 @@ stock GetMySQLValue(table[], field[], checkColumn[], checkValue[], whereOperator
 	return string;
 }
 
-stock SetMySQLValue(table[], field[], value[], checkColumn[], checkValue[])
+SetMySQLValue(table[], field[], value[], checkColumn[], checkValue[])
 {
 	new query[1024];
 	format(query, sizeof(query), "UPDATE `%s` SET `%s` = '%s' WHERE `%s` = '%s'", MySQLEscapeString(table), MySQLEscapeString(field), MySQLEscapeString(value), MySQLEscapeString(checkColumn), MySQLEscapeString(checkValue));
 	mysql_query(query);
 }
 
-stock SavePlayerValue(playerID, fieldName[])
+SavePlayerValue(playerID, fieldName[])
 {
 	new value[256];
 	switch (GetPVarType(playerID, fieldName))
@@ -88,7 +88,7 @@ stock SavePlayerValue(playerID, fieldName[])
 	SetUserDBValue(playerID, fieldName, value);
 }
 
-stock LoadPlayerValue(playerID, fieldName[], pVarType)
+LoadPlayerValue(playerID, fieldName[], pVarType)
 {
 	switch (pVarType)
 	{
@@ -101,7 +101,7 @@ stock LoadPlayerValue(playerID, fieldName[], pVarType)
 	}
 }
 
-stock SavePlayer(playerID)
+SavePlayer(playerID)
 {
 	if (IsLoggedIn(playerID))
 	{
@@ -122,7 +122,7 @@ stock SavePlayer(playerID)
 	}
 }
 
-stock LoadPlayer(playerID)
+LoadPlayer(playerID)
 {
 	LoadPlayerValue(playerID, "Level", PLAYER_VARTYPE_INT);
 	LoadPlayerValue(playerID, "AdminLevel", PLAYER_VARTYPE_INT);
@@ -132,21 +132,21 @@ stock LoadPlayer(playerID)
 	SetPlayerSkin(playerID, GetPVarInt(playerID, "Skin"));
 }
 
-stock SetPlayerMoney(playerID, Float:amount)
+SetPlayerMoney(playerID, Float:amount)
 {
 	SetPVarFloat(playerID, "Money", amount);
 	ResetPlayerMoney(playerID);
 	GivePlayerMoney(playerID, floatround(amount, floatround_tozero) * 100);
 }
 
-stock GivePlayerMoneyEx(playerID, Float:amount)
+GivePlayerMoneyEx(playerID, Float:amount)
 {
 	SetPVarFloat(playerID, "Money", floatadd(GetPVarFloat(playerID, "Money"), amount));
 	ResetPlayerMoney(playerID);
 	GivePlayerMoney(playerID, floatround(GetPVarFloat(playerID, "Money"), floatround_tozero) * 100);
 }
 
-stock SendClientMessageToAllExcept(exceptPlayerID, color, message[])
+SendClientMessageToAllExcept(exceptPlayerID, color, message[])
 {
 	for (new playerID; playerID < MAX_PLAYERS; playerID++)
 	{
@@ -157,7 +157,7 @@ stock SendClientMessageToAllExcept(exceptPlayerID, color, message[])
 	}
 }
 
-stock IsValidSkin(skinID)
+IsValidSkin(skinID)
 {
 	if (skinID >= 0 && skinID <= 298)
 	{
@@ -171,12 +171,12 @@ stock IsValidSkin(skinID)
 	return false;
 }
 
-stock IsAdmin(playerID, adminLevel)
+IsAdmin(playerID, adminLevel)
 {
 	return GetPVarInt(playerID, "AdminLevel") >= adminLevel;
 }
 
-stock TeleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, virtualWorld)
+TeleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, virtualWorld)
 {
 	switch (GetPlayerState(playerID))
 	{
@@ -200,7 +200,7 @@ stock TeleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, inte
 	return false;
 }
 
-stock AdminTeleport(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, virtualWorld, adminLevel)
+AdminTeleport(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, virtualWorld, adminLevel)
 {
 	if (IsAdmin(playerID, adminLevel))
 	{
@@ -220,19 +220,19 @@ stock AdminTeleport(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, i
 	}
 }
 
-stock StartNPCPlayback(npcPlayerID, recordingName[], recordingType, autoRepeat)
+StartNPCPlayback(npcPlayerID, recordingName[], recordingType, autoRepeat)
 {
 	new string[256];
 	format(string, sizeof(string), "%s %d %d", recordingName, recordingType, autoRepeat);
 	SendClientMessage(npcPlayerID, COLOR_NPCCOMMAND, string);
 }
 
-stock SendNPCCommand(npcPlayerID, command[])
+SendNPCCommand(npcPlayerID, command[])
 {
 	SendClientMessage(npcPlayerID, COLOR_NPCCOMMAND, command);
 }
 
-stock AddNPCRecorderPlayback(playerID, recordingName[], recordingType)
+AddNPCRecorderPlayback(playerID, recordingName[], recordingType)
 {
 	new npcPlayerName[MAX_PLAYER_NAME];
 	format(npcPlayerName, sizeof(npcPlayerName), "%s_NPC1", GetPlayerNameEx(playerID));
@@ -260,14 +260,14 @@ stock AddNPCRecorderPlayback(playerID, recordingName[], recordingType)
 	return false;
 }
 
-stock WriteChatToDatabase(playerID, text[])
+WriteChatToDatabase(playerID, text[])
 {
 	new query[512];
 	format(query, sizeof(query), "INSERT INTO `chatlog` (`UserID`, `Time`, `Text`) VALUES('%d', NOW(), '%s')", GetPVarInt(playerID, "UserID"), MySQLEscapeString(text));
 	mysql_query(query);
 }
 
-stock GetVehicleEngineState(vehicleID)
+GetVehicleEngineState(vehicleID)
 {
 	new engine;
 	new lights;
@@ -280,7 +280,7 @@ stock GetVehicleEngineState(vehicleID)
 	return engine;
 }
 
-stock SetVehicleEngineState(vehicleID, newState)
+SetVehicleEngineState(vehicleID, newState)
 {
 	new engine;
 	new lights;
@@ -296,7 +296,7 @@ stock SetVehicleEngineState(vehicleID, newState)
 	}
 }
 
-stock SaveVehicle(vehicleID, interior)
+SaveVehicle(vehicleID, interior)
 {
 	if (vehicles[vehicleID][vehicles_saveID])
 	{
@@ -319,7 +319,7 @@ stock SaveVehicle(vehicleID, interior)
 	}
 }
 
-stock AddPickup(type[], Float:posX, Float:posY, Float:posZ, saveToDB)
+AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 {
 	new pickupTypeID = -1;
 	new modelID;
@@ -356,16 +356,18 @@ stock AddPickup(type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 			new query[256];
 			format(query, sizeof(query), "INSERT INTO `pickups` (`PosX`, `PosY`, `PosZ`, `Type`) VALUES('%f', '%f', '%f', '%s')", posX, posY, posZ, type);
 			mysql_query(query);
-			return mysql_insert_id();
+			pickups[pickup][pickups_id] = mysql_insert_id();
+			return pickups[pickup][pickups_id];
 		}
 		else
 		{
+			pickups[pickup][pickups_id] = pickupID;
 			return -2;
 		}
 	}
 }
 
-stock PlayRadioStation(playerID, id)
+PlayRadioStation(playerID, id)
 {
 	if (id)
 	{
@@ -386,13 +388,29 @@ stock PlayRadioStation(playerID, id)
 	}
 }
 
-stock StopRadioStation(playerID)
+StopRadioStation(playerID)
 {
 	StopAudioStreamForPlayer(playerID);
 	TextDrawHideForPlayer(playerID, textDrawRadioStation[playerID]);
 }
 
-stock ShowDialog(playerID, dialogID, ...)
+TeleportToInterior(playerID, interiorID)
+{
+	new query[256];
+	format(query, sizeof(query), "SELECT * FROM `interiors` WHERE `ID` = '%d'", interiorID);
+	mysql_query(query);
+	mysql_store_result();
+	if (strval(GetMySQLField("ID")))
+	{
+		SetPlayerPos(playerID, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")));
+		SetPlayerFacingAngle(playerID, floatstr(GetMySQLField("Angle")));
+		SetPlayerInterior(playerID, strval(GetMySQLField("Interior")));
+		return true;
+	}
+	return false;
+}
+
+ShowDialog(playerID, dialogID, ...)
 {
 	switch (dialogID)
 	{
@@ -403,7 +421,7 @@ stock ShowDialog(playerID, dialogID, ...)
 			new query[256];
 			new startID = getarg(2);
 			new page;
-			if(startID)
+			if (startID)
 			{
 				page = 2;
 			}
@@ -414,15 +432,15 @@ stock ShowDialog(playerID, dialogID, ...)
 			format(query, sizeof(query), "SELECT * FROM `interiors` LIMIT %d,75", startID);
 			mysql_query(query);
 			mysql_store_result();
-			while(FetchMySQLRow())
+			while (FetchMySQLRow())
 			{
-				if(strlen(interiors))
+				if (strlen(interiors))
 				{
 					format(interiors, sizeof(interiors), "%s\n", interiors);
 				}
 				format(interiors, sizeof(interiors), "%s%s", interiors, GetMySQLField("Name"));
 			}
-			switch(page)
+			switch (page)
 			{
 				case 1:
 				{
@@ -430,10 +448,10 @@ stock ShowDialog(playerID, dialogID, ...)
 				}
 				case 2:
 				{
-					format(interiors, sizeof(interiors),"%s\nZurück", interiors);
+					format(interiors, sizeof(interiors), "%s\nZurück", interiors);
 				}
 			}
-			format(string,sizeof(string), "Ziel Auswählen (Seite %d)", page);
+			format(string, sizeof(string), "Ziel auswählen (Seite %d)", page);
 			ShowPlayerDialog(playerID, DIALOG_SHOWINTERIOR, DIALOG_STYLE_LIST, string, interiors, "OK", "Abbrechen");
 		}
 		case DIALOG_ADDHOUSE:
@@ -541,12 +559,12 @@ stock ShowDialog(playerID, dialogID, ...)
 	}
 }
 
-stock UpdateGasPrice()
+UpdateGasPrice()
 {
 	gasPrice = float(150 + random(10)) / 100;
 }
 
-stock CmdUsageMsg(playerID, command[], ...)
+CmdUsageMsg(playerID, command[], ...)
 {
 	new string[256];
 	new value[256];

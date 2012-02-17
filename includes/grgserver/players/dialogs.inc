@@ -4,32 +4,24 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 	{
 		case DIALOG_SHOWINTERIOR:
 		{
-			if(response)
+			if (response)
 			{
-				if(!strcmp(inputtext, "Zurück", true))
+				if (!strcmp(inputtext, "Zurück", true))
 				{
 					ShowDialog(playerid, DIALOG_SHOWINTERIOR, 0);
 				}
 				else
 				{
-					if(!strcmp(inputtext, "Weiter", true))
+					if (!strcmp(inputtext, "Weiter", true))
 					{
 						ShowDialog(playerid, DIALOG_SHOWINTERIOR, 75);
 					}
 					else
 					{
-						mysql_query("SELECT * FROM `interiors`");
-						mysql_store_result();
-						new Float:PosX = floatstr(GetMySQLField("PosX"));
-						new Float:PosY = floatstr(GetMySQLField("PosY"));
-						new Float:PosZ = floatstr(GetMySQLField("PosZ"));
-						new Float:Angle = floatstr(GetMySQLField("Angle"));
-						new Interior = strval(GetMySQLField("Interior"));
-						printf("Player Set to: PosX = %f, PosY = %f, PosZ = %f, Angle = %f, InteriorID = %d" ,PosX,PosY,PosZ,Angle,Interior);
-						printf("Player Set to: PosX = %f, PosY = %f, PosZ = %f, Angle = %f, InteriorID = %d" ,PosX,PosY,PosZ,Angle,Interior);
-						SetPlayerPos(playerid, PosX, PosY, PosZ);
-						SetPlayerFacingAngle(playerid, Angle);
-						SetPlayerInterior(playerid, Interior);
+						if (TeleportToInterior(playerid, strval(GetMySQLValue("interiors", "ID", "Name", inputtext))))
+						{
+							SetPlayerVirtualWorld(playerid, 0);
+						}
 					}
 				}
 			}
@@ -59,7 +51,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new Float:posZ;
 						GetPVarString(playerid, "AddHouse_Name", name, sizeof(name));
 						GetPlayerPos(playerid, posX, posY, posZ);
-						new pickupID = AddPickup("HOUSE", posX, posY, posZ, true);
+						new pickupID = AddPickup(-1, "HOUSE", posX, posY, posZ, true);
 						if (pickupID > 0)
 						{
 							format(query, sizeof(query), "INSERT INTO `houses` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%s', '%s', '%f')", pickupID, GetMySQLValue("interiors", "ID", "Name", inputtext), name, price);
@@ -141,24 +133,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0:// Enter
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Haus betreten");
-						mysql_query("SELECT * FROM `interiors`");
-						mysql_store_result();
-						while (FetchMySQLRow())
+						new houseID = GetPVarInt(playerid, "DialogHouseID");
+						new interiorID = strval(GetMySQLValue("houses", "InteriorID", "ID", val2str(houseID)));
+						if (TeleportToInterior(playerid, interiorID))
 						{
-							new Float:PosX = floatstr(GetMySQLField("PosX"));
-							new Float:PosY = floatstr(GetMySQLField("PosY"));
-							new Float:PosZ = floatstr(GetMySQLField("PosZ"));
-							new interior = strval(GetMySQLField("Interior"));
-							SetPlayerPos(playerid,PosX,PosY,PosZ);
-							SetPlayerInterior(playerid, interior);
-						}
-						mysql_query("SELECT * FROM `houses`");
-						mysql_store_result();
-						while (FetchMySQLRow())
-						{
-							new houseID = strval(GetMySQLField("ID"));
-							SetPlayerVirtualWorld(playerid, houseID);
+							SetPlayerVirtualWorld(playerid, VIRTUALWORLD_HOUSE + houseID);
 						}
 					}
 					case 1:// Sell

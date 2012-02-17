@@ -1,5 +1,6 @@
 enum enum_pickups
 {
+	pickups_id,
 	pickups_type
 }
 

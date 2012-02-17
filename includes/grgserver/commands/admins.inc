@@ -20,12 +20,6 @@ ACMD:addhouse(playerid, params[])
 	}
 }
 
-ACMD:showinterior(playerid, params[])
-{
-	ShowDialog(playerid, DIALOG_SHOWINTERIOR, 0);
-	return COMMAND_OK;
-}
-
 ACMD:addpickup(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
@@ -42,7 +36,7 @@ ACMD:addpickup(playerid, params[])
 		}
 		format(type, sizeof(type), "%s", strtoupper(type));
 		GetPlayerPos(playerid, posX, posY, posZ);
-		new id = AddPickup(type, posX, posY, posZ, true);
+		new id = AddPickup(-1, type, posX, posY, posZ, true);
 		if (id > 0)
 		{
 			format(string, sizeof(string), "Das Pickup %s wurde unter der ID %d gespeichert", type, id);
@@ -430,6 +424,19 @@ ACMD:saveveh(playerid, params[])
 		SendClientMessage(playerid, COLOR_ERROR, "Der Preis darf nicht negativ sein!");
 	}
 	return COMMAND_ERROR;
+}
+
+ACMD:showinterior(playerid, params[])
+{
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		ShowDialog(playerid, DIALOG_SHOWINTERIOR, 0);
+		return COMMAND_OK;
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
 }
 
 ACMD:stoprec(playerid, params[])

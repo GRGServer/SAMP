@@ -1,17 +1,18 @@
-public OnPlayerPickUpPickup(playerid,pickupid)
+public OnPlayerPickUpPickup(playerid, pickupid)
 {
 	switch (pickups[pickupid][pickups_type])
 	{
 		case PICKUPTYPE_HOUSE:
 		{
-			new ownerUserID = strval(GetMySQLValue("houses", "OwnerUserID", "PickupID", val2str(pickupid)));
-			// if (ownerUserID)   Crashing Compiler
-			// {
-				// if (ownerUserID == GetPVarInt(playerid, "UserID"))
-				// {
+			new ownerUserID = strval(GetMySQLValue("houses", "OwnerUserID", "PickupID", val2str(pickups[pickupid][pickups_id])));
+			if (ownerUserID)
+			{
+				if (ownerUserID == GetPVarInt(playerid, "UserID"))
+				{
+					SetPVarInt(playerid, "DialogHouseID", strval(GetMySQLValue("houses", "ID", "PickupID", val2str(pickups[pickupid][pickups_id]))));
 					ShowDialog(playerid, DIALOG_HOUSEOPTIONS);
-				// }
-				/* else
+				}
+				else
 				{
 					new string[256];
 					format(string, sizeof(string), "Dieses Haus wurde bereits von %s gekauft.", GetMySQLValue("users", "Username", "UserID", val2str(ownerUserID)));
@@ -21,7 +22,7 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 			else
 			{
 				new string[256];
-				new Float:price = floatstr(GetMySQLValue("houses", "Price", "PickupID", val2str(pickupid)));
+				new Float:price = floatstr(GetMySQLValue("houses", "Price", "PickupID", val2str(pickups[pickupid][pickups_id])));
 				if (price <= GetPVarFloat(playerid, "Money"))
 				{
 					ShowDialog(playerid, DIALOG_BUYHOUSE, FormatNumber(price, 2, '.', ','));
@@ -31,27 +32,15 @@ public OnPlayerPickUpPickup(playerid,pickupid)
 					format(string, sizeof(string), "Du hast nicht genügend Geld, um dieses Haus zu kaufen! Du benötigst mindestens $%s.", FormatNumber(price, 2, '.', ','));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 				}
-			}*/
+			}
 		}
 		case PICKUPTYPE_BANK:
 		{
-			mysql_query("SELECT * FROM `interiors`");
-			mysql_store_result();
-			new Float:PosX = floatstr(GetMySQLField("PosX"));
-			new Float:PosY = floatstr(GetMySQLField("PosY"));
-			new Float:PosZ = floatstr(GetMySQLField("PosZ"));
-			new Float:Angle = floatstr(GetMySQLField("Angle"));
-			new Interior = strval(GetMySQLField("Interior"));
-			printf("Player Set to: PosX = %f, PosY = %f, PosZ = %f, Angle = %f, InteriorID = %d" ,PosX,PosY,PosZ,Angle,Interior);
-			SetPlayerPos(playerid, PosX, PosY, PosZ);
-			SetPlayerFacingAngle(playerid, Angle);
-			SetPlayerInterior(playerid, Interior);
-			mysql_query("SELECT * FROM `banks`");
-			mysql_store_result();
-			while (FetchMySQLRow())
+			new bankID = strval(GetMySQLValue("banks", "ID", "PickupID", val2str(pickups[pickupid][pickups_id])));
+			new interiorID = strval(GetMySQLValue("banks", "InteriorID", "PickupID", val2str(pickups[pickupid][pickups_id])));
+			if (TeleportToInterior(playerid, interiorID))
 			{
-				new bankID = strval(GetMySQLField("ID"));
-				SetPlayerVirtualWorld(playerid, bankID);
+				SetPlayerVirtualWorld(playerid, VIRTUALWORLD_BANK + bankID);
 			}
 		}
 		case PICKUPTYPE_GASSTATION:

@@ -72,3 +72,8 @@
 
 // Vehicle configuration
 #define VEHICLE_MINHEALTH			30
+
+
+// Virtual Worlds (starting IDs)
+#define VIRTUALWORLD_BANK			1000
+#define VIRTUALWORLD_HOUSE			2000
