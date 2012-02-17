@@ -38,14 +38,6 @@ public OnGameModeInit()
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
-	print("Connecting NPCs...");
-	mysql_query("SELECT * FROM `npcs` WHERE `AutoConnect` = '1'");
-	mysql_store_result();
-	while (FetchMySQLRow())
-	{
-		ConnectNPC(GetMySQLField("Name"), "npcplayer");
-	}
-	mysql_free_result();
 	print("Loading vehicle models...");
 	mysql_query("SELECT * FROM `vehiclemodels`");
 	mysql_store_result();
@@ -96,6 +88,14 @@ public OnGameModeInit()
 	SetGameModeText(gameModeTextString);
 	DisableInteriorEnterExits();
 	UpdateGasPrice();
+	print("Connecting NPCs...");
+	mysql_query("SELECT * FROM `npcs` WHERE `AutoConnect` = '1'");
+	mysql_store_result();
+	while (FetchMySQLRow())
+	{
+		ConnectNPC(GetMySQLField("Name"), "npcplayer");
+	}
+	mysql_free_result();
 	print("Gamemode loading complete");
 	return true;
 }
