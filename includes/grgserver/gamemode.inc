@@ -5,6 +5,7 @@ public OnGameModeInit()
 	print("* Loading Gamemode...");
 	printf("    SVN Revision: %d", COMPILER_SVN_REVISION);
 	printf("    Compile date: %s %s", COMPILER_DATE, COMPILER_TIME);
+	printf("    Last committer: %s", COMPILER_SVN_LASTCOMMITTER);
 	print("* Checking SVN stuff...");
 	if (fexist("svn_revision"))
 	{
