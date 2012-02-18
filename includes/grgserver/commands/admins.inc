@@ -426,6 +426,46 @@ ACMD:saveveh(playerid, params[])
 	return COMMAND_ERROR;
 }
 
+ACMD:setexit(playerid, params[])
+{
+	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	{
+		new buildingID;
+		if (sscanf(params, "d", buildingID))
+		{
+			buildingID = GetPVarInt(playerid, "LastAddedHouse");
+		}
+		if (buildingID)
+		{
+			if (strval(GetMySQLValue("buildings", "ID", "ID", val2str(buildingID))))
+			{
+				new query[256];
+				new Float:posX;
+				new Float:posY;
+				new Float:posZ;
+				GetPlayerPos(playerid, posX, posY, posZ);
+				format(query, sizeof(query), "UPDATE `buildings` SET `ExitPosX` = '%f', `ExitPosY` = '%f', `ExitPosZ` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, buildingID);
+				mysql_query(query);
+				return COMMAND_OK;
+			}
+			else
+			{
+				SendClientMessage(playerid, COLOR_ERROR, "Ungültige ID!");
+				return COMMAND_ERROR;
+			}
+		}
+		else
+		{
+			CmdUsageMsg(playerid, "setexit", "[BuildingID]");
+			return COMMAND_USAGE;
+		}
+	}
+	else
+	{
+		return COMMAND_ACCESS_DENIED;
+	}
+}
+
 ACMD:showinterior(playerid, params[])
 {
 	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))

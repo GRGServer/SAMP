@@ -433,18 +433,14 @@ LeaveBuilding(playerID)
 	if (currentBuilderID)
 	{
 		new query[256];
-		format(query, sizeof(query), "SELECT * FROM `pickups` WHERE `ID` = '%d'", strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(currentBuilderID))));
+		format(query, sizeof(query), "SELECT * FROM `building` WHERE `ID` = '%d'", val2str(currentBuilderID));
 		mysql_query(query);
 		mysql_store_result();
-		if (strval(GetMySQLField("ID")))
-		{
-			SetPlayerPos(playerID, floatsub(floatstr(GetMySQLField("PosX")), 1), floatsub(floatstr(GetMySQLField("PosY")), 1), floatstr(GetMySQLField("PosZ")));
-			SetPlayerInterior(playerID, 0);
-			SetPlayerVirtualWorld(playerID, 0);
-			mysql_free_result();
-			return true;
-		}
+		SetPlayerPos(playerID, floatstr(GetMySQLField("ExitPosX")), floatstr(GetMySQLField("ExitPosY")), floatstr(GetMySQLField("ExitPosZ")));
+		SetPlayerInterior(playerID, 0);
+		SetPlayerVirtualWorld(playerID, 0);
 		mysql_free_result();
+		return true;
 	}
 	return false;
 }
