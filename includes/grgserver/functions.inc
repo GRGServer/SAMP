@@ -110,6 +110,7 @@ SavePlayer(playerID)
 		SavePlayerValue(playerID, "AdminLevel");
 		SavePlayerValue(playerID, "Money");
 		SavePlayerValue(playerID, "Skin");
+		SavePlayerValue(playerID, "CurrentBuildingID");
 		new query[256];
 		new Float:posX;
 		new Float:posY;
@@ -128,6 +129,7 @@ LoadPlayer(playerID)
 	LoadPlayerValue(playerID, "AdminLevel", PLAYER_VARTYPE_INT);
 	LoadPlayerValue(playerID, "Money", PLAYER_VARTYPE_FLOAT);
 	LoadPlayerValue(playerID, "Skin", PLAYER_VARTYPE_INT);
+	LoadPlayerValue(playerID, "CurrentBuildingID", PLAYER_VARTYPE_INT);
 	SetPlayerMoney(playerID, GetPVarFloat(playerID, "Money"));
 	SetPlayerSkin(playerID, GetPVarInt(playerID, "Skin"));
 }
@@ -417,6 +419,7 @@ TeleportToBuilding(playerID, buildingID)
 	{
 		if (TeleportToInterior(playerID, interiorID))
 		{
+			SetPVarInt(playerID, "CurrentBuildingID", buildingID);
 			SetPlayerVirtualWorld(playerID, buildingID);
 			return true;
 		}
