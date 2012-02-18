@@ -58,24 +58,8 @@ CMD:cmds(playerid, params[])
 
 CMD:exit(playerid, params[])
 {
-	new query[256];
-	new currentBankID = GetPVarInt(playerid, "CurrentBankID");
-	new currentHouseID = GetPVarInt(playerid, "CurrentHouseID");
-	if (currentBankID || currentHouseID)
+	if (LeaveBuilding(playerid))
 	{
-		if (currentBankID)
-		{
-			format(query, sizeof(query), "SELECT * FROM `banks` WHERE `ID` = '%d'", currentBankID);
-		}
-		if (currentHouseID)
-		{
-			format(query, sizeof(query), "SELECT * FROM `houses` WHERE `ID` = '%d'", currentHouseID);
-		}
-		mysql_query(query);
-		mysql_store_result();
-		SetPlayerPos(playerid, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")));
-		SetPlayerInterior(playerid, 0);
-		SetPlayerVirtualWorld(playerid, 0);
 		return COMMAND_OK;
 	}
 	else

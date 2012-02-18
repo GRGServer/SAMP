@@ -54,7 +54,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new pickupID = AddPickup(-1, "HOUSE", posX, posY, posZ, true);
 						if (pickupID > 0)
 						{
-							format(query, sizeof(query), "INSERT INTO `houses` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%s', '%s', '%f')", pickupID, GetMySQLValue("interiors", "ID", "Name", inputtext), name, price);
+							format(query, sizeof(query), "INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%s', '%s', '%f')", pickupID, GetMySQLValue("interiors", "ID", "Name", inputtext), name, price);
 							mysql_query(query);
 							format(string, sizeof(string), "Das Haus %s (Preis: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", name, FormatNumber(price, 2, '.', ','), inputtext, mysql_insert_id());
 							SendClientMessage(playerid, COLOR_INFO, string);
@@ -133,12 +133,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0:// Enter
 					{
-						new houseID = GetPVarInt(playerid, "DialogHouseID");
-						new interiorID = strval(GetMySQLValue("houses", "InteriorID", "ID", val2str(houseID)));
-						if (TeleportToInterior(playerid, interiorID))
-						{
-							SetPlayerVirtualWorld(playerid, VIRTUALWORLD_HOUSE + houseID);
-						}
+						TeleportToBuilding(playerid, GetPVarInt(playerid, "DialogHouseID"));
 					}
 					case 1:// Sell
 					{

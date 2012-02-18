@@ -4,12 +4,12 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 	{
 		case PICKUPTYPE_HOUSE:
 		{
-			new ownerUserID = strval(GetMySQLValue("houses", "OwnerUserID", "PickupID", val2str(pickups[pickupid][pickups_id])));
+			new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "PickupID", val2str(pickups[pickupid][pickups_id])));
 			if (ownerUserID)
 			{
 				if (ownerUserID == GetPVarInt(playerid, "UserID"))
 				{
-					SetPVarInt(playerid, "DialogHouseID", strval(GetMySQLValue("houses", "ID", "PickupID", val2str(pickups[pickupid][pickups_id]))));
+					SetPVarInt(playerid, "DialogHouseID", strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupid][pickups_id]))));
 					ShowDialog(playerid, DIALOG_HOUSEOPTIONS);
 				}
 				else
@@ -22,7 +22,7 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 			else
 			{
 				new string[256];
-				new Float:price = floatstr(GetMySQLValue("houses", "Price", "PickupID", val2str(pickups[pickupid][pickups_id])));
+				new Float:price = floatstr(GetMySQLValue("buildings", "Price", "PickupID", val2str(pickups[pickupid][pickups_id])));
 				if (price <= GetPVarFloat(playerid, "Money"))
 				{
 					ShowDialog(playerid, DIALOG_BUYHOUSE, FormatNumber(price, 2, '.', ','));
@@ -36,12 +36,7 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 		}
 		case PICKUPTYPE_BANK:
 		{
-			new bankID = strval(GetMySQLValue("banks", "ID", "PickupID", val2str(pickups[pickupid][pickups_id])));
-			new interiorID = strval(GetMySQLValue("banks", "InteriorID", "PickupID", val2str(pickups[pickupid][pickups_id])));
-			if (TeleportToInterior(playerid, interiorID))
-			{
-				SetPlayerVirtualWorld(playerid, VIRTUALWORLD_BANK + bankID);
-			}
+			TeleportToBuilding(playerid, strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupid][pickups_id]))));
 		}
 		case PICKUPTYPE_GASSTATION:
 		{

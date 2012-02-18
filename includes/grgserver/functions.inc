@@ -410,6 +410,42 @@ TeleportToInterior(playerID, interiorID)
 	return false;
 }
 
+TeleportToBuilding(playerID, buildingID)
+{
+	new interiorID = strval(GetMySQLValue("buildings", "InteriorID", "ID", val2str(buildingID)));
+	if (interiorID)
+	{
+		if (TeleportToInterior(playerID, interiorID))
+		{
+			SetPlayerVirtualWorld(playerID, buildingID);
+			return true;
+		}
+	}
+	return false;
+}
+
+LeaveBuilding(playerID)
+{
+	new currentBuilderID = GetPVarInt(playerID, "CurrentBuildingID");
+	if (currentBuilderID)
+	{
+		new query[256];
+		format(query, sizeof(query), "SELECT * FROM `pickups` WHERE `ID` = '%d'", strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(currentBuilderID))));
+		mysql_query(query);
+		mysql_store_result();
+		if (strval(GetMySQLField("ID")))
+		{
+			SetPlayerPos(playerID, floatsub(floatstr(GetMySQLField("PosX")), 1), floatsub(floatstr(GetMySQLField("PosY")), 1), floatstr(GetMySQLField("PosZ")));
+			SetPlayerInterior(playerID, 0);
+			SetPlayerVirtualWorld(playerID, 0);
+			mysql_free_result();
+			return true;
+		}
+		mysql_free_result();
+	}
+	return false;
+}
+
 ShowDialog(playerID, dialogID, ...)
 {
 	switch (dialogID)
