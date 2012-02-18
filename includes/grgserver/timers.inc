@@ -1,3 +1,12 @@
+forward timer_everyMinute();
+public timer_everyMinute()
+{
+	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+	{
+		savePlayers[playerID] = IsLoggedIn(playerID);
+	}
+}
+
 forward timer_fast();
 public timer_fast()
 {
@@ -86,41 +95,6 @@ public timer_fast()
 	}
 }
 
-forward timer_slow();
-public timer_slow()
-{
-	new clockString[6];
-	new hourString[3];
-	new minuteString[3];
-	new hour;
-	new minute;
-	new second;
-	gettime(hour, minute, second);
-	format(hourString, sizeof(hourString), "%2d", hour);
-	format(minuteString, sizeof(minuteString), "%2d", minute);
-	if (hour < 10)
-	{
-		hourString[0] = '0';
-	}
-	if (minute < 10)
-	{
-		minuteString[0] = '0';
-	}
-	format(clockString, sizeof(clockString), "%s:%s", hourString, minuteString);
-	TextDrawSetString(textDrawClock, clockString);
-	SetWorldTime(hour);
-	mysql_ping();
-}
-
-forward timer_everyMinute();
-public timer_everyMinute()
-{
-	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
-	{
-		savePlayers[playerID] = IsLoggedIn(playerID);
-	}
-}
-
 forward timer_hourly();
 public timer_hourly()
 {
@@ -160,9 +134,43 @@ public timer_refuelVehicle(playerID, Float:totalAmount)
 	return true;
 }
 
+forward timer_slow();
+public timer_slow()
+{
+	new clockString[6];
+	new hourString[3];
+	new minuteString[3];
+	new hour;
+	new minute;
+	new second;
+	gettime(hour, minute, second);
+	format(hourString, sizeof(hourString), "%2d", hour);
+	format(minuteString, sizeof(minuteString), "%2d", minute);
+	if (hour < 10)
+	{
+		hourString[0] = '0';
+	}
+	if (minute < 10)
+	{
+		minuteString[0] = '0';
+	}
+	format(clockString, sizeof(clockString), "%s:%s", hourString, minuteString);
+	TextDrawSetString(textDrawClock, clockString);
+	SetWorldTime(hour);
+	mysql_ping();
+}
+
 forward timer_spawnPlayer(playerID);
 public timer_spawnPlayer(playerID)
 {
 	SpawnPlayer(playerID);
 	SetPlayerPos(playerID, floatstr(GetUserDBValue(playerID, "PosX")), floatstr(GetUserDBValue(playerID, "PosY")), floatstr(GetUserDBValue(playerID, "PosZ")));
+}
+
+forward timer_stableCheck();
+public timer_stableCheck()
+{
+	new File:file = fopen("stable_revision", io_write);
+	fwrite(file, val2str(COMPILER_SVN_REVISION));
+	fclose(file);
 }
