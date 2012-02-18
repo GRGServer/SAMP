@@ -17,4 +17,11 @@
 	#include <grgserver\main>
 #endif
 
-main(){}
+main()
+{
+	#if defined COMPILE_SERVER
+		print("Compiled on server");
+	#else
+		print("Compiled local");
+	#endif
+}
