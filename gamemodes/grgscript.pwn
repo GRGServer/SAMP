@@ -23,7 +23,7 @@
 #include <grgserver/basicfunctions> // Ported functions like str_replace
 #include <grgserver/functions>// Stock functions like LoadPlayer
 #include <grgserver/gamemode>// Callbacks OnGameModeInit and OnGameModeExit
-#include <grgserver/irc>// Callbacks for IRC like IRC_OnConnect
+#include <grgserver/ircchannel>// Callbacks for IRC like IRC_OnConnect
 #include <grgserver/players/connect_disconnect>// Callbacks OnPlayerConnect and OnPlayerDisconnect
 #include <grgserver/players/dialogs>// Callback OnDialogResponse
 #include <grgserver/players/general>// General player callbacks

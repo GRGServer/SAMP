@@ -1,4 +1,3 @@
-ERROR
 public IRC_OnConnect(botid, ip[], port)
 {
 	print("Connected to IRC server");
