@@ -6,9 +6,9 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 	}
 	if (!ispassenger)
 	{
-		if (vehicles[vehicleid][vehicles_saveID])
+		if (vehicles[vehicleid][VEHICLE_SAVEID])
 		{
-			new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleid][vehicles_saveID])));
+			new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleid][VEHICLE_SAVEID])));
 			if (ownerUserID == GetPVarInt(playerid, "UserID"))
 			{
 				return true;
@@ -20,7 +20,7 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 			}
 			else
 			{
-				ShowDialog(playerid, DIALOG_BUYVEHICLE, FormatNumber(floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleid][vehicles_saveID]))), 2, '.', ','));
+				ShowDialog(playerid, DIALOG_BUYVEHICLE, FormatNumber(floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleid][VEHICLE_SAVEID]))), 2, '.', ','));
 				
 			}
 		}
@@ -45,13 +45,13 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 
 public OnVehiclePaintjob(playerid, vehicleid, paintjobid)
 {
-	vehicles[vehicleid][vehicles_paintjobID] = paintjobid;
+	vehicles[vehicleid][VEHICLE_PAINTJOB] = paintjobid;
 	return true;
 }
 
 public OnVehicleRespray(playerid, vehicleid, color1, color2)
 {
-	vehicles[vehicleid][vehicles_color1] = color1;
-	vehicles[vehicleid][vehicles_color2] = color2;
+	vehicles[vehicleid][VEHICLE_COLOR1] = color1;
+	vehicles[vehicleid][VEHICLE_COLOR2] = color2;
 	return true;
 }

@@ -32,16 +32,16 @@ public timer_fast()
 				GetVehicleHealth(vehicleID, health);
 				speed = floatround(floatsqroot(floatabs(floatpower(velocityX + velocityY + velocityZ, 2))) * 100 * 1.61);
 				healthPercentage = floatround(health /10);
-				if (vehicles[vehicleID][vehicles_currentFuel] <= 0)
+				if (vehicles[vehicleID][VEHICLE_CURRENTFUEL] <= 0)
 				{
 					SetVehicleEngineState(vehicleID, false);
 					GameTextForPlayer(playerID, "Der Tank von deinem Fahrzeug ist leer!", 3000, 5);
 				}
 				else
 				{
-					vehicles[vehicleID][vehicles_currentFuel] = floatsub(vehicles[vehicleID][vehicles_currentFuel], floatdiv(speed, 60 * 60 * 4) * floatdiv(vehicleModels[vehicleModelIndex][vehicleModels_fuelUsage], 100));
+					vehicles[vehicleID][VEHICLE_CURRENTFUEL] = floatsub(vehicles[vehicleID][VEHICLE_CURRENTFUEL], floatdiv(speed, 60 * 60 * 4) * floatdiv(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 100));
 				}
-				fuelPercentage = floatround((vehicles[vehicleID][vehicles_currentFuel] / vehicleModels[vehicleModelIndex][vehicleModels_maxFuel]) * 100);
+				fuelPercentage = floatround((vehicles[vehicleID][VEHICLE_CURRENTFUEL] / vehicleModels[vehicleModelIndex][VEHICLEMODEL_MAXFUEL]) * 100);
 				if (healthPercentage > 65)
 				{
 					healthColor = 'g';
@@ -81,7 +81,7 @@ public timer_fast()
 						fuelColor = 'r';
 					}
 				}
-				format(string, sizeof(string), "%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~~n~%sl", speed, healthColor, healthPercentage, fuelColor, fuelPercentage, FormatNumber(vehicleModels[vehicleModelIndex][vehicleModels_fuelUsage], 1, '.', ','));
+				format(string, sizeof(string), "%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~~n~%sl", speed, healthColor, healthPercentage, fuelColor, fuelPercentage, FormatNumber(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 1, '.', ','));
 				TextDrawSetString(textDrawSpeedoColumn2[playerID], string);
 				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn1);
 				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn2[playerID]);
@@ -107,7 +107,7 @@ public timer_refuelVehicle(playerID, Float:totalAmount)
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (GetPVarFloat(playerID, "Money") >= gasPrice)
 	{
-		new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel], vehicles[vehicleID][vehicles_currentFuel]);
+		new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
 		if (totalAmount > 0 && maximum > 0)
 		{
 			new Float:amount;
@@ -119,7 +119,7 @@ public timer_refuelVehicle(playerID, Float:totalAmount)
 			{
 				amount = 1.0;
 			}
-			vehicles[vehicleID][vehicles_currentFuel] = floatadd(vehicles[vehicleID][vehicles_currentFuel], amount);
+			vehicles[vehicleID][VEHICLE_CURRENTFUEL] = floatadd(vehicles[vehicleID][VEHICLE_CURRENTFUEL], amount);
 			GivePlayerMoneyEx(playerID, -floatmul(gasPrice, amount));
 			SetTimerEx("timer_refuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, floatsub(totalAmount, amount));
 			return true;
@@ -158,6 +158,20 @@ public timer_slow()
 	TextDrawSetString(textDrawClock, clockString);
 	SetWorldTime(hour);
 	mysql_ping();
+	if (fexist("update_available"))
+	{
+		new string[256];
+		new File:file = fopen("update_available", io_read);
+		fread(file, string);
+		new revision = strval(string);
+		fclose(file);
+		fremove("update_available");
+		if (revision > COMPILER_SVN_REVISION)
+		{
+			format(string, sizeof(string), "Es steht ein Update auf Revision %s zur Verfügung!", string);
+			SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
+		}
+	}
 }
 
 forward timer_spawnPlayer(playerID);

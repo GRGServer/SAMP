@@ -123,6 +123,35 @@ SavePlayer(playerID)
 	}
 }
 
+GetPermissionByName(permissionName[])
+{
+	if (!strcmp(permissionName, "Admin", true))
+	{
+		return PERMISSION_ADMIN;
+	}
+	if (!strcmp(permissionName, "Mapper", true))
+	{
+		return PERMISSION_MAPPER;
+	}
+	if (!strcmp(permissionName, "Moderator", true))
+	{
+		return PERMISSION_MODERATOR;
+	}
+	if (!strcmp(permissionName, "NPCAdmin", true))
+	{
+		return PERMISSION_NPCADMIN;
+	}
+	if (!strcmp(permissionName, "ServerAdmin", true))
+	{
+		return PERMISSION_SERVERADMIN;
+	}
+	if (!strcmp(permissionName, "Teleport", true))
+	{
+		return PERMISSION_TELEPORT;
+	}
+	return -1;
+}
+
 LoadPlayer(playerID)
 {
 	LoadPlayerValue(playerID, "Level", PLAYER_VARTYPE_INT);
@@ -132,6 +161,20 @@ LoadPlayer(playerID)
 	LoadPlayerValue(playerID, "CurrentBuildingID", PLAYER_VARTYPE_INT);
 	SetPlayerMoney(playerID, GetPVarFloat(playerID, "Money"));
 	SetPlayerSkin(playerID, GetPVarInt(playerID, "Skin"));
+	new query[256];
+	format(query, sizeof(query), "SELECT * FROM `permissions` WHERE `UserID` = '%d'", GetPVarInt(playerID, "UserID"));
+	mysql_query(query);
+	mysql_store_result();
+	if (strval(GetMySQLField("UserID")))
+	{
+		LoadPermission:ADMIN(playerID, "Admin");
+		LoadPermission:MAPPER(playerID, "Mapper");
+		LoadPermission:MODERATOR(playerID, "Moderator");
+		LoadPermission:NPCADMIN(playerID, "NPCAdmin");
+		LoadPermission:SERVERADMIN(playerID, "ServerAdmin");
+		LoadPermission:TELEPORT(playerID, "Teleport");
+	}
+	mysql_free_result();
 }
 
 SetPlayerMoney(playerID, Float:amount)
@@ -150,9 +193,20 @@ GivePlayerMoneyEx(playerID, Float:amount)
 
 SendClientMessageToAllExcept(exceptPlayerID, color, message[])
 {
-	for (new playerID; playerID < MAX_PLAYERS; playerID++)
+	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
 	{
 		if (playerID != exceptPlayerID && IsPlayerConnected(playerID))
+		{
+			SendClientMessage(playerID, color, message);
+		}
+	}
+}
+
+SendClientMessageToAdmins(permission, color, message[])
+{
+	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+	{
+		if (IsPlayerConnected(playerID) && permissions[playerID][enum_permission:permission])
 		{
 			SendClientMessage(playerID, color, message);
 		}
@@ -171,11 +225,6 @@ IsValidSkin(skinID)
 		return true;
 	}
 	return false;
-}
-
-IsAdmin(playerID, adminLevel)
-{
-	return GetPVarInt(playerID, "AdminLevel") >= adminLevel;
 }
 
 TeleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, virtualWorld)
@@ -202,23 +251,16 @@ TeleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, 
 	return false;
 }
 
-AdminTeleport(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, virtualWorld, adminLevel)
+Teleport(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, virtualWorld)
 {
-	if (IsAdmin(playerID, adminLevel))
+	if (TeleportTo(playerID, posX, posY, posZ, angle, interior, virtualWorld))
 	{
-		if (TeleportTo(playerID, posX, posY, posZ, angle, interior, virtualWorld))
-		{
-			return COMMAND_TELEPORTED;
-		}
-		else
-		{
-			SendClientMessage(playerID, COLOR_ERROR, "Beim Teleportieren ist ein Fehler aufgetreten! Bitte versuche es erneut.");
-			return COMMAND_ERROR;
-		}
+		return true;
 	}
 	else
 	{
-		return COMMAND_ACCESS_DENIED;
+		SendClientMessage(playerID, COLOR_ERROR, "Beim Teleportieren ist ein Fehler aufgetreten! Bitte versuche es erneut.");
+		return false;
 	}
 }
 
@@ -300,7 +342,7 @@ SetVehicleEngineState(vehicleID, newState)
 
 SaveVehicle(vehicleID, interior)
 {
-	if (vehicles[vehicleID][vehicles_saveID])
+	if (vehicles[vehicleID][VEHICLE_SAVEID])
 	{
 		printf("Saving vehicle %d", vehicleID);
 		new query[512];
@@ -308,15 +350,15 @@ SaveVehicle(vehicleID, interior)
 		new Float:posY;
 		new Float:posZ;
 		GetVehiclePos(vehicleID, posX, posY, posZ);
-		format(query, sizeof(query), "UPDATE `savedvehicles` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Interior` = '%d', `Color1` = '%d', `Color2` = '%d', `PaintjobID` = '%d', `CurrentFuel` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, interior, vehicles[vehicleID][vehicles_color1], vehicles[vehicleID][vehicles_color2], vehicles[vehicleID][vehicles_paintjobID], vehicles[vehicleID][vehicles_currentFuel], vehicles[vehicleID][vehicles_saveID]);
+		format(query, sizeof(query), "UPDATE `savedvehicles` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Interior` = '%d', `Color1` = '%d', `Color2` = '%d', `PaintjobID` = '%d', `CurrentFuel` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, interior, vehicles[vehicleID][VEHICLE_COLOR1], vehicles[vehicleID][VEHICLE_COLOR2], vehicles[vehicleID][VEHICLE_PAINTJOB], vehicles[vehicleID][VEHICLE_CURRENTFUEL], vehicles[vehicleID][VEHICLE_SAVEID]);
 		mysql_query(query);
-		format(query, sizeof(query), "UPDATE `savedvehicles` SET `Component_Spoiler` = '%d', `Component_Hood` = '%d', `Component_Roof` = '%d', `Component_Sideskirt` = '%d' WHERE `ID` = '%d'", GetVehicleComponentInSlot(vehicleID, CARMODTYPE_SPOILER), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_HOOD), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_ROOF), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_SIDESKIRT), vehicles[vehicleID][vehicles_saveID]);
+		format(query, sizeof(query), "UPDATE `savedvehicles` SET `Component_Spoiler` = '%d', `Component_Hood` = '%d', `Component_Roof` = '%d', `Component_Sideskirt` = '%d' WHERE `ID` = '%d'", GetVehicleComponentInSlot(vehicleID, CARMODTYPE_SPOILER), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_HOOD), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_ROOF), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_SIDESKIRT), vehicles[vehicleID][VEHICLE_SAVEID]);
 		mysql_query(query);
-		format(query, sizeof(query), "UPDATE `savedvehicles` SET `Component_Lamps` = '%d', `Component_Nitro` = '%d', `Component_Exhaust` = '%d', `Component_Wheels` = '%d' WHERE `ID` = '%d'", GetVehicleComponentInSlot(vehicleID, CARMODTYPE_LAMPS), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_NITRO), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_EXHAUST), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_WHEELS), vehicles[vehicleID][vehicles_saveID]);
+		format(query, sizeof(query), "UPDATE `savedvehicles` SET `Component_Lamps` = '%d', `Component_Nitro` = '%d', `Component_Exhaust` = '%d', `Component_Wheels` = '%d' WHERE `ID` = '%d'", GetVehicleComponentInSlot(vehicleID, CARMODTYPE_LAMPS), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_NITRO), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_EXHAUST), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_WHEELS), vehicles[vehicleID][VEHICLE_SAVEID]);
 		mysql_query(query);
-		format(query, sizeof(query), "UPDATE `savedvehicles` SET `Component_Stereo` = '%d', `Component_Hydraulics` = '%d', `Component_FrontBumper` = '%d', `Component_RearBumper` = '%d' WHERE `ID` = '%d'", GetVehicleComponentInSlot(vehicleID, CARMODTYPE_STEREO), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_HYDRAULICS), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_FRONT_BUMPER), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_REAR_BUMPER), vehicles[vehicleID][vehicles_saveID]);
+		format(query, sizeof(query), "UPDATE `savedvehicles` SET `Component_Stereo` = '%d', `Component_Hydraulics` = '%d', `Component_FrontBumper` = '%d', `Component_RearBumper` = '%d' WHERE `ID` = '%d'", GetVehicleComponentInSlot(vehicleID, CARMODTYPE_STEREO), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_HYDRAULICS), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_FRONT_BUMPER), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_REAR_BUMPER), vehicles[vehicleID][VEHICLE_SAVEID]);
 		mysql_query(query);
-		format(query, sizeof(query), "UPDATE `savedvehicles` SET `Component_VentRight` = '%d', `Component_VentLeft` = '%d' WHERE `ID` = '%d'", GetVehicleComponentInSlot(vehicleID, CARMODTYPE_VENT_RIGHT), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_VENT_LEFT), vehicles[vehicleID][vehicles_saveID]);
+		format(query, sizeof(query), "UPDATE `savedvehicles` SET `Component_VentRight` = '%d', `Component_VentLeft` = '%d' WHERE `ID` = '%d'", GetVehicleComponentInSlot(vehicleID, CARMODTYPE_VENT_RIGHT), GetVehicleComponentInSlot(vehicleID, CARMODTYPE_VENT_LEFT), vehicles[vehicleID][VEHICLE_SAVEID]);
 		mysql_query(query);
 	}
 }
@@ -352,18 +394,18 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 	else
 	{
 		pickup = CreatePickup(modelID, spawnType, posX, posY, posZ);
-		pickups[pickup][pickups_type] = pickupTypeID;
+		pickups[pickup][PICKUP_TYPE] = pickupTypeID;
 		if (saveToDB)
 		{
 			new query[256];
 			format(query, sizeof(query), "INSERT INTO `pickups` (`PosX`, `PosY`, `PosZ`, `Type`) VALUES('%f', '%f', '%f', '%s')", posX, posY, posZ, type);
 			mysql_query(query);
-			pickups[pickup][pickups_id] = mysql_insert_id();
-			return pickups[pickup][pickups_id];
+			pickups[pickup][PICKUP_ID] = mysql_insert_id();
+			return pickups[pickup][PICKUP_ID];
 		}
 		else
 		{
-			pickups[pickup][pickups_id] = pickupID;
+			pickups[pickup][PICKUP_ID] = pickupID;
 			return -2;
 		}
 	}

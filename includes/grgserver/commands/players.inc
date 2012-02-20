@@ -24,7 +24,7 @@ CMD:cmds(playerid, params[])
 					showCommand = true;
 					format(command, sizeof(command), "{00FF00}%s", command);
 				}
-				if (type == 'A' && IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+				if (type == 'A' && GetPVarInt(playerid, "IsAdmin"))
 				{
 					showCommand = true;
 					format(command, sizeof(command), "{A00000}%s", command);
@@ -134,7 +134,7 @@ CMD:ordervehicle(playerid, params[])
 	}
 	else
 	{
-		return COMMAND_ACCESS_DENIED;
+		return COMMAND_PERMISSION_DENIED;
 	}
 	return COMMAND_OK;
 }

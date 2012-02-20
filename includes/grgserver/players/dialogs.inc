@@ -74,7 +74,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if (response)
 			{
 				new string[256];
-				new saveID = vehicles[GetPlayerVehicleID(playerid)][vehicles_saveID];
+				new saveID = vehicles[GetPlayerVehicleID(playerid)][VEHICLE_SAVEID];
 				new Float:price = floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(saveID)));
 				if (price <= GetPVarFloat(playerid, "Money"))
 				{
@@ -111,7 +111,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							SetPlayerMoney(playerid, floatsub(GetPVarFloat(playerid, "Money"), price));
 							SetMySQLValue("house", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(saveID));
 							SavePlayer(playerid);
-							pickups[pickupID][pickups_type] = PICKUP_HOUSEBOUGHT;
+							pickups[pickupID][PICKUP_TYPE] = PICKUP_HOUSEBOUGHT;
 						}
 						else
 						{
@@ -241,7 +241,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				new Float:amount = floatstr(inputtext);
 				new vehicleID = GetPlayerVehicleID(playerid);
-				new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel], vehicles[vehicleID][vehicles_currentFuel]);
+				new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
 				if (amount > maximum)
 				{
 					amount = maximum;

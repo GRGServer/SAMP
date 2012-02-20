@@ -1,393 +1,328 @@
-ACMD:addhouse(playerid, params[])
+ACMD:addhouse[MAPPER](playerid, params[])
 {
 	new name[256];
 	new Float:price;
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	if (sscanf(params, "sf", name, price))
 	{
-		if (sscanf(params, "sf", name, price))
-		{
-			CmdUsageMsg(playerid, "addhouse", "Name", "Preis");
-			return COMMAND_USAGE;
-		}
-		SetPVarString(playerid, "AddHouse_Name", name);
-		SetPVarFloat(playerid, "AddHouse_Price", price);
-		ShowDialog(playerid, DIALOG_ADDHOUSE, 0);
+		CmdUsageMsg(playerid, "addhouse", "Name", "Preis");
+		return COMMAND_USAGE;
+	}
+	SetPVarString(playerid, "AddHouse_Name", name);
+	SetPVarFloat(playerid, "AddHouse_Price", price);
+	ShowDialog(playerid, DIALOG_ADDHOUSE, 0);
+	return COMMAND_OK;
+}
+
+ACMD:addpickup[MAPPER](playerid, params[])
+{
+	new type[256];
+	new string[256];
+	new Float:posX;
+	new Float:posY;
+	new Float:posZ;
+	if (sscanf(params, "s", type))
+	{
+		CmdUsageMsg(playerid, "addpickup", "BANK/GASSTATION/HOUSE");
+		return COMMAND_USAGE;
+	}
+	format(type, sizeof(type), "%s", strtoupper(type));
+	GetPlayerPos(playerid, posX, posY, posZ);
+	new id = AddPickup(-1, type, posX, posY, posZ, true);
+	if (id > 0)
+	{
+		format(string, sizeof(string), "Das Pickup %s wurde unter der ID %d gespeichert", type, id);
+		SendClientMessage(playerid, COLOR_INFO, string);
 		return COMMAND_OK;
 	}
 	else
 	{
-		return COMMAND_ACCESS_DENIED;
+		SendClientMessage(playerid, COLOR_ERROR, "Ungültiger Typ!");
+		return COMMAND_ERROR;
 	}
 }
 
-ACMD:addpickup(playerid, params[])
+ACMD:controlnpc[NPCADMIN](playerid, params[])
 {
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	new command[256];
+	new recordingName[256];
+	new playbackType[256];
+	new autoRepeat;
+	new targetPlayerID;
+	if (sscanf(params, "usssd", targetPlayerID, command, recordingName, playbackType, autoRepeat))
 	{
-		new type[256];
-		new string[256];
-		new Float:posX;
-		new Float:posY;
-		new Float:posZ;
-		if (sscanf(params, "s", type))
+		if (sscanf(params, "us", targetPlayerID, command))
 		{
-			CmdUsageMsg(playerid, "addpickup", "BANK/GASSTATION/HOUSE");
+			CmdUsageMsg(playerid, "controlnpc", "PlayerID/Name", "command(connect|start|stop|pause|resume)", "[recordingName]", "[playbackType]", "[autoRepeat]");
+			SendClientMessage(playerid, COLOR_INFO, "Hinweis: recordingName, playbackType und autoRepeat wird nur für den Befehl 'start' benötigt.");
 			return COMMAND_USAGE;
 		}
-		format(type, sizeof(type), "%s", strtoupper(type));
-		GetPlayerPos(playerid, posX, posY, posZ);
-		new id = AddPickup(-1, type, posX, posY, posZ, true);
-		if (id > 0)
+	}
+	if (!strcmp(command, "start", true))
+	{
+		new type;
+		if (!strcmp(playbackType, "onfoot", true) || !strcmp(playbackType, "foot"))
 		{
-			format(string, sizeof(string), "Das Pickup %s wurde unter der ID %d gespeichert", type, id);
-			SendClientMessage(playerid, COLOR_INFO, string);
+			type = PLAYER_RECORDING_TYPE_ONFOOT;
+		}
+		if (!strcmp(playbackType, "driver", true))
+		{
+			type = PLAYER_RECORDING_TYPE_DRIVER;
+		}
+		if (type)
+		{
+			SendClientMessage(playerid, COLOR_INFO, "Wiedergabe gestartet");
+			StartNPCPlayback(targetPlayerID, recordingName, type, autoRepeat);
 			return COMMAND_OK;
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_ERROR, "Ungültiger Typ!");
+			return COMMAND_ERROR;
+		}
+	}
+	if (!strcmp(command, "connect", true))
+	{
+		SendClientMessage(playerid, COLOR_INFO, "NPC verbunden");
+		ConnectNPC(GetPlayerNameEx(targetPlayerID), "npcplayer");
+		return COMMAND_OK;
+	}
+	SendClientMessage(playerid, COLOR_INFO, "Befehl gesendet");
+	SendNPCCommand(targetPlayerID, command);
+	return COMMAND_OK;
+}
+
+ACMD:givepermission[SERVERADMIN](playerid, params[])
+{
+	new targetPlayerID;
+	new permission[256];
+	if (sscanf(params, "us", targetPlayerID, permission))
+	{
+		CmdUsageMsg(playerid, "givepermission", "Spielername", "Recht(Admin|Mapper|Moderator|NPCAdmin|ServerAdmin|Teleport)");
+		return COMMAND_USAGE;
+	}
+	if (IsPlayerConnected(targetPlayerID))
+	{
+		// TODO: Allow multiple permissions at once
+		if (strcmp(permission, "ID", true) && strcmp(permission, "UserID", true))
+		{
+			new newState = true;
+			if (permission[0] == '-')
+			{
+				newState = false;
+			}
+			new query[256];
+			new string[256];
+			format(query, sizeof(query), "SELECT `ID` FROM `permissions` WHERE `UserID` = '%d'", GetPVarInt(targetPlayerID, "UserID"));
+			mysql_query(query);
+			mysql_store_result();
+			if (mysql_num_rows())
+			{
+				format(query, sizeof(query), "UPDATE `permissions` SET `%s` = '%d' WHERE `UserID` = '%d'", MySQLEscapeString(permission), newState, GetPVarInt(targetPlayerID, "UserID"));
+			}
+			else
+			{
+				format(query, sizeof(query), "INSERT INTO `permissions` (`UserID`, `%s`) VALUES('%d', '%d')", MySQLEscapeString(permission), GetPVarInt(targetPlayerID, "UserID"), newState);
+			}
+			mysql_free_result();
+			mysql_query(query);
+			permissions[targetPlayerID][enum_permission:GetPermissionByName(permission)] = newState;
+			format(string, sizeof(string), "Du hast das Recht %s von %s bekommen!", permission, GetPlayerNameEx(playerid));
+			SendClientMessage(targetPlayerID, COLOR_INFO, string);
+			format(string, sizeof(string), "Du hast das Recht %s an %s gegeben!", permission, GetPlayerNameEx(targetPlayerID));
+			SendClientMessage(playerid, COLOR_INFO, string);
+			printf("%s got permission %s by %s", GetPlayerNameEx(targetPlayerID), permission, GetPlayerNameEx(playerid));
+			return COMMAND_OK;
+		}
+		else
+		{
+			SendClientMessage(playerid, COLOR_ERROR, "Level muss zwischen 1 und 1337 sein!");
 			return COMMAND_ERROR;
 		}
 	}
 	else
 	{
-		return COMMAND_ACCESS_DENIED;
+		SendClientMessage(playerid, COLOR_ERROR, "Spieler nicht gefunden!");
+		return COMMAND_ERROR;
 	}
 }
 
-ACMD:controlnpc(playerid, params[])
+ACMD:gmx[SERVERADMIN](playerid, params[])
 {
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
-	{
-		new command[256];
-		new recordingName[256];
-		new playbackType[256];
-		new autoRepeat;
-		new targetPlayerID;
-		if (sscanf(params, "usssd", targetPlayerID, command, recordingName, playbackType, autoRepeat))
-		{
-			if (sscanf(params, "us", targetPlayerID, command))
-			{
-				CmdUsageMsg(playerid, "controlnpc", "PlayerID/Name", "command(connect|start|stop|pause|resume)", "[recordingName]", "[playbackType]", "[autoRepeat]");
-				SendClientMessage(playerid, COLOR_INFO, "Hinweis: recordingName, playbackType und autoRepeat wird nur für den Befehl 'start' benötigt.");
-				return COMMAND_USAGE;
-			}
-		}
-		if (!strcmp(command, "start", true))
-		{
-			new type;
-			if (!strcmp(playbackType, "onfoot", true) || !strcmp(playbackType, "foot"))
-			{
-				type = PLAYER_RECORDING_TYPE_ONFOOT;
-			}
-			if (!strcmp(playbackType, "driver", true))
-			{
-				type = PLAYER_RECORDING_TYPE_DRIVER;
-			}
-			if (type)
-			{
-				SendClientMessage(playerid, COLOR_INFO, "Wiedergabe gestartet");
-				StartNPCPlayback(targetPlayerID, recordingName, type, autoRepeat);
-				return COMMAND_OK;
-			}
-			else
-			{
-				return COMMAND_ERROR;
-			}
-		}
-		if (!strcmp(command, "connect", true))
-		{
-			SendClientMessage(playerid, COLOR_INFO, "NPC verbunden");
-			ConnectNPC(GetPlayerNameEx(targetPlayerID), "npcplayer");
-			return COMMAND_OK;
-		}
-		SendClientMessage(playerid, COLOR_INFO, "Befehl gesendet");
-		SendNPCCommand(targetPlayerID, command);
-		return COMMAND_OK;
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
+	SendClientMessage(playerid, COLOR_INFO, "Gamemode neugestartet");
+	SendRconCommand("gmx");
+	return COMMAND_OK;
 }
 
-ACMD:gmx(playerid, params[])
+ACMD:goto[ADMIN](playerid, params[])
 {
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	new targetPlayerID;
+	if (sscanf(params, "u", targetPlayerID))
 	{
-		SendClientMessage(playerid, COLOR_INFO, "Gamemode neugestartet");
-		SendRconCommand("gmx");
-		return COMMAND_OK;
+		CmdUsageMsg(playerid, "goto", "PlayerID/Name");
+		return COMMAND_USAGE;
 	}
-	else
+	if (IsPlayerConnected(targetPlayerID))
 	{
-		return COMMAND_ACCESS_DENIED;
-	}
-}
-
-ACMD:goto(playerid, params[])
-{
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
-	{
-		new targetPlayerID;
-		if (sscanf(params, "u", targetPlayerID))
+		new Float:posX;
+		new Float:posY;
+		new Float:posZ;
+		new Float:angle;
+		GetPlayerPos(targetPlayerID, posX, posY, posZ);
+		GetPlayerFacingAngle(targetPlayerID, angle);
+		if (TeleportTo(playerid, posX, posY, posZ, angle, GetPlayerInterior(targetPlayerID), GetPlayerVirtualWorld(targetPlayerID)))
 		{
-			CmdUsageMsg(playerid, "goto", "PlayerID/Name");
-			return COMMAND_USAGE;
-		}
-		if (IsPlayerConnected(targetPlayerID))
-		{
-			new Float:posX;
-			new Float:posY;
-			new Float:posZ;
-			new Float:angle;
-			GetPlayerPos(targetPlayerID, posX, posY, posZ);
-			GetPlayerFacingAngle(targetPlayerID, angle);
-			if (TeleportTo(playerid, posX, posY, posZ, angle, GetPlayerInterior(targetPlayerID), GetPlayerVirtualWorld(targetPlayerID)))
-			{
-				return COMMAND_TELEPORTED;
-			}
-			else
-			{
-				return COMMAND_ERROR;
-			}
+			return COMMAND_TELEPORTED;
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_ERROR, "Spieler nicht gefunden!");
+			return COMMAND_ERROR;
 		}
-		return COMMAND_OK;
 	}
 	else
 	{
-		return COMMAND_ACCESS_DENIED;
+		SendClientMessage(playerid, COLOR_ERROR, "Spieler nicht gefunden!");
 	}
+	return COMMAND_OK;
 }
 
-ACMD:gotobsn(playerid, params[])
+ACMD:gotobsn[TELEPORT](playerid, params[])
 {
-	return AdminTeleport(playerid, 1204.7445, -881.0291, 43.0703, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
+	return Teleport(playerid, 1204.7445, -881.0291, 43.0703, 0.0, 0, 0);
 }
 
-ACMD:gotols(playerid, params[])
+ACMD:gotols[TELEPORT](playerid, params[])
 {
-	return AdminTeleport(playerid, 1529.6, -1691.2, 13.3, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
+	return Teleport(playerid, 1529.6, -1691.2, 13.3, 0.0, 0, 0);
 }
 
-ACMD:gotolv(playerid, params[])
+ACMD:gotolv[TELEPORT](playerid, params[])
 {
-	return AdminTeleport(playerid, 1699.2, 1435.1, 10.7, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
+	return Teleport(playerid, 1699.2, 1435.1, 10.7, 0.0, 0, 0);
 }
 
-ACMD:gotosf(playerid, params[])
+ACMD:gotosf[TELEPORT](playerid, params[])
 {
-	return AdminTeleport(playerid, -1417.0, -295.8, 14.1, 0.0, 0, 0, ADMINLEVEL_SERVERADMIN);
+	return Teleport(playerid, -1417.0, -295.8, 14.1, 0.0, 0, 0);
 }
 
-ACMD:jetpack(playerid, params[])
+ACMD:jetpack[ADMIN](playerid, params[])
 {
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
-	{
-		SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USEJETPACK);
-		SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen JetPack!");
-		return COMMAND_OK;
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
+	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USEJETPACK);
+	SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen JetPack!");
+	return COMMAND_OK;
 }
 
-ACMD:kick(playerid, params[])
+ACMD:kick[MODERATOR](playerid, params[])
 {
 	new targetPlayerID;
 	new reason[256];
 	new string[256];
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	if (sscanf(params, "us", targetPlayerID, reason))
 	{
-		if (sscanf(params, "us", targetPlayerID, reason))
-		{
-			CmdUsageMsg(playerid, "kick", "Spielername/ID", "Grund");
-			return COMMAND_USAGE;
-		}
-		if (IsPlayerConnected(targetPlayerID))
-		{
-			Kick(targetPlayerID);
-			format(string, sizeof(string), "%s wurde von %s gekickt, Grund: %s", GetPlayerNameEx(targetPlayerID), GetPlayerNameEx(playerid), reason);
-			SendClientMessageToAll(COLOR_ERROR, string);
-			printf("%s has been kicked by %s, Reason: %s", GetPlayerNameEx(targetPlayerID), GetPlayerNameEx(playerid), reason);
-			return COMMAND_OK;
-		}
-		else
-		{
-			SendClientMessage(playerid, COLOR_ERROR, "Der Spieler wurde nicht gefunden!");
-			return COMMAND_ERROR;
-		}
+		CmdUsageMsg(playerid, "kick", "Spielername/ID", "Grund");
+		return COMMAND_USAGE;
 	}
-	else
+	if (IsPlayerConnected(targetPlayerID))
 	{
-		return COMMAND_ACCESS_DENIED;
-	}
-}
-
-ACMD:makeadmin(playerid, params[])
-{
-	new targetPlayerID;
-	new level;
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
-	{
-		if (sscanf(params, "ud", targetPlayerID, level))
-		{
-			CmdUsageMsg(playerid, "makeadmin", "Spielername", "level (1-1337)");
-			return COMMAND_USAGE;
-		}
-		if (IsPlayerConnected(targetPlayerID))
-		{
-			if (level >= 1 && level <= 1337)
-			{
-				new string[256];
-				new adminPlayerName[MAX_PLAYER_NAME];
-				new targetPlayerName[MAX_PLAYER_NAME];
-				GetPlayerName(playerid, adminPlayerName, sizeof(adminPlayerName));
-				GetPlayerName(targetPlayerID, targetPlayerName, sizeof(targetPlayerName));
-				SetPVarInt(targetPlayerID, "AdminLevel", level);
-				format(string, sizeof(string), "Du hast Admin Level %d von %s bekommen!", level, adminPlayerName);
-				SendClientMessage(targetPlayerID, COLOR_INFO, string);
-				format(string, sizeof(string), "Du hast Admin Level %d an %s gegeben!", level, targetPlayerName);
-				SendClientMessage(playerid, COLOR_INFO, string);
-				printf("%s got admin level %d by %s", targetPlayerName, level, adminPlayerName);
-				return COMMAND_OK;
-			}
-			else
-			{
-				SendClientMessage(playerid, COLOR_ERROR, "Level muss zwischen 1 und 1337 sein!");
-				return COMMAND_ERROR;
-			}
-		}
-		else
-		{
-			SendClientMessage(playerid, COLOR_ERROR, "Spieler nicht gefunden!");
-			return COMMAND_ERROR;
-		}
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
-}
-
-ACMD:money(playerid, params[])
-{
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
-	{
-		new money;
-		if (!sscanf(params, "f", money))
-		{
-			GivePlayerMoneyEx(playerid, money);
-			return COMMAND_OK;
-		}
-		else
-		{
-			CmdUsageMsg(playerid, "money", "Wert");
-			return COMMAND_USAGE;
-		}
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
-}
-
-ACMD:rc(playerid, params[])
-{
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
-	{
-		printf("%s sent a RCON command: %s", GetPlayerNameEx(playerid), params);
-		SendRconCommand(params);
-		SendClientMessage(playerid, COLOR_INFO, "Der Befehl wurde ausgeführt");
+		Kick(targetPlayerID);
+		format(string, sizeof(string), "%s wurde von %s gekickt, Grund: %s", GetPlayerNameEx(targetPlayerID), GetPlayerNameEx(playerid), reason);
+		SendClientMessageToAll(COLOR_ERROR, string);
+		printf("%s has been kicked by %s, Reason: %s", GetPlayerNameEx(targetPlayerID), GetPlayerNameEx(playerid), reason);
 		return COMMAND_OK;
 	}
 	else
 	{
-		return COMMAND_ACCESS_DENIED;
+		SendClientMessage(playerid, COLOR_ERROR, "Der Spieler wurde nicht gefunden!");
+		return COMMAND_ERROR;
 	}
 }
 
-ACMD:recnpc(playerid, params[])
+ACMD:money[ADMIN](playerid, params[])
 {
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	new money;
+	if (!sscanf(params, "f", money))
 	{
-		new npcs;
-		new recordingType;
-		new recordingName[256];
-		new playbackName1[256];
-		new playbackName2[256];
-		new playbackName3[256];
-		new string[256];
-		if (sscanf(params, "ssss", recordingName, playbackName1, playbackName2, playbackName3))
+		GivePlayerMoneyEx(playerid, money);
+		return COMMAND_OK;
+	}
+	else
+	{
+		CmdUsageMsg(playerid, "money", "Wert");
+		return COMMAND_USAGE;
+	}
+}
+
+ACMD:rc[SERVERADMIN](playerid, params[])
+{
+	printf("%s sent a RCON command: %s", GetPlayerNameEx(playerid), params);
+	SendRconCommand(params);
+	SendClientMessage(playerid, COLOR_INFO, "Der Befehl wurde ausgeführt");
+	return COMMAND_OK;
+}
+
+ACMD:recnpc[NPCADMIN](playerid, params[])
+{
+	new npcs;
+	new recordingType;
+	new recordingName[256];
+	new playbackName1[256];
+	new playbackName2[256];
+	new playbackName3[256];
+	new string[256];
+	if (sscanf(params, "ssss", recordingName, playbackName1, playbackName2, playbackName3))
+	{
+		if (sscanf(params, "sss", recordingName, playbackName1, playbackName2))
 		{
-			if (sscanf(params, "sss", recordingName, playbackName1, playbackName2))
+			if (sscanf(params, "ss", recordingName, playbackName1))
 			{
-				if (sscanf(params, "ss", recordingName, playbackName1))
+				if (sscanf(params, "s", recordingName))
 				{
-					if (sscanf(params, "s", recordingName))
-					{
-						CmdUsageMsg(playerid, "recnpc", "recordingName", "[playbackName1]", "[playbackName2]", "[playbackName3]");
-						return COMMAND_USAGE;
-					}
+					CmdUsageMsg(playerid, "recnpc", "recordingName", "[playbackName1]", "[playbackName2]", "[playbackName3]");
+					return COMMAND_USAGE;
 				}
 			}
 		}
-		if (IsPlayerInAnyVehicle(playerid))
-		{
-			recordingType = PLAYER_RECORDING_TYPE_DRIVER;
-		}
-		else
-		{
-			recordingType = PLAYER_RECORDING_TYPE_ONFOOT;
-		}
-		if (strlen(playbackName1))
-		{
-			if (!AddNPCRecorderPlayback(playerid, playbackName1, recordingType))
-			{
-				return COMMAND_ERROR;
-			}
-			npcs++;
-		}
-		if (strlen(playbackName2))
-		{
-			if (!AddNPCRecorderPlayback(playerid, playbackName2, recordingType))
-			{
-				return COMMAND_ERROR;
-			}
-			npcs++;
-		}
-		if (strlen(playbackName3))
-		{
-			if (!AddNPCRecorderPlayback(playerid, playbackName3, recordingType))
-			{
-				return COMMAND_ERROR;
-			}
-			npcs++;
-		}
-		StartRecordingPlayerData(playerid, recordingType, recordingName);
-		format(string, sizeof(string), "Aufnahme '%s' mit %d weiteren NPCs gestartet", recordingName, npcs);
-		SendClientMessage(playerid, COLOR_INFO, string);
-		SendClientMessage(playerid, COLOR_INFO, "Verwende /stoprec zum stoppen.");
-		return COMMAND_OK;
+	}
+	if (IsPlayerInAnyVehicle(playerid))
+	{
+		recordingType = PLAYER_RECORDING_TYPE_DRIVER;
 	}
 	else
 	{
-		return COMMAND_ACCESS_DENIED;
+		recordingType = PLAYER_RECORDING_TYPE_ONFOOT;
 	}
+	if (strlen(playbackName1))
+	{
+		if (!AddNPCRecorderPlayback(playerid, playbackName1, recordingType))
+		{
+			return COMMAND_ERROR;
+		}
+		npcs++;
+	}
+	if (strlen(playbackName2))
+	{
+		if (!AddNPCRecorderPlayback(playerid, playbackName2, recordingType))
+		{
+			return COMMAND_ERROR;
+		}
+		npcs++;
+	}
+	if (strlen(playbackName3))
+	{
+		if (!AddNPCRecorderPlayback(playerid, playbackName3, recordingType))
+		{
+			return COMMAND_ERROR;
+		}
+		npcs++;
+	}
+	StartRecordingPlayerData(playerid, recordingType, recordingName);
+	format(string, sizeof(string), "Aufnahme '%s' mit %d weiteren NPCs gestartet", recordingName, npcs);
+	SendClientMessage(playerid, COLOR_INFO, string);
+	SendClientMessage(playerid, COLOR_INFO, "Verwende /stoprec zum stoppen.");
+	return COMMAND_OK;
 }
 
-ACMD:saveveh(playerid, params[])
+ACMD:saveveh[MAPPER](playerid, params[])
 {
-	if (!IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
 	new price;
 	if (sscanf(params, "d", price))
 	{
@@ -408,7 +343,7 @@ ACMD:saveveh(playerid, params[])
 			new modelID = GetVehicleModel(vehicleID);
 			GetVehiclePos(vehicleID, posX, posY, posZ);
 			GetVehicleZAngle(playerid, angle);
-			format(query, sizeof(query), "INSERT INTO `savedvehicles` (`PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `ModelID`, `Price`, `CurrentFuel`) VALUES('%f', '%f', '%f', '%f', '%d', '%d', '%d', '%f')", posX, posY, posZ, angle, GetPlayerInterior(playerid), modelID, price, vehicleModels[modelID - 400][vehicleModels_maxFuel]);
+			format(query, sizeof(query), "INSERT INTO `savedvehicles` (`PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `ModelID`, `Price`, `CurrentFuel`) VALUES('%f', '%f', '%f', '%f', '%d', '%d', '%d', '%f')", posX, posY, posZ, angle, GetPlayerInterior(playerid), modelID, price, vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
 			mysql_query(query);
 			format(string, sizeof(string), "Fahrzeug wurde unter der ID %d gespeichert", mysql_insert_id());
 			SendClientMessage(playerid, COLOR_INFO, string);
@@ -426,79 +361,54 @@ ACMD:saveveh(playerid, params[])
 	return COMMAND_ERROR;
 }
 
-ACMD:setexit(playerid, params[])
+ACMD:setexit[MAPPER](playerid, params[])
 {
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
+	new buildingID;
+	if (sscanf(params, "d", buildingID))
 	{
-		new buildingID;
-		if (sscanf(params, "d", buildingID))
+		buildingID = GetPVarInt(playerid, "LastAddedHouse");
+	}
+	if (buildingID)
+	{
+		if (strval(GetMySQLValue("buildings", "ID", "ID", val2str(buildingID))))
 		{
-			buildingID = GetPVarInt(playerid, "LastAddedHouse");
-		}
-		if (buildingID)
-		{
-			if (strval(GetMySQLValue("buildings", "ID", "ID", val2str(buildingID))))
-			{
-				new query[256];
-				new Float:posX;
-				new Float:posY;
-				new Float:posZ;
-				GetPlayerPos(playerid, posX, posY, posZ);
-				format(query, sizeof(query), "UPDATE `buildings` SET `ExitPosX` = '%f', `ExitPosY` = '%f', `ExitPosZ` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, buildingID);
-				mysql_query(query);
-				return COMMAND_OK;
-			}
-			else
-			{
-				SendClientMessage(playerid, COLOR_ERROR, "Ungültige ID!");
-				return COMMAND_ERROR;
-			}
+			new query[256];
+			new Float:posX;
+			new Float:posY;
+			new Float:posZ;
+			GetPlayerPos(playerid, posX, posY, posZ);
+			format(query, sizeof(query), "UPDATE `buildings` SET `ExitPosX` = '%f', `ExitPosY` = '%f', `ExitPosZ` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, buildingID);
+			mysql_query(query);
+			return COMMAND_OK;
 		}
 		else
 		{
-			CmdUsageMsg(playerid, "setexit", "[BuildingID]");
-			return COMMAND_USAGE;
+			SendClientMessage(playerid, COLOR_ERROR, "Ungültige ID!");
+			return COMMAND_ERROR;
 		}
 	}
 	else
 	{
-		return COMMAND_ACCESS_DENIED;
+		CmdUsageMsg(playerid, "setexit", "[BuildingID]");
+		return COMMAND_USAGE;
 	}
 }
 
-ACMD:showinterior(playerid, params[])
+ACMD:showinterior[ADMIN](playerid, params[])
 {
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
-	{
-		ShowDialog(playerid, DIALOG_SHOWINTERIOR, 0);
-		return COMMAND_OK;
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
+	ShowDialog(playerid, DIALOG_SHOWINTERIOR, 0);
+	return COMMAND_OK;
 }
 
-ACMD:stoprec(playerid, params[])
+ACMD:stoprec[NPCADMIN](playerid, params[])
 {
-	if (IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
-	{
-		StopRecordingPlayerData(playerid);
-		SendClientMessage(playerid, COLOR_INFO, "Aufnahme gestoppt");
-		return COMMAND_OK;
-	}
-	else
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
+	StopRecordingPlayerData(playerid);
+	SendClientMessage(playerid, COLOR_INFO, "Aufnahme gestoppt");
+	return COMMAND_OK;
 }
 
-ACMD:veh(playerid, params[])
+ACMD:veh[MAPPER](playerid, params[])
 {
-	if (!IsAdmin(playerid, ADMINLEVEL_SERVERADMIN))
-	{
-		return COMMAND_ACCESS_DENIED;
-	}
 	new vehicleName[256];
 	new modelID;
 	new color1;
@@ -537,7 +447,7 @@ ACMD:veh(playerid, params[])
 			new Float:posZ;
 			GetPlayerPos(playerid, posX, posY, posZ);
 			new vehicleID = CreateVehicle(modelID, posX, posY, posZ, 0.0, color1, color2, -1);
-			vehicles[vehicleID][vehicles_currentFuel] = vehicleModels[GetVehicleModel(vehicleID) - 400][vehicleModels_maxFuel];
+			vehicles[vehicleID][VEHICLE_CURRENTFUEL] = vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL];
 			LinkVehicleToInterior(vehicleID, GetPlayerInterior(playerid));
 			SetVehicleVirtualWorld(vehicleID, GetPlayerVirtualWorld(playerid));
 			PutPlayerInVehicle(playerid, vehicleID, 0);

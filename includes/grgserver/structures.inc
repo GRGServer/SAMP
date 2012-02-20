@@ -1,20 +1,30 @@
-enum enum_pickups
+enum enum_permission
 {
-	pickups_id,
-	pickups_type
+	PERMISSION_ADMIN,
+	PERMISSION_MAPPER,
+	PERMISSION_MODERATOR,
+	PERMISSION_NPCADMIN,
+	PERMISSION_SERVERADMIN,
+	PERMISSION_TELEPORT
 }
 
-enum enum_vehicles
+enum enum_pickup
 {
-	vehicles_saveID,
-	Float:vehicles_currentFuel,
-	vehicles_paintjobID,
-	vehicles_color1,
-	vehicles_color2
+	PICKUP_ID,
+	PICKUP_TYPE
 }
 
-enum enum_vehicleModels
+enum enum_vehicle
 {
-	Float:vehicleModels_fuelUsage,
-	Float:vehicleModels_maxFuel
+	VEHICLE_SAVEID,
+	Float:VEHICLE_CURRENTFUEL,
+	VEHICLE_PAINTJOB,
+	VEHICLE_COLOR1,
+	VEHICLE_COLOR2
+}
+
+enum enum_vehicleModel
+{
+	Float:VEHICLEMODEL_FUELUSAGE,
+	Float:VEHICLEMODEL_MAXFUEL
 }

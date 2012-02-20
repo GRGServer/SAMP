@@ -7,11 +7,9 @@
 			break; \
 	}
 
-#define ACMD:%1(%2) \
-			COMMAND:%1(%2)
+#define ACMD:%0[%1](%2,%3) COMMAND:%0(%2, %3) if (!permissions[%2][PERMISSION_%1]) return COMMAND_PERMISSION_DENIED; else
 
-#define NCMD:%1(%2) \
-			COMMAND:%1(%2)
+#define NCMD:%0(%1,%2) COMMAND:%0(%1, %2) if (!IsPlayerNPC(%1)) return COMMAND_NPC_ONLY; else
 
 #define MD5(%0) MD5_Hash(%0, true)
 
@@ -19,3 +17,5 @@
 
 #define GetUserDBValue(%0,%1) GetMySQLValue("users", %1, "UserID", val2str(GetPVarInt(%0, "UserID")))
 #define SetUserDBValue(%0,%1,%3) SetMySQLValue("users", %1, %3, "UserID", val2str(GetPVarInt(%0, "UserID")))
+
+#define LoadPermission:%0(%1,%2) permissions[%1][PERMISSION_%0] = strval(GetMySQLField(%2))

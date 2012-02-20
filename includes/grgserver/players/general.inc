@@ -105,7 +105,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 			SendClientMessage(playerid, COLOR_ERROR, "Diese Befehl ist nur für NPCs verfügbar!");
 		case COMMAND_NOT_IN_VEHICLE:
 			SendClientMessage(playerid, COLOR_ERROR, "Du bist nicht in einem Fahrzeug!");
-		case COMMAND_ACCESS_DENIED:
+		case COMMAND_PERMISSION_DENIED:
 		{
 			SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht die nötigen Rechte um diesen Befehl zu verwenden!");
 			printf("%s tried to execute %s with admin level %d but has not the required permission!", GetPlayerNameEx(playerid), cmdtext, GetPVarInt(playerid, "AdminLevel"));

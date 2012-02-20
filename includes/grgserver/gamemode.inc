@@ -41,8 +41,8 @@ public OnGameModeInit()
 	while (FetchMySQLRow())
 	{
 		new index = strval(GetMySQLField("ModelID")) - 400;
-		vehicleModels[index][vehicleModels_fuelUsage] = floatstr(GetMySQLField("FuelUsage"));
-		vehicleModels[index][vehicleModels_maxFuel] = floatstr(GetMySQLField("MaxFuel"));
+		vehicleModels[index][VEHICLEMODEL_FUELUSAGE] = floatstr(GetMySQLField("FuelUsage"));
+		vehicleModels[index][VEHICLEMODEL_MAXFUEL] = floatstr(GetMySQLField("MaxFuel"));
 	}
 	mysql_free_result();
 	print("* Loading saved vehicles...");
@@ -51,8 +51,8 @@ public OnGameModeInit()
 	while (FetchMySQLRow())
 	{
 		new vehicleID = CreateVehicle(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1);
-		vehicles[vehicleID][vehicles_saveID] = strval(GetMySQLField("ID"));
-		vehicles[vehicleID][vehicles_currentFuel] = floatstr(GetMySQLField("CurrentFuel"));
+		vehicles[vehicleID][VEHICLE_SAVEID] = strval(GetMySQLField("ID"));
+		vehicles[vehicleID][VEHICLE_CURRENTFUEL] = floatstr(GetMySQLField("CurrentFuel"));
 		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
 	}
 	mysql_free_result();
