@@ -642,6 +642,15 @@ UpdateGasPrice()
 	gasPrice = float(150 + random(10)) / 100;
 }
 
+RemoveNewLine(string[])
+{
+	new length = strlen(string);
+	while (length-- && string[length] <= ' ')
+	{
+		string[length] = '\0';
+	}
+}
+
 CmdUsageMsg(playerID, command[], ...)
 {
 	new string[256];

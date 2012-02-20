@@ -17,6 +17,7 @@ CMD:cmds(playerid, params[])
 			new type;
 			new command[256];
 			new permission[256];
+			RemoveNewLine(string);
 			if (sscanf(string, "css", type, command, permission))
 			{
 				sscanf(string, "cs", type, command);
