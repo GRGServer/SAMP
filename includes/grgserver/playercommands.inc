@@ -17,9 +17,9 @@ CMD:cmds(playerid, params[])
 			new type;
 			new command[256];
 			new permission[256];
-			if (sscanf(string, "cs", type, command))
+			if (sscanf(string, "css", type, command, permission))
 			{
-				sscanf(string, "css", type, command, permission);
+				sscanf(string, "cs", type, command);
 			}
 			if (type)
 			{
@@ -29,7 +29,7 @@ CMD:cmds(playerid, params[])
 					showCommand = true;
 					format(command, sizeof(command), "{00FF00}%s", command);
 				}
-				if (type == 'A' && permissions[playerid][enum_permission:GetPermissionByName(permission)])
+				if (type == 'A' && strlen(permission) && permissions[playerid][enum_permission:GetPermissionByName(permission)])
 				{
 					showCommand = true;
 					format(command, sizeof(command), "{A00000}%s", command);
