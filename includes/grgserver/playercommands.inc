@@ -31,11 +31,15 @@ CMD:cmds(playerid, params[])
 					showCommand = true;
 					format(command, sizeof(command), "{00FF00}%s", command);
 				}
-				if (type == 'A' && strlen(permission) && permissions[playerid][enum_permission:GetPermissionByName(permission)])
+				if (type == 'A' && strlen(permission))
 				{
 					print("Is Admin CMD");
-					showCommand = true;
-					format(command, sizeof(command), "{A00000}%s", command);
+					if (permissions[playerid][enum_permission:GetPermissionByName(permission)])
+					{
+						printf("Is Admin CMD for %s", permission);
+						showCommand = true;
+						format(command, sizeof(command), "{A00000}%s", command);
+					}
 				}
 				print("End Check");
 				if (showCommand)
