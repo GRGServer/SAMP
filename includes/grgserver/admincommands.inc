@@ -102,16 +102,17 @@ ACMD:givepermission[SERVERADMIN](playerid, params[])
 	if (IsPlayerConnected(targetPlayerID))
 	{
 		// TODO: Allow multiple permissions at once
-		if (strcmp(permission, "ID", true) && strcmp(permission, "UserID", true))
+		if (strcmp(permission, "UserID", true))
 		{
 			new newState = true;
 			if (permission[0] == '-')
 			{
+				strdel(permission, 0, 1);
 				newState = false;
 			}
 			new query[256];
 			new string[256];
-			format(query, sizeof(query), "SELECT `ID` FROM `permissions` WHERE `UserID` = '%d'", GetPVarInt(targetPlayerID, "UserID"));
+			format(query, sizeof(query), "SELECT `UserID` FROM `permissions` WHERE `UserID` = '%d'", GetPVarInt(targetPlayerID, "UserID"));
 			mysql_query(query);
 			mysql_store_result();
 			if (mysql_num_rows())

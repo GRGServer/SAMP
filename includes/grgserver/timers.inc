@@ -163,6 +163,7 @@ public timer_slow()
 		new string[256];
 		new File:file = fopen("update_available", io_read);
 		fread(file, string);
+		RemoveNewLine(string);
 		new revision = strval(string);
 		fclose(file);
 		fremove("update_available");
