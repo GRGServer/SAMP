@@ -23,19 +23,24 @@ CMD:cmds(playerid, params[])
 			}
 			if (type)
 			{
+				printf("COMMAND %s TYPE %c PERMISSION %s", command, type, permission);
 				new showCommand;
 				if (type == 'P')
 				{
+					print("Is Player CMD");
 					showCommand = true;
 					format(command, sizeof(command), "{00FF00}%s", command);
 				}
 				if (type == 'A' && strlen(permission) && permissions[playerid][enum_permission:GetPermissionByName(permission)])
 				{
+					print("Is Admin CMD");
 					showCommand = true;
 					format(command, sizeof(command), "{A00000}%s", command);
 				}
+				print("End Check");
 				if (showCommand)
 				{
+					print("Can See Command");
 					count++;
 					if (count == 1)
 					{
