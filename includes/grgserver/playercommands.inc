@@ -34,11 +34,20 @@ CMD:cmds(playerid, params[])
 				if (type == 'A' && strlen(permission))
 				{
 					print("Is Admin CMD");
-					if (permissions[playerid][enum_permission:GetPermissionByName(permission)])
+					new permissionID = GetPermissionByName(permission);
+					if (permissionID == -1)
 					{
-						printf("Is Admin CMD for %s", permission);
-						showCommand = true;
-						format(command, sizeof(command), "{A00000}%s", command);
+						printf("Unknown permission: %s", permission);
+					}
+					else
+					{
+						printf("Permission ID: %d", permissionID);
+						if (permissions[playerid][enum_permission:permissionID])
+						{
+							printf("Is Admin CMD for %s", permission);
+							showCommand = true;
+							format(command, sizeof(command), "{A00000}%s", command);
+						}
 					}
 				}
 				print("End Check");
