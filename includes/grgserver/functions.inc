@@ -481,6 +481,7 @@ LeaveBuilding(playerID)
 		SetPlayerPos(playerID, floatstr(GetMySQLField("ExitPosX")), floatstr(GetMySQLField("ExitPosY")), floatstr(GetMySQLField("ExitPosZ")));
 		SetPlayerInterior(playerID, 0);
 		SetPlayerVirtualWorld(playerID, 0);
+		SetPVarInt(playerID, "CurrentBuildingID", 0);
 		mysql_free_result();
 		return true;
 	}
