@@ -44,8 +44,7 @@ ACMD:addpickup[MAPPER](playerid, params[])
 ACMD:checkpermissions[ADMIN](playerid, params[])
 {
 	new string[1024];
-	printf("Size of enum_permission: %d", sizeof(permissions[]));
-	for (new permission = 0; permission < 6; permission++)// TODO: Replace constant number (6) with anything to get size of enum_permission
+	for (new permission = 0; permission < sizeof(permissions[]); permission++)
 	{
 		if (permissions[playerid][enum_permission:permission])
 		{
