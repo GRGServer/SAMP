@@ -106,6 +106,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					SetPlayerMoney(playerid, -price);
 					format(query,sizeof(query), "UPDATE `buildings` SET `OwnerUserID` = '%d' WHERE `ID` = '%d'", GetPVarInt(playerid, "UserID"), buildingID);
 					mysql_query(query);
+					ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
 					SendClientMessage(playerid, COLOR_INFO, "Viel Spaﬂ mit deinem neuen Haus");
 				}
 				else

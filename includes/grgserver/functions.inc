@@ -432,6 +432,29 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 	}
 }
 
+ReloadPickup(pickupID)
+{
+	for (new internalPickupID = 0; internalPickupID < MAX_PICKUPS; internalPickupID++)
+	{
+		if (pickups[internalPickupID][PICKUP_ID] == pickupID)
+		{
+			DestroyPickup(internalPickupID);
+			pickups[internalPickupID][PICKUP_ID] = 0;
+			pickups[internalPickupID][PICKUP_TYPE] = 0;
+			break;
+		}
+	}
+	new query[256];
+	format(query, sizeof(query), "SELECT * FROM `pickups` WHERE `ID` = '%d'", pickupID);
+	mysql_query(query);
+	mysql_store_result();
+	if (AddPickup(strval(GetMySQLField("ID")), GetMySQLField("Type"), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), false) == -1)
+	{
+		printf("Invalid pickup type: %s", GetMySQLField("Type"));
+	}
+	mysql_free_result();
+}
+
 PlayRadioStation(playerID, id)
 {
 	if (id)
@@ -492,11 +515,11 @@ TeleportToBuilding(playerID, buildingID)
 
 LeaveBuilding(playerID)
 {
-	new currentBuilderID = GetPVarInt(playerID, "CurrentBuildingID");
-	if (currentBuilderID)
+	new CurrentBuildingID = GetPVarInt(playerID, "CurrentBuildingID");
+	if (CurrentBuildingID)
 	{
 		new query[256];
-		format(query, sizeof(query), "SELECT * FROM `buildings` WHERE `ID` = '%d'", val2str(currentBuilderID));
+		format(query, sizeof(query), "SELECT * FROM `buildings` WHERE `ID` = '%d'", val2str(CurrentBuildingID));
 		mysql_query(query);
 		mysql_store_result();
 		SetPlayerPos(playerID, floatstr(GetMySQLField("ExitPosX")), floatstr(GetMySQLField("ExitPosY")), floatstr(GetMySQLField("ExitPosZ")));

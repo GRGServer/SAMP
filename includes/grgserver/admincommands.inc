@@ -44,17 +44,21 @@ ACMD:addpickup[MAPPER](playerid, params[])
 ACMD:checkpermissions[ADMIN](playerid, params[])
 {
 	new string[1024];
+	printf("Size of enum_permission: %d", sizeof(permissions[]));
 	for (new permission = 0; permission < 6; permission++)// TODO: Replace constant number (6) with anything to get size of enum_permission
 	{
-		if (strlen(string))
+		if (permissions[playerid][enum_permission:permission])
 		{
-			format(string, sizeof(string), "%s ", string);
+			if (strlen(string))
+			{
+				format(string, sizeof(string), "%s ", string);
+			}
+			format(string, sizeof(string), "%s%s", string, GetPermissionName(permission));
 		}
-		format(string, sizeof(string), "%s%s", string, GetPermissionName(permission));
 	}
 	format(string, sizeof(string), "Du hast die folgenden Rechte: %s", string);
 	SendClientMessage(playerid, COLOR_INFO, string);
-	return COMMAND_ERROR;
+	return COMMAND_OK;
 }
 
 ACMD:controlnpc[NPCADMIN](playerid, params[])
