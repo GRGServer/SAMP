@@ -103,7 +103,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				if(price <= GetPVarFloat(playerid, "Money"))
 				{
 					SetPlayerMoney(playerid, -price);
-					format(query,sizeof(query),"UPDATE `buildings` SET `OwnerUserID` = '%d' WHERE `ID` = '%d'", GetPVarInt(playerid, "UserID"),SetPVarInt(playerid, "DialogBuildingID", strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(GetPVarInt(playerid, "DialogBuildingID"))))));
+					format(query,sizeof(query),"UPDATE `buildings` SET `OwnerUserID` = '%d' `PickupID` = '1272' WHERE `ID` = '%d'", GetPVarInt(playerid, "UserID"),SetPVarInt(playerid, "DialogBuildingID", strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(GetPVarInt(playerid, "DialogBuildingID"))))));
 					mysql_query(query);
 				}
 				else
