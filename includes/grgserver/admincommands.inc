@@ -41,6 +41,22 @@ ACMD:addpickup[MAPPER](playerid, params[])
 	}
 }
 
+ACMD:checkpermissions[ADMIN](playerid, params[])
+{
+	new string[1024];
+	for (new permission = 0; permission < 6; permission++)// TODO: Replace constant number (6) with anything to get size of enum_permission
+	{
+		if (strlen(string))
+		{
+			format(string, sizeof(string), "%s ", string);
+		}
+		format(string, sizeof(string), "%s%s", string, GetPermissionName(permission));
+	}
+	format(string, sizeof(string), "Du hast die folgenden Rechte: %s", string);
+	SendClientMessage(playerid, COLOR_INFO, string);
+	return COMMAND_ERROR;
+}
+
 ACMD:controlnpc[NPCADMIN](playerid, params[])
 {
 	new command[256];
@@ -112,6 +128,20 @@ ACMD:givepermission[SERVERADMIN](playerid, params[])
 			}
 			new query[256];
 			new string[256];
+			new permissionID = GetPermissionByName(permission);
+			if (permissions[playerid][enum_permission:permissionID] == newState)
+			{
+				if (newState)
+				{
+					format(string, sizeof(string), "%s hat bereits das Recht %s", GetPlayerNameEx(targetPlayerID), permission);
+				}
+				else
+				{
+					format(string, sizeof(string), "%s hatte das Recht %s noch nicht ud kann daher nicht entfernt werden", GetPlayerNameEx(targetPlayerID), permission);
+				}
+				SendClientMessage(playerid, COLOR_ERROR, string);
+				return COMMAND_ERROR;
+			}
 			format(query, sizeof(query), "SELECT `UserID` FROM `permissions` WHERE `UserID` = '%d'", GetPVarInt(targetPlayerID, "UserID"));
 			mysql_query(query);
 			mysql_store_result();
@@ -125,7 +155,7 @@ ACMD:givepermission[SERVERADMIN](playerid, params[])
 			}
 			mysql_free_result();
 			mysql_query(query);
-			permissions[targetPlayerID][enum_permission:GetPermissionByName(permission)] = newState;
+			permissions[targetPlayerID][enum_permission:permissionID] = newState;
 			format(string, sizeof(string), "Du hast das Recht %s von %s bekommen!", permission, GetPlayerNameEx(playerid));
 			SendClientMessage(targetPlayerID, COLOR_INFO, string);
 			format(string, sizeof(string), "Du hast das Recht %s an %s gegeben!", permission, GetPlayerNameEx(targetPlayerID));
@@ -148,7 +178,10 @@ ACMD:givepermission[SERVERADMIN](playerid, params[])
 
 ACMD:gmx[SERVERADMIN](playerid, params[])
 {
-	SendClientMessage(playerid, COLOR_INFO, "Gamemode neugestartet");
+	SendClientMessage(playerid, COLOR_INFO, "Du hast den Gamemode neugestartet");
+	new string[256];
+	format(string, sizeof(string), "%s hat den Gamemode neugestartet");
+	SendClientMessageToAllExcept(playerid, COLOR_INFO, string);
 	SendRconCommand("gmx");
 	return COMMAND_OK;
 }

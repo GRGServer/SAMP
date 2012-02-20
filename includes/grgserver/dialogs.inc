@@ -98,22 +98,20 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				new Float: price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(GetPVarInt(playerid, "DialogBuildingID"))));
+				new buildingID = GetPVarInt(playerid, "DialogBuildingID");
+				new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
 				new query[256];
-				if(price <= GetPVarFloat(playerid, "Money"))
+				if (price <= GetPVarFloat(playerid, "Money"))
 				{
 					SetPlayerMoney(playerid, -price);
-					format(query,sizeof(query),"UPDATE `buildings` SET `OwnerUserID` = '%d' `PickupID` = '1272' WHERE `ID` = '%d'", GetPVarInt(playerid, "UserID"),SetPVarInt(playerid, "DialogBuildingID", strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(GetPVarInt(playerid, "DialogBuildingID"))))));
+					format(query,sizeof(query), "UPDATE `buildings` SET `OwnerUserID` = '%d' WHERE `ID` = '%d'", GetPVarInt(playerid, "UserID"), buildingID);
 					mysql_query(query);
+					SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen Haus");
 				}
 				else
 				{
 					SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht das nötige Geld dazu!");
 				}
-			}
-			else
-			{
-				SendClientMessage(playerid,COLOR_INFO,"Vorgang Abgebrochen!");
 			}
 		}
 		case DIALOG_HOUSEOPTIONS:

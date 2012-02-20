@@ -123,6 +123,27 @@ SavePlayer(playerID)
 	}
 }
 
+GetPermissionName(permission)
+{
+	new string[256];
+	switch (permission)
+	{
+		case PERMISSION_ADMIN:
+			format(string, sizeof(string), "Admin");
+		case PERMISSION_MAPPER:
+			format(string, sizeof(string), "Mapper");
+		case PERMISSION_MODERATOR:
+			format(string, sizeof(string), "Moderator");
+		case PERMISSION_NPCADMIN:
+			format(string, sizeof(string), "NPCAdmin");
+		case PERMISSION_SERVERADMIN:
+			format(string, sizeof(string), "ServerAdmin");
+		case PERMISSION_TELEPORT:
+			format(string, sizeof(string), "Teleport");
+	}
+	return string;
+}
+
 GetPermissionByName(permissionName[])
 {
 	if (!strcmp(permissionName, "Admin", true))
@@ -475,7 +496,7 @@ LeaveBuilding(playerID)
 	if (currentBuilderID)
 	{
 		new query[256];
-		format(query, sizeof(query), "SELECT * FROM `building` WHERE `ID` = '%d'", val2str(currentBuilderID));
+		format(query, sizeof(query), "SELECT * FROM `buildings` WHERE `ID` = '%d'", val2str(currentBuilderID));
 		mysql_query(query);
 		mysql_store_result();
 		SetPlayerPos(playerID, floatstr(GetMySQLField("ExitPosX")), floatstr(GetMySQLField("ExitPosY")), floatstr(GetMySQLField("ExitPosZ")));
