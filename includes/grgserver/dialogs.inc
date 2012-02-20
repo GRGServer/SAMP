@@ -94,37 +94,28 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				RemovePlayerFromVehicle(playerid);
 			}
 		}
-		/* TODO: Write working code
-		case DIALOG_HOUSE:
+		case DIALOG_BUYHOUSE:
 		{
 			if (response)
 			{
-				new saveID = houses[playerid][houses_saveID];
-				new Float:price = floatstr(GetMySQLValue("house", "Price", "ID", val2str(houses_saveID)));
-				new ownerUserID = strval(GetMySQLValue("house", "OwnerUserID", "ID", val2str(houses[playerid][houses_saveID])));
+				new Float: price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(GetPVarInt(playerid, "DialogBuildingID"))));
+				new query[256];
 				if(price <= GetPVarFloat(playerid, "Money"))
 				{
-					for (new pickupID; pickupID < MAX_PICKUPS; pickupID++)
-					{
-						if(ownerUserID == 0)
-						{
-							SetPlayerMoney(playerid, floatsub(GetPVarFloat(playerid, "Money"), price));
-							SetMySQLValue("house", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(saveID));
-							SavePlayer(playerid);
-							pickups[pickupID][PICKUP_TYPE] = PICKUP_HOUSEBOUGHT;
-						}
-						else
-						{
-							SendClientMessage(playerid,COLOR_ERROR,"Dieses Haus ist bereits Verkauft!");
-						}
-					}
+					SetPlayerMoney(playerid, -price);
+					format(query,sizeof(query),"UPDATE `buildings` SET `OwnerUserID` = '%d' WHERE `ID` = '%d'", GetPVarInt(playerid, "UserID"),SetPVarInt(playerid, "DialogBuildingID", strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(GetPVarInt(playerid, "DialogBuildingID"))))));
+					mysql_query(query);
+				}
+				else
+				{
+					SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht das nötige Geld dazu!");
 				}
 			}
 			else
 			{
-				SendClientMessage(playerid,COLOR_INFO,"Vorgang abgebrochen!");
+				SendClientMessage(playerid,COLOR_INFO,"Vorgang Abgebrochen!");
 			}
-		}*/
+		}
 		case DIALOG_HOUSEOPTIONS:
 		{
 			if (response)
