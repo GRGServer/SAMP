@@ -9,7 +9,7 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 			{
 				if (ownerUserID == GetPVarInt(playerid, "UserID"))
 				{
-					SetPVarInt(playerid, "DialogHouseID", strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupid][PICKUP_ID]))));
+					SetPVarInt(playerid, "DialogBuildingID", strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupid][PICKUP_ID]))));
 					ShowDialog(playerid, DIALOG_HOUSEOPTIONS);
 				}
 				else
@@ -25,6 +25,7 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 				new Float:price = floatstr(GetMySQLValue("buildings", "Price", "PickupID", val2str(pickups[pickupid][PICKUP_ID])));
 				if (price <= GetPVarFloat(playerid, "Money"))
 				{
+					SetPVarInt(playerid, "DialogBuildingID", strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupid][PICKUP_ID]))));
 					ShowDialog(playerid, DIALOG_BUYHOUSE, FormatNumber(price, 2, '.', ','));
 				}
 				else

@@ -133,7 +133,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0:// Enter
 					{
-						TeleportToBuilding(playerid, GetPVarInt(playerid, "DialogHouseID"));
+						TeleportToBuilding(playerid, GetPVarInt(playerid, "DialogBuildingID"));
 					}
 					case 1:// Sell
 					{
