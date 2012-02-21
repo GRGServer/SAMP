@@ -4,9 +4,10 @@
 #include <grgserver\structures>// Structures for arrays like vehicles
 #include <grgserver\globals>// Globally used variables like ircBot (Variables which are shared between multiple functions)
 #include <grgserver\macros>// Macros like GetStringArg
-#include <grgserver\basicfunctions> // Ported functions like str_replace
+#include <grgserver\timers>// Timers to update various stuff like world time
 
 // Functions
+#include <grgserver\functions_basic>// Basic C-like functions like str_replace
 #include <grgserver\functions_dialogs>// Dialog functions like ShowDialog
 #include <grgserver\functions_general>// General functions like CmdUsageMsg
 #include <grgserver\functions_mysql>// MySQL functions like GetMySQLValue
@@ -18,16 +19,22 @@
 #include <grgserver\functions_players_teleport>// Teleport player functions like TeleportToInterior
 #include <grgserver\functions_vehicles>// Vehicle functions like SaveVehicle
 
+// Callbacks
+#include <grgserver\callbacks_dialogs>// Dialog callbacks like OnDialogResponse
+#include <grgserver\callbacks_gamemode_init>// Callbacks OnGameModeInit and OnGameModeExit
+#include <grgserver\callbacks_irc>// IRC callbacks like like IRC_OnConnect
+#include <grgserver\callbacks_pickups>// Pickup callbacks like OnPlayerPickupPickUp
+#include <grgserver\callbacks_players_connect>// Callbacks OnPlayerConnect and OnPlayerDisconnect
+#include <grgserver\callbacks_players_general>// General player callbacks like OnPlayerRequestClass
+#include <grgserver\callbacks_players_vehicles>// Player related vehicle callbacks like OnPlayerEnterVehicle
 
-#include <grgserver\gamemode>// Callbacks OnGameModeInit and OnGameModeExit
-#include <grgserver\ircchannel>// Callbacks for IRC like IRC_OnConnect
-#include <grgserver\connect_disconnect>// Callbacks OnPlayerConnect and OnPlayerDisconnect
-#include <grgserver\dialogs>// Callback OnDialogResponse
-#include <grgserver\playersgeneral>// General player callbacks
-#include <grgserver\pickups>// Callback OnPlayerPickupPickUp
-#include <grgserver\vehicles>// Player related vehicle callbacks like OnPlayerEnterVehicle
-#include <grgserver\timers>// Timers to update various stuff like world time
-#include <grgserver\admincommands>// Admin commands like /addpickup
-#include <grgserver\npccommands>// NPC commands like /npccmd
-#include <grgserver\playercommands>// Player commands like /radio
-#include <grgserver\rconcommands>// RCON commands like reloadpermissions
+// Commands
+#include <grgserver\commands_admin>// Admin commands like /money
+#include <grgserver\commands_mapper>// Mapper commands like /addpickup
+#include <grgserver\commands_moderator>// Moderator commands like /kick
+#include <grgserver\commands_npcadmin>// NPC admin commands like /controlnpc
+#include <grgserver\commands_npcs>// NPC only commands like /npccmd
+#include <grgserver\commands_player>// Player commands like /radio
+#include <grgserver\commands_rcon>// RCON commands like reloadpermissions
+#include <grgserver\commands_serveradmin>// Server admin commands like /gmx
+#include <grgserver\commands_teleport>// Teleport commands like /goto
