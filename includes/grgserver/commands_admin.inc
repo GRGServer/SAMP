@@ -45,10 +45,15 @@ PCMD:jetpack[ADMIN](playerid, params[])
 
 PCMD:money[ADMIN](playerid, params[])
 {
+	new string[256];
 	new money;
 	if (!sscanf(params, "f", money))
 	{
 		GivePlayerMoneyEx(playerid, money);
+		format(string, sizeof(string), "Du hast dir $%s gegeben", FormatMoney(money));
+		SendClientMessage(playerid, COLOR_INFO, string);
+		format(string, sizeof(string), "Neuer Kontostand: %s", FormatMoney(GetPVarFloat(playerid, "Money")));
+		SendClientMessage(playerid, COLOR_INFO, string);
 		return COMMAND_OK;
 	}
 	else

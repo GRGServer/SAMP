@@ -2,6 +2,25 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 {
 	switch (pickups[pickupid][PICKUP_TYPE])
 	{
+		case PICKUPTYPE_BANK:
+		{
+			printf("Pickup %d is a bank");
+			TeleportToBuilding(playerid, strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupid][PICKUP_ID]))));
+		}
+		case PICKUPTYPE_GASSTATION:
+		{
+			printf("Pickup %d is a gas station");
+			new vehicleID = GetPlayerVehicleID(playerid);
+			new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
+			if (maximum > 0)
+			{
+				ShowDialog(playerid, DIALOG_REFUEL, FormatMoney(maximum));
+			}
+			else
+			{
+				SendClientMessage(playerid, COLOR_ERROR, "Der Tank ist bereits voll!");
+			}
+		}
 		case PICKUPTYPE_HOTEL:
 		{
 			printf("Pickup %d is a hotel");
@@ -31,32 +50,13 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 				if (price <= GetPVarFloat(playerid, "Money"))
 				{
 					SetPVarInt(playerid, "DialogBuildingID", strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupid][PICKUP_ID]))));
-					ShowDialog(playerid, DIALOG_BUYHOUSE, FormatPrice(price));
+					ShowDialog(playerid, DIALOG_BUYHOUSE, FormatMoney(price));
 				}
 				else
 				{
-					format(string, sizeof(string), "Du hast nicht genügend Geld, um dieses Haus zu kaufen! Du benötigst mindestens $%s.", FormatPrice(price));
+					format(string, sizeof(string), "Du hast nicht genügend Geld, um dieses Haus zu kaufen! Du benötigst mindestens $%s.", FormatMoney(price));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 				}
-			}
-		}
-		case PICKUPTYPE_BANK:
-		{
-			printf("Pickup %d is a bank");
-			TeleportToBuilding(playerid, strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupid][PICKUP_ID]))));
-		}
-		case PICKUPTYPE_GASSTATION:
-		{
-			printf("Pickup %d is a gas station");
-			new vehicleID = GetPlayerVehicleID(playerid);
-			new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
-			if (maximum > 0)
-			{
-				ShowDialog(playerid, DIALOG_REFUEL, FormatPrice(maximum));
-			}
-			else
-			{
-				SendClientMessage(playerid, COLOR_ERROR, "Der Tank ist bereits voll!");
 			}
 		}
 		default:

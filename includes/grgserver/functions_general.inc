@@ -13,7 +13,7 @@ CmdUsageMsg(playerID, command[], ...)
 	SendClientMessage(playerID, COLOR_USAGE, string);
 }
 
-FormatPrice(Float:price)
+FormatMoney(Float:price)
 {
 	return FormatNumber(price, 2, '.', ',');
 }

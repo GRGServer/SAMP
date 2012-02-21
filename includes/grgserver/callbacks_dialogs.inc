@@ -61,7 +61,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					format(query, sizeof(query), "INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%s', '%s', '%f')", pickupID, GetMySQLValue("interiors", "ID", "Name", GetPVarStringEx(playerid, "AddBuilding_Interior")), MySQLEscapeString(inputtext), GetPVarFloat(playerid, "AddBuilding_Price"));
 					mysql_query(query);
-					format(string, sizeof(string), "Das Gebäude %s (Preis: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", inputtext, FormatPrice(GetPVarFloat(playerid, "AddBuilding_Price")), GetPVarStringEx(playerid, "AddBuilding_Interior"), mysql_insert_id());
+					format(string, sizeof(string), "Das Gebäude %s (Preis: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", inputtext, FormatMoney(GetPVarFloat(playerid, "AddBuilding_Price")), GetPVarStringEx(playerid, "AddBuilding_Interior"), mysql_insert_id());
 					SendClientMessage(playerid, COLOR_INFO, string);
 				}
 				else

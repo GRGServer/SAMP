@@ -100,6 +100,14 @@ CMD:exit(playerid, params[])
 	}
 }
 
+CMD:getbalance(playerid, params[])
+{
+	new string[256];
+	format(string, sizeof(string), "Aktueller Kontostand: $%s", FormatMoney(GetPVarFloat(playerid, "Money")));
+	SendClientMessage(playerid, COLOR_INFO, string);
+	return COMMAND_OK;
+}
+
 CMD:help(playerid, params[])
 {
 	SendClientMessage(playerid, COLOR_INFO, "Verwende /cmds um eine Liste an Befehlen zu sehen.");
