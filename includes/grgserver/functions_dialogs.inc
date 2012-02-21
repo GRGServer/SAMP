@@ -117,8 +117,10 @@ ShowDialog(playerID, dialogID, ...)
 				}
 			}
 			format(string, sizeof(string), "Ziel auswählen (Seite %d)", page);
+			print("Getting string argument");
 			GetStringArg(4, buttonText1);
 			GetStringArg(5, buttonText2);
+			printf("%s | %s", buttonText1, buttonText2);
 			SetPVarInt(playerID, "InteriorDialogID", getarg(2));
 			ShowPlayerDialog(playerID, DIALOG_SELECTINTERIOR, DIALOG_STYLE_LIST, string, interiors, buttonText1, buttonText2);
 		}
@@ -143,6 +145,9 @@ ShowDialog(playerID, dialogID, ...)
 
 ShowInteriorDialog(playerID, dialogID, buttonText1[], buttonText2[])
 {
+	print("ShowInteriorDialog");
+	printf("buttonText1: %s", buttonText1);
+	printf("buttonText2: %s", buttonText2);
 	ShowDialog(playerID, DIALOG_SELECTINTERIOR, dialogID, 0, buttonText1, buttonText2);
 }
 
