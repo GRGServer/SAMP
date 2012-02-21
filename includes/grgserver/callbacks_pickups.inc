@@ -4,12 +4,10 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 	{
 		case PICKUPTYPE_BANK:
 		{
-			printf("Pickup %d is a bank");
 			TeleportToBuilding(playerid, strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupid][PICKUP_ID]))));
 		}
 		case PICKUPTYPE_GASSTATION:
 		{
-			printf("Pickup %d is a gas station");
 			new vehicleID = GetPlayerVehicleID(playerid);
 			new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
 			if (maximum > 0)
@@ -23,11 +21,10 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 		}
 		case PICKUPTYPE_HOTEL:
 		{
-			printf("Pickup %d is a hotel");
+			// Hotel
 		}
 		case PICKUPTYPE_HOUSE:
 		{
-			printf("Pickup %d is a house");
 			new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "PickupID", val2str(pickups[pickupid][PICKUP_ID])));
 			if (ownerUserID)
 			{

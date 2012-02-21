@@ -15,7 +15,6 @@ SaveVehicle(vehicleID, interior)
 {
 	if (vehicles[vehicleID][VEHICLE_SAVEID])
 	{
-		printf("Saving vehicle %d", vehicleID);
 		new query[512];
 		new Float:posX; 
 		new Float:posY;

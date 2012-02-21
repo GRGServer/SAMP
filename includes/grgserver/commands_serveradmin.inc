@@ -67,7 +67,7 @@ PCMD:givepermission[SERVERADMIN](playerid, params[])
 					SendClientMessage(targetPlayerID, COLOR_INFO, string);
 					format(string, sizeof(string), "Du hast das Recht %s von %s weggenommen!", permission, GetPlayerNameEx(targetPlayerID));
 					SendClientMessage(playerid, COLOR_INFO, string);
-					printf("%s has removed the permission %s of %s", GetPlayerNameEx(playerid), permission, GetPlayerNameEx(targetPlayerID));
+					printf("%s has revoked the permission %s of %s", GetPlayerNameEx(playerid), permission, GetPlayerNameEx(targetPlayerID));
 				}
 			}
 		}
@@ -87,8 +87,16 @@ PCMD:gmx[SERVERADMIN](playerid, params[])
 
 PCMD:rc[SERVERADMIN](playerid, params[])
 {
-	printf("%s sent a RCON command: %s", GetPlayerNameEx(playerid), params);
-	SendRconCommand(params);
-	SendClientMessage(playerid, COLOR_INFO, "Der Befehl wurde ausgeführt");
-	return COMMAND_OK;
+	if (strlen(params))
+	{
+		printf("%s sent a RCON command: %s", GetPlayerNameEx(playerid), params);
+		SendRconCommand(params);
+		SendClientMessage(playerid, COLOR_INFO, "Der Befehl wurde ausgeführt");
+		return COMMAND_OK;
+	}
+	else
+	{
+		CmdUsageMsg(playerid, "rc", "Befehl(exit,gmx,...)", "Parameter", "...");
+		return COMMAND_USAGE;
+	}
 }

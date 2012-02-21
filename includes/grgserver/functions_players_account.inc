@@ -45,7 +45,6 @@ SavePlayer(playerID)
 {
 	if (IsLoggedIn(playerID))
 	{
-		printf("Saving player %s", GetPlayerNameEx(playerID));
 		SavePlayerValue(playerID, "Level");
 		SavePlayerValue(playerID, "AdminLevel");
 		SavePlayerValue(playerID, "Money");

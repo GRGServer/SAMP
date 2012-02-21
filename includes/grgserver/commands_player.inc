@@ -32,7 +32,6 @@ CMD:cmds(playerid, params[])
 				}
 				if (type == 'P' && strlen(permission))
 				{
-					print("Is Admin CMD");
 					new permissionID = GetPermissionByName(permission);
 					if (permissionID != -1)
 					{
