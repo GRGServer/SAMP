@@ -2,9 +2,13 @@ ShowDialog(playerID, dialogID, ...)
 {
 	switch (dialogID)
 	{
-		case DIALOG_ADDBUILDING:
+		case DIALOG_ADDBUILDING_NAME:
 		{
-			ShowPlayerDialog(playerID, DIALOG_ADDBUILDING, DIALOG_STYLE_LIST, "Gebäudetyp auswählen", "Bank\nHotel\nHaus", "Weiter", "Abbrechen");
+			ShowPlayerDialog(playerID, DIALOG_ADDBUILDING_NAME, DIALOG_STYLE_INPUT, "Name eingeben", "Gebe den Name für das Gebäude ein.", "Erstellen", "Zurück");
+		}
+		case DIALOG_ADDBUILDING_TYPE:
+		{
+			ShowPlayerDialog(playerID, DIALOG_ADDBUILDING_TYPE, DIALOG_STYLE_LIST, "Gebäudetyp auswählen", "Bank\nHotel\nHaus", "Weiter", "Abbrechen");
 		}
 		case DIALOG_BUYHOUSE:
 		{
@@ -74,6 +78,8 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_SELECTINTERIOR:
 		{
+			new buttonText1[256];
+			new buttonText2[256];
 			new interiors[2048];
 			new string[256];
 			new query[256];
@@ -111,8 +117,18 @@ ShowDialog(playerID, dialogID, ...)
 				}
 			}
 			format(string, sizeof(string), "Ziel auswählen (Seite %d)", page);
+			GetStringArg(4, buttonText1);
+			GetStringArg(5, buttonText2);
+			if (!strlen(buttonText1))
+			{
+				format(buttonText1, sizeof(buttonText1), "OK");
+			}
+			if (!strlen(buttonText2))
+			{
+				format(buttonText2, sizeof(buttonText2), "Abbrechen");
+			}
 			SetPVarInt(playerID, "InteriorDialogID", getarg(2));
-			ShowPlayerDialog(playerID, DIALOG_SELECTINTERIOR, DIALOG_STYLE_LIST, string, interiors, "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, DIALOG_SELECTINTERIOR, DIALOG_STYLE_LIST, string, interiors, buttonText1, buttonText2);
 		}
 		case DIALOG_TELEPORTLOCATIONS:
 		{
@@ -133,9 +149,9 @@ ShowDialog(playerID, dialogID, ...)
 	}
 }
 
-ShowInteriorDialog(playerID, dialogID)
+ShowInteriorDialog(playerID, dialogID, buttonText1[] = "", buttonText2[] = "")
 {
-	ShowDialog(playerID, DIALOG_SELECTINTERIOR, dialogID, 0);
+	ShowDialog(playerID, DIALOG_SELECTINTERIOR, dialogID, 0, buttonText1, buttonText2);
 }
 
 OnInteriorDialogSelect(playerID, dialogID, interiorID)
@@ -144,36 +160,15 @@ OnInteriorDialogSelect(playerID, dialogID, interiorID)
 	{
 		case INTERIORDIALOG_ADDBUILDING:
 		{
-			new string[256];
-			new query[256];
-			new type[256];
-			new Float:posX;
-			new Float:posY;
-			new Float:posZ;
-			new pickupID = -1;
 			if (interiorID)
 			{
-				GetPlayerPos(playerID, posX, posY, posZ);
-				pickupID = AddPickup(-1, type, posX, posY, posZ, true);
-				if (pickupID > 0)
-				{
-					format(query, sizeof(query), "INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%s', '%s', '%f')", pickupID, GetMySQLValue("interiors", "ID", "Name", GetPVarStringEx(playerID, "AddBuilding_Interior")), GetPVarStringEx(playerID, "AddBuilding_Name"), GetPVarFloat(playerID, "AddBuilding_Price"));
-					mysql_query(query);
-					format(string, sizeof(string), "Das Gebäude %s (Preis: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", GetPVarStringEx(playerID, "AddBuilding_Name"), FormatPrice(GetPVarFloat(playerID, "AddBuilding_Price")), GetPVarStringEx(playerID, "AddBuilding_Interior"), mysql_insert_id());
-					SendClientMessage(playerID, COLOR_INFO, string);
-				}
-				else
-				{
-					SendClientMessage(playerID, COLOR_ERROR, "Fehler beim Erstellen des Pickups!");
-				}
-				DeletePVar(playerID, "AddBuilding_Name");
-				DeletePVar(playerID, "AddBuilding_Price");
-				DeletePVar(playerID, "AddBuilding_Type");
+				SetPVarInt(playerID, "AddBuilding_InteriorID", interiorID);
+				ShowDialog(playerID, DIALOG_ADDBUILDING_NAME);
 			}
 			else
 			{
 				DeletePVar(playerID, "AddBuilding_Type");
-				ShowDialog(playerID, DIALOG_ADDBUILDING);
+				ShowDialog(playerID, DIALOG_ADDBUILDING_TYPE);
 			}
 		}
 		case INTERIORDIALOG_SHOWINTERIOR:

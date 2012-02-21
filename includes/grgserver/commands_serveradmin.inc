@@ -26,7 +26,7 @@ PCMD:givepermission[SERVERADMIN](playerid, params[])
 				new query[256];
 				new string[256];
 				new permissionID = GetPermissionByName(permission);
-				if (permissions[playerid][enum_permission:permissionID] == newState)
+				if (permissions[targetPlayerID][enum_permission:permissionID] == newState)
 				{
 					if (newState)
 					{
@@ -34,7 +34,7 @@ PCMD:givepermission[SERVERADMIN](playerid, params[])
 					}
 					else
 					{
-						format(string, sizeof(string), "%s hatte das Recht %s noch nicht ud kann daher nicht entfernt werden", GetPlayerNameEx(targetPlayerID), permission);
+						format(string, sizeof(string), "%s hatte das Recht %s noch nicht und kann daher nicht entfernt werden", GetPlayerNameEx(targetPlayerID), permission);
 					}
 					SendClientMessage(playerid, COLOR_ERROR, string);
 					return COMMAND_ERROR;

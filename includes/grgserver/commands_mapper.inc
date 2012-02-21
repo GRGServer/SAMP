@@ -1,15 +1,13 @@
 PCMD:addbuilding[MAPPER](playerid, params[])
 {
-	new name[256];
 	new Float:price;
-	if (sscanf(params, "sf", name, price))
+	if (sscanf(params, "f", price))
 	{
-		CmdUsageMsg(playerid, "addbuilding", "Name", "Preis");
+		CmdUsageMsg(playerid, "addbuilding", "Preis");
 		return COMMAND_USAGE;
 	}
-	SetPVarString(playerid, "AddBuilding_Name", name);
 	SetPVarFloat(playerid, "AddBuilding_Price", price);
-	ShowDialog(playerid, DIALOG_ADDBUILDING);
+	ShowDialog(playerid, DIALOG_ADDBUILDING_TYPE);
 	return COMMAND_OK;
 }
 
@@ -22,23 +20,26 @@ PCMD:addpickup[MAPPER](playerid, params[])
 	new Float:posZ;
 	if (sscanf(params, "s", type))
 	{
-		CmdUsageMsg(playerid, "addpickup", "BANK/GASSTATION/HOUSE/HOTEL");
+		CmdUsageMsg(playerid, "addpickup", "GASSTATION");
 		return COMMAND_USAGE;
 	}
 	format(type, sizeof(type), "%s", strtoupper(type));
-	GetPlayerPos(playerid, posX, posY, posZ);
-	new id = AddPickup(-1, type, posX, posY, posZ, true);
-	if (id > 0)
+	if (!strcmp(type, "GASSTATION", true))
 	{
-		format(string, sizeof(string), "Das Pickup %s wurde unter der ID %d gespeichert", type, id);
-		SendClientMessage(playerid, COLOR_INFO, string);
-		return COMMAND_OK;
+		GetPlayerPos(playerid, posX, posY, posZ);
+		new id = AddPickup(-1, type, posX, posY, posZ, true);
+		if (id > 0)
+		{
+			format(string, sizeof(string), "Das Pickup %s wurde unter der ID %d gespeichert", type, id);
+			SendClientMessage(playerid, COLOR_INFO, string);
+			return COMMAND_OK;
+		}
 	}
 	else
 	{
 		SendClientMessage(playerid, COLOR_ERROR, "Ungültiger Typ!");
-		return COMMAND_ERROR;
 	}
+	return COMMAND_ERROR;
 }
 
 PCMD:saveveh[MAPPER](playerid, params[])

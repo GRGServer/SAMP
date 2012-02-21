@@ -45,7 +45,37 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			DeletePVar(playerid, "AddHouse_Name");
 			DeletePVar(playerid, "AddHouse_Hotel");
 		}*/
-		case DIALOG_ADDBUILDING:
+		case DIALOG_ADDBUILDING_NAME:
+		{
+			if (response)
+			{
+				new string[256];
+				new query[256];
+				new Float:posX;
+				new Float:posY;
+				new Float:posZ;
+				new pickupID = -1;
+				GetPlayerPos(playerid, posX, posY, posZ);
+				pickupID = AddPickup(-1, GetPVarStringEx(playerid, "AddBuilding_Type"), posX, posY, posZ, true);
+				if (pickupID > 0)
+				{
+					format(query, sizeof(query), "INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%s', '%s', '%f')", pickupID, GetMySQLValue("interiors", "ID", "Name", GetPVarStringEx(playerid, "AddBuilding_Interior")), MySQLEscapeString(inputtext), GetPVarFloat(playerid, "AddBuilding_Price"));
+					mysql_query(query);
+					format(string, sizeof(string), "Das Gebäude %s (Preis: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", inputtext, FormatPrice(GetPVarFloat(playerid, "AddBuilding_Price")), GetPVarStringEx(playerid, "AddBuilding_Interior"), mysql_insert_id());
+					SendClientMessage(playerid, COLOR_INFO, string);
+				}
+				else
+				{
+					SendClientMessage(playerid, COLOR_ERROR, "Fehler beim Erstellen des Pickups!");
+				}
+			}
+			else
+			{
+				DeletePVar(playerid, "AddBuilding_InteriorID");
+				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
+			}
+		}
+		case DIALOG_ADDBUILDING_TYPE:
 		{
 			if (response)
 			{
@@ -64,7 +94,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			else
 			{
-				DeletePVar(playerid, "AddBuilding_Name");
 				DeletePVar(playerid, "AddBuilding_Price");
 			}
 		}
