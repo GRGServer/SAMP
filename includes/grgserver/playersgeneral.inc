@@ -105,6 +105,8 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 			SendClientMessage(playerid, COLOR_ERROR, "Diese Befehl ist nur für NPCs verfügbar!");
 		case COMMAND_NOT_IN_VEHICLE:
 			SendClientMessage(playerid, COLOR_ERROR, "Du bist nicht in einem Fahrzeug!");
+		case COMMAND_PLAYER_NOT_FOUND:
+			SendClientMessage(playerid, COLOR_ERROR, "Spieler nicht gefunden!");
 		case COMMAND_PERMISSION_DENIED:
 		{
 			SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht die nötigen Rechte um diesen Befehl zu verwenden!");

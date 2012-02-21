@@ -48,11 +48,11 @@ CMD:cmds(playerid, params[])
 					count++;
 					if (count == 1)
 					{
-						format(line, sizeof(line), "%s", command);
+						format(line, sizeof(line), "/%s", command);
 					}
 					else
 					{
-						format(line, sizeof(line), "%s %s", line, command);
+						format(line, sizeof(line), "%s /%s", line, command);
 					}
 					if (count == HELP_COMMANDSPERLINE)
 					{

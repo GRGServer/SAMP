@@ -43,21 +43,40 @@ ACMD:addpickup[MAPPER](playerid, params[])
 
 ACMD:checkpermissions[ADMIN](playerid, params[])
 {
+	new targetPlayerID;
 	new string[1024];
-	for (new permission = 0; permission < sizeof(permissions[]); permission++)
+	if (sscanf(params, "u", targetPlayerID))
 	{
-		if (permissions[playerid][enum_permission:permission])
-		{
-			if (strlen(string))
-			{
-				format(string, sizeof(string), "%s ", string);
-			}
-			format(string, sizeof(string), "%s%s", string, GetPermissionName(permission));
-		}
+		targetPlayerID = playerid;
 	}
-	format(string, sizeof(string), "Du hast die folgenden Rechte: %s", string);
-	SendClientMessage(playerid, COLOR_INFO, string);
-	return COMMAND_OK;
+	if (IsPlayerConnected(targetPlayerID))
+	{
+		for (new permission = 0; permission < sizeof(permissions[]); permission++)
+		{
+			if (permissions[targetPlayerID][enum_permission:permission])
+			{
+				if (strlen(string))
+				{
+					format(string, sizeof(string), "%s, ", string);
+				}
+				format(string, sizeof(string), "%s%s", string, GetPermissionName(permission));
+			}
+		}
+		if (targetPlayerID == playerid)
+		{
+			format(string, sizeof(string), "Du hast die folgenden Rechte: %s", string);
+		}
+		else
+		{
+			format(string, sizeof(string), "%s hat die folgenden Rechte: %s", GetPlayerNameEx(targetPlayerID), string);
+		}
+		SendClientMessage(playerid, COLOR_INFO, string);
+		return COMMAND_OK;
+	}
+	else
+	{
+		return COMMAND_PLAYER_NOT_FOUND;
+	}
 }
 
 ACMD:controlnpc[NPCADMIN](playerid, params[])
@@ -175,8 +194,7 @@ ACMD:givepermission[SERVERADMIN](playerid, params[])
 	}
 	else
 	{
-		SendClientMessage(playerid, COLOR_ERROR, "Spieler nicht gefunden!");
-		return COMMAND_ERROR;
+		return COMMAND_PLAYER_NOT_FOUND;
 	}
 }
 
@@ -210,16 +228,12 @@ ACMD:goto[ADMIN](playerid, params[])
 		{
 			return COMMAND_TELEPORTED;
 		}
-		else
-		{
-			return COMMAND_ERROR;
-		}
 	}
 	else
 	{
-		SendClientMessage(playerid, COLOR_ERROR, "Spieler nicht gefunden!");
+		return COMMAND_PLAYER_NOT_FOUND;
 	}
-	return COMMAND_OK;
+	return COMMAND_ERROR;
 }
 
 ACMD:gotobsn[TELEPORT](playerid, params[])
@@ -269,8 +283,7 @@ ACMD:kick[MODERATOR](playerid, params[])
 	}
 	else
 	{
-		SendClientMessage(playerid, COLOR_ERROR, "Der Spieler wurde nicht gefunden!");
-		return COMMAND_ERROR;
+		return COMMAND_PLAYER_NOT_FOUND;
 	}
 }
 
