@@ -106,13 +106,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				new Float:price = floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(saveID)));
 				if (price <= GetPVarFloat(playerid, "Money"))
 				{
-					SetPlayerMoney(playerid, floatsub(GetPVarFloat(playerid, "Money"), price));
-					SetMySQLValue("savedvehicles", "ownerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(saveID));
+					GivePlayerMoneyEx(playerid, -price);
+					SetMySQLValue("savedvehicles", "OwnerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(saveID));
 					SavePlayer(playerid);
 				}
 				else
 				{
-					format(string,sizeof(string), "Du benötigst $%f für dieses Fahrzeug! Leider hast du nur $%f.", price, GetPVarFloat(playerid, "Money"));
+					format(string,sizeof(string), "Du benötigst $%s für dieses Fahrzeug! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPVarFloat(playerid, "Money")));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 					RemovePlayerFromVehicle(playerid);
 				}
@@ -128,18 +128,18 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				new buildingID = GetPVarInt(playerid, "DialogBuildingID");
 				new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
-				new query[256];
 				if (price <= GetPVarFloat(playerid, "Money"))
 				{
-					SetPlayerMoney(playerid, -price);
-					format(query,sizeof(query), "UPDATE `buildings` SET `OwnerUserID` = '%d' WHERE `ID` = '%d'", GetPVarInt(playerid, "UserID"), buildingID);
-					mysql_query(query);
+					GivePlayerMoneyEx(playerid, -price);
+					SetMySQLValue("buildings", "OwnerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(buildingID));
 					ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
 					SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen Haus");
 				}
 				else
 				{
-					SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht das nötige Geld dazu!");
+					new string[256];
+					format(string,sizeof(string), "Du benötigst $%s für dieses Haus! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPVarFloat(playerid, "Money")));
+					SendClientMessage(playerid, COLOR_ERROR, string);
 				}
 			}
 		}
