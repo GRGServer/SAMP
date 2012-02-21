@@ -5,6 +5,7 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 	new spawnType;
 	new pickup;
 	GetPickupInfoByType(pickupID, type, pickupTypeID, modelID, spawnType);
+	printf("IN: pickupID(%d) + type(%s), OUT: pickupTypeID(%d) + modelID(%d) + spawnType(%d)", pickupID, type, pickupTypeID, modelID, spawnType);
 	if (modelID)
 	{
 		pickup = CreatePickup(modelID, spawnType, posX, posY, posZ);
@@ -60,7 +61,6 @@ GetPickupInfoByType(pickupID, type[], &typeID, &modelID, &spawnType)
 	{
 		typeID = PICKUPTYPE_HOTEL;
 	}
-	printf("PickupID: %d, Type: %s, TypeID: %d, ModelID: %d, SpawnType: %d", pickupID, type, typeID, modelID, spawnType);
 }
 
 ReloadPickup(pickupID)
