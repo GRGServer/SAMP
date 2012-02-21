@@ -11,6 +11,8 @@
 
 #define NCMD:%0(%1,%2) COMMAND:%0(%1, %2) if (!IsPlayerNPC(%1)) return COMMAND_NPC_ONLY; else
 
+#define RCMD:%0(%1) forward rcmd_%0(%1); public rcmd_%0(%1)
+
 #define MD5(%0) MD5_Hash(%0, true)
 
 #define IsKeyPressed(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))// Not used yet
