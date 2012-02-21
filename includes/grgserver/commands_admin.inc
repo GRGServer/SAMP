@@ -46,7 +46,7 @@ PCMD:jetpack[ADMIN](playerid, params[])
 PCMD:money[ADMIN](playerid, params[])
 {
 	new string[256];
-	new money;
+	new Float:money;
 	if (!sscanf(params, "f", money))
 	{
 		GivePlayerMoneyEx(playerid, money);
