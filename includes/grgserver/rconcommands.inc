@@ -1,3 +1,43 @@
+RCMD:cmds(params[])
+{
+	if (fexist("commands.txt"))
+	{
+		new string[256];
+		new line[256];
+		new count;
+		new File:commands = fopen("commands.txt", io_read);
+		while (fread(commands, string))
+		{
+			new type;
+			new command[256];
+			new permission[256];
+			RemoveNewLine(string);
+			if (sscanf(string, "css", type, command, permission))
+			{
+				sscanf(string, "cs", type, command);
+			}
+			if (type == 'R')
+			{
+				count++;
+				if (count == 1)
+				{
+					format(line, sizeof(line), "/%s", command);
+				}
+				else
+				{
+					format(line, sizeof(line), "%s /%s", line, command);
+				}
+				if (count == HELP_COMMANDSPERLINE)
+				{
+					count = 0;
+					print(line);
+				}
+			}
+		}
+	}
+	return true;
+}
+
 RCMD:reloadpermissions(params[])
 {
 	print("Reloading permissions...");
