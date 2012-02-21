@@ -98,6 +98,7 @@ ShowDialog(playerID, dialogID, ...)
 				}
 				format(interiors, sizeof(interiors), "%s%s", interiors, GetMySQLField("Name"));
 			}
+			mysql_free_result();
 			switch (page)
 			{
 				case 1:
@@ -112,6 +113,22 @@ ShowDialog(playerID, dialogID, ...)
 			format(string, sizeof(string), "Ziel auswählen (Seite %d)", page);
 			SetPVarInt(playerID, "InteriorDialogID", getarg(2));
 			ShowPlayerDialog(playerID, DIALOG_SELECTINTERIOR, DIALOG_STYLE_LIST, string, interiors, "OK", "Abbrechen");
+		}
+		case DIALOG_TELEPORTLOCATIONS:
+		{
+			new locations[2048];
+			mysql_query("SELECT * FROM `teleports`");
+			mysql_store_result();
+			while (FetchMySQLRow())
+			{
+				if (strlen(locations))
+				{
+					format(locations, sizeof(locations), "%s\n", locations);
+				}
+				format(locations, sizeof(locations), "%s%s", locations, GetMySQLField("Name"));
+			}
+			mysql_free_result();
+			ShowPlayerDialog(playerID, DIALOG_TELEPORTLOCATIONS, DIALOG_STYLE_LIST, "Teleportieren", locations, "OK", "Abbrechen");
 		}
 	}
 }

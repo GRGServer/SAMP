@@ -232,26 +232,6 @@ ACMD:goto[ADMIN](playerid, params[])
 	return COMMAND_ERROR;
 }
 
-ACMD:gotobsn[TELEPORT](playerid, params[])
-{
-	return Teleport(playerid, 1204.7445, -881.0291, 43.0703, 0.0, 0, 0);
-}
-
-ACMD:gotols[TELEPORT](playerid, params[])
-{
-	return Teleport(playerid, 1529.6, -1691.2, 13.3, 0.0, 0, 0);
-}
-
-ACMD:gotolv[TELEPORT](playerid, params[])
-{
-	return Teleport(playerid, 1699.2, 1435.1, 10.7, 0.0, 0, 0);
-}
-
-ACMD:gotosf[TELEPORT](playerid, params[])
-{
-	return Teleport(playerid, -1417.0, -295.8, 14.1, 0.0, 0, 0);
-}
-
 ACMD:jetpack[ADMIN](playerid, params[])
 {
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USEJETPACK);
@@ -443,14 +423,28 @@ ACMD:setexit[MAPPER](playerid, params[])
 
 ACMD:showinterior[ADMIN](playerid, params[])
 {
-	ShowInteriorDialog(playerid, INTERIORDIALOG_SHOWINTERIOR);
-	return COMMAND_OK;
+	if (GetPVarInt(playerid, "CurrentBuildingID"))
+	{
+		SendClientMessage(playerid, COLOR_ERROR, "Du bist aktuell in einem Gebäude! Bitte verlasse das Gebäude und versuche es erneut.");
+		return COMMAND_ERROR;
+	}
+	else
+	{
+		ShowInteriorDialog(playerid, INTERIORDIALOG_SHOWINTERIOR);
+		return COMMAND_OK;
+	}
 }
 
 ACMD:stoprec[NPCADMIN](playerid, params[])
 {
 	StopRecordingPlayerData(playerid);
 	SendClientMessage(playerid, COLOR_INFO, "Aufnahme gestoppt");
+	return COMMAND_OK;
+}
+
+ACMD:teleport[TELEPORT](playerid, params[])
+{
+	ShowDialog(playerid, DIALOG_TELEPORTLOCATIONS);
 	return COMMAND_OK;
 }
 
