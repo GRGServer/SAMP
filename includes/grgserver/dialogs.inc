@@ -2,7 +2,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
 	{
-		case DIALOG_ADDHOTELROOM:
+		/*case DIALOG_ADDHOTELROOM:
 		{
 			if (response)
 			{
@@ -44,49 +44,29 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			DeletePVar(playerid, "AddHouse_Name");
 			DeletePVar(playerid, "AddHouse_Hotel");
-		}
-		case DIALOG_ADDHOUSE:
+		}*/
+		case DIALOG_ADDBUILDING:
 		{
 			if (response)
 			{
-				if (!strcmp(inputtext, "Zurück", true))
+				new type[256];
+				switch (listitem)
 				{
-					ShowDialog(playerid, DIALOG_ADDHOUSE, 0);
+					case 0:
+						format(type, sizeof(type), "BANK");
+					case 2:
+						format(type, sizeof(type), "HOTEL");
+					case 3:
+						format(type, sizeof(type), "HOUSE");
 				}
-				else
-				{
-					if (!strcmp(inputtext, "Weiter", true))
-					{
-						ShowDialog(playerid, DIALOG_ADDHOUSE, 75);
-					}
-					else
-					{
-						new string[256];
-						new query[256];
-						new name[256];
-						new Float:price = GetPVarFloat(playerid, "AddHouse_Price");
-						new Float:posX;
-						new Float:posY;
-						new Float:posZ;
-						GetPVarString(playerid, "AddHouse_Name", name, sizeof(name));
-						GetPlayerPos(playerid, posX, posY, posZ);
-						new pickupID = AddPickup(-1, "HOUSE", posX, posY, posZ, true);
-						if (pickupID > 0)
-						{
-							format(query, sizeof(query), "INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%s', '%s', '%f')", pickupID, GetMySQLValue("interiors", "ID", "Name", inputtext), name, price);
-							mysql_query(query);
-							format(string, sizeof(string), "Das Haus %s (Preis: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", name, FormatNumber(price, 2, '.', ','), inputtext, mysql_insert_id());
-							SendClientMessage(playerid, COLOR_INFO, string);
-						}
-						else
-						{
-							SendClientMessage(playerid, COLOR_ERROR, "Fehler beim Erstellen des Pickups!");
-						}
-					}
-				}
+				SetPVarString(playerid, "AddBuilding_Type", type);
+				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
 			}
-			DeletePVar(playerid, "AddHouse_Name");
-			DeletePVar(playerid, "AddHouse_Price");
+			else
+			{
+				DeletePVar(playerid, "AddBuilding_Name");
+				DeletePVar(playerid, "AddBuilding_Price");
+			}
 		}
 		case DIALOG_BUYVEHICLE:
 		{
@@ -332,31 +312,34 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SendRconCommand("gmx");
 			}
 		}
-		case DIALOG_SHOWINTERIOR:
+		case DIALOG_SELECTINTERIOR:
 		{
-			if (response)
+			new interiorDialogID = GetPVarInt(playerid, "InteriorDialogID");
+			new interiorID;
+			if (!response)
 			{
-				if (!strcmp(inputtext, "Zurück", true))
-				{
-					ShowDialog(playerid, DIALOG_SHOWINTERIOR, 0);
-				}
-				else
-				{
-					if (!strcmp(inputtext, "Weiter", true))
-					{
-						ShowDialog(playerid, DIALOG_SHOWINTERIOR, 75);
-					}
-					else
-					{
-						if (TeleportToInterior(playerid, strval(GetMySQLValue("interiors", "ID", "Name", inputtext))))
-						{
-							SetPlayerVirtualWorld(playerid, 0);
-						}
-					}
-				}
+				DeletePVar(playerid, "InteriorDialogID");
+				OnInteriorDialogSelect(playerid, interiorDialogID, 0);
+				return true;
 			}
+			if (!strcmp(inputtext, "Zurück", true))
+			{
+				ShowDialog(playerid, DIALOG_SELECTINTERIOR, interiorDialogID, 0);
+				return true;
+			}
+			if (!strcmp(inputtext, "Weiter", true))
+			{
+				ShowDialog(playerid, DIALOG_SELECTINTERIOR, interiorDialogID, 75);
+				return true;
+			}
+			interiorID = strval(GetMySQLValue("interiors", "ID", "Name", inputtext));
+			DeletePVar(playerid, "InteriorDialogID");
+			if (!interiorID)
+			{
+				SendClientMessage(playerid, COLOR_ERROR, "Ungültige Auswahl!");
+			}
+			OnInteriorDialogSelect(playerid, interiorDialogID, interiorID);
 		}
 	}
-
 	return false;
 }

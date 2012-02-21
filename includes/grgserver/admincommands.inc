@@ -1,61 +1,15 @@
-ACMD:addhouse[MAPPER](playerid, params[])
+ACMD:addbuilding[MAPPER](playerid, params[])
 {
 	new name[256];
 	new Float:price;
 	if (sscanf(params, "sf", name, price))
 	{
-		CmdUsageMsg(playerid, "addhouse", "Name", "Preis");
+		CmdUsageMsg(playerid, "addbuilding", "Name", "Preis");
 		return COMMAND_USAGE;
 	}
-	SetPVarString(playerid, "AddHouse_Name", name);
-	SetPVarFloat(playerid, "AddHouse_Price", price);
-	ShowDialog(playerid, DIALOG_ADDHOUSE, 0);
-	return COMMAND_OK;
-}
-
-ACMD: addhotel[MAPPER](playerid, params[])
-{
-	new name[256];
-	new Float price;
-	if(sscanf(params, "sf", name, price)
-	{
-		CmdUsageMsg(playerid, "addhotel", "Name", "Price");
-		return COMMAND_USAGE;
-	}
-	new string[256];
-	new query[256];
-	new name[256];
-	new hotel[256];
-	new Float: PosX;
-	new Float: PosY;
-	new Float: PosZ;
-	GetPlayerPos(playerid, PosX, PosY, PosZ);
-	new pickupID = AddPickup(-1, "HOTEL", PosX, PosY, PosZ, true);
-	if(pickupID > 0)
-	{
-		format(query, sizeof(query), "INSERT INTO `buildings` (`PickupID`, `Name`, `Price`) VALUES ('%d', '%s', '%f')", pickupID, name, price);
-		mysql_query(query);
-		format(string, sizeof(string), "Das Hotel %s (Preis: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", name, price, inputtext, mysql_insert_id());
-		SendClientMessage(playerid, COLOR_INFO, string);
-	}
-	else
-	{
-		SendClientMessage(playerid, COLOR_ERROR, "Fehler beim Erstellen des Pickups!");
-	}
-}
-
-ACMD:addhotelroom[MAPPER](playerid, params[])
-{
-	new name[256];
-	new hotel[256];
-	if(sscanf(params, "ss", name, hotel))
-	{
-		CmdUsageMsg(playerid, "addhotel", "Name", "HotelName");
-		return COMMAND_USAGE;
-	}
-	SetPVarString(playerid, "AddHotel_Name", name);
-	SetPVarString(playerid, "AddHotel_HotelName", hotel);
-	ShowDialog(playerid, DIALOG_ADDHOTELROOM, 0);
+	SetPVarString(playerid, "AddBuilding_Name", name);
+	SetPVarFloat(playerid, "AddBuilding_Price", price);
+	ShowDialog(playerid, DIALOG_ADDBUILDING);
 	return COMMAND_OK;
 }
 
@@ -489,7 +443,7 @@ ACMD:setexit[MAPPER](playerid, params[])
 
 ACMD:showinterior[ADMIN](playerid, params[])
 {
-	ShowDialog(playerid, DIALOG_SHOWINTERIOR, 0);
+	ShowInteriorDialog(playerid, INTERIORDIALOG_SHOWINTERIOR);
 	return COMMAND_OK;
 }
 

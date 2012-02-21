@@ -26,11 +26,11 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 				if (price <= GetPVarFloat(playerid, "Money"))
 				{
 					SetPVarInt(playerid, "DialogBuildingID", strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupid][PICKUP_ID]))));
-					ShowDialog(playerid, DIALOG_BUYHOUSE, FormatNumber(price, 2, '.', ','));
+					ShowDialog(playerid, DIALOG_BUYHOUSE, FormatPrice(price));
 				}
 				else
 				{
-					format(string, sizeof(string), "Du hast nicht genügend Geld, um dieses Haus zu kaufen! Du benötigst mindestens $%s.", FormatNumber(price, 2, '.', ','));
+					format(string, sizeof(string), "Du hast nicht genügend Geld, um dieses Haus zu kaufen! Du benötigst mindestens $%s.", FormatPrice(price));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 				}
 			}
@@ -45,7 +45,7 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 			new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
 			if (maximum > 0)
 			{
-				ShowDialog(playerid, DIALOG_REFUEL, FormatNumber(maximum, 2, 0, '.'));
+				ShowDialog(playerid, DIALOG_REFUEL, FormatPrice(maximum));
 			}
 			else
 			{

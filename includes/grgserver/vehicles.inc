@@ -20,7 +20,7 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 			}
 			else
 			{
-				ShowDialog(playerid, DIALOG_BUYVEHICLE, FormatNumber(floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleid][VEHICLE_SAVEID]))), 2, '.', ','));
+				ShowDialog(playerid, DIALOG_BUYVEHICLE, FormatPrice(floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleid][VEHICLE_SAVEID])))));
 				
 			}
 		}

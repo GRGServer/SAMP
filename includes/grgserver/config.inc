@@ -41,7 +41,6 @@
 #define PICKUP_HOUSEAVAILABLE		1273
 #define PICKUP_HOUSEBOUGHT			1272
 #define PICKUP_HOTEL				1239
-#define PICKUP_HOTELROOM			1253
 
 
 // Register values
