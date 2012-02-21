@@ -29,20 +29,8 @@ RCMD:reloadpickups(params[])
 	return true;
 }
 
-RCMD:showmysqinfo(params[])
+RCMD:showmysqlinfo(params[])
 {
-	new info[256];
-	new stat[256];
-	new serverVersion[256];
-	new hostInfo[256];
-	mysql_info(info);
-	mysql_stat(stat);
-	mysql_get_server_info(serverVersion);
-	mysql_get_host_info(hostInfo);
 	printf("Number of warnings: %d", mysql_warning_count());
-	printf("Info: %s", info);
-	printf("Status: %s", stat);
-	printf("Server version: %s", serverVersion);
-	printf("Host: %s", hostInfo);
 	return true;
 }
