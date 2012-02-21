@@ -87,19 +87,22 @@ PCMD:setexit[MAPPER](playerid, params[])
 	new buildingID;
 	if (sscanf(params, "d", buildingID))
 	{
-		buildingID = GetPVarInt(playerid, "LastAddedHouse");
+		buildingID = GetPVarInt(playerid, "LastAddedBuilding");
 	}
 	if (buildingID)
 	{
 		if (strval(GetMySQLValue("buildings", "ID", "ID", val2str(buildingID))))
 		{
 			new query[256];
+			new string[256];
 			new Float:posX;
 			new Float:posY;
 			new Float:posZ;
 			GetPlayerPos(playerid, posX, posY, posZ);
 			format(query, sizeof(query), "UPDATE `buildings` SET `ExitPosX` = '%f', `ExitPosY` = '%f', `ExitPosZ` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, buildingID);
 			mysql_query(query);
+			format(string, sizeof(string), "Die Ausgangsposition für das Gebäude %s (ID: %d) wurde gespeichert", GetMySQLValue("buildings", "Name", "ID", val2str(buildingID)), buildingID);
+			SendClientMessage(playerid, COLOR_INFO, string);
 			return COMMAND_OK;
 		}
 		else

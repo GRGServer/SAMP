@@ -54,14 +54,17 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				new Float:posX;
 				new Float:posY;
 				new Float:posZ;
-				new pickupID = -1;
+				new buildingID;
+				new pickupID;
 				GetPlayerPos(playerid, posX, posY, posZ);
 				pickupID = AddPickup(-1, GetPVarStringEx(playerid, "AddBuilding_Type"), posX, posY, posZ, true);
 				if (pickupID > 0)
 				{
 					format(query, sizeof(query), "INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%d', '%s', '%f')", pickupID, GetPVarInt(playerid, "AddBuilding_InteriorID"), MySQLEscapeString(inputtext), GetPVarFloat(playerid, "AddBuilding_Price"));
 					mysql_query(query);
-					format(string, sizeof(string), "Das Gebäude %s (Preis: %s) wurde unter der ID %d gespeichert.", inputtext, FormatMoney(GetPVarFloat(playerid, "AddBuilding_Price")), mysql_insert_id());
+					buildingID = mysql_insert_id();
+					SetPVarInt(playerid, "LastAddedBuilding", buildingID);
+					format(string, sizeof(string), "Das Gebäude %s (Preis: %s) wurde unter der ID %d gespeichert.", inputtext, FormatMoney(GetPVarFloat(playerid, "AddBuilding_Price")), buildingID);
 					SendClientMessage(playerid, COLOR_INFO, string);
 				}
 				else
