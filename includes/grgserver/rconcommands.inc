@@ -10,22 +10,18 @@ RCMD:cmds(params[])
 		{
 			new type;
 			new command[256];
-			new permission[256];
 			RemoveNewLine(string);
-			if (sscanf(string, "css", type, command, permission))
-			{
-				sscanf(string, "cs", type, command);
-			}
+			sscanf(string, "cs", type, command);
 			if (type == 'R')
 			{
 				count++;
 				if (count == 1)
 				{
-					format(line, sizeof(line), "/%s", command);
+					format(line, sizeof(line), "%s", command);
 				}
 				else
 				{
-					format(line, sizeof(line), "%s /%s", line, command);
+					format(line, sizeof(line), "%s %s", line, command);
 				}
 				if (count == HELP_COMMANDSPERLINE)
 				{
