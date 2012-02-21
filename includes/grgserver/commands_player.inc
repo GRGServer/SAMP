@@ -25,12 +25,12 @@ CMD:cmds(playerid, params[])
 			if (type)
 			{
 				new showCommand;
-				if (type == 'P')
+				if (type == ' ')
 				{
 					showCommand = true;
 					format(command, sizeof(command), "{00FF00}%s", command);
 				}
-				if (type == 'A' && strlen(permission))
+				if (type == 'P' && strlen(permission))
 				{
 					print("Is Admin CMD");
 					new permissionID = GetPermissionByName(permission);
