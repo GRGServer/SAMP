@@ -84,7 +84,6 @@ ReloadPickups()
 	while (FetchMySQLRow())
 	{
 		new pickupID = strval(GetMySQLField("ID"));
-		printf("Loading pickup %d from database", pickupID);
 		format(pickupLoader[pickupID][PICKUPLOADER_TYPE], 256, GetMySQLField("Type"));
 		pickupLoader[pickupID][PICKUPLOADER_POSX] = floatstr(GetMySQLField("PosX"));
 		pickupLoader[pickupID][PICKUPLOADER_POSY] = floatstr(GetMySQLField("PosY"));
@@ -97,7 +96,6 @@ ReloadPickups()
 		DestroyPickup(pickupID);
 		if (strlen(pickupLoader[pickupID][PICKUPLOADER_TYPE]))
 		{
-			printf("Adding pickup %d (Type: %s)", pickupID, pickupLoader[pickupID][PICKUPLOADER_TYPE]);
 			if (AddPickup(pickupID, pickupLoader[pickupID][PICKUPLOADER_TYPE], pickupLoader[pickupID][PICKUPLOADER_POSX], pickupLoader[pickupID][PICKUPLOADER_POSY], pickupLoader[pickupID][PICKUPLOADER_POSZ], false) == -1)
 			{
 				printf("Invalid pickup type: %s", pickupLoader[pickupID][PICKUPLOADER_TYPE]);
