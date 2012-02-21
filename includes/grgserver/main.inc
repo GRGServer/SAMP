@@ -17,3 +17,4 @@
 #include <grgserver\admincommands>// Admin commands like /addpickup
 #include <grgserver\npccommands>// NPC commands like /npccmd
 #include <grgserver\playercommands>// Player commands like /radio
+#include <grgserver\rconcommands>// RCON commands like reloadpermissions
