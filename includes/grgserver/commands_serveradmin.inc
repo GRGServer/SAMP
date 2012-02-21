@@ -53,11 +53,22 @@ PCMD:givepermission[SERVERADMIN](playerid, params[])
 				mysql_free_result();
 				mysql_query(query);
 				permissions[targetPlayerID][enum_permission:permissionID] = newState;
-				format(string, sizeof(string), "Du hast das Recht %s von %s bekommen!", permission, GetPlayerNameEx(playerid));
-				SendClientMessage(targetPlayerID, COLOR_INFO, string);
-				format(string, sizeof(string), "Du hast das Recht %s an %s gegeben!", permission, GetPlayerNameEx(targetPlayerID));
-				SendClientMessage(playerid, COLOR_INFO, string);
-				printf("%s got permission %s by %s", GetPlayerNameEx(targetPlayerID), permission, GetPlayerNameEx(playerid));
+				if (newState)
+				{
+					format(string, sizeof(string), "Du hast das Recht %s von %s bekommen!", permission, GetPlayerNameEx(playerid));
+					SendClientMessage(targetPlayerID, COLOR_INFO, string);
+					format(string, sizeof(string), "Du hast das Recht %s an %s gegeben!", permission, GetPlayerNameEx(targetPlayerID));
+					SendClientMessage(playerid, COLOR_INFO, string);
+					printf("%s got permission %s by %s", GetPlayerNameEx(targetPlayerID), permission, GetPlayerNameEx(playerid));
+				}
+				else
+				{
+					format(string, sizeof(string), "%s hat dir das Recht %s weggenommen!", GetPlayerNameEx(playerid), permission);
+					SendClientMessage(targetPlayerID, COLOR_INFO, string);
+					format(string, sizeof(string), "Du hast das Recht %s von %s weggenommen!", permission, GetPlayerNameEx(targetPlayerID));
+					SendClientMessage(playerid, COLOR_INFO, string);
+					printf("%s has removed the permission %s of %s", GetPlayerNameEx(playerid), permission, GetPlayerNameEx(targetPlayerID));
+				}
 			}
 		}
 		return COMMAND_OK;
