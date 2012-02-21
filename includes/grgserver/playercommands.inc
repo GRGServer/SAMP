@@ -62,6 +62,10 @@ CMD:cmds(playerid, params[])
 				}
 			}
 		}
+		if (!count)
+		{
+			SendClientMessage(playerid, COLOR_INFO, line);
+		}
 		return COMMAND_OK;
 	}
 	else

@@ -30,6 +30,10 @@ RCMD:cmds(params[])
 				}
 			}
 		}
+		if (!count)
+		{
+			print(line);
+		}
 	}
 	return true;
 }
