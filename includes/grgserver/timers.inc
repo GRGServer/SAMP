@@ -12,7 +12,7 @@ public timer_fast()
 {
 	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
 	{
-		if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID))
+		if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && GetPlayerVehicleSeat(playerID) == 0)
 		{
 			if (IsPlayerInAnyVehicle(playerID))
 			{

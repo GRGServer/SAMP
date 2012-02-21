@@ -76,14 +76,27 @@ CMD:cmds(playerid, params[])
 
 CMD:exit(playerid, params[])
 {
-	if (LeaveBuilding(playerid))
+	if (GetPVarType(playerid, "ShowInterior_OldInterior") == PLAYER_VARTYPE_NONE)
 	{
-		return COMMAND_OK;
+		if (LeaveBuilding(playerid))
+		{
+			return COMMAND_OK;
+		}
+		else
+		{
+			SendClientMessage(playerid, COLOR_ERROR, "Du bist in keinem Haus!");
+			return COMMAND_ERROR;
+		}
 	}
 	else
 	{
-		SendClientMessage(playerid, COLOR_ERROR, "Du bist in keinem Haus!");
-		return COMMAND_ERROR;
+		SetPlayerPos(playerid, GetPVarFloat(playerid, "ShowInterior_OldPosX"), GetPVarFloat(playerid, "ShowInterior_OldPosY"), GetPVarFloat(playerid, "ShowInterior_OldPosZ"));
+		SetPlayerInterior(playerid, GetPVarInt(playerid, "ShowInterior_OldInterior"));
+		DeletePVar(playerid, "ShowInterior_OldPosX");
+		DeletePVar(playerid, "ShowInterior_OldPosY");
+		DeletePVar(playerid, "ShowInterior_OldPosZ");
+		DeletePVar(playerid, "ShowInterior_OldInterior");
+		return COMMAND_OK;
 	}
 }
 

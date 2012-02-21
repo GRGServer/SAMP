@@ -430,6 +430,14 @@ ACMD:showinterior[ADMIN](playerid, params[])
 	}
 	else
 	{
+		new Float:posX;
+		new Float:posY;
+		new Float:posZ;
+		GetPlayerPos(playerid, posX, posY, posZ);
+		SetPVarFloat(playerid, "ShowInterior_OldPosX", posX);
+		SetPVarFloat(playerid, "ShowInterior_OldPosY", posY);
+		SetPVarFloat(playerid, "ShowInterior_OldPosZ", posZ);
+		SetPVarInt(playerid, "ShowInterior_OldInterior", GetPlayerInterior(playerid));
 		ShowInteriorDialog(playerid, INTERIORDIALOG_SHOWINTERIOR);
 		return COMMAND_OK;
 	}
