@@ -91,7 +91,7 @@ ShowDialog(playerID, dialogID, ...)
 			{
 				page = 1;
 			}
-			format(query, sizeof(query), "SELECT * FROM `interiors` ORDER BY `Name ASC LIMIT %d,75", startID);
+			format(query, sizeof(query), "SELECT * FROM `interiors` ORDER BY `Name` ASC LIMIT %d,75", startID);
 			mysql_query(query);
 			mysql_store_result();
 			while (FetchMySQLRow())
