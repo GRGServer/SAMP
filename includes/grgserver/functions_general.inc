@@ -13,11 +13,6 @@ CmdUsageMsg(playerID, command[], ...)
 	SendClientMessage(playerID, COLOR_USAGE, string);
 }
 
-FormatMoney(Float:price)
-{
-	return FormatNumber(price, 2, '.', ',');
-}
-
 PlayRadioStation(playerID, id)
 {
 	if (id)
