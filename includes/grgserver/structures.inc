@@ -14,6 +14,14 @@ enum enum_pickup
 	PICKUP_TYPE
 }
 
+enum enum_pickupLoader
+{
+	PICKUPLOADER_TYPE[256],
+	Float:PICKUPLOADER_POSX,
+	Float:PICKUPLOADER_POSY,
+	Float:PICKUPLOADER_POSZ
+}
+
 enum enum_vehicle
 {
 	VEHICLE_SAVEID,
