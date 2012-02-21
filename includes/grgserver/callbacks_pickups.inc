@@ -1,5 +1,6 @@
 public OnPlayerPickUpPickup(playerid, pickupid)
 {
+	printf("Pickup Event: %d / %d", pickupid, pickups[pickupid][PICKUP_TYPE]);
 	switch (pickups[pickupid][PICKUP_TYPE])
 	{
 		case PICKUPTYPE_HOUSE:
