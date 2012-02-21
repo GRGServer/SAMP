@@ -2,30 +2,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
 	{
-		case DIALOG_SHOWINTERIOR:
-		{
-			if (response)
-			{
-				if (!strcmp(inputtext, "Zurück", true))
-				{
-					ShowDialog(playerid, DIALOG_SHOWINTERIOR, 0);
-				}
-				else
-				{
-					if (!strcmp(inputtext, "Weiter", true))
-					{
-						ShowDialog(playerid, DIALOG_SHOWINTERIOR, 75);
-					}
-					else
-					{
-						if (TeleportToInterior(playerid, strval(GetMySQLValue("interiors", "ID", "Name", inputtext))))
-						{
-							SetPlayerVirtualWorld(playerid, 0);
-						}
-					}
-				}
-			}
-		}
 		case DIALOG_ADDHOUSE:
 		{
 			if (response)
@@ -115,6 +91,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
+
 		case DIALOG_HOUSEOPTIONS:
 		{
 			if (response)
@@ -296,6 +273,45 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ShowDialog(playerid, DIALOG_REGISTER_STEP1);
 			}
 			return true;
+		}
+		case DIALOG_RESTARTGAMEMODE:
+		{
+			if (response)
+			{
+				for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+				{
+					SavePlayer(playerID);
+				}
+				SendClientMessage(playerid, COLOR_INFO, "Du hast den Gamemode neugestartet");
+				new string[256];
+				format(string, sizeof(string), "%s hat den Gamemode neugestartet");
+				SendClientMessageToAllExcept(playerid, COLOR_INFO, string);
+				SendRconCommand("gmx");
+			}
+		}
+		case DIALOG_SHOWINTERIOR:
+		{
+			if (response)
+			{
+				if (!strcmp(inputtext, "Zurück", true))
+				{
+					ShowDialog(playerid, DIALOG_SHOWINTERIOR, 0);
+				}
+				else
+				{
+					if (!strcmp(inputtext, "Weiter", true))
+					{
+						ShowDialog(playerid, DIALOG_SHOWINTERIOR, 75);
+					}
+					else
+					{
+						if (TeleportToInterior(playerid, strval(GetMySQLValue("interiors", "ID", "Name", inputtext))))
+						{
+							SetPlayerVirtualWorld(playerid, 0);
+						}
+					}
+				}
+			}
 		}
 	}
 

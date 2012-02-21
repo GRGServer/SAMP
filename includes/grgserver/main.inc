@@ -5,7 +5,20 @@
 #include <grgserver\globals>// Globally used variables like ircBot (Variables which are shared between multiple functions)
 #include <grgserver\macros>// Macros like GetStringArg
 #include <grgserver\basicfunctions> // Ported functions like str_replace
-#include <grgserver\functions>// Stock functions like LoadPlayer
+
+// Functions
+#include <grgserver\functions_dialogs>// Dialog functions like ShowDialog
+#include <grgserver\functions_general>// General functions like CmdUsageMsg
+#include <grgserver\functions_mysql>// MySQL functions like GetMySQLValue
+#include <grgserver\functions_npcs>// NPC related functions like SendNPCCommand
+#include <grgserver\functions_permissions>// Permissions functions like GetPermissionByName
+#include <grgserver\functions_pickups>// Pickup functions like AddPickup
+#include <grgserver\functions_players_account>// Player account functions like LoadPlayer
+#include <grgserver\functions_players_general>// General player functions like GetPlayerNameEx
+#include <grgserver\functions_players_teleport>// Teleport player functions like TeleportToInterior
+#include <grgserver\functions_vehicles>// Vehicle functions like SaveVehicle
+
+
 #include <grgserver\gamemode>// Callbacks OnGameModeInit and OnGameModeExit
 #include <grgserver\ircchannel>// Callbacks for IRC like IRC_OnConnect
 #include <grgserver\connect_disconnect>// Callbacks OnPlayerConnect and OnPlayerDisconnect

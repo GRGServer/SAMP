@@ -200,11 +200,7 @@ ACMD:givepermission[SERVERADMIN](playerid, params[])
 
 ACMD:gmx[SERVERADMIN](playerid, params[])
 {
-	SendClientMessage(playerid, COLOR_INFO, "Du hast den Gamemode neugestartet");
-	new string[256];
-	format(string, sizeof(string), "%s hat den Gamemode neugestartet");
-	SendClientMessageToAllExcept(playerid, COLOR_INFO, string);
-	SendRconCommand("gmx");
+	ShowDialog(playerid, DIALOG_RESTARTGAMEMODE);
 	return COMMAND_OK;
 }
 
