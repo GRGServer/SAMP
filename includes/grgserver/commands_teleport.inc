@@ -43,7 +43,7 @@ PCMD:showinterior[TELEPORT](playerid, params[])
 		SetPVarFloat(playerid, "ShowInterior_OldPosY", posY);
 		SetPVarFloat(playerid, "ShowInterior_OldPosZ", posZ);
 		SetPVarInt(playerid, "ShowInterior_OldInterior", GetPlayerInterior(playerid));
-		ShowInteriorDialog(playerid, INTERIORDIALOG_SHOWINTERIOR);
+		ShowInteriorDialog(playerid, INTERIORDIALOG_SHOWINTERIOR, "Teleportieren", "Abbrechen");
 		return COMMAND_OK;
 	}
 }

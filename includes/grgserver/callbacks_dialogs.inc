@@ -72,7 +72,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			else
 			{
 				DeletePVar(playerid, "AddBuilding_InteriorID");
-				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
+				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING, "Weiter", "Zurück");
 			}
 		}
 		case DIALOG_ADDBUILDING_TYPE:
@@ -90,7 +90,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						format(type, sizeof(type), "HOUSE");
 				}
 				SetPVarString(playerid, "AddBuilding_Type", type);
-				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
+				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING, "Weiter", "Zurück");
 			}
 			else
 			{

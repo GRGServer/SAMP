@@ -119,14 +119,6 @@ ShowDialog(playerID, dialogID, ...)
 			format(string, sizeof(string), "Ziel auswählen (Seite %d)", page);
 			GetStringArg(4, buttonText1);
 			GetStringArg(5, buttonText2);
-			if (!strlen(buttonText1))
-			{
-				format(buttonText1, sizeof(buttonText1), "OK");
-			}
-			if (!strlen(buttonText2))
-			{
-				format(buttonText2, sizeof(buttonText2), "Abbrechen");
-			}
 			SetPVarInt(playerID, "InteriorDialogID", getarg(2));
 			ShowPlayerDialog(playerID, DIALOG_SELECTINTERIOR, DIALOG_STYLE_LIST, string, interiors, buttonText1, buttonText2);
 		}
@@ -149,7 +141,7 @@ ShowDialog(playerID, dialogID, ...)
 	}
 }
 
-ShowInteriorDialog(playerID, dialogID, buttonText1[] = "", buttonText2[] = "")
+ShowInteriorDialog(playerID, dialogID, buttonText1[], buttonText2[])
 {
 	ShowDialog(playerID, DIALOG_SELECTINTERIOR, dialogID, 0, buttonText1, buttonText2);
 }
