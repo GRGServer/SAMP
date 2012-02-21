@@ -29,6 +29,15 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 		}
 		spawnType = 23;
 	}
+	if(!strcmp(type, "HOTEL", true))
+	{
+		pickupTypeID= PICKUPTYPE_HOTELROOM;
+		if(strval(GetMySQLValue("buildings", "OwnerUserID", PickupID", val2str(pickupID))))
+		{
+			modelID= PICKUP_HOTEL;
+			spawnType = 14;
+		}
+	}
 	if (pickupTypeID == -1)
 	{
 		return -1;

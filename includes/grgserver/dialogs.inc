@@ -2,6 +2,49 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
 	{
+		case DIALOG_ADDHOTELROOM:
+		{
+			if (response)
+			{
+				if(!strcmp(inputtext, "Zurück", true))
+				{
+					ShowDialog(playerid, DIALOG_ADDHOTEL, 0);
+				}
+				else
+				{
+					if(!strcmp(inputtext, "Weiter", true))
+					{
+						ShowDialog(playerid, DIALOG_ADDHOTEL, 75);
+					}
+					else
+					{
+						new string[256];
+						new query[256];
+						new name[256];
+						new hotel[256];
+						new Float: PosX;
+						new Float: PosY;
+						new Float: PosZ;
+						GetPvarString(playerid, "AddHotel_Name", name, sizeof(name));
+						GetPlayerPos(playerid, PosX, PosY, PosZ);
+						new pickupID = AddPickup(-1, "HOTELROOM", PosX, PosY, PosZ, true);
+						if(pickupID > 0)
+						{
+							format(query, sizeof(query), "INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `HotelOwner`) VALUES ('%d', '%s', '%s', '%s')", pickupID, GetMySQLValue("interior", "ID", "Name", inputtext), name, hotel);
+							mysql_query(query);
+							format(string, sizeof(string), "Das Hotel Zimmer %s (Hotel: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", name, hotel, inputtext, mysql_insert_id());
+							SendClientMessage(playerid, COLOR_INFO, string);
+						}
+						else
+						{
+							SendClientMessage(playerid, COLOR_ERROR, "Fehler beim Erstellen des Pickups!");
+						}
+					}
+				}
+			}
+			DeletePVar(playerid, "AddHouse_Name");
+			DeletePVar(playerid, "AddHouse_Hotel");
+		}
 		case DIALOG_ADDHOUSE:
 		{
 			if (response)
