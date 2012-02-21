@@ -55,6 +55,7 @@ LeaveBuilding(playerID)
 	{
 		new query[256];
 		format(query, sizeof(query), "SELECT * FROM `buildings` WHERE `ID` = '%d'", val2str(CurrentBuildingID));
+		printf("SQL: %s", query);
 		mysql_query(query);
 		mysql_store_result();
 		SetPlayerPos(playerID, floatstr(GetMySQLField("ExitPosX")), floatstr(GetMySQLField("ExitPosY")), floatstr(GetMySQLField("ExitPosZ")));
