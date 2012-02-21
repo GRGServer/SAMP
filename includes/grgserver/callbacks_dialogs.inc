@@ -59,9 +59,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				pickupID = AddPickup(-1, GetPVarStringEx(playerid, "AddBuilding_Type"), posX, posY, posZ, true);
 				if (pickupID > 0)
 				{
-					format(query, sizeof(query), "INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%s', '%s', '%f')", pickupID, GetMySQLValue("interiors", "ID", "Name", GetPVarStringEx(playerid, "AddBuilding_Interior")), MySQLEscapeString(inputtext), GetPVarFloat(playerid, "AddBuilding_Price"));
+					format(query, sizeof(query), "INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%d', '%s', '%f')", pickupID, GetPVarInt(playerid, "AddBuilding_InteriorID"), MySQLEscapeString(inputtext), GetPVarFloat(playerid, "AddBuilding_Price"));
 					mysql_query(query);
-					format(string, sizeof(string), "Das Gebäude %s (Preis: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", inputtext, FormatMoney(GetPVarFloat(playerid, "AddBuilding_Price")), GetPVarStringEx(playerid, "AddBuilding_Interior"), mysql_insert_id());
+					format(string, sizeof(string), "Das Gebäude %s (Preis: %s) wurde unter der ID %d gespeichert.", inputtext, FormatMoney(GetPVarFloat(playerid, "AddBuilding_Price")), mysql_insert_id());
 					SendClientMessage(playerid, COLOR_INFO, string);
 				}
 				else
