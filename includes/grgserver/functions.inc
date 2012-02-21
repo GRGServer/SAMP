@@ -386,6 +386,7 @@ SaveVehicle(vehicleID, interior)
 
 ReloadPickups()
 {
+	print("Defining structure");
 	enum pickupArrayEnum
 	{
 		pickupArray_Type[256],
@@ -393,28 +394,35 @@ ReloadPickups()
 		Float:pickupArray_PosY,
 		Float:pickupArray_PosZ
 	}
+	print("Creating array");
 	new pickupArray[MAX_PICKUPS][pickupArrayEnum];
+	print("* Loading pickups...");
 	mysql_query("SELECT * FROM `pickups`");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
 		new pickupID = strval(GetMySQLField("ID"));
+		printf("Loading pickup %d from database", pickupID);
 		format(pickupArray[pickupID][pickupArray_Type], 256, GetMySQLField("Type"));
 		pickupArray[pickupID][pickupArray_PosX] = floatstr(GetMySQLField("PosX"));
 		pickupArray[pickupID][pickupArray_PosY] = floatstr(GetMySQLField("PosY"));
 		pickupArray[pickupID][pickupArray_PosZ] = floatstr(GetMySQLField("PosZ"));
 	}
+	print("Pickups loaded");
+	print("* Creating pickups...");
 	for (new pickupID = 0; pickupID < MAX_PICKUPS; pickupID++)
 	{
 		DestroyPickup(pickupID);
 		if (strlen(pickupArray[pickupID][pickupArray_Type]))
 		{
+			printf("Adding pickup %d (Type: %s)", pickupID, pickupArray[pickupID][pickupArray_Type]);
 			if (AddPickup(pickupID, pickupArray[pickupID][pickupArray_Type], pickupArray[pickupID][pickupArray_PosX], pickupArray[pickupID][pickupArray_PosY], pickupArray[pickupID][pickupArray_PosZ], false) == -1)
 			{
 				printf("Invalid pickup type: %s", pickupArray[pickupID][pickupArray_Type]);
 			}
 		}
 	}
+	print("Pickups created");
 }
 
 AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)

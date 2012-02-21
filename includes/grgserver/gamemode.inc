@@ -58,7 +58,6 @@ public OnGameModeInit()
 	mysql_free_result();
 	print("* Creating pickups...");
 	ReloadPickups();
-	mysql_free_result();
 	print("* Creating server wide TextDraws...");
 	textDrawSpeedoColumn1 = TextDrawCreate(480, 400, "Geschwindigkeit:~n~Zustand:~n~Tank:~n~Verbrauch/100km:");
 	TextDrawAlignment(textDrawSpeedoColumn1, 1);
