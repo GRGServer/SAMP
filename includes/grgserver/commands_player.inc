@@ -28,7 +28,7 @@ CMD:cmds(playerid, params[])
 				if (type == ' ')
 				{
 					showCommand = true;
-					format(command, sizeof(command), "{00FF00}%s", command);
+					format(command, sizeof(command), "{00FF00}/%s", command);
 				}
 				if (type == 'P' && strlen(permission))
 				{
@@ -39,7 +39,7 @@ CMD:cmds(playerid, params[])
 						if (permissions[playerid][enum_permission:permissionID])
 						{
 							showCommand = true;
-							format(command, sizeof(command), "{A00000}%s", command);
+							format(command, sizeof(command), "{A00000}/%s", command);
 						}
 					}
 				}
@@ -48,11 +48,11 @@ CMD:cmds(playerid, params[])
 					count++;
 					if (count == 1)
 					{
-						format(line, sizeof(line), "/%s", command);
+						format(line, sizeof(line), "%s", command);
 					}
 					else
 					{
-						format(line, sizeof(line), "%s /%s", line, command);
+						format(line, sizeof(line), "%s %s", line, command);
 					}
 					if (count == HELP_COMMANDSPERLINE)
 					{

@@ -78,8 +78,6 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_SELECTINTERIOR:
 		{
-			new buttonText1[256];
-			new buttonText2[256];
 			new interiors[2048];
 			new string[256];
 			new query[256];
@@ -117,12 +115,8 @@ ShowDialog(playerID, dialogID, ...)
 				}
 			}
 			format(string, sizeof(string), "Ziel auswählen (Seite %d)", page);
-			print("Getting string argument");
-			GetStringArg(4, buttonText1);
-			GetStringArg(5, buttonText2);
-			printf("%s | %s", buttonText1, buttonText2);
 			SetPVarInt(playerID, "InteriorDialogID", getarg(2));
-			ShowPlayerDialog(playerID, DIALOG_SELECTINTERIOR, DIALOG_STYLE_LIST, string, interiors, buttonText1, buttonText2);
+			ShowPlayerDialog(playerID, DIALOG_SELECTINTERIOR, DIALOG_STYLE_LIST, string, interiors, "OK", "Abbrechen");
 		}
 		case DIALOG_TELEPORTLOCATIONS:
 		{
@@ -143,12 +137,9 @@ ShowDialog(playerID, dialogID, ...)
 	}
 }
 
-ShowInteriorDialog(playerID, dialogID, buttonText1[], buttonText2[])
+ShowInteriorDialog(playerID, dialogID)
 {
-	print("ShowInteriorDialog");
-	printf("buttonText1: %s", buttonText1);
-	printf("buttonText2: %s", buttonText2);
-	ShowDialog(playerID, DIALOG_SELECTINTERIOR, dialogID, 0, buttonText1, buttonText2);
+	ShowDialog(playerID, DIALOG_SELECTINTERIOR, dialogID, 0);
 }
 
 OnInteriorDialogSelect(playerID, dialogID, interiorID)
