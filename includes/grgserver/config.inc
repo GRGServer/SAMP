@@ -1,7 +1,3 @@
-// Admin levels
-#define ADMINLEVEL_SERVERADMIN		1338
-
-
 // Colors
 #define COLOR_ERROR					0xA00000AA
 #define COLOR_ME					0x00FF40AA

@@ -384,6 +384,39 @@ SaveVehicle(vehicleID, interior)
 	}
 }
 
+ReloadPickups()
+{
+	enum pickupArrayEnum
+	{
+		pickupArray_Type[256],
+		Float:pickupArray_PosX,
+		Float:pickupArray_PosY,
+		Float:pickupArray_PosZ
+	}
+	new pickupArray[MAX_PICKUPS][pickupArrayEnum];
+	mysql_query("SELECT * FROM `pickups`");
+	mysql_store_result();
+	while (FetchMySQLRow())
+	{
+		new pickupID = strval(GetMySQLField("ID"));
+		format(pickupArray[pickupID][pickupArray_Type], 256, GetMySQLField("Type"));
+		pickupArray[pickupID][pickupArray_PosX] = floatstr(GetMySQLField("PosX"));
+		pickupArray[pickupID][pickupArray_PosY] = floatstr(GetMySQLField("PosY"));
+		pickupArray[pickupID][pickupArray_PosZ] = floatstr(GetMySQLField("PosZ"));
+	}
+	for (new pickupID = 0; pickupID < MAX_PICKUPS; pickupID++)
+	{
+		DestroyPickup(pickupID);
+		if (strlen(pickupArray[pickupID][pickupArray_Type]))
+		{
+			if (AddPickup(pickupID, pickupArray[pickupID][pickupArray_Type], pickupArray[pickupID][pickupArray_PosX], pickupArray[pickupID][pickupArray_PosY], pickupArray[pickupID][pickupArray_PosZ], false) == -1)
+			{
+				printf("Invalid pickup type: %s", pickupArray[pickupID][pickupArray_Type]);
+			}
+		}
+	}
+}
+
 AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 {
 	new pickupTypeID = -1;
@@ -405,7 +438,14 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 	if (!strcmp(type, "HOUSE", true))
 	{
 		pickupTypeID = PICKUPTYPE_HOUSE;
-		modelID = PICKUP_HOUSEAVAILABLE;
+		if (strval(GetMySQLValue("buildings", "OwnerUserID", "PickupID", val2str(pickupID))))
+		{
+			modelID = PICKUP_HOUSEBOUGHT;
+		}
+		else
+		{
+			modelID = PICKUP_HOUSEAVAILABLE;
+		}
 		spawnType = 23;
 	}
 	if (pickupTypeID == -1)

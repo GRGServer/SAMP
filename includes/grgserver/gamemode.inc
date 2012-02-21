@@ -57,15 +57,7 @@ public OnGameModeInit()
 	}
 	mysql_free_result();
 	print("* Creating pickups...");
-	mysql_query("SELECT * FROM `pickups`");
-	mysql_store_result();
-	while (FetchMySQLRow())
-	{
-		if (AddPickup(strval(GetMySQLField("ID")), GetMySQLField("Type"), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), false) == -1)
-		{
-			printf("Invalid pickup type: %s", GetMySQLField("Type"));
-		}
-	}
+	ReloadPickups();
 	mysql_free_result();
 	print("* Creating server wide TextDraws...");
 	textDrawSpeedoColumn1 = TextDrawCreate(480, 400, "Geschwindigkeit:~n~Zustand:~n~Tank:~n~Verbrauch/100km:");
