@@ -84,9 +84,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0:
 						format(type, sizeof(type), "BANK");
-					case 2:
+					case 1:
 						format(type, sizeof(type), "HOTEL");
-					case 3:
+					case 2:
 						format(type, sizeof(type), "HOUSE");
 				}
 				SetPVarString(playerid, "AddBuilding_Type", type);

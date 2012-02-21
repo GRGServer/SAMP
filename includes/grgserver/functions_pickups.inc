@@ -4,9 +4,7 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 	new modelID;
 	new spawnType;
 	new pickup;
-	GetPickupInfoByType(pickupID, type, pickupTypeID, modelID, spawnType);
-	printf("Pickup Model: %d", modelID);
-	if (modelID)
+	if (GetPickupInfoByType(pickupID, type, pickupTypeID, modelID, spawnType))
 	{
 		pickup = CreatePickup(modelID, spawnType, posX, posY, posZ);
 		pickups[pickup][PICKUP_TYPE] = pickupTypeID;
