@@ -26,32 +26,32 @@ ShowDialog(playerID, dialogID, ...)
 			format(string, sizeof(string), "Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", price);
 			ShowPlayerDialog(playerID, DIALOG_BUYVEHICLE, DIALOG_STYLE_MSGBOX, "Fahrzeug Kaufen", string, "Ja", "Nein");
 		}
+		case DIALOG_HOTEL:
+		{
+			new options[1024];
+			format(options, sizeof(options), "Hotel Kaufen"); // Item 0
+			format(options, sizeof(options), "%s\nZimmer Mieten", options); // Item 1
+			format(options, sizeof(options), "%s\nBetreten", options); // Item 2
+			ShowPlayerDialog(playerID, DIALOG_HOTEL, DIALOG_STYLE_LIST, "Hotel", options, "OK, "Abbrechen");
+		}
 		case DIALOG_HOTELOPTIONS:
 		{
 			new options[1024];
 			format(options, sizeof(options), "Betreten"); // Item 0
-			format(options, sizeof(options), "Verkaufen"); // Item 1
-			format(options, sizeof(options), "Einkomm Information"); // item 2
-			format(options, sizeof(options), "Einmieter"); // item 3
-			format(options, sizeof(options), "Einmieter Rausschmeissen"); // item 4
-			format(options, sizeof(options), "Miet preis Festlegen");
+			format(options, sizeof(options), "%s\nVerkaufen", options); // Item 1
+			format(options, sizeof(options), "%s\nEinkomm Information", options); // item 2
+			format(options, sizeof(options), "%s\nEinmieter", options); // item 3
+			format(options, sizeof(options), "%s\nEinmieter Rausschmeissen", options); // item 4
+			format(options, sizeof(options), "%s\nMiet preis Festlegen", options);
 			ShowPlayerDialog(playerID, DIALOG_HOTELOPTIONS, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", "Abbrechen");
 		}
 		case DIALOG_HOTELOPTIONS_NOTOWNER:
 		{
 			new options[1024];
 			format(options, sizeof(options), "Betreten"); // Item 0
-			format(options, sizeof(options), "Mieten"); // Item 1
-			format(options, sizeof(options), "Miete Kündigen"); // item 2
+			format(options, sizeof(options), "%s\nMieten", options); // Item 1
+			format(options, sizeof(options), "%s\nMiete Kündigen", options); // item 2
 			ShowPlayerDialog(playerID, DIALOG_HOTELOPTIONS_NOTOWNER, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", "Abbrechen");
-		}
-		case DIALOG_HOTEL:
-		{
-			new options[1024];
-			format(options, sizeof(options), "Hotel Kaufen"); // Item 0
-			format(options, sizeof(options), "Zimmer Mieten"); // Item 1
-			format(options, sizeof(options), "Betreten"); // Item 2
-			ShowPlayerDialog(playerID, DIALOG_HOTEL, DIALOG_STYLE_LIST, "Hotel", options, "OK, "Abbrechen");
 		}
 		case DIALOG_HOUSEOPTIONS:
 		{
