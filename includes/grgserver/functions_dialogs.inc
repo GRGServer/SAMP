@@ -32,7 +32,7 @@ ShowDialog(playerID, dialogID, ...)
 			format(options, sizeof(options), "Hotel Kaufen"); // Item 0
 			format(options, sizeof(options), "%s\nZimmer Mieten", options); // Item 1
 			format(options, sizeof(options), "%s\nBetreten", options); // Item 2
-			ShowPlayerDialog(playerID, DIALOG_HOTEL, DIALOG_STYLE_LIST, "Hotel", options, "OK, "Abbrechen");
+			ShowPlayerDialog(playerID, DIALOG_HOTEL, DIALOG_STYLE_LIST, "Hotel", options, "OK", "Abbrechen");
 		}
 		case DIALOG_HOTELOPTIONS:
 		{
