@@ -4,11 +4,11 @@ ShowDialog(playerID, dialogID, ...)
 	{
 		case DIALOG_ADDBUILDING_NAME:
 		{
-			ShowPlayerDialog(playerID, DIALOG_ADDBUILDING_NAME, DIALOG_STYLE_INPUT, "Name eingeben", "Gebe den Name für das Gebäude ein.", "Erstellen", "Zurück");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Name eingeben", "Gebe den Name für das Gebäude ein.", "Erstellen", "Zurück");
 		}
 		case DIALOG_ADDBUILDING_TYPE:
 		{
-			ShowPlayerDialog(playerID, DIALOG_ADDBUILDING_TYPE, DIALOG_STYLE_LIST, "Gebäudetyp auswählen", "Bank\nHotel\nHaus", "Weiter", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Gebäudetyp auswählen", "Bank\nHotel\nHaus", "Weiter", "Abbrechen");
 		}
 		case DIALOG_BUYHOUSE:
 		{
@@ -16,7 +16,7 @@ ShowDialog(playerID, dialogID, ...)
 			new price[256];
 			GetStringArg(2, price);
 			format(string, sizeof(string), "Dieses Haus kann noch gekauft werden.\n\nPreis: %s", price);
-			ShowPlayerDialog(playerID, DIALOG_BUYHOUSE, DIALOG_STYLE_MSGBOX, "Haus kaufen", string, "Kaufen", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Haus kaufen", string, "Kaufen", "Abbrechen");
 		}
 		case DIALOG_BUYVEHICLE:
 		{
@@ -24,17 +24,25 @@ ShowDialog(playerID, dialogID, ...)
 			new price[256];
 			GetStringArg(2, price);
 			format(string, sizeof(string), "Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", price);
-			ShowPlayerDialog(playerID, DIALOG_BUYVEHICLE, DIALOG_STYLE_MSGBOX, "Fahrzeug Kaufen", string, "Ja", "Nein");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Fahrzeug Kaufen", string, "Ja", "Nein");
 		}
-		case DIALOG_HOTEL:
+		case DIALOG_HOTEL_MAIN_AVAILABLE:
 		{
 			new options[1024];
 			format(options, sizeof(options), "Hotel Kaufen"); // Item 0
 			format(options, sizeof(options), "%s\nZimmer Mieten", options); // Item 1
 			format(options, sizeof(options), "%s\nBetreten", options); // Item 2
-			ShowPlayerDialog(playerID, DIALOG_HOTEL, DIALOG_STYLE_LIST, "Hotel", options, "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hotel", options, "OK", "Abbrechen");
 		}
-		case DIALOG_HOTELOPTIONS:
+		case DIALOG_HOTEL_MAIN_BOUGHT:
+		{
+			new options[1024];
+			format(options, sizeof(options), "Betreten"); // Item 0
+			format(options, sizeof(options), "%s\nMieten", options); // Item 1
+			format(options, sizeof(options), "%s\nMiete Kündigen", options); // item 2
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", "Abbrechen");
+		}
+		case DIALOG_HOTEL_MAIN_OWNER:
 		{
 			new options[1024];
 			format(options, sizeof(options), "Betreten"); // Item 0
@@ -43,30 +51,22 @@ ShowDialog(playerID, dialogID, ...)
 			format(options, sizeof(options), "%s\nEinmieter", options); // item 3
 			format(options, sizeof(options), "%s\nEinmieter Rausschmeissen", options); // item 4
 			format(options, sizeof(options), "%s\nMiet preis Festlegen", options);
-			ShowPlayerDialog(playerID, DIALOG_HOTELOPTIONS, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", "Abbrechen");
-		}
-		case DIALOG_HOTELOPTIONS_NOTOWNER:
-		{
-			new options[1024];
-			format(options, sizeof(options), "Betreten"); // Item 0
-			format(options, sizeof(options), "%s\nMieten", options); // Item 1
-			format(options, sizeof(options), "%s\nMiete Kündigen", options); // item 2
-			ShowPlayerDialog(playerID, DIALOG_HOTELOPTIONS_NOTOWNER, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", "Abbrechen");
 		}
 		case DIALOG_HOUSEOPTIONS:
 		{
 			new options[1024];
 			format(options, sizeof(options), "Betreten");// Item 0
 			format(options, sizeof(options), "%s\nVerkaufen", options);// Item 1
-			ShowPlayerDialog(playerID, DIALOG_HOUSEOPTIONS, DIALOG_STYLE_LIST, "Hausoptionen", options, "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hausoptionen", options, "OK", "Abbrechen");
 		}
 		case DIALOG_LOGIN:
 		{
-			ShowPlayerDialog(playerID, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Login", "Bitte gebe das Passwort von deinen Account ein.", "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Login", "Bitte gebe das Passwort von deinen Account ein.", "OK", "Abbrechen");
 		}
 		case DIALOG_ORDERVEHICLE:
 		{
-			ShowPlayerDialog(playerID, DIALOG_ORDERVEHICLE, DIALOG_STYLE_LIST, "Fahrzeug bestellen", "Landstalker\nBravura\nBuffalo\nLinerunner\nPerenniel\nSentinel\nFiretruck", "Bestellen", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Fahrzeug bestellen", "Landstalker\nBravura\nBuffalo\nLinerunner\nPerenniel\nSentinel\nFiretruck", "Bestellen", "Abbrechen");
 		}
 		case DIALOG_RADIO:
 		{
@@ -81,7 +81,7 @@ ShowDialog(playerID, dialogID, ...)
 				}
 				format(stations, sizeof(stations), "%s%s", stations, GetMySQLField("Name"));
 			}
-			ShowPlayerDialog(playerID, DIALOG_RADIO, DIALOG_STYLE_LIST, "Radiosender wählen", stations, "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Radiosender wählen", stations, "OK", "Abbrechen");
 		}
 		case DIALOG_REFUEL:
 		{
@@ -89,19 +89,19 @@ ShowDialog(playerID, dialogID, ...)
 			new maximum[256];
 			GetStringArg(2, maximum);
 			format(string, sizeof(string), "Wie viel möchtest du tanken (0 - %s)?", maximum);
-			ShowPlayerDialog(playerID, DIALOG_REFUEL, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", "Abbrechen");
 		}
 		case DIALOG_REGISTER_STEP1:
 		{
-			ShowPlayerDialog(playerID, DIALOG_REGISTER_STEP1, DIALOG_STYLE_PASSWORD, "Registrieren", "Du bist noch nicht registriert!\nBitte gebe ein neues Passwort für deinen Account ein.", "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Registrieren", "Du bist noch nicht registriert!\nBitte gebe ein neues Passwort für deinen Account ein.", "OK", "Abbrechen");
 		}
 		case DIALOG_REGISTER_STEP2:
 		{
-			ShowPlayerDialog(playerID, DIALOG_REGISTER_STEP2, DIALOG_STYLE_PASSWORD, "Passwort wiederholen", "Gebe erneut das Passwort ein.", "Registrieren", "Zurück");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Passwort wiederholen", "Gebe erneut das Passwort ein.", "Registrieren", "Zurück");
 		}
 		case DIALOG_RESTARTGAMEMODE:
 		{
-			ShowPlayerDialog(playerID, DIALOG_RESTARTGAMEMODE, DIALOG_STYLE_MSGBOX, "Gamemode neustarten", "Soll der Gamemode wirklich neugestartet werden?", "Ja", "Nein");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Gamemode neustarten", "Soll der Gamemode wirklich neugestartet werden?", "Ja", "Nein");
 		}
 		case DIALOG_SELECTINTERIOR:
 		{
@@ -143,7 +143,7 @@ ShowDialog(playerID, dialogID, ...)
 			}
 			format(string, sizeof(string), "Ziel auswählen (Seite %d)", page);
 			SetPVarInt(playerID, "InteriorDialogID", getarg(2));
-			ShowPlayerDialog(playerID, DIALOG_SELECTINTERIOR, DIALOG_STYLE_LIST, string, interiors, "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, string, interiors, "OK", "Abbrechen");
 		}
 		case DIALOG_TELEPORTLOCATIONS:
 		{
@@ -159,7 +159,7 @@ ShowDialog(playerID, dialogID, ...)
 				format(locations, sizeof(locations), "%s%s", locations, GetMySQLField("Name"));
 			}
 			mysql_free_result();
-			ShowPlayerDialog(playerID, DIALOG_TELEPORTLOCATIONS, DIALOG_STYLE_LIST, "Teleportieren", locations, "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Teleportieren", locations, "OK", "Abbrechen");
 		}
 	}
 }

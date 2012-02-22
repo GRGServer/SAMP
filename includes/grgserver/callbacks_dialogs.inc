@@ -146,62 +146,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
-
-		case DIALOG_HOTELOPTIONS:
-		{
-			if (response)
-			{
-				switch (listitem)
-				{
-					case 0: // Enter
-					{
-						TeleportToBuilding(playerid, GetPVarInt(playerid, "DialogBuildingID"));
-					}
-					case 1: // Sell
-					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel Verkaufen");
-					}
-					case 2: // Incoming (Money)
-					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel Information Einkommen");
-					}
-					case 3: // HotelInfo (Owners)
-					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel einmieter");
-					}
-					case 4: // Kick Owners
-					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel einmieter Rausschmeissen");
-					}
-					case 5: // Set Price
-					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel preis setzten");
-					}
-				}
-			}
-		}
-		case DIALOG_HOTELOPTIONS_NOTOWNER:
-		{
-			if (response)
-			{
-				switch (listitem)
-				{
-					case 0: // Enter
-					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Eintrit in eigenes Hotel Zimmer");
-					}
-					case 1: // Zimmer Mieten
-					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Zimmer Mieten");
-					}
-					case 2: // Zimmer ausmieten
-					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Zimmer Ausmieten");
-					}
-				}
-			}
-		}
-		case DIALOG_HOTEL:
+		case DIALOG_HOTEL_MAIN_AVAILABLE:
 		{
 			if (response)
 			{
@@ -232,6 +177,60 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 2: // Enter
 					{
 						TeleportToBuilding(playerid, GetPVarInt(playerid, "DialogBuildingID"));
+					}
+				}
+			}
+		}
+		case DIALOG_HOTEL_MAIN_BOUGHT:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: // Enter
+					{
+						SendClientMessage(playerid, COLOR_SYSTEM, "Eintrit in eigenes Hotel Zimmer");
+					}
+					case 1: // Zimmer Mieten
+					{
+						SendClientMessage(playerid, COLOR_SYSTEM, "Zimmer Mieten");
+					}
+					case 2: // Zimmer ausmieten
+					{
+						SendClientMessage(playerid, COLOR_SYSTEM, "Zimmer Ausmieten");
+					}
+				}
+			}
+		}
+		case DIALOG_HOTEL_MAIN_OWNER:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: // Enter
+					{
+						TeleportToBuilding(playerid, GetPVarInt(playerid, "DialogBuildingID"));
+					}
+					case 1: // Sell
+					{
+						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel Verkaufen");
+					}
+					case 2: // Incoming (Money)
+					{
+						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel Information Einkommen");
+					}
+					case 3: // HotelInfo (Owners)
+					{
+						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel einmieter");
+					}
+					case 4: // Kick Owners
+					{
+						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel einmieter Rausschmeissen");
+					}
+					case 5: // Set Price
+					{
+						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel preis setzten");
 					}
 				}
 			}
