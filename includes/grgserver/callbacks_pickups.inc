@@ -22,6 +22,19 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 		case PICKUPTYPE_HOTEL:
 		{
 			// Hotel
+			new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "PickupID", val2str(pickups[pickupid][PICKUP_ID])));
+			if (ownerUserID)
+			{
+				if (ownerUserID == GetPVarInt(playerid, "UserID"))
+				{
+					SetPVarInt(playerid, "DialogBuildingID", strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupid][PICKUP_ID]))));
+					ShowDialog(playerid, DIALOG_HOTELOPTIONS);
+				}
+				else
+				{
+					ShowDialog(playerid, DIALOG_HOUSOPTIONS_NOTOWNER);
+				}
+			}
 		}
 		case PICKUPTYPE_HOUSE:
 		{

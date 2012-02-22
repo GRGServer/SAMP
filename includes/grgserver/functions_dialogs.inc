@@ -26,6 +26,25 @@ ShowDialog(playerID, dialogID, ...)
 			format(string, sizeof(string), "Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", price);
 			ShowPlayerDialog(playerID, DIALOG_BUYVEHICLE, DIALOG_STYLE_MSGBOX, "Fahrzeug Kaufen", string, "Ja", "Nein");
 		}
+		case DIALOG_HOTELOPTIONS:
+		{
+			new options[1024];
+			format(options, sizeof(options), "Betreten"); // Item 0
+			format(options, sizeof(options), "Verkaufen"); // Item 1
+			format(options, sizeof(options), "Einkomm Information"); // item 2
+			format(options, sizeof(options), "Einmieter"); // item 3
+			format(options, sizeof(options), "Einmieter Rausschmeissen"); // item 4
+			format(options, sizeof(options), "Miet preis Festlegen");
+			ShowPlayerDialog(playerID, DIALOG_HOTELOPTIONS, DIALOG_STYLE_MSGBOX, "Hoteloptionen", options, "OK", "Abbrechen");
+		}
+		case DIALOG_HOTELOPTIONS_NOTOWNER:
+		{
+			new options[1024];
+			format(options, sizeof(options), "Betreten"); // Item 0
+			format(options, sizeof(options), "Mieten"); // Item 1
+			format(options, sizeof(options), "Miete Kündigen"); // item 2
+			ShowPlayerDialog(playerID, DIALOG_HOTELOPTIONS_NOTOWNER, DIALOG_STYLE_MSGBOX, "Hoteloptionen", options, "OK", "Abbrechen");
+		}
 		case DIALOG_HOUSEOPTIONS:
 		{
 			new options[1024];
