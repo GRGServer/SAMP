@@ -33,7 +33,7 @@ public OnClientMessage(color, text[])
 			{
 				if (!strcmp(command, "stop", true))
 				{
-					StopRecordingPlayback();
+					StopNPC();
 				}
 				if (!strcmp(command, "pause", true))
 				{
@@ -66,12 +66,13 @@ public OnNPCExitVehicle()
 {
 	if (playbackType == PLAYER_RECORDING_TYPE_DRIVER)
 	{
-		StopRecordingPlayback();
+		StopNPC();
 	}
 }
 
 public OnRecordingPlaybackEnd()
 {
+	print("NPC playback ended");
 	if (autoRepeat)
 	{
 		StartNPC();
@@ -121,11 +122,13 @@ PauseNPC(newState)
 	{
 		isPaused = true;
 		PauseRecordingPlayback();
+		print("NPC playback paused");
 	}
 	else
 	{
 		isPaused = false;
 		ResumeRecordingPlayback();
+		print("NPC playback resumed");
 	}
 }
 
@@ -133,6 +136,7 @@ StartNPC()
 {
 	isPaused = false;
 	StartRecordingPlayback(playbackType, recordingName);
+	print("NPC playback started");
 	StartTimer();
 }
 
@@ -140,15 +144,23 @@ StartTimer()
 {
 	if (!isTimer)
 	{
+		print("Timer started");
 		timer = SetTimer("Timer", 200, true);
 		isTimer = true;
 	}
+}
+
+StopNPC()
+{
+	StopRecordingPlayback();
+	print("NPC playback stopped");
 }
 
 StopTimer()
 {
 	if (isTimer)
 	{
+		print("Timer stopped");
 		KillTimer(timer);
 		isTimer = false;
 	}
