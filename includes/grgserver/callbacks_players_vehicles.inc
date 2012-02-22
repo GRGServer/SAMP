@@ -43,6 +43,16 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	return true;
 }
 
+public OnVehicleDeath(vehicleid, killerid)
+{
+	if (vehicles[vehicleid][VEHICLE_SAVEID])
+	{
+		new query[256];
+		format(query, sizeof(query), "DELETE FROM `savedvehicles` WHERE `ID` = '%d'", vehicles[vehicleid][VEHICLE_SAVEID]);
+		mysql_query(query);
+	}
+}
+
 public OnVehiclePaintjob(playerid, vehicleid, paintjobid)
 {
 	vehicles[vehicleid][VEHICLE_PAINTJOB] = paintjobid;
@@ -54,4 +64,9 @@ public OnVehicleRespray(playerid, vehicleid, color1, color2)
 	vehicles[vehicleid][VEHICLE_COLOR1] = color1;
 	vehicles[vehicleid][VEHICLE_COLOR2] = color2;
 	return true;
+}
+
+public OnVehicleSpawn(vehicleid)
+{
+	DestroyVehicle(vehicleid);
 }
