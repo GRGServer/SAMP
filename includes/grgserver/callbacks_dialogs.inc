@@ -149,7 +149,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 
 		case DIALOG_HOTELOPTIONS:
 		{
-			if (repsonse)
+			if (response)
 			{
 				switch (listitem)
 				{
@@ -180,7 +180,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
-		case DIALOG_HOUSOPTIONS_NOTOWNER:
+		case DIALOG_HOTELOPTIONS_NOTOWNER:
 		{
 			if (response)
 			{
@@ -188,7 +188,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0: // Enter
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Eintrit in eigenes Hotel Zimmer);
+						SendClientMessage(playerid, COLOR_SYSTEM, "Eintrit in eigenes Hotel Zimmer");
 					}
 					case 1: // Zimmer Mieten
 					{

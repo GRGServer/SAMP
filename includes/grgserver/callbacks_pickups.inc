@@ -32,7 +32,7 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 				}
 				else
 				{
-					ShowDialog(playerid, DIALOG_HOUSOPTIONS_NOTOWNER);
+					ShowDialog(playerid, DIALOG_HOTELOPTIONS_NOTOWNER);
 				}
 			}
 		}
