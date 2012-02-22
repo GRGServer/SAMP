@@ -227,7 +227,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 1: // Mieten
 					{
-						SendClientMessage(playerid, COLOR_SYSEM,"Zimmer Mieten");
+						SendClientMessage(playerid, COLOR_SYSTEM,"Zimmer Mieten");
 					}
 					case 2: // Enter
 					{
