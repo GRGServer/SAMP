@@ -1,5 +1,4 @@
-forward timer_everyMinute();
-public timer_everyMinute()
+Timer:EveryMinute()
 {
 	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
 	{
@@ -7,8 +6,7 @@ public timer_everyMinute()
 	}
 }
 
-forward timer_fast();
-public timer_fast()
+Timer:Fast()
 {
 	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
 	{
@@ -95,14 +93,12 @@ public timer_fast()
 	}
 }
 
-forward timer_hourly();
-public timer_hourly()
+Timer:Hourly()
 {
 	UpdateGasPrice();
 }
 
-forward timer_refuelVehicle(playerID, Float:totalAmount);
-public timer_refuelVehicle(playerID, Float:totalAmount)
+Timer:RefuelVehicle(playerID, Float:totalAmount)
 {
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (GetPVarFloat(playerID, "Money") >= gasPrice)
@@ -134,8 +130,7 @@ public timer_refuelVehicle(playerID, Float:totalAmount)
 	return true;
 }
 
-forward timer_slow();
-public timer_slow()
+Timer:Slow()
 {
 	new clockString[6];
 	new hourString[3];
@@ -175,15 +170,13 @@ public timer_slow()
 	}
 }
 
-forward timer_spawnPlayer(playerID);
-public timer_spawnPlayer(playerID)
+Timer:SpawnPlayer(playerID)
 {
 	SpawnPlayer(playerID);
 	SetPlayerPos(playerID, floatstr(GetUserDBValue(playerID, "PosX")), floatstr(GetUserDBValue(playerID, "PosY")), floatstr(GetUserDBValue(playerID, "PosZ")));
 }
 
-forward timer_stableCheck();
-public timer_stableCheck()
+Timer:StableCheck()
 {
 	new File:file = fopen("stable_revision", io_write);
 	fwrite(file, val2str(COMPILER_SVN_REVISION));

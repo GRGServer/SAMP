@@ -84,16 +84,25 @@ public Timer()
 	new pause;
 	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
 	{
-		new Float:posX;
-		new Float:posY;
-		new Float:posZ;
-		new Float:distance;
-		GetPlayerPos(playerID, posX, posY, posZ);
-		GetDistanceFromMeToPoint(posX, posY, posZ, distance);
-		if (distance <= NPC_PAUSEDISTANCE)
+		if (IsPlayerConnected(playerID))
 		{
-			pause = true;
-			break;
+			new playerName[MAX_PLAYER_NAME];
+			GetPlayerName(playerID, playerName, sizeof(playerName));
+			strdel(playerName, 4, strlen(playerName));
+			if (strcmp(playerName, "NPC_", true))
+			{
+				new Float:posX;
+				new Float:posY;
+				new Float:posZ;
+				new Float:distance;
+				GetPlayerPos(playerID, posX, posY, posZ);
+				GetDistanceFromMeToPoint(posX, posY, posZ, distance);
+				if (distance <= NPC_PAUSEDISTANCE)
+				{
+					pause = true;
+					break;
+				}
+			}
 		}
 	}
 	if (pause)

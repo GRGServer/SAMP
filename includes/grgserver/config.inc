@@ -36,7 +36,7 @@
 
 
 // NPC configuration
-#define NPC_PAUSEDISTANCE			3// Distance to a player to pause a NPC
+#define NPC_PAUSEDISTANCE			5// Distance to a player to pause a NPC
 #define NPC_SCRIPTNAME				"npcplayer"
 
 

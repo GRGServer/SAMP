@@ -79,17 +79,19 @@ public OnGameModeInit()
 	DisableInteriorEnterExits();
 	UpdateGasPrice();
 	print("* Starting timers...");
-	SetTimer("timer_everyMinute", TIMER_EVERYMINUTE, true);
-	SetTimer("timer_fast", TIMER_FAST, true);
-	SetTimer("timer_hourly", TIMER_HOURLY, true);
-	SetTimer("timer_slow", TIMER_SLOW, true);
-	SetTimer("timer_stableCheck", TIMER_STABLECHECK, false);
+	StartTimer:EveryMinute[EVERYMINUTE](true);
+	StartTimer:Fast[FAST](true);
+	StartTimer:Hourly[HOURLY](true);
+	StartTimer:Slow[SLOW](true);
+	StartTimer:StableCheck[STABLECHECK](false);
 	print("* Connecting NPCs...");
 	mysql_query("SELECT * FROM `npcs` WHERE `AutoConnect` = '1'");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		ConnectNPC(GetMySQLField("Name"), NPC_SCRIPTNAME);
+		new npcName[MAX_PLAYER_NAME];
+		format(npcName, sizeof(npcName), "NPC_%s", GetMySQLField("Name"));
+		ConnectNPC(npcName, NPC_SCRIPTNAME);
 	}
 	mysql_free_result();
 	return true;

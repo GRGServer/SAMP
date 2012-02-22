@@ -1,15 +1,18 @@
 #define GetStringArg(%0,%1); \
-	for(new i_%0 = 0; ; ++i_%0) \
-	{ \
-		if((%1[i_%0] = getarg((%0), i_%0)) != EOS) \
-			continue; \
-		else \
-			break; \
-	}
+for(new i_%0 = 0; ; ++i_%0) \
+{ \
+	if((%1[i_%0] = getarg((%0), i_%0)) != EOS) \
+		continue; \
+	else \
+		break; \
+}
 
 #define NCMD:%0(%1,%2) COMMAND:%0(%1, %2) if (!IsPlayerNPC(%1)) return COMMAND_NPC_ONLY; else
 #define PCMD:%0[%1](%2,%3) COMMAND:%0(%2, %3) if (!permissions[%2][PERMISSION_%1]) return COMMAND_PERMISSION_DENIED; else
 #define RCMD:%0(%1) forward rcmd_%0(%1); public rcmd_%0(%1)
+
+#define Timer:%0(%1) forward Timer_%0(%1); public Timer_%0(%1)
+#define StartTimer:%0[%1](%2) SetTimer("Timer_%0", TIMER_%1, %2)
 
 #define FormatMoney(%0) FormatNumber(%0, 2, '.', ',')
 #define MD5(%0) MD5_Hash(%0, true)

@@ -359,7 +359,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				TogglePlayerControllable(playerid, false);
 				SetVehicleEngineState(vehicleID, false);
 				GameTextForPlayer(playerid, "Dein Fahrzeug wird getankt. Bitte warten...", 3000, 4);
-				timer_refuelVehicle(playerid, amount);
+				Timer_RefuelVehicle(playerid, amount);
 			}
 		}
 		case DIALOG_REGISTER_STEP1:
