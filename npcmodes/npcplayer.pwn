@@ -5,6 +5,11 @@
 new recordingName[256];
 new playbackType;
 new autoRepeat;
+new isPaused;
+new isTimer;
+new timer;
+
+forward Timer();
 
 public OnClientMessage(color, text[])
 {
@@ -19,7 +24,7 @@ public OnClientMessage(color, text[])
 	{
 		if (!sscanf(text, "sdd", recordingName, playbackType, autoRepeat))
 		{
-			StartRecordingPlayback(playbackType, recordingName);
+			StartNPC();
 		}
 		else
 		{
@@ -32,11 +37,13 @@ public OnClientMessage(color, text[])
 				}
 				if (!strcmp(command, "pause", true))
 				{
-					PauseRecordingPlayback();
+					StopTimer();
+					PauseNPC(true);
 				}
 				if (!strcmp(command, "resume", true))
 				{
-					ResumeRecordingPlayback();
+					PauseNPC(true);
+					StartTimer();
 				}
 			}
 			else
@@ -47,23 +54,11 @@ public OnClientMessage(color, text[])
 	}
 }
 
-public OnRecordingPlaybackEnd()
-{
-	if (autoRepeat)
-	{
-		StartRecordingPlayback(playbackType, recordingName);
-	}
-	else
-	{
-		SendCommand("/npccmd stopped");
-	}
-}
-
 public OnNPCEnterVehicle(vehicleid,seatid)
 {
 	if (playbackType == PLAYER_RECORDING_TYPE_DRIVER)
 	{
-		StartRecordingPlayback(playbackType, recordingName);
+		StartNPC();
 	}
 }
 
@@ -72,5 +67,89 @@ public OnNPCExitVehicle()
 	if (playbackType == PLAYER_RECORDING_TYPE_DRIVER)
 	{
 		StopRecordingPlayback();
+	}
+}
+
+public OnRecordingPlaybackEnd()
+{
+	if (autoRepeat)
+	{
+		StartNPC();
+	}
+	else
+	{
+		SendCommand("/npccmd stopped");
+	}
+}
+
+public Timer()
+{
+	new pause;
+	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+	{
+		new Float:posX;
+		new Float:posY;
+		new Float:posZ;
+		new Float:distance;
+		GetPlayerPos(playerID, posX, posY, posZ);
+		GetDistanceFromMeToPoint(posX, posY, posZ, distance);
+		if (distance <= NPC_PAUSEDISTANCE)
+		{
+			pause = true;
+			break;
+		}
+	}
+	if (pause)
+	{
+		if (!isPaused)
+		{
+			PauseNPC(true);
+		}
+	}
+	else
+	{
+		if (isPaused)
+		{
+			PauseNPC(false);
+		}
+	}
+}
+
+PauseNPC(newState)
+{
+	if (newState)
+	{
+		isPaused = true;
+		PauseRecordingPlayback();
+	}
+	else
+	{
+		isPaused = false;
+		ResumeRecordingPlayback();
+	}
+}
+
+StartNPC()
+{
+	isPaused = false;
+	StartRecordingPlayback(playbackType, recordingName);
+	StartTimer();
+}
+
+StartTimer()
+{
+	if (!isTimer)
+	{
+		timer = SetTimer("Timer", 200, true);
+		isTimer = true;
+	}
+}
+
+StopTimer()
+{
+	if (isTimer)
+	{
+		KillTimer(timer);
+		isTimer = false;
 	}
 }

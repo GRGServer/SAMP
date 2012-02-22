@@ -35,6 +35,11 @@
 #define MYSQL_DATABASE				"grgserver"
 
 
+// NPC configuration
+#define NPC_PAUSEDISTANCE			3// Distance to a player to pause a NPC
+#define NPC_SCRIPTNAME				"npcplayer"
+
+
 // Pickups
 #define PICKUP_BANK					1559
 #define PICKUP_GASSTATION			1008

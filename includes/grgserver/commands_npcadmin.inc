@@ -39,7 +39,7 @@ PCMD:controlnpc[NPCADMIN](playerid, params[])
 	if (!strcmp(command, "connect", true))
 	{
 		SendClientMessage(playerid, COLOR_INFO, "NPC verbunden");
-		ConnectNPC(GetPlayerNameEx(targetPlayerID), "npcplayer");
+		ConnectNPC(GetPlayerNameEx(targetPlayerID), NPC_SCRIPTNAME);
 		return COMMAND_OK;
 	}
 	SendClientMessage(playerid, COLOR_INFO, "Befehl gesendet");

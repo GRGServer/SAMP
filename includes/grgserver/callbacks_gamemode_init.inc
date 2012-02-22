@@ -89,7 +89,7 @@ public OnGameModeInit()
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		ConnectNPC(GetMySQLField("Name"), "npcplayer");
+		ConnectNPC(GetMySQLField("Name"), NPC_SCRIPTNAME);
 	}
 	mysql_free_result();
 	return true;
