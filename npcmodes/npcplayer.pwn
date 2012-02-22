@@ -46,10 +46,6 @@ public OnClientMessage(color, text[])
 					StartTimer();
 				}
 			}
-			else
-			{
-				printf("Incorrect command format sent by server: %s", text);
-			}
 		}
 	}
 }
@@ -72,7 +68,7 @@ public OnNPCExitVehicle()
 
 public OnRecordingPlaybackEnd()
 {
-	print("NPC playback ended");
+	SendChat("NPC playback ended");
 	if (autoRepeat)
 	{
 		StartNPC();
@@ -122,13 +118,13 @@ PauseNPC(newState)
 	{
 		isPaused = true;
 		PauseRecordingPlayback();
-		print("NPC playback paused");
+		SendChat("NPC playback paused");
 	}
 	else
 	{
 		isPaused = false;
 		ResumeRecordingPlayback();
-		print("NPC playback resumed");
+		SendChat("NPC playback resumed");
 	}
 }
 
@@ -136,7 +132,7 @@ StartNPC()
 {
 	isPaused = false;
 	StartRecordingPlayback(playbackType, recordingName);
-	print("NPC playback started");
+	SendChat("NPC playback started");
 	StartTimer();
 }
 
@@ -144,7 +140,7 @@ StartTimer()
 {
 	if (!isTimer)
 	{
-		print("Timer started");
+		SendChat("Timer started");
 		timer = SetTimer("Timer", 200, true);
 		isTimer = true;
 	}
@@ -153,14 +149,14 @@ StartTimer()
 StopNPC()
 {
 	StopRecordingPlayback();
-	print("NPC playback stopped");
+	SendChat("NPC playback stopped");
 }
 
 StopTimer()
 {
 	if (isTimer)
 	{
-		print("Timer stopped");
+		SendChat("Timer stopped");
 		KillTimer(timer);
 		isTimer = false;
 	}
