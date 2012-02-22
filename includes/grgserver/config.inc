@@ -1,15 +1,14 @@
 // Colors
-#define COLOR_ERROR					0xA00000AA
-#define COLOR_ME					0x00FF40AA
-//#define COLOR_PM					0x804000AA
-#define COLOR_SYSTEM				0xC0C0C0AA
 #define COLOR_CHAT					0xFFFFFFAA
 #define COLOR_CHATOWN				0xAAAAAAAA
-#define COLOR_IRC					0x33AA33AA
+#define COLOR_ERROR					0xA00000AA
 #define COLOR_INFO					0xFF8C55FF
-#define COLOR_USAGE					0x008000AA
+#define COLOR_IRC					0x33AA33AA
 #define COLOR_JOINLEAVE				0x74E80099
+#define COLOR_ME					0x00FF40AA
 #define COLOR_NPCCOMMAND			0x00000000
+#define COLOR_SYSTEM				0xC0C0C0AA
+#define COLOR_USAGE					0x008000AA
 
 
 // Gas station configuration
@@ -21,18 +20,19 @@
 
 
 // IRC credentials
+#define IRC_CHANNEL					"#grgserver"
 #define IRC_HOST					"127.0.0.1"
 #define IRC_PORT					6667
 #define IRC_SSL						false
 #define IRC_USERNAME				"grgserver"
-#define IRC_CHANNEL					"#grgserver"
+
 
 
 // MySQL credentials
-#define MYSQL_HOST					"srv1.selfcoders.com"
-#define MYSQL_USERNAME				"grgserver"
-#define MYSQL_PASSWORD				"2RuvHtYb7KRh6PVt"
 #define MYSQL_DATABASE				"grgserver"
+#define MYSQL_HOST					"srv1.selfcoders.com"
+#define MYSQL_PASSWORD				"2RuvHtYb7KRh6PVt"
+#define MYSQL_USERNAME				"grgserver"
 
 
 // NPC configuration
@@ -56,13 +56,13 @@
 
 
 // Spawn properties
+#define SPAWN_ANGLE					270.0
+#define SPAWN_CAMERAPOSX			2037.0778
+#define SPAWN_CAMERAPOSY			1349.0790
+#define SPAWN_CAMERAPOSZ			13.8203
 #define SPAWN_POSX					2032.0778
 #define SPAWN_POSY					1344.0790
 #define SPAWN_POSZ					10.8203
-#define SPAWN_ANGLE					270.0
-#define SPAWN_CAMERAPOSX			SPAWN_POSX + 5
-#define SPAWN_CAMERAPOSY			SPAWN_POSY + 5
-#define SPAWN_CAMERAPOSZ			SPAWN_POSZ + 3
 
 
 // Timers
