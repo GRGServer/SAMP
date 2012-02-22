@@ -35,7 +35,7 @@ ShowDialog(playerID, dialogID, ...)
 			format(options, sizeof(options), "Einmieter"); // item 3
 			format(options, sizeof(options), "Einmieter Rausschmeissen"); // item 4
 			format(options, sizeof(options), "Miet preis Festlegen");
-			ShowPlayerDialog(playerID, DIALOG_HOTELOPTIONS, DIALOG_STYLE_MSGBOX, "Hoteloptionen", options, "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, DIALOG_HOTELOPTIONS, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", "Abbrechen");
 		}
 		case DIALOG_HOTELOPTIONS_NOTOWNER:
 		{
@@ -43,7 +43,15 @@ ShowDialog(playerID, dialogID, ...)
 			format(options, sizeof(options), "Betreten"); // Item 0
 			format(options, sizeof(options), "Mieten"); // Item 1
 			format(options, sizeof(options), "Miete Kündigen"); // item 2
-			ShowPlayerDialog(playerID, DIALOG_HOTELOPTIONS_NOTOWNER, DIALOG_STYLE_MSGBOX, "Hoteloptionen", options, "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, DIALOG_HOTELOPTIONS_NOTOWNER, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", "Abbrechen");
+		}
+		case DIALOG_HOTEL:
+		{
+			new options[1024];
+			format(options, sizeof(options), "Hotel Kaufen"); // Item 0
+			format(options, sizeof(options), "Zimmer Mieten"); // Item 1
+			format(options, sizeof(options), "Betreten"); // Item 2
+			ShowPlayerDialog(playerID, DIALOG_HOTEL, DIALOG_STYLE_LIST, "Hotel", options, "OK, "Abbrechen");
 		}
 		case DIALOG_HOUSEOPTIONS:
 		{

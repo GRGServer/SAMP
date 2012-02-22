@@ -35,6 +35,10 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 					ShowDialog(playerid, DIALOG_HOTELOPTIONS_NOTOWNER);
 				}
 			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_HOTEL);
+			}
 		}
 		case PICKUPTYPE_HOUSE:
 		{

@@ -201,6 +201,41 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
+		case DIALOG_HOTEL:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: // Buy
+					{
+						new buildingID = GetPVarInt(playerid, "DialogBuildingID");
+						new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
+						if (price <= GetPVarFloat(playerid, "Money"))
+						{
+							GivePlayerMoneyEx(playerid, -price);
+							SetMySQLValue("buildings", "OwnerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(buildingID));
+							ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
+							SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen Hotel");
+						}
+						else
+						{
+							new string[256];
+							format(string,sizeof(string), "Du benötigst $%s für dieses Hotel! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPVarFloat(playerid, "Money")));
+							SendClientMessage(playerid, COLOR_ERROR, string);
+						}
+					}
+					case 1: // Mieten
+					{
+						SendClientMessage(playerid, COLOR_SYSEM_INFO,"Zimmer Mieten");
+					}
+					case 2: // Enter
+					{
+						TeleportToBuilding(playerid, GetPVarInt(playerid, "DialogBuildingID"));
+					}
+				}
+			}
+		}
 		case DIALOG_HOUSEOPTIONS:
 		{
 			if (response)
