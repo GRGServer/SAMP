@@ -12,7 +12,7 @@ for(new i_%0 = 0; ; ++i_%0) \
 #define RCMD:%0(%1) forward rcmd_%0(%1); public rcmd_%0(%1)
 
 #define Timer:%0(%1) forward Timer_%0(%1); public Timer_%0(%1)
-#define StartTimer:%0[%1](%2) SetTimer("Timer_%0", TIMER_%1, %2)
+#define StartTimer:%0[%1](%2) SetTimer("Timer_%0", TIMER_%1, %2); printf("Timer Timer_%0 (%d) started", TIMER_%1)
 
 #define FormatMoney(%0) FormatNumber(%0, 2, '.', ',')
 #define MD5(%0) MD5_Hash(%0, true)
