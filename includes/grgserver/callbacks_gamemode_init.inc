@@ -68,15 +68,7 @@ public OnGameModeInit()
 	StartTimer:Slow[SLOW](true);
 	StartTimer:StableCheck[STABLECHECK](false);
 	print("* Connecting NPCs...");
-	mysql_query("SELECT * FROM `npcs` WHERE `AutoConnect` = '1'");
-	mysql_store_result();
-	while (FetchMySQLRow())
-	{
-		new npcName[MAX_PLAYER_NAME];
-		format(npcName, sizeof(npcName), "NPC_%s", GetMySQLField("Name"));
-		ConnectNPC(npcName, NPC_SCRIPTNAME);
-	}
-	mysql_free_result();
+	ReconnectNPCs();
 	return true;
 }
 
@@ -86,7 +78,14 @@ public OnGameModeExit()
 	print("* Saving players...");
 	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
 	{
-		SavePlayer(playerID);
+		if (IsPlayerNPC(playerID))
+		{
+			Kick(playerID);
+		}
+		else
+		{
+			SavePlayer(playerID);
+		}
 	}
 	print("* Saving vehicles...");
 	for (new vehicleID = 0; vehicleID < MAX_VEHICLES; vehicleID++)

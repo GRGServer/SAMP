@@ -26,6 +26,26 @@ AddNPCRecorderPlayback(playerID, recordingName[], recordingType)
 	return false;
 }
 
+ReconnectNPCs()
+{
+	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+	{
+		if (IsPlayerNPC(playerID))
+		{
+			Kick(playerID);
+		}
+	}
+	mysql_query("SELECT * FROM `npcs` WHERE `AutoConnect` = '1'");
+	mysql_store_result();
+	while (FetchMySQLRow())
+	{
+		new npcName[MAX_PLAYER_NAME];
+		format(npcName, sizeof(npcName), "NPC_%s", GetMySQLField("Name"));
+		ConnectNPC(npcName, NPC_SCRIPTNAME);
+	}
+	mysql_free_result();
+}
+
 SendNPCCommand(npcPlayerID, command[])
 {
 	SendClientMessage(npcPlayerID, COLOR_NPCCOMMAND, command);
