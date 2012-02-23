@@ -62,11 +62,11 @@ public OnGameModeInit()
 	DisableInteriorEnterExits();
 	UpdateGasPrice();
 	print("* Starting timers...");
-	StartTimer:EveryMinute[EVERYMINUTE](true);
-	StartTimer:Fast[FAST](true);
-	StartTimer:Hourly[HOURLY](true);
-	StartTimer:Slow[SLOW](true);
-	StartTimer:StableCheck[STABLECHECK](false);
+	StartTimer:EVERYMINUTE("Timer_EveryMinute", true);
+	StartTimer:FAST("Timer_Fast", true);
+	StartTimer:HOURLY("Timer_Hourly", true);
+	StartTimer:SLOW("Timer_Slow", true);
+	StartTimer:STABLECHECK("Timer_StableCheck", false);
 	print("* Connecting NPCs...");
 	ReconnectNPCs();
 	return true;
