@@ -1,3 +1,11 @@
+AddVehicleComponentEx(vehicleID, componentID)
+{
+	if (componentID)
+	{
+		AddVehicleComponent(vehicleID, componentID);
+	}
+}
+
 GetVehicleEngineState(vehicleID)
 {
 	new engine;
@@ -9,6 +17,55 @@ GetVehicleEngineState(vehicleID)
 	new objective;
 	GetVehicleParamsEx(vehicleID, engine, lights, alarm, doors, bonnet, boot, objective);
 	return engine;
+}
+
+ReloadSavedVehicles()
+{
+	for (new vehicleID = 0; vehicleID < MAX_VEHICLES; vehicleID++)
+	{
+		DestroyVehicle(vehicleID);
+		vehicles[vehicleID][VEHICLE_SAVEID] = 0;
+		vehicles[vehicleID][VEHICLE_CURRENTFUEL] = 0;
+	}
+	mysql_query("SELECT * FROM `savedvehicles`");
+	mysql_store_result();
+	while (FetchMySQLRow())
+	{
+		new vehicleID = CreateVehicle(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1);
+		vehicles[vehicleID][VEHICLE_SAVEID] = strval(GetMySQLField("ID"));
+		vehicles[vehicleID][VEHICLE_CURRENTFUEL] = floatstr(GetMySQLField("CurrentFuel"));
+		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
+		ChangeVehicleColor(vehicleID, strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")));
+		ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_Spoiler")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_Hood")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_Roof")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_Sideskirt")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_Lamps")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_Nitro")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_Exhaust")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_Wheels")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_Stereo")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_Hydraulics")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_FrontBumper")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_RearBumper")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_VentRight")));
+		AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component_VentLeft")));
+	}
+	mysql_free_result();
+}
+
+ReloadVehicleModels()
+{
+	mysql_query("SELECT * FROM `vehiclemodels`");
+	mysql_store_result();
+	while (FetchMySQLRow())
+	{
+		new index = strval(GetMySQLField("ModelID")) - 400;
+		vehicleModels[index][VEHICLEMODEL_FUELUSAGE] = floatstr(GetMySQLField("FuelUsage"));
+		vehicleModels[index][VEHICLEMODEL_MAXFUEL] = floatstr(GetMySQLField("MaxFuel"));
+	}
+	mysql_free_result();
 }
 
 SaveVehicle(vehicleID, interior)

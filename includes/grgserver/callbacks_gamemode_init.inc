@@ -36,26 +36,9 @@ public OnGameModeInit()
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	print("* Loading vehicle models...");
-	mysql_query("SELECT * FROM `vehiclemodels`");
-	mysql_store_result();
-	while (FetchMySQLRow())
-	{
-		new index = strval(GetMySQLField("ModelID")) - 400;
-		vehicleModels[index][VEHICLEMODEL_FUELUSAGE] = floatstr(GetMySQLField("FuelUsage"));
-		vehicleModels[index][VEHICLEMODEL_MAXFUEL] = floatstr(GetMySQLField("MaxFuel"));
-	}
-	mysql_free_result();
+	ReloadVehicleModels();
 	print("* Loading saved vehicles...");
-	mysql_query("SELECT * FROM `savedvehicles`");
-	mysql_store_result();
-	while (FetchMySQLRow())
-	{
-		new vehicleID = CreateVehicle(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1);
-		vehicles[vehicleID][VEHICLE_SAVEID] = strval(GetMySQLField("ID"));
-		vehicles[vehicleID][VEHICLE_CURRENTFUEL] = floatstr(GetMySQLField("CurrentFuel"));
-		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
-	}
-	mysql_free_result();
+	ReloadSavedVehicles();
 	print("* Creating pickups...");
 	ReloadPickups();
 	print("* Creating server wide TextDraws...");
