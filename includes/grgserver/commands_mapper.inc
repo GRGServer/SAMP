@@ -63,7 +63,7 @@ PCMD:saveveh[MAPPER](playerid, params[])
 			new vehicleID = GetPlayerVehicleID(playerid);
 			new modelID = GetVehicleModel(vehicleID);
 			GetVehiclePos(vehicleID, posX, posY, posZ);
-			GetVehicleZAngle(playerid, angle);
+			GetVehicleZAngle(vehicleID, angle);
 			format(query, sizeof(query), "INSERT INTO `savedvehicles` (`PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `ModelID`, `Price`, `CurrentFuel`) VALUES('%f', '%f', '%f', '%f', '%d', '%d', '%d', '%f')", posX, posY, posZ, angle, GetPlayerInterior(playerid), modelID, price, vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
 			mysql_query(query);
 			format(string, sizeof(string), "Fahrzeug wurde unter der ID %d gespeichert", mysql_insert_id());
