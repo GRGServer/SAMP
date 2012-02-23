@@ -6,6 +6,24 @@ public OnGameModeInit()
 	printf("    SVN Revision: %d", COMPILER_SVN_REVISION);
 	printf("    Compile date: %s %s", COMPILER_DATE, COMPILER_TIME);
 	printf("    Last committer: %s", COMPILER_SVN_LASTCOMMITTER);
+	if (fexist("svn_changes"))
+	{
+		new logLine[256];
+		new File:changesFile = fopen("svn_changes", io_read);
+		fread(changesFile, logLine);// Skip "------------------------------------------------------------------------"
+		fread(changesFile, logLine);// Skip "rXXX | user | yyyy-mm-dd hh:ii:ss +xxxx (ddd, dd mmm yyyy) | x line(s)"
+		fread(changesFile, logLine);// Skip ""
+		print("    SVN Changelog:");
+		while (fread(changesFile, logLine))
+		{
+			RemoveNewLine(logLine);
+			if (strlen(logLine) && strcmp(logLine, "------------------------------------------------------------------------"))
+			{
+				printf("    > %s", logLine);
+			}
+		}
+		fclose(changesFile);
+	}
 	print("* Checking SVN stuff...");
 	if (fexist("svn_revision"))
 	{

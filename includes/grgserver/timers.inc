@@ -166,6 +166,24 @@ Timer:Slow()
 		{
 			format(string, sizeof(string), "Es steht ein Update auf Revision %s zur Verfügung!", string);
 			SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
+			if (fexist("svn_changes"))
+			{
+				file = fopen("svn_changes", io_read);
+				fread(file, string);// Skip "------------------------------------------------------------------------"
+				fread(file, string);// Skip "rXXX | user | yyyy-mm-dd hh:ii:ss +xxxx (ddd, dd mmm yyyy) | x line(s)"
+				fread(file, string);// Skip ""
+				SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, "*** SVN Changelog:");
+				while (fread(file, string))
+				{
+					RemoveNewLine(string);
+					if (strlen(string) && strcmp(string, "------------------------------------------------------------------------"))
+					{
+						format(string, sizeof(string), "> %s", string);
+						SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
+					}
+				}
+				fclose(file);
+			}
 		}
 	}
 }
