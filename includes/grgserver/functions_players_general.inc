@@ -29,9 +29,9 @@ GetPVarStringEx(playerID, name[])
 
 GivePlayerMoneyEx(playerID, Float:amount)
 {
-	SetPVarFloat(playerID, "Money", floatadd(GetPVarFloat(playerID, "Money"), amount));
+	SetPVarFloat(playerID, "Money", floatadd(GetPlayerMoneyEx(playerID), amount));
 	ResetPlayerMoney(playerID);
-	GivePlayerMoney(playerID, floatround(GetPVarFloat(playerID, "Money"), floatround_tozero) * 100);
+	GivePlayerMoney(playerID, floatround(GetPlayerMoneyEx(playerID), floatround_tozero) * 100);
 }
 
 IsValidSkin(skinID)

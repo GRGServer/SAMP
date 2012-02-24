@@ -107,15 +107,15 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				new string[256];
 				new saveID = vehicles[GetPlayerVehicleID(playerid)][VEHICLE_SAVEID];
 				new Float:price = floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(saveID)));
-				if (price <= GetPVarFloat(playerid, "Money"))
+				if (price <= GetPlayerMoneyEx(playerid))
 				{
 					GivePlayerMoneyEx(playerid, -price);
-					SetMySQLValue("savedvehicles", "OwnerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(saveID));
+					SetMySQLValue("savedvehicles", "OwnerUserID", val2str(GetUserID(playerid)), "ID", val2str(saveID));
 					SavePlayer(playerid);
 				}
 				else
 				{
-					format(string,sizeof(string), "Du benötigst $%s für dieses Fahrzeug! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPVarFloat(playerid, "Money")));
+					format(string,sizeof(string), "Du benötigst $%s für dieses Fahrzeug! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPlayerMoneyEx(playerid)));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 					RemovePlayerFromVehicle(playerid);
 				}
@@ -131,17 +131,17 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				new buildingID = GetPVarInt(playerid, "DialogBuildingID");
 				new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
-				if (price <= GetPVarFloat(playerid, "Money"))
+				if (price <= GetPlayerMoneyEx(playerid))
 				{
 					GivePlayerMoneyEx(playerid, -price);
-					SetMySQLValue("buildings", "OwnerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(buildingID));
+					SetMySQLValue("buildings", "OwnerUserID", val2str(GetUserID(playerid)), "ID", val2str(buildingID));
 					ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
 					SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen Haus");
 				}
 				else
 				{
 					new string[256];
-					format(string,sizeof(string), "Du benötigst $%s für dieses Haus! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPVarFloat(playerid, "Money")));
+					format(string,sizeof(string), "Du benötigst $%s für dieses Haus! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPlayerMoneyEx(playerid)));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 				}
 			}
@@ -156,21 +156,21 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						new buildingID = GetPVarInt(playerid, "DialogBuildingID");
 						new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
-						if (price <= GetPVarFloat(playerid, "Money"))
+						if (price <= GetPlayerMoneyEx(playerid))
 						{
 							GivePlayerMoneyEx(playerid, -price);
-							SetMySQLValue("buildings", "OwnerUserID", val2str(GetPVarInt(playerid, "UserID")), "ID", val2str(buildingID));
+							SetMySQLValue("buildings", "OwnerUserID", val2str(GetUserID(playerid)), "ID", val2str(buildingID));
 							ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
 							SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen Hotel");
 						}
 						else
 						{
 							new string[256];
-							format(string,sizeof(string), "Du benötigst $%s für dieses Hotel! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPVarFloat(playerid, "Money")));
+							format(string,sizeof(string), "Du benötigst $%s für dieses Hotel! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPlayerMoneyEx(playerid)));
 							SendClientMessage(playerid, COLOR_ERROR, string);
 						}
 					}
-					case 1: // Mieten
+					case 1: // Rent
 					{
 						SendClientMessage(playerid, COLOR_SYSTEM,"Zimmer Mieten");
 					}
@@ -179,6 +179,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						TeleportToBuilding(playerid, GetPVarInt(playerid, "DialogBuildingID"));
 					}
 				}
+			}
+			else
+			{
+				SetPlayerPos(playerid, GetPVarFloat(playerid, "Hotel_PreviousPosition_X"), GetPVarFloat(playerid, "Hotel_PreviousPosition_Y"), GetPVarFloat(playerid, "Hotel_PreviousPosition_Z"));
+				SetPlayerInterior(playerid, 0);
+				SetPlayerVirtualWorld(playerid, 0);
 			}
 		}
 		case DIALOG_HOTEL_MAIN_BOUGHT:
@@ -191,15 +197,21 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SendClientMessage(playerid, COLOR_SYSTEM, "Eintrit in eigenes Hotel Zimmer");
 					}
-					case 1: // Zimmer Mieten
+					case 1: // Rent
 					{
 						SendClientMessage(playerid, COLOR_SYSTEM, "Zimmer Mieten");
 					}
-					case 2: // Zimmer ausmieten
+					case 2: // Stop contract
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Zimmer Ausmieten");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Kündigen");
 					}
 				}
+			}
+			else
+			{
+				SetPlayerPos(playerid, GetPVarFloat(playerid, "Hotel_PreviousPosition_X"), GetPVarFloat(playerid, "Hotel_PreviousPosition_Y"), GetPVarFloat(playerid, "Hotel_PreviousPosition_Z"));
+				SetPlayerInterior(playerid, 0);
+				SetPlayerVirtualWorld(playerid, 0);
 			}
 		}
 		case DIALOG_HOTEL_MAIN_OWNER:
@@ -214,26 +226,88 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 1: // Sell
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel Verkaufen");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel verkaufen");
 					}
 					case 2: // Incoming (Money)
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel Information Einkommen");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Einnahmen");
 					}
-					case 3: // HotelInfo (Owners)
+					case 3: // Room options
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel einmieter");
+						ShowDialog(playerid, DIALOG_HOTEL_ROOMS_LIST);
 					}
-					case 4: // Kick Owners
+					case 4: // Set price
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel einmieter Rausschmeissen");
-					}
-					case 5: // Set Price
-					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel preis setzten");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Mietpreis ändern");
 					}
 				}
 			}
+			else
+			{
+				SetPlayerPos(playerid, GetPVarFloat(playerid, "Hotel_PreviousPosition_X"), GetPVarFloat(playerid, "Hotel_PreviousPosition_Y"), GetPVarFloat(playerid, "Hotel_PreviousPosition_Z"));
+				SetPlayerInterior(playerid, 0);
+				SetPlayerVirtualWorld(playerid, 0);
+			}
+		}
+		case DIALOG_HOTEL_ROOMS_FREEOPTIONS:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0:// Set room rent price
+					{
+						ShowDialog(playerid, DIALOG_HOTEL_ROOMS_SETPRICE);
+					}
+				}
+			}
+		}
+		case DIALOG_HOTEL_ROOMS_LIST:
+		{
+			if (response)
+			{
+				new playerName[MAX_PLAYER_NAME];
+				new roomID;
+				if (!sscanf(inputtext, "p:ds", roomID, playerName))
+				{
+					SetPVarInt(playerid, "Hotel_Options_RoomID", roomID);
+					if (strval(GetMySQLValue("hotelrooms", "OwnerUserID", "RoomID", val2str(roomID))))
+					{
+						ShowDialog(playerid, DIALOG_HOTEL_ROOMS_OWNEDOPTIONS);
+					}
+					else
+					{
+						ShowDialog(playerid, DIALOG_HOTEL_ROOMS_FREEOPTIONS);
+					}
+				}
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_HOTEL_MAIN_OWNER);
+			}
+		}
+		case DIALOG_HOTEL_ROOMS_OWNEDOPTIONS:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0:// Kick renter
+					{
+						// Kick
+					}
+				}
+			}
+		}
+		case DIALOG_HOTEL_ROOMS_SETPRICE:
+		{
+			if (response)
+			{
+				new query[256];
+				format(query, sizeof(query), "UPDATE `hotelrooms` SET `Price` = '%s' WHERE `BuildingID` = '%d' AND `RoomID` = '%d'", MySQLEscapeString(inputtext), GetPVarInt(playerid, "DialogBuildingID"), GetPVarInt(playerid, "Hotel_Options_RoomID"));
+				mysql_query(query);
+			}
+			ShowDialog(playerid, DIALOG_HOTEL_ROOMS_LIST);
 		}
 		case DIALOG_HOUSEOPTIONS:
 		{
@@ -278,11 +352,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						ShowDialog(playerid, DIALOG_LOGIN);
 					}
 					mysql_free_result();
-					if (GetPVarInt(playerid, "UserID"))
+					if (GetUserID(playerid))
 					{
-						format(query, sizeof(query), "UPDATE `users` SET `LoginTime` = NOW() WHERE `UserID` = '%d'", GetPVarInt(playerid, "UserID"));
+						format(query, sizeof(query), "UPDATE `users` SET `LoginTime` = NOW() WHERE `UserID` = '%d'", GetUserID(playerid));
 						mysql_query(query);
-						printf("Player logged in: %s (UserID: %d)", playerName, GetPVarInt(playerid, "UserID"));
+						printf("Player logged in: %s (UserID: %d)", playerName, GetUserID(playerid));
 						LoadPlayer(playerid);
 						SetPVarInt(playerid, "SpawnAfterLogin", true);
 						SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich eingeloggt.");
@@ -401,7 +475,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					SetPVarInt(playerid, "AdminLevel", REGISTER_ADMINLEVEL);
 					SavePlayer(playerid);
 					SetPVarInt(playerid, "AllowSkinSelection", true);
-					printf("Player registered: %s (UserID: %d)", playerName, GetPVarInt(playerid, "UserID"));
+					printf("Player registered: %s (UserID: %d)", playerName, GetUserID(playerid));
 					SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
 					SendClientMessage(playerid, COLOR_INFO, "Bitte wähle deinen Spieler aus.");
 				}

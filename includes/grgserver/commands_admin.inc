@@ -52,7 +52,7 @@ PCMD:money[ADMIN](playerid, params[])
 		GivePlayerMoneyEx(playerid, money);
 		format(string, sizeof(string), "Du hast dir $%s gegeben", FormatMoney(money));
 		SendClientMessage(playerid, COLOR_INFO, string);
-		format(string, sizeof(string), "Neuer Kontostand: %s", FormatMoney(GetPVarFloat(playerid, "Money")));
+		format(string, sizeof(string), "Neuer Kontostand: %s", FormatMoney(GetPlayerMoneyEx(playerid)));
 		SendClientMessage(playerid, COLOR_INFO, string);
 		return COMMAND_OK;
 	}

@@ -102,7 +102,7 @@ CMD:exit(playerid, params[])
 CMD:getbalance(playerid, params[])
 {
 	new string[256];
-	format(string, sizeof(string), "Aktueller Kontostand: $%s", FormatMoney(GetPVarFloat(playerid, "Money")));
+	format(string, sizeof(string), "Aktueller Kontostand: $%s", FormatMoney(GetPlayerMoneyEx(playerid)));
 	SendClientMessage(playerid, COLOR_INFO, string);
 	return COMMAND_OK;
 }

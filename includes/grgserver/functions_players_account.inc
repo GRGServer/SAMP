@@ -1,6 +1,6 @@
 IsLoggedIn(playerID)
 {
-	return (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && GetPVarInt(playerID, "UserID"));
+	return (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && GetUserID(playerID));
 }
 
 LoadPlayer(playerID)
@@ -10,10 +10,10 @@ LoadPlayer(playerID)
 	LoadPlayerValue(playerID, "Money", PLAYER_VARTYPE_FLOAT);
 	LoadPlayerValue(playerID, "Skin", PLAYER_VARTYPE_INT);
 	LoadPlayerValue(playerID, "CurrentBuildingID", PLAYER_VARTYPE_INT);
-	SetPlayerMoney(playerID, GetPVarFloat(playerID, "Money"));
+	SetPlayerMoney(playerID, GetPlayerMoneyEx(playerID));
 	SetPlayerSkin(playerID, GetPVarInt(playerID, "Skin"));
 	new query[256];
-	format(query, sizeof(query), "SELECT * FROM `permissions` WHERE `UserID` = '%d'", GetPVarInt(playerID, "UserID"));
+	format(query, sizeof(query), "SELECT * FROM `permissions` WHERE `UserID` = '%d'", GetUserID(playerID));
 	mysql_query(query);
 	mysql_store_result();
 	if (strval(GetMySQLField("UserID")))
@@ -57,7 +57,7 @@ SavePlayer(playerID)
 		new Float:angle;
 		GetPlayerPos(playerID, posX, posY, posZ);
 		GetPlayerFacingAngle(playerID, angle);
-		format(query, sizeof(query), "UPDATE `users` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Angle` = '%f', `Interior` = '%d' WHERE `UserID` = '%d'", posX, posY, posZ, angle, GetPlayerInterior(playerID), GetPVarInt(playerID, "UserID"));
+		format(query, sizeof(query), "UPDATE `users` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Angle` = '%f', `Interior` = '%d' WHERE `UserID` = '%d'", posX, posY, posZ, angle, GetPlayerInterior(playerID), GetUserID(playerID));
 		mysql_query(query);
 	}
 }

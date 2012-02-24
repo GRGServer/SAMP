@@ -101,7 +101,7 @@ Timer:Hourly()
 Timer:RefuelVehicle(playerID, Float:totalAmount)
 {
 	new vehicleID = GetPlayerVehicleID(playerID);
-	if (GetPVarFloat(playerID, "Money") >= gasPrice)
+	if (GetPlayerMoneyEx(playerID) >= gasPrice)
 	{
 		new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
 		if (totalAmount > 0 && maximum > 0)

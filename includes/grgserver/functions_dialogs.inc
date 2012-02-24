@@ -39,7 +39,7 @@ ShowDialog(playerID, dialogID, ...)
 			new options[1024];
 			format(options, sizeof(options), "Betreten"); // Item 0
 			format(options, sizeof(options), "%s\nMieten", options); // Item 1
-			format(options, sizeof(options), "%s\nMiete Kündigen", options); // item 2
+			format(options, sizeof(options), "%s\nKündigen", options); // item 2
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", "Abbrechen");
 		}
 		case DIALOG_HOTEL_MAIN_OWNER:
@@ -47,11 +47,48 @@ ShowDialog(playerID, dialogID, ...)
 			new options[1024];
 			format(options, sizeof(options), "Betreten"); // Item 0
 			format(options, sizeof(options), "%s\nVerkaufen", options); // Item 1
-			format(options, sizeof(options), "%s\nEinkomm Information", options); // item 2
-			format(options, sizeof(options), "%s\nEinmieter", options); // item 3
-			format(options, sizeof(options), "%s\nEinmieter Rausschmeissen", options); // item 4
-			format(options, sizeof(options), "%s\nMiet preis Festlegen", options);
+			format(options, sizeof(options), "%s\nEinnahmen", options); // item 2
+			format(options, sizeof(options), "%s\nZimmeroptionen", options); // Item 3
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", "Abbrechen");
+		}
+		case DIALOG_HOTEL_ROOMS_FREEOPTIONS:
+		{
+			new options[1024];
+			format(options, sizeof(options), "Mietpreis festlegen"); // Item 0
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Zimmeroptionen", options, "OK", "Abbrechen");
+		}
+		case DIALOG_HOTEL_ROOMS_LIST:
+		{
+			new query[256];
+			new rooms[2048];
+			new string[256];
+			format(query, sizeof(query), "SELECT `RoomID`, `Username` FROM `hotelrooms` LEFT JOIN `users` ON `hotelrooms`.`OwnerUserID` = `users`.`UserID` WHERE `hotelrooms`.`BuildingID` = '%d' ORDER BY `RoomID` ASC", GetPVarInt(playerID, "DialogBuildingID"));
+			mysql_query(query);
+			mysql_store_result();
+			while (FetchMySQLRow())
+			{
+				if (strlen(rooms))
+				{
+					format(rooms, sizeof(rooms), "%s\n", rooms);
+				}
+				if (strlen(GetMySQLField("Username")))
+				{
+					format(string, sizeof(string), GetMySQLField("Username"));
+				}
+				else
+				{
+					format(string, sizeof(string), "[Leer]");
+				}
+				format(rooms, sizeof(rooms), "%%s: %s", GetMySQLField("RoomID"), string);
+			}
+			mysql_free_result();
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Zimmer wählen", rooms, "Optionen", "Abbrechen");
+		}
+		case DIALOG_HOTEL_ROOMS_OWNEDOPTIONS:
+		{
+			new options[1024];
+			format(options, sizeof(options), "Mieter rauswerfen", options); // Item 0
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Zimmeroptionen", options, "OK", "Abbrechen");
 		}
 		case DIALOG_HOUSEOPTIONS:
 		{

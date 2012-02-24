@@ -9,7 +9,7 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 		if (vehicles[vehicleid][VEHICLE_SAVEID])
 		{
 			new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleid][VEHICLE_SAVEID])));
-			if (ownerUserID == GetPVarInt(playerid, "UserID"))
+			if (ownerUserID == GetUserID(playerid))
 			{
 				return true;
 			}

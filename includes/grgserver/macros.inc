@@ -15,6 +15,8 @@ for(new i_%0 = 0; ; ++i_%0) \
 #define StartTimer:%0(%1,%2) SetTimer(%1, TIMER_%0, %2); printf("Timer %s (Interval: %d; Repeating: %d) started", %1, TIMER_%0, %2)
 
 #define FormatMoney(%0) FormatNumber(%0, 2, '.', ',')
+#define GetPlayerMoneyEx(%0) GetPVarFloat(%0, "Money")
+#define GetUserID(%0) GetPVarInt(%0, "UserID")
 #define MD5(%0) MD5_Hash(%0, true)
 
 #define IsKeyPressed(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))// Not used yet

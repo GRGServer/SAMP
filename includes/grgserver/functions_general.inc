@@ -79,6 +79,6 @@ UpdateGasPrice()
 WriteChatToDatabase(playerID, text[])
 {
 	new query[512];
-	format(query, sizeof(query), "INSERT INTO `chatlog` (`UserID`, `Time`, `Text`) VALUES('%d', NOW(), '%s')", GetPVarInt(playerID, "UserID"), MySQLEscapeString(text));
+	format(query, sizeof(query), "INSERT INTO `chatlog` (`UserID`, `Time`, `Text`) VALUES('%d', NOW(), '%s')", GetUserID(playerID), MySQLEscapeString(text));
 	mysql_query(query);
 }

@@ -19,6 +19,14 @@
 #define HELP_COMMANDSPERLINE		5
 
 
+// Hotel configuration
+#define HOTEL_RECEPTION_ANGLE		273.733
+#define HOTEL_RECEPTION_INTERIOR	15
+#define HOTEL_RECEPTION_POSX		2217.28
+#define HOTEL_RECEPTION_POSY		-1150.53
+#define HOTEL_RECEPTION_POSZ		1025.8
+
+
 // IRC credentials
 #define IRC_CHANNEL					"#grgserver"
 #define IRC_HOST					"127.0.0.1"

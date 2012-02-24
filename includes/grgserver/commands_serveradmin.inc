@@ -39,16 +39,16 @@ PCMD:givepermission[SERVERADMIN](playerid, params[])
 					SendClientMessage(playerid, COLOR_ERROR, string);
 					return COMMAND_ERROR;
 				}
-				format(query, sizeof(query), "SELECT `UserID` FROM `permissions` WHERE `UserID` = '%d'", GetPVarInt(targetPlayerID, "UserID"));
+				format(query, sizeof(query), "SELECT `UserID` FROM `permissions` WHERE `UserID` = '%d'", GetUserID(targetPlayerID));
 				mysql_query(query);
 				mysql_store_result();
 				if (mysql_num_rows())
 				{
-					format(query, sizeof(query), "UPDATE `permissions` SET `%s` = '%d' WHERE `UserID` = '%d'", MySQLEscapeString(permission), newState, GetPVarInt(targetPlayerID, "UserID"));
+					format(query, sizeof(query), "UPDATE `permissions` SET `%s` = '%d' WHERE `UserID` = '%d'", MySQLEscapeString(permission), newState, GetUserID(targetPlayerID));
 				}
 				else
 				{
-					format(query, sizeof(query), "INSERT INTO `permissions` (`UserID`, `%s`) VALUES('%d', '%d')", MySQLEscapeString(permission), GetPVarInt(targetPlayerID, "UserID"), newState);
+					format(query, sizeof(query), "INSERT INTO `permissions` (`UserID`, `%s`) VALUES('%d', '%d')", MySQLEscapeString(permission), GetUserID(targetPlayerID), newState);
 				}
 				mysql_free_result();
 				mysql_query(query);
