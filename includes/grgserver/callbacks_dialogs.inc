@@ -162,17 +162,20 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							SetMySQLValue("buildings", "OwnerUserID", val2str(GetUserID(playerid)), "ID", val2str(buildingID));
 							ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
 							SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen Hotel");
+							ShowDialog(playerid, DIALOG_HOTEL_MAIN_OWNER);
 						}
 						else
 						{
 							new string[256];
 							format(string,sizeof(string), "Du benötigst $%s für dieses Hotel! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPlayerMoneyEx(playerid)));
 							SendClientMessage(playerid, COLOR_ERROR, string);
+							ShowDialog(playerid, DIALOG_HOTEL_MAIN_AVAILABLE);
 						}
 					}
 					case 1: // Rent
 					{
 						SendClientMessage(playerid, COLOR_SYSTEM,"Zimmer Mieten");
+						ShowDialog(playerid, DIALOG_HOTEL_MAIN_AVAILABLE);
 					}
 					case 2: // Enter
 					{
@@ -196,14 +199,17 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 0: // Enter
 					{
 						SendClientMessage(playerid, COLOR_SYSTEM, "Eintrit in eigenes Hotel Zimmer");
+						ShowDialog(playerid, DIALOG_HOTEL_MAIN_BOUGHT);
 					}
 					case 1: // Rent
 					{
 						SendClientMessage(playerid, COLOR_SYSTEM, "Zimmer Mieten");
+						ShowDialog(playerid, DIALOG_HOTEL_MAIN_BOUGHT);
 					}
 					case 2: // Stop contract
 					{
 						SendClientMessage(playerid, COLOR_SYSTEM, "Kündigen");
+						ShowDialog(playerid, DIALOG_HOTEL_MAIN_BOUGHT);
 					}
 				}
 			}
@@ -227,18 +233,16 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 1: // Sell
 					{
 						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel verkaufen");
+						ShowDialog(playerid, DIALOG_HOTEL_MAIN_OWNER);
 					}
 					case 2: // Incoming (Money)
 					{
 						SendClientMessage(playerid, COLOR_SYSTEM, "Einnahmen");
+						ShowDialog(playerid, DIALOG_HOTEL_MAIN_OWNER);
 					}
 					case 3: // Room options
 					{
 						ShowDialog(playerid, DIALOG_HOTEL_ROOMS_LIST);
-					}
-					case 4: // Set price
-					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Mietpreis ändern");
 					}
 				}
 			}
@@ -260,6 +264,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						ShowDialog(playerid, DIALOG_HOTEL_ROOMS_SETPRICE);
 					}
 				}
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_HOTEL_ROOMS_LIST);
 			}
 		}
 		case DIALOG_HOTEL_ROOMS_LIST:
@@ -297,6 +305,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						// Kick
 					}
 				}
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_HOTEL_ROOMS_LIST);
 			}
 		}
 		case DIALOG_HOTEL_ROOMS_SETPRICE:
