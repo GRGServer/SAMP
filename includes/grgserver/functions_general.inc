@@ -62,12 +62,23 @@ LeadingZero(value, length)
 	new valueString[256];
 	valstr(valueString, value);
 	new numZeros = length - strlen(valueString);
-	for (new character = 0; character < numZeros; character++)
+	if (numZeros < 0)
 	{
-		Format:string("%s0", string);
+		numZeros = 0;
 	}
-	Format:string("%s%s", string, valueString);
-	return string;
+	if (numZeros)
+	{
+		for (new character = 0; character < numZeros; character++)
+		{
+			Format:string("%s0", string);
+		}
+		Format:string("%s%s", string, valueString);
+		return string;
+	}
+	else
+	{
+		return valueString;
+	}
 }
 
 PlayRadioStation(playerID, id)
