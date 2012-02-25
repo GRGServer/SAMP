@@ -518,6 +518,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SendRconCommand("gmx");
 			}
 		}
+		case DIALOG_STATS:
+		{
+			if (response)
+			{
+				return COMMAND_OK;
+			}
+		}
 		case DIALOG_SELECTINTERIOR:
 		{
 			new interiorDialogID = GetPVarInt(playerid, "InteriorDialogID");

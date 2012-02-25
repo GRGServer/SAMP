@@ -140,6 +140,31 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Gamemode neustarten", "Soll der Gamemode wirklich neugestartet werden?", "Ja", "Nein");
 		}
+		case DIALOG_STATS:
+		{
+			new name[MAX_PLAYER_NAME];
+			new old = 18;
+			new home = "Evergreen Therrens 1";
+			new perso = 829107936;
+			new veh1 = "BMW M3 Schnitzer";
+			new veh2 = "Audi R8";
+			new veh3 = "Nissan Silvia";
+			new veh4 = "Toyota Supra";
+			new bank = 16220;
+			new hand = 16220;
+			new Float:Zins = 1.5;
+			new konto = 1335202;
+			new job = "Autohändler";
+			new gametime = 15;
+			new date = 12;
+			new number = 1338;
+			new MSGBOX[1028];
+			format(MSGBOX, sizeof(MSGBOX), "Name:\t%s\nAlter:\t%d\nWohnort:\t%s\nPersonal Nummer:\t%s\n",name, old, home,perso);
+			format(MSGBOX, sizeof(MSGBOX), "%s\n\nBesitzende Fahrzeuge:\t%s\n\t%s\n\t%s\n\t%s",MSGBOX,veh1,veh2,veh3,veh4);
+			format(MSGBOX, sizeof(MSGBOX), "%s\n\nGuthaben:\nBank:\t%d\nTasche:\t%d\nZinssatz:\t%f\nKontoNummer:\t%d",MSGBOX,bank,hand,zins,konto);
+			format(MSGBOX, sizeof(MSGBOX), "%s\n\nBeruf:\t%s\n\n\nSpielzeit:\t%d\nLetzter Login:\t%d\nHandy Nummer:\t%d",MSGBOX,job,gametime,date,number);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Personalien", MSGBOX, "OK","");
+		}
 		case DIALOG_SELECTINTERIOR:
 		{
 			new interiors[2048];

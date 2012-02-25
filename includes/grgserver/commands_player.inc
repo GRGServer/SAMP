@@ -189,3 +189,9 @@ CMD:radio(playerid, params[])
 		return COMMAND_NOT_IN_VEHICLE;
 	}
 }
+
+CMD:stats(playerid, params[])
+{
+	ShowDialog(playerid, DIALOG_STATS);
+	return COMMAND_OK;
+}
