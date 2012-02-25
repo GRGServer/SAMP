@@ -3,9 +3,6 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 	if (!ispassenger && !IsPlayerNPC(playerid))
 	{
 		SetVehicleEngineState(vehicleid, false);
-	}
-	if (!ispassenger)
-	{
 		if (vehicles[vehicleid][VEHICLE_SAVEID])
 		{
 			new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleid][VEHICLE_SAVEID])));

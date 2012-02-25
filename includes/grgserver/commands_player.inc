@@ -141,26 +141,39 @@ CMD:motor(playerid, params[])
 		return COMMAND_ERROR;
 	}
 	new vehicleID = GetPlayerVehicleID(playerid);
+	if (!vehicles[vehicleID][VEHICLE_SAVEID] && !permissions[playerid][PERMISSION_MAPPER])
+	{
+		SendClientMessage(playerid, COLOR_ERROR, "Dieses Fahrzeug kann nur von der Gruppe 'Mapper' verwendet werden!");
+		return COMMAND_ERROR;
+	}
+	new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID])));
+	if (!ownerUserID)
+	{
+		ShowDialog(playerid, DIALOG_BUYVEHICLE, FormatMoney(floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID])))));
+		return COMMAND_OK;
+	}
+	if (ownerUserID != GetUserID(playerid))
+	{
+		SendClientMessage(playerid, COLOR_ERROR, "Dieses Fahrzeug besitzt bereits ein anderer Spieler");
+		RemovePlayerFromVehicle(playerid);
+		return COMMAND_ERROR;
+	}
 	if (GetVehicleEngineState(vehicleID))
 	{
 		SetVehicleEngineState(vehicleID, false);
 		SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde ausgeschalten.");
+		return COMMAND_OK;
 	}
-	else
+	new Float:health;
+	GetVehicleHealth(vehicleID, health);
+	if (health >= VEHICLE_MINHEALTH)
 	{
-		new Float:health;
-		GetVehicleHealth(vehicleID, health);
-		if (health < VEHICLE_MINHEALTH)
-		{
-			SendClientMessage(playerid, COLOR_ERROR, "Der Motor deines Fahrzeuges konnte nicht gestartet werden (Motorschaden)!");
-		}
-		else
-		{
-			SetVehicleEngineState(vehicleID, true);
-			SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde gestartet.");
-		}
+		SetVehicleEngineState(vehicleID, true);
+		SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde gestartet.");
+		return COMMAND_OK;
 	}
-	return COMMAND_OK;
+	SendClientMessage(playerid, COLOR_ERROR, "Der Motor deines Fahrzeuges konnte nicht gestartet werden (Motorschaden)!");
+	return COMMAND_ERROR;
 }
 
 CMD:ordervehicle(playerid, params[])
