@@ -32,7 +32,7 @@ FormatDate(sqlDateString[], showTime = true)
 	printf("[FormatDate] date time split: (%s) (%s)", date, time);
 	sscanf(date, "p-ddd", year, month, day);
 	printf("[FormatDate] date split: (%d) (%d) (%d)", year, month, day);
-	Format:string("%s.%s.%d", LeadingZero(day, 2), LeadingZero(month, 2), year);
+	Format:string("%02d.%02d.%d", day, month, year);
 	printf("[FormatDate] Formated date: %s", string);
 	if (showTime)
 	{
@@ -52,30 +52,7 @@ FormatTime(seconds)
 	seconds -= hours * 60 * 60;
 	new minutes = seconds / 60;
 	seconds -= minutes * 60;
-	Format:string("%d Tage, %s:%s:%s", days, LeadingZero(hours, 2), LeadingZero(minutes, 2), LeadingZero(seconds, 2));
-	return string;
-}
-
-LeadingZero(number, length)
-{
-	print("[LeadingZero] Init");
-	new string[256];
-	print("[LeadingZero] string[256] initialized");
-	printf("[LeadingZero] IN: %d, %d", number, length);
-	new numZeros = length - strlen(val2str(number));
-	if (numZeros < 0)
-	{
-		numZeros = 0;
-	}
-	printf("[LeadingZero] numZeros: %d", numZeros);
-	for (new character = 0; character < numZeros; character++)
-	{
-		printf("[LeadingZero] Add zero: %s", string);
-		Format:string("%s0", string);
-	}
-	printf("[LeadingZero] Zero string: %s", string);
-	Format:string("%s%d", string, number);
-	printf("[LeadingZero] OUT: %s", string);
+	Format:string("%d Tage, %02d:%02d:%02d", days, hours, minutes, seconds);
 	return string;
 }
 
