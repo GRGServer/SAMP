@@ -56,15 +56,17 @@ FormatTime(seconds)
 	return string;
 }
 
-LeadingZero(value, length)
+LeadingZero(number, length)
 {
 	print("[LeadingZero] Init");
 	new string[256];
-	new valueString[256];
-	printf("[LeadingZero] IN: %d, %d", value, length);
-	valstr(valueString, value);
-	printf("[LeadingZero] vaueString: %s", valueString);
-	new numZeros = length - strlen(valueString);
+	print("[LeadingZero] string[256] initialized");
+	new numberString[256];
+	print("[LeadingZero] numberString[256] initialized");
+	printf("[LeadingZero] IN: %d, %d", number, length);
+	valstr(numberString, number);
+	printf("[LeadingZero] vaueString: %s", numberString);
+	new numZeros = length - strlen(numberString);
 	printf("[LeadingZero] numZeros: %d", numZeros);
 	if (numZeros < 0)
 	{
@@ -80,14 +82,14 @@ LeadingZero(value, length)
 			Format:string("%s0", string);
 		}
 		printf("[LeadingZero] Zero string: %s", string);
-		Format:string("%s%s", string, valueString);
+		Format:string("%s%s", string, numberString);
 		printf("[LeadingZero] OUT: %s", string);
 		return string;
 	}
 	else
 	{
-		printf("[LeadingZero] OUT: %s", valueString);
-		return valueString;
+		printf("[LeadingZero] OUT: %s", numberString);
+		return numberString;
 	}
 }
 
