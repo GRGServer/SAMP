@@ -61,36 +61,22 @@ LeadingZero(number, length)
 	print("[LeadingZero] Init");
 	new string[256];
 	print("[LeadingZero] string[256] initialized");
-	new numberString[256];
-	print("[LeadingZero] numberString[256] initialized");
 	printf("[LeadingZero] IN: %d, %d", number, length);
-	valstr(numberString, number);
-	printf("[LeadingZero] vaueString: %s", numberString);
-	new numZeros = length - strlen(numberString);
-	printf("[LeadingZero] numZeros: %d", numZeros);
+	new numZeros = length - strlen(val2str(number));
 	if (numZeros < 0)
 	{
-		print("[LeadingZero] Is < 0");
 		numZeros = 0;
 	}
-	if (numZeros)
+	printf("[LeadingZero] numZeros: %d", numZeros);
+	for (new character = 0; character < numZeros; character++)
 	{
-		printf("[LeadingZero] numZeros > 0: %d", numZeros);
-		for (new character = 0; character < numZeros; character++)
-		{
-			printf("[LeadingZero] Add zero: %s", string);
-			Format:string("%s0", string);
-		}
-		printf("[LeadingZero] Zero string: %s", string);
-		Format:string("%s%s", string, numberString);
-		printf("[LeadingZero] OUT: %s", string);
-		return string;
+		printf("[LeadingZero] Add zero: %s", string);
+		Format:string("%s0", string);
 	}
-	else
-	{
-		printf("[LeadingZero] OUT: %s", numberString);
-		return numberString;
-	}
+	printf("[LeadingZero] Zero string: %s", string);
+	Format:string("%s%d", string, number);
+	printf("[LeadingZero] OUT: %s", string);
+	return string;
 }
 
 PlayRadioStation(playerID, id)
