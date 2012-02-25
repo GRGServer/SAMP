@@ -152,7 +152,7 @@ ShowDialog(playerID, dialogID, ...)
 			new veh4 = "Toyota Supra";
 			new bank = 16220;
 			new hand = 16220;
-			new Float:Zins = 1.5;
+			new Float:zins = 1.5;
 			new konto = 1335202;
 			new job = "Autohändler";
 			new gametime = 15;
