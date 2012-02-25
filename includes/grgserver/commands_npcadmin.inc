@@ -14,7 +14,7 @@ PCMD:controlnpc[NPCADMIN](playerid, params[])
 			return COMMAND_USAGE;
 		}
 	}
-	format(targetPlayerName, sizeof(targetPlayerName), "NPC_%s", targetPlayerName);
+	Format:targetPlayerName("NPC_%s", targetPlayerName);
 	if (!strcmp(command, "connect", true))
 	{
 		SendClientMessage(playerid, COLOR_INFO, "NPC verbunden");
@@ -111,7 +111,7 @@ PCMD:recnpc[NPCADMIN](playerid, params[])
 		npcs++;
 	}
 	StartRecordingPlayerData(playerid, recordingType, recordingName);
-	format(string, sizeof(string), "Aufnahme '%s' mit %d weiteren NPCs gestartet", recordingName, npcs);
+	Format:string("Aufnahme '%s' mit %d weiteren NPCs gestartet", recordingName, npcs);
 	SendClientMessage(playerid, COLOR_INFO, string);
 	SendClientMessage(playerid, COLOR_INFO, "Verwende /stoprec zum stoppen.");
 	return COMMAND_OK;

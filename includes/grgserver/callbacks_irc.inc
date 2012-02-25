@@ -16,7 +16,7 @@ public IRC_OnJoinChannel(botid, channel[])
 	if (svnRevisionChanged)
 	{
 		new string[256];
-		format(string, sizeof(string), "GRG Server wurde durch %s auf r%d geupdatet", COMPILER_SVN_LASTCOMMITTER, COMPILER_SVN_REVISION);
+		Format:string("GRG Server wurde durch %s auf r%d geupdatet", COMPILER_SVN_LASTCOMMITTER, COMPILER_SVN_REVISION);
 		IRC_Say(botid, IRC_CHANNEL, string);
 	}
 	print("IRC channel joined");
@@ -38,7 +38,7 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 		}
 		if (!strcmp(text, "!info", true))
 		{
-			format(string, sizeof(string), "Aktuelle Script Revision: %d (%s %s)", COMPILER_SVN_REVISION, COMPILER_DATE, COMPILER_TIME);
+			Format:string("Aktuelle Script Revision: %d (%s %s)", COMPILER_SVN_REVISION, COMPILER_DATE, COMPILER_TIME);
 			IRC_Say(botid, IRC_CHANNEL, string);
 			return true;
 		}
@@ -60,7 +60,7 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 					}
 				}
 			}
-			format(string, sizeof(string), "%d Spieler und %d NPCs online", playersOnline, npcsOnline);
+			Format:string("%d Spieler und %d NPCs online", playersOnline, npcsOnline);
 			IRC_Say(botid, IRC_CHANNEL, string);
 			return true;
 		}
@@ -69,7 +69,7 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 	}
 	else
 	{
-		format(string, sizeof(string), "[IRC] %s: %s", userName, text);
+		Format:string("[IRC] %s: %s", userName, text);
 		SendClientMessageToAll(COLOR_IRC, string);
 		print(string);
 		WriteChatToDatabase(INVALID_PLAYER_ID, string);
@@ -80,13 +80,13 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 public IRC_OnUserJoinChannel(botid, channel[], user[], host[])
 {
 	new string[256];
-	format(string, sizeof(string), "%s hat den IRC Channel betreten", user);
+	Format:string("%s hat den IRC Channel betreten", user);
 	SendClientMessageToAll(COLOR_JOINLEAVE, string);
 }
 
 public IRC_OnUserLeaveChannel(botid, channel[], user[], host[], message[])
 {
 	new string[256];
-	format(string, sizeof(string), "%s hat den IRC Channel verlassen", user);
+	Format:string("%s hat den IRC Channel verlassen", user);
 	SendClientMessageToAll(COLOR_JOINLEAVE, string);
 }

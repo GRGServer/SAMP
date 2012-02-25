@@ -33,17 +33,17 @@ GetPermissionName(permission)
 	switch (permission)
 	{
 		case PERMISSION_ADMIN:
-			format(string, sizeof(string), "Admin");
+			Format:string("Admin");
 		case PERMISSION_MAPPER:
-			format(string, sizeof(string), "Mapper");
+			Format:string("Mapper");
 		case PERMISSION_MODERATOR:
-			format(string, sizeof(string), "Moderator");
+			Format:string("Moderator");
 		case PERMISSION_NPCADMIN:
-			format(string, sizeof(string), "NPCAdmin");
+			Format:string("NPCAdmin");
 		case PERMISSION_SERVERADMIN:
-			format(string, sizeof(string), "ServerAdmin");
+			Format:string("ServerAdmin");
 		case PERMISSION_TELEPORT:
-			format(string, sizeof(string), "Teleport");
+			Format:string("Teleport");
 	}
 	return string;
 }

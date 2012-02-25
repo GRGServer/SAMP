@@ -14,7 +14,7 @@ PCMD:givepermission[SERVERADMIN](playerid, params[])
 		explode(permissionString, permissionsArray, ',', sizeof(permissionsArray));
 		for (new permissionIndex = 0; permissionIndex < sizeof(permissionsArray); permissionIndex++)
 		{
-			format(permission, sizeof(permission), permissionsArray[permissionIndex]);
+			Format:permission(permissionsArray[permissionIndex]);
 			if (strcmp(permission, "UserID", true))
 			{
 				new newState = true;
@@ -23,49 +23,48 @@ PCMD:givepermission[SERVERADMIN](playerid, params[])
 					strdel(permission, 0, 1);
 					newState = false;
 				}
-				new query[256];
 				new string[256];
 				new permissionID = GetPermissionByName(permission);
 				if (permissions[targetPlayerID][enum_permission:permissionID] == newState)
 				{
 					if (newState)
 					{
-						format(string, sizeof(string), "%s hat bereits das Recht %s", GetPlayerNameEx(targetPlayerID), permission);
+						Format:string("%s hat bereits das Recht %s", GetPlayerNameEx(targetPlayerID), permission);
 					}
 					else
 					{
-						format(string, sizeof(string), "%s hatte das Recht %s noch nicht und kann daher nicht entfernt werden", GetPlayerNameEx(targetPlayerID), permission);
+						Format:string("%s hatte das Recht %s noch nicht und kann daher nicht entfernt werden", GetPlayerNameEx(targetPlayerID), permission);
 					}
 					SendClientMessage(playerid, COLOR_ERROR, string);
 					return COMMAND_ERROR;
 				}
-				format(query, sizeof(query), "SELECT `UserID` FROM `permissions` WHERE `UserID` = '%d'", GetUserID(targetPlayerID));
-				mysql_query(query);
+				MySQLQuery("SELECT `UserID` FROM `permissions` WHERE `UserID` = '%d'", GetUserID(targetPlayerID));
 				mysql_store_result();
+				new query[256];
 				if (mysql_num_rows())
 				{
-					format(query, sizeof(query), "UPDATE `permissions` SET `%s` = '%d' WHERE `UserID` = '%d'", MySQLEscapeString(permission), newState, GetUserID(targetPlayerID));
+					Format:query("UPDATE `permissions` SET `%s` = '%d' WHERE `UserID` = '%d'", MySQLEscapeString(permission), newState, GetUserID(targetPlayerID));
 				}
 				else
 				{
-					format(query, sizeof(query), "INSERT INTO `permissions` (`UserID`, `%s`) VALUES('%d', '%d')", MySQLEscapeString(permission), GetUserID(targetPlayerID), newState);
+					Format:query("INSERT INTO `permissions` (`UserID`, `%s`) VALUES('%d', '%d')", MySQLEscapeString(permission), GetUserID(targetPlayerID), newState);
 				}
 				mysql_free_result();
 				mysql_query(query);
 				permissions[targetPlayerID][enum_permission:permissionID] = newState;
 				if (newState)
 				{
-					format(string, sizeof(string), "Du hast das Recht %s von %s bekommen!", permission, GetPlayerNameEx(playerid));
+					Format:string("Du hast das Recht %s von %s bekommen!", permission, GetPlayerNameEx(playerid));
 					SendClientMessage(targetPlayerID, COLOR_INFO, string);
-					format(string, sizeof(string), "Du hast das Recht %s an %s gegeben!", permission, GetPlayerNameEx(targetPlayerID));
+					Format:string("Du hast das Recht %s an %s gegeben!", permission, GetPlayerNameEx(targetPlayerID));
 					SendClientMessage(playerid, COLOR_INFO, string);
 					printf("%s got permission %s by %s", GetPlayerNameEx(targetPlayerID), permission, GetPlayerNameEx(playerid));
 				}
 				else
 				{
-					format(string, sizeof(string), "%s hat dir das Recht %s weggenommen!", GetPlayerNameEx(playerid), permission);
+					Format:string("%s hat dir das Recht %s weggenommen!", GetPlayerNameEx(playerid), permission);
 					SendClientMessage(targetPlayerID, COLOR_INFO, string);
-					format(string, sizeof(string), "Du hast das Recht %s von %s weggenommen!", permission, GetPlayerNameEx(targetPlayerID));
+					Format:string("Du hast das Recht %s von %s weggenommen!", permission, GetPlayerNameEx(targetPlayerID));
 					SendClientMessage(playerid, COLOR_INFO, string);
 					printf("%s has revoked the permission %s of %s", GetPlayerNameEx(playerid), permission, GetPlayerNameEx(targetPlayerID));
 				}

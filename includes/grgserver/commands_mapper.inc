@@ -23,14 +23,14 @@ PCMD:addpickup[MAPPER](playerid, params[])
 		CmdUsageMsg(playerid, "addpickup", "GASSTATION");
 		return COMMAND_USAGE;
 	}
-	format(type, sizeof(type), "%s", strtoupper(type));
+	Format:type("%s", strtoupper(type));
 	if (!strcmp(type, "GASSTATION", true))
 	{
 		GetPlayerPos(playerid, posX, posY, posZ);
 		new id = AddPickup(-1, type, posX, posY, posZ, true);
 		if (id > 0)
 		{
-			format(string, sizeof(string), "Das Pickup %s wurde unter der ID %d gespeichert", type, id);
+			Format:string("Das Pickup %s wurde unter der ID %d gespeichert", type, id);
 			SendClientMessage(playerid, COLOR_INFO, string);
 			return COMMAND_OK;
 		}
@@ -55,7 +55,6 @@ PCMD:saveveh[MAPPER](playerid, params[])
 		if (IsPlayerInAnyVehicle(playerid))
 		{
 			new string[256];
-			new query[256];
 			new Float:posX;
 			new Float:posY;
 			new Float:posZ;
@@ -64,9 +63,8 @@ PCMD:saveveh[MAPPER](playerid, params[])
 			new modelID = GetVehicleModel(vehicleID);
 			GetVehiclePos(vehicleID, posX, posY, posZ);
 			GetVehicleZAngle(vehicleID, angle);
-			format(query, sizeof(query), "INSERT INTO `savedvehicles` (`PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `ModelID`, `Price`, `CurrentFuel`) VALUES('%f', '%f', '%f', '%f', '%d', '%d', '%d', '%f')", posX, posY, posZ, angle, GetPlayerInterior(playerid), modelID, price, vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
-			mysql_query(query);
-			format(string, sizeof(string), "Fahrzeug wurde unter der ID %d gespeichert", mysql_insert_id());
+			MySQLQuery("INSERT INTO `savedvehicles` (`PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `ModelID`, `Price`, `CurrentFuel`) VALUES('%f', '%f', '%f', '%f', '%d', '%d', '%d', '%f')", posX, posY, posZ, angle, GetPlayerInterior(playerid), modelID, price, vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
+			Format:string("Fahrzeug wurde unter der ID %d gespeichert", mysql_insert_id());
 			SendClientMessage(playerid, COLOR_INFO, string);
 			return COMMAND_OK;
 		}
@@ -93,15 +91,13 @@ PCMD:setexit[MAPPER](playerid, params[])
 	{
 		if (strval(GetMySQLValue("buildings", "ID", "ID", val2str(buildingID))))
 		{
-			new query[256];
 			new string[256];
 			new Float:posX;
 			new Float:posY;
 			new Float:posZ;
 			GetPlayerPos(playerid, posX, posY, posZ);
-			format(query, sizeof(query), "UPDATE `buildings` SET `ExitPosX` = '%f', `ExitPosY` = '%f', `ExitPosZ` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, buildingID);
-			mysql_query(query);
-			format(string, sizeof(string), "Die Ausgangsposition für das Gebäude %s (ID: %d) wurde gespeichert", GetMySQLValue("buildings", "Name", "ID", val2str(buildingID)), buildingID);
+			MySQLQuery("UPDATE `buildings` SET `ExitPosX` = '%f', `ExitPosY` = '%f', `ExitPosZ` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, buildingID);
+			Format:string("Die Ausgangsposition für das Gebäude %s (ID: %d) wurde gespeichert", GetMySQLValue("buildings", "Name", "ID", val2str(buildingID)), buildingID);
 			SendClientMessage(playerid, COLOR_INFO, string);
 			return COMMAND_OK;
 		}

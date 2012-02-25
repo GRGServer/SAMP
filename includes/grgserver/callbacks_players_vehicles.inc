@@ -47,22 +47,36 @@ public OnVehicleDeath(vehicleid, killerid)
 {
 	if (vehicles[vehicleid][VEHICLE_SAVEID])
 	{
-		new query[256];
-		format(query, sizeof(query), "DELETE FROM `savedvehicles` WHERE `ID` = '%d'", vehicles[vehicleid][VEHICLE_SAVEID]);
-		mysql_query(query);
+		MySQLQuery("DELETE FROM `savedvehicles` WHERE `ID` = '%d'", vehicles[vehicleid][VEHICLE_SAVEID]);
+		MySQLQuery("DELETE FROM `vehiclecomponents` WHERE `ID` = '%d'", vehicles[vehicleid][VEHICLE_SAVEID]);
+		vehicles[vehicleid][VEHICLE_SAVEID] = 0;
 	}
+}
+
+public OnVehicleMod(playerid, vehicleid, componentid)
+{
+	if (vehicles[vehicleid][VEHICLE_SAVEID])
+	{
+		MySQLQuery("REPLACE INTO `vehiclecomponents` (`VehicleID`, `Slot`, `Component`) VALUES('%d', '%d', '%d')", vehicles[vehicleid][VEHICLE_SAVEID], GetVehicleComponentType(componentid), componentid);
+	}
+	return true;
 }
 
 public OnVehiclePaintjob(playerid, vehicleid, paintjobid)
 {
-	vehicles[vehicleid][VEHICLE_PAINTJOB] = paintjobid;
+	if (vehicles[vehicleid][VEHICLE_SAVEID])
+	{
+		MySQLQuery("UPDATE `savedvehicles` SET `Paintjob` = '%d' WHERE `ID` = '%d'", paintjobid, vehicles[vehicleid][VEHICLE_SAVEID]);
+	}
 	return true;
 }
 
 public OnVehicleRespray(playerid, vehicleid, color1, color2)
 {
-	vehicles[vehicleid][VEHICLE_COLOR1] = color1;
-	vehicles[vehicleid][VEHICLE_COLOR2] = color2;
+	if (vehicles[vehicleid][VEHICLE_SAVEID])
+	{
+		MySQLQuery("UPDATE `savedvehicles` SET `Color1` = '%d', `Color2` = '%d' WHERE `ID` = '%d'", color1, color2, vehicles[vehicleid][VEHICLE_SAVEID]);
+	}
 	return true;
 }
 

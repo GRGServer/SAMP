@@ -15,7 +15,7 @@ ShowDialog(playerID, dialogID, ...)
 			new string[256];
 			new price[256];
 			GetStringArg(2, price);
-			format(string, sizeof(string), "Dieses Haus kann noch gekauft werden.\n\nPreis: %s", price);
+			Format:string("Dieses Haus kann noch gekauft werden.\n\nPreis: %s", price);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Haus kaufen", string, "Kaufen", "Abbrechen");
 		}
 		case DIALOG_BUYVEHICLE:
@@ -23,63 +23,61 @@ ShowDialog(playerID, dialogID, ...)
 			new string[256];
 			new price[256];
 			GetStringArg(2, price);
-			format(string, sizeof(string), "Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", price);
+			Format:string("Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", price);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Fahrzeug Kaufen", string, "Ja", "Nein");
 		}
 		case DIALOG_HOTEL_MAIN_AVAILABLE:
 		{
 			new options[1024];
-			format(options, sizeof(options), "Hotel Kaufen"); // Item 0
-			format(options, sizeof(options), "%s\nZimmer Mieten", options); // Item 1
-			format(options, sizeof(options), "%s\nBetreten", options); // Item 2
+			Format:options("Hotel Kaufen"); // Item 0
+			Format:options("%s\nZimmer Mieten", options); // Item 1
+			Format:options("%s\nBetreten", options); // Item 2
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hotel", options, "OK", "Abbrechen");
 		}
 		case DIALOG_HOTEL_MAIN_BOUGHT:
 		{
 			new options[1024];
-			format(options, sizeof(options), "Betreten"); // Item 0
-			format(options, sizeof(options), "%s\nMieten", options); // Item 1
-			format(options, sizeof(options), "%s\nKündigen", options); // item 2
+			Format:options("Betreten"); // Item 0
+			Format:options("%s\nMieten", options); // Item 1
+			Format:options("%s\nKündigen", options); // item 2
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", "Abbrechen");
 		}
 		case DIALOG_HOTEL_MAIN_OWNER:
 		{
 			new options[1024];
-			format(options, sizeof(options), "Betreten"); // Item 0
-			format(options, sizeof(options), "%s\nVerkaufen", options); // Item 1
-			format(options, sizeof(options), "%s\nEinnahmen", options); // item 2
-			format(options, sizeof(options), "%s\nZimmeroptionen", options); // Item 3
+			Format:options("Betreten"); // Item 0
+			Format:options("%s\nVerkaufen", options); // Item 1
+			Format:options("%s\nEinnahmen", options); // item 2
+			Format:options("%s\nZimmeroptionen", options); // Item 3
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", "Abbrechen");
 		}
 		case DIALOG_HOTEL_ROOMS_FREEOPTIONS:
 		{
 			new options[1024];
-			format(options, sizeof(options), "Mietpreis festlegen"); // Item 0
+			Format:options("Mietpreis festlegen"); // Item 0
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Zimmeroptionen", options, "OK", "Abbrechen");
 		}
 		case DIALOG_HOTEL_ROOMS_LIST:
 		{
-			new query[256];
 			new rooms[2048];
 			new string[256];
-			format(query, sizeof(query), "SELECT `RoomID`, `Username` FROM `hotelrooms` LEFT JOIN `users` ON `hotelrooms`.`OwnerUserID` = `users`.`UserID` WHERE `hotelrooms`.`BuildingID` = '%d' ORDER BY `RoomID` ASC", GetPVarInt(playerID, "DialogBuildingID"));
-			mysql_query(query);
+			MySQLQuery("SELECT `RoomID`, `Username` FROM `hotelrooms` LEFT JOIN `users` ON `hotelrooms`.`OwnerUserID` = `users`.`UserID` WHERE `hotelrooms`.`BuildingID` = '%d' ORDER BY `RoomID` ASC", GetPVarInt(playerID, "DialogBuildingID"));
 			mysql_store_result();
 			while (FetchMySQLRow())
 			{
 				if (strlen(rooms))
 				{
-					format(rooms, sizeof(rooms), "%s\n", rooms);
+					Format:rooms("%s\n", rooms);
 				}
 				if (strlen(GetMySQLField("Username")))
 				{
-					format(string, sizeof(string), GetMySQLField("Username"));
+					Format:string(GetMySQLField("Username"));
 				}
 				else
 				{
-					format(string, sizeof(string), "[Leer]");
+					Format:string("[Leer]");
 				}
-				format(rooms, sizeof(rooms), "%%s: %s", GetMySQLField("RoomID"), string);
+				Format:rooms("%%s: %s", GetMySQLField("RoomID"), string);
 			}
 			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Zimmer wählen", rooms, "Optionen", "Abbrechen");
@@ -87,14 +85,14 @@ ShowDialog(playerID, dialogID, ...)
 		case DIALOG_HOTEL_ROOMS_OWNEDOPTIONS:
 		{
 			new options[1024];
-			format(options, sizeof(options), "Mieter rauswerfen", options); // Item 0
+			Format:options("Mieter rauswerfen", options); // Item 0
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Zimmeroptionen", options, "OK", "Abbrechen");
 		}
 		case DIALOG_HOUSEOPTIONS:
 		{
 			new options[1024];
-			format(options, sizeof(options), "Betreten");// Item 0
-			format(options, sizeof(options), "%s\nVerkaufen", options);// Item 1
+			Format:options("Betreten");// Item 0
+			Format:options("%s\nVerkaufen", options);// Item 1
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hausoptionen", options, "OK", "Abbrechen");
 		}
 		case DIALOG_LOGIN:
@@ -114,9 +112,9 @@ ShowDialog(playerID, dialogID, ...)
 			{
 				if (strlen(stations))
 				{
-					format(stations, sizeof(stations), "%s\n", stations);
+					Format:stations("%s\n", stations);
 				}
-				format(stations, sizeof(stations), "%s%s", stations, GetMySQLField("Name"));
+				Format:stations("%s%s", stations, GetMySQLField("Name"));
 			}
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Radiosender wählen", stations, "OK", "Abbrechen");
 		}
@@ -125,7 +123,7 @@ ShowDialog(playerID, dialogID, ...)
 			new string[256];
 			new maximum[256];
 			GetStringArg(2, maximum);
-			format(string, sizeof(string), "Wie viel möchtest du tanken (0 - %s)?", maximum);
+			Format:string("Wie viel möchtest du tanken (0 - %s)?", maximum);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", "Abbrechen");
 		}
 		case DIALOG_REGISTER_STEP1:
@@ -140,36 +138,10 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Gamemode neustarten", "Soll der Gamemode wirklich neugestartet werden?", "Ja", "Nein");
 		}
-		case DIALOG_STATS:
-		{
-			new name[MAX_PLAYER_NAME];
-			new old = 18;
-			new home = "Evergreen Therrens 1";
-			new perso = 829107936;
-			new veh1 = "BMW M3 Schnitzer";
-			new veh2 = "Audi R8";
-			new veh3 = "Nissan Silvia";
-			new veh4 = "Toyota Supra";
-			new bank = 16220;
-			new hand = 16220;
-			new Float:zins = 1.5;
-			new konto = 1335202;
-			new job = "Autohändler";
-			new gametime = 15;
-			new date = 12;
-			new number = 1338;
-			new MSGBOX[1028];
-			format(MSGBOX, sizeof(MSGBOX), "Name:\t%s\nAlter:\t%d\nWohnort:\t%s\nPersonal Nummer:\t%s\n",name, old, home,perso);
-			format(MSGBOX, sizeof(MSGBOX), "%s\n\nBesitzende Fahrzeuge:\t%s\n\t%s\n\t%s\n\t%s",MSGBOX,veh1,veh2,veh3,veh4);
-			format(MSGBOX, sizeof(MSGBOX), "%s\n\nGuthaben:\nBank:\t%d\nTasche:\t%d\nZinssatz:\t%f\nKontoNummer:\t%d",MSGBOX,bank,hand,zins,konto);
-			format(MSGBOX, sizeof(MSGBOX), "%s\n\nBeruf:\t%s\n\n\nSpielzeit:\t%d\nLetzter Login:\t%d\nHandy Nummer:\t%d",MSGBOX,job,gametime,date,number);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Personalien", MSGBOX, "OK","");
-		}
 		case DIALOG_SELECTINTERIOR:
 		{
 			new interiors[2048];
 			new string[256];
-			new query[256];
 			new startID = getarg(3);
 			new page;
 			if (startID)
@@ -180,32 +152,48 @@ ShowDialog(playerID, dialogID, ...)
 			{
 				page = 1;
 			}
-			format(query, sizeof(query), "SELECT * FROM `interiors` ORDER BY `Name` ASC LIMIT %d,75", startID);
-			mysql_query(query);
+			MySQLQuery("SELECT * FROM `interiors` ORDER BY `Name` ASC LIMIT %d,75", startID);
 			mysql_store_result();
 			while (FetchMySQLRow())
 			{
 				if (strlen(interiors))
 				{
-					format(interiors, sizeof(interiors), "%s\n", interiors);
+					Format:interiors("%s\n", interiors);
 				}
-				format(interiors, sizeof(interiors), "%s%s", interiors, GetMySQLField("Name"));
+				Format:interiors("%s%s", interiors, GetMySQLField("Name"));
 			}
 			mysql_free_result();
 			switch (page)
 			{
 				case 1:
 				{
-					format(interiors, sizeof(interiors), "%s\nWeiter", interiors);
+					Format:interiors("%s\nWeiter", interiors);
 				}
 				case 2:
 				{
-					format(interiors, sizeof(interiors), "%s\nZurück", interiors);
+					Format:interiors("%s\nZurück", interiors);
 				}
 			}
-			format(string, sizeof(string), "Ziel auswählen (Seite %d)", page);
+			Format:string("Ziel auswählen (Seite %d)", page);
 			SetPVarInt(playerID, "InteriorDialogID", getarg(2));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, string, interiors, "OK", "Abbrechen");
+		}
+		case DIALOG_STATS:
+		{
+			new string[2048];
+			MySQLQuery("SELECT `users`.`UserID`, `users`.`Username`, UNIX_TIMESTAMP(`users`.`BirthDate`) AS `BirthDate`, `users`.`Location`, `users`.`MobilePhoneNumber`, `users`.`PlayTime`, `users`.`LoginTime`, `banks`.`Name` AS `Bank`, `jobs`.`Name` AS `JobName` FROM `users` LEFT JOIN `banks` ON `banks`.`ID` = `users`.`BankID` LEFT JOIN `jobs` ON `jobs.`ID` = `users`.`JobID` WHERE `users`.`UserID` = '%d'", GetUserID(playerID));
+			mysql_store_result();
+			Format:string("ID:\t%s", GetMySQLField("UserID"));
+			Format:string("%s\nName:\t%s", string, GetMySQLField("Username"));
+			Format:string("%s\nAlter:\t%d Jahre", string, CalculateAge(strval(GetMySQLField("Birthday"))));
+			Format:string("%s\nWohnort:\t%s", string, GetMySQLField("Location"));
+			Format:string("%s\nHandynummer:\t%s", string, GetMySQLField("MobilePhoneNumber"));
+			Format:string("%s\nBank:\t%s", string, GetMySQLField("Bank"));
+			Format:string("%s\nGuthaben:\t%s", string, FormatMoney(GetPlayerMoneyEx(playerID)));
+			Format:string("%s\nBeruf:\t%s", string, GetMySQLField("JobName"));
+			Format:string("%s\nSpielzeit:\t%s", string, FormatTime(strval(GetMySQLField("PlayTime"))));
+			Format:string("%s\nLetzter Login:\t%s", string, FormatDate(GetMySQLField("LoginTime")));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Personalien", string, "OK", "");
 		}
 		case DIALOG_TELEPORTLOCATIONS:
 		{
@@ -216,9 +204,9 @@ ShowDialog(playerID, dialogID, ...)
 			{
 				if (strlen(locations))
 				{
-					format(locations, sizeof(locations), "%s\n", locations);
+					Format:locations("%s\n", locations);
 				}
-				format(locations, sizeof(locations), "%s%s", locations, GetMySQLField("Name"));
+				Format:locations("%s%s", locations, GetMySQLField("Name"));
 			}
 			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Teleportieren", locations, "OK", "Abbrechen");

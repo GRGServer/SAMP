@@ -12,7 +12,7 @@ NCMD:npccmd(playerid, params[])
 				new realPlayerID = GetPVarInt(playerid, "RecordNPCForPlayer");
 				DeletePVar(playerid, "RecordNPCForPlayer");
 				Kick(playerid);
-				format(string, sizeof(string), "Die Wiedergabe von NPC '%s' wurde gestoppt.", GetPlayerNameEx(playerid));
+				Format:string("Die Wiedergabe von NPC '%s' wurde gestoppt.", GetPlayerNameEx(playerid));
 				SendClientMessage(realPlayerID, COLOR_INFO, string);
 				for (new playerID; playerID < MAX_PLAYERS; playerID++)
 				{
@@ -29,7 +29,7 @@ NCMD:npccmd(playerid, params[])
 				}
 				if (npcs)
 				{
-					format(string, sizeof(string), "Es werden noch %d weitere NPCs für diese Aufnahme verwendet.", npcs);
+					Format:string("Es werden noch %d weitere NPCs für diese Aufnahme verwendet.", npcs);
 					SendClientMessage(realPlayerID, COLOR_INFO, string);
 				}
 				else

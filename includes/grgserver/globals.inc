@@ -6,6 +6,10 @@ new Text:textDrawSpeedoColumn1;
 new Text:textDrawClock;
 
 
+// Strings
+new sqlQuery[2048];
+
+
 // Arrays
 new vehicles[MAX_VEHICLES][enum_vehicle];
 new vehicleModels[212][enum_vehicleModel];

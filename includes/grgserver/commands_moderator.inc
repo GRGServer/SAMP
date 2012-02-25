@@ -11,7 +11,7 @@ PCMD:kick[MODERATOR](playerid, params[])
 	if (IsPlayerConnected(targetPlayerID))
 	{
 		Kick(targetPlayerID);
-		format(string, sizeof(string), "%s wurde von %s gekickt, Grund: %s", GetPlayerNameEx(targetPlayerID), GetPlayerNameEx(playerid), reason);
+		Format:string("%s wurde von %s gekickt, Grund: %s", GetPlayerNameEx(targetPlayerID), GetPlayerNameEx(playerid), reason);
 		SendClientMessageToAll(COLOR_ERROR, string);
 		printf("%s has been kicked by %s, Reason: %s", GetPlayerNameEx(targetPlayerID), GetPlayerNameEx(playerid), reason);
 		return COMMAND_OK;

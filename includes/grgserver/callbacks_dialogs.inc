@@ -19,7 +19,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					else
 					{
 						new string[256];
-						new query[256];
 						new name[256];
 						new hotel[256];
 						new Float: PosX;
@@ -30,9 +29,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new pickupID = AddPickup(-1, "HOTELROOM", PosX, PosY, PosZ, true);
 						if(pickupID > 0)
 						{
-							format(query, sizeof(query), "INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `HotelOwner`) VALUES ('%d', '%s', '%s', '%s')", pickupID, GetMySQLValue("interior", "ID", "Name", inputtext), name, hotel);
-							mysql_query(query);
-							format(string, sizeof(string), "Das Hotel Zimmer %s (Hotel: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", name, hotel, inputtext, mysql_insert_id());
+							MySQLQuery("INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `HotelOwner`) VALUES ('%d', '%s', '%s', '%s')", pickupID, GetMySQLValue("interior", "ID", "Name", inputtext), name, hotel);
+							Format:string("Das Hotel Zimmer %s (Hotel: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", name, hotel, inputtext, mysql_insert_id());
 							SendClientMessage(playerid, COLOR_INFO, string);
 						}
 						else
@@ -50,7 +48,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if (response)
 			{
 				new string[256];
-				new query[256];
 				new Float:posX;
 				new Float:posY;
 				new Float:posZ;
@@ -60,11 +57,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				pickupID = AddPickup(-1, GetPVarStringEx(playerid, "AddBuilding_Type"), posX, posY, posZ, true);
 				if (pickupID > 0)
 				{
-					format(query, sizeof(query), "INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%d', '%s', '%f')", pickupID, GetPVarInt(playerid, "AddBuilding_InteriorID"), MySQLEscapeString(inputtext), GetPVarFloat(playerid, "AddBuilding_Price"));
-					mysql_query(query);
+					MySQLQuery("INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%d', '%s', '%f')", pickupID, GetPVarInt(playerid, "AddBuilding_InteriorID"), MySQLEscapeString(inputtext), GetPVarFloat(playerid, "AddBuilding_Price"));
 					buildingID = mysql_insert_id();
 					SetPVarInt(playerid, "LastAddedBuilding", buildingID);
-					format(string, sizeof(string), "Das Gebäude %s (Preis: %s) wurde unter der ID %d gespeichert.", inputtext, FormatMoney(GetPVarFloat(playerid, "AddBuilding_Price")), buildingID);
+					Format:string("Das Gebäude %s (Preis: %s) wurde unter der ID %d gespeichert.", inputtext, FormatMoney(GetPVarFloat(playerid, "AddBuilding_Price")), buildingID);
 					SendClientMessage(playerid, COLOR_INFO, string);
 				}
 				else
@@ -86,11 +82,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				switch (listitem)
 				{
 					case 0:
-						format(type, sizeof(type), "BANK");
+						Format:type("BANK");
 					case 1:
-						format(type, sizeof(type), "HOTEL");
+						Format:type("HOTEL");
 					case 2:
-						format(type, sizeof(type), "HOUSE");
+						Format:type("HOUSE");
 				}
 				SetPVarString(playerid, "AddBuilding_Type", type);
 				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
@@ -315,9 +311,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				new query[256];
-				format(query, sizeof(query), "UPDATE `hotelrooms` SET `Price` = '%s' WHERE `BuildingID` = '%d' AND `RoomID` = '%d'", MySQLEscapeString(inputtext), GetPVarInt(playerid, "DialogBuildingID"), GetPVarInt(playerid, "Hotel_Options_RoomID"));
-				mysql_query(query);
+				MySQLQuery("UPDATE `hotelrooms` SET `Price` = '%s' WHERE `BuildingID` = '%d' AND `RoomID` = '%d'", MySQLEscapeString(inputtext), GetPVarInt(playerid, "DialogBuildingID"), GetPVarInt(playerid, "Hotel_Options_RoomID"));
 			}
 			ShowDialog(playerid, DIALOG_HOTEL_ROOMS_LIST);
 		}
@@ -349,10 +343,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				if (strlen(inputtext))
 				{
 					new playerName[MAX_PLAYER_NAME];
-					new query[256];
 					GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
-					format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(playerName));
-					mysql_query(query);
+					MySQLQuery("SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(playerName));
 					mysql_store_result();
 					if (!strcmp(MD5(inputtext), GetMySQLField("Password"), true))
 					{
@@ -366,8 +358,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					mysql_free_result();
 					if (GetUserID(playerid))
 					{
-						format(query, sizeof(query), "UPDATE `users` SET `LoginTime` = NOW() WHERE `UserID` = '%d'", GetUserID(playerid));
-						mysql_query(query);
+						MySQLQuery("UPDATE `users` SET `LoginTime` = NOW() WHERE `UserID` = '%d'", GetUserID(playerid));
 						printf("Player logged in: %s (UserID: %d)", playerName, GetUserID(playerid));
 						LoadPlayer(playerid);
 						SetPVarInt(playerid, "SpawnAfterLogin", true);
@@ -460,7 +451,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				else
 				{
 					new string[256];
-					format(string, sizeof(string), "Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_MINPASSWORD, REGISTER_MAXPASSWORD);
+					Format:string("Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_MINPASSWORD, REGISTER_MAXPASSWORD);
 					SendClientMessage(playerid, COLOR_ERROR, string);
 					ShowDialog(playerid, DIALOG_REGISTER_STEP1);
 				}
@@ -477,11 +468,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				if (!strcmp(inputtext, GetPVarStringEx(playerid, "RegisterPassword")))
 				{
-					new query[256];
 					new playerName[MAX_PLAYER_NAME];
 					GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
-					format(query, sizeof(query), "INSERT INTO `users` (`Username`, `Password`, `RegisterTime`) VALUES ('%s', '%s', NOW())", MySQLEscapeString(playerName), MD5(inputtext));
-					mysql_query(query);
+					MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `RegisterTime`) VALUES ('%s', '%s', NOW())", MySQLEscapeString(playerName), MD5(inputtext));
 					SetPVarInt(playerid, "UserID", mysql_insert_id());
 					SetPVarInt(playerid, "Level", REGISTER_LEVEL);
 					SetPVarInt(playerid, "AdminLevel", REGISTER_ADMINLEVEL);
@@ -513,7 +502,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				SendClientMessage(playerid, COLOR_INFO, "Du hast den Gamemode neugestartet");
 				new string[256];
-				format(string, sizeof(string), "%s hat den Gamemode neugestartet");
+				Format:string("%s hat den Gamemode neugestartet");
 				SendClientMessageToAllExcept(playerid, COLOR_INFO, string);
 				SendRconCommand("gmx");
 			}
@@ -557,9 +546,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				new query[256];
-				format(query, sizeof(query), "SELECT * FROM `teleports` WHERE `Name` = '%s'", MySQLEscapeString(inputtext));
-				mysql_query(query);
+				MySQLQuery("SELECT * FROM `teleports` WHERE `Name` = '%s'", MySQLEscapeString(inputtext));
 				mysql_store_result();
 				if (mysql_num_rows())
 				{

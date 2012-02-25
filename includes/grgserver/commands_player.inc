@@ -28,7 +28,7 @@ CMD:cmds(playerid, params[])
 				if (type == ' ')
 				{
 					showCommand = true;
-					format(command, sizeof(command), "{00FF00}/%s", command);
+					Format:command("{00FF00}/%s", command);
 				}
 				if (type == 'P' && strlen(permission))
 				{
@@ -38,7 +38,7 @@ CMD:cmds(playerid, params[])
 						if (permissions[playerid][enum_permission:permissionID])
 						{
 							showCommand = true;
-							format(command, sizeof(command), "{A00000}/%s", command);
+							Format:command("{A00000}/%s", command);
 						}
 					}
 				}
@@ -47,11 +47,11 @@ CMD:cmds(playerid, params[])
 					count++;
 					if (count == 1)
 					{
-						format(line, sizeof(line), "%s", command);
+						Format:line("%s", command);
 					}
 					else
 					{
-						format(line, sizeof(line), "%s %s", line, command);
+						Format:line("%s %s", line, command);
 					}
 					if (count == HELP_COMMANDSPERLINE)
 					{
@@ -102,7 +102,7 @@ CMD:exit(playerid, params[])
 CMD:getbalance(playerid, params[])
 {
 	new string[256];
-	format(string, sizeof(string), "Aktueller Kontostand: $%s", FormatMoney(GetPlayerMoneyEx(playerid)));
+	Format:string("Aktueller Kontostand: $%s", FormatMoney(GetPlayerMoneyEx(playerid)));
 	SendClientMessage(playerid, COLOR_INFO, string);
 	return COMMAND_OK;
 }
@@ -118,7 +118,7 @@ CMD:me(playerid, params[])
 	if (strlen(params))
 	{
 		new string[256];
-		format(string, sizeof(string), "*%s %s", GetPlayerNameEx(playerid), params);
+		Format:string("*%s %s", GetPlayerNameEx(playerid), params);
 		SendClientMessageToAll(COLOR_ME, string);
 		return COMMAND_OK;
 	}

@@ -14,18 +14,18 @@ PCMD:checkpermissions[ADMIN](playerid, params[])
 			{
 				if (strlen(string))
 				{
-					format(string, sizeof(string), "%s, ", string);
+					Format:string("%s, ", string);
 				}
-				format(string, sizeof(string), "%s%s", string, GetPermissionName(permission));
+				Format:string("%s%s", string, GetPermissionName(permission));
 			}
 		}
 		if (targetPlayerID == playerid)
 		{
-			format(string, sizeof(string), "Du hast die folgenden Rechte: %s", string);
+			Format:string("Du hast die folgenden Rechte: %s", string);
 		}
 		else
 		{
-			format(string, sizeof(string), "%s hat die folgenden Rechte: %s", GetPlayerNameEx(targetPlayerID), string);
+			Format:string("%s hat die folgenden Rechte: %s", GetPlayerNameEx(targetPlayerID), string);
 		}
 		SendClientMessage(playerid, COLOR_INFO, string);
 		return COMMAND_OK;
@@ -50,9 +50,9 @@ PCMD:money[ADMIN](playerid, params[])
 	if (!sscanf(params, "f", money))
 	{
 		GivePlayerMoneyEx(playerid, money);
-		format(string, sizeof(string), "Du hast dir $%s gegeben", FormatMoney(money));
+		Format:string("Du hast dir $%s gegeben", FormatMoney(money));
 		SendClientMessage(playerid, COLOR_INFO, string);
-		format(string, sizeof(string), "Neuer Kontostand: %s", FormatMoney(GetPlayerMoneyEx(playerid)));
+		Format:string("Neuer Kontostand: %s", FormatMoney(GetPlayerMoneyEx(playerid)));
 		SendClientMessage(playerid, COLOR_INFO, string);
 		return COMMAND_OK;
 	}

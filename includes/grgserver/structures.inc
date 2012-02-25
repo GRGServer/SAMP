@@ -26,9 +26,6 @@ enum enum_vehicle
 {
 	VEHICLE_SAVEID,
 	Float:VEHICLE_CURRENTFUEL,
-	VEHICLE_PAINTJOB,
-	VEHICLE_COLOR1,
-	VEHICLE_COLOR2
 }
 
 enum enum_vehicleModel

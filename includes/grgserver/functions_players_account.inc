@@ -12,9 +12,7 @@ LoadPlayer(playerID)
 	LoadPlayerValue(playerID, "CurrentBuildingID", PLAYER_VARTYPE_INT);
 	SetPlayerMoney(playerID, GetPlayerMoneyEx(playerID));
 	SetPlayerSkin(playerID, GetPVarInt(playerID, "Skin"));
-	new query[256];
-	format(query, sizeof(query), "SELECT * FROM `permissions` WHERE `UserID` = '%d'", GetUserID(playerID));
-	mysql_query(query);
+	MySQLQuery("SELECT * FROM `permissions` WHERE `UserID` = '%d'", GetUserID(playerID));
 	mysql_store_result();
 	if (strval(GetMySQLField("UserID")))
 	{
@@ -50,15 +48,13 @@ SavePlayer(playerID)
 		SavePlayerValue(playerID, "Money");
 		SavePlayerValue(playerID, "Skin");
 		SavePlayerValue(playerID, "CurrentBuildingID");
-		new query[256];
 		new Float:posX;
 		new Float:posY;
 		new Float:posZ;
 		new Float:angle;
 		GetPlayerPos(playerID, posX, posY, posZ);
 		GetPlayerFacingAngle(playerID, angle);
-		format(query, sizeof(query), "UPDATE `users` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Angle` = '%f', `Interior` = '%d' WHERE `UserID` = '%d'", posX, posY, posZ, angle, GetPlayerInterior(playerID), GetUserID(playerID));
-		mysql_query(query);
+		MySQLQuery("UPDATE `users` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Angle` = '%f', `Interior` = '%d' WHERE `UserID` = '%d'", posX, posY, posZ, angle, GetPlayerInterior(playerID), GetUserID(playerID));
 	}
 }
 
@@ -68,13 +64,13 @@ SavePlayerValue(playerID, fieldName[])
 	switch (GetPVarType(playerID, fieldName))
 	{
 		case PLAYER_VARTYPE_INT:
-			format(value, sizeof(value), "%d", GetPVarInt(playerID, fieldName));
+			Format:value("%d", GetPVarInt(playerID, fieldName));
 		case PLAYER_VARTYPE_STRING:
 			GetPVarString(playerID, fieldName, value, sizeof(value));
 		case PLAYER_VARTYPE_FLOAT:
-			format(value, sizeof(value), "%f", GetPVarFloat(playerID, fieldName));
+			Format:value("%f", GetPVarFloat(playerID, fieldName));
 		default:
-			format(value, sizeof(value), "");
+			Format:value("");
 	}
 	SetUserDBValue(playerID, fieldName, value);
 }

@@ -10,9 +10,7 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 		pickups[pickup][PICKUP_TYPE] = pickupTypeID;
 		if (saveToDB)
 		{
-			new query[256];
-			format(query, sizeof(query), "INSERT INTO `pickups` (`PosX`, `PosY`, `PosZ`, `Type`) VALUES('%f', '%f', '%f', '%s')", posX, posY, posZ, type);
-			mysql_query(query);
+			MySQLQuery("INSERT INTO `pickups` (`PosX`, `PosY`, `PosZ`, `Type`) VALUES('%f', '%f', '%f', '%s')", posX, posY, posZ, type);
 			pickups[pickup][PICKUP_ID] = mysql_insert_id();
 			return pickups[pickup][PICKUP_ID];
 		}
@@ -80,9 +78,7 @@ ReloadPickup(pickupID)
 			break;
 		}
 	}
-	new query[256];
-	format(query, sizeof(query), "SELECT * FROM `pickups` WHERE `ID` = '%d'", pickupID);
-	mysql_query(query);
+	MySQLQuery("SELECT * FROM `pickups` WHERE `ID` = '%d'", pickupID);
 	mysql_store_result();
 	if (AddPickup(strval(GetMySQLField("ID")), GetMySQLField("Type"), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), false) == -1)
 	{

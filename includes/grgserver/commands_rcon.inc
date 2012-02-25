@@ -17,11 +17,11 @@ RCMD:cmds(params[])
 				count++;
 				if (count == 1)
 				{
-					format(line, sizeof(line), "%s", command);
+					Format:line("%s", command);
 				}
 				else
 				{
-					format(line, sizeof(line), "%s %s", line, command);
+					Format:line("%s %s", line, command);
 				}
 				if (count == HELP_COMMANDSPERLINE)
 				{

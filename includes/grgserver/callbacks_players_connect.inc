@@ -1,10 +1,8 @@
 public OnPlayerConnect(playerid)
 {
-	new query[256];
 	if (IsPlayerNPC(playerid))
 	{
-		format(query, sizeof(query), "SELECT * FROM `npcs` WHERE `Name` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
-		mysql_query(query);
+		MySQLQuery("SELECT * FROM `npcs` WHERE `Name` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
 		mysql_store_result();
 		if (strval(GetMySQLField("StartOnConnect")))
 		{
@@ -29,8 +27,7 @@ public OnPlayerConnect(playerid)
 	}
 	else
 	{
-		format(query, sizeof(query), "SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
-		mysql_query(query);
+		MySQLQuery("SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
 		mysql_store_result();
 		if (strval(GetMySQLField("UserID")))
 		{
@@ -43,9 +40,9 @@ public OnPlayerConnect(playerid)
 		mysql_free_result();
 		new string[256];
 		SendClientMessage(playerid, COLOR_SYSTEM, "Willkommen auf GRG Server!");
-		format(string, sizeof(string), "Auf diesem Server läuft aktuell Revision %d unserer Gamemode.", COMPILER_SVN_REVISION);
+		Format:string("Auf diesem Server läuft aktuell Revision %d unserer Gamemode.", COMPILER_SVN_REVISION);
 		SendClientMessage(playerid, COLOR_SYSTEM, string);
-		format(string, sizeof(string), "%s hat den Server betreten", GetPlayerNameEx(playerid));
+		Format:string("%s hat den Server betreten", GetPlayerNameEx(playerid));
 		SendClientMessageToAllExcept(playerid, COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
 		textDrawSpeedoColumn2[playerid] = TextDrawCreate(580, 400, "_");
@@ -70,7 +67,7 @@ public OnPlayerDisconnect(playerid, reason)
 	{
 		SavePlayer(playerid);
 		new string[256];
-		format(string, sizeof(string), "%s hat den Server verlassen", GetPlayerNameEx(playerid));
+		Format:string("%s hat den Server verlassen", GetPlayerNameEx(playerid));
 		SendClientMessageToAll(COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
 		TextDrawHideForPlayer(playerid, textDrawSpeedoColumn1);

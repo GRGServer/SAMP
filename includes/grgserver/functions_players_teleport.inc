@@ -52,9 +52,7 @@ TeleportToBuilding(playerID, buildingID)
 
 TeleportToInterior(playerID, interiorID)
 {
-	new query[256];
-	format(query, sizeof(query), "SELECT * FROM `interiors` WHERE `ID` = '%d'", interiorID);
-	mysql_query(query);
+	MySQLQuery("SELECT * FROM `interiors` WHERE `ID` = '%d'", interiorID);
 	mysql_store_result();
 	if (strval(GetMySQLField("ID")))
 	{

@@ -79,7 +79,7 @@ Timer:Fast()
 						fuelColor = 'r';
 					}
 				}
-				format(string, sizeof(string), "%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~~n~%sl", speed, healthColor, healthPercentage, fuelColor, fuelPercentage, FormatNumber(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 1, '.', ','));
+				Format:string("%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~~n~%sl", speed, healthColor, healthPercentage, fuelColor, fuelPercentage, FormatNumber(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 1, '.', ','));
 				TextDrawSetString(textDrawSpeedoColumn2[playerID], string);
 				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn1);
 				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn2[playerID]);
@@ -139,8 +139,8 @@ Timer:Slow()
 	new minute;
 	new second;
 	gettime(hour, minute, second);
-	format(hourString, sizeof(hourString), "%2d", hour);
-	format(minuteString, sizeof(minuteString), "%2d", minute);
+	Format:hourString("%2d", hour);
+	Format:minuteString("%2d", minute);
 	if (hour < 10)
 	{
 		hourString[0] = '0';
@@ -149,7 +149,7 @@ Timer:Slow()
 	{
 		minuteString[0] = '0';
 	}
-	format(clockString, sizeof(clockString), "%s:%s", hourString, minuteString);
+	Format:clockString("%s:%s", hourString, minuteString);
 	TextDrawSetString(textDrawClock, clockString);
 	SetWorldTime(hour);
 	mysql_ping();
@@ -164,7 +164,7 @@ Timer:Slow()
 		fremove("update_available");
 		if (revision > COMPILER_SVN_REVISION)
 		{
-			format(string, sizeof(string), "Es steht ein Update auf Revision %s zur Verfügung!", string);
+			Format:string("Es steht ein Update auf Revision %s zur Verfügung!", string);
 			SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
 			if (fexist("svn_changes"))
 			{
@@ -178,7 +178,7 @@ Timer:Slow()
 					RemoveNewLine(string);
 					if (strlen(string) && strcmp(string, "------------------------------------------------------------------------"))
 					{
-						format(string, sizeof(string), "> %s", string);
+						Format:string("> %s", string);
 						SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
 					}
 				}

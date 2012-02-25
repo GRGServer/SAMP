@@ -53,9 +53,7 @@ LeaveBuilding(playerID)
 	new CurrentBuildingID = GetPVarInt(playerID, "CurrentBuildingID");
 	if (CurrentBuildingID)
 	{
-		new query[256];
-		format(query, sizeof(query), "SELECT * FROM `buildings` WHERE `ID` = '%d'", CurrentBuildingID);
-		mysql_query(query);
+		MySQLQuery("SELECT * FROM `buildings` WHERE `ID` = '%d'", CurrentBuildingID);
 		mysql_store_result();
 		SetPlayerPos(playerID, floatstr(GetMySQLField("ExitPosX")), floatstr(GetMySQLField("ExitPosY")), floatstr(GetMySQLField("ExitPosZ")));
 		SetPlayerInterior(playerID, 0);

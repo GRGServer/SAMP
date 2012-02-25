@@ -75,7 +75,7 @@ public OnGameModeInit()
 	TextDrawFont(textDrawClock, 3);
 	print("* Doing misc stuff...");
 	new gameModeTextString[256];
-	format(gameModeTextString, sizeof(gameModeTextString), "GRG Server r%d", COMPILER_SVN_REVISION);
+	Format:gameModeTextString("GRG Server r%d", COMPILER_SVN_REVISION);
 	SetGameModeText(gameModeTextString);
 	DisableInteriorEnterExits();
 	UpdateGasPrice();
