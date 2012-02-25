@@ -198,7 +198,7 @@ ShowDialog(playerID, dialogID, ...)
 			{
 				Format:string("%s\nBeruf:\t%s", string, GetMySQLField("JobName"));
 			}
-			Format:string("%s\nSpielzeit:\t%s", string, FormatTime(strval(GetMySQLField("OnlineTime`"))));
+			Format:string("%s\nSpielzeit:\t%s", string, FormatTime(strval(GetMySQLField("OnlineTime"))));
 			Format:string("%s\nLetzter Login:\t%s", string, FormatDate(GetMySQLField("LoginTime")));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Personalien", string, "OK", "");
 		}
