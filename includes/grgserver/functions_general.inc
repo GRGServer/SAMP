@@ -58,25 +58,35 @@ FormatTime(seconds)
 
 LeadingZero(value, length)
 {
+	print("[LeadingZero] Init");
 	new string[256];
 	new valueString[256];
+	printf("[LeadingZero] IN: %d, %d", value, length);
 	valstr(valueString, value);
+	printf("[LeadingZero] vaueString: %s", valueString);
 	new numZeros = length - strlen(valueString);
+	printf("[LeadingZero] numZeros: %d", numZeros);
 	if (numZeros < 0)
 	{
+		print("[LeadingZero] Is < 0");
 		numZeros = 0;
 	}
 	if (numZeros)
 	{
+		printf("[LeadingZero] numZeros > 0: %d", numZeros);
 		for (new character = 0; character < numZeros; character++)
 		{
+			printf("[LeadingZero] Add zero: %s", string);
 			Format:string("%s0", string);
 		}
+		printf("[LeadingZero] Zero string: %s", string);
 		Format:string("%s%s", string, valueString);
+		printf("[LeadingZero] OUT: %s", string);
 		return string;
 	}
 	else
 	{
+		printf("[LeadingZero] OUT: %s", valueString);
 		return valueString;
 	}
 }
