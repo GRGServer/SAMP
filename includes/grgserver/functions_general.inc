@@ -20,19 +20,26 @@ CmdUsageMsg(playerID, command[], ...)
 
 FormatDate(sqlDateString[], showTime = true)
 {
+	print("[FormatDate] Init");
 	new date[256];
 	new string[256];
 	new time[256];
 	new day;
 	new month;
 	new year;
+	printf("[FormatDate] IN: %s", sqlDateString);
 	sscanf(sqlDateString, "ss", date, time);
+	printf("[FormatDate] date time split: (%s) (%s)", date, time);
 	sscanf(date, "p-ddd", year, month, day);
+	printf("[FormatDate] date split: (%d) (%d) (%d)", year, month, day);
 	Format:string("%s.%s.%d", LeadingZero(day, 2), LeadingZero(month, 2), year);
+	printf("[FormatDate] Formated date: %s", string);
 	if (showTime)
 	{
 		Format:string("%s - %s", string, time);
+		printf("[FormatDate] Added time: %s", string);
 	}
+	printf("[FormatDate] OUT: %s", string);
 	return string;
 }
 
