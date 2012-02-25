@@ -5,8 +5,6 @@ IsLoggedIn(playerID)
 
 LoadPlayer(playerID)
 {
-	LoadPlayerValue(playerID, "Level", PLAYER_VARTYPE_INT);
-	LoadPlayerValue(playerID, "AdminLevel", PLAYER_VARTYPE_INT);
 	LoadPlayerValue(playerID, "Money", PLAYER_VARTYPE_FLOAT);
 	LoadPlayerValue(playerID, "Skin", PLAYER_VARTYPE_INT);
 	LoadPlayerValue(playerID, "CurrentBuildingID", PLAYER_VARTYPE_INT);
@@ -43,8 +41,6 @@ SavePlayer(playerID)
 {
 	if (IsLoggedIn(playerID))
 	{
-		SavePlayerValue(playerID, "Level");
-		SavePlayerValue(playerID, "AdminLevel");
 		SavePlayerValue(playerID, "Money");
 		SavePlayerValue(playerID, "Skin");
 		SavePlayerValue(playerID, "CurrentBuildingID");

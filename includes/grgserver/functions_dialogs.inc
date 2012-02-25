@@ -181,7 +181,7 @@ ShowDialog(playerID, dialogID, ...)
 		case DIALOG_STATS:
 		{
 			new string[2048];
-			MySQLQuery("SELECT `users`.`UserID`, `users`.`Username`, UNIX_TIMESTAMP(`users`.`BirthDate`) AS `BirthDate`, `users`.`Location`, `users`.`MobilePhoneNumber`, `users`.`PlayTime`, `users`.`LoginTime`, `banks`.`Name` AS `Bank`, `jobs`.`Name` AS `JobName` FROM `users` LEFT JOIN `banks` ON `banks`.`ID` = `users`.`BankID` LEFT JOIN `jobs` ON `jobs.`ID` = `users`.`JobID` WHERE `users`.`UserID` = '%d'", GetUserID(playerID));
+			MySQLQuery("SELECT `users`.`UserID`, `users`.`Username`, UNIX_TIMESTAMP(`users`.`BirthDate`) AS `BirthDate`, `users`.`Location`, `users`.`MobilePhoneNumber`, `users`.`OnlineTime`, `users`.`LoginTime`, `banks`.`Name` AS `Bank`, `jobs`.`Name` AS `JobName` FROM `users` LEFT JOIN (`banks`, `jobs`) ON (`banks`.`ID` = `users`.`BankID` AND `jobs`.`ID` = `users`.`JobID`) WHERE `users`.`UserID` = '%d'", GetUserID(playerID));
 			mysql_store_result();
 			Format:string("ID:\t%s", GetMySQLField("UserID"));
 			Format:string("%s\nName:\t%s", string, GetMySQLField("Username"));

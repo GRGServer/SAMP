@@ -59,8 +59,6 @@
 // Register values
 #define REGISTER_MINPASSWORD		3
 #define REGISTER_MAXPASSWORD		20
-#define REGISTER_LEVEL				1
-#define REGISTER_ADMINLEVEL			0
 
 
 // Spawn properties

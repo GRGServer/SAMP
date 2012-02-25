@@ -472,8 +472,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
 					MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `RegisterTime`) VALUES ('%s', '%s', NOW())", MySQLEscapeString(playerName), MD5(inputtext));
 					SetPVarInt(playerid, "UserID", mysql_insert_id());
-					SetPVarInt(playerid, "Level", REGISTER_LEVEL);
-					SetPVarInt(playerid, "AdminLevel", REGISTER_ADMINLEVEL);
 					SavePlayer(playerid);
 					SetPVarInt(playerid, "AllowSkinSelection", true);
 					printf("Player registered: %s (UserID: %d)", playerName, GetUserID(playerid));
