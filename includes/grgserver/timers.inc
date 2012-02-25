@@ -10,9 +10,9 @@ Timer:Fast()
 {
 	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
 	{
-		if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && GetPlayerVehicleSeat(playerID) == 0)
+		if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID))
 		{
-			if (IsPlayerInAnyVehicle(playerID))
+			if (IsPlayerInAnyVehicle(playerID) && GetPlayerVehicleSeat(playerID) == 0)
 			{
 				new Float:velocityX;
 				new Float:velocityY;
