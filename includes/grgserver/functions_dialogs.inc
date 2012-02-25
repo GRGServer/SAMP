@@ -185,13 +185,13 @@ ShowDialog(playerID, dialogID, ...)
 			mysql_store_result();
 			Format:string("ID:\t%s", GetMySQLField("UserID"));
 			Format:string("%s\nName:\t%s", string, GetMySQLField("Username"));
-			Format:string("%s\nAlter:\t%d Jahre", string, CalculateAge(strval(GetMySQLField("Birthday"))));
+			Format:string("%s\nAlter:\t%d Jahre", string, CalculateAge(strval(GetMySQLField("BirthDate"))));
 			Format:string("%s\nWohnort:\t%s", string, GetMySQLField("Location"));
 			Format:string("%s\nHandynummer:\t%s", string, GetMySQLField("MobilePhoneNumber"));
 			Format:string("%s\nBank:\t%s", string, GetMySQLField("Bank"));
 			Format:string("%s\nGuthaben:\t%s", string, FormatMoney(GetPlayerMoneyEx(playerID)));
 			Format:string("%s\nBeruf:\t%s", string, GetMySQLField("JobName"));
-			Format:string("%s\nSpielzeit:\t%s", string, FormatTime(strval(GetMySQLField("PlayTime"))));
+			Format:string("%s\nSpielzeit:\t%s", string, FormatTime(strval(GetMySQLField("OnlineTime`"))));
 			Format:string("%s\nLetzter Login:\t%s", string, FormatDate(GetMySQLField("LoginTime")));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Personalien", string, "OK", "");
 		}

@@ -28,7 +28,7 @@ FormatDate(sqlDateString[], showTime = true)
 	new year;
 	sscanf(sqlDateString, "ss", date, time);
 	sscanf(date, "p-ddd", year, month, day);
-	Format:string("%d.%d.%d", year, month, day);
+	Format:string("%s.%s.%d", LeadingZero(day, 2), LeadingZero(month, 2), year);
 	if (showTime)
 	{
 		Format:string("%s - %s", string, time);
@@ -45,7 +45,7 @@ FormatTime(seconds)
 	seconds -= hours * 60 * 60;
 	new minutes = seconds / 60;
 	seconds -= minutes * 60;
-	Format:string("%d Tage, %s:%s:%s", days, LeadingZero(hours, 0), LeadingZero(minutes, 2), LeadingZero(seconds, 2));
+	Format:string("%d Tage, %s:%s:%s", days, LeadingZero(hours, 2), LeadingZero(minutes, 2), LeadingZero(seconds, 2));
 	return string;
 }
 
@@ -54,7 +54,7 @@ LeadingZero(value, length)
 	new string[256];
 	new valueString[256];
 	valstr(valueString, value);
-	new numZeros = strlen(valueString) - length;
+	new numZeros = length - strlen(valueString);
 	for (new character = 0; character < numZeros; character++)
 	{
 		Format:string("%s0", string);
