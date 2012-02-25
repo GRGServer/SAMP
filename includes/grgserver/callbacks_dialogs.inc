@@ -500,7 +500,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				SendClientMessage(playerid, COLOR_INFO, "Du hast den Gamemode neugestartet");
 				new string[256];
-				Format:string("%s hat den Gamemode neugestartet");
+				Format:string("%s hat den Gamemode neugestartet", GetPlayerNameEx(playerid));
 				SendClientMessageToAllExcept(playerid, COLOR_INFO, string);
 				SendRconCommand("gmx");
 			}
