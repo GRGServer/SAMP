@@ -5,16 +5,16 @@ CMD:about(playerid, params[], "Informationen über dieses Script")
 }
 CMD:accept(playerid, params[], "Annehmen eines Auftrages")
 {
-	new JobID = GetPVarInt(playerid, "JobID");
+/*	new JobID = GetPVarInt(playerid, "JobID");
 	if (JobID == JOB_TRUCKER)
-	{
+	{*/
 		ShowDialog(playerid, DIALOG_ACCEPT);
 		return COMMAND_OK;
-	}
+	/* }
 	else
 	{
 		return COMMAND_PERMISSION_DENIED;
-	}
+	}*/
 }
 
 CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
