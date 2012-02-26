@@ -8,6 +8,7 @@ LoadPlayer(playerID)
 	LoadPlayerValue(playerID, "Money", PLAYER_VARTYPE_FLOAT);
 	LoadPlayerValue(playerID, "Skin", PLAYER_VARTYPE_INT);
 	LoadPlayerValue(playerID, "CurrentBuildingID", PLAYER_VARTYPE_INT);
+	LoadPlayerValue(playerID, "JobID", PLAYER_VARTYPE_INT);
 	SetPlayerMoney(playerID, GetPlayerMoneyEx(playerID));
 	SetPlayerSkin(playerID, GetPVarInt(playerID, "Skin"));
 	MySQLQuery("SELECT * FROM `permissions` WHERE `UserID` = '%d'", GetUserID(playerID));
@@ -44,6 +45,7 @@ SavePlayer(playerID)
 		SavePlayerValue(playerID, "Money");
 		SavePlayerValue(playerID, "Skin");
 		SavePlayerValue(playerID, "CurrentBuildingID");
+		SavePlayerValue(playerID, "JobID");
 		new Float:posX;
 		new Float:posY;
 		new Float:posZ;
