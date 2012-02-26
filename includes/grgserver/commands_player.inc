@@ -3,6 +3,19 @@ CMD:about(playerid, params[], "Informationen über dieses Script")
 	SendClientMessage(playerid, COLOR_INFO, "Erstellt von Aerox_Tobi (aerox@grgserver.net) und Programie (programie@selfcoders.com)");
 	return COMMAND_OK;
 }
+CMD:accept(playerid, params[], "Annehmen eines Auftrages")
+{
+	new JobID = GetPVarInt(playerid, "JobID");
+	if (JobID == JOB_TRUCKER)
+	{
+		ShowDialog(playerid, DIALOG_ACCEPT);
+		return COMMAND_OK;
+	}
+	else
+	{
+		return COMMAND_PERMISSION_DENIED;
+	}
+}
 
 CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
 {

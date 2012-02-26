@@ -2,6 +2,18 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
 	{
+		/* case DIALOG_ACCEPT:
+		{	
+			if (response)
+			{
+				switch (listitem)
+				{
+					// TODO: Accept den Auftrag. Momentan nur SendClientMessage drin
+					// TODO: Aufträge werden in der DB gespeichert, wenn angenommen gelöscht von der DB.
+					SendClientMessage(playerid, COLOR_INFO, "Du hast den Auftrag angenommen!");
+				}
+			}
+		}*/					
 		/*case DIALOG_ADDHOTELROOM:
 		{
 			if (response)
@@ -384,29 +396,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				switch(listitem)
 				{
-					case 0:
-					{
-					}
 					case 1:
 					{
-					}
-					case 2:
-					{
-					}
-					case 3:
-					{
-					}
-					case 4:
-					{
-					}
-					case 5:
-					{
-					}
-					case 6:
-					{
-					}
-					case 7:
-					{
+						MySQLQuery("INSERT INTO `missions`(`Name`, `UserID`) VALUES ('%s','%d')", listitem, GetUserID(playerid));
+						printf("Mission Gespeichert mit dem name %s (UserID: %d)", listitem, GetUserID(playerid));
 					}
 				}
 			}

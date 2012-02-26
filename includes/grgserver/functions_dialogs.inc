@@ -115,6 +115,22 @@ ShowDialog(playerID, dialogID, ...)
 			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Fahrzeug bestellen", vehicleList, "Bestellen", "Abbrechen");
 		}
+		case DIALOG_ACCEPT:
+		{
+			new missionsList[2048];
+			mysql_query("SELECT FROM* `missions` ORDER BY `Name` ASC");
+			mysql_store_result();
+			while(FetchMySQLRow())
+			{
+				if	(strlen(missionsList))
+				{
+					Format:missionsList("%s%s", missionsList);
+				}
+				Format:missionsList("%s%s", missionsList, GetMySQLField("Name"));
+			}
+			mysql_free_result();
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Auftrags Annahme", missionsList, "Annehmen", "Abbrechen");
+		}
 		case DIALOG_RADIO:
 		{
 			new stations[1024];
