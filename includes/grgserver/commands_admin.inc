@@ -66,7 +66,7 @@ PCMD:money[ADMIN](playerid, params[], "Gebe dir Geld")
 PCMD:reloadplayer[ADMIN](playerid, params[], "Lade die Daten eines Spielers erneut von der Datenbank")
 {
 	new targetPlayerID;
-	if (!sscanf(params, "u", targetPlayerID))
+	if (sscanf(params, "u", targetPlayerID))
 	{
 		CmdUsageMsg(playerid, "reloadplayer", "PlayerID/Name");
 		return COMMAND_USAGE;
