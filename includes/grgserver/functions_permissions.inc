@@ -29,7 +29,7 @@ GetPermissionByName(permissionName[])
 
 GetPermissionName(permission)
 {
-	new string[256];
+	new string[16];
 	switch (permission)
 	{
 		case PERMISSION_ADMIN:

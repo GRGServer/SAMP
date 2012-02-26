@@ -7,7 +7,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if (response)
 			{
 				new missionID;
-				new text[256];
+				new text[100];
 				sscanf(inputtext, "p:ds", missionID, text);
 				if (strval(GetMySQLValue("missions", "AcceptUserID", "ID", val2str(missionID))))
 				{
@@ -17,8 +17,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					SetMySQLValue("missions", "AcceptUserID", val2str(GetUserID(playerid)), "ID", val2str(missionID));
 					SendClientMessage(playerid, COLOR_INFO, "Du hast den Auftrag angenommen");
-					new string[100];
-					Format:string("%s hat deinen Auftrag (Auftragsnummer: %d) angenommen", GetPlayerNameEx(playerid), missionID);
+					FormatNew:string[90]("%s hat deinen Auftrag (Auftragsnummer: %d) angenommen", GetPlayerNameEx(playerid), missionID);
 					SendClientMessage(strval(GetMySQLValue("missions", "CreatorUserID", "ID", val2str(missionID))), COLOR_INFO, string);
 				}
 			}
@@ -39,9 +38,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					else
 					{
-						new string[256];
-						new name[256];
-						new hotel[256];
+						new name[128];
+						new hotel[128];
 						new Float: PosX;
 						new Float: PosY;
 						new Float: PosZ;
@@ -51,7 +49,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(pickupID > 0)
 						{
 							MySQLQuery("INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `HotelOwner`) VALUES ('%d', '%s', '%s', '%s')", pickupID, GetMySQLValue("interior", "ID", "Name", inputtext), name, hotel);
-							Format:string("Das Hotel Zimmer %s (Hotel: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", name, hotel, inputtext, mysql_insert_id());
+							FormatNew:string[256]("Das Hotel Zimmer %s (Hotel: %s) wurde mit dem Ziel %s verknüpft und unter der ID %d gespeichert.", name, hotel, inputtext, mysql_insert_id());
 							SendClientMessage(playerid, COLOR_INFO, string);
 						}
 						else
@@ -68,7 +66,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				new string[256];
 				new Float:posX;
 				new Float:posY;
 				new Float:posZ;
@@ -81,7 +78,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					MySQLQuery("INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%d', '%s', '%f')", pickupID, GetPVarInt(playerid, "AddBuilding_InteriorID"), MySQLEscapeString(inputtext), GetPVarFloat(playerid, "AddBuilding_Price"));
 					buildingID = mysql_insert_id();
 					SetPVarInt(playerid, "LastAddedBuilding", buildingID);
-					Format:string("Das Gebäude %s (Preis: %s) wurde unter der ID %d gespeichert.", inputtext, FormatMoney(GetPVarFloat(playerid, "AddBuilding_Price")), buildingID);
+					FormatNew:string[256]("Das Gebäude %s (Preis: %s) wurde unter der ID %d gespeichert.", inputtext, FormatMoney(GetPVarFloat(playerid, "AddBuilding_Price")), buildingID);
 					SendClientMessage(playerid, COLOR_INFO, string);
 				}
 				else
@@ -99,7 +96,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				new type[256];
+				new type[10];
 				switch (listitem)
 				{
 					case 0:
@@ -121,7 +118,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				new string[256];
 				new saveID = vehicles[GetPlayerVehicleID(playerid)][VEHICLE_SAVEID];
 				new Float:price = floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(saveID)));
 				if (price <= GetPlayerMoneyEx(playerid))
@@ -132,7 +128,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					format(string,sizeof(string), "Du benötigst $%s für dieses Fahrzeug! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPlayerMoneyEx(playerid)));
+					FormatNew:string[80]("Du benötigst $%s für dieses Fahrzeug! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPlayerMoneyEx(playerid)));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 					RemovePlayerFromVehicle(playerid);
 				}
@@ -157,8 +153,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					new string[256];
-					format(string,sizeof(string), "Du benötigst $%s für dieses Haus! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPlayerMoneyEx(playerid)));
+					FormatNew:string[80]("Du benötigst $%s für dieses Haus! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPlayerMoneyEx(playerid)));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 				}
 			}
@@ -183,8 +178,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						}
 						else
 						{
-							new string[256];
-							format(string,sizeof(string), "Du benötigst $%s für dieses Hotel! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPlayerMoneyEx(playerid)));
+							FormatNew:string[80]("Du benötigst $%s für dieses Hotel! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPlayerMoneyEx(playerid)));
 							SendClientMessage(playerid, COLOR_ERROR, string);
 							ShowDialog(playerid, DIALOG_HOTEL_MAIN_AVAILABLE);
 						}
@@ -363,9 +357,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				if (strlen(inputtext))
 				{
-					new playerName[MAX_PLAYER_NAME];
-					GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
-					MySQLQuery("SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(playerName));
+					MySQLQuery("SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
 					mysql_store_result();
 					if (!strcmp(MD5(inputtext), GetMySQLField("Password"), true))
 					{
@@ -380,7 +372,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					if (GetUserID(playerid))
 					{
 						MySQLQuery("UPDATE `users` SET `LoginTime` = NOW() WHERE `UserID` = '%d'", GetUserID(playerid));
-						printf("Player logged in: %s (UserID: %d)", playerName, GetUserID(playerid));
+						printf("Player logged in: %s (UserID: %d)", GetPlayerNameEx(playerid), GetUserID(playerid));
 						LoadPlayer(playerid);
 						SetPVarInt(playerid, "SpawnAfterLogin", true);
 						SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich eingeloggt.");
@@ -411,8 +403,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					if (missionID)
 					{
 						MySQLQuery("INSERT INTO `missiondata` (`MissionID`, `Name`, `Value`) VALUES ('%d', 'Type', 'GetOrderedVehicle'), ('%d', 'VehicleModelID', '%d')", missionID, missionID, modelID);
-						new string[50];
-						Format:string("Auftrag erstellt (Auftragsnummer: %d)", mysql_insert_id());
+						FormatNew:string[50]("Auftrag erstellt (Auftragsnummer: %d)", mysql_insert_id());
 						SendClientMessage(playerid, COLOR_INFO, string);
 					}
 				}
@@ -453,8 +444,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					new string[256];
-					Format:string("Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_MINPASSWORD, REGISTER_MAXPASSWORD);
+					FormatNew:string[80]("Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_MINPASSWORD, REGISTER_MAXPASSWORD);
 					SendClientMessage(playerid, COLOR_ERROR, string);
 					ShowDialog(playerid, DIALOG_REGISTER_STEP1);
 				}
@@ -471,13 +461,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				if (!strcmp(inputtext, GetPVarStringEx(playerid, "RegisterPassword")))
 				{
-					new playerName[MAX_PLAYER_NAME];
-					GetPlayerName(playerid, playerName, MAX_PLAYER_NAME);
-					MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `RegisterTime`) VALUES ('%s', '%s', NOW())", MySQLEscapeString(playerName), MD5(inputtext));
+					MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `RegisterTime`) VALUES ('%s', '%s', NOW())", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(inputtext));
 					SetPVarInt(playerid, "UserID", mysql_insert_id());
 					SavePlayer(playerid);
 					SetPVarInt(playerid, "AllowSkinSelection", true);
-					printf("Player registered: %s (UserID: %d)", playerName, GetUserID(playerid));
+					printf("Player registered: %s (UserID: %d)", GetPlayerNameEx(playerid), GetUserID(playerid));
 					SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
 					SendClientMessage(playerid, COLOR_INFO, "Bitte wähle deinen Spieler aus.");
 				}
@@ -502,8 +490,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					SavePlayer(playerID);
 				}
 				SendClientMessage(playerid, COLOR_INFO, "Du hast den Gamemode neugestartet");
-				new string[256];
-				Format:string("%s hat den Gamemode neugestartet", GetPlayerNameEx(playerid));
+				FormatNew:string[60]("%s hat den Gamemode neugestartet", GetPlayerNameEx(playerid));
 				SendClientMessageToAllExcept(playerid, COLOR_INFO, string);
 				SendRconCommand("gmx");
 			}

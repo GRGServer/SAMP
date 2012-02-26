@@ -116,7 +116,7 @@ PCMD:setexit[MAPPER](playerid, params[], "Position festlegen, an welcher der Spi
 
 PCMD:veh[MAPPER](playerid, params[], "Fahrzeug spawnen")
 {
-	new vehicleName[256];
+	new vehicleName[20];
 	new modelID;
 	new color1;
 	new color2;

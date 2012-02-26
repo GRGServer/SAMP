@@ -1,12 +1,10 @@
 AddNPCRecorderPlayback(playerID, recordingName[], recordingType)
 {
-	new npcPlayerName[MAX_PLAYER_NAME];
-	Format:npcPlayerName("%s_NPC1", GetPlayerNameEx(playerID));
+	FormatNew:npcPlayerName[MAX_PLAYER_NAME]("%s_NPC1", GetPlayerNameEx(playerID));
 	new npcPlayerID = GetPlayerID(npcPlayerName);
 	if (npcPlayerID == INVALID_PLAYER_ID)
 	{
-		new string[256];
-		Format:string("Der NPC '%s' ist nicht verbunden! Verwende /controlnpc %s connect und versuche es erneut.", npcPlayerName, npcPlayerName);
+		FormatNew:string[140]("Der NPC '%s' ist nicht verbunden! Verwende /controlnpc %s connect und versuche es erneut.", npcPlayerName, npcPlayerName);
 		SendClientMessage(playerID, COLOR_ERROR, string);
 	}
 	else
@@ -39,8 +37,7 @@ ReconnectNPCs()
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new npcName[MAX_PLAYER_NAME];
-		Format:npcName("NPC_%s", GetMySQLField("Name"));
+		FormatNew:npcName[MAX_PLAYER_NAME]("NPC_%s", GetMySQLField("Name"));
 		ConnectNPC(npcName, NPC_SCRIPTNAME);
 	}
 	mysql_free_result();

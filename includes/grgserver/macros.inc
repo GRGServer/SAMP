@@ -16,7 +16,9 @@ for(new i_%0 = 0; ; ++i_%0) \
 
 
 // Functions
+#define Foreach(%0in%1) for (new %0 = 0; %0 < %1; %0++)
 #define Format:%0(%1) format(%0, sizeof(%0), %1)
+#define FormatNew:%0[%1](%2) new %0[%1]; Format:%0(%2)
 #define FormatMoney(%0) FormatNumber(%0, 2, '.', ',')
 #define GetJobID(%0) GetPVarInt(%0, "JobID")
 #define GetPlayerMoneyEx(%0) GetPVarFloat(%0, "Money")

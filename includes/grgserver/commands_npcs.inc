@@ -1,13 +1,12 @@
 NCMD:npccmd(playerid, params[], "Befehle zurück an den Server schicken")
 {
-	new command[256];
-	if (!sscanf(params, "s", command))
+	new string[70];
+	if (!sscanf(params, "s", string))
 	{
-		if (!strcmp(command, "stopped", true))
+		if (!strcmp(string, "stopped", true))
 		{
 			if (GetPVarType(playerid, "RecordNPCForPlayer") == PLAYER_VARTYPE_INT)
 			{
-				new string[256];
 				new npcs;
 				new realPlayerID = GetPVarInt(playerid, "RecordNPCForPlayer");
 				DeletePVar(playerid, "RecordNPCForPlayer");

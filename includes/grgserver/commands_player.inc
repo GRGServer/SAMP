@@ -24,9 +24,9 @@ CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
 		while (fread(commands, string))
 		{
 			new type;
-			new command[256];
+			new command[MAX_FUNC_NAME];
 			new infoText[256];
-			new permission[256];
+			new permission[30];
 			RemoveNewLine(string);
 			if (sscanf(string, "css", type, command, permission))
 			{

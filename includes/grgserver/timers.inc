@@ -18,7 +18,6 @@ Timer:Fast()
 				new Float:velocityY;
 				new Float:velocityZ;
 				new Float:health;
-				new string[256];
 				new healthColor;
 				new fuelColor;
 				new speed;
@@ -79,8 +78,8 @@ Timer:Fast()
 						fuelColor = 'r';
 					}
 				}
-				Format:string("%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~~n~%sl", speed, healthColor, healthPercentage, fuelColor, fuelPercentage, FormatNumber(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 1, '.', ','));
-				TextDrawSetString(textDrawSpeedoColumn2[playerID], string);
+				FormatNew:textDrawString[50]("%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~~n~%sl", speed, healthColor, healthPercentage, fuelColor, fuelPercentage, FormatNumber(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 1, '.', ','));
+				TextDrawSetString(textDrawSpeedoColumn2[playerID], textDrawString);
 				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn1);
 				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn2[playerID]);
 			}
@@ -132,15 +131,12 @@ Timer:RefuelVehicle(playerID, Float:totalAmount)
 
 Timer:Slow()
 {
-	new clockString[6];
-	new hourString[3];
-	new minuteString[3];
 	new hour;
 	new minute;
 	new second;
 	gettime(hour, minute, second);
-	Format:hourString("%2d", hour);
-	Format:minuteString("%2d", minute);
+	FormatNew:hourString[3]("%2d", hour);
+	FormatNew:minuteString[3]("%2d", minute);
 	if (hour < 10)
 	{
 		hourString[0] = '0';
@@ -149,7 +145,7 @@ Timer:Slow()
 	{
 		minuteString[0] = '0';
 	}
-	Format:clockString("%s:%s", hourString, minuteString);
+	FormatNew:clockString[6]("%s:%s", hourString, minuteString);
 	TextDrawSetString(textDrawClock, clockString);
 	SetWorldTime(hour);
 	mysql_ping();

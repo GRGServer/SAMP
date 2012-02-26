@@ -1,29 +1,28 @@
 FetchMySQLRow()
 {
-	new Line[1024];
+	new Line[2048];
 	return mysql_fetch_row(Line);
 }
 
 GetMySQLField(field[])
 {
-	new value[256];
+	new value[2048];
 	mysql_fetch_field(field, value);
 	return value;
 }
 
 GetMySQLValue(table[], field[], checkColumn[], checkValue[], whereOperator[] = "=")
 {
-	new string[256];
 	MySQLQuery("SELECT `%s` FROM `%s` WHERE `%s` %s '%s'", MySQLEscapeString(field), MySQLEscapeString(table), MySQLEscapeString(checkColumn), whereOperator, MySQLEscapeString(checkValue));
 	mysql_store_result();
-	Format:string("%s", GetMySQLField(field));
+	FormatNew:string[2048]("%s", GetMySQLField(field));
 	mysql_free_result();
 	return string;
 }
 
 MySQLEscapeString(string[])
 {
-	new escapedString[256];
+	new escapedString[2048];
 	mysql_real_escape_string(string, escapedString);
 	return escapedString;
 }

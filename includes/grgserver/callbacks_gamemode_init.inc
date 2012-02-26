@@ -1,7 +1,5 @@
 public OnGameModeInit()
 {
-	new File:svnRevisionFile;
-	new oldSvnRevision[256];
 	print("* Loading Gamemode...");
 	printf("    SVN Revision: %d", COMPILER_SVN_REVISION);
 	printf("    Compile date: %s %s", COMPILER_DATE, COMPILER_TIME);
@@ -25,6 +23,8 @@ public OnGameModeInit()
 		fclose(changesFile);
 	}
 	print("* Checking SVN stuff...");
+	new File:svnRevisionFile;
+	new oldSvnRevision[16];
 	if (fexist("svn_revision"))
 	{
 		svnRevisionFile = fopen("svn_revision", io_read);
@@ -74,8 +74,7 @@ public OnGameModeInit()
 	TextDrawLetterSize(textDrawClock, 0.6, 1.8);
 	TextDrawFont(textDrawClock, 3);
 	print("* Doing misc stuff...");
-	new gameModeTextString[256];
-	Format:gameModeTextString("GRG Server r%d", COMPILER_SVN_REVISION);
+	FormatNew:gameModeTextString[30]("GRG Server r%d", COMPILER_SVN_REVISION);
 	SetGameModeText(gameModeTextString);
 	DisableInteriorEnterExits();
 	UpdateGasPrice();

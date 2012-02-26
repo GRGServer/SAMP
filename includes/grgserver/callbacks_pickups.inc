@@ -63,14 +63,12 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 				}
 				else
 				{
-					new string[256];
-					Format:string("Dieses Haus wurde bereits von %s gekauft.", GetMySQLValue("users", "Username", "UserID", val2str(ownerUserID)));
+					FormatNew:string[MAX_PLAYER_NAME + 40]("Dieses Haus wurde bereits von %s gekauft.", GetMySQLValue("users", "Username", "UserID", val2str(ownerUserID)));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 				}
 			}
 			else
 			{
-				new string[256];
 				new Float:price = floatstr(GetMySQLValue("buildings", "Price", "PickupID", val2str(pickups[pickupid][PICKUP_ID])));
 				if (price <= GetPlayerMoneyEx(playerid))
 				{
@@ -79,7 +77,7 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 				}
 				else
 				{
-					Format:string("Du hast nicht genügend Geld, um dieses Haus zu kaufen! Du benötigst mindestens $%s.", FormatMoney(price));
+					FormatNew:string[100]("Du hast nicht genügend Geld, um dieses Haus zu kaufen! Du benötigst mindestens $%s.", FormatMoney(price));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 				}
 			}

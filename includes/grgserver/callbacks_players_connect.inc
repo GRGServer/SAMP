@@ -38,9 +38,8 @@ public OnPlayerConnect(playerid)
 			ShowDialog(playerid, DIALOG_REGISTER_STEP1);
 		}
 		mysql_free_result();
-		new string[256];
 		SendClientMessage(playerid, COLOR_SYSTEM, "Willkommen auf GRG Server!");
-		Format:string("Auf diesem Server läuft aktuell Revision %d unserer Gamemode.", COMPILER_SVN_REVISION);
+		FormatNew:string[70]("Auf diesem Server läuft aktuell Revision %d unserer Gamemode.", COMPILER_SVN_REVISION);
 		SendClientMessage(playerid, COLOR_SYSTEM, string);
 		Format:string("%s hat den Server betreten", GetPlayerNameEx(playerid));
 		SendClientMessageToAllExcept(playerid, COLOR_JOINLEAVE, string);
@@ -66,8 +65,7 @@ public OnPlayerDisconnect(playerid, reason)
 	if (!IsPlayerNPC(playerid))
 	{
 		SavePlayer(playerid);
-		new string[256];
-		Format:string("%s hat den Server verlassen", GetPlayerNameEx(playerid));
+		FormatNew:string[MAX_PLAYER_NAME + 30]("%s hat den Server verlassen", GetPlayerNameEx(playerid));
 		SendClientMessageToAll(COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
 		TextDrawHideForPlayer(playerid, textDrawSpeedoColumn1);

@@ -5,11 +5,10 @@ CalculateAge(birthDate)
 
 CmdUsageMsg(playerID, command[], ...)
 {
-	new string[256];
-	new value[256];
+	new value[128 char];
 	new parameters;
 	parameters = numargs();
-	Format:string("Verwendung: /%s", command);
+	FormatNew:string[128]("Verwendung: /%s", command);
 	for (new index = 2; index < parameters; index++)
 	{
 		GetStringArg(index, value);
@@ -20,14 +19,13 @@ CmdUsageMsg(playerID, command[], ...)
 
 FormatDate(sqlDateString[], showTime = true)
 {
-	new date[256];
-	new string[256];
-	new time[256];
+	new string[30];
+	new time[10];
 	new day;
 	new month;
 	new year;
-	sscanf(sqlDateString, "ss", date, time);
-	sscanf(date, "p-ddd", year, month, day);
+	sscanf(sqlDateString, "ss", string, time);
+	sscanf(string, "p-ddd", year, month, day);
 	Format:string("%02d.%02d.%d", day, month, year);
 	if (showTime)
 	{
@@ -38,14 +36,13 @@ FormatDate(sqlDateString[], showTime = true)
 
 FormatTime(seconds)
 {
-	new string[256];
 	new days = seconds / 60 / 60 / 24;
 	seconds -= days * 60 * 60 * 24;
 	new hours = seconds / 60 / 60;
 	seconds -= hours * 60 * 60;
 	new minutes = seconds / 60;
 	seconds -= minutes * 60;
-	Format:string("%d Tage, %02d:%02d:%02d", days, hours, minutes, seconds);
+	FormatNew:string[20]("%d Tage, %02d:%02d:%02d", days, hours, minutes, seconds);
 	return string;
 }
 
@@ -55,13 +52,11 @@ PlayRadioStation(playerID, id)
 	{
 		SetPVarInt(playerID, "RadioOn", true);
 		SetPVarInt(playerID, "LastRadioStation", id);
-		new name[256];
-		Format:name("%s", GetMySQLValue("radiostations", "Name", "ID", val2str(id)));
+		FormatNew:string[100]("%s", GetMySQLValue("radiostations", "Name", "ID", val2str(id)));
 		PlayAudioStreamForPlayer(playerID, GetMySQLValue("radiostations", "URL", "ID", val2str(id)));
-		TextDrawSetString(textDrawRadioStation[playerID], name);
+		TextDrawSetString(textDrawRadioStation[playerID], string);
 		TextDrawShowForPlayer(playerID, textDrawRadioStation[playerID]);
-		new string[256];
-		Format:string("Du hörst jetzt %s", name);
+		Format:string("Du hörst jetzt %s", string);
 		SendClientMessage(playerID, COLOR_INFO, string);
 	}
 	else

@@ -25,7 +25,7 @@ public IRC_OnJoinChannel(botid, channel[])
 public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 {
 	new string[256];
-	new userName[256];
+	new userName[MAX_PLAYER_NAME];
 	new text[256];
 	regex_replace(message, "\\[(.*)\\] (.*)", "\\1", userName, sizeof(userName));
 	regex_replace(message, "\\[(.*)\\] (.*)", "\\2", text, sizeof(text));

@@ -66,9 +66,6 @@ public OnPlayerRequestClass(playerid, classid)
 	}
 	SetPVarInt(playerid, "Skin", skinID);
 	SetPlayerSkin(playerid, skinID);
-	new string[256];
-	Format:string("Player/ClassID/Direction/SkinID: %s/%d/%d/%d", GetPlayerNameEx(playerid), classid, direction, skinID);
-	SendClientMessage(playerid, COLOR_SYSTEM, string);
 	SetPlayerPos(playerid, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ);
 	SetPlayerFacingAngle(playerid, SPAWN_ANGLE);
 	SetPlayerCameraPos(playerid, SPAWN_CAMERAPOSX, SPAWN_CAMERAPOSY, SPAWN_CAMERAPOSZ);
@@ -122,8 +119,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 
 public OnPlayerText(playerid, text[])
 {
-	new string[256];
-	Format:string("[%s] %s", GetPlayerNameEx(playerid), text);
+	FormatNew:string[256]("[%s] %s", GetPlayerNameEx(playerid), text);
 	IRC_Say(ircBot, IRC_CHANNEL, string);
 	SendClientMessageToAllExcept(playerid, COLOR_CHAT, string);
 	SendClientMessage(playerid, COLOR_CHATOWN, string);

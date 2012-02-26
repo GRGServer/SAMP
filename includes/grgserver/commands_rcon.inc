@@ -3,36 +3,16 @@ RCMD:cmds(params[], "List available RCON commands")
 	if (fexist("commands.txt"))
 	{
 		new string[256];
-		new line[256];
-		new count;
 		new File:commands = fopen("commands.txt", io_read);
 		while (fread(commands, string))
 		{
 			new type;
-			new command[256];
 			RemoveNewLine(string);
-			sscanf(string, "cs", type, command);
+			sscanf(string, "cs", type, string);
 			if (type == 'R')
 			{
-				count++;
-				if (count == 1)
-				{
-					Format:line("%s", command);
-				}
-				else
-				{
-					Format:line("%s %s", line, command);
-				}
-				if (count == HELP_COMMANDSPERLINE)
-				{
-					count = 0;
-					print(line);
-				}
+				printf(string);
 			}
-		}
-		if (!count)
-		{
-			print(line);
 		}
 	}
 	return true;

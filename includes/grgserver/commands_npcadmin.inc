@@ -63,7 +63,6 @@ PCMD:recnpc[NPCADMIN](playerid, params[], "Neue NPC Aufnahme erstellen")
 	new playbackName1[256];
 	new playbackName2[256];
 	new playbackName3[256];
-	new string[256];
 	if (sscanf(params, "ssss", recordingName, playbackName1, playbackName2, playbackName3))
 	{
 		if (sscanf(params, "sss", recordingName, playbackName1, playbackName2))
@@ -111,7 +110,7 @@ PCMD:recnpc[NPCADMIN](playerid, params[], "Neue NPC Aufnahme erstellen")
 		npcs++;
 	}
 	StartRecordingPlayerData(playerid, recordingType, recordingName);
-	Format:string("Aufnahme '%s' mit %d weiteren NPCs gestartet", recordingName, npcs);
+	FormatNew:string[256]("Aufnahme '%s' mit %d weiteren NPCs gestartet", recordingName, npcs);
 	SendClientMessage(playerid, COLOR_INFO, string);
 	SendClientMessage(playerid, COLOR_INFO, "Verwende /stoprec zum stoppen.");
 	return COMMAND_OK;

@@ -45,14 +45,11 @@ PCMD:jetpack[ADMIN](playerid, params[], "Bekomme ein Jetpack")
 
 PCMD:money[ADMIN](playerid, params[], "Gebe dir Geld")
 {
-	new string[256];
 	new Float:money;
 	if (!sscanf(params, "f", money))
 	{
 		GivePlayerMoneyEx(playerid, money);
-		Format:string("Du hast dir $%s gegeben", FormatMoney(money));
-		SendClientMessage(playerid, COLOR_INFO, string);
-		Format:string("Neuer Kontostand: %s", FormatMoney(GetPlayerMoneyEx(playerid)));
+		FormatNew:string[60]("Du hast dir $%s gegeben und hast daher nun $%s", FormatMoney(money), FormatMoney(GetPlayerMoneyEx(playerid)));
 		SendClientMessage(playerid, COLOR_INFO, string);
 		return COMMAND_OK;
 	}

@@ -63,8 +63,7 @@ stock str_replace(search[], replace[], source[])
 
 stock val2str(value)
 {
-	new string[256];
-	Format:string("%d", value);
+	FormatNew:string[30]("%d", value);
 	return string;
 }
 
