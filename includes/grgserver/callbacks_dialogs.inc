@@ -2,18 +2,27 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
 	{
-		/* case DIALOG_ACCEPT:
-		{	
+		case DIALOG_ACCEPT:
+		{
 			if (response)
 			{
-				switch (listitem)
+				new missionID;
+				new text[256];
+				sscanf(inputtext, "p:ds", missionID, text);
+				if (strval(GetMySQLValue("missions", "AcceptUserID", "ID", val2str(missionID))))
 				{
-					// TODO: Accept den Auftrag. Momentan nur SendClientMessage drin
-					// TODO: Aufträge werden in der DB gespeichert, wenn angenommen gelöscht von der DB.
-					SendClientMessage(playerid, COLOR_INFO, "Du hast den Auftrag angenommen!");
+					SendClientMessage(playerid, COLOR_ERROR, "Dieser Auftrag wurde bereits von einem anderen Spieler angenommen!");
+				}
+				else
+				{
+					SetMySQLValue("missions", "AcceptUserID", val2str(GetUserID(playerid)), "ID", val2str(missionID));
+					SendClientMessage(playerid, COLOR_INFO, "Du hast den Auftrag angenommen");
+					new string[100];
+					Format:string("%s hat deinen Auftrag (Auftragsnummer: %d) angenommen", GetPlayerNameEx(playerid), missionID);
+					SendClientMessage(strval(GetMySQLValue("missions", "CreatorUserID", "ID", val2str(missionID))), COLOR_INFO, string);
 				}
 			}
-		}*/					
+		}
 		/*case DIALOG_ADDHOTELROOM:
 		{
 			if (response)
@@ -392,20 +401,21 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		}
 		case DIALOG_ORDERVEHICLE:
 		{
-			if(response)
+			if (response)
 			{
-				switch(listitem)
+				new modelID = strval(GetMySQLValue("vehiclemodels", "ModelID", "Name", inputtext));
+				if (modelID)
 				{
-					case 1:
+					MySQLQuery("INSERT INTO `missions` (`Name`, `CreatorUserID`) VALUES ('%s', '%d')", "%s abholen", playerid, MySQLEscapeString(inputtext));// TODO: Change name
+					new missionID = mysql_insert_id();
+					if (missionID)
 					{
-						MySQLQuery("INSERT INTO `missions`(`Name`, `UserID`) VALUES ('%s','%d')", listitem, GetUserID(playerid));
-						printf("Mission Gespeichert mit dem name %s (UserID: %d)", listitem, GetUserID(playerid));
+						MySQLQuery("INSERT INTO `missiondata` (`MissionID`, `Name`, `Value`) VALUES ('%d', 'Type', 'GetOrderedVehicle'), ('%d', 'VehicleModelID', '%d')", missionID, missionID, modelID);
+						new string[50];
+						Format:string("Auftrag erstellt (Auftragsnummer: %d)", mysql_insert_id());
+						SendClientMessage(playerid, COLOR_INFO, string);
 					}
 				}
-			}
-			else
-			{
-				SendClientMessage(playerid,COLOR_INFO,"Du hast den vorgang abgebrochen!");
 			}
 		}
 		case DIALOG_RADIO:

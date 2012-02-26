@@ -50,19 +50,6 @@ enum
 }
 
 
-// Jobs
-enum
-{
-	JOB_VEHICLEDEALER = 1,
-	JOB_ADAC = 2,
-	JOB_IMMOBILIENMARKLER = 3,
-	JOB_TRUCKER = 4,
-	JOB_POLICE = 5,
-	JOB_SANI = 6,
-	JOB_BANK = 7
-}
-
-
 // Pickup types
 enum
 {

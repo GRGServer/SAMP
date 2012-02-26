@@ -5,16 +5,14 @@ CMD:about(playerid, params[], "Informationen über dieses Script")
 }
 CMD:accept(playerid, params[], "Annehmen eines Auftrages")
 {
-/*	new JobID = GetPVarInt(playerid, "JobID");
-	if (JobID == JOB_TRUCKER)
-	{*/
-		ShowDialog(playerid, DIALOG_ACCEPT);
-		return COMMAND_OK;
-	/* }
-	else
+	switch (GetJobID(playerid))
 	{
-		return COMMAND_PERMISSION_DENIED;
-	}*/
+		case JOB_ADAC, JOB_AMBULANCE, JOB_POLICE, JOB_TRUCKER:
+			ShowDialog(playerid, DIALOG_ACCEPT);
+		default:
+			return COMMAND_PERMISSION_DENIED;
+	}
+	return COMMAND_OK;
 }
 
 CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
@@ -185,16 +183,12 @@ CMD:motor(playerid, params[], "Starten oder stoppen des Motors deines Fahrzeugs"
 
 CMD:ordervehicle(playerid, params[], "Fahrzeug bestellen")
 {
-	new JobID = GetPVarInt(playerid, "JobID");
-	if (JobID == JOB_VEHICLEDEALER)
+	if (GetJobID(playerid) == JOB_VEHICLEDEALER)
 	{
 		ShowDialog(playerid, DIALOG_ORDERVEHICLE);
 		return COMMAND_OK;
 	}
-	else
-	{
-		return COMMAND_PERMISSION_DENIED;
-	}
+	return COMMAND_PERMISSION_DENIED;
 }
 
 CMD:radio(playerid, params[], "Webradio aktivieren")

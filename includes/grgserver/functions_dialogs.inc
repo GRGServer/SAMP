@@ -2,6 +2,29 @@ ShowDialog(playerID, dialogID, ...)
 {
 	switch (dialogID)
 	{
+		case DIALOG_ACCEPT:
+		{
+			new missionList[2048];
+			MySQLQuery("SELECT * FROM `missions` WHERE `JobID` = '%d' AND `AcceptUserID` = '0' ORDER BY `Name` ASC", GetJobID(playerID));
+			mysql_store_result();
+			while (FetchMySQLRow())
+			{
+				if (strlen(missionList))
+				{
+					Format:missionList("%s\n", missionList);
+				}
+				Format:missionList("%s%s: %s", missionList, GetMySQLField("ID"), GetMySQLField("Name"));
+			}
+			mysql_free_result();
+			if (strlen(missionList))
+			{
+				ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Auftragsannahme", missionList, "Annehmen", "Abbrechen");
+			}
+			else
+			{
+				SendClientMessage(playerID, COLOR_ERROR, "Es stehen derzeit keine Aufträge in deinem Beruf zur Verfügung!");
+			}
+		}
 		case DIALOG_ADDBUILDING_NAME:
 		{
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Name eingeben", "Gebe den Name für das Gebäude ein.", "Erstellen", "Zurück");
@@ -114,22 +137,6 @@ ShowDialog(playerID, dialogID, ...)
 			}
 			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Fahrzeug bestellen", vehicleList, "Bestellen", "Abbrechen");
-		}
-		case DIALOG_ACCEPT:
-		{
-			new missionsList[2048];
-			mysql_query("SELECT FROM* `missions` ORDER BY `Name` ASC");
-			mysql_store_result();
-			while(FetchMySQLRow())
-			{
-				if	(strlen(missionsList))
-				{
-					Format:missionsList("%s%s", missionsList);
-				}
-				Format:missionsList("%s%s", missionsList, GetMySQLField("Name"));
-			}
-			mysql_free_result();
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Auftrags Annahme", missionsList, "Annehmen", "Abbrechen");
 		}
 		case DIALOG_RADIO:
 		{

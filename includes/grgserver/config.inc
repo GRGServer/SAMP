@@ -35,6 +35,15 @@
 #define IRC_USERNAME				"grgserver"
 
 
+// Jobs
+#define JOB_ADAC					2
+#define JOB_AMBULANCE				6
+#define JOB_BANK					7
+#define JOB_ESTATEAGENT				3
+#define JOB_POLICE					5
+#define JOB_TRUCKER					4
+#define JOB_VEHICLEDEALER			1
+
 
 // MySQL credentials
 #define MYSQL_DATABASE				"grgserver"

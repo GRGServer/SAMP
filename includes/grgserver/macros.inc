@@ -18,6 +18,7 @@ for(new i_%0 = 0; ; ++i_%0) \
 // Functions
 #define Format:%0(%1) format(%0, sizeof(%0), %1)
 #define FormatMoney(%0) FormatNumber(%0, 2, '.', ',')
+#define GetJobID(%0) GetPVarInt(%0, "JobID")
 #define GetPlayerMoneyEx(%0) GetPVarFloat(%0, "Money")
 #define GetUserDBValue(%0,%1) GetMySQLValue("users", %1, "UserID", val2str(GetPVarInt(%0, "UserID")))
 #define GetUserID(%0) GetPVarInt(%0, "UserID")
