@@ -16,9 +16,6 @@
 #define COMMAND:%1(%2)          \
 			forward cmd_%1(%2); \
 			public cmd_%1(%2)		
-			
-#define CMD:%1(%2) \
-			COMMAND:%1(%2)
 
 #define command(%1,%2,%3) \
 			COMMAND:%1(%2, %3)      

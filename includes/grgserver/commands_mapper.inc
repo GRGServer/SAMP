@@ -1,4 +1,4 @@
-PCMD:addbuilding[MAPPER](playerid, params[])
+PCMD:addbuilding[MAPPER](playerid, params[], "Gebäude erstellen")
 {
 	new Float:price;
 	if (sscanf(params, "f", price))
@@ -11,7 +11,7 @@ PCMD:addbuilding[MAPPER](playerid, params[])
 	return COMMAND_OK;
 }
 
-PCMD:addpickup[MAPPER](playerid, params[])
+PCMD:addpickup[MAPPER](playerid, params[], "Pickup erstellen")
 {
 	new type[256];
 	new string[256];
@@ -42,7 +42,7 @@ PCMD:addpickup[MAPPER](playerid, params[])
 	return COMMAND_ERROR;
 }
 
-PCMD:saveveh[MAPPER](playerid, params[])
+PCMD:saveveh[MAPPER](playerid, params[], "Aktuelles Fahrzeug als kaufbares Fahrzeug speichern")
 {
 	new price;
 	if (sscanf(params, "d", price))
@@ -80,7 +80,7 @@ PCMD:saveveh[MAPPER](playerid, params[])
 	return COMMAND_ERROR;
 }
 
-PCMD:setexit[MAPPER](playerid, params[])
+PCMD:setexit[MAPPER](playerid, params[], "Position festlegen, an welcher der Spieler stehen soll, wenn er das Gebäude verlässt")
 {
 	new buildingID;
 	if (sscanf(params, "d", buildingID))
@@ -114,7 +114,7 @@ PCMD:setexit[MAPPER](playerid, params[])
 	}
 }
 
-PCMD:veh[MAPPER](playerid, params[])
+PCMD:veh[MAPPER](playerid, params[], "Fahrzeug spawnen")
 {
 	new vehicleName[256];
 	new modelID;

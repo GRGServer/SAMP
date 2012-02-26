@@ -1,4 +1,4 @@
-NCMD:npccmd(playerid, params[])
+NCMD:npccmd(playerid, params[], "Befehle zurück an den Server schicken")
 {
 	new command[256];
 	if (!sscanf(params, "s", command))

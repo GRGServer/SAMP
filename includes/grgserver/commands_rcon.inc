@@ -1,4 +1,4 @@
-RCMD:cmds(params[])
+RCMD:cmds(params[], "List available RCON commands")
 {
 	if (fexist("commands.txt"))
 	{
@@ -38,7 +38,7 @@ RCMD:cmds(params[])
 	return true;
 }
 
-RCMD:reloadpermissions(params[])
+RCMD:reloadpermissions(params[], "Reload all permissions from database")
 {
 	print("Reloading permissions...");
 	mysql_query("SELECT * FROM `permissions`");
@@ -61,7 +61,7 @@ RCMD:reloadpermissions(params[])
 	return true;
 }
 
-RCMD:reloadpickups(params[])
+RCMD:reloadpickups(params[], "Reload all pickups from database")
 {
 	print("Reloading pickups...");
 	ReloadPickups();
@@ -69,7 +69,7 @@ RCMD:reloadpickups(params[])
 	return true;
 }
 
-RCMD:showmysqlinfo(params[])
+RCMD:showmysqlinfo(params[], "Show various information about the MySQL connection (i.e. number of occured warnings)")
 {
 	printf("Number of warnings: %d", mysql_warning_count());
 	return true;

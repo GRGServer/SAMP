@@ -1,4 +1,4 @@
-PCMD:kick[MODERATOR](playerid, params[])
+PCMD:kick[MODERATOR](playerid, params[], "Spieler vom Server kicken")
 {
 	new targetPlayerID;
 	new reason[256];

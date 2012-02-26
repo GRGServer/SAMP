@@ -1,4 +1,4 @@
-PCMD:goto[TELEPORT](playerid, params[])
+PCMD:goto[TELEPORT](playerid, params[], "Zu einen anderen Spieler teleportieren")
 {
 	new targetPlayerID;
 	if (sscanf(params, "u", targetPlayerID))
@@ -26,7 +26,7 @@ PCMD:goto[TELEPORT](playerid, params[])
 	return COMMAND_ERROR;
 }
 
-PCMD:showinterior[TELEPORT](playerid, params[])
+PCMD:showinterior[TELEPORT](playerid, params[], "In einen Interior teleportieren")
 {
 	if (GetPVarInt(playerid, "CurrentBuildingID"))
 	{
@@ -48,7 +48,7 @@ PCMD:showinterior[TELEPORT](playerid, params[])
 	}
 }
 
-PCMD:teleport[TELEPORT](playerid, params[])
+PCMD:teleport[TELEPORT](playerid, params[], "An einen vordefinierten Ort teleportieren")
 {
 	ShowDialog(playerid, DIALOG_TELEPORTLOCATIONS);
 	return COMMAND_OK;

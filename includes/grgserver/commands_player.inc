@@ -1,21 +1,20 @@
-CMD:about(playerid, params[])
+CMD:about(playerid, params[], "Informationen über dieses Script")
 {
-	SendClientMessage(playerid, COLOR_INFO, "Created by Aerox_Tobi (aerox@grgserver.net) and Programie (programie@selfcoders.com)");
+	SendClientMessage(playerid, COLOR_INFO, "Erstellt von Aerox_Tobi (aerox@grgserver.net) und Programie (programie@selfcoders.com)");
 	return COMMAND_OK;
 }
 
-CMD:cmds(playerid, params[])
+CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
 {
 	if (fexist("commands.txt"))
 	{
 		new string[256];
-		new line[256];
-		new count;
 		new File:commands = fopen("commands.txt", io_read);
 		while (fread(commands, string))
 		{
 			new type;
 			new command[256];
+			new infoText[256];
 			new permission[256];
 			RemoveNewLine(string);
 			if (sscanf(string, "css", type, command, permission))
@@ -25,6 +24,7 @@ CMD:cmds(playerid, params[])
 			if (type)
 			{
 				new showCommand;
+				fread(commands, infoText);
 				if (type == '-')
 				{
 					showCommand = true;
@@ -44,26 +44,10 @@ CMD:cmds(playerid, params[])
 				}
 				if (showCommand)
 				{
-					count++;
-					if (count == 1)
-					{
-						Format:line("%s", command);
-					}
-					else
-					{
-						Format:line("%s %s", line, command);
-					}
-					if (count == HELP_COMMANDSPERLINE)
-					{
-						count = 0;
-						SendClientMessage(playerid, COLOR_INFO, line);
-					}
+					Format:string("%s - %s", command, infoText);
+					SendClientMessage(playerid, COLOR_INFO, string);
 				}
 			}
-		}
-		if (!count)
-		{
-			SendClientMessage(playerid, COLOR_INFO, line);
 		}
 		return COMMAND_OK;
 	}
@@ -73,7 +57,7 @@ CMD:cmds(playerid, params[])
 	}
 }
 
-CMD:exit(playerid, params[])
+CMD:exit(playerid, params[], "Gebäude verlassen")
 {
 	if (GetPVarType(playerid, "ShowInterior_OldInterior") == PLAYER_VARTYPE_NONE)
 	{
@@ -99,7 +83,7 @@ CMD:exit(playerid, params[])
 	}
 }
 
-CMD:getbalance(playerid, params[])
+CMD:getbalance(playerid, params[], "Kontostand anzeigen")
 {
 	new string[256];
 	Format:string("Aktueller Kontostand: $%s", FormatMoney(GetPlayerMoneyEx(playerid)));
@@ -107,13 +91,13 @@ CMD:getbalance(playerid, params[])
 	return COMMAND_OK;
 }
 
-CMD:help(playerid, params[])
+CMD:help(playerid, params[], "Hilfe anzeigen")
 {
 	SendClientMessage(playerid, COLOR_INFO, "Verwende /cmds um eine Liste an Befehlen zu sehen.");
 	return COMMAND_OK;
 }
 
-CMD:me(playerid, params[])
+CMD:me(playerid, params[], "Sagen, was du machst (z.B. '/me rennt Admin hinterher' sehen alle Spieler als '*<Dein Name> rennt Admin hinterher')")
 {
 	if (strlen(params))
 	{
@@ -129,7 +113,7 @@ CMD:me(playerid, params[])
 	}
 }
 
-CMD:motor(playerid, params[])
+CMD:motor(playerid, params[], "Starten oder stoppen des Motors deines Fahrzeugs")
 {
 	if (!IsPlayerInAnyVehicle(playerid))
 	{
@@ -177,7 +161,7 @@ CMD:motor(playerid, params[])
 	return COMMAND_ERROR;
 }
 
-CMD:ordervehicle(playerid, params[])
+CMD:ordervehicle(playerid, params[], "Fahrzeug bestellen")
 {
 	new JobID = GetPVarInt(playerid, "JobID");
 	if (JobID == JOB_VEHICLEDEALER)
@@ -191,7 +175,7 @@ CMD:ordervehicle(playerid, params[])
 	return COMMAND_OK;
 }
 
-CMD:radio(playerid, params[])
+CMD:radio(playerid, params[], "Webradio aktivieren")
 {
 	if (IsPlayerInAnyVehicle(playerid))
 	{
@@ -204,7 +188,7 @@ CMD:radio(playerid, params[])
 	}
 }
 
-CMD:stats(playerid, params[])
+CMD:stats(playerid, params[], "Informationen über deinen Spieler anzeigen")
 {
 	ShowDialog(playerid, DIALOG_STATS);
 	return COMMAND_OK;

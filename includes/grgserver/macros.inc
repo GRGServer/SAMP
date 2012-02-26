@@ -9,9 +9,10 @@ for(new i_%0 = 0; ; ++i_%0) \
 
 
 // Commands
-#define NCMD:%0(%1,%2) COMMAND:%0(%1, %2) if (!IsPlayerNPC(%1)) return COMMAND_NPC_ONLY; else
-#define PCMD:%0[%1](%2,%3) COMMAND:%0(%2, %3) if (!permissions[%2][PERMISSION_%1]) return COMMAND_PERMISSION_DENIED; else
-#define RCMD:%0(%1) forward rcmd_%0(%1); public rcmd_%0(%1)
+#define CMD:%0(%1,%2,%3) COMMAND:%0(%1, %2)
+#define NCMD:%0(%1,%2,%3) COMMAND:%0(%1, %2) if (!IsPlayerNPC(%1)) return COMMAND_NPC_ONLY; else
+#define PCMD:%0[%1](%2,%3,%4) COMMAND:%0(%2, %3) if (!permissions[%2][PERMISSION_%1]) return COMMAND_PERMISSION_DENIED; else
+#define RCMD:%0(%1,%2) forward rcmd_%0(%1); public rcmd_%0(%1)
 
 
 // Functions

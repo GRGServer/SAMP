@@ -1,4 +1,4 @@
-PCMD:givepermission[SERVERADMIN](playerid, params[])
+PCMD:givepermission[SERVERADMIN](playerid, params[], "Rechte an einen Spieler geben")
 {
 	new targetPlayerID;
 	new permissionString[256];
@@ -78,13 +78,13 @@ PCMD:givepermission[SERVERADMIN](playerid, params[])
 	}
 }
 
-PCMD:gmx[SERVERADMIN](playerid, params[])
+PCMD:gmx[SERVERADMIN](playerid, params[], "Gamemode neustarten")
 {
 	ShowDialog(playerid, DIALOG_RESTARTGAMEMODE);
 	return COMMAND_OK;
 }
 
-PCMD:rc[SERVERADMIN](playerid, params[])
+PCMD:rc[SERVERADMIN](playerid, params[], "RCON Befehl ausführen")
 {
 	if (strlen(params))
 	{
