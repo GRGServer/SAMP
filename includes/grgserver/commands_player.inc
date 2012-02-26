@@ -44,7 +44,15 @@ CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
 				}
 				if (showCommand)
 				{
-					Format:string("%s - %s", command, infoText);
+					new commandLength = strlen(command);
+					for (new character = 0; character < MAX_FUNC_NAME; character++)
+					{
+						if (character >= commandLength)
+						{
+							command[character] = ' ';
+						}
+					}
+					Format:string("%s{%x} - %s", command, COLOR_INFO, infoText);
 					SendClientMessage(playerid, COLOR_INFO, string);
 				}
 			}
