@@ -44,6 +44,7 @@ CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
 				}
 				if (showCommand)
 				{
+					/* TODO: Show command list in two columns
 					new commandLength = strlen(command);
 					for (new character = 0; character < MAX_FUNC_NAME; character++)
 					{
@@ -51,8 +52,8 @@ CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
 						{
 							command[character] = ' ';
 						}
-					}
-					Format:string("%s{%x} - %s", command, COLOR_INFO, infoText);
+					}*/
+					Format:string("%s{FF8C55} - %s", command, infoText);
 					SendClientMessage(playerid, COLOR_INFO, string);
 				}
 			}
@@ -175,12 +176,12 @@ CMD:ordervehicle(playerid, params[], "Fahrzeug bestellen")
 	if (JobID == JOB_VEHICLEDEALER)
 	{
 		ShowDialog(playerid, DIALOG_ORDERVEHICLE);
+		return COMMAND_OK;
 	}
 	else
 	{
 		return COMMAND_PERMISSION_DENIED;
 	}
-	return COMMAND_OK;
 }
 
 CMD:radio(playerid, params[], "Webradio aktivieren")

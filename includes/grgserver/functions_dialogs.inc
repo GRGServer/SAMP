@@ -101,7 +101,19 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_ORDERVEHICLE:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Fahrzeug bestellen", "Landstalker\nBravura\nBuffalo\nLinerunner\nPerenniel\nSentinel\nFiretruck", "Bestellen", "Abbrechen");
+			new vehicleList[2048];
+			mysql_query("SELECT * FROM `vehiclemodels` ORDER BY `Name` ASC");
+			mysql_store_result();
+			while (FetchMySQLRow())
+			{
+				if (strlen(vehicleList))
+				{
+					Format:vehicleList("%s\n", vehicleList);
+				}
+				Format:vehicleList("%s%s", vehicleList, GetMySQLField("Name"));
+			}
+			mysql_free_result();
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Fahrzeug bestellen", vehicleList, "Bestellen", "Abbrechen");
 		}
 		case DIALOG_RADIO:
 		{
