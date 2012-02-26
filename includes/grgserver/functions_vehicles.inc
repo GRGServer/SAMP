@@ -24,16 +24,18 @@ ReloadSavedVehicles()
 	for (new vehicleID = 0; vehicleID < MAX_VEHICLES; vehicleID++)
 	{
 		DestroyVehicle(vehicleID);
-		vehicles[vehicleID][VEHICLE_SAVEID] = 0;
 		vehicles[vehicleID][VEHICLE_CURRENTFUEL] = 0;
+		vehicles[vehicleID][VEHICLE_JOBID] = 0;
+		vehicles[vehicleID][VEHICLE_SAVEID] = 0;
 	}
 	mysql_query("SELECT * FROM `savedvehicles`");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
 		new vehicleID = CreateVehicle(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1);
-		vehicles[vehicleID][VEHICLE_SAVEID] = strval(GetMySQLField("ID"));
 		vehicles[vehicleID][VEHICLE_CURRENTFUEL] = floatstr(GetMySQLField("CurrentFuel"));
+		vehicles[vehicleID][VEHICLE_SAVEID] = strval(GetMySQLField("ID"));
+		vehicles[vehicleID][VEHICLE_JOBID] = strval(GetMySQLField("JobID"));
 		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
 		ChangeVehicleColor(vehicleID, strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")));
 		ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));

@@ -25,7 +25,7 @@ CMD:cmds(playerid, params[])
 			if (type)
 			{
 				new showCommand;
-				if (type == ' ')
+				if (type == '-')
 				{
 					showCommand = true;
 					Format:command("{00FF00}/%s", command);
@@ -144,6 +144,7 @@ CMD:motor(playerid, params[])
 	if (!vehicles[vehicleID][VEHICLE_SAVEID] && !permissions[playerid][PERMISSION_MAPPER])
 	{
 		SendClientMessage(playerid, COLOR_ERROR, "Dieses Fahrzeug kann nur von der Gruppe 'Mapper' verwendet werden!");
+		RemovePlayerFromVehicle(playerid);
 		return COMMAND_ERROR;
 	}
 	new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID])));

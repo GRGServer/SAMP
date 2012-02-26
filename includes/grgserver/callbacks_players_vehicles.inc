@@ -1,25 +1,26 @@
 public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 {
-	if (!ispassenger && !IsPlayerNPC(playerid))
+	if (IsPlayerNPC(playerid))
+	{
+		return true;
+	}
+	if (!ispassenger)
 	{
 		SetVehicleEngineState(vehicleid, false);
-		if (vehicles[vehicleid][VEHICLE_SAVEID])
+		if (!vehicles[vehicleid][VEHICLE_SAVEID] && !permissions[playerid][PERMISSION_MAPPER])
 		{
-			new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleid][VEHICLE_SAVEID])));
-			if (ownerUserID == GetUserID(playerid))
-			{
-				return true;
-			}
-			if (ownerUserID)
-			{
-				SendClientMessage(playerid, COLOR_ERROR, "Dieses Fahrzeug besitzt bereits ein anderer Spieler");
-				RemovePlayerFromVehicle(playerid);
-			}
-			else
-			{
-				ShowDialog(playerid, DIALOG_BUYVEHICLE, FormatMoney(floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleid][VEHICLE_SAVEID])))));
-				
-			}
+			SendClientMessage(playerid, COLOR_ERROR, "Dieses Fahrzeug kann nur von der Gruppe 'Mapper' verwendet werden!");
+			RemovePlayerFromVehicle(playerid);
+		}
+		new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleid][VEHICLE_SAVEID])));
+		if (!ownerUserID)
+		{
+			ShowDialog(playerid, DIALOG_BUYVEHICLE, FormatMoney(floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleid][VEHICLE_SAVEID])))));
+		}
+		if (ownerUserID != GetUserID(playerid))
+		{
+			SendClientMessage(playerid, COLOR_ERROR, "Dieses Fahrzeug gehört bereits ein anderer Spieler");
+			RemovePlayerFromVehicle(playerid);
 		}
 	}
 	if (GetPVarInt(playerid, "RadioOn") && GetPVarInt(playerid, "LastRadioStation"))

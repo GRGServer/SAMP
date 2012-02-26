@@ -16,16 +16,17 @@ enum enum_pickup
 
 enum enum_pickupLoader
 {
-	PICKUPLOADER_TYPE[256],
 	Float:PICKUPLOADER_POSX,
 	Float:PICKUPLOADER_POSY,
-	Float:PICKUPLOADER_POSZ
+	Float:PICKUPLOADER_POSZ,
+	PICKUPLOADER_TYPE[256]
 }
 
 enum enum_vehicle
 {
-	VEHICLE_SAVEID,
 	Float:VEHICLE_CURRENTFUEL,
+	VEHICLE_JOBID,
+	VEHICLE_SAVEID,
 }
 
 enum enum_vehicleModel
