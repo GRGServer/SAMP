@@ -5,6 +5,7 @@ RCMD:cmds(params[], "List available RCON commands")
 		new string[256];
 		new infoText[256];
 		new File:commands = fopen("commands.txt", io_read);
+		print("Available commands:");
 		while (fread(commands, string))
 		{
 			new type;
@@ -14,10 +15,9 @@ RCMD:cmds(params[], "List available RCON commands")
 			sscanf(string, "cs", type, string);
 			if (type == 'R')
 			{
-				printf("\n> %s - %s", string, infoText);
+				printf(" %s - %s", string, infoText);
 			}
 		}
-		print("\n");
 	}
 	return true;
 }
