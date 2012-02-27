@@ -15,9 +15,10 @@ RCMD:cmds(params[], "List available RCON commands")
 			sscanf(string, "cs", type, string);
 			if (type == 'R')
 			{
-				printf(" %s - %s", string, infoText);
+				printf("  %s - %s", string, infoText);
 			}
 		}
+		print("  cmdlist - Internal commands");
 	}
 	return true;
 }
