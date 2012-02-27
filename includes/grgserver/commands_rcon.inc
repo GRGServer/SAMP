@@ -11,7 +11,12 @@ RCMD:cmds(params[], "List available RCON commands")
 			sscanf(string, "cs", type, string);
 			if (type == 'R')
 			{
-				printf(string);
+				print(string);
+			}
+			fread(commands, string);
+			if (type == 'R')
+			{
+				printf("> %s", string);
 			}
 		}
 	}
