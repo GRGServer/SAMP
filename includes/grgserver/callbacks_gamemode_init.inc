@@ -53,11 +53,8 @@ public OnGameModeInit()
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
-	print("* Loading vehicle models...");
 	ReloadVehicleModels();
-	print("* Loading saved vehicles...");
 	ReloadSavedVehicles();
-	print("* Creating pickups...");
 	ReloadPickups();
 	print("* Creating server wide TextDraws...");
 	textDrawSpeedoColumn1 = TextDrawCreate(480, 400, "Geschwindigkeit:~n~Zustand:~n~Tank:~n~Verbrauch/100km:");

@@ -21,6 +21,7 @@ GetVehicleEngineState(vehicleID)
 
 ReloadSavedVehicles()
 {
+	print("* Destroying vehicles...");
 	for (new vehicleID = 0; vehicleID < MAX_VEHICLES; vehicleID++)
 	{
 		DestroyVehicle(vehicleID);
@@ -28,6 +29,7 @@ ReloadSavedVehicles()
 		vehicles[vehicleID][VEHICLE_JOBID] = 0;
 		vehicles[vehicleID][VEHICLE_SAVEID] = 0;
 	}
+	print("* Loading saved vehicles...");
 	mysql_query("SELECT * FROM `savedvehicles`");
 	mysql_store_result();
 	while (FetchMySQLRow())
@@ -41,6 +43,7 @@ ReloadSavedVehicles()
 		ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
 	}
 	mysql_free_result();
+	print("* Adding vehicle components...");
 	mysql_query("SELECT * FROM `vehiclecomponents`");
 	mysql_store_result();
 	while (FetchMySQLRow())
@@ -59,6 +62,7 @@ ReloadSavedVehicles()
 
 ReloadVehicleModels()
 {
+	print("* Loading vehicle models...");
 	mysql_query("SELECT * FROM `vehiclemodels`");
 	mysql_store_result();
 	while (FetchMySQLRow())
