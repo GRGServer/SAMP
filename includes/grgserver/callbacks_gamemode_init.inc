@@ -4,6 +4,7 @@ public OnGameModeInit()
 	printf("    SVN Revision: %d", COMPILER_SVN_REVISION);
 	printf("    Compile date: %s %s", COMPILER_DATE, COMPILER_TIME);
 	printf("    Last committer: %s", COMPILER_SVN_LASTCOMMITTER);
+	SetGameModeText("Loading gamemode...");
 	if (fexist("svn_changes"))
 	{
 		new logLine[256];
