@@ -19,7 +19,7 @@ enum enum_pickupLoader
 	Float:PICKUPLOADER_POSX,
 	Float:PICKUPLOADER_POSY,
 	Float:PICKUPLOADER_POSZ,
-	PICKUPLOADER_TYPE[10]
+	PICKUPLOADER_TYPE[20]
 }
 
 enum enum_vehicle
