@@ -20,11 +20,11 @@ PCMD:addpickup[MAPPER](playerid, params[], "Pickup erstellen")
 	new Float:posZ;
 	if (sscanf(params, "s", type))
 	{
-		CmdUsageMsg(playerid, "addpickup", "GASSTATION");
+		CmdUsageMsg(playerid, "addpickup", "GASSTATION/VEHICLEDEALER");
 		return COMMAND_USAGE;
 	}
 	Format:type("%s", strtoupper(type));
-	if (!strcmp(type, "GASSTATION", true))
+	if (!strcmp(type, "GASSTATION", true) || !strcmp(type, "VEHICLEDEALER", true))
 	{
 		GetPlayerPos(playerid, posX, posY, posZ);
 		new id = AddPickup(-1, type, posX, posY, posZ, true);

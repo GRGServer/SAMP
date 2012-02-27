@@ -543,6 +543,25 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				mysql_free_result();
 			}
 		}
+		case DIALOG_VEHICLEDEALER:
+		{
+			if(response)
+			{
+				switch(listitem)
+				{
+					case 1: // Fahrzeug Bestellen
+					{
+						ShowDialog(playerid, DIALOG_ORDERVEHICLE);
+					}
+					case 2: // Finazübersicht
+					{
+					}
+					case 3: // Kündigen
+					{
+					}
+				}
+			}
+		}
 	}
 	return false;
 }

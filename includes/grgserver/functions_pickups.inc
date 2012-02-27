@@ -63,6 +63,13 @@ GetPickupInfoByType(pickupID, type[], &typeID, &modelID, &spawnType)
 		spawnType = 23;
 		return true;
 	}
+	if (!strcmp(type, "VEHICLEDEALER", true))
+	{
+		typeID = PICKUPTYPE_VEHICLEDEALER;
+		modelID = PICKUP_VEHICLEDEALER;
+		spawnType = 23;
+		return true;
+	}
 	return false;
 }
 

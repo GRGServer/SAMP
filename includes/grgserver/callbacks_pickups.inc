@@ -82,6 +82,17 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 				}
 			}
 		}
+		case PICKUPTYPE_VEHICLEDEALER:
+		{
+			if (GetJobID(playerid) == JOB_VEHICLEDEALER)
+			{
+				ShowDialog(playerid, DIALOG_VEHICLEDEALER);
+			}
+			else
+			{
+				SendClientMessage(playerid, COLOR_INFO,"Du bist nicht der Chef!");
+			}
+		}
 		default:
 		{
 			printf("Invalid pickup type: %d", pickups[pickupid][PICKUP_TYPE]);

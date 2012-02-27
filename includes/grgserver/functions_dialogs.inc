@@ -244,6 +244,14 @@ ShowDialog(playerID, dialogID, ...)
 			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Teleportieren", locations, "OK", "Abbrechen");
 		}
+		case DIALOG_VEHICLEDEALER:
+		{
+			new options[2048];
+			Format:options("Fahrzeug Bestellen");
+			Format:options("Finanzen", options);
+			Format:options("Kündigen", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Autohändler Übersicht", options, "OK", "Abbrechen");
+		}
 	}
 }
 
