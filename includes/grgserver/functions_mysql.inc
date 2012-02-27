@@ -13,17 +13,10 @@ GetMySQLField(field[])
 
 GetMySQLValue(table[], field[], checkColumn[], checkValue[], whereOperator[] = "=")
 {
-	printf("[GetMySQLValue] %s, %s, %s, %s, %s", table, field, checkColumn, checkValue, whereOperator);
-	Format:sqlQuery("SELECT `%s` FROM `%s` WHERE `%s` %s '%s'", MySQLEscapeString(field), MySQLEscapeString(table), MySQLEscapeString(checkColumn), whereOperator, MySQLEscapeString(checkValue));
-	mysql_query(sqlQuery);
-	print("[GetMySQLValue] Query sent");
+	MySQLQuery("SELECT `%s` FROM `%s` WHERE `%s` %s '%s'", MySQLEscapeString(field), MySQLEscapeString(table), MySQLEscapeString(checkColumn), whereOperator, MySQLEscapeString(checkValue));
 	mysql_store_result();
-	print("[GetMySQLValue] Result stored");
 	FormatNew:string[512]("%s", GetMySQLField(field));
-	print("[GetMySQLValue] Result fetched");
-	printf("[GetMySQLValue] Result: %s", string);
 	mysql_free_result();
-	print("[GetMySQLValue] Result freed");
 	return string;
 }
 
