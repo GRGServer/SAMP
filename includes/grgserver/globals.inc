@@ -7,7 +7,7 @@ new Text:textDrawClock;
 
 
 // Strings
-new sqlQuery[2048];
+new sqlQuery[1024];
 
 
 // Arrays
