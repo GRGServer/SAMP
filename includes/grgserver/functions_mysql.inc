@@ -1,16 +1,13 @@
 FetchMySQLRow()
 {
 	new Line[1024];
-	print("Fetch MySQL row");
 	return mysql_fetch_row(Line);
 }
 
 GetMySQLField(field[])
 {
 	new value[1024];
-	printf("Get MySQL field: %s", field);
 	mysql_fetch_field(field, value);
-	printf("Field value: %s", value);
 	return value;
 }
 
@@ -22,7 +19,7 @@ GetMySQLValue(table[], field[], checkColumn[], checkValue[], whereOperator[] = "
 	print("[GetMySQLValue] Query sent");
 	mysql_store_result();
 	print("[GetMySQLValue] Result stored");
-	FormatNew:string[1024]("%s", GetMySQLField(field));
+	FormatNew:string[512]("%s", GetMySQLField(field));
 	print("[GetMySQLValue] Result fetched");
 	printf("[GetMySQLValue] Result: %s", string);
 	mysql_free_result();
@@ -32,10 +29,8 @@ GetMySQLValue(table[], field[], checkColumn[], checkValue[], whereOperator[] = "
 
 MySQLEscapeString(string[])
 {
-	new escapedString[256];
-	printf("Escape: %s", string);
+	new escapedString[512];
 	mysql_real_escape_string(string, escapedString);
-	printf("Escaped: %s", escapedString);
 	return escapedString;
 }
 
