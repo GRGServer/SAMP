@@ -8,14 +8,16 @@ RCMD:cmds(params[], "List available RCON commands")
 		while (fread(commands, string))
 		{
 			new type;
-			RemoveNewLine(string);
-			sscanf(string, "cs", type, string);
 			fread(commands, infoText);
+			RemoveNewLine(string);
+			RemoveNewLine(infoText);
+			sscanf(string, "cs", type, string);
 			if (type == 'R')
 			{
-				printf("> %s - %s", string, infoText);
+				printf("\n> %s - %s", string, infoText);
 			}
 		}
+		print("\n");
 	}
 	return true;
 }
