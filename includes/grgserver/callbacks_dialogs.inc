@@ -402,8 +402,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					new missionID = mysql_insert_id();
 					if (missionID)
 					{
+						new string[50];
 						MySQLQuery("INSERT INTO `missiondata` (`MissionID`, `Name`, `Value`) VALUES ('%d', 'Type', 'GetOrderedVehicle'), ('%d', 'VehicleModelID', '%d')", missionID, missionID, modelID);
-						FormatNew:string[50]("Auftrag erstellt (Auftragsnummer: %d)", mysql_insert_id());
+						Format:string("Auftrag erstellt (Auftragsnummer: %d)", mysql_insert_id());
 						SendClientMessage(playerid, COLOR_INFO, string);
 					}
 				}
@@ -545,19 +546,21 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		}
 		case DIALOG_VEHICLEDEALER:
 		{
-			if(response)
+			if (response)
 			{
-				switch(listitem)
+				switch (listitem)
 				{
-					case 1: // Fahrzeug Bestellen
+					case 0: // Fahrzeug Bestellen
 					{
 						ShowDialog(playerid, DIALOG_ORDERVEHICLE);
 					}
-					case 2: // Finazübersicht
+					case 1: // Finazübersicht
 					{
+						SendClientMessage(playerid, COLOR_INFO, "Finanzen in Bearbeitung!");
 					}
-					case 3: // Kündigen
+					case 2: // Kündigen
 					{
+						SendClientMessage(playerid, COLOR_INFO, "Kündigen in Bearbeitung!");
 					}
 				}
 			}
