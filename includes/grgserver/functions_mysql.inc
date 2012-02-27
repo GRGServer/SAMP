@@ -32,7 +32,7 @@ GetMySQLValue(table[], field[], checkColumn[], checkValue[], whereOperator[] = "
 
 MySQLEscapeString(string[])
 {
-	new escapedString[1024];
+	new escapedString[256];
 	printf("Escape: %s", string);
 	mysql_real_escape_string(string, escapedString);
 	printf("Escaped: %s", escapedString);
