@@ -257,10 +257,10 @@ ShowDialog(playerID, dialogID, ...)
 		case DIALOG_VEHICLEDEALER_OPTIONS:
 		{
 			new options[70];
-			Format:options("Fahrzeug Bestellen");
+			Format:options("Fahrzeug bestellen");
 			Format:options("%s\nFinanzen", options);
 			Format:options("%s\nKündigen", options);
-			Format:options("%s\nBewerbungs Übersicht", options);
+			Format:options("%s\nBewerbungsübersicht", options);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Autohändler Übersicht", options, "OK", "Abbrechen");
 		}
 	}
