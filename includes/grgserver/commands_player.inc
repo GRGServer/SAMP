@@ -145,22 +145,8 @@ CMD:motor(playerid, params[], "Starten oder stoppen des Motors deines Fahrzeugs"
 		return COMMAND_ERROR;
 	}
 	new vehicleID = GetPlayerVehicleID(playerid);
-	if (!vehicles[vehicleID][VEHICLE_SAVEID] && !permissions[playerid][PERMISSION_MAPPER])
+	if (!CheckVehiclePermission(playerid, vehicleID))
 	{
-		SendClientMessage(playerid, COLOR_ERROR, "Dieses Fahrzeug kann nur von der Gruppe 'Mapper' verwendet werden!");
-		RemovePlayerFromVehicle(playerid);
-		return COMMAND_ERROR;
-	}
-	new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID])));
-	if (!ownerUserID)
-	{
-		ShowDialog(playerid, DIALOG_BUYVEHICLE, FormatMoney(floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID])))));
-		return COMMAND_OK;
-	}
-	if (ownerUserID != GetUserID(playerid))
-	{
-		SendClientMessage(playerid, COLOR_ERROR, "Dieses Fahrzeug besitzt bereits ein anderer Spieler");
-		RemovePlayerFromVehicle(playerid);
 		return COMMAND_ERROR;
 	}
 	if (GetVehicleEngineState(vehicleID))

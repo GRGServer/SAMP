@@ -6,6 +6,29 @@ AddVehicleComponentEx(vehicleID, componentID)
 	}
 }
 
+CheckVehiclePermission(playerID, vehicleID)
+{
+	if (!vehicles[vehicleID][VEHICLE_SAVEID] && !permissions[playerID][PERMISSION_MAPPER])
+	{
+		SendClientMessage(playerID, COLOR_ERROR, "Dieses Fahrzeug kann nur von der Gruppe 'Mapper' verwendet werden!");
+		RemovePlayerFromVehicle(playerID);
+		return false;
+	}
+	new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID])));
+	if (!ownerUserID)
+	{
+		ShowDialog(playerID, DIALOG_BUYVEHICLE, FormatMoney(floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID])))));
+		return true;
+	}
+	if (ownerUserID != GetUserID(playerID))
+	{
+		SendClientMessage(playerID, COLOR_ERROR, "Dieses Fahrzeug besitzt bereits ein anderer Spieler");
+		RemovePlayerFromVehicle(playerID);
+		return false;
+	}
+	return true;
+}
+
 GetVehicleEngineState(vehicleID)
 {
 	new engine;
@@ -70,6 +93,7 @@ ReloadVehicleModels()
 		new index = strval(GetMySQLField("ModelID")) - 400;
 		vehicleModels[index][VEHICLEMODEL_FUELUSAGE] = floatstr(GetMySQLField("FuelUsage"));
 		vehicleModels[index][VEHICLEMODEL_MAXFUEL] = floatstr(GetMySQLField("MaxFuel"));
+		format(vehicleModels[index][VEHICLEMODEL_NAME], 20, GetMySQLField("Name"));
 	}
 	mysql_free_result();
 }

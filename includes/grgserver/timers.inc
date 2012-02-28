@@ -78,13 +78,16 @@ Timer:Fast()
 						fuelColor = 'r';
 					}
 				}
-				FormatNew:textDrawString[50]("%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~~n~%sl", speed, healthColor, healthPercentage, fuelColor, fuelPercentage, FormatNumber(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 1, '.', ','));
+				FormatNew:textDrawString[60]("~n~%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~~n~%sl", speed, healthColor, healthPercentage, fuelColor, fuelPercentage, FormatNumber(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 1, '.', ','));
+				TextDrawSetString(textDrawSpeedoName[playerID], vehicleModels[vehicleModelIndex][VEHICLEMODEL_NAME]);
 				TextDrawSetString(textDrawSpeedoColumn2[playerID], textDrawString);
+				TextDrawShowForPlayer(playerID, textDrawSpeedoName[playerID]);
 				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn1);
 				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn2[playerID]);
 			}
 			else
 			{
+				TextDrawHideForPlayer(playerID, textDrawSpeedoName[playerID]);
 				TextDrawHideForPlayer(playerID, textDrawSpeedoColumn1);
 				TextDrawHideForPlayer(playerID, textDrawSpeedoColumn2[playerID]);
 			}

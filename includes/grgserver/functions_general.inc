@@ -20,7 +20,7 @@ CmdUsageMsg(playerID, command[], ...)
 CreateGlobalTextDraws()
 {
 	print("* Creating server wide TextDraws...");
-	textDrawSpeedoColumn1 = TextDrawCreate(480, 400, "Geschwindigkeit:~n~Zustand:~n~Tank:~n~Verbrauch/100km:");
+	textDrawSpeedoColumn1 = TextDrawCreate(480, 400, "~n~Geschwindigkeit:~n~Zustand:~n~Tank:~n~Verbrauch/100km:");
 	TextDrawAlignment(textDrawSpeedoColumn1, 1);
 	TextDrawLetterSize(textDrawSpeedoColumn1, 0.3, 0.9);
 	TextDrawFont(textDrawSpeedoColumn1, 1);

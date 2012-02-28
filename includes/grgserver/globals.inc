@@ -17,5 +17,6 @@ new pickups[MAX_PICKUPS][enum_pickup];
 new pickupLoader[MAX_PICKUPS][enum_pickupLoader];
 new permissions[MAX_PLAYERS][enum_permission];
 new savePlayers[MAX_PLAYERS];
+new Text:textDrawSpeedoName[MAX_PLAYERS];
 new Text:textDrawSpeedoColumn2[MAX_PLAYERS];
 new Text:textDrawRadioStation[MAX_PLAYERS];

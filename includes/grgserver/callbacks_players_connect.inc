@@ -13,7 +13,7 @@ public OnPlayerConnect(playerid)
 			if (modelID)
 			{
 				playbackType = PLAYER_RECORDING_TYPE_DRIVER;
-				vehicleID = CreateVehicle(modelID, 0.0, 0.0, 0.0, 0.0, random(126), random(126), 1);
+				vehicleID = CreateVehicle(modelID, 0.0, 0.0, 0.0, 0.0, random(127), random(127), 1);
 				PutPlayerInVehicle(playerid, vehicleID, 0);
 				SetPVarInt(playerid, "VehicleID", vehicleID);
 			}
@@ -44,6 +44,11 @@ public OnPlayerConnect(playerid)
 		Format:string("%s hat den Server betreten", GetPlayerNameEx(playerid));
 		SendClientMessageToAllExcept(playerid, COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
+		textDrawSpeedoName[playerid] = TextDrawCreate(480, 400, "_");
+		TextDrawAlignment(textDrawSpeedoName[playerid], 1);
+		TextDrawLetterSize(textDrawSpeedoName[playerid], 0.3, 0.9);
+		TextDrawFont(textDrawSpeedoName[playerid], 1);
+		TextDrawSetShadow(textDrawSpeedoName[playerid], 2);
 		textDrawSpeedoColumn2[playerid] = TextDrawCreate(580, 400, "_");
 		TextDrawAlignment(textDrawSpeedoColumn2[playerid], 1);
 		TextDrawLetterSize(textDrawSpeedoColumn2[playerid], 0.3, 0.9);
@@ -70,6 +75,7 @@ public OnPlayerDisconnect(playerid, reason)
 		IRC_Say(ircBot, IRC_CHANNEL, string);
 		TextDrawHideForPlayer(playerid, textDrawSpeedoColumn1);
 		TextDrawHideForPlayer(playerid, textDrawClock);
+		TextDrawDestroy(textDrawSpeedoName[playerid]);
 		TextDrawDestroy(textDrawSpeedoColumn2[playerid]);
 		TextDrawDestroy(textDrawRadioStation[playerid]);
 	}

@@ -124,8 +124,8 @@ PCMD:veh[MAPPER](playerid, params[], "Fahrzeug spawnen")
 	{
 		if (!sscanf(params, "d", modelID))
 		{
-			color1 = random(126);
-			color2 = random(126);
+			color1 = random(127);
+			color2 = random(127);
 		}
 		else
 		{
@@ -133,8 +133,8 @@ PCMD:veh[MAPPER](playerid, params[], "Fahrzeug spawnen")
 			{
 				if (!sscanf(params, "s", vehicleName))
 				{
-					color1 = random(126);
-					color2 = random(126);
+					color1 = random(127);
+					color2 = random(127);
 				}
 				else
 				{
@@ -147,7 +147,7 @@ PCMD:veh[MAPPER](playerid, params[], "Fahrzeug spawnen")
 	}
 	if (modelID >= 400 && modelID <= 611)
 	{
-		if (color1 >= 0 && color1 <= 126 && color2 >= 0 && color2 <= 126)
+		if (color1 >= 0 && color1 <= 127 && color2 >= 0 && color2 <= 127)
 		{
 			new Float:posX;
 			new Float:posY;
@@ -164,7 +164,7 @@ PCMD:veh[MAPPER](playerid, params[], "Fahrzeug spawnen")
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_ERROR, "Die Farbe muss zwischen 0 und 126 sein!");
+			SendClientMessage(playerid, COLOR_ERROR, "Die Farbe muss zwischen 0 und 127 sein!");
 		}
 	}
 	else

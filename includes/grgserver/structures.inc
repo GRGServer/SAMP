@@ -32,5 +32,6 @@ enum enum_vehicle
 enum enum_vehicleModel
 {
 	Float:VEHICLEMODEL_FUELUSAGE,
-	Float:VEHICLEMODEL_MAXFUEL
+	Float:VEHICLEMODEL_MAXFUEL,
+	VEHICLEMODEL_NAME[20]
 }
