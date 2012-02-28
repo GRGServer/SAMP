@@ -248,7 +248,7 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_TRUCKER_JOB:
 		{
-			FormatNew:options[50]("Trucker Firma kaufen");
+			FormatNew:options[40]("Truckerfirma kaufen");
 			Format:options("%s\nBewerben", options);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Trucker", options, "OK", "Abbrechen");
 		}

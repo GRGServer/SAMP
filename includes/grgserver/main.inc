@@ -23,9 +23,10 @@
 #include <grgserver\callbacks_dialogs>// Dialog callbacks like OnDialogResponse
 #include <grgserver\callbacks_gamemode_init>// Callbacks OnGameModeInit and OnGameModeExit
 #include <grgserver\callbacks_irc>// IRC callbacks like like IRC_OnConnect
-#include <grgserver\callbacks_pickups>// Pickup callbacks like OnPlayerPickupPickUp
+// #include <grgserver\callbacks_pickups>// Pickup callbacks like OnPlayerPickupPickUp
 #include <grgserver\callbacks_players_connect>// Callbacks OnPlayerConnect and OnPlayerDisconnect
 #include <grgserver\callbacks_players_general>// General player callbacks like OnPlayerRequestClass
+#include <grgserver\callbacks_players_keys>// Callback OnPlayerKeyStateChange
 #include <grgserver\callbacks_players_vehicles>// Player related vehicle callbacks like OnPlayerEnterVehicle
 
 // Commands

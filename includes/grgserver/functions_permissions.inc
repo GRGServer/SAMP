@@ -58,7 +58,7 @@ ReloadPermissions()
 		new userID = strval(GetMySQLField("UserID"));
 		if (userID)
 		{
-			foreach (playerID in MAX_PLAYERS)
+			Count(playerID, MAX_PLAYERS)
 			{
 				if (GetUserID(playerID) == userID)
 				{
