@@ -1,7 +1,9 @@
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
+	printf("[OnPlayerKeyStateChange] Player %d new %d old %d", playerid, newkeys, oldkeys);
 	if (IsKeyPressed(KEY_YES))
 	{
+		printf("[OnPlayerKeyStateChange] %s pressed KEY_YES", GetPlayerNameEx(playerid));
 		Count(pickupID, MAX_PICKUPS)
 		{
 			if (GetPlayerDistanceFromPoint(playerid, pickups[pickupID][PICKUP_POSX], pickups[pickupID][PICKUP_POSY], pickups[pickupID][PICKUP_POSZ]) <= 1)
