@@ -82,6 +82,17 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 				}
 			}
 		}
+		case PICKUPTYPE_TRUCKER:
+		{
+			if(GetJobID(playerid) == JOB_TRUCKER)
+			{
+				ShowDialog(playerid, DIALOG_TRUCKER_OPTIONS);
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_TRUCKER_JOB);
+			}
+		}
 		case PICKUPTYPE_VEHICLEDEALER:
 		{
 			if (GetJobID(playerid) == JOB_VEHICLEDEALER)

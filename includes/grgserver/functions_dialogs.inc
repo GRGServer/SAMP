@@ -246,6 +246,20 @@ ShowDialog(playerID, dialogID, ...)
 			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Teleportieren", locations, "OK", "Abbrechen");
 		}
+		case DIALOG_TRUCKER_JOB:
+		{
+			FormatNew:options[50]("Trucker Firma kaufen");
+			Format:options("%s\nBewerben", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Trucker", options, "OK", "Abbrechen");
+		}
+		case DIALOG_TRUCKER_OPTIONS:
+		{
+			FormatNew:options[50]("Aufträge");
+			Format:options("%s\nFinanzen", options);
+			Format:options("%s\nKündigen", options);
+			Format:options("%s\nBewerbungsübersicht", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Trucker Übersicht", options, "OK", "Abbrechen");
+		}
 		case DIALOG_VEHICLEDEALER_JOB:
 		{
 			new options[50];

@@ -543,6 +543,52 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				mysql_free_result();
 			}
 		}
+		case DIALOG_TRUCKER_JOB:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: // Kaufe Trucker
+					{
+						// TODO: MySQL Daten bank hinzufügen bei Jobs die OwnerUserID zum kaufen.
+						SendClientMessage(playerid, COLOR_INFO, "Kaufen in Bearbeitung!");
+					}
+					case 1: // Bewerben für den Job Trucker
+					{
+						// TODO: MySQL DB erstellen für Bewerbung jeglicher Jobarten.
+						// TODO: Diese der Owner des Jobs bearbeiten kann anneehmen kann und ablehnen kann.
+						SendClientMessage(playerid, COLOR_INFO, "bewerbung in bearbeitung!");
+					}
+				}
+			}
+		}
+		case DIALOG_TRUCKER_OPTIONS:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: // Aufträge
+					{
+						ShowDialog(playerid, DIALOG_ACCEPT);
+					}
+					case 1: // Finanzen
+					{
+						// TODO: Finanzen für jeden Job erstellen: Job Guthaben
+						SendClientMessage(playerid, COLOR_INFO, "Finanzen in Bearbeitung");
+					}
+					case 2: // Kündigen
+					{
+						SendClientMessage(playerid, COLOR_INFO, "KÜndigung noch in Bearbeitung!");
+					}
+					case 3: // Bewerbungs übersicht
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Bewerbungs übersicht in bearbeitung!");
+					}
+				}
+			}
+		}
 		case DIALOG_VEHICLEDEALER_JOB:
 		{
 			if (response)
