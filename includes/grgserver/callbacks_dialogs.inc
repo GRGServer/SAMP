@@ -402,9 +402,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					new missionID = mysql_insert_id();
 					if (missionID)
 					{
-						new string[2048];
 						MySQLQuery("INSERT INTO `missiondata` (`MissionID`, `Name`, `Value`) VALUES ('%d', 'Type', 'GetOrderedVehicle'), ('%d', 'VehicleModelID', '%d')", missionID, missionID, modelID);
-						Format:string("Auftrag erstellt (Auftragsnummer: %d)", mysql_insert_id());
+						FormatNew:string[50]("Auftrag erstellt (Auftragsnummer: %d)", mysql_insert_id());
 						SendClientMessage(playerid, COLOR_INFO, string);
 					}
 				}
@@ -544,6 +543,32 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				mysql_free_result();
 			}
 		}
+		case DIALOG_VEHICLEDEALER_JOB:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: // Kaufe Autohändler
+					{
+						// TODO: MySQL Daten bank hinzufügen bei Jobs die OwnerUserID zum kaufen.
+						SendClientMessage(playerid, COLOR_INFO, "Kaufen in bearbeitung!");
+					}
+					case 1: // Bewerben für den job
+					{
+						// TODO: MySQL DB erstellen für Bewerbungen jeglicher Jobarten. 
+						// TODO: Diese der Owner des Jobs bearbeiten kann annehmen kann und ablehnen kann.
+						SendClientMessage(playerid, COLOR_INFO, "Bewerbung in Bearbeitung!");
+					}
+					case 2:
+					{
+						// TODO: noch am überlegen wie es gestaltet werden soll. 
+						// TODO: eventuel Wen auto nicht da anfordern beim Autohändler zum bestellen.
+						SendClientMessage(playerid, COLOR_INFO, "Fahrzeug kaufen in Bearbeitung!");
+					}
+				}
+			}
+		}
 		case DIALOG_VEHICLEDEALER_OPTIONS:
 		{
 			if (response)
@@ -568,32 +593,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						// TODO: MySQL DB abrufen für Bewerbungen vom AUtohändler dort kann man Annehmen/Ablehnen ist angenommen wird invitet ist abgelehnt bleibt user so.
 						SendClientMessage(playerid, COLOR_INFO, "Bewerbung in bearbeitung!");
-					}
-				}
-			}
-		}
-		case DIALOG_VEHICLEDEALER_JOB:
-		{
-			if (response)
-			{
-				switch (listitem)
-				{
-					case 0: // Kaufe Autohändler
-					{
-						// TODO: MySQL Daten bank hinzufügen bei Jobs die OwnerUserID zum kaufen.
-						SendClientMessage(playerid, COLOR_INFO, "Kaufen in bearbeitung!");
-					}
-					case 1: // Bewerben für den job
-					{
-						// TODO: MySQL DB erstellen für Bewerbungen jeglicher Jobarten. 
-						// TODO: Diese der Owner des Jobs bearbeiten kann annehmen kann und ablehnen kann.
-						SendClientMessage(playerid, COLOR_INFO, "Bewerbung in Bearbeitung!");
-					}
-					case 2:
-					{
-						// TODO: noch am überlegen wie es gestaltet werden soll. 
-						// TODO: eventuel Wen auto nicht da anfordern beim Autohändler zum bestellen.
-						SendClientMessage(playerid, COLOR_INFO, "Fahrzeug kaufen in Bearbeitung!");
 					}
 				}
 			}
