@@ -244,13 +244,22 @@ ShowDialog(playerID, dialogID, ...)
 			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Teleportieren", locations, "OK", "Abbrechen");
 		}
-		case DIALOG_VEHICLEDEALER:
+		case DIALOG_VEHICLEDEALER_OPTIONS:
 		{
 			new options[2048];
 			Format:options("Fahrzeug Bestellen");
 			Format:options("%s\nFinanzen", options);
 			Format:options("%s\nKündigen", options);
+			Format:options("%s\nBewerbungs Übersicht", options);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Autohändler Übersicht", options, "OK", "Abbrechen");
+		}
+		case DIALOG_VEHICLEDEALER_JOB:
+		{
+			new options[2048];
+			Format:options("Autohändler kaufen");
+			Format:options("%s\nBewerben", options);
+			Format:options("%s\nFahrzeug Kaufen", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Autohändler", options, "OK", "Abbrechen");
 		}
 	}
 }

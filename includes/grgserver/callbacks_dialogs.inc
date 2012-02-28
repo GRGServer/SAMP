@@ -544,7 +544,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				mysql_free_result();
 			}
 		}
-		case DIALOG_VEHICLEDEALER:
+		case DIALOG_VEHICLEDEALER_OPTIONS:
 		{
 			if (response)
 			{
@@ -556,11 +556,44 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 1: // Finazübersicht
 					{
+						// TODO: Jeder Job hat eine Job Kasse in der DB diese hier abgerufen wird.
 						SendClientMessage(playerid, COLOR_INFO, "Finanzen in Bearbeitung!");
 					}
 					case 2: // Kündigen
 					{
+						// TODO: Kündigung seines Jobs
 						SendClientMessage(playerid, COLOR_INFO, "Kündigen in Bearbeitung!");
+					}
+					case 3: // Bewerbungs übrsicht
+					{
+						// TODO: MySQL DB abrufen für Bewerbungen vom AUtohändler dort kann man Annehmen/Ablehnen ist angenommen wird invitet ist abgelehnt bleibt user so.
+						SendClientMessage(playerid, COLOR_INFO, "Bewerbung in bearbeitung!");
+					}
+				}
+			}
+		}
+		case DIALOG_VEHICLEDEALER_JOB:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: // Kaufe Autohändler
+					{
+						// TODO: MySQL Daten bank hinzufügen bei Jobs die OwnerUserID zum kaufen.
+						SendClientMessage(playerid, COLOR_INFO, "Kaufen in bearbeitung!");
+					}
+					case 1: // Bewerben für den job
+					{
+						// TODO: MySQL DB erstellen für Bewerbungen jeglicher Jobarten. 
+						// TODO: Diese der Owner des Jobs bearbeiten kann annehmen kann und ablehnen kann.
+						SendClientMessage(playerid, COLOR_INFO, "Bewerbung in Bearbeitung!");
+					}
+					case 2:
+					{
+						// TODO: noch am überlegen wie es gestaltet werden soll. 
+						// TODO: eventuel Wen auto nicht da anfordern beim Autohändler zum bestellen.
+						SendClientMessage(playerid, COLOR_INFO, "Fahrzeug kaufen in Bearbeitung!");
 					}
 				}
 			}

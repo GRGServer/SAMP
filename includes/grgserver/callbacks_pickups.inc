@@ -86,11 +86,11 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 		{
 			if (GetJobID(playerid) == JOB_VEHICLEDEALER)
 			{
-				ShowDialog(playerid, DIALOG_VEHICLEDEALER);
+				ShowDialog(playerid, DIALOG_VEHICLEDEALER_OPTIONS);
 			}
 			else
 			{
-				SendClientMessage(playerid, COLOR_INFO,"Du bist nicht der Chef!");
+				ShowDialog(playerid, DIALOG_VEHICLEDEALER_JOB);
 			}
 		}
 		default:
