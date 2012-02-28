@@ -144,6 +144,7 @@ ShowDialog(playerID, dialogID, ...)
 				}
 				Format:stations("%s%s", stations, GetMySQLField("Name"));
 			}
+			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Radiosender wählen", stations, "OK", "Abbrechen");
 		}
 		case DIALOG_REFUEL:
@@ -226,6 +227,7 @@ ShowDialog(playerID, dialogID, ...)
 			}
 			Format:string("%s\nSpielzeit:\t%s", string, FormatTime(strval(GetMySQLField("OnlineTime"))));
 			Format:string("%s\nLetzter Login:\t%s", string, FormatDate(GetMySQLField("LoginTime")));
+			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Personalien", string, "OK", "");
 		}
 		case DIALOG_TELEPORTLOCATIONS:
