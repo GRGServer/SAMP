@@ -402,7 +402,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					new missionID = mysql_insert_id();
 					if (missionID)
 					{
-						new string[50];
+						new string[2048];
 						MySQLQuery("INSERT INTO `missiondata` (`MissionID`, `Name`, `Value`) VALUES ('%d', 'Type', 'GetOrderedVehicle'), ('%d', 'VehicleModelID', '%d')", missionID, missionID, modelID);
 						Format:string("Auftrag erstellt (Auftragsnummer: %d)", mysql_insert_id());
 						SendClientMessage(playerid, COLOR_INFO, string);
