@@ -8,11 +8,18 @@ AddVehicleComponentEx(vehicleID, componentID)
 
 CheckVehiclePermission(playerID, vehicleID)
 {
-	if (!vehicles[vehicleID][VEHICLE_SAVEID] && !permissions[playerID][PERMISSION_MAPPER])
+	if (!vehicles[vehicleID][VEHICLE_SAVEID])
 	{
-		SendClientMessage(playerID, COLOR_ERROR, "Dieses Fahrzeug kann nur von der Gruppe 'Mapper' verwendet werden!");
-		RemovePlayerFromVehicle(playerID);
-		return false;
+		if (!permissions[playerID][PERMISSION_MAPPER])
+		{
+			SendClientMessage(playerID, COLOR_ERROR, "Dieses Fahrzeug kann nur von der Gruppe 'Mapper' verwendet werden!");
+			RemovePlayerFromVehicle(playerID);
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 	new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID])));
 	if (!ownerUserID)

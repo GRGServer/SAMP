@@ -36,7 +36,6 @@ public OnVehicleDeath(vehicleid, killerid)
 	{
 		MySQLQuery("DELETE FROM `savedvehicles` WHERE `ID` = '%d'", vehicles[vehicleid][VEHICLE_SAVEID]);
 		MySQLQuery("DELETE FROM `vehiclecomponents` WHERE `ID` = '%d'", vehicles[vehicleid][VEHICLE_SAVEID]);
-		printf("Saved vehicle died: %d (Save ID: %d)", vehicleid, vehicles[vehicleid][VEHICLE_SAVEID]);
 		vehicles[vehicleid][VEHICLE_SAVEID] = 0;
 	}
 }
