@@ -7,6 +7,7 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 	if (GetPickupInfoByType(pickupID, type, pickupTypeID, modelID, spawnType))
 	{
 		pickup = CreatePickup(modelID, spawnType, posX, posY, posZ);
+		Create3DTextLabel("Drücke ~k~~CONVERSATION_YES~", COLOR_TEXTLABEL, posX, posY, posZ, TEXTLABEL_DRAWDISTANCE, 0, true);
 		pickups[pickup][PICKUP_TYPE] = pickupTypeID;
 		if (saveToDB)
 		{

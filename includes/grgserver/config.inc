@@ -8,6 +8,7 @@
 #define COLOR_ME					0x00FF40AA
 #define COLOR_NPCCOMMAND			0x00000000
 #define COLOR_SYSTEM				0xC0C0C0AA
+#define COLOR_TEXTLABEL				0xFF8C55FF
 #define COLOR_USAGE					0x008000AA
 
 
@@ -79,6 +80,10 @@
 #define SPAWN_POSX					2032.0778
 #define SPAWN_POSY					1344.0790
 #define SPAWN_POSZ					10.8203
+
+
+// 3D text labels
+#define TEXTLABEL_DRAWDISTANCE		20
 
 
 // Timers
