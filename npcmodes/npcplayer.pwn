@@ -21,19 +21,27 @@ public OnClientMessage(color, text[])
 	stop
 	teleport
 	*/
+	new command[256];
+	new Float:posX;
+	new Float:posY;
+	new Float:posZ;
+	new Float:angle;
 	if (color != COLOR_NPCCOMMAND)
 	{
 		return false;
 	}
-	new string[256];
-	format(string, sizeof(string), "I've received a command: %s", text);
-	SendChat(string);
 	if (!sscanf(text, "sdd", recordingName, playbackType, autoRepeat))
 	{
 		StartNPC();
 		return true;
 	}
-	new command[256];
+	if (!sscanf(text, "sffff", command, posX, posY, posZ, angle))
+	{
+		SetMyPos(posX, posY, posZ);
+		SetMyFacingAngle(angle);
+		SendChat("I've got teleported");
+		return true;
+	}
 	if (!sscanf(text, "s", command))
 	{
 		if (!strcmp(command, "pause", true))
@@ -49,18 +57,6 @@ public OnClientMessage(color, text[])
 		if (!strcmp(command, "stop", true))
 		{
 			StopRecordingPlayback();
-		}
-		if (!strcmp(command, "teleport", true))
-		{
-			new Float:posX;
-			new Float:posY;
-			new Float:posZ;
-			new Float:angle;
-			sscanf(text, "sffff", command, posX, posY, posZ, angle);
-			SetMyPos(posX, posY, posZ);
-			SetMyFacingAngle(angle);
-			format(string, sizeof(string), "I got teleported to %f x %f x %f", posX, posY, posZ);
-			SendChat(string);
 		}
 		return true;
 	}
