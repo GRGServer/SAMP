@@ -66,18 +66,24 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
+				print("Trying to add pickup");
 				new Float:posX;
 				new Float:posY;
 				new Float:posZ;
 				new buildingID;
 				new pickupID;
 				GetPlayerPos(playerid, posX, posY, posZ);
+				printf("Type: %s", GetPVarStringEx(playerid, "AddBuilding_Type"));
 				pickupID = AddPickup(-1, GetPVarStringEx(playerid, "AddBuilding_Type"), posX, posY, posZ, true);
+				printf("Added pickup: %d", pickupID);
 				if (pickupID > 0)
 				{
+					printf("Got positive PickupID: %d", pickupID);
 					MySQLQuery("INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%d', '%s', '%f')", pickupID, GetPVarInt(playerid, "AddBuilding_InteriorID"), MySQLEscapeString(inputtext), GetPVarFloat(playerid, "AddBuilding_Price"));
 					buildingID = mysql_insert_id();
+					printf("Added building %d", buildingID);
 					SetPVarInt(playerid, "LastAddedBuilding", buildingID);
+					printf("PVar LastAddedBuilding set to %d", buildingID);
 					FormatNew:string[256]("Das Gebäude %s (Preis: %s) wurde unter der ID %d gespeichert.", inputtext, FormatMoney(GetPVarFloat(playerid, "AddBuilding_Price")), buildingID);
 					SendClientMessage(playerid, COLOR_INFO, string);
 				}

@@ -3,10 +3,8 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 	new pickupTypeID;
 	new modelID;
 	new pickup;
-	printf("Checking pickup type: %s", type);
 	if (GetPickupInfoByType(pickupID, type, pickupTypeID, modelID))
 	{
-		printf("Adding pickup for %s (ModelID: %s)", type, modelID);
 		pickup = CreatePickup(modelID, 23, posX, posY, posZ);
 		Create3DTextLabel("Drücke ~k~~CONVERSATION_YES~", COLOR_TEXTLABEL, posX, posY, posZ, TEXTLABEL_DRAWDISTANCE, 0, true);
 		pickups[pickup][PICKUP_POSX] = posX;
@@ -94,7 +92,6 @@ GetPickupInfoByType(pickupID, type[], &typeID, &modelID)
 		modelID = PICKUP_VEHICLEDEALER;
 		return true;
 	}
-	print("Pickup type unknown");
 	return false;
 }
 
