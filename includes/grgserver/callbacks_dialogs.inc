@@ -105,6 +105,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						Format:type("HOTEL");
 					case 2:
 						Format:type("HOUSE");
+					case 3:
+						Format:type("POLICE");
 				}
 				SetPVarString(playerid, "AddBuilding_Type", type);
 				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);

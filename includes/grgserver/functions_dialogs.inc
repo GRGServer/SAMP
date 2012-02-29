@@ -132,6 +132,11 @@ ShowDialog(playerID, dialogID, ...)
 			Format:options("%s\nVerkaufen", options);// Item 1
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hausoptionen", options, "OK", "Abbrechen");
 		}
+		case DIALOG_POLICE:
+		{
+			FormatNew:options[20]("Betreten");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Police", options, "OK", "Abbrechen");
+		}
 		case DIALOG_LOGIN:
 		{
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Login", "Bitte gebe das Passwort von deinen Account ein.", "OK", "Abbrechen");
