@@ -11,14 +11,14 @@ SetPlayerCheckpointEx(playerID, checkpointID)
 			posX = 1.7176;
 			posY = 32.3707;
 			posZ = 1199.5938;
-			size = 10;
+			size = 0.5;
 		}
 		case CHECKPOINT_WALKTOSEAT:
 		{
 			posX = 0.6138;
 			posY = 25.7723;
 			posZ = 1199.5938;
-			size = 10;
+			size = 0.5;
 		}
 	}
 	SetPlayerCheckpoint(playerID, posX, posY, posZ, size);
