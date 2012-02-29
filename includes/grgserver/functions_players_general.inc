@@ -53,9 +53,9 @@ LeaveBuilding(playerID)
 	new CurrentBuildingID = GetPVarInt(playerID, "CurrentBuildingID");
 	if (CurrentBuildingID)
 	{
-		MySQLQuery("SELECT * FROM `buildings` WHERE `ID` = '%d'", CurrentBuildingID);
+		MySQLQuery("SELECT `PosX`, `PosY`, `PosZ` FROM `pickups` WHERE `ID` = '%d'", strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(CurrentBuildingID))));
 		mysql_store_result();
-		SetPlayerPos(playerID, floatstr(GetMySQLField("ExitPosX")), floatstr(GetMySQLField("ExitPosY")), floatstr(GetMySQLField("ExitPosZ")));
+		SetPlayerPos(playerID, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")));
 		SetPlayerInterior(playerID, 0);
 		SetPlayerVirtualWorld(playerID, 0);
 		SetPVarInt(playerID, "CurrentBuildingID", 0);

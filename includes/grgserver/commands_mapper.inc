@@ -79,40 +79,6 @@ PCMD:saveveh[MAPPER](playerid, params[], "Aktuelles Fahrzeug als kaufbares Fahrz
 	return COMMAND_ERROR;
 }
 
-PCMD:setexit[MAPPER](playerid, params[], "Position festlegen, an welcher der Spieler stehen soll, wenn er das Gebäude verlässt")
-{
-	new buildingID;
-	if (sscanf(params, "d", buildingID))
-	{
-		buildingID = GetPVarInt(playerid, "LastAddedBuilding");
-	}
-	if (buildingID)
-	{
-		if (strval(GetMySQLValue("buildings", "ID", "ID", val2str(buildingID))))
-		{
-			new string[256];
-			new Float:posX;
-			new Float:posY;
-			new Float:posZ;
-			GetPlayerPos(playerid, posX, posY, posZ);
-			MySQLQuery("UPDATE `buildings` SET `ExitPosX` = '%f', `ExitPosY` = '%f', `ExitPosZ` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, buildingID);
-			Format:string("Die Ausgangsposition für das Gebäude %s (ID: %d) wurde gespeichert", GetMySQLValue("buildings", "Name", "ID", val2str(buildingID)), buildingID);
-			SendClientMessage(playerid, COLOR_INFO, string);
-			return COMMAND_OK;
-		}
-		else
-		{
-			SendClientMessage(playerid, COLOR_ERROR, "Ungültige ID!");
-			return COMMAND_ERROR;
-		}
-	}
-	else
-	{
-		CmdUsageMsg(playerid, "setexit", "[BuildingID]");
-		return COMMAND_USAGE;
-	}
-}
-
 PCMD:veh[MAPPER](playerid, params[], "Fahrzeug spawnen")
 {
 	new vehicleName[20];
