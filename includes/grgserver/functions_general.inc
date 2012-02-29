@@ -5,10 +5,10 @@ CalculateAge(birthDate)
 
 CmdUsageMsg(playerID, command[], ...)
 {
-	new value[128 char];
+	new value[256];
 	new parameters;
 	parameters = numargs();
-	FormatNew:string[128]("Verwendung: /%s", command);
+	FormatNew:string[256]("Verwendung: /%s", command);
 	for (new index = 2; index < parameters; index++)
 	{
 		GetStringArg(index, value);

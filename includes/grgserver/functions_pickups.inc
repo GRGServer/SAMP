@@ -12,7 +12,6 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 		pickups[pickup][PICKUP_POSY] = posY;
 		pickups[pickup][PICKUP_POSZ] = posZ;
 		pickups[pickup][PICKUP_TYPE] = pickupTypeID;
-		printf("Loaded pickup %d (%f x %f x %f)", pickup, pickups[pickup][PICKUP_POSX], pickups[pickup][PICKUP_POSY], pickups[pickup][PICKUP_POSZ]);
 		if (saveToDB)
 		{
 			MySQLQuery("INSERT INTO `pickups` (`PosX`, `PosY`, `PosZ`, `Type`) VALUES('%f', '%f', '%f', '%s')", posX, posY, posZ, type);

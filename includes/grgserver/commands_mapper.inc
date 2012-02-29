@@ -13,24 +13,23 @@ PCMD:addbuilding[MAPPER](playerid, params[], "Gebäude erstellen")
 
 PCMD:addpickup[MAPPER](playerid, params[], "Pickup erstellen")
 {
-	new type[256];
-	new string[256];
+	new type[20];
 	new Float:posX;
 	new Float:posY;
 	new Float:posZ;
 	if (sscanf(params, "s", type))
 	{
-		CmdUsageMsg(playerid, "addpickup", "GASSTATION/VEHICLEDEALER/TRUCKER");
+		CmdUsageMsg(playerid, "addpickup", "GASSTATION/TRUCKER/VEHICLEDEALER");
 		return COMMAND_USAGE;
 	}
 	Format:type("%s", strtoupper(type));
-	if (!strcmp(type, "GASSTATION", true) || !strcmp(type, "VEHICLEDEALER", true) || !strcmp(type, "TRUCKER", true))
+	if (!strcmp(type, "GASSTATION", true) || !strcmp(type, "TRUCKER", true) || !strcmp(type, "VEHICLEDEALER", true))
 	{
 		GetPlayerPos(playerid, posX, posY, posZ);
 		new id = AddPickup(-1, type, posX, posY, posZ, true);
 		if (id > 0)
 		{
-			Format:string("Das Pickup %s wurde unter der ID %d gespeichert", type, id);
+			FormatNew:string[80]("Das Pickup %s wurde unter der ID %d gespeichert", type, id);
 			SendClientMessage(playerid, COLOR_INFO, string);
 			return COMMAND_OK;
 		}
