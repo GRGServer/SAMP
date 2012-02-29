@@ -68,7 +68,6 @@ public OnGameModeInit()
 	StartTimer:HOURLY("Timer_Hourly", true);
 	StartTimer:SLOW("Timer_Slow", true);
 	StartTimer:STABLECHECK("Timer_StableCheck", false);
-	print("* Connecting NPCs...");
 	ReconnectNPCs();
 	return true;
 }
