@@ -38,7 +38,7 @@ public OnPlayerConnect(playerid)
 		}
 		else
 		{
-			ShowDialog(playerid, DIALOG_REGISTER_STEP1);
+			ShowDialog(playerid, DIALOG_REGISTER_PASSWORD1);
 		}
 		mysql_free_result();
 		SendClientMessage(playerid, COLOR_SYSTEM, "Willkommen auf GRG Server!");

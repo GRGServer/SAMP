@@ -8,6 +8,7 @@
 
 // Functions
 #include <grgserver\functions_basic>// Basic C-like functions like str_replace
+#include <grgserver\functions_checkpoints>// Checkpoint functions like SetPlayerCheckPointEx
 #include <grgserver\functions_dialogs>// Dialog functions like ShowDialog
 #include <grgserver\functions_general>// General functions like CmdUsageMsg
 #include <grgserver\functions_mysql>// MySQL functions like GetMySQLValue
@@ -20,6 +21,7 @@
 #include <grgserver\functions_vehicles>// Vehicle functions like SaveVehicle
 
 // Callbacks
+#include <grgserver\callbacks_checkpoints>// Checkpoit callbacks like OnPlayerEnterCheckpoint
 #include <grgserver\callbacks_dialogs>// Dialog callbacks like OnDialogResponse
 #include <grgserver\callbacks_gamemode_init>// Callbacks OnGameModeInit and OnGameModeExit
 #include <grgserver\callbacks_irc>// IRC callbacks like like IRC_OnConnect

@@ -185,14 +185,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				if (strlen(inputtext) >= REGISTER_MINPASSWORD && strlen(inputtext) <= REGISTER_MAXPASSWORD)
+				if (strlen(inputtext) >= REGISTER_PASSWORD_MIN && strlen(inputtext) <= REGISTER_PASSWORD_MAX)
 				{
 					SetPVarString(playerid, "ChangePassword", inputtext);
 					ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP3);
 				}
 				else
 				{
-					FormatNew:string[80]("Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_MINPASSWORD, REGISTER_MAXPASSWORD);
+					FormatNew:string[80]("Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_PASSWORD_MIN, REGISTER_PASSWORD_MAX);
 					SendClientMessage(playerid, COLOR_ERROR, string);
 					ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP2);
 				}
@@ -616,20 +616,51 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				Timer_RefuelVehicle(playerid, amount);
 			}
 		}
-		case DIALOG_REGISTER_STEP1:
+		case DIALOG_REGISTER_GENDER:
 		{
 			if (response)
 			{
-				if (strlen(inputtext) >= REGISTER_MINPASSWORD && strlen(inputtext) <= REGISTER_MAXPASSWORD)
+				new gender;
+				switch (listitem)
+				{
+					case 0:
+					{
+						gender = 'M';// Male
+						SetPlayerSkin(playerid, REGISTER_SKIN_MALE);
+					}
+					case 1:
+					{
+						gender = 'F';// Female
+						SetPlayerSkin(playerid, REGISTER_SKIN_FEMALE);
+					}
+				}
+				MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `Gender`, `RegisterTime`) VALUES ('%s', '%s', '%c', NOW())", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(GetPVarStringEx(playerid, "RegisterPassword")), gender);
+				SetPVarInt(playerid, "UserID", mysql_insert_id());
+				SavePlayer(playerid);
+				printf("Player registered: %s (UserID: %d)", GetPlayerNameEx(playerid), GetUserID(playerid));
+				SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
+				TeleportTo(playerid, 1.7414, 31.6997, 1199.6012, 177.4850, 1, playerid);
+				SetPlayerCheckpointEx(playerid, CHECKPOINT_WALKTOSEAT);
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_REGISTER_PASSWORD2);
+			}
+		}
+		case DIALOG_REGISTER_PASSWORD1:
+		{
+			if (response)
+			{
+				if (strlen(inputtext) >= REGISTER_PASSWORD_MIN && strlen(inputtext) <= REGISTER_PASSWORD_MAX)
 				{
 					SetPVarString(playerid, "RegisterPassword", inputtext);
-					ShowDialog(playerid, DIALOG_REGISTER_STEP2);
+					ShowDialog(playerid, DIALOG_REGISTER_PASSWORD2);
 				}
 				else
 				{
-					FormatNew:string[80]("Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_MINPASSWORD, REGISTER_MAXPASSWORD);
+					FormatNew:string[80]("Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_PASSWORD_MIN, REGISTER_PASSWORD_MAX);
 					SendClientMessage(playerid, COLOR_ERROR, string);
-					ShowDialog(playerid, DIALOG_REGISTER_STEP1);
+					ShowDialog(playerid, DIALOG_REGISTER_PASSWORD1);
 				}
 			}
 			else
@@ -638,29 +669,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				Kick(playerid);
 			}
 		}
-		case DIALOG_REGISTER_STEP2:
+		case DIALOG_REGISTER_PASSWORD2:
 		{
 			if (response)
 			{
 				if (!strcmp(inputtext, GetPVarStringEx(playerid, "RegisterPassword")))
 				{
-					MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `RegisterTime`) VALUES ('%s', '%s', NOW())", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(inputtext));
-					SetPVarInt(playerid, "UserID", mysql_insert_id());
-					SavePlayer(playerid);
-					SetPVarInt(playerid, "AllowSkinSelection", true);
-					printf("Player registered: %s (UserID: %d)", GetPlayerNameEx(playerid), GetUserID(playerid));
-					SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
-					SendClientMessage(playerid, COLOR_INFO, "Bitte wähle deinen Spieler aus.");
+					ShowDialog(playerid, DIALOG_REGISTER_GENDER);
 				}
 				else
 				{
 					SendClientMessage(playerid, COLOR_ERROR, "Die eingegebenen Passwörter stimmen nicht überein! Bitte versuche es erneut.");
-					ShowDialog(playerid, DIALOG_REGISTER_STEP1);
+					ShowDialog(playerid, DIALOG_REGISTER_PASSWORD1);
 				}
 			}
 			else
 			{
-				ShowDialog(playerid, DIALOG_REGISTER_STEP1);
+				ShowDialog(playerid, DIALOG_REGISTER_PASSWORD1);
 			}
 			return true;
 		}

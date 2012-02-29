@@ -72,8 +72,10 @@
 
 
 // Register values
-#define REGISTER_MINPASSWORD		3
-#define REGISTER_MAXPASSWORD		20
+#define REGISTER_PASSWORD_MAX		20// Also used for password changing
+#define REGISTER_PASSWORD_MIN		3 // Also used for password changing
+#define REGISTER_SKIN_FEMALE		12
+#define REGISTER_SKIN_MALE			15
 
 
 // Spawn properties

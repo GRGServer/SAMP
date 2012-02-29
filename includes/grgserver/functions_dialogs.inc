@@ -206,13 +206,17 @@ ShowDialog(playerID, dialogID, ...)
 			Format:string("Wie viel möchtest du tanken (0 - %s)?", string);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", "Abbrechen");
 		}
-		case DIALOG_REGISTER_STEP1:
+		case DIALOG_REGISTER_GENDER:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Registrieren", "Du bist noch nicht registriert!\nBitte gebe ein neues Passwort für deinen Account ein.", "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Geschlecht auswählen", "Männlich\nWeiblich", "OK", "Zurück");
 		}
-		case DIALOG_REGISTER_STEP2:
+		case DIALOG_REGISTER_PASSWORD1:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Passwort wiederholen", "Wiederhole zur Sicherheit dein neues Passwort.", "Registrieren", "Zurück");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Registrieren", "Du bist noch nicht registriert!\nBitte gebe ein neues Passwort für deinen Account ein.", "Weiter", "Abbrechen");
+		}
+		case DIALOG_REGISTER_PASSWORD2:
+		{
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Passwort wiederholen", "Wiederhole zur Sicherheit dein neues Passwort.", "Weiter", "Zurück");
 		}
 		case DIALOG_RESTARTGAMEMODE:
 		{
