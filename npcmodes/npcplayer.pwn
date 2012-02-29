@@ -16,38 +16,55 @@ public OnClientMessage(color, text[])
 	/*
 	Accepted content for "text":
 	<recordingName> <playbackType> <autoRepeat>
-	stop
 	pause
 	resume
+	stop
+	teleport
 	*/
-	if (color == COLOR_NPCCOMMAND)
+	if (color != COLOR_NPCCOMMAND)
 	{
-		if (!sscanf(text, "sdd", recordingName, playbackType, autoRepeat))
-		{
-			StartNPC();
-		}
-		else
-		{
-			new command[256];
-			if (!sscanf(text, "s", command))
-			{
-				if (!strcmp(command, "stop", true))
-				{
-					StopRecordingPlayback();
-				}
-				if (!strcmp(command, "pause", true))
-				{
-					StopTimer();
-					PauseNPC(true);
-				}
-				if (!strcmp(command, "resume", true))
-				{
-					PauseNPC(true);
-					StartTimer();
-				}
-			}
-		}
+		return false;
 	}
+	new string[256];
+	format(string, sizeof(string), "I've received a command: %s", text);
+	SendChat(string);
+	if (!sscanf(text, "sdd", recordingName, playbackType, autoRepeat))
+	{
+		StartNPC();
+		return true;
+	}
+	new command[256];
+	if (!sscanf(text, "s", command))
+	{
+		if (!strcmp(command, "pause", true))
+		{
+			StopTimer();
+			PauseNPC(true);
+		}
+		if (!strcmp(command, "resume", true))
+		{
+			PauseNPC(true);
+			StartTimer();
+		}
+		if (!strcmp(command, "stop", true))
+		{
+			StopRecordingPlayback();
+		}
+		if (!strcmp(command, "teleport", true))
+		{
+			new Float:posX;
+			new Float:posY;
+			new Float:posZ;
+			new Float:angle;
+			sscanf(text, "sffff", command, posX, posY, posZ, angle);
+			SetMyPos(posX, posY, posZ);
+			SetMyFacingAngle(angle);
+			format(string, sizeof(string), "I got teleported to %f x %f x %f", posX, posY, posZ);
+			SendChat(string);
+		}
+		return true;
+	}
+	return false;
 }
 
 public OnNPCEnterVehicle(vehicleid,seatid)

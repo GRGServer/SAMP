@@ -110,9 +110,8 @@ public OnPlayerSpawn(playerid)
 	{
 		if (floatstr(GetMySQLField("SpawnPosX")) || floatstr(GetMySQLField("SpawnPosY")) || floatstr(GetMySQLField("SpawnPosZ")))
 		{
-			SetPlayerPos(playerid, floatstr(GetMySQLField("SpawnPosX")), floatstr(GetMySQLField("SpawnPosY")), floatstr(GetMySQLField("SpawnPosZ")));
-			SetPlayerFacingAngle(playerid, floatstr(GetMySQLField("SpawnAngle")));
-			SetPlayerSkin(playerid, strval(GetMySQLField("Skin")));
+			FormatNew:command[100]("teleport %s %s %s %s 0", GetMySQLField("SpawnPosX"), GetMySQLField("SpawnPosY"), GetMySQLField("SpawnPosZ"), GetMySQLField("SpawnAngle"));
+			SendNPCCommand(playerid, command);
 		}
 		return true;
 	}

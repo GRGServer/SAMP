@@ -7,6 +7,7 @@ public OnPlayerConnect(playerid)
 		strdel(npcName, 0, 4);
 		MySQLQuery("SELECT * FROM `npcs` WHERE `Name` = '%s'", MySQLEscapeString(npcName));
 		mysql_store_result();
+		SetPlayerSkin(playerid, strval(GetMySQLField("Skin")));
 		if (strval(GetMySQLField("StartOnConnect")))
 		{
 			new modelID;
