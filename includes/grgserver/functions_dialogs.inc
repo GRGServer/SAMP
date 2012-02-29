@@ -31,7 +31,7 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_ADDBUILDING_TYPE:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Gebäudetyp auswählen", "Bank\nHotel\nHaus\nPolice", "Weiter", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Gebäudetyp auswählen", "Bank\nHotel\nHaus", "Weiter", "Abbrechen");
 		}
 		case DIALOG_BUYHOUSE:
 		{
