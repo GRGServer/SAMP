@@ -13,7 +13,7 @@ PCMD:addbuilding[MAPPER](playerid, params[], "Gebäude erstellen")
 
 PCMD:addpickup[MAPPER](playerid, params[], "Pickup erstellen")
 {
-	new type[50];
+	new type[256];
 	new Float:posX;
 	new Float:posY;
 	new Float:posZ;
