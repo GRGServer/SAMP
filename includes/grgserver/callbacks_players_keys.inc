@@ -3,7 +3,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	if (IsKeyPressed(KEY_YES))
 	{
 		printf("[OnPlayerKeyStateChange] %s pressed KEY_YES", GetPlayerNameEx(playerid));
-		Count(pickupID, MAX_PICKUPS)
+		Count(pickupID, 200)
 		{
 			new Float:distance = GetPlayerDistanceFromPoint(playerid, pickups[pickupID][PICKUP_POSX], pickups[pickupID][PICKUP_POSY], pickups[pickupID][PICKUP_POSZ]);
 			printf("Pickup %d at %f x %f x %f, distance to %s: %f", pickupID, pickups[pickupID][PICKUP_POSX], pickups[pickupID][PICKUP_POSY], pickups[pickupID][PICKUP_POSZ], GetPlayerNameEx(playerid), distance);
