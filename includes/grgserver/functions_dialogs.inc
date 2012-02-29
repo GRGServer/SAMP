@@ -47,6 +47,27 @@ ShowDialog(playerID, dialogID, ...)
 			Format:string("Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", string);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Fahrzeug Kaufen", string, "Ja", "Nein");
 		}
+		case DIALOG_INBANK_JOB:
+		{
+			FormatNew:options[50]("Bank Kaufen");
+			Format:options("%s\nKonto Erstellen", options);
+			Format:options("%s\nKonto Übersicht", options);
+			Format:options("%s\nKonto Kündigen", options);
+			Format:options("%s\nAktueler Zinssatz", options);
+			Format:options("%s\nBewerben", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", "Abbrechen");
+		}
+		case DIALOG_INBANK_OPTIONS:
+		{
+			FormatNew:options[50]("Bank Verkaufen");
+			Format:options("%s\nFinazen Übersicht", options);
+			Format:options("%s\nBewerbungs Übersicht", options);
+			Format:options("%s\nEigenes Konto Erstellen", options);
+			Format:options("%s\nEigene Konto Übersicht", options);
+			Format:options("%s\nEigenes Konto Kündigen", options);
+			Format:options("%s\nAktueler Zinssatz", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", "Abbrechen");
+		}
 		case DIALOG_HOTEL_MAIN_AVAILABLE:
 		{
 			FormatNew:options[40]("Hotel Kaufen"); // Item 0
@@ -130,6 +151,20 @@ ShowDialog(playerID, dialogID, ...)
 			}
 			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Fahrzeug bestellen", vehicleList, "Bestellen", "Abbrechen");
+		}
+		case DIALOG_POLICE_JOB:
+		{
+			FormatNew:options[50]("Polizei Revier kaufen");
+			Format:options("%s\nBewerben", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Police", options, "OK", "Abbrechen");
+		}
+		case DIALOG_POLICE_OPTIONS:
+		{
+			FormatNew:options[50]("Aufträge");
+			Format:options("%s\nFinazen", options);
+			Format:options("%s\nBewerbungs Übersicht", options);
+			Format:options("%s\nKündigen", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Police", options, "OK", "Abbrechen");
 		}
 		case DIALOG_RADIO:
 		{

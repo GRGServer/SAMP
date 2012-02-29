@@ -6,6 +6,17 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 		{
 			TeleportToBuilding(playerid, strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupid][PICKUP_ID]))));
 		}
+		case PICKUPTYPE_INBANK:
+		{
+			if(GetJobID(playerid) == JOB_BANK)
+			{
+				ShowDialog(playerid, DIALOG_INBANK_OPTIONS);
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_INBANK_JOB);
+			}
+		}
 		case PICKUPTYPE_GASSTATION:
 		{
 			new vehicleID = GetPlayerVehicleID(playerid);
@@ -17,6 +28,17 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 			else
 			{
 				SendClientMessage(playerid, COLOR_ERROR, "Der Tank ist bereits voll!");
+			}
+		}
+		case PICKUPTYPE_POLICE:
+		{
+			if(GetJobID(playerid) == JOB_POLICE)
+			{
+				ShowDialog(playerid, DIALOG_POLICE_OPTIONS);
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_POLICE_JOB);
 			}
 		}
 		case PICKUPTYPE_HOTEL:

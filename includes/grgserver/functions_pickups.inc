@@ -39,6 +39,13 @@ GetPickupInfoByType(pickupID, type[], &typeID, &modelID, &spawnType)
 		spawnType = 23;
 		return true;
 	}
+	if (!strcmp(type, "INBANK", true))
+	{
+		typeID = PICKUPTYPE_INBANK;
+		modelID = PICKUP_INBANK;
+		spawnType = 23;
+		return true;
+	}
 	if (!strcmp(type, "GASSTATION", true))
 	{
 		typeID = PICKUPTYPE_GASSTATION;
@@ -64,6 +71,13 @@ GetPickupInfoByType(pickupID, type[], &typeID, &modelID, &spawnType)
 	{
 		typeID = PICKUPTYPE_HOTEL;
 		modelID = PICKUP_HOTEL;
+		spawnType = 23;
+		return true;
+	}
+	if (!strcmp(type, "POLICE", true))
+	{
+		typeID = PICKUPTYPE_POLICE;
+		modelID = PICKUP_POLICE;
 		spawnType = 23;
 		return true;
 	}

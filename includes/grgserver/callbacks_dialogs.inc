@@ -158,6 +158,76 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
+		case DIALOG_INBANK_JOB:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: // Bank Kaufen
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Kaufen noch in Bearbeitung!");
+					}
+					case 1: // Konto Erstellen 
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Konto erstellen noch in bearbeitung!");
+					}
+					case 2: // Konto übersicht 
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Konto übersicht noch in Bearbeitung!");
+					}
+					case 3: // Konto Kündigen 
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Konto Kündigen noch in Bearbeitung!");
+					}
+					case 4: // Aktueler Zinssatz
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Zinssatz in bearbeitung!");
+					}
+					case 5: // Bewerben
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in Bearbeitung!");
+					}
+				}
+			}
+		}
+		case DIALOG_INBANK_OPTIONS:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: // Bank Sell
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Bank verkaufen noch in Bearbeitung!");
+					}
+					case 1: // Bank Finanzen
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Bank Finanzen noch in Bearbeitung!");
+					}
+					case 2: // Bewerbungs übersicht 
+					{
+						SendClientMessage(playerid, COLOR_INFO, "bewerbungs Übersicht noch in bearbeitung!");
+					}
+					case 3: // Eigene Konto Erstellen
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Konto erstellen noch in Bearbeitung!");
+					}
+					case 4: // Eigenes Konto Übersicht 
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Konto übersicht noch in Bearbeitung!");
+					}
+					case 5: // Konto Kündigen
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Konto Kündigen noch in Bearbeitung!");
+					}
+					case 6: // Aktueler Zinssatz 
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Zinssatz noch in Bearbeitung!");
+					}
+				}
+			}
+		}
 		case DIALOG_HOTEL_MAIN_AVAILABLE:
 		{
 			if (response)
@@ -409,6 +479,55 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
+		case DIALOG_POLICE_JOB:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: // Buy Police
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Kaufen noch in Bearbeitung!");
+					}
+					case 1: // Bewerben by Police
+					{
+						if(GetJobID(playerid) >= 0)
+						{
+							SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in Bearbeitung!");
+						}
+						else
+						{
+							SendClientMessage(playerid, COLOR_ERROR, "Du musst Zuerst einen beruf Kündigen!");
+						}
+					}
+				}
+			}
+		}
+		case DIALOG_POLICE_OPTIONS:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: // Aufträge annehmen
+					{
+						ShowDialog(playerid, DIALOG_ACCEPT);
+					}
+					case 1: // Finanzen
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Finanzen noch in Bearbeitung!");
+					}
+					case 2: // bewerbungs übersicht
+					{
+						SendClientMessage(playerid, COLOR_INFO, "bewerbung noch in Bearbeitung!");
+					}
+					case 3: // Job Kündigen
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Kündigung noch in Bearbeitung!");
+					}
+				}
+			}
+		}
 		case DIALOG_RADIO:
 		{
 			if (response)
@@ -556,9 +675,16 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 1: // Bewerben für den Job Trucker
 					{
-						// TODO: MySQL DB erstellen für Bewerbung jeglicher Jobarten.
-						// TODO: Diese der Owner des Jobs bearbeiten kann anneehmen kann und ablehnen kann.
-						SendClientMessage(playerid, COLOR_INFO, "bewerbung in bearbeitung!");
+						if(GetJobID(playerid) >= 0)
+						{
+							// TODO: MySQL DB erstellen für Bewerbung jeglicher Jobarten.
+							// TODO: Diese der Owner des Jobs bearbeiten kann anneehmen kann und ablehnen kann.
+							SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in Bearbeitung!");
+						}
+						else
+						{
+							SendClientMessage(playerid, COLOR_ERROR, "Du musst Zuerst einen beruf Kündigen!");
+						}
 					}
 				}
 			}
@@ -602,9 +728,16 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 1: // Bewerben für den job
 					{
-						// TODO: MySQL DB erstellen für Bewerbungen jeglicher Jobarten. 
-						// TODO: Diese der Owner des Jobs bearbeiten kann annehmen kann und ablehnen kann.
-						SendClientMessage(playerid, COLOR_INFO, "Bewerbung in Bearbeitung!");
+						if(GetJobID(playerid) >= 0)
+						{
+							// TODO: MySQL DB erstellen für Bewerbung jeglicher Jobarten.
+							// TODO: Diese der Owner des Jobs bearbeiten kann anneehmen kann und ablehnen kann.
+							SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in Bearbeitung!");
+						}
+						else
+						{
+							SendClientMessage(playerid, COLOR_ERROR, "Du musst Zuerst einen beruf Kündigen!");
+						}
 					}
 					case 2:
 					{
