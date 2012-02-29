@@ -103,7 +103,7 @@ Timer:FlyWithPlane(playerID, part)
 		{
 			// TODO: Fade to black
 			GameTextForPlayer(playerID, "7 Stunden später...", 3000, 1);
-			SetTimerEx("FlyWithPlane", 3000, false, "ii", playerID, 2);
+			SetTimerEx("Timer_FlyWithPlane", 3000, false, "ii", playerID, 2);
 		}
 		case 2:
 		{

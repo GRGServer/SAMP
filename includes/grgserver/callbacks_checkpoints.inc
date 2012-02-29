@@ -11,7 +11,7 @@ public OnPlayerEnterCheckpoint(playerid)
 		{
 			TogglePlayerControllable(playerid, false);
 			// TODO: Sit down (Animation)
-			SetTimerEx("FlyWithPlane", 5000, false, "ii", playerid, 1);
+			SetTimerEx("Timer_FlyWithPlane", 5000, false, "ii", playerid, 1);
 		}
 	}
 }
