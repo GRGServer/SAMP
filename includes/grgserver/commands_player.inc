@@ -208,3 +208,9 @@ CMD:teststart(playerid, params[], "Startsequenz nach dem Registrieren testen")
 	SetPlayerCheckpointEx(playerid, CHECKPOINT_WALKTOSEAT);
 	return COMMAND_OK;
 }
+
+CMD:testunfreeze(playerid, params[], "Steuerungsbehinderung aufheben")
+{
+	TogglePlayerControllable(playerid, true);
+	return COMMAND_OK;
+}
