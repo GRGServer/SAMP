@@ -166,6 +166,62 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
+		case DIALOG_CHANGEPASSWORD_STEP1:
+		{
+			if (response)
+			{
+				if (!strcmp(GetUserDBValue(playerid, "Password"), MD5(inputtext), true))
+				{
+					ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP2);
+				}
+				else
+				{
+					SendClientMessage(playerid, COLOR_ERROR, "Das eingegebene Passwort ist falsch!");
+					ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP1);
+				}
+			}
+		}
+		case DIALOG_CHANGEPASSWORD_STEP2:
+		{
+			if (response)
+			{
+				if (strlen(inputtext) >= REGISTER_MINPASSWORD && strlen(inputtext) <= REGISTER_MAXPASSWORD)
+				{
+					SetPVarString(playerid, "ChangePassword", inputtext);
+					ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP3);
+				}
+				else
+				{
+					FormatNew:string[80]("Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_MINPASSWORD, REGISTER_MAXPASSWORD);
+					SendClientMessage(playerid, COLOR_ERROR, string);
+					ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP2);
+				}
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP1);
+			}
+		}
+		case DIALOG_CHANGEPASSWORD_STEP3:
+		{
+			if (response)
+			{
+				if (!strcmp(GetPVarStringEx(playerid, "ChangePassword"), inputtext))
+				{
+					SetUserDBValue(playerid, "Password", MD5(inputtext));
+					SendClientMessage(playerid, COLOR_INFO, "Dein Passwort wurde geändert");
+				}
+				else
+				{
+					SendClientMessage(playerid, COLOR_ERROR, "Die eingegebenen Passwörter stimmen nicht überein! Bitte versuche es erneut.");
+					ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP3);
+				}
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP2);
+			}
+		}
 		case DIALOG_HOTEL_MAIN_AVAILABLE:
 		{
 			if (response)

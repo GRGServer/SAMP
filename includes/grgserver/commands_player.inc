@@ -15,6 +15,12 @@ CMD:accept(playerid, params[], "Annehmen eines Auftrages")
 	return COMMAND_OK;
 }
 
+CMD:changepw(playerid, params[], "Accountpasswort ändern")
+{
+	ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP1);
+	return COMMAND_OK;
+}
+
 CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
 {
 	if (fexist("commands.txt"))

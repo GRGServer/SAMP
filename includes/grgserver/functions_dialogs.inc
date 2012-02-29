@@ -47,6 +47,18 @@ ShowDialog(playerID, dialogID, ...)
 			Format:string("Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", string);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Fahrzeug Kaufen", string, "Ja", "Nein");
 		}
+		case DIALOG_CHANGEPASSWORD_STEP1:
+		{
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Accountpasswort ändern", "Gebe dein aktuelles Passwort ein.", "Weiter", "Abbrechen");
+		}
+		case DIALOG_CHANGEPASSWORD_STEP2:
+		{
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Accountpasswort ändern", "Gebe ein neues Passwort ein.", "Weiter", "Zurück");
+		}
+		case DIALOG_CHANGEPASSWORD_STEP3:
+		{
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Accountpasswort ändern", "Wiederhole zur Sicherheit dein neues Passwort.", "OK", "Zurück");
+		}
 		case DIALOG_HOTEL_MAIN_AVAILABLE:
 		{
 			FormatNew:options[40]("Hotel kaufen"); // Item 0
@@ -200,7 +212,7 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_REGISTER_STEP2:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Passwort wiederholen", "Gebe erneut das Passwort ein.", "Registrieren", "Zurück");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Passwort wiederholen", "Wiederhole zur Sicherheit dein neues Passwort.", "Registrieren", "Zurück");
 		}
 		case DIALOG_RESTARTGAMEMODE:
 		{
