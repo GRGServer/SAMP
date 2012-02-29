@@ -5,6 +5,7 @@ public OnPlayerConnect(playerid)
 		new npcName[MAX_PLAYER_NAME];
 		GetPlayerName(playerid, npcName, sizeof(npcName));
 		strdel(npcName, 0, 3);
+		printf("NPC Name: %s", npcName);
 		MySQLQuery("SELECT * FROM `npcs` WHERE `Name` = '%s'", MySQLEscapeString(npcName));
 		mysql_store_result();
 		if (strval(GetMySQLField("StartOnConnect")))
