@@ -7,6 +7,9 @@ public OnPlayerConnect(playerid)
 		strdel(npcName, 0, 4);
 		MySQLQuery("SELECT * FROM `npcs` WHERE `Name` = '%s'", MySQLEscapeString(npcName));
 		mysql_store_result();
+		SetPlayerPos(playerid, floatstr(GetMySQLField("SpawnPosX")), floatstr(GetMySQLField("SpawnPosY")), floatstr(GetMySQLField("SpawnPosZ")));
+		SetPlayerFacingAngle(playerid, floatstr(GetMySQLField("SpawnAngle")));
+		SetPlayerSkin(playerid, strval(GetMySQLField("Skin")));
 		if (strval(GetMySQLField("StartOnConnect")))
 		{
 			new modelID;
