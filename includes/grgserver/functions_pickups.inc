@@ -2,11 +2,12 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 {
 	new pickupTypeID;
 	new modelID;
-	new spawnType;
 	new pickup;
-	if (GetPickupInfoByType(pickupID, type, pickupTypeID, modelID, spawnType))
+	printf("Checking pickup type: %s", type);
+	if (GetPickupInfoByType(pickupID, type, pickupTypeID, modelID))
 	{
-		pickup = CreatePickup(modelID, spawnType, posX, posY, posZ);
+		printf("Adding pickup for %s (ModelID: %s)", type, modelID);
+		pickup = CreatePickup(modelID, 23, posX, posY, posZ);
 		Create3DTextLabel("Drücke ~k~~CONVERSATION_YES~", COLOR_TEXTLABEL, posX, posY, posZ, TEXTLABEL_DRAWDISTANCE, 0, true);
 		pickups[pickup][PICKUP_POSX] = posX;
 		pickups[pickup][PICKUP_POSY] = posY;
@@ -30,20 +31,18 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 	}
 }
 
-GetPickupInfoByType(pickupID, type[], &typeID, &modelID, &spawnType)
+GetPickupInfoByType(pickupID, type[], &typeID, &modelID)
 {
 	if (!strcmp(type, "BANK", true))
 	{
 		typeID = PICKUPTYPE_BANK;
 		modelID = PICKUP_BANK;
-		spawnType = 23;
 		return true;
 	}
 	if (!strcmp(type, "GASSTATION", true))
 	{
 		typeID = PICKUPTYPE_GASSTATION;
 		modelID = PICKUP_GASSTATION;
-		spawnType = 14;
 		return true;
 	}
 	if (!strcmp(type, "HOUSE", true))
@@ -57,51 +56,45 @@ GetPickupInfoByType(pickupID, type[], &typeID, &modelID, &spawnType)
 		{
 			modelID = PICKUP_HOUSEAVAILABLE;
 		}
-		spawnType = 23;
 		return true;
 	}
 	if (!strcmp(type, "HOTEL", true))
 	{
 		typeID = PICKUPTYPE_HOTEL;
 		modelID = PICKUP_HOTEL;
-		spawnType = 23;
 		return true;
 	}
 	if (!strcmp(type, "INBANK", true))
 	{
 		typeID = PICKUPTYPE_INBANK;
 		modelID = PICKUP_INBANK;
-		spawnType = 23;
 		return true;
 	}
 	if (!strcmp(type, "INPOLICE", true))
 	{
 		typeID = PICKUPTYPE_INPOLICE;
 		modelID = PICKUP_INPOLICE;
-		spawnType = 23;
 		return true;
 	}
 	if (!strcmp(type, "POLICE", true))
 	{
 		typeID = PICKUPTYPE_POLICE;
 		modelID = PICKUP_POLICE;
-		spawnType = 23;
 		return true;
 	}
 	if (!strcmp(type, "TRUCKER", true))
 	{
 		typeID = PICKUPTYPE_TRUCKER;
 		modelID = PICKUP_TRUCKER;
-		spawnType = 23;
 		return true;
 	}
 	if (!strcmp(type, "VEHICLEDEALER", true))
 	{
 		typeID = PICKUPTYPE_VEHICLEDEALER;
 		modelID = PICKUP_VEHICLEDEALER;
-		spawnType = 23;
 		return true;
 	}
+	print("Pickup type unknown");
 	return false;
 }
 
