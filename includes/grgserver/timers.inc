@@ -161,7 +161,7 @@ Timer:Slow()
 		new revision = strval(string);
 		fclose(file);
 		fremove("update_available");
-		if (revision > COMPILER_SVN_REVISION)
+		if (revision > COMPILER_SVN_REVISION)// TODO: Read directly from svn_changes
 		{
 			Format:string("Es steht ein Update auf Revision %s zur Verfügung!", string);
 			SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
@@ -170,6 +170,13 @@ Timer:Slow()
 				file = fopen("svn_changes", io_read);
 				fread(file, string);// Skip "------------------------------------------------------------------------"
 				fread(file, string);// Skip "rXXX | user | yyyy-mm-dd hh:ii:ss +xxxx (ddd, dd mmm yyyy) | x line(s)"
+				new revisionString[10];
+				new committerName[100];
+				new commitDate[50];
+				new lineCount[20];
+				sscanf(string, "p|ssss", revisionString, committerName, commitDate, lineCount);
+				Format:string("Committer: %s", committerName);
+				SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
 				fread(file, string);// Skip ""
 				SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, "*** SVN Changelog:");
 				while (fread(file, string))
