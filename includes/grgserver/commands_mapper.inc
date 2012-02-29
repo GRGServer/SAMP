@@ -23,7 +23,7 @@ PCMD:addpickup[MAPPER](playerid, params[], "Pickup erstellen")
 		return COMMAND_USAGE;
 	}
 	Format:type("%s", strtoupper(type));
-	if (!strcmp(type, "INBANK", true) || !strcmp(type, "GASSTATION", true) || !strcmp(type, "TRUCKER", true) || !strcmp(type, "VEHICLEDEALER", true) || !strcmp(type, "POLICE", true))
+	if (!strcmp(type, "GASSTATION", true) || !strcmp(type, "INBANK", true) || !strcmp(type, "POLICE", true) || !strcmp(type, "TRUCKER", true) || !strcmp(type, "VEHICLEDEALER", true))
 	{
 		GetPlayerPos(playerid, posX, posY, posZ);
 		new id = AddPickup(-1, type, posX, posY, posZ, true);

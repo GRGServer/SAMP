@@ -31,7 +31,7 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_ADDBUILDING_TYPE:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Gebäudetyp auswählen", "Bank\nHotel\nHaus\nPolice", "Weiter", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Gebäudetyp auswählen", "Bank\nHotel\nHaus\nPolizei", "Weiter", "Abbrechen");
 		}
 		case DIALOG_BUYHOUSE:
 		{
@@ -47,31 +47,10 @@ ShowDialog(playerID, dialogID, ...)
 			Format:string("Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", string);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Fahrzeug Kaufen", string, "Ja", "Nein");
 		}
-		case DIALOG_INBANK_JOB:
-		{
-			FormatNew:options[50]("Bank Kaufen");
-			Format:options("%s\nKonto Erstellen", options);
-			Format:options("%s\nKonto Übersicht", options);
-			Format:options("%s\nKonto Kündigen", options);
-			Format:options("%s\nAktueler Zinssatz", options);
-			Format:options("%s\nBewerben", options);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", "Abbrechen");
-		}
-		case DIALOG_INBANK_OPTIONS:
-		{
-			FormatNew:options[50]("Bank Verkaufen");
-			Format:options("%s\nFinazen Übersicht", options);
-			Format:options("%s\nBewerbungs Übersicht", options);
-			Format:options("%s\nEigenes Konto Erstellen", options);
-			Format:options("%s\nEigene Konto Übersicht", options);
-			Format:options("%s\nEigenes Konto Kündigen", options);
-			Format:options("%s\nAktueler Zinssatz", options);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", "Abbrechen");
-		}
 		case DIALOG_HOTEL_MAIN_AVAILABLE:
 		{
-			FormatNew:options[40]("Hotel Kaufen"); // Item 0
-			Format:options("%s\nZimmer Mieten", options); // Item 1
+			FormatNew:options[40]("Hotel kaufen"); // Item 0
+			Format:options("%s\nZimmer mieten", options); // Item 1
 			Format:options("%s\nBetreten", options); // Item 2
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hotel", options, "OK", "Abbrechen");
 		}
@@ -132,10 +111,26 @@ ShowDialog(playerID, dialogID, ...)
 			Format:options("%s\nVerkaufen", options);// Item 1
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hausoptionen", options, "OK", "Abbrechen");
 		}
-		case DIALOG_POLICE:
+		case DIALOG_INBANK_JOB:
 		{
-			FormatNew:options[20]("Betreten");
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Police", options, "OK", "Abbrechen");
+			FormatNew:options[90]("Bank Kaufen");
+			Format:options("%s\nKonto Erstellen", options);
+			Format:options("%s\nKonto Übersicht", options);
+			Format:options("%s\nKonto Kündigen", options);
+			Format:options("%s\nAktueler Zinssatz", options);
+			Format:options("%s\nBewerben", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", "Abbrechen");
+		}
+		case DIALOG_INBANK_OPTIONS:
+		{
+			FormatNew:options[150]("Bank Verkaufen");
+			Format:options("%s\nFinazen Übersicht", options);
+			Format:options("%s\nBewerbungs Übersicht", options);
+			Format:options("%s\nEigenes Konto Erstellen", options);
+			Format:options("%s\nEigene Konto Übersicht", options);
+			Format:options("%s\nEigenes Konto Kündigen", options);
+			Format:options("%s\nAktueler Zinssatz", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", "Abbrechen");
 		}
 		case DIALOG_LOGIN:
 		{
@@ -157,19 +152,24 @@ ShowDialog(playerID, dialogID, ...)
 			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Fahrzeug bestellen", vehicleList, "Bestellen", "Abbrechen");
 		}
+		case DIALOG_POLICE:
+		{
+			FormatNew:options[10]("Betreten");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Polizei", options, "OK", "Abbrechen");
+		}
 		case DIALOG_POLICE_JOB:
 		{
-			FormatNew:options[50]("Polizei Revier kaufen");
+			FormatNew:options[40]("Polizeirevier kaufen");
 			Format:options("%s\nBewerben", options);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Police", options, "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Polizei", options, "OK", "Abbrechen");
 		}
 		case DIALOG_POLICE_OPTIONS:
 		{
 			FormatNew:options[50]("Aufträge");
 			Format:options("%s\nFinazen", options);
-			Format:options("%s\nBewerbungs Übersicht", options);
+			Format:options("%s\nBewerbungsübersicht", options);
 			Format:options("%s\nKündigen", options);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Police", options, "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Polizei", options, "OK", "Abbrechen");
 		}
 		case DIALOG_RADIO:
 		{
@@ -288,7 +288,7 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_TRUCKER_JOB:
 		{
-			FormatNew:options[40]("Truckerfirma kaufen");
+			FormatNew:options[30]("Truckerfirma kaufen");
 			Format:options("%s\nBewerben", options);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Trucker", options, "OK", "Abbrechen");
 		}
@@ -315,7 +315,7 @@ ShowDialog(playerID, dialogID, ...)
 			Format:options("%s\nFinanzen", options);
 			Format:options("%s\nKündigen", options);
 			Format:options("%s\nBewerbungsübersicht", options);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Autohändler Übersicht", options, "OK", "Abbrechen");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Autohändlerübersicht", options, "OK", "Abbrechen");
 		}
 	}
 }

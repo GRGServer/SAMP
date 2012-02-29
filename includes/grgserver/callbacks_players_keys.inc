@@ -12,17 +12,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					{
 						TeleportToBuilding(playerid, strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
 					}
-					case PICKUPTYPE_INBANK:
-					{
-						if(GetJobID(playerid) == JOB_BANK)
-						{
-							ShowDialog(playerid, DIALOG_INBANK_OPTIONS);
-						}
-						else
-						{
-							ShowDialog(playerid, DIALOG_INBANK_JOB);
-						}
-					}
 					case PICKUPTYPE_GASSTATION:
 					{
 						new vehicleID = GetPlayerVehicleID(playerid);
@@ -34,17 +23,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 						else
 						{
 							SendClientMessage(playerid, COLOR_ERROR, "Der Tank ist bereits voll!");
-						}
-					}
-					case PICKUPTYPE_POLICE:
-					{
-						if(GetJobID(playerid) == JOB_POLICE)
-						{
-							ShowDialog(playerid, DIALOG_POLICE_OPTIONS);
-						}
-						else
-						{
-							ShowDialog(playerid, DIALOG_POLICE_JOB);
 						}
 					}
 					case PICKUPTYPE_HOTEL:
@@ -108,6 +86,28 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 								FormatNew:string[100]("Du hast nicht genügend Geld, um dieses Haus zu kaufen! Du benötigst mindestens $%s.", FormatMoney(price));
 								SendClientMessage(playerid, COLOR_ERROR, string);
 							}
+						}
+					}
+					case PICKUPTYPE_INBANK:
+					{
+						if (GetJobID(playerid) == JOB_BANK)
+						{
+							ShowDialog(playerid, DIALOG_INBANK_OPTIONS);
+						}
+						else
+						{
+							ShowDialog(playerid, DIALOG_INBANK_JOB);
+						}
+					}
+					case PICKUPTYPE_POLICE:
+					{
+						if (GetJobID(playerid) == JOB_POLICE)
+						{
+							ShowDialog(playerid, DIALOG_POLICE_OPTIONS);
+						}
+						else
+						{
+							ShowDialog(playerid, DIALOG_POLICE_JOB);
 						}
 					}
 					case PICKUPTYPE_TRUCKER:
