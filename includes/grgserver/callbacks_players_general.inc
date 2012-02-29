@@ -106,6 +106,16 @@ public OnPlayerRequestClass(playerid, classid)
 
 public OnPlayerSpawn(playerid)
 {
+	if (IsPlayerNPC(playerid))
+	{
+		if (floatstr(GetMySQLField("SpawnPosX")) || floatstr(GetMySQLField("SpawnPosY")) || floatstr(GetMySQLField("SpawnPosZ")))
+		{
+			SetPlayerPos(playerid, floatstr(GetMySQLField("SpawnPosX")), floatstr(GetMySQLField("SpawnPosY")), floatstr(GetMySQLField("SpawnPosZ")));
+			SetPlayerFacingAngle(playerid, floatstr(GetMySQLField("SpawnAngle")));
+			SetPlayerSkin(playerid, strval(GetMySQLField("Skin")));
+		}
+		return true;
+	}
 	if (GetPVarInt(playerid, "SpawnAfterLogin"))
 	{
 		DeletePVar(playerid, "SpawnAfterLogin");
