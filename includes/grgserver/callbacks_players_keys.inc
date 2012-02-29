@@ -121,10 +121,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				}
 				return true;
 			}
-			else
-			{
-				print("Not in range... searching next");
-			}
 		}
 	}
 	return false;
