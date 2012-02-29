@@ -22,7 +22,7 @@ GetPlayerNameEx(playerID)
 
 GetPVarStringEx(playerID, name[])
 {
-	new string[2048];
+	new string[256];
 	GetPVarString(playerID, name, string, sizeof(string));
 	return string;
 }
