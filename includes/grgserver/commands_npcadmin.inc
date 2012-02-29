@@ -16,6 +16,8 @@ PCMD:addstaticnpc[NPCADMIN](playerid, params[], "NPC ohne Aufnahme an die aktuel
 	new id = mysql_insert_id();
 	if (id > 0)
 	{
+		Format:playerName("NPC_%s", playerName);
+		ConnectNPC(playerName, NPC_SCRIPTNAME);
 		FormatNew:string[70]("Der NPC wurde erfolgreich unter der ID %d gespeichert", id);
 		SendClientMessage(playerid, COLOR_INFO, string);
 		return COMMAND_OK;
