@@ -39,7 +39,6 @@ public OnClientMessage(color, text[])
 	{
 		SetMyPos(posX, posY, posZ);
 		SetMyFacingAngle(angle);
-		SendChat("I've got teleported");
 		return true;
 	}
 	if (!sscanf(text, "s", command))
