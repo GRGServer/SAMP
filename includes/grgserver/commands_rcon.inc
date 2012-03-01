@@ -25,6 +25,7 @@ RCMD:cmds(params[], "List available RCON commands")
 RCMD:reconnectnpcs(params[], "Reconnect all NPCs")
 {
 	Exec:ReconnectNPCs();
+	return true;
 }
 
 RCMD:reloadpermissions(params[], "Reload all permissions from database")
