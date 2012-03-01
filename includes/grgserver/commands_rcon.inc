@@ -52,6 +52,19 @@ RCMD:reloadvehiclemodels(params[], "Reload all vehicle models from database")
 	return true;
 }
 
+RCMD:safegmx(params[], "Safely restart the gamemode")
+{
+	print("Restarting gamemode...");
+	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+	{
+		SavePlayer(playerID);
+	}
+	SendClientMessageToAll(COLOR_INFO, "Der Gamemode wurde per RCON neugestartet");
+	SendRconCommand("gmx");
+	print("Done");
+	return true;
+}
+
 RCMD:showmysqlinfo(params[], "Show various information about the MySQL connection (i.e. number of occured warnings)")
 {
 	printf("Number of warnings: %d", mysql_warning_count());
