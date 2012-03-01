@@ -76,7 +76,8 @@ PCMD:controlnpc[NPCADMIN](playerid, params[], "NPCs steuern (z.B. Starten oder s
 				return COMMAND_ERROR;
 			}
 		}
-		SendClientMessage(playerid, COLOR_INFO, "Befehl gesendet");
+		FormatNew:string[100]("Befehl gesendet: %s", command);
+		SendClientMessage(playerid, COLOR_INFO, string);
 		SendNPCCommand(GetPlayerID(targetPlayerName), command);
 		return COMMAND_OK;
 	}
