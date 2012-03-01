@@ -106,6 +106,15 @@ public OnPlayerRequestClass(playerid, classid)
 
 public OnPlayerSpawn(playerid)
 {
+	if (IsPlayerNPC(playerid))
+	{
+		if (floatstr(GetMySQLField("SpawnPosX")) || floatstr(GetMySQLField("SpawnPosY")) || floatstr(GetMySQLField("SpawnPosZ")))
+		{
+			FormatNew:command[100]("teleport %s %s %s %s 0", GetMySQLField("SpawnPosX"), GetMySQLField("SpawnPosY"), GetMySQLField("SpawnPosZ"), GetMySQLField("SpawnAngle"));
+			SendNPCCommand(playerid, command);
+		}
+		return true;
+	}
 	if (GetPVarInt(playerid, "SpawnAfterLogin"))
 	{
 		DeletePVar(playerid, "SpawnAfterLogin");

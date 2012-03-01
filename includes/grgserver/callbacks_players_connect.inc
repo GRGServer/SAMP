@@ -8,12 +8,6 @@ public OnPlayerConnect(playerid)
 		MySQLQuery("SELECT * FROM `npcs` WHERE `Name` = '%s'", MySQLEscapeString(npcName));
 		mysql_store_result();
 		SetPlayerSkin(playerid, strval(GetMySQLField("Skin")));
-		if (floatstr(GetMySQLField("SpawnPosX")) || floatstr(GetMySQLField("SpawnPosY")) || floatstr(GetMySQLField("SpawnPosZ")))
-		{
-			printf("Teleporting %s", npcName);
-			FormatNew:command[100]("teleport %s %s %s %s 0", GetMySQLField("SpawnPosX"), GetMySQLField("SpawnPosY"), GetMySQLField("SpawnPosZ"), GetMySQLField("SpawnAngle"));
-			SendNPCCommand(playerid, command);
-		}
 		if (strval(GetMySQLField("StartOnConnect")))
 		{
 			new modelID;
