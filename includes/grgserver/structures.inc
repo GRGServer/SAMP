@@ -27,6 +27,8 @@ enum enum_pickupLoader
 
 enum enum_vehicle
 {
+	VEHICLE_COLOR1,
+	VEHICLE_COLOR2,
 	Float:VEHICLE_CURRENTFUEL,
 	VEHICLE_JOBID,
 	VEHICLE_SAVEID,

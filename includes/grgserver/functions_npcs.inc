@@ -14,7 +14,7 @@ AddNPCRecorderPlayback(playerID, recordingName[], recordingType)
 			new modelID = strval(GetMySQLValue("npcs", "VehicleModelID", "Recording", recordingName));
 			if (modelID)
 			{
-				PutPlayerInVehicle(npcPlayerID, CreateVehicle(modelID, 0.0, 0.0, 0.0, 0.0, random(127), random(127), 1), 0);
+				PutPlayerInVehicle(npcPlayerID, CreateVehicleEx(modelID, 0.0, 0.0, 0.0, 0.0, random(127), random(127), 0), 0);
 			}
 		}
 		SetPVarInt(npcPlayerID, "RecordNPCForPlayer", playerID);

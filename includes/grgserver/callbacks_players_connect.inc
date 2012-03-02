@@ -10,6 +10,8 @@ public OnPlayerConnect(playerid)
 		SetPlayerSkin(playerid, strval(GetMySQLField("Skin")));
 		if (strval(GetMySQLField("StartOnConnect")))
 		{
+			new color1;
+			new color2;
 			new modelID;
 			new playbackType;
 			new vehicleID;
@@ -17,7 +19,9 @@ public OnPlayerConnect(playerid)
 			if (modelID)
 			{
 				playbackType = PLAYER_RECORDING_TYPE_DRIVER;
-				vehicleID = CreateVehicle(modelID, 0.0, 0.0, 0.0, 0.0, random(127), random(127), 1);
+				color1 = random(127);
+				color2 = random(127);
+				vehicleID = CreateVehicleEx(modelID, 0.0, 0.0, 0.0, 0.0, color1, color2, 0);
 				PutPlayerInVehicle(playerid, vehicleID, 0);
 				SetPVarInt(playerid, "VehicleID", vehicleID);
 			}

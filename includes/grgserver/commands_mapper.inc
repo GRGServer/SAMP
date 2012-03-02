@@ -43,8 +43,8 @@ PCMD:addpickup[MAPPER](playerid, params[], "Pickup erstellen")
 
 PCMD:saveveh[MAPPER](playerid, params[], "Aktuelles Fahrzeug als kaufbares Fahrzeug speichern")
 {
-	new price;
-	if (sscanf(params, "d", price))
+	new Float:price;
+	if (sscanf(params, "f", price))
 	{
 		CmdUsageMsg(playerid, "saveveh", "Preis");
 		return COMMAND_USAGE;
@@ -62,7 +62,8 @@ PCMD:saveveh[MAPPER](playerid, params[], "Aktuelles Fahrzeug als kaufbares Fahrz
 			new modelID = GetVehicleModel(vehicleID);
 			GetVehiclePos(vehicleID, posX, posY, posZ);
 			GetVehicleZAngle(vehicleID, angle);
-			MySQLQuery("INSERT INTO `savedvehicles` (`PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `ModelID`, `Price`, `CurrentFuel`) VALUES('%f', '%f', '%f', '%f', '%d', '%d', '%d', '%f')", posX, posY, posZ, angle, GetPlayerInterior(playerid), modelID, price, vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
+			MySQLQuery("INSERT INTO `savedvehicles` (`PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `ModelID`, `Color1`, `Color2`, `Price`, `CurrentFuel`) VALUES('%f', '%f', '%f', '%f', '%d', '%d', '%d', '%d', '%f', '%f')", posX, posY, posZ, angle, GetPlayerInterior(playerid), modelID, vehicles[vehicleID][VEHICLE_COLOR1], vehicles[vehicleID][VEHICLE_COLOR2], price, vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
+			vehicles[vehicleID][VEHICLE_SAVEID] = mysql_insert_id();
 			Format:string("Fahrzeug wurde unter der ID %d gespeichert", mysql_insert_id());
 			SendClientMessage(playerid, COLOR_INFO, string);
 			return COMMAND_OK;
@@ -118,8 +119,7 @@ PCMD:veh[MAPPER](playerid, params[], "Fahrzeug spawnen")
 			new Float:posY;
 			new Float:posZ;
 			GetPlayerPos(playerid, posX, posY, posZ);
-			new vehicleID = CreateVehicle(modelID, posX, posY, posZ, 0.0, color1, color2, -1);
-			vehicles[vehicleID][VEHICLE_CURRENTFUEL] = vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL];
+			new vehicleID = CreateVehicleEx(modelID, posX, posY, posZ, 0.0, color1, color2, -1);
 			LinkVehicleToInterior(vehicleID, GetPlayerInterior(playerid));
 			SetVehicleVirtualWorld(vehicleID, GetPlayerVirtualWorld(playerid));
 			PutPlayerInVehicle(playerid, vehicleID, 0);

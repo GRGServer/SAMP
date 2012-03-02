@@ -36,6 +36,21 @@ CheckVehiclePermission(playerID, vehicleID)
 	return true;
 }
 
+CreateVehicleEx(modelID, Float:posX, Float:posY, Float:posZ, Float:angle, color1, color2, respawnDelay, Float:fuel = -1.0, saveID = 0, jobID = 0)
+{
+	if (fuel < 0)
+	{
+		fuel = vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL];
+	}
+	new vehicleID = CreateVehicle(modelID, posX, posY, posZ, angle, color1, color2, respawnDelay);
+	vehicles[vehicleID][VEHICLE_COLOR1] = color1;
+	vehicles[vehicleID][VEHICLE_COLOR2] = color2;
+	vehicles[vehicleID][VEHICLE_CURRENTFUEL] = fuel;
+	vehicles[vehicleID][VEHICLE_JOBID] = jobID;
+	vehicles[vehicleID][VEHICLE_SAVEID] = saveID;
+	return vehicleID;
+}
+
 GetVehicleEngineState(vehicleID)
 {
 	new engine;
@@ -64,12 +79,8 @@ ReloadSavedVehicles()
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new vehicleID = CreateVehicle(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1);
-		vehicles[vehicleID][VEHICLE_CURRENTFUEL] = floatstr(GetMySQLField("CurrentFuel"));
-		vehicles[vehicleID][VEHICLE_SAVEID] = strval(GetMySQLField("ID"));
-		vehicles[vehicleID][VEHICLE_JOBID] = strval(GetMySQLField("JobID"));
+		new vehicleID = CreateVehicleEx(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1, floatstr(GetMySQLField("CurrentFuel")), strval(GetMySQLField("ID")), strval(GetMySQLField("JobID")));
 		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
-		ChangeVehicleColor(vehicleID, strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")));
 		ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
 	}
 	mysql_free_result();
