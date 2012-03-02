@@ -52,12 +52,12 @@ public OnPlayerConnect(playerid)
 		Format:string("%s hat den Server betreten", GetPlayerNameEx(playerid));
 		SendClientMessageToAllExcept(playerid, COLOR_JOINLEAVE, string);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
-		textDrawSpeedoName[playerid] = TextDrawCreate(480, 380, "_");
+		textDrawSpeedoName[playerid] = TextDrawCreate(480, 385, "_");
 		TextDrawAlignment(textDrawSpeedoName[playerid], 1);
 		TextDrawLetterSize(textDrawSpeedoName[playerid], 0.3, 0.9);
 		TextDrawFont(textDrawSpeedoName[playerid], 1);
 		TextDrawSetShadow(textDrawSpeedoName[playerid], 2);
-		textDrawSpeedoColumn2[playerid] = TextDrawCreate(580, 380, "_");
+		textDrawSpeedoColumn2[playerid] = TextDrawCreate(580, 385, "_");
 		TextDrawAlignment(textDrawSpeedoColumn2[playerid], 1);
 		TextDrawLetterSize(textDrawSpeedoColumn2[playerid], 0.3, 0.9);
 		TextDrawFont(textDrawSpeedoColumn2[playerid], 1);
