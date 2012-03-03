@@ -4,10 +4,10 @@ public OnGameModeInit()
 	printf("    SVN Revision: %d", COMPILER_SVN_REVISION);
 	printf("    Compile date: %s %s", COMPILER_DATE, COMPILER_TIME);
 	printf("    Last committer: %s", COMPILER_SVN_LASTCOMMITTER);
-	if (fexist("svn_changes"))
+	if (fexist(FILE_LASTCHANGES))
 	{
 		new logLine[256];
-		new File:changesFile = fopen("svn_changes", io_read);
+		new File:changesFile = fopen(FILE_LASTCHANGES, io_read);
 		fread(changesFile, logLine);// Skip "------------------------------------------------------------------------"
 		fread(changesFile, logLine);// Skip "rXXX | user | yyyy-mm-dd hh:ii:ss +xxxx (ddd, dd mmm yyyy) | x line(s)"
 		fread(changesFile, logLine);// Skip ""
@@ -25,9 +25,9 @@ public OnGameModeInit()
 	print("* Checking SVN stuff...");
 	new File:svnRevisionFile;
 	new oldSvnRevision[16];
-	if (fexist("svn_revision"))
+	if (fexist(FILE_RUNNINGREVISION))
 	{
-		svnRevisionFile = fopen("svn_revision", io_read);
+		svnRevisionFile = fopen(FILE_RUNNINGREVISION, io_read);
 		if (svnRevisionFile)
 		{
 			fread(svnRevisionFile, oldSvnRevision, sizeof(oldSvnRevision));
@@ -37,7 +37,7 @@ public OnGameModeInit()
 	if (strval(oldSvnRevision) != COMPILER_SVN_REVISION)
 	{
 		svnRevisionChanged = true;
-		svnRevisionFile = fopen("svn_revision", io_write);
+		svnRevisionFile = fopen(FILE_RUNNINGREVISION, io_write);
 		if (svnRevisionFile)
 		{
 			fwrite(svnRevisionFile, val2str(COMPILER_SVN_REVISION));

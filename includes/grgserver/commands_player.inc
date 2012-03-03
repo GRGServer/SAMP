@@ -23,11 +23,11 @@ CMD:changepw(playerid, params[], "Accountpasswort ändern")
 
 CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
 {
-	if (fexist("commands.txt"))
+	if (fexist(FILE_COMMANDS))
 	{
 		new string[256];
-		new File:commands = fopen("commands.txt", io_read);
-		while (fread(commands, string))
+		new File:file = fopen(FILE_COMMANDS, io_read);
+		while (fread(file, string))
 		{
 			new type;
 			new command[MAX_FUNC_NAME];
@@ -41,7 +41,7 @@ CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
 			if (type)
 			{
 				new showCommand;
-				fread(commands, infoText);
+				fread(file, infoText);
 				if (type == '-')
 				{
 					showCommand = true;

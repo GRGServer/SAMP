@@ -12,6 +12,14 @@
 #define COLOR_USAGE					0x008000AA
 
 
+// Files
+#define FILE_COMMANDS				"commands.txt"
+#define FILE_LASTCHANGES			"svn_changes"
+#define FILE_RUNNINGREVISION		"running_revision"
+#define FILE_STABLEREVISION			"stable_revision"
+#define FILE_UPDATENOTIFICATION		"update_log"
+
+
 // Gas station configuration
 #define GASSTATION_REFUELSPEED		500// Time per liter
 

@@ -1,15 +1,15 @@
 RCMD:cmds(params[], "List available RCON commands")
 {
-	if (fexist("commands.txt"))
+	if (fexist(FILE_COMMANDS))
 	{
 		new string[256];
 		new infoText[256];
-		new File:commands = fopen("commands.txt", io_read);
+		new File:file = fopen(FILE_COMMANDS, io_read);
 		print("Available commands:");
-		while (fread(commands, string))
+		while (fread(file, string))
 		{
 			new type;
-			fread(commands, infoText);
+			fread(file, infoText);
 			RemoveNewLine(string);
 			RemoveNewLine(infoText);
 			sscanf(string, "cs", type, string);

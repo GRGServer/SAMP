@@ -171,10 +171,10 @@ Timer:Slow()
 	TextDrawSetString(textDrawClock, clockString);
 	SetWorldTime(hour);
 	mysql_ping();
-	if (fexist("update_log"))
+	if (fexist(FILE_UPDATENOTIFICATION))
 	{
 		new string[256];
-		new File:file = fopen("update_log", io_read);
+		new File:file = fopen(FILE_UPDATENOTIFICATION, io_read);
 		fread(file, string);// Skip "------------------------------------------------------------------------"
 		fread(file, string);// Read "rXXX | user | yyyy-mm-dd hh:ii:ss +xxxx (ddd, dd mmm yyyy) | x line(s)"
 		new revisionString[10];
@@ -203,7 +203,7 @@ Timer:Slow()
 			}
 		}
 		fclose(file);
-		fremove("update_log");
+		fremove(FILE_UPDATENOTIFICATION);
 	}
 }
 
@@ -215,7 +215,7 @@ Timer:SpawnPlayer(playerID)
 
 Timer:StableCheck()
 {
-	new File:file = fopen("stable_revision", io_write);
+	new File:file = fopen(FILE_STABLEREVISION, io_write);
 	fwrite(file, val2str(COMPILER_SVN_REVISION));
 	fclose(file);
 }
