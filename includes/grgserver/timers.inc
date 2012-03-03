@@ -177,7 +177,6 @@ Timer:Slow()
 		new File:file = fopen("svn_changes", io_read);
 		fread(file, string);// Skip "------------------------------------------------------------------------"
 		fread(file, string);// Read "rXXX | user | yyyy-mm-dd hh:ii:ss +xxxx (ddd, dd mmm yyyy) | x line(s)"
-		printf("Read info line: %s", string);
 		new revisionString[10];
 		new committerName[100];
 		new commitDate[50];

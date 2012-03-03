@@ -37,14 +37,14 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			new string[70];
 			GetStringArg(2, string);
-			Format:string("Dieses Haus kann noch gekauft werden.\n\nPreis: %s", string);
+			Format:string("Dieses Haus kann noch gekauft werden.\n\nPreis: $%s", string);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Haus kaufen", string, "Kaufen", "Abbrechen");
 		}
 		case DIALOG_BUYVEHICLE:
 		{
 			new string[70];
 			GetStringArg(2, string);
-			Format:string("Möchtest du dieses Fahrzeug Kaufen?\nDies kostet $%s", string);
+			Format:string("Möchtest du dieses Fahrzeug Kaufen?\n\nPreis: $%s", string);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Fahrzeug Kaufen", string, "Ja", "Nein");
 		}
 		case DIALOG_CHANGEPASSWORD_STEP1:
@@ -204,8 +204,7 @@ ShowDialog(playerID, dialogID, ...)
 			new string[80];
 			GetStringArg(2, string);
 			SetPVarFloat(playerID, "CurrentGasPrice", gasPrice);
-			Format:string("Wie viel möchtest du tanken (0 - %s)?\n\nAktueller Preis: %s/Liter", string, FormatMoney(gasPrice));
-			printf("Show: %s", string);
+			Format:string("Wie viel möchtest du tanken (0 - %s)?\n\nAktueller Preis: $%s/Liter", string, FormatMoney(gasPrice));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", "Abbrechen");
 		}
 		case DIALOG_REGISTER_GENDER:
@@ -278,7 +277,7 @@ ShowDialog(playerID, dialogID, ...)
 			{
 				Format:string("%s\nBank:\t%s", string, GetMySQLField("Bank"));
 			}
-			Format:string("%s\nGuthaben:\t%s", string, FormatMoney(GetPlayerMoneyEx(playerID)));
+			Format:string("%s\nGuthaben:\t$%s", string, FormatMoney(GetPlayerMoneyEx(playerID)));
 			if (strval(GetMySQLField("JobID")))
 			{
 				Format:string("%s\nBeruf:\t%s", string, GetMySQLField("JobName"));

@@ -84,7 +84,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					printf("Added building %d", buildingID);
 					SetPVarInt(playerid, "LastAddedBuilding", buildingID);
 					printf("PVar LastAddedBuilding set to %d", buildingID);
-					FormatNew:string[256]("Das Gebäude %s (Preis: %s) wurde unter der ID %d gespeichert.", inputtext, FormatMoney(GetPVarFloat(playerid, "AddBuilding_Price")), buildingID);
+					FormatNew:string[256]("Das Gebäude %s (Preis: $%s) wurde unter der ID %d gespeichert.", inputtext, FormatMoney(GetPVarFloat(playerid, "AddBuilding_Price")), buildingID);
 					SendClientMessage(playerid, COLOR_INFO, string);
 				}
 				else
