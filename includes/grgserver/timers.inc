@@ -173,16 +173,20 @@ Timer:Slow()
 	mysql_ping();
 	if (fexist("svn_changes"))
 	{
+		print("svn_changes file found");
 		new string[256];
 		new File:file = fopen("svn_changes", io_read);
 		fread(file, string);// Skip "------------------------------------------------------------------------"
-		fread(file, string);// Skip "rXXX | user | yyyy-mm-dd hh:ii:ss +xxxx (ddd, dd mmm yyyy) | x line(s)"
+		fread(file, string);// Read "rXXX | user | yyyy-mm-dd hh:ii:ss +xxxx (ddd, dd mmm yyyy) | x line(s)"
+		printf("Read info line: %s", string);
 		new revisionString[10];
 		new committerName[100];
 		new commitDate[50];
 		new lineCount[20];
 		sscanf(string, "p|ssss", revisionString, committerName, commitDate, lineCount);
+		printf("Parsed line and got: rev %s, comitter %s, date %s, lines %s", revisionString, committerName, commitDate, lineCount);
 		new revision = strval(revisionString);
+		printf("Converted to number: %d", revision);
 		if (revision > COMPILER_SVN_REVISION)
 		{
 			printf("Detected update to revision %d", revision);
