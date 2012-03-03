@@ -171,45 +171,39 @@ Timer:Slow()
 	TextDrawSetString(textDrawClock, clockString);
 	SetWorldTime(hour);
 	mysql_ping();
-	if (fexist("update_available"))
+	if (fexist("svn_changes"))
 	{
 		new string[256];
-		new File:file = fopen("update_available", io_read);
-		fread(file, string);
-		RemoveNewLine(string);
-		new revision = strval(string);
-		fclose(file);
-		fremove("update_available");
-		if (revision > COMPILER_SVN_REVISION)// TODO: Read directly from svn_changes
+		new File:file = fopen("svn_changes", io_read);
+		fread(file, string);// Skip "------------------------------------------------------------------------"
+		fread(file, string);// Skip "rXXX | user | yyyy-mm-dd hh:ii:ss +xxxx (ddd, dd mmm yyyy) | x line(s)"
+		new revisionString[10];
+		new committerName[100];
+		new commitDate[50];
+		new lineCount[20];
+		sscanf(string, "p|ssss", revisionString, committerName, commitDate, lineCount);
+		new revision = strval(revisionString);
+		if (revision > COMPILER_SVN_REVISION)
 		{
-			Format:string("Es steht ein Update auf Revision %s zur Verfügung!", string);
+			printf("Detected update to revision %d", revision);
+			Format:string("Es steht ein Update auf Revision %d zur Verfügung!", revision);
 			SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
-			if (fexist("svn_changes"))
+			Format:string("Committer: %s", committerName);
+			SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
+			fread(file, string);// Skip ""
+			SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, "*** SVN Changelog:");
+			while (fread(file, string))
 			{
-				file = fopen("svn_changes", io_read);
-				fread(file, string);// Skip "------------------------------------------------------------------------"
-				fread(file, string);// Skip "rXXX | user | yyyy-mm-dd hh:ii:ss +xxxx (ddd, dd mmm yyyy) | x line(s)"
-				new revisionString[10];
-				new committerName[100];
-				new commitDate[50];
-				new lineCount[20];
-				sscanf(string, "p|ssss", revisionString, committerName, commitDate, lineCount);
-				Format:string("Committer: %s", committerName);
-				SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
-				fread(file, string);// Skip ""
-				SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, "*** SVN Changelog:");
-				while (fread(file, string))
+				RemoveNewLine(string);
+				if (strlen(string) && strcmp(string, "------------------------------------------------------------------------"))
 				{
-					RemoveNewLine(string);
-					if (strlen(string) && strcmp(string, "------------------------------------------------------------------------"))
-					{
-						Format:string("> %s", string);
-						SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
-					}
+					Format:string("> %s", string);
+					SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
 				}
-				fclose(file);
 			}
 		}
+		fclose(file);
+		fremove("svn_changes");
 	}
 }
 
