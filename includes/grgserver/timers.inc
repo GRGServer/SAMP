@@ -174,7 +174,7 @@ Timer:Slow()
 	if (fexist("update_log"))
 	{
 		new string[256];
-		new File:file = fopen("svn_changes", io_read);
+		new File:file = fopen("update_log", io_read);
 		fread(file, string);// Skip "------------------------------------------------------------------------"
 		fread(file, string);// Read "rXXX | user | yyyy-mm-dd hh:ii:ss +xxxx (ddd, dd mmm yyyy) | x line(s)"
 		new revisionString[10];
