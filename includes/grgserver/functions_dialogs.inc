@@ -201,10 +201,11 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_REFUEL:
 		{
-			new string[50];
+			new string[80];
 			GetStringArg(2, string);
 			SetPVarFloat(playerID, "CurrentGasPrice", gasPrice);
 			Format:string("Wie viel möchtest du tanken (0 - %s)?\n\nAktueller Preis: %s/Liter", string, FormatMoney(gasPrice));
+			printf("Show: %s", string);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", "Abbrechen");
 		}
 		case DIALOG_REGISTER_GENDER:
