@@ -123,6 +123,7 @@ StopRadioStation(playerID)
 UpdateGasPrice()
 {
 	gasPrice = float(150 + random(10)) / 100;
+	printf("Updated gas price to %s", FormatMoney(gasPrice));
 }
 
 WriteChatToDatabase(playerID, text[])
