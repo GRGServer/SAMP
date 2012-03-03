@@ -18,6 +18,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 						new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
 						if (maximum > 0)
 						{
+							SetPVarFloat(playerid, "CurrentGasPrice", gasPrice);
 							ShowDialog(playerid, DIALOG_REFUEL, FormatMoney(maximum));
 						}
 						else

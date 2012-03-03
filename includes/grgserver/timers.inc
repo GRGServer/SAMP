@@ -122,7 +122,7 @@ Timer:Hourly()
 Timer:RefuelVehicle(playerID, Float:totalAmount)
 {
 	new vehicleID = GetPlayerVehicleID(playerID);
-	if (GetPlayerMoneyEx(playerID) >= gasPrice)
+	if (GetPlayerMoneyEx(playerID) >= GetPVarFloat(playerID, "CurrentGasPrice"))
 	{
 		new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
 		if (totalAmount > 0 && maximum > 0)
@@ -137,7 +137,7 @@ Timer:RefuelVehicle(playerID, Float:totalAmount)
 				amount = 1.0;
 			}
 			vehicles[vehicleID][VEHICLE_CURRENTFUEL] = floatadd(vehicles[vehicleID][VEHICLE_CURRENTFUEL], amount);
-			GivePlayerMoneyEx(playerID, -floatmul(gasPrice, amount));
+			GivePlayerMoneyEx(playerID, -floatmul(GetPVarFloat(playerID, "CurrentGasPrice"), amount));
 			SetTimerEx("timer_refuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, floatsub(totalAmount, amount));
 			return true;
 		}
