@@ -171,7 +171,7 @@ Timer:Slow()
 	TextDrawSetString(textDrawClock, clockString);
 	SetWorldTime(hour);
 	mysql_ping();
-	if (fexist("svn_changes"))
+	if (fexist("update_log"))
 	{
 		new string[256];
 		new File:file = fopen("svn_changes", io_read);
@@ -203,7 +203,7 @@ Timer:Slow()
 			}
 		}
 		fclose(file);
-		fremove("svn_changes");
+		fremove("update_log");
 	}
 }
 
