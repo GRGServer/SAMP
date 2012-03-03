@@ -138,7 +138,7 @@ Timer:RefuelVehicle(playerID, Float:totalAmount)
 			}
 			vehicles[vehicleID][VEHICLE_CURRENTFUEL] = floatadd(vehicles[vehicleID][VEHICLE_CURRENTFUEL], amount);
 			GivePlayerMoneyEx(playerID, -floatmul(GetPVarFloat(playerID, "CurrentGasPrice"), amount));
-			SetTimerEx("timer_refuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, floatsub(totalAmount, amount));
+			SetTimerEx("Timer_RefuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, floatsub(totalAmount, amount));
 			return true;
 		}
 		SendClientMessage(playerID, COLOR_INFO, "Dein Fahrzeug wurde getankt.");
