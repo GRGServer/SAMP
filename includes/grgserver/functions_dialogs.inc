@@ -204,7 +204,7 @@ ShowDialog(playerID, dialogID, ...)
 			new string[50];
 			GetStringArg(2, string);
 			SetPVarFloat(playerID, "CurrentGasPrice", gasPrice);
-			Format:string("Wie viel möchtest du tanken (0 - %s)?\n\nAktueller Preis: %s", string, gasPrice);
+			Format:string("Wie viel möchtest du tanken (0 - %s)?\n\nAktueller Preis: %s/Liter", string, FormatMoney(gasPrice));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", "Abbrechen");
 		}
 		case DIALOG_REGISTER_GENDER:
