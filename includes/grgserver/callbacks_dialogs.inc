@@ -620,6 +620,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
+				printf("[REG] Selected item: %d", listitem);
 				new gender;
 				switch (listitem)
 				{
@@ -634,8 +635,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						SetPlayerSkin(playerid, REGISTER_SKIN_FEMALE);
 					}
 				}
+				printf("[REG] Gender: %c", gender);
 				MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `Gender`, `RegisterTime`) VALUES ('%s', '%s', '%c', NOW())", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(GetPVarStringEx(playerid, "RegisterPassword")), gender);
+				printf("[REG] Query sent");
 				SetPVarInt(playerid, "UserID", mysql_insert_id());
+				printf("[REG] New UserID: %d", GetUserID(playerid));
 				SavePlayer(playerid);
 				printf("Player registered: %s (UserID: %d)", GetPlayerNameEx(playerid), GetUserID(playerid));
 				SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
