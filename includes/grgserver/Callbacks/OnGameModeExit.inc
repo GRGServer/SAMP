@@ -1,16 +1,11 @@
 public OnGameModeExit()
 {
 	print("* Unloading Gamemode...");
-	print("* Saving players...");
 	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
 	{
 		if (IsPlayerNPC(playerID))
 		{
 			Kick(playerID);
-		}
-		else
-		{
-			SavePlayer(playerID);
 		}
 	}
 	print("* Saving vehicles...");
