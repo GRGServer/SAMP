@@ -1,0 +1,4 @@
+Timer:Hourly()
+{
+	UpdateGasPrice();
+}

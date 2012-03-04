@@ -1,43 +1,165 @@
-#include <grgserver\compilerconstantscheck>// Check for constants defined on srv2 and replace with dummy if not existing
-#include <grgserver\constants>// Constants like colors, dialog IDs, command returns, etc.
-#include <grgserver\config>// Configuration data like IRC and MySQL credentials
-#include <grgserver\structures>// Structures for arrays like vehicles
-#include <grgserver\globals>// Globally used variables like ircBot (Variables which are shared between multiple functions)
-#include <grgserver\macros>// Macros like GetStringArg
-#include <grgserver\timers>// Timers to update various stuff like world time
+// Constants
+#include <grgserver\compilerconstantscheck.inc>
+#include <grgserver\config.inc>
+#include <grgserver\constants.inc>
+#include <grgserver\macros.inc>
+
+// Structures
+#include <grgserver\enum_permission.inc>
+#include <grgserver\enum_pickup.inc>
+#include <grgserver\enum_pickupLoader.inc>
+#include <grgserver\enum_playerVariable.inc>
+#include <grgserver\enum_vehicle.inc>
+#include <grgserver\enum_vehicleModel.inc>
+
+// Global variables
+#include <grgserver\globals.inc>
+
+// Basic functions
+#include <grgserver\explode.inc>
+#include <grgserver\str_replace.inc>
+#include <grgserver\strtoupper.inc>
+#include <grgserver\val2str.inc>
 
 // Functions
-#include <grgserver\functions_basic>// Basic C-like functions like str_replace
-#include <grgserver\functions_checkpoints>// Checkpoint functions like SetPlayerCheckPointEx
-#include <grgserver\functions_dialogs>// Dialog functions like ShowDialog
-#include <grgserver\functions_general>// General functions like CmdUsageMsg
-#include <grgserver\functions_mysql>// MySQL functions like GetMySQLValue
-#include <grgserver\functions_npcs>// NPC related functions like SendNPCCommand
-#include <grgserver\functions_permissions>// Permissions functions like GetPermissionByName
-#include <grgserver\functions_pickups>// Pickup functions like AddPickup
-#include <grgserver\functions_players_account>// Player account functions like LoadPlayer
-#include <grgserver\functions_players_general>// General player functions like GetPlayerNameEx
-#include <grgserver\functions_players_teleport>// Teleport player functions like TeleportToInterior
-#include <grgserver\functions_vehicles>// Vehicle functions like SaveVehicle
+#include <grgserver\AddNPCRecorderPlayback.inc>
+#include <grgserver\AddPickup.inc>
+#include <grgserver\AddVehicleComponentEx.inc>
+#include <grgserver\CalculateAge.inc>
+#include <grgserver\CheckVehiclePermission.inc>
+#include <grgserver\CmdUsageMsg.inc>
+#include <grgserver\CreateGlobalTextDraws.inc>
+#include <grgserver\CreateVehicleEx.inc>
+#include <grgserver\FetchMySQLRow.inc>
+#include <grgserver\Float2Str.inc>
+#include <grgserver\FormatDate.inc>
+#include <grgserver\FormatTime.inc>
+#include <grgserver\GetMySQLField.inc>
+#include <grgserver\GetMySQLValue.inc>
+#include <grgserver\GetPermissionByName.inc>
+#include <grgserver\GetPermissionName.inc>
+#include <grgserver\GetPickupInfoByType.inc>
+#include <grgserver\GetPlayerID.inc>
+#include <grgserver\GetPlayerNameEx.inc>
+#include <grgserver\GetVehicleEngineState.inc>
+#include <grgserver\GivePlayerMoneyEx.inc>
+#include <grgserver\IRC_OnConnect.inc>
+#include <grgserver\IRC_OnDisconnect.inc>
+#include <grgserver\IRC_OnJoinChannel.inc>
+#include <grgserver\IRC_OnUserJoinChannel.inc>
+#include <grgserver\IRC_OnUserLeaveChannel.inc>
+#include <grgserver\IRC_OnUserSay.inc>
+#include <grgserver\IsLoggedIn.inc>
+#include <grgserver\IsValidSkin.inc>
+#include <grgserver\LeaveBuilding.inc>
+#include <grgserver\LoadPlayer.inc>
+#include <grgserver\MySQLEscapeString.inc>
+#include <grgserver\PlayRadioStation.inc>
+#include <grgserver\ReconnectNPCs.inc>
+#include <grgserver\ReloadPermissions.inc>
+#include <grgserver\ReloadPickup.inc>
+#include <grgserver\ReloadPickups.inc>
+#include <grgserver\ReloadSavedVehicles.inc>
+#include <grgserver\ReloadVehicleModels.inc>
+#include <grgserver\RemoveNewLine.inc>
+#include <grgserver\ResetPlayerVariables.inc>
+#include <grgserver\SavePlayer.inc>
+#include <grgserver\SaveVehicle.inc>
+#include <grgserver\SendClientMessageToAdmins.inc>
+#include <grgserver\SendClientMessageToAllExcept.inc>
+#include <grgserver\SendNPCCommand.inc>
+#include <grgserver\SetMySQLValue.inc>
+#include <grgserver\SetPlayerCheckpointEx.inc>
+#include <grgserver\SetPlayerMoney.inc>
+#include <grgserver\SetVehicleEngineState.inc>
+#include <grgserver\ShowDialog.inc>
+#include <grgserver\ShowInteriorDialog.inc>
+#include <grgserver\StartNPCPlayback.inc>
+#include <grgserver\StopRadioStation.inc>
+#include <grgserver\Str2Val.inc>
+#include <grgserver\Teleport.inc>
+#include <grgserver\TeleportTo.inc>
+#include <grgserver\TeleportToBuilding.inc>
+#include <grgserver\TeleportToInterior.inc>
+#include <grgserver\UpdateGasPrice.inc>
+#include <grgserver\WriteChatToDatabase.inc>
 
 // Callbacks
-#include <grgserver\callbacks_checkpoints>// Checkpoit callbacks like OnPlayerEnterCheckpoint
-#include <grgserver\callbacks_dialogs>// Dialog callbacks like OnDialogResponse
-#include <grgserver\callbacks_gamemode_init>// Callbacks OnGameModeInit and OnGameModeExit
-#include <grgserver\callbacks_irc>// IRC callbacks like like IRC_OnConnect
-#include <grgserver\callbacks_pickups>// Pickup callback OnPlayerPickupPickUp
-#include <grgserver\callbacks_players_connect>// Callbacks OnPlayerConnect and OnPlayerDisconnect
-#include <grgserver\callbacks_players_general>// General player callbacks like OnPlayerRequestClass
-#include <grgserver\callbacks_players_keys>// Callback OnPlayerKeyStateChange
-#include <grgserver\callbacks_players_vehicles>// Player related vehicle callbacks like OnPlayerEnterVehicle
+#include <grgserver\OnDialogResponse.inc>
+#include <grgserver\OnGameModeExit.inc>
+#include <grgserver\OnGameModeInit.inc>
+#include <grgserver\OnInteriorDialogSelect.inc>
+#include <grgserver\OnPlayerCommandPerformed.inc>
+#include <grgserver\OnPlayerConnect.inc>
+#include <grgserver\OnPlayerDisconnect.inc>
+#include <grgserver\OnPlayerEnterCheckpoint.inc>
+#include <grgserver\OnPlayerEnterVehicle.inc>
+#include <grgserver\OnPlayerExitVehicle.inc>
+#include <grgserver\OnPlayerKeyStateChange.inc>
+#include <grgserver\OnPlayerPickUpPickup.inc>
+#include <grgserver\OnPlayerRequestClass.inc>
+#include <grgserver\OnPlayerSpawn.inc>
+#include <grgserver\OnPlayerStateChange.inc>
+#include <grgserver\OnPlayerText.inc>
+#include <grgserver\OnPlayerUpdate.inc>
+#include <grgserver\OnVehicleDeath.inc>
+#include <grgserver\OnVehicleMod.inc>
+#include <grgserver\OnVehiclePaintjob.inc>
+#include <grgserver\OnVehicleRespray.inc>
+#include <grgserver\OnVehicleSpawn.inc>
 
-// Commands
-#include <grgserver\commands_admin>// Admin commands like /money
-#include <grgserver\commands_mapper>// Mapper commands like /addpickup
-#include <grgserver\commands_moderator>// Moderator commands like /kick
-#include <grgserver\commands_npcadmin>// NPC admin commands like /controlnpc
-#include <grgserver\commands_npcs>// NPC only commands like /npccmd
-#include <grgserver\commands_player>// Player commands like /radio
-#include <grgserver\commands_rcon>// RCON commands like reloadpermissions
-#include <grgserver\commands_serveradmin>// Server admin commands like /gmx
-#include <grgserver\commands_teleport>// Teleport commands like /goto
+// Timers
+#include <grgserver\Timer_EveryMinute.inc>
+#include <grgserver\Timer_Fast.inc>
+#include <grgserver\Timer_FlyWithPlane.inc>
+#include <grgserver\Timer_Hourly.inc>
+#include <grgserver\Timer_RefuelVehicle.inc>
+#include <grgserver\Timer_Slow.inc>
+#include <grgserver\Timer_SpawnPlayer.inc>
+#include <grgserver\Timer_StableCheck.inc>
+
+// Ingame commands
+#include <grgserver\command_about.inc>
+#include <grgserver\command_accept.inc>
+#include <grgserver\command_addbuilding.inc>
+#include <grgserver\command_addpickup.inc>
+#include <grgserver\command_addstaticnpc.inc>
+#include <grgserver\command_changepw.inc>
+#include <grgserver\command_checkpermissions.inc>
+#include <grgserver\command_cmds.inc>
+#include <grgserver\command_controlnpc.inc>
+#include <grgserver\command_exit.inc>
+#include <grgserver\command_getbalance.inc>
+#include <grgserver\command_givepermission.inc>
+#include <grgserver\command_gmx.inc>
+#include <grgserver\command_goto.inc>
+#include <grgserver\command_help.inc>
+#include <grgserver\command_jetpack.inc>
+#include <grgserver\command_kick.inc>
+#include <grgserver\command_me.inc>
+#include <grgserver\command_money.inc>
+#include <grgserver\command_motor.inc>
+#include <grgserver\command_npccmd.inc>
+#include <grgserver\command_ordervehicle.inc>
+#include <grgserver\command_radio.inc>
+#include <grgserver\command_rc.inc>
+#include <grgserver\command_recnpc.inc>
+#include <grgserver\command_reloadplayer.inc>
+#include <grgserver\command_saveveh.inc>
+#include <grgserver\command_showinterior.inc>
+#include <grgserver\command_stats.inc>
+#include <grgserver\command_stoprec.inc>
+#include <grgserver\command_teleport.inc>
+#include <grgserver\command_teststart.inc>
+#include <grgserver\command_testunfreeze.inc>
+#include <grgserver\command_veh.inc>
+
+// RCON commands
+#include <grgserver\rcon_cmds.inc>
+#include <grgserver\rcon_reconnectnpcs.inc>
+#include <grgserver\rcon_reloadpermissions.inc>
+#include <grgserver\rcon_reloadpickups.inc>
+#include <grgserver\rcon_reloadsavedvehicles.inc>
+#include <grgserver\rcon_reloadvehiclemodels.inc>
+#include <grgserver\rcon_safegmx.inc>
+#include <grgserver\rcon_showmysqlinfo.inc>

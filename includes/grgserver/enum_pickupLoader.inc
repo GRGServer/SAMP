@@ -1,0 +1,7 @@
+enum enum_pickupLoader
+{
+	Float:PICKUPLOADER_POSX,
+	Float:PICKUPLOADER_POSY,
+	Float:PICKUPLOADER_POSZ,
+	PICKUPLOADER_TYPE[20]
+}
