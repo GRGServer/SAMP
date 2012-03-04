@@ -623,6 +623,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `Gender`, `BirthDate`, `Location`, `RegisterTime`) VALUES ('%s', '%s', '%c', '%s', '%s', NOW())", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(GetPVar:playerid[REGISTERPASSWORD]), GetPVar:playerid[GENDER], GetPVar:playerid[BIRTHDATE], MySQLEscapeString(inputtext));
 				SetPVar:playerid[USERID](mysql_insert_id());
+				SetPVar:playerid[ONLINESINCE](gettime());
 				SavePlayer(playerid);
 				printf("Player registered: %s (UserID: %d)", GetPlayerNameEx(playerid), GetPVar:playerid[USERID]);
 				SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
