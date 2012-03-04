@@ -1,0 +1,98 @@
+﻿#Title = "Includes Updater"
+
+Global grgIncludesPath$
+Global mainInclude
+
+Procedure AddIncludeGroup(name$)
+	WriteStringN(mainInclude, "// " + name$)
+EndProcedure
+
+Procedure AddInclude(fileName$)
+	WriteStringN(mainInclude, "#include <grgserver\" + fileName$ + ">")
+EndProcedure
+
+Procedure AddDir(directoryName$)
+	NewList Includes.s()
+	directory = ExamineDirectory(#PB_Any, grgIncludesPath$ + directoryName$, "*.inc")
+	If IsDirectory(directory)
+		While NextDirectoryEntry(directory)
+			If DirectoryEntryType(directory) = #PB_DirectoryEntry_File
+				AddElement(Includes())
+				Includes() = DirectoryEntryName(directory)
+			EndIf
+		Wend
+		SortList(Includes(), #PB_Sort_Ascending)
+		AddIncludeGroup(directoryName$)
+		ForEach Includes()
+			AddInclude(directoryName$ + "\" + Includes())
+		Next
+		WriteStringN(mainInclude, "")
+		FinishDirectory(directory)
+	EndIf
+EndProcedure
+
+mainPath$ = GetPathPart(ProgramFilename())
+serverRoot$ = GetPathPart(Left(mainPath$, Len(mainPath$) - 1))
+grgIncludesPath$ = serverRoot$ + "includes\grgserver\"
+
+directory = ExamineDirectory(#PB_Any, grgIncludesPath$, "*.*")
+If IsDirectory(directory)
+	If MessageRequester(#Title, "Update includes?" + Chr(13) + Chr(13) + "Includes path: " + grgIncludesPath$, #MB_YESNO | #MB_ICONQUESTION) = #PB_MessageRequester_Yes
+		mainInclude = CreateFile(#PB_Any, grgIncludesPath$ + "main.inc")
+		If IsFile(mainInclude)
+			AddIncludeGroup("Constants")
+			AddInclude("compilerconstantscheck.inc")
+			AddInclude("config.inc")
+			AddInclude("constants.inc")
+			AddInclude("macros.inc")
+			WriteStringN(mainInclude, "")
+			AddDir("Structures")
+			AddIncludeGroup("Global variables")
+			AddInclude("globals.inc")
+			WriteStringN(mainInclude, "")
+			AddDir("Functions")
+			AddDir("Callbacks")
+			AddDir("Timers")
+			AddDir("Commands")
+			AddDir("RCON")
+			CloseFile(mainInclude)
+			MessageRequester(#Title, "Done", #MB_ICONINFORMATION)
+		Else
+			MessageRequester(#Title, "Can not create main.inc in " +grgIncludesPath$ + "!", #MB_ICONERROR)
+		EndIf
+	EndIf
+	FinishDirectory(directory)
+Else
+	MessageRequester(#Title, "The includes path '" +grgIncludesPath$ + "' does not exist!", #MB_ICONERROR)
+EndIf
+; IDE Options = PureBasic 4.60 (Windows - x86)
+; CursorPosition = 57
+; FirstLine = 24
+; Folding = -
+; EnableXP
+; UseIcon = Includes Updater.ico
+; Executable = Includes Updater.exe
+; EnableCompileCount = 6
+; EnableBuildCount = 6
+; EnableExeConstant
+; IncludeVersionInfo
+; VersionField0 = 1,0,0,0
+; VersionField1 = 1,0,0,0
+; VersionField2 = SelfCoders
+; VersionField3 = Includes Updater
+; VersionField4 = 1.0
+; VersionField5 = 1.0
+; VersionField6 = Includes Updater
+; VersionField7 = Includes Updater
+; VersionField8 = %EXECUTABLE
+; VersionField13 = includesupdater@selfcoders.com
+; VersionField14 = http://www.selfcoders.com
+; VersionField15 = VOS_NT_WINDOWS32
+; VersionField16 = VFT_APP
+; VersionField17 = 0409 English (United States)
+; VersionField18 = Build
+; VersionField19 = Compile OS
+; VersionField20 = Date
+; VersionField21 = %BUILDCOUNT
+; VersionField22 = %OS
+; VersionField23 = %y-%m-%d %h:%i:%s
