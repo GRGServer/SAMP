@@ -27,7 +27,7 @@ CheckVehiclePermission(playerID, vehicleID)
 		ShowDialog(playerID, DIALOG_BUYVEHICLE, FormatMoney(floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID])))));
 		return true;
 	}
-	if (ownerUserID != GetUserID(playerID))
+	if (ownerUserID != GetPVar:playerID[USERID])
 	{
 		SendClientMessage(playerID, COLOR_ERROR, "Dieses Fahrzeug besitzt bereits ein anderer Spieler");
 		RemovePlayerFromVehicle(playerID);

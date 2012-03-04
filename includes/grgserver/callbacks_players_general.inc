@@ -31,7 +31,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 
 public OnPlayerRequestClass(playerid, classid)
 {
-	new previousClassID = GetPVarInt(playerid, "PreviousClassID");
+	new previousClassID = GetPVar:playerid[PREVIOUSCLASSID];
 	new direction;
 	switch (classid)
 	{
@@ -66,8 +66,8 @@ public OnPlayerRequestClass(playerid, classid)
 			}
 		}
 	}
-	SetPVarInt(playerid, "PreviousClassID", classid);
-	new skinID = GetPVarInt(playerid, "Skin");
+	SetPVar:playerid[PREVIOUSCLASSID](classid);
+	new skinID = GetPVar:playerid[SKIN];
 	switch (direction)
 	{
 		case -1:
@@ -95,7 +95,7 @@ public OnPlayerRequestClass(playerid, classid)
 			while (!IsValidSkin(skinID));
 		}
 	}
-	SetPVarInt(playerid, "Skin", skinID);
+	SetPVar:playerid[SKIN](skinID);
 	SetPlayerSkin(playerid, skinID);
 	SetPlayerPos(playerid, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ);
 	SetPlayerFacingAngle(playerid, SPAWN_ANGLE);
@@ -121,13 +121,13 @@ public OnPlayerSpawn(playerid)
 		mysql_free_result();
 		return true;
 	}
-	if (GetPVarInt(playerid, "SpawnAfterLogin"))
+	if (GetPVar:playerid[SPAWNAFTERLOGIN])
 	{
-		DeletePVar(playerid, "SpawnAfterLogin");
+		SetPVar:playerid[SPAWNAFTERLOGIN](false);
 		SetPlayerPos(playerid, floatstr(GetUserDBValue(playerid, "PosX")), floatstr(GetUserDBValue(playerid, "PosY")), floatstr(GetUserDBValue(playerid, "PosZ")));
 		SetPlayerFacingAngle(playerid, floatstr(GetUserDBValue(playerid, "Angle")));
 		SetPlayerInterior(playerid, strval(GetUserDBValue(playerid, "Interior")));
-		SetPlayerSkin(playerid, GetPVarInt(playerid, "Skin"));
+		SetPlayerSkin(playerid, GetPVar:playerid[SKIN]);
 	}
 	return true;
 }

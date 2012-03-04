@@ -38,17 +38,17 @@ PCMD:givepermission[SERVERADMIN](playerid, params[], "Rechte an einen Spieler ge
 					SendClientMessage(playerid, COLOR_ERROR, string);
 					return COMMAND_ERROR;
 				}
-				MySQLQuery("SELECT `UserID` FROM `permissions` WHERE `UserID` = '%d'", GetUserID(targetPlayerID));
+				MySQLQuery("SELECT `UserID` FROM `permissions` WHERE `UserID` = '%d'", GetPVar:targetPlayerID[USERID]);
 				mysql_store_result();
 				new rows = mysql_num_rows();
 				mysql_free_result();
 				if (rows)
 				{
-					MySQLQuery("UPDATE `permissions` SET `%s` = '%d' WHERE `UserID` = '%d'", MySQLEscapeString(permission), newState, GetUserID(targetPlayerID));
+					MySQLQuery("UPDATE `permissions` SET `%s` = '%d' WHERE `UserID` = '%d'", MySQLEscapeString(permission), newState, GetPVar:targetPlayerID[USERID]);
 				}
 				else
 				{
-					MySQLQuery("INSERT INTO `permissions` (`UserID`, `%s`) VALUES('%d', '%d')", MySQLEscapeString(permission), GetUserID(targetPlayerID), newState);
+					MySQLQuery("INSERT INTO `permissions` (`UserID`, `%s`) VALUES('%d', '%d')", MySQLEscapeString(permission), GetPVar:targetPlayerID[USERID], newState);
 				}
 				permissions[targetPlayerID][enum_permission:permissionID] = newState;
 				if (newState)

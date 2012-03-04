@@ -42,7 +42,7 @@ TeleportToBuilding(playerID, buildingID)
 	{
 		if (TeleportToInterior(playerID, interiorID))
 		{
-			SetPVarInt(playerID, "CurrentBuildingID", buildingID);
+			SetPVar:playerID[CURRENTBUILDINGID](buildingID);
 			SetPlayerVirtualWorld(playerID, buildingID);
 			return true;
 		}

@@ -33,18 +33,18 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 						new buildingID = strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
 						new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
 						GetPlayerPos(playerid, posX, posY, posZ);
-						SetPVarFloat(playerid, "Hotel_PreviousPosition_X", posX);
-						SetPVarFloat(playerid, "Hotel_PreviousPosition_Y", posY);
-						SetPVarFloat(playerid, "Hotel_PreviousPosition_Z", posZ);
+						SetPVar:playerid[HOTEL_PREVIOUSPOSITION_X](posX);
+						SetPVar:playerid[HOTEL_PREVIOUSPOSITION_Y](posY);
+						SetPVar:playerid[HOTEL_PREVIOUSPOSITION_Z](posZ);
 						SetPlayerPos(playerid, HOTEL_RECEPTION_POSX, HOTEL_RECEPTION_POSY, HOTEL_RECEPTION_POSZ);
 						SetPlayerFacingAngle(playerid, HOTEL_RECEPTION_ANGLE);
 						SetPlayerInterior(playerid, HOTEL_RECEPTION_INTERIOR);
 						SetPlayerVirtualWorld(playerid, buildingID);
 						if (ownerUserID)
 						{
-							if (ownerUserID == GetUserID(playerid))
+							if (ownerUserID == GetPVar:playerid[USERID])
 							{
-								SetPVarInt(playerid, "DialogBuildingID", buildingID);
+								SetPVar:playerid[DIALOGBUILDINGID](buildingID);
 								ShowDialog(playerid, DIALOG_HOTEL_MAIN_OWNER);
 							}
 							else
@@ -62,9 +62,9 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 						new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
 						if (ownerUserID)
 						{
-							if (ownerUserID == GetUserID(playerid))
+							if (ownerUserID == GetPVar:playerid[USERID])
 							{
-								SetPVarInt(playerid, "DialogBuildingID", strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
+								SetPVar:playerid[DIALOGBUILDINGID](strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
 								ShowDialog(playerid, DIALOG_HOUSEOPTIONS);
 							}
 							else
@@ -76,9 +76,9 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 						else
 						{
 							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
-							if (price <= GetPlayerMoneyEx(playerid))
+							if (price <= GetPVar:playerid[MONEY])
 							{
-								SetPVarInt(playerid, "DialogBuildingID", strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
+								SetPVar:playerid[DIALOGBUILDINGID](strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
 								ShowDialog(playerid, DIALOG_BUYHOUSE, FormatMoney(price));
 							}
 							else
@@ -90,7 +90,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					}
 					case PICKUPTYPE_INBANK:
 					{
-						if (GetJobID(playerid) == JOB_BANK)
+						if (GetPVar:playerid[JOBID] == JOB_BANK)
 						{
 							ShowDialog(playerid, DIALOG_INBANK_OPTIONS);
 						}
@@ -101,7 +101,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					}
 					case PICKUPTYPE_POLICE:
 					{
-						if (GetJobID(playerid) == JOB_POLICE)
+						if (GetPVar:playerid[JOBID] == JOB_POLICE)
 						{
 							ShowDialog(playerid, DIALOG_POLICE_OPTIONS);
 						}
@@ -112,7 +112,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					}
 					case PICKUPTYPE_TRUCKER:
 					{
-						if (GetJobID(playerid) == JOB_TRUCKER)
+						if (GetPVar:playerid[JOBID] == JOB_TRUCKER)
 						{
 							ShowDialog(playerid, DIALOG_TRUCKER_OPTIONS);
 						}
@@ -123,7 +123,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					}
 					case PICKUPTYPE_VEHICLEDEALER:
 					{
-						if (GetJobID(playerid) == JOB_VEHICLEDEALER)
+						if (GetPVar:playerid[JOBID] == JOB_VEHICLEDEALER)
 						{
 							ShowDialog(playerid, DIALOG_VEHICLEDEALER_OPTIONS);
 						}

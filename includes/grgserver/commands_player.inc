@@ -5,7 +5,7 @@ CMD:about(playerid, params[], "Informationen über dieses Script")
 }
 CMD:accept(playerid, params[], "Annehmen eines Auftrages")
 {
-	switch (GetJobID(playerid))
+	switch (GetPVar:playerid[JOBID])
 	{
 		case JOB_ADAC, JOB_AMBULANCE, JOB_POLICE, JOB_TRUCKER:
 			ShowDialog(playerid, DIALOG_ACCEPT);
@@ -85,7 +85,7 @@ CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
 
 CMD:exit(playerid, params[], "Gebäude verlassen")
 {
-	if (GetPVarType(playerid, "ShowInterior_OldInterior") == PLAYER_VARTYPE_NONE)
+	if (GetPVar:playerid[SHOWINTERIOR_OLDINTERIOR] == -1)
 	{
 		if (LeaveBuilding(playerid))
 		{
@@ -99,12 +99,9 @@ CMD:exit(playerid, params[], "Gebäude verlassen")
 	}
 	else
 	{
-		SetPlayerPos(playerid, GetPVarFloat(playerid, "ShowInterior_OldPosX"), GetPVarFloat(playerid, "ShowInterior_OldPosY"), GetPVarFloat(playerid, "ShowInterior_OldPosZ"));
-		SetPlayerInterior(playerid, GetPVarInt(playerid, "ShowInterior_OldInterior"));
-		DeletePVar(playerid, "ShowInterior_OldPosX");
-		DeletePVar(playerid, "ShowInterior_OldPosY");
-		DeletePVar(playerid, "ShowInterior_OldPosZ");
-		DeletePVar(playerid, "ShowInterior_OldInterior");
+		SetPlayerPos(playerid, GetPVar:playerid[SHOWINTERIOR_OLDPOSX], GetPVar:playerid[SHOWINTERIOR_OLDPOSY], GetPVar:playerid[SHOWINTERIOR_OLDPOSZ]);
+		SetPlayerInterior(playerid, GetPVar:playerid[SHOWINTERIOR_OLDINTERIOR]);
+		SetPVar:playerid[SHOWINTERIOR_OLDINTERIOR](-1);
 		return COMMAND_OK;
 	}
 }
@@ -112,7 +109,7 @@ CMD:exit(playerid, params[], "Gebäude verlassen")
 CMD:getbalance(playerid, params[], "Kontostand anzeigen")
 {
 	new string[256];
-	Format:string("Aktueller Kontostand: $%s", FormatMoney(GetPlayerMoneyEx(playerid)));
+	Format:string("Aktueller Kontostand: $%s", FormatMoney(GetPVar:playerid[MONEY]));
 	SendClientMessage(playerid, COLOR_INFO, string);
 	return COMMAND_OK;
 }
@@ -175,7 +172,7 @@ CMD:motor(playerid, params[], "Starten oder stoppen des Motors deines Fahrzeugs"
 
 CMD:ordervehicle(playerid, params[], "Fahrzeug bestellen")
 {
-	if (GetJobID(playerid) == JOB_VEHICLEDEALER)
+	if (GetPVar:playerid[JOBID] == JOB_VEHICLEDEALER)
 	{
 		ShowDialog(playerid, DIALOG_ORDERVEHICLE);
 		return COMMAND_OK;

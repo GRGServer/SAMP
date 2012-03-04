@@ -6,7 +6,7 @@ PCMD:addbuilding[MAPPER](playerid, params[], "Gebäude erstellen")
 		CmdUsageMsg(playerid, "addbuilding", "Preis");
 		return COMMAND_USAGE;
 	}
-	SetPVarFloat(playerid, "AddBuilding_Price", price);
+	SetPVar:playerid[ADDBUILDING_PRICE](price);
 	ShowDialog(playerid, DIALOG_ADDBUILDING_TYPE);
 	return COMMAND_OK;
 }

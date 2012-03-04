@@ -1,5 +1,6 @@
 public OnPlayerConnect(playerid)
 {
+	ResetPlayerVariables(playerid);
 	if (IsPlayerNPC(playerid))
 	{
 		new npcName[MAX_PLAYER_NAME];
@@ -23,7 +24,6 @@ public OnPlayerConnect(playerid)
 				color2 = random(127);
 				vehicleID = CreateVehicleEx(modelID, 0.0, 0.0, 0.0, 0.0, color1, color2, 0);
 				PutPlayerInVehicle(playerid, vehicleID, 0);
-				SetPVarInt(playerid, "VehicleID", vehicleID);
 			}
 			else
 			{
@@ -86,5 +86,6 @@ public OnPlayerDisconnect(playerid, reason)
 		TextDrawDestroy(textDrawSpeedoColumn2[playerid]);
 		TextDrawDestroy(textDrawRadioStation[playerid]);
 	}
+	ResetPlayerVariables(playerid);
 	return true;
 }

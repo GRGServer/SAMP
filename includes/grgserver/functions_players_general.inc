@@ -20,18 +20,11 @@ GetPlayerNameEx(playerID)
 	return playerName;
 }
 
-GetPVarStringEx(playerID, name[])
-{
-	new string[256];
-	GetPVarString(playerID, name, string, sizeof(string));
-	return string;
-}
-
 GivePlayerMoneyEx(playerID, Float:amount)
 {
-	SetPVarFloat(playerID, "Money", floatadd(GetPlayerMoneyEx(playerID), amount));
+	SetPVar:playerID[MONEY](floatadd(GetPVar:playerID[MONEY], amount));
 	ResetPlayerMoney(playerID);
-	GivePlayerMoney(playerID, floatround(GetPlayerMoneyEx(playerID), floatround_tozero) * 100);
+	GivePlayerMoney(playerID, floatround(GetPVar:playerID[MONEY], floatround_tozero) * 100);
 }
 
 IsValidSkin(skinID)
@@ -50,7 +43,7 @@ IsValidSkin(skinID)
 
 LeaveBuilding(playerID)
 {
-	new CurrentBuildingID = GetPVarInt(playerID, "CurrentBuildingID");
+	new CurrentBuildingID = GetPVar:playerID[CURRENTBUILDINGID];
 	if (CurrentBuildingID)
 	{
 		MySQLQuery("SELECT `PosX`, `PosY`, `PosZ` FROM `pickups` WHERE `ID` = '%d'", strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(CurrentBuildingID))));
@@ -58,16 +51,26 @@ LeaveBuilding(playerID)
 		SetPlayerPos(playerID, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")));
 		SetPlayerInterior(playerID, 0);
 		SetPlayerVirtualWorld(playerID, 0);
-		SetPVarInt(playerID, "CurrentBuildingID", 0);
+		SetPVar:playerID[CURRENTBUILDINGID](0);
 		mysql_free_result();
 		return true;
 	}
 	return false;
 }
 
+ResetPlayerVariables(playerID)
+{
+	Count(playerVariable, sizeof(playerVariables[]))
+	{
+		playerVariables[playerID][enum_playerVariable:playerVariable] = 0;
+	}
+	SetPVar:playerID[RECORDNPCFORPLAYER](INVALID_PLAYER_ID);
+	SetPVar:playerID[SHOWINTERIOR_OLDINTERIOR](-1);
+}
+
 SetPlayerMoney(playerID, Float:amount)
 {
-	SetPVarFloat(playerID, "Money", amount);
+	SetPVar:playerID[MONEY](amount);
 	ResetPlayerMoney(playerID);
 	GivePlayerMoney(playerID, floatround(amount, floatround_tozero) * 100);
 }

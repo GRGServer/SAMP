@@ -12,9 +12,9 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 			return false;
 		}
 	}
-	if (GetPVarInt(playerid, "RadioOn") && GetPVarInt(playerid, "LastRadioStation"))
+	if (GetPVar:playerid[RADIOON] && GetPVar:playerid[LASTRADIOSTATION])
 	{
-		PlayRadioStation(playerid, GetPVarInt(playerid, "LastRadioStation"));
+		PlayRadioStation(playerid, GetPVar:playerid[LASTRADIOSTATION]);
 	}
 	return true;
 }

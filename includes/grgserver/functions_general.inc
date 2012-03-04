@@ -35,6 +35,12 @@ CreateGlobalTextDraws()
 	TextDrawFont(textDrawClock, 3);
 }
 
+Float2Str(Float:value)
+{
+	FormatNew:string[30]("%f", value);
+	return string;
+}
+
 FormatDate(sqlDateString[], showTime = true)
 {
 	new string[30];
@@ -68,8 +74,8 @@ PlayRadioStation(playerID, id)
 {
 	if (id)
 	{
-		SetPVarInt(playerID, "RadioOn", true);
-		SetPVarInt(playerID, "LastRadioStation", id);
+		SetPVar:playerID[RADIOON](true);
+		SetPVar:playerID[LASTRADIOSTATION](id);
 		FormatNew:string[100]("%s", GetMySQLValue("radiostations", "Name", "ID", val2str(id)));
 		PlayAudioStreamForPlayer(playerID, GetMySQLValue("radiostations", "URL", "ID", val2str(id)));
 		TextDrawSetString(textDrawRadioStation[playerID], string);
@@ -144,5 +150,5 @@ UpdateGasPrice()
 
 WriteChatToDatabase(playerID, text[])
 {
-	MySQLQuery("INSERT INTO `chatlog` (`UserID`, `Time`, `Text`) VALUES('%d', NOW(), '%s')", GetUserID(playerID), MySQLEscapeString(text));
+	MySQLQuery("INSERT INTO `chatlog` (`UserID`, `Time`, `Text`) VALUES('%d', NOW(), '%s')", GetPVar:playerID[USERID], MySQLEscapeString(text));
 }

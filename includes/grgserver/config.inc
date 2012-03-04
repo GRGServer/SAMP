@@ -96,6 +96,10 @@
 #define SPAWN_POSZ					10.8203
 
 
+// String sizes
+#define STRINGLENGTH_BUILDINGTYPE	10
+
+
 // 3D text labels
 #define TEXTLABEL_DRAWDISTANCE		20
 

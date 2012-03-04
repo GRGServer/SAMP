@@ -5,7 +5,7 @@ ShowDialog(playerID, dialogID, ...)
 		case DIALOG_ACCEPT:
 		{
 			new missionList[2048];
-			MySQLQuery("SELECT * FROM `missions` WHERE `JobID` = '%d' AND `AcceptUserID` = '0' ORDER BY `Name` ASC", GetJobID(playerID));
+			MySQLQuery("SELECT * FROM `missions` WHERE `JobID` = '%d' AND `AcceptUserID` = '0' ORDER BY `Name` ASC", GetPVar:playerID[JOBID]);
 			mysql_store_result();
 			while (FetchMySQLRow())
 			{
@@ -90,7 +90,7 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			new rooms[2048];
 			new string[MAX_PLAYER_NAME];
-			MySQLQuery("SELECT `RoomID`, `Username` FROM `hotelrooms` LEFT JOIN `users` ON `hotelrooms`.`OwnerUserID` = `users`.`UserID` WHERE `hotelrooms`.`BuildingID` = '%d' ORDER BY `RoomID` ASC", GetPVarInt(playerID, "DialogBuildingID"));
+			MySQLQuery("SELECT `RoomID`, `Username` FROM `hotelrooms` LEFT JOIN `users` ON `hotelrooms`.`OwnerUserID` = `users`.`UserID` WHERE `hotelrooms`.`BuildingID` = '%d' ORDER BY `RoomID` ASC", GetPVar:playerID[DIALOGBUILDINGID]);
 			mysql_store_result();
 			while (FetchMySQLRow())
 			{
@@ -203,7 +203,7 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			new string[80];
 			GetStringArg(2, string);
-			SetPVarFloat(playerID, "CurrentGasPrice", gasPrice);
+			SetPVar:playerID[CURRENTGASPRICE](gasPrice);
 			Format:string("Wie viel möchtest du tanken (0 - %s)?\n\nAktueller Preis: $%s/Liter", string, FormatMoney(gasPrice));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", "Abbrechen");
 		}
@@ -259,14 +259,14 @@ ShowDialog(playerID, dialogID, ...)
 				}
 			}
 			FormatNew:string[30]("Ziel auswählen (Seite %d)", page);
-			SetPVarInt(playerID, "InteriorDialogID", getarg(2));
+			SetPVar:playerID[INTERIORDIALOGID](getarg(2));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, string, interiors, "OK", "Abbrechen");
 		}
 		case DIALOG_STATS:
 		{
 			new string[1024];
 			Format:string("SELECT `users`.`UserID`, `users`.`Username`, UNIX_TIMESTAMP(`users`.`BirthDate`) AS `BirthDate`, `users`.`Location`, `users`.`MobilePhoneNumber`, `users`.`BankID`, `users`.`JobID`, `users`.`OnlineTime`, `users`.`LoginTime`, `banks`.`Name` AS `Bank`, `jobs`.`Name` AS `JobName` FROM `users`");
-			MySQLQuery("%s LEFT JOIN (`banks`, `jobs`) ON (`banks`.`ID` = `users`.`BankID` AND `jobs`.`ID` = `users`.`JobID`) WHERE `users`.`UserID` = '%d'", string, GetUserID(playerID));
+			MySQLQuery("%s LEFT JOIN (`banks`, `jobs`) ON (`banks`.`ID` = `users`.`BankID` AND `jobs`.`ID` = `users`.`JobID`) WHERE `users`.`UserID` = '%d'", string, GetPVar:playerID[USERID]);
 			mysql_store_result();
 			Format:string("ID:\t%s", GetMySQLField("UserID"));
 			Format:string("%s\nName:\t%s", string, GetMySQLField("Username"));
@@ -277,7 +277,7 @@ ShowDialog(playerID, dialogID, ...)
 			{
 				Format:string("%s\nBank:\t%s", string, GetMySQLField("Bank"));
 			}
-			Format:string("%s\nGuthaben:\t$%s", string, FormatMoney(GetPlayerMoneyEx(playerID)));
+			Format:string("%s\nGuthaben:\t$%s", string, FormatMoney(GetPVar:playerID[MONEY]));
 			if (strval(GetMySQLField("JobID")))
 			{
 				Format:string("%s\nBeruf:\t%s", string, GetMySQLField("JobName"));
@@ -350,12 +350,11 @@ OnInteriorDialogSelect(playerID, dialogID, interiorID)
 		{
 			if (interiorID)
 			{
-				SetPVarInt(playerID, "AddBuilding_InteriorID", interiorID);
+				SetPVar:playerID[ADDBUILDING_INTERIORID](interiorID);
 				ShowDialog(playerID, DIALOG_ADDBUILDING_NAME);
 			}
 			else
 			{
-				DeletePVar(playerID, "AddBuilding_Type");
 				ShowDialog(playerID, DIALOG_ADDBUILDING_TYPE);
 			}
 		}

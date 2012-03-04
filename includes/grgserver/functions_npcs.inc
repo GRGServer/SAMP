@@ -17,7 +17,7 @@ AddNPCRecorderPlayback(playerID, recordingName[], recordingType)
 				PutPlayerInVehicle(npcPlayerID, CreateVehicleEx(modelID, 0.0, 0.0, 0.0, 0.0, random(127), random(127), 0), 0);
 			}
 		}
-		SetPVarInt(npcPlayerID, "RecordNPCForPlayer", playerID);
+		SetPVar:npcPlayerID[RECORDNPCFORPLAYER](playerID);
 		StartNPCPlayback(npcPlayerID, recordingName, recordingType, false);
 		return true;
 	}

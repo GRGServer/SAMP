@@ -28,7 +28,7 @@ PCMD:goto[TELEPORT](playerid, params[], "Zu einen anderen Spieler teleportieren"
 
 PCMD:showinterior[TELEPORT](playerid, params[], "In einen Interior teleportieren")
 {
-	if (GetPVarInt(playerid, "CurrentBuildingID"))
+	if (GetPVar:playerid[CURRENTBUILDINGID])
 	{
 		SendClientMessage(playerid, COLOR_ERROR, "Du bist aktuell in einem Gebäude! Bitte verlasse das Gebäude und versuche es erneut.");
 		return COMMAND_ERROR;
@@ -39,10 +39,10 @@ PCMD:showinterior[TELEPORT](playerid, params[], "In einen Interior teleportieren
 		new Float:posY;
 		new Float:posZ;
 		GetPlayerPos(playerid, posX, posY, posZ);
-		SetPVarFloat(playerid, "ShowInterior_OldPosX", posX);
-		SetPVarFloat(playerid, "ShowInterior_OldPosY", posY);
-		SetPVarFloat(playerid, "ShowInterior_OldPosZ", posZ);
-		SetPVarInt(playerid, "ShowInterior_OldInterior", GetPlayerInterior(playerid));
+		SetPVar:playerid[SHOWINTERIOR_OLDPOSX](posX);
+		SetPVar:playerid[SHOWINTERIOR_OLDPOSY](posY);
+		SetPVar:playerid[SHOWINTERIOR_OLDPOSZ](posZ);
+		SetPVar:playerid[SHOWINTERIOR_OLDINTERIOR](GetPlayerInterior(playerid));
 		ShowInteriorDialog(playerid, INTERIORDIALOG_SHOWINTERIOR);
 		return COMMAND_OK;
 	}

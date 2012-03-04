@@ -1,17 +1,17 @@
 IsLoggedIn(playerID)
 {
-	return (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && GetUserID(playerID));
+	return (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && GetPVar:playerID[USERID]);
 }
 
 LoadPlayer(playerID)
 {
-	LoadPlayerValue(playerID, "Money", PLAYER_VARTYPE_FLOAT);
-	LoadPlayerValue(playerID, "Skin", PLAYER_VARTYPE_INT);
-	LoadPlayerValue(playerID, "CurrentBuildingID", PLAYER_VARTYPE_INT);
-	LoadPlayerValue(playerID, "JobID", PLAYER_VARTYPE_INT);
-	SetPlayerMoney(playerID, GetPlayerMoneyEx(playerID));
-	SetPlayerSkin(playerID, GetPVarInt(playerID, "Skin"));
-	MySQLQuery("SELECT * FROM `permissions` WHERE `UserID` = '%d'", GetUserID(playerID));
+	SetPVar:playerID[MONEY](floatstr(GetUserDBValue(playerID, "Money")));
+	SetPVar:playerID[SKIN](strval(GetUserDBValue(playerID, "Skin")));
+	SetPVar:playerID[CURRENTBUILDINGID](strval(GetUserDBValue(playerID, "CurrentBuildingID")));
+	SetPVar:playerID[JOBID](strval(GetUserDBValue(playerID, "JobID")));
+	SetPlayerMoney(playerID, GetPVar:playerID[MONEY]);
+	SetPlayerSkin(playerID, GetPVar:playerID[SKIN]);
+	MySQLQuery("SELECT * FROM `permissions` WHERE `UserID` = '%d'", GetPVar:playerID[USERID]);
 	mysql_store_result();
 	if (strval(GetMySQLField("UserID")))
 	{
@@ -25,50 +25,20 @@ LoadPlayer(playerID)
 	mysql_free_result();
 }
 
-LoadPlayerValue(playerID, fieldName[], pVarType)
-{
-	switch (pVarType)
-	{
-		case PLAYER_VARTYPE_INT:
-			SetPVarInt(playerID, fieldName, strval(GetUserDBValue(playerID, fieldName)));
-		case PLAYER_VARTYPE_STRING:
-			SetPVarString(playerID, fieldName, GetUserDBValue(playerID, fieldName));
-		case PLAYER_VARTYPE_FLOAT:
-			SetPVarFloat(playerID, fieldName, floatstr(GetUserDBValue(playerID, fieldName)));
-	}
-}
-
 SavePlayer(playerID)
 {
 	if (IsLoggedIn(playerID))
 	{
-		SavePlayerValue(playerID, "Money");
-		SavePlayerValue(playerID, "Skin");
-		SavePlayerValue(playerID, "CurrentBuildingID");
-		SavePlayerValue(playerID, "JobID");
+		SetUserDBValue(playerID, "Money", Float2Str(GetPVar:playerID[MONEY]));
+		SetUserDBValue(playerID, "Skin", val2str(GetPVar:playerID[SKIN]));
+		SetUserDBValue(playerID, "CurrentBuildingID", val2str(GetPVar:playerID[CURRENTBUILDINGID]));
+		SetUserDBValue(playerID, "JobID", val2str(GetPVar:playerID[JOBID]));
 		new Float:posX;
 		new Float:posY;
 		new Float:posZ;
 		new Float:angle;
 		GetPlayerPos(playerID, posX, posY, posZ);
 		GetPlayerFacingAngle(playerID, angle);
-		MySQLQuery("UPDATE `users` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Angle` = '%f', `Interior` = '%d' WHERE `UserID` = '%d'", posX, posY, posZ, angle, GetPlayerInterior(playerID), GetUserID(playerID));
+		MySQLQuery("UPDATE `users` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Angle` = '%f', `Interior` = '%d' WHERE `UserID` = '%d'", posX, posY, posZ, angle, GetPlayerInterior(playerID), GetPVar:playerID[USERID]);
 	}
-}
-
-SavePlayerValue(playerID, fieldName[])
-{
-	new value[256];
-	switch (GetPVarType(playerID, fieldName))
-	{
-		case PLAYER_VARTYPE_INT:
-			Format:value("%d", GetPVarInt(playerID, fieldName));
-		case PLAYER_VARTYPE_STRING:
-			GetPVarString(playerID, fieldName, value, sizeof(value));
-		case PLAYER_VARTYPE_FLOAT:
-			Format:value("%f", GetPVarFloat(playerID, fieldName));
-		default:
-			Format:value("");
-	}
-	SetUserDBValue(playerID, fieldName, value);
 }

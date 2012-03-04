@@ -60,7 +60,7 @@ ReloadPermissions()
 		{
 			Count(playerID, MAX_PLAYERS)
 			{
-				if (GetUserID(playerID) == userID)
+				if (GetPVar:playerID[USERID] == userID)
 				{
 					LoadPermission:ADMIN(playerID, "Admin");
 					LoadPermission:MAPPER(playerID, "Mapper");
