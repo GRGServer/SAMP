@@ -732,7 +732,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				mysql_store_result();
 				if (mysql_num_rows())
 				{
-					Teleport(playerid, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), 0, strval(GetMySQLField("Interior")), 0);
+					Teleport(playerid, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Interior")), 0);
 				}
 				mysql_free_result();
 			}
