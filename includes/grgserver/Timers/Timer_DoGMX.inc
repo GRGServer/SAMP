@@ -1,4 +1,0 @@
-Timer:DoGMX()
-{
-	SendRconCommand("gmx");
-}

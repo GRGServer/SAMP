@@ -6,7 +6,7 @@ RCMD:safegmx(params[], "Safely restart the gamemode")
 		SavePlayer(playerID);
 	}
 	SendClientMessageToAll(COLOR_INFO, "Der Gamemode wurde per RCON neugestartet");
-	SetTimer("Timer_DoGMX", 2000, false);
+	SendRconCommand("gmx");
 	print("Done");
 	return true;
 }

@@ -107,7 +107,6 @@
 #include <grgserver\Callbacks\OnVehicleSpawn.inc>
 
 // Timers
-#include <grgserver\Timers\Timer_DoGMX.inc>
 #include <grgserver\Timers\Timer_EveryMinute.inc>
 #include <grgserver\Timers\Timer_Fast.inc>
 #include <grgserver\Timers\Timer_FlyWithPlane.inc>

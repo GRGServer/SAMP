@@ -687,7 +687,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SendClientMessage(playerid, COLOR_INFO, "Du hast den Gamemode neugestartet");
 				FormatNew:string[60]("%s hat den Gamemode neugestartet", GetPlayerNameEx(playerid));
 				SendClientMessageToAllExcept(playerid, COLOR_INFO, string);
-				SetTimer("Timer_DoGMX", 2000, false);
+				SendRconCommand("gmx");
 			}
 		}
 		case DIALOG_STATS:
