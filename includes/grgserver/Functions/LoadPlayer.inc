@@ -4,6 +4,8 @@ LoadPlayer(playerID)
 	SetPVar:playerID[SKIN](strval(GetUserDBValue(playerID, "Skin")));
 	SetPVar:playerID[CURRENTBUILDINGID](strval(GetUserDBValue(playerID, "CurrentBuildingID")));
 	SetPVar:playerID[JOBID](strval(GetUserDBValue(playerID, "JobID")));
+	SetPVar:playerID[ONLINETIME](strval(GetUserDBValue(playerID, "OnlineTime")));
+	SetPVar:playerID[ONLINESINCE](gettime());
 	SetPlayerMoney(playerID, GetPVar:playerID[MONEY]);
 	SetPlayerSkin(playerID, GetPVar:playerID[SKIN]);
 	MySQLQuery("SELECT * FROM `permissions` WHERE `UserID` = '%d'", GetPVar:playerID[USERID]);

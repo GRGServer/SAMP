@@ -6,6 +6,7 @@ SavePlayer(playerID)
 		SetUserDBValue(playerID, "Skin", val2str(GetPVar:playerID[SKIN]));
 		SetUserDBValue(playerID, "CurrentBuildingID", val2str(GetPVar:playerID[CURRENTBUILDINGID]));
 		SetUserDBValue(playerID, "JobID", val2str(GetPVar:playerID[JOBID]));
+		SetUserDBValue(playerID, "OnlineTime", val2str(GetPVar:playerID[ONLINETIME] + (gettime() - GetPVar:playerID[ONLINESINCE])));
 		new Float:posX;
 		new Float:posY;
 		new Float:posZ;

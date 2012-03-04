@@ -1,6 +1,6 @@
 FormatDate(sqlDateString[], showTime = true)
 {
-	new string[30];
+	new string[STRINGLENGTH_DATETIME + 2];
 	new time[10];
 	new day;
 	new month;

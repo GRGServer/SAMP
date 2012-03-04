@@ -562,25 +562,66 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				Timer_RefuelVehicle(playerid, amount);
 			}
 		}
+		case DIALOG_REGISTER_BIRTHDATE:
+		{
+			if (response)
+			{
+				new day;
+				new month;
+				new year;
+				if (sscanf(inputtext, "p.ddd", day, month, year))
+				{
+					SendClientMessage(playerid, COLOR_ERROR, "Falsches Datumsformat! Bitte verwende das Format TT.MM.JJJJ.");
+					ShowDialog(playerid, DIALOG_REGISTER_BIRTHDATE);
+				}
+				else
+				{
+					if (day > 0 && day <= 31 && month > 0 && month <=12 && year > 1900 && year < 2100)
+					{
+						SetPVarStr:playerid[BIRTHDATE][STRINGLENGTH_DATETIME]("%d-%02d-%02d", year, month, day);
+						ShowDialog(playerid, DIALOG_REGISTER_LOCATION);
+					}
+					else
+					{
+						SendClientMessage(playerid, COLOR_ERROR, "Ungültiges Datum!");
+						ShowDialog(playerid, DIALOG_REGISTER_BIRTHDATE);
+					}
+				}
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_REGISTER_GENDER);
+			}
+		}
 		case DIALOG_REGISTER_GENDER:
 		{
 			if (response)
 			{
-				new gender;
 				switch (listitem)
 				{
 					case 0:
 					{
-						gender = 'M';// Male
+						SetPVar:playerid[GENDER]('M');// Male
 						SetPlayerSkin(playerid, REGISTER_SKIN_MALE);
 					}
 					case 1:
 					{
-						gender = 'F';// Female
+						SetPVar:playerid[GENDER]('F');// Female
 						SetPlayerSkin(playerid, REGISTER_SKIN_FEMALE);
 					}
 				}
-				MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `Gender`, `RegisterTime`) VALUES ('%s', '%s', '%c', NOW())", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(GetPVar:playerid[REGISTERPASSWORD]), gender);
+				ShowDialog(playerid, DIALOG_REGISTER_BIRTHDATE);
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_REGISTER_PASSWORD2);
+			}
+		}
+		case DIALOG_REGISTER_LOCATION:
+		{
+			if (response)
+			{
+				MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `Gender`, `BirthDate`, `Location`, `RegisterTime`) VALUES ('%s', '%s', '%c', '%s', '%s', NOW())", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(GetPVar:playerid[REGISTERPASSWORD]), GetPVar:playerid[GENDER], GetPVar:playerid[BIRTHDATE], MySQLEscapeString(inputtext));
 				SetPVar:playerid[USERID](mysql_insert_id());
 				SavePlayer(playerid);
 				printf("Player registered: %s (UserID: %d)", GetPlayerNameEx(playerid), GetPVar:playerid[USERID]);
@@ -590,7 +631,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			else
 			{
-				ShowDialog(playerid, DIALOG_REGISTER_PASSWORD2);
+				ShowDialog(playerid, DIALOG_REGISTER_GENDER);
 			}
 		}
 		case DIALOG_REGISTER_PASSWORD1:
