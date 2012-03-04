@@ -54,11 +54,18 @@
 #define JOB_VEHICLEDEALER			1
 
 
-// MySQL credentials
-#define MYSQL_DATABASE				"grgserver"
-#define MYSQL_HOST					"srv1.selfcoders.com"
-#define MYSQL_PASSWORD				"2RuvHtYb7KRh6PVt"
-#define MYSQL_USERNAME				"grgserver"
+// MySQL development database credentials
+#define MYSQL_DEV_DATABASE				"grg_dev"
+#define MYSQL_DEV_HOST					"srv1.selfcoders.com"
+#define MYSQL_DEV_PASSWORD				"wrF9TvPuQDQNX9mZ"
+#define MYSQL_DEV_USERNAME				"grg_dev"
+
+
+// MySQL public database credentials
+#define MYSQL_PUBLIC_DATABASE			"grg_public"
+#define MYSQL_PUBLIC_HOST				"srv1.selfcoders.com"
+#define MYSQL_PUBLIC_PASSWORD			"fYTA3Cw4KJpuF6Az"
+#define MYSQL_PUBLIC_USERNAME			"grg_public"
 
 
 // NPC configuration
