@@ -621,7 +621,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `Gender`, `BirthDate`, `Location`, `RegisterTime`) VALUES ('%s', '%s', '%c', '%s', '%s', NOW())", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(GetPVar:playerid[REGISTERPASSWORD]), GetPVar:playerid[GENDER], GetPVar:playerid[BIRTHDATE], MySQLEscapeString(inputtext));
+				MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `Gender`, `BirthDate`, `Location`, `RegisterTime`, `LoginTime`) VALUES ('%s', '%s', '%c', '%s', '%s', NOW(), NOW())", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(GetPVar:playerid[REGISTERPASSWORD]), GetPVar:playerid[GENDER], GetPVar:playerid[BIRTHDATE], MySQLEscapeString(inputtext));
 				SetPVar:playerid[USERID](mysql_insert_id());
 				SetPVar:playerid[ONLINESINCE](gettime());
 				SavePlayer(playerid);
