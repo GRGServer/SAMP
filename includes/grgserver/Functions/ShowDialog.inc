@@ -54,7 +54,7 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_BANK_NOACCOUNT:
 		{
-			FormatNew:options[60]("Bank Verkaufen");
+			FormatNew:options[200]("Bank Verkaufen");
 			Format:options("%s\nFinazen Übersicht", options);
 			Format:options("%s\nBewerbungs Übersicht", options);
 			Format:options("%s\nEigenes Konto Erstellen", options);
@@ -63,7 +63,7 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_BANK_ACCOUNTOWNER:
 		{
-			FormatNew:options[150]("Bank Verkaufen");
+			FormatNew:options[300]("Bank Verkaufen");
 			Format:options("%s\nFinazen Übersicht", options);
 			Format:options("%s\nBewerbungs Übersicht", options);
 			Format:options("%s\nEigene Konto Übersicht", options);
