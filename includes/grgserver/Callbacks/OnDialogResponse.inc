@@ -355,10 +355,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 1: // Bank Finanzen
 					{
+						// TODO: Eine übersicht über die Finazen der Bank wie viel die Bank ein Nimmt und wie viel sie ausgibt.
 						SendClientMessage(playerid, COLOR_INFO, "Bank Finanzen noch in Bearbeitung!");
 					}
 					case 2: // Bewerbungs übersicht 
 					{
+						// TODO: Noch nicht Fertig Soll eine Übersicht der Bewerbungen da stellen.
+						// TODO: Man klickt auf einen Spieler und es kommt eine MSGBOX in der mann dann
+						// TODO: Annehmen kann oder ablehnen.
 						ShowDialog(playerid, DIALOG_APPLICATION_PLAYER);
 					}
 					case 3: // Eigene Konto Erstellen

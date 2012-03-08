@@ -1,4 +1,5 @@
 Timer:Hourly()
 {
 	UpdateGasPrice();
+	UpdatePayDay();
 }
