@@ -68,6 +68,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
 			}
 		}
+		case DIALOG_APPLICATION_PLAYER:
+		{
+			if (response)
+			{
+				SendClientMessage(playerid, COLOR_INFO, "Noch in bearbeitung!");
+			}
+		}
 		case DIALOG_BANK_INPUT:
 		{
 			if (response)
@@ -255,7 +262,29 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0: // Bank Sell
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Bank verkaufen noch in Bearbeitung!");
+						new buildingID = GetPVar:playerid[CURRENTBUILDINGID];
+						new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "ID", val2str(buildingID)));
+						if (ownerUserID)
+						{
+							if (ownerUserID == GetPVar:playerid[USERID])
+							{
+								SendClientMessage(playerid, COLOR_INFO, "Diese Bank besitzt du Bereits!");
+							}
+							else
+							{
+								SendClientMessage(playerid, COLOR_INFO, "Diese Bank ist bereits Gekauft!");
+							}
+						}
+						else
+						{
+							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
+							if (price <= GetPVar:playerid[MONEY])
+							{
+								GivePlayerMoneyEx(playerid, price);
+								SetMySQLValue("buildings", "OwnerUserID", "0", "ID", val2str(buildingID));
+								SendClientMessage(playerid, COLOR_INFO, "Bank erfolgreich Verkauft!");
+							}
+						}
 					}
 					case 1: // Bank Finanzen
 					{
@@ -263,7 +292,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 2: // Bewerbungs übersicht 
 					{
-						SendClientMessage(playerid, COLOR_INFO, "bewerbungs Übersicht noch in bearbeitung!");
+						ShowDialog(playerid, DIALOG_APPLICATION_PLAYER);						
 					}
 					case 3: // Eigenes Konto Übersicht 
 					{
@@ -300,7 +329,29 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0: // Bank Sell
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Bank verkaufen noch in Bearbeitung!");
+						new buildingID = GetPVar:playerid[CURRENTBUILDINGID];
+						new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "ID", val2str(buildingID)));
+						if (ownerUserID)
+						{
+							if (ownerUserID == GetPVar:playerid[USERID])
+							{
+								SendClientMessage(playerid, COLOR_INFO, "Diese Bank besitzt du Bereits!");
+							}
+							else
+							{
+								SendClientMessage(playerid, COLOR_INFO, "Diese Bank ist bereits Gekauft!");
+							}
+						}
+						else
+						{
+							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
+							if (price <= GetPVar:playerid[MONEY])
+							{
+								GivePlayerMoneyEx(playerid, price);
+								SetMySQLValue("buildings", "OwnerUserID", "0", "ID", val2str(buildingID));
+								SendClientMessage(playerid, COLOR_INFO, "Bank erfolgreich Verkauft!");
+							}
+						}
 					}
 					case 1: // Bank Finanzen
 					{
@@ -308,7 +359,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 2: // Bewerbungs übersicht 
 					{
-						SendClientMessage(playerid, COLOR_INFO, "bewerbungs Übersicht noch in bearbeitung!");
+						ShowDialog(playerid, DIALOG_APPLICATION_PLAYER);
 					}
 					case 3: // Eigene Konto Erstellen
 					{

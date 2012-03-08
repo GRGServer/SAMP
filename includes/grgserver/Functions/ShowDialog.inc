@@ -33,6 +33,18 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Gebäudetyp auswählen", "Bank\nHotel\nHaus\nPolizei", "Weiter", "Abbrechen");
 		}
+		case DIALOG_APPLICATION_PLAYER:
+		{
+			MySQLQuery("SELECT * FROM `application` WHERE `ID` = '%d' AND `application` = '0' ORDER BY `UserName` ASC", GetPVar:playerID[APPLICATIONID]);
+			mysql_store_result();
+			while (FetchMySQLRow())
+			{
+				new UserName[MAX_PLAYER_NAME];
+				FormatNew:string[100]("Spieler: %s\n", UserName);
+				ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bewerbungs Übersicht", string, "Anschauen", "Abbrechen");
+			}
+			mysql_free_result();
+		}
 		case DIALOG_BANK_HASACCOUNT:
 		{
 			FormatNew:options[100]("Bank Kaufen");
