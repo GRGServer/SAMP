@@ -70,6 +70,7 @@
 #include <grgserver\Functions\TeleportToBuilding.inc>
 #include <grgserver\Functions\TeleportToInterior.inc>
 #include <grgserver\Functions\UpdateGasPrice.inc>
+#include <grgserver\Functions\UpdatePayDay.inc>
 #include <grgserver\Functions\WriteChatToDatabase.inc>
 #include <grgserver\Functions\explode.inc>
 #include <grgserver\Functions\str_replace.inc>
