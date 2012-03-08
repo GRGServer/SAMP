@@ -11,6 +11,29 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					case PICKUPTYPE_BANK:
 					{
 						TeleportToBuilding(playerid, strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
+						new account = strval(GetUserDBValue(playerid, "BankID"));
+						if (GetPVar:playerid[JOBID] == JOB_BANK)
+						{
+							if(account)
+							{
+								ShowDialog(playerid, DIALOG_BANK_ACCOUNTOWNER);
+							}
+							else
+							{
+								ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);
+							}
+						}
+						else
+						{
+							if (account)
+							{
+								ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
+							}
+							else
+							{
+								ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);
+							}
+						}
 					}
 					case PICKUPTYPE_GASSTATION:
 					{
