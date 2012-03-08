@@ -130,6 +130,7 @@
 #include <grgserver\Commands\command_exit.inc>
 #include <grgserver\Commands\command_getbalance.inc>
 #include <grgserver\Commands\command_givepermission.inc>
+#include <grgserver\Commands\command_giveweapon.inc>
 #include <grgserver\Commands\command_gmx.inc>
 #include <grgserver\Commands\command_goto.inc>
 #include <grgserver\Commands\command_help.inc>
