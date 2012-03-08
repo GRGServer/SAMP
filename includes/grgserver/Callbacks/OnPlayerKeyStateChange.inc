@@ -12,26 +12,42 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					{
 						TeleportToBuilding(playerid, strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
 						new account = strval(GetUserDBValue(playerid, "BankID"));
-						if (GetPVar:playerid[JOBID] == JOB_BANK)
+						new buildingID = GetPVar:playerid[CURRENTBUILDINGID];
+						new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "ID", val2str(buildingID)));
+						if (ownerUserID)
 						{
-							if(account)
+							if (ownerUserID == GetPVar:playerid[USERID])
 							{
-								ShowDialog(playerid, DIALOG_BANK_ACCOUNTOWNER);
+								if(account == 0)
+								{
+									ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);	
+								}
+								else
+								{
+									ShowDialog(playerid, DIALOG_BANK_ACCOUNTOWNER);
+								}
 							}
 							else
 							{
-								ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);
+								if (account == 0)
+								{
+									ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);
+								}
+								else
+								{
+									ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
+								}
 							}
 						}
 						else
 						{
-							if (account)
+							if (account == 0)
 							{
-								ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
+								ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);	
 							}
 							else
 							{
-								ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);
+								ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
 							}
 						}
 					}
