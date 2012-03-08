@@ -90,13 +90,28 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					}
 					case PICKUPTYPE_INBANK:
 					{
+						new account = strval(GetUserDBValue(playerid, "BankID"));
 						if (GetPVar:playerid[JOBID] == JOB_BANK)
 						{
-							ShowDialog(playerid, DIALOG_INBANK_OPTIONS);
+							if(account)
+							{
+								ShowDialog(playerid, DIALOG_BANK_ACCOUNTOWNER);
+							}
+							else
+							{
+								ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);
+							}
 						}
 						else
 						{
-							ShowDialog(playerid, DIALOG_INBANK_JOB);
+							if (account)
+							{
+								ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
+							}
+							else
+							{
+								ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);
+							}
 						}
 					}
 					case PICKUPTYPE_POLICE:

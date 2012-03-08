@@ -68,6 +68,132 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
 			}
 		}
+		case DIALOG_BANK_INPUT:
+		{
+			if (response)
+			{
+				if (!strlen(inputtext))
+				{
+					SendClientMessage(playerid, COLOR_ERROR, "Du musst einen Betrag eingeben");
+					ShowDialog(playerid, DIALOG_BANK_INPUT);
+				}
+				else
+				{
+					new Float:money = floatstr(inputtext);
+					if(money >= GetPVar:playerid[MONEY])
+					{
+						SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht so viel Geld bei dir!");
+						SendClientMessage(playerid, COLOR_ERROR, "Gebe einen Betrag ein der auf deiner Hand ist!");
+						ShowDialog(playerid, DIALOG_BANK_INPUT);
+					}
+					else
+					{
+						SetPVar:playerid[MONEY](floatadd(GetPVar:playerid[MONEY], money));
+						SetUserDBValue(playerid, "BankMoney", Float2Str(floatadd(floatstr(GetUserDBValue(playerid, "BankMoney")), money)));
+						FormatNew:string[90]("Du hast $%s auf dein Bankkonto eingezahlt", FormatMoney(money));
+						SendClientMessage(playerid, COLOR_INFO, string);
+					}
+				}
+			}
+		}
+		case DIALOG_BANK_OUTPUT:
+		{
+			if (response)
+			{
+				if (!strlen(inputtext))
+				{
+					SendClientMessage(playerid, COLOR_ERROR, "Du musst einen Betrag eingeben!");
+					ShowDialog(playerid, DIALOG_BANK_OUTPUT);
+				}
+				else
+				{
+					new Float:money = floatstr(inputtext);
+					if(money >= floatstr(GetUserDBValue(playerid, "BankMoney")))
+					{
+						SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht genug Geld auf der Bank!");
+						SendClientMessage(playerid, COLOR_ERROR, "Gebe einen neuen betrag ein der auf deinem Konto entahlten ist!");
+						ShowDialog(playerid, DIALOG_BANK_OUTPUT);
+					}
+					else
+					{
+						SetUserDBValue(playerid, "BankMoney", Float2Str(floatsub(floatstr(GetUserDBValue(playerid, "BankMoney")), money)));
+						SetPVar:playerid[MONEY](floatsub(GetPVar:playerid[MONEY], money));
+						FormatNew:string[50]("Du hast $%s von deinem Bankkonto abgehoben", FormatMoney(money));
+						SendClientMessage(playerid, COLOR_INFO, string);
+					}
+				}
+			}
+		}
+		case DIALOG_BANK_ACCOUNTOWNER:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: // Bank Sell
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Bank verkaufen noch in Bearbeitung!");
+					}
+					case 1: // Bank Finanzen
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Bank Finanzen noch in Bearbeitung!");
+					}
+					case 2: // Bewerbungs übersicht 
+					{
+						SendClientMessage(playerid, COLOR_INFO, "bewerbungs Übersicht noch in bearbeitung!");
+					}
+					case 3: // Eigenes Konto Übersicht 
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Konto übersicht noch in Bearbeitung!");
+					}
+					case 4: // Konto Kündigen
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Konto Kündigen noch in Bearbeitung!");
+					}
+					case 5: // Einzahlen
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Zinssatz in bearbeitung!");
+					}
+					case 6: // Auszahlen
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in Bearbeitung!");
+					}
+					case 7: // Aktueler Zinssatz 
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Zinssatz noch in Bearbeitung!");
+					}
+				}
+			}
+		}
+		case DIALOG_BANK_NOACCOUNT:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0: // Bank Sell
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Bank verkaufen noch in Bearbeitung!");
+					}
+					case 1: // Bank Finanzen
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Bank Finanzen noch in Bearbeitung!");
+					}
+					case 2: // Bewerbungs übersicht 
+					{
+						SendClientMessage(playerid, COLOR_INFO, "bewerbungs Übersicht noch in bearbeitung!");
+					}
+					case 3: // Eigene Konto Erstellen
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Konto erstellen noch in Bearbeitung!");
+					}
+					case 4: // Aktueler Zinssatz 
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Zinssatz noch in Bearbeitung!");
+					}
+				}
+			}
+		}
 		case DIALOG_BUYVEHICLE:
 		{
 			if (response)
@@ -361,7 +487,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
-		case DIALOG_INBANK_JOB:
+		case DIALOG_BANK_HASNOACCOUNT:
 		{
 			if (response)
 			{
@@ -369,64 +495,117 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0: // Bank Kaufen
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Kaufen noch in Bearbeitung!");
+						new buildingID = GetPVar:playerid[CURRENTBUILDINGID];
+						new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "ID", val2str(buildingID)));
+						if (ownerUserID)
+						{
+							if (ownerUserID == GetPVar:playerid[USERID])
+							{
+								SendClientMessage(playerid, COLOR_INFO, "Diese Bank besitzt du Bereits!");
+							}
+							else
+							{
+								SendClientMessage(playerid, COLOR_INFO, "Diese Bank ist bereits Gekauft!");
+							}
+						}
+						else
+						{
+							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
+							if (price <= GetPVar:playerid[MONEY])
+							{
+								GivePlayerMoneyEx(playerid, -price);
+								SetMySQLValue("buildings", "OwnerUserID", val2str(GetPVar:playerid[USERID]), "ID", val2str(buildingID));
+								SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deiner neuen Bank");
+							}
+							else
+							{
+								FormatNew:string[80]("Du benötigst $%s für dieses Bank! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPVar:playerid[MONEY]));
+								SendClientMessage(playerid, COLOR_ERROR, string);
+							}
+						}
 					}
 					case 1: // Konto Erstellen 
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Konto erstellen noch in bearbeitung!");
+						new bankID = GetPVar:playerid[CURRENTBUILDINGID];
+						SetUserDBValue(playerid, "BankID", val2str(bankID));
+						SendClientMessage(playerid, COLOR_INFO, "Du hast dein konto erfolgreich Erstellt!");
+						SendClientMessage(playerid, COLOR_INFO, "Nun kannst du darauf Geld einzahlen!");
 					}
-					case 2: // Konto übersicht 
-					{
-						SendClientMessage(playerid, COLOR_INFO, "Konto übersicht noch in Bearbeitung!");
-					}
-					case 3: // Konto Kündigen 
-					{
-						SendClientMessage(playerid, COLOR_INFO, "Konto Kündigen noch in Bearbeitung!");
-					}
-					case 4: // Aktueler Zinssatz
+					case 2: // Aktueler Zinssatz
 					{
 						SendClientMessage(playerid, COLOR_INFO, "Zinssatz in bearbeitung!");
 					}
-					case 5: // Bewerben
+					case 3: // Bewerben
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in Bearbeitung!");
+						SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in bearbeitung!");
 					}
-				}
+				}	
 			}
 		}
-		case DIALOG_INBANK_OPTIONS:
+		case DIALOG_BANK_HASACCOUNT:
 		{
 			if (response)
 			{
 				switch (listitem)
 				{
-					case 0: // Bank Sell
+					case 0:
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Bank verkaufen noch in Bearbeitung!");
+						new buildingID = GetPVar:playerid[CURRENTBUILDINGID];
+						new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "ID", val2str(buildingID)));
+						if (ownerUserID)
+						{
+							if (ownerUserID == GetPVar:playerid[USERID])
+							{
+								SendClientMessage(playerid, COLOR_INFO, "Diese Bank besitzt du Bereits!");
+							}
+							else
+							{
+								SendClientMessage(playerid, COLOR_INFO, "Diese Bank ist bereits Gekauft!");
+							}
+						}
+						else
+						{
+							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
+							if (price <= GetPVar:playerid[MONEY])
+							{
+								GivePlayerMoneyEx(playerid, -price);
+								SetMySQLValue("buildings", "OwnerUserID", val2str(GetPVar:playerid[USERID]), "ID", val2str(buildingID));
+								SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deiner neuen Bank");
+							}
+							else
+							{
+								FormatNew:string[80]("Du benötigst $%s für dieses Bank! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(GetPVar:playerid[MONEY]));
+								SendClientMessage(playerid, COLOR_ERROR, string);
+							}
+						}
 					}
-					case 1: // Bank Finanzen
+					case 2: // Konto übersicht 
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Bank Finanzen noch in Bearbeitung!");
+						new Float:bankMoney = floatstr(GetUserDBValue(playerid, "BankMoney"));
+						FormatNew:string[50]("Dein Bank Guthaben beträgt %s", FormatMoney(bankMoney));
+						SendClientMessage(playerid, COLOR_INFO, string);
 					}
-					case 2: // Bewerbungs übersicht 
+					case 3: // Konto Kündigen 
 					{
-						SendClientMessage(playerid, COLOR_INFO, "bewerbungs Übersicht noch in bearbeitung!");
+						SetUserDBValue(playerid, "BankID", "0");
+						SendClientMessage(playerid, COLOR_INFO, "Du hast dein konto erfolgreich Gekündigt!");
+						SendClientMessage(playerid, COLOR_INFO, "Nun kannst du auf einer anderren Bank ein Konto eröffnen!");
 					}
-					case 3: // Eigene Konto Erstellen
+					case 4: // Einzahlen
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Konto erstellen noch in Bearbeitung!");
+						ShowDialog(playerid, DIALOG_BANK_INPUT);
 					}
-					case 4: // Eigenes Konto Übersicht 
+					case 5: // Auszahlen
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Konto übersicht noch in Bearbeitung!");
+						ShowDialog(playerid, DIALOG_BANK_OUTPUT);
 					}
-					case 5: // Konto Kündigen
+					case 6: // Aktueler Zinssatz
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Konto Kündigen noch in Bearbeitung!");
+						SendClientMessage(playerid, COLOR_INFO, "Zinssatz in bearbeitung!");
 					}
-					case 6: // Aktueler Zinssatz 
+					case 7: // Bewerben
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Zinssatz noch in Bearbeitung!");
+						SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in bearbeitung!");
 					}
 				}
 			}

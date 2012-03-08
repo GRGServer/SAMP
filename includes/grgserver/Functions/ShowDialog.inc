@@ -33,6 +33,54 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Gebäudetyp auswählen", "Bank\nHotel\nHaus\nPolizei", "Weiter", "Abbrechen");
 		}
+		case DIALOG_BANK_HASACCOUNT:
+		{
+			FormatNew:options[100]("Bank Kaufen");
+			Format:options("%s\nKonto Übersicht", options);
+			Format:options("%s\nKonto Kündigen", options);
+			Format:options("%s\nEinzahlen", options);
+			Format:options("%s\nAuszahlen", options);
+			Format:options("%s\nAktueler Zinssatz", options);
+			Format:options("%s\nBewerben", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", "Abbrechen");
+		}
+		case DIALOG_BANK_HASNOACCOUNT:
+		{
+			FormatNew:options[50]("Bank Kaufen");
+			Format:options("%s\nKonto Erstellen", options);
+			Format:options("%s\nAktueler Zinssatz", options);
+			Format:options("%s\nBewerben", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", "Abbrechen");
+		}
+		case DIALOG_BANK_NOACCOUNT:
+		{
+			FormatNew:options[60]("Bank Verkaufen");
+			Format:options("%s\nFinazen Übersicht", options);
+			Format:options("%s\nBewerbungs Übersicht", options);
+			Format:options("%s\nEigenes Konto Erstellen", options);
+			Format:options("%s\nAktueler Zinssatz", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", "Abbrechen");
+		}
+		case DIALOG_BANK_ACCOUNTOWNER:
+		{
+			FormatNew:options[150]("Bank Verkaufen");
+			Format:options("%s\nFinazen Übersicht", options);
+			Format:options("%s\nBewerbungs Übersicht", options);
+			Format:options("%s\nEigene Konto Übersicht", options);
+			Format:options("%s\nEigenes Konto Kündigen", options);
+			Format:options("%s\nEigenes Konto Einzahlen", options);
+			Format:options("%s\nEigenes Konto Auszahlen", options);
+			Format:options("%s\nAktueler Zinssatz", options);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", "Abbrechen");
+		}
+		case DIALOG_BANK_INPUT:
+		{
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Einzahlung", "Wie viel möchtest du Einzahlen?", "Einzahlen", "Abbrechen");
+		}
+		case DIALOG_BANK_OUTPUT:
+		{
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Auszahlung", "Wie viel möchstest du Auszahlen?", "Auszahlen", "Abbrechen");
+		}
 		case DIALOG_BUYHOUSE:
 		{
 			new string[70];
@@ -122,28 +170,7 @@ ShowDialog(playerID, dialogID, ...)
 			FormatNew:options[20]("Betreten");// Item 0
 			Format:options("%s\nVerkaufen", options);// Item 1
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hausoptionen", options, "OK", "Abbrechen");
-		}
-		case DIALOG_INBANK_JOB:
-		{
-			FormatNew:options[90]("Bank Kaufen");
-			Format:options("%s\nKonto Erstellen", options);
-			Format:options("%s\nKonto Übersicht", options);
-			Format:options("%s\nKonto Kündigen", options);
-			Format:options("%s\nAktueler Zinssatz", options);
-			Format:options("%s\nBewerben", options);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", "Abbrechen");
-		}
-		case DIALOG_INBANK_OPTIONS:
-		{
-			FormatNew:options[150]("Bank Verkaufen");
-			Format:options("%s\nFinazen Übersicht", options);
-			Format:options("%s\nBewerbungs Übersicht", options);
-			Format:options("%s\nEigenes Konto Erstellen", options);
-			Format:options("%s\nEigene Konto Übersicht", options);
-			Format:options("%s\nEigenes Konto Kündigen", options);
-			Format:options("%s\nAktueler Zinssatz", options);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", "Abbrechen");
-		}
+		}			
 		case DIALOG_LOGIN:
 		{
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Login", "Bitte gebe das Passwort von deinen Account ein.", "OK", "Abbrechen");
@@ -274,7 +301,7 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			new string[1024];
 			SavePlayer(playerID);
-			Format:string("SELECT `users`.`UserID`, `users`.`Username`, UNIX_TIMESTAMP(`users`.`BirthDate`) AS `BirthDate`, `users`.`Location`, `users`.`MobilePhoneNumber`, `users`.`BankID`, `users`.`JobID`, `users`.`OnlineTime`, `users`.`LoginTime`, `banks`.`Name` AS `Bank`, `jobs`.`Name` AS `JobName` FROM `users`");
+			Format:string("SELECT `users`.`UserID`, `users`.`Username`, UNIX_TIMESTAMP(`users`.`BirthDate`) AS `BirthDate`, `users`.`Location`, `users`.`MobilePhoneNumber`, `users`.`BankID`, ,`users`.`BankMoney`,`users`.`JobID`, `users`.`OnlineTime`, `users`.`LoginTime`, `banks`.`Name` AS `Bank`, `jobs`.`Name` AS `JobName` FROM `users`");
 			MySQLQuery("%s LEFT JOIN (`banks`, `jobs`) ON (`banks`.`ID` = `users`.`BankID` AND `jobs`.`ID` = `users`.`JobID`) WHERE `users`.`UserID` = '%d'", string, GetPVar:playerID[USERID]);
 			mysql_store_result();
 			Format:string("ID:\t%s", GetMySQLField("UserID"));
@@ -285,6 +312,7 @@ ShowDialog(playerID, dialogID, ...)
 			if (strval(GetMySQLField("BankID")))
 			{
 				Format:string("%s\nBank:\t%s", string, GetMySQLField("Bank"));
+				Format:string("%s\nBank Guthaben:\t%s", string, GetMySQLField("BankMoney"));
 			}
 			Format:string("%s\nGuthaben:\t$%s", string, FormatMoney(GetPVar:playerID[MONEY]));
 			if (strval(GetMySQLField("JobID")))
