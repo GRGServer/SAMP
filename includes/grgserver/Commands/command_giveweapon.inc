@@ -11,7 +11,7 @@ PCMD:giveweapon[ADMIN](playerid, params[], "Sich selber Waffen Geben")
 	}
 	else
 	{
-		CmdUsageMsg(playerid, "giveweapon", "WeaponID");
+		CmdUsageMsg(playerid, "giveweapon", "WeaponID", "Ammonation");
 	}
 	return COMMAND_OK;
 }
