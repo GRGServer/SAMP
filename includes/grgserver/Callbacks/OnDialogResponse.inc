@@ -216,31 +216,31 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							}
 						}
 					}
-					case 2: // Konto übersicht 
+					case 1: // Konto übersicht 
 					{
 						new Float:bankMoney = floatstr(GetUserDBValue(playerid, "BankMoney"));
 						FormatNew:string[50]("Dein Bank Guthaben beträgt %s", FormatMoney(bankMoney));
 						SendClientMessage(playerid, COLOR_INFO, string);
 					}
-					case 3: // Konto Kündigen 
+					case 2: // Konto Kündigen 
 					{
 						SetUserDBValue(playerid, "BankID", "0");
 						SendClientMessage(playerid, COLOR_INFO, "Du hast dein konto erfolgreich Gekündigt!");
 						SendClientMessage(playerid, COLOR_INFO, "Nun kannst du auf einer anderren Bank ein Konto eröffnen!");
 					}
-					case 4: // Einzahlen
+					case 3: // Einzahlen
 					{
 						ShowDialog(playerid, DIALOG_BANK_INPUT);
 					}
-					case 5: // Auszahlen
+					case 4: // Auszahlen
 					{
 						ShowDialog(playerid, DIALOG_BANK_OUTPUT);
 					}
-					case 6: // Aktueler Zinssatz
+					case 5: // Aktueler Zinssatz
 					{
 						SendClientMessage(playerid, COLOR_INFO, "Zinssatz in bearbeitung!");
 					}
-					case 7: // Bewerben
+					case 6: // Bewerben
 					{
 						SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in bearbeitung!");
 					}
