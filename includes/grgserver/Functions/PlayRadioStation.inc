@@ -7,7 +7,7 @@ PlayRadioStation(playerID, id)
 		vehicles[vehicleID][VEHICLE_RADIOSTATION] = id;
 		if (vehicles[vehicleID][VEHICLE_SAVEID])
 		{
-			SetMySQLValue("savedvehicles", "LastRadioStation", val2str(id), "ID", val2str(vehicles[vehicleID][VEHICLE_RADIOSTATION]));
+			SetMySQLValue("savedvehicles", "LastRadioStation", val2str(id), "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID]));
 		}
 		TextDrawSetString(textDrawRadioStation[playerID], GetMySQLValue("radiostations", "Name", "ID", val2str(id)));
 		TextDrawShowForPlayer(playerID, textDrawRadioStation[playerID]);

@@ -12,9 +12,5 @@ public OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)
 			return false;
 		}
 	}
-	if (vehicles[vehicleid][VEHICLE_RADIOSTATION])
-	{
-		PlayRadioStation(playerid, vehicles[vehicleid][VEHICLE_RADIOSTATION]);
-	}
 	return true;
 }

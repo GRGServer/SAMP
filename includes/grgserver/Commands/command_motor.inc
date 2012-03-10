@@ -22,9 +22,13 @@ CMD:motor(playerid, params[], "Starten oder stoppen des Motors deines Fahrzeugs"
 	}
 	new Float:health;
 	GetVehicleHealth(vehicleID, health);
-	if (health >= VEHICLE_MINHEALTH)
+	if (health >= floatmul(VEHICLE_MINHEALTH, 10))
 	{
 		SetVehicleEngineState(vehicleID, true);
+		if (vehicles[vehicleID][VEHICLE_RADIOSTATION])
+		{
+			PlayRadioStation(playerid, vehicles[vehicleID][VEHICLE_RADIOSTATION]);
+		}
 		SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde gestartet.");
 		return COMMAND_OK;
 	}
