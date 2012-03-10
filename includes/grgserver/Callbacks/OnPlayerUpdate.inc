@@ -1,9 +1,14 @@
 public OnPlayerUpdate(playerid)
 {
-	if (savePlayers[playerid])
+	if (PVar:playerid[PAYDAY])
 	{
+		PVar:playerid[PAYDAY] = false;
+		PayDay(playerid);
+	}
+	if (PVar:playerid[SAVENOW])
+	{
+		PVar:playerid[SAVENOW] = false;
 		SavePlayer(playerid);
-		savePlayers[playerid] = false;
 	}
 	return true;
 }

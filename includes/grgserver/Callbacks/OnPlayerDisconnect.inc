@@ -11,6 +11,7 @@ public OnPlayerDisconnect(playerid, reason)
 		TextDrawDestroy(textDrawSpeedoName[playerid]);
 		TextDrawDestroy(textDrawSpeedoColumn2[playerid]);
 		TextDrawDestroy(textDrawRadioStation[playerid]);
+		SendDeathMessage(INVALID_PLAYER_ID, playerid, 201);
 	}
 	StopAudioStreamForPlayer(playerid);
 	ResetPlayerVariables(playerid);

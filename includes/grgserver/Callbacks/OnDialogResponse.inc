@@ -719,12 +719,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				new modelID = strval(GetMySQLValue("vehiclemodels", "ModelID", "Name", inputtext));
 				if (modelID)
 				{
-					MySQLQuery("INSERT INTO `missions` (`Name`, `CreatorUserID`) VALUES ('%s', '%d')", "%s abholen", playerid, MySQLEscapeString(inputtext));// TODO: Change name
+					MySQLQuery("INSERT INTO `missions` (`Name`, `CreationTime`, `CreatorUserID`) VALUES ('%s', NOW(), '%d')", "%s abholen", MySQLEscapeString(inputtext), playerid, MySQLEscapeString(inputtext));
 					new missionID = mysql_insert_id();
 					if (missionID)
 					{
 						MySQLQuery("INSERT INTO `missiondata` (`MissionID`, `Name`, `Value`) VALUES ('%d', 'Type', 'GetOrderedVehicle'), ('%d', 'VehicleModelID', '%d')", missionID, missionID, modelID);
-						FormatNew:string[50]("Auftrag erstellt (Auftragsnummer: %d)", mysql_insert_id());
+						FormatNew:string[50]("Auftrag erstellt (Auftragsnummer: %d)", missionID);
 						SendClientMessage(playerid, COLOR_INFO, string);
 					}
 				}

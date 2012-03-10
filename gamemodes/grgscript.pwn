@@ -1,3 +1,5 @@
+#pragma dynamic 5120
+
 // SAMP standard includes
 #include <a_samp>
 

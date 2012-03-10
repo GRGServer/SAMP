@@ -2,11 +2,13 @@ SavePlayer(playerID)
 {
 	if (IsLoggedIn(playerID))
 	{
-		SetUserDBValue(playerID, "Money", Float2Str(PVar:playerID[MONEY]));
-		SetUserDBValue(playerID, "Skin", val2str(PVar:playerID[SKIN]));
+		SetUserDBValue(playerID, "BankMoney", Float2Str(PVar:playerID[BANKMONEY]));
+		SetUserDBValue(playerID, "CreditMoney", Float2Str(PVar:playerID[CREDITMONEY]));
 		SetUserDBValue(playerID, "CurrentBuildingID", val2str(PVar:playerID[CURRENTBUILDINGID]));
 		SetUserDBValue(playerID, "JobID", val2str(PVar:playerID[JOBID]));
+		SetUserDBValue(playerID, "Money", Float2Str(PVar:playerID[MONEY]));
 		SetUserDBValue(playerID, "OnlineTime", val2str(PVar:playerID[ONLINETIME] + (gettime() - PVar:playerID[ONLINESINCE])));
+		SetUserDBValue(playerID, "Skin", val2str(PVar:playerID[SKIN]));
 		new Float:posX;
 		new Float:posY;
 		new Float:posZ;

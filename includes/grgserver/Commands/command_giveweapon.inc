@@ -1,17 +1,19 @@
-PCMD:giveweapon[ADMIN](playerid, params[], "Sich selber Waffen Geben")
+PCMD:giveweapon[ADMIN](playerid, params[], "Sich selber Waffen geben")
 {
-	new weaponid;
+	new weaponID;
 	new ammo;
-	if (sscanf(params, "dd", weaponid, ammo))
+	if (sscanf(params, "dd", weaponID, ammo))
 	{
-		if (weaponid >= 0 && weaponid <= 46)
-		{
-			GivePlayerWeapon(playerid, weaponid,ammo);
-		}
+		CmdUsageMsg(playerid, "giveweapon", "WeaponID", "Munition");
+		return COMMAND_USAGE;
 	}
-	else
+	if (!IsValidWeapon(weaponID))
 	{
-		CmdUsageMsg(playerid, "giveweapon", "WeaponID", "Ammonation");
+		SendClientMessage(playerid, COLOR_ERROR, "Ungültige WeaponID!");
+		return COMMAND_ERROR;
 	}
+	GivePlayerWeapon(playerid, weaponID, ammo);
+	FormatNew:string[70]("Viel Spaß mit deiner neuen Waffe '%s'!", GetWeaponNameEx(weaponID));
+	SendClientMessage(playerid, COLOR_INFO, string);
 	return COMMAND_OK;
 }

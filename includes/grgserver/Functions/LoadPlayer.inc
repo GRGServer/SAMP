@@ -1,5 +1,7 @@
 LoadPlayer(playerID)
 {
+	PVar:playerID[BANKMONEY] = floatstr(GetUserDBValue(playerID, "BankMoney"));
+	PVar:playerID[CREDITMONEY] = floatstr(GetUserDBValue(playerID, "CreditMoney"));
 	PVar:playerID[MONEY] = floatstr(GetUserDBValue(playerID, "Money"));
 	PVar:playerID[SKIN] = strval(GetUserDBValue(playerID, "Skin"));
 	PVar:playerID[CURRENTBUILDINGID] = strval(GetUserDBValue(playerID, "CurrentBuildingID"));

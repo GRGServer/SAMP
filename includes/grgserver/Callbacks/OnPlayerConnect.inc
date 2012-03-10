@@ -46,6 +46,7 @@ public OnPlayerConnect(playerid)
 			ShowDialog(playerid, DIALOG_REGISTER_PASSWORD1);
 		}
 		mysql_free_result();
+		SendDeathMessage(INVALID_PLAYER_ID, playerid, 200);
 		SendClientMessage(playerid, COLOR_SYSTEM, "Willkommen auf GRG Server!");
 		FormatNew:string[70]("Auf diesem Server läuft aktuell Revision %d unserer Gamemode.", COMPILER_SVN_REVISION);
 		SendClientMessage(playerid, COLOR_SYSTEM, string);

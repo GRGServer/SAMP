@@ -1,6 +1,4 @@
-﻿#Title = "Includes Updater"
-
-Global grgIncludesPath$
+﻿Global grgIncludesPath$
 Global mainInclude
 
 Procedure AddIncludeGroup(name$)
@@ -35,9 +33,10 @@ mainPath$ = GetPathPart(ProgramFilename())
 serverRoot$ = GetPathPart(Left(mainPath$, Len(mainPath$) - 1))
 grgIncludesPath$ = serverRoot$ + "includes\grgserver\"
 
-directory = ExamineDirectory(#PB_Any, grgIncludesPath$, "*.*")
-If IsDirectory(directory)
-	If MessageRequester(#Title, "Update includes?" + Chr(13) + Chr(13) + "Includes path: " + grgIncludesPath$, #MB_YESNO | #MB_ICONQUESTION) = #PB_MessageRequester_Yes
+If OpenConsole()
+	directory = ExamineDirectory(#PB_Any, grgIncludesPath$, "*.*")
+	If IsDirectory(directory)
+		Print("Updating includes in '" +grgIncludesPath$ + "'...")
 		mainInclude = CreateFile(#PB_Any, grgIncludesPath$ + "main.inc")
 		If IsFile(mainInclude)
 			AddIncludeGroup("Constants")
@@ -56,24 +55,26 @@ If IsDirectory(directory)
 			AddDir("Commands")
 			AddDir("RCON")
 			CloseFile(mainInclude)
-			MessageRequester(#Title, "Done", #MB_ICONINFORMATION)
+			Print(" Done")
 		Else
-			MessageRequester(#Title, "Can not create main.inc in " +grgIncludesPath$ + "!", #MB_ICONERROR)
+			Print(" Failed")
+			PrintN("Can not create main.inc in " +grgIncludesPath$ + "!")
 		EndIf
+		FinishDirectory(directory)
+	Else
+		PrintN("The includes path '" +grgIncludesPath$ + "' does not exist!")
 	EndIf
-	FinishDirectory(directory)
-Else
-	MessageRequester(#Title, "The includes path '" +grgIncludesPath$ + "' does not exist!", #MB_ICONERROR)
 EndIf
 ; IDE Options = PureBasic 4.60 (Windows - x86)
-; CursorPosition = 57
+; ExecutableFormat = Console
+; CursorPosition = 46
 ; FirstLine = 24
 ; Folding = -
 ; EnableXP
 ; UseIcon = Includes Updater.ico
 ; Executable = Includes Updater.exe
-; EnableCompileCount = 6
-; EnableBuildCount = 6
+; EnableCompileCount = 7
+; EnableBuildCount = 7
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0

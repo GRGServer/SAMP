@@ -51,6 +51,7 @@
 #define JOB_ESTATEAGENT				3
 #define JOB_POLICE					5
 #define JOB_TRUCKER					4
+#define JOB_UNEMPLOYED				0
 #define JOB_VEHICLEDEALER			1
 
 
@@ -117,6 +118,7 @@
 #define TIMER_FAST					250// 1/4 seconds (Update fuel usage calculation on change!)
 #define TIMER_HIDERADIODISPLAY		3000// Hide radio display after 3 seconds
 #define TIMER_HOURLY				3600000// 1 hour
+#define TIMER_PICKUPTIMEOUT			2000// Only show pickup message if the player didn't pick up a pickup before the timeout of 2 seconds has been reached
 #define TIMER_SLOW					5000// 5 seconds
 #define TIMER_STABLECHECK			600000// Mark server as stable after 10 minutes
 

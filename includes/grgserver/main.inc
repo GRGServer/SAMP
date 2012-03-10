@@ -36,12 +36,15 @@
 #include <grgserver\Functions\GetPlayerID.inc>
 #include <grgserver\Functions\GetPlayerNameEx.inc>
 #include <grgserver\Functions\GetVehicleEngineState.inc>
+#include <grgserver\Functions\GetWeaponNameEx.inc>
 #include <grgserver\Functions\GivePlayerMoneyEx.inc>
 #include <grgserver\Functions\IsLoggedIn.inc>
 #include <grgserver\Functions\IsValidSkin.inc>
+#include <grgserver\Functions\IsValidWeapon.inc>
 #include <grgserver\Functions\LeaveBuilding.inc>
 #include <grgserver\Functions\LoadPlayer.inc>
 #include <grgserver\Functions\MySQLEscapeString.inc>
+#include <grgserver\Functions\PayDay.inc>
 #include <grgserver\Functions\PlayRadioStation.inc>
 #include <grgserver\Functions\ReconnectNPCs.inc>
 #include <grgserver\Functions\ReloadPermissions.inc>
@@ -70,7 +73,6 @@
 #include <grgserver\Functions\TeleportToBuilding.inc>
 #include <grgserver\Functions\TeleportToInterior.inc>
 #include <grgserver\Functions\UpdateGasPrice.inc>
-#include <grgserver\Functions\UpdatePayDay.inc>
 #include <grgserver\Functions\WriteChatToDatabase.inc>
 #include <grgserver\Functions\explode.inc>
 #include <grgserver\Functions\str_replace.inc>
@@ -90,6 +92,7 @@
 #include <grgserver\Callbacks\OnInteriorDialogSelect.inc>
 #include <grgserver\Callbacks\OnPlayerCommandPerformed.inc>
 #include <grgserver\Callbacks\OnPlayerConnect.inc>
+#include <grgserver\Callbacks\OnPlayerDeath.inc>
 #include <grgserver\Callbacks\OnPlayerDisconnect.inc>
 #include <grgserver\Callbacks\OnPlayerEnterCheckpoint.inc>
 #include <grgserver\Callbacks\OnPlayerEnterVehicle.inc>
@@ -113,6 +116,7 @@
 #include <grgserver\Timers\Timer_FlyWithPlane.inc>
 #include <grgserver\Timers\Timer_HideRadioDisplay.inc>
 #include <grgserver\Timers\Timer_Hourly.inc>
+#include <grgserver\Timers\Timer_PickupTimeout.inc>
 #include <grgserver\Timers\Timer_RefuelVehicle.inc>
 #include <grgserver\Timers\Timer_Slow.inc>
 #include <grgserver\Timers\Timer_SpawnPlayer.inc>

@@ -27,12 +27,14 @@ stock str_replace(search[], replace[], source[])
 			}
 			if (matched == 0)
 			{
-				for (start=start; start <= i; start++)
+				while (start <= i)
 				{
 					newnick[newlen] = source[start];
 					newlen++;
+					start++;
 				}
-			} else
+			}
+			else
 			{
 				for (new r; r < strlen(replace); r++)
 				{
@@ -41,7 +43,8 @@ stock str_replace(search[], replace[], source[])
 				}
 				i = (start + (strlen(search) - 1));
 			}
-		} else
+		}
+		else
 		{
 			if (strlen(search) == 1 && source[i] == search[0])
 			{
@@ -50,7 +53,8 @@ stock str_replace(search[], replace[], source[])
 					newnick[newlen] = replace[r];
 					newlen++;
 				}
-			} else
+			}
+			else
 			{
 				newnick[newlen] = source[i];
 				newlen++;
