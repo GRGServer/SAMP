@@ -111,6 +111,7 @@
 #include <grgserver\Timers\Timer_EveryMinute.inc>
 #include <grgserver\Timers\Timer_Fast.inc>
 #include <grgserver\Timers\Timer_FlyWithPlane.inc>
+#include <grgserver\Timers\Timer_HideRadioDisplay.inc>
 #include <grgserver\Timers\Timer_Hourly.inc>
 #include <grgserver\Timers\Timer_RefuelVehicle.inc>
 #include <grgserver\Timers\Timer_Slow.inc>

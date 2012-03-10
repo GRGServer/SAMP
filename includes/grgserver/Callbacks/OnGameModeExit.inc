@@ -1,8 +1,9 @@
 public OnGameModeExit()
 {
 	print("* Unloading Gamemode...");
-	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+	Count(playerID, MAX_PLAYERS)
 	{
+		StopAudioStreamForPlayer(playerID);
 		if (IsPlayerNPC(playerID))
 		{
 			Kick(playerID);

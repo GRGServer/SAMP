@@ -1,8 +1,8 @@
 Timer:Hourly()
 {
-	for(new i = 0; i < MAX_PLAYERS; i++)
+	UpdateGasPrice();
+	Count(playerID, MAX_PLAYERS)
 	{
-		UpdateGasPrice();
-		UpdatePayDay(i);
+		UpdatePayDay(playerID);
 	}
 }

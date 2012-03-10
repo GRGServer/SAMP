@@ -4,9 +4,9 @@ PlayRadioStation(playerID, id)
 	{
 		PlayAudioStreamForPlayer(playerID, GetMySQLValue("radiostations", "URL", "ID", val2str(id)));
 		new vehicleID = GetPlayerVehicleID(playerID);
+		vehicles[vehicleID][VEHICLE_RADIOSTATION] = id;
 		if (vehicles[vehicleID][VEHICLE_SAVEID])
 		{
-			vehicles[vehicleID][VEHICLE_RADIOSTATION] = id;
 			SetMySQLValue("savedvehicles", "LastRadioStation", val2str(id), "ID", val2str(vehicles[vehicleID][VEHICLE_RADIOSTATION]));
 		}
 		TextDrawSetString(textDrawRadioStation[playerID], GetMySQLValue("radiostations", "Name", "ID", val2str(id)));

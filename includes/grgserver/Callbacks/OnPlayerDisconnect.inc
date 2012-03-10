@@ -12,6 +12,7 @@ public OnPlayerDisconnect(playerid, reason)
 		TextDrawDestroy(textDrawSpeedoColumn2[playerid]);
 		TextDrawDestroy(textDrawRadioStation[playerid]);
 	}
+	StopAudioStreamForPlayer(playerid);
 	ResetPlayerVariables(playerid);
 	return true;
 }
