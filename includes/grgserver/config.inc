@@ -24,10 +24,6 @@
 #define GASSTATION_REFUELSPEED		500// Time per liter
 
 
-// Help configuration
-#define HELP_COMMANDSPERLINE		5
-
-
 // Hotel configuration
 #define HOTEL_RECEPTION_ANGLE		273.733
 #define HOTEL_RECEPTION_INTERIOR	15
