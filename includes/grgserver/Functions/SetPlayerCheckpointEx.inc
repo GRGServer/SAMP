@@ -29,5 +29,5 @@ SetPlayerCheckpointEx(playerID, checkpointID)
 		}
 	}
 	SetPlayerCheckpoint(playerID, posX, posY, posZ, size);
-	SetPVar:playerID[CURRENTCHECKPOINT](checkpointID);
+	PVar:playerID[CURRENTCHECKPOINT] = checkpointID;
 }

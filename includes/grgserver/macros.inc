@@ -21,14 +21,13 @@ for(new i_%0 = 0; ; ++i_%0) \
 #define Format:%0(%1) format(%0, sizeof(%0), %1)
 #define FormatNew:%0[%1](%2) new %0[%1]; Format:%0(%2)
 #define FormatMoney(%0) FormatNumber(%0, 2, '.', ',')
-#define GetPVar:%0[%1] playerVariables[%0][PVAR_%1]
-#define GetUserDBValue(%0,%1) GetMySQLValue("users", %1, "UserID", val2str(GetPVar:%0[USERID]))
+#define GetUserDBValue(%0,%1) GetMySQLValue("users", %1, "UserID", val2str(PVar:%0[USERID]))
 #define IsKeyPressed(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
 #define LoadPermission:%0(%1,%2) permissions[%1][PERMISSION_%0] = strval(GetMySQLField(%2))
 #define MD5(%0) MD5_Hash(%0, true)
 #define MySQLQuery(%0) Format:sqlQuery(%0); mysql_query(sqlQuery)
-#define SetPVar:%0[%1](%2) playerVariables[%0][PVAR_%1] = %2
-#define SetPVarStr:%0[%1][%2](%3) format(playerVariables[%0][PVAR_%1], %2, %3)
-#define SetUserDBValue(%0,%1,%3) SetMySQLValue("users", %1, %3, "UserID", val2str(GetPVar:%0[USERID]))
+#define PVar:%0[%1] playerVariables[%0][PVAR_%1]
+#define SetPVarStr:%0[%1][%2](%3) format(PVar:%0[%1], %2, %3)
+#define SetUserDBValue(%0,%1,%3) SetMySQLValue("users", %1, %3, "UserID", val2str(PVar:%0[USERID]))
 #define StartTimer:%0(%1,%2) SetTimer(%1, TIMER_%0, %2); printf("Timer %s (Interval: %d; Repeating: %d) started", %1, TIMER_%0, %2)
 #define Timer:%0(%1) forward Timer_%0(%1); public Timer_%0(%1)

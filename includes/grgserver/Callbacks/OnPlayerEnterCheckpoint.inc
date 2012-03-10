@@ -1,6 +1,6 @@
 public OnPlayerEnterCheckpoint(playerid)
 {
-	switch (GetPVar:playerid[CURRENTCHECKPOINT])
+	switch (PVar:playerid[CURRENTCHECKPOINT])
 	{
 		case CHECKPOINT_WALKTOPLANEEXIT:
 		{

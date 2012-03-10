@@ -62,11 +62,15 @@ public OnPlayerConnect(playerid)
 		TextDrawLetterSize(textDrawSpeedoColumn2[playerid], 0.3, 0.9);
 		TextDrawFont(textDrawSpeedoColumn2[playerid], 1);
 		TextDrawSetShadow(textDrawSpeedoColumn2[playerid], 2);
-		textDrawRadioStation[playerid] = TextDrawCreate(635, 435, "_");
-		TextDrawAlignment(textDrawRadioStation[playerid], 3);
-		TextDrawLetterSize(textDrawRadioStation[playerid], 0.3, 0.9);
-		TextDrawFont(textDrawRadioStation[playerid], 1);
-		TextDrawSetShadow(textDrawRadioStation[playerid], 2);
+		textDrawRadioStation[playerid] = TextDrawCreate(320, 20, "_");
+		TextDrawAlignment(textDrawRadioStation[playerid], 2);
+		TextDrawBackgroundColor(textDrawRadioStation[playerid], 0x000000ff);
+		TextDrawFont(textDrawRadioStation[playerid], 2);
+		TextDrawLetterSize(textDrawRadioStation[playerid], 0.4, 1.6);
+		TextDrawColor(textDrawRadioStation[playerid], 0x906010ff);
+		TextDrawSetOutline(textDrawRadioStation[playerid], 1);
+		TextDrawSetProportional(textDrawRadioStation[playerid], 2);
+		TextDrawSetShadow(textDrawRadioStation[playerid], 1);
 		TextDrawShowForPlayer(playerid, textDrawClock);
 	}
 	return true;

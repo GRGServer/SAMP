@@ -5,7 +5,7 @@ ShowDialog(playerID, dialogID, ...)
 		case DIALOG_ACCEPT:
 		{
 			new missionList[2048];
-			MySQLQuery("SELECT * FROM `missions` WHERE `JobID` = '%d' AND `AcceptUserID` = '0' ORDER BY `Name` ASC", GetPVar:playerID[JOBID]);
+			MySQLQuery("SELECT * FROM `missions` WHERE `JobID` = '%d' AND `AcceptUserID` = '0' ORDER BY `Name` ASC", PVar:playerID[JOBID]);
 			mysql_store_result();
 			while (FetchMySQLRow())
 			{
@@ -35,7 +35,7 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_APPLICATION_PLAYER:
 		{
-			MySQLQuery("SELECT * FROM `application` WHERE `ID` = '%d' AND `application` = '0' ORDER BY `UserName` ASC", GetPVar:playerID[APPLICATIONID]);
+			MySQLQuery("SELECT * FROM `application` WHERE `ID` = '%d' AND `application` = '0' ORDER BY `UserName` ASC", PVar:playerID[APPLICATIONID]);
 			mysql_store_result();
 			while (FetchMySQLRow())
 			{
@@ -150,7 +150,7 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			new rooms[2048];
 			new string[MAX_PLAYER_NAME];
-			MySQLQuery("SELECT `RoomID`, `Username` FROM `hotelrooms` LEFT JOIN `users` ON `hotelrooms`.`OwnerUserID` = `users`.`UserID` WHERE `hotelrooms`.`BuildingID` = '%d' ORDER BY `RoomID` ASC", GetPVar:playerID[DIALOGBUILDINGID]);
+			MySQLQuery("SELECT `RoomID`, `Username` FROM `hotelrooms` LEFT JOIN `users` ON `hotelrooms`.`OwnerUserID` = `users`.`UserID` WHERE `hotelrooms`.`BuildingID` = '%d' ORDER BY `RoomID` ASC", PVar:playerID[DIALOGBUILDINGID]);
 			mysql_store_result();
 			while (FetchMySQLRow())
 			{
@@ -242,7 +242,7 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			new string[80];
 			GetStringArg(2, string);
-			SetPVar:playerID[CURRENTGASPRICE](gasPrice);
+			PVar:playerID[CURRENTGASPRICE] = gasPrice;
 			Format:string("Wie viel möchtest du tanken (0 - %s)?\n\nAktueller Preis: $%s/Liter", string, FormatMoney(gasPrice));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", "Abbrechen");
 		}
@@ -306,7 +306,7 @@ ShowDialog(playerID, dialogID, ...)
 				}
 			}
 			FormatNew:string[30]("Ziel auswählen (Seite %d)", page);
-			SetPVar:playerID[INTERIORDIALOGID](getarg(2));
+			PVar:playerID[INTERIORDIALOGID] = getarg(2);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, string, interiors, "OK", "Abbrechen");
 		}
 		case DIALOG_STATS:
@@ -314,7 +314,7 @@ ShowDialog(playerID, dialogID, ...)
 			new string[1024];
 			SavePlayer(playerID);
 			Format:string("SELECT `users`.`UserID`, `users`.`Username`, UNIX_TIMESTAMP(`users`.`BirthDate`) AS `BirthDate`, `users`.`Location`, `users`.`MobilePhoneNumber`, `users`.`BankID`, ,`users`.`BankMoney`,`users`.`JobID`, `users`.`OnlineTime`, `users`.`LoginTime`, `banks`.`Name` AS `Bank`, `jobs`.`Name` AS `JobName` FROM `users`");
-			MySQLQuery("%s LEFT JOIN (`banks`, `jobs`) ON (`banks`.`ID` = `users`.`BankID` AND `jobs`.`ID` = `users`.`JobID`) WHERE `users`.`UserID` = '%d'", string, GetPVar:playerID[USERID]);
+			MySQLQuery("%s LEFT JOIN (`banks`, `jobs`) ON (`banks`.`ID` = `users`.`BankID` AND `jobs`.`ID` = `users`.`JobID`) WHERE `users`.`UserID` = '%d'", string, PVar:playerID[USERID]);
 			mysql_store_result();
 			Format:string("ID:\t%s", GetMySQLField("UserID"));
 			Format:string("%s\nName:\t%s", string, GetMySQLField("Username"));
@@ -326,12 +326,13 @@ ShowDialog(playerID, dialogID, ...)
 				Format:string("%s\nBank:\t%s", string, GetMySQLField("Bank"));
 				Format:string("%s\nBank Guthaben:\t%s", string, GetMySQLField("BankMoney"));
 			}
-			Format:string("%s\nGuthaben:\t$%s", string, FormatMoney(GetPVar:playerID[MONEY]));
+			Format:string("%s\nGuthaben:\t$%s", string, FormatMoney(PVar:playerID[MONEY]));
 			if (strval(GetMySQLField("JobID")))
 			{
 				Format:string("%s\nBeruf:\t%s", string, GetMySQLField("JobName"));
 			}
 			Format:string("%s\nSpielzeit:\t%s", string, FormatTime(strval(GetMySQLField("OnlineTime"))));
+			Format:string("%s\nRegistriert seit:\t%s", string, FormatDate(GetMySQLField("RegisterTime")));
 			Format:string("%s\nLetzter Login:\t%s", string, FormatDate(GetMySQLField("LoginTime")));
 			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Personalien", string, "OK", "");

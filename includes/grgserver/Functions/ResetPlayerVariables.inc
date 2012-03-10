@@ -8,6 +8,6 @@ ResetPlayerVariables(playerID)
 	{
 		playerVariables[playerID][enum_playerVariable:playerVariable] = 0;
 	}
-	SetPVar:playerID[RECORDNPCFORPLAYER](INVALID_PLAYER_ID);
-	SetPVar:playerID[SHOWINTERIOR_OLDINTERIOR](-1);
+	PVar:playerID[RECORDNPCFORPLAYER] = INVALID_PLAYER_ID;
+	PVar:playerID[SHOWINTERIOR_OLDINTERIOR] = -1;
 }

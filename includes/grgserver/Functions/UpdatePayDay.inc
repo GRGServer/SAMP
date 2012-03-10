@@ -1,6 +1,6 @@
 UpdatePayDay(playerid)
 {
-	if (GetPVar:playerid[JOBID] == JOB_BANK)
+	if (PVar:playerid[JOBID] == JOB_BANK)
 	{
 		// TODO: Muss überprüft werden Welcher Job
 		// TODO: Muss überprüft werden ob ihm der Job Gehört

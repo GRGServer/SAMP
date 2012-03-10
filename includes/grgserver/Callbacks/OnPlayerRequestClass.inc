@@ -1,6 +1,6 @@
 public OnPlayerRequestClass(playerid, classid)
 {
-	new previousClassID = GetPVar:playerid[PREVIOUSCLASSID];
+	new previousClassID = PVar:playerid[PREVIOUSCLASSID];
 	new direction;
 	switch (classid)
 	{
@@ -35,8 +35,8 @@ public OnPlayerRequestClass(playerid, classid)
 			}
 		}
 	}
-	SetPVar:playerid[PREVIOUSCLASSID](classid);
-	new skinID = GetPVar:playerid[SKIN];
+	PVar:playerid[PREVIOUSCLASSID] = classid;
+	new skinID = PVar:playerid[SKIN];
 	switch (direction)
 	{
 		case -1:
@@ -64,7 +64,7 @@ public OnPlayerRequestClass(playerid, classid)
 			while (!IsValidSkin(skinID));
 		}
 	}
-	SetPVar:playerid[SKIN](skinID);
+	PVar:playerid[SKIN] = skinID;
 	SetPlayerSkin(playerid, skinID);
 	SetPlayerPos(playerid, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ);
 	SetPlayerFacingAngle(playerid, SPAWN_ANGLE);

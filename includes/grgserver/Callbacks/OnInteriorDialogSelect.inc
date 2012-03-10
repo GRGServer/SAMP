@@ -6,7 +6,7 @@ OnInteriorDialogSelect(playerID, dialogID, interiorID)
 		{
 			if (interiorID)
 			{
-				SetPVar:playerID[ADDBUILDING_INTERIORID](interiorID);
+				PVar:playerID[ADDBUILDING_INTERIORID] = interiorID;
 				ShowDialog(playerID, DIALOG_ADDBUILDING_NAME);
 			}
 			else

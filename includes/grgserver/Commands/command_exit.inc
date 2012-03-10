@@ -1,6 +1,6 @@
 CMD:exit(playerid, params[], "Gebäude verlassen")
 {
-	if (GetPVar:playerid[SHOWINTERIOR_OLDINTERIOR] == -1)
+	if (PVar:playerid[SHOWINTERIOR_OLDINTERIOR] == -1)
 	{
 		if (LeaveBuilding(playerid))
 		{
@@ -14,9 +14,9 @@ CMD:exit(playerid, params[], "Gebäude verlassen")
 	}
 	else
 	{
-		SetPlayerPos(playerid, GetPVar:playerid[SHOWINTERIOR_OLDPOSX], GetPVar:playerid[SHOWINTERIOR_OLDPOSY], GetPVar:playerid[SHOWINTERIOR_OLDPOSZ]);
-		SetPlayerInterior(playerid, GetPVar:playerid[SHOWINTERIOR_OLDINTERIOR]);
-		SetPVar:playerid[SHOWINTERIOR_OLDINTERIOR](-1);
+		SetPlayerPos(playerid, PVar:playerid[SHOWINTERIOR_OLDPOSX], PVar:playerid[SHOWINTERIOR_OLDPOSY], PVar:playerid[SHOWINTERIOR_OLDPOSZ]);
+		SetPlayerInterior(playerid, PVar:playerid[SHOWINTERIOR_OLDINTERIOR]);
+		PVar:playerid[SHOWINTERIOR_OLDINTERIOR] = -1;
 		return COMMAND_OK;
 	}
 }

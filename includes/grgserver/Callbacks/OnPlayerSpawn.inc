@@ -15,13 +15,13 @@ public OnPlayerSpawn(playerid)
 		mysql_free_result();
 		return true;
 	}
-	if (GetPVar:playerid[SPAWNAFTERLOGIN])
+	if (PVar:playerid[SPAWNAFTERLOGIN])
 	{
-		SetPVar:playerid[SPAWNAFTERLOGIN](false);
+		PVar:playerid[SPAWNAFTERLOGIN] = false;
 		SetPlayerPos(playerid, floatstr(GetUserDBValue(playerid, "PosX")), floatstr(GetUserDBValue(playerid, "PosY")), floatstr(GetUserDBValue(playerid, "PosZ")));
 		SetPlayerFacingAngle(playerid, floatstr(GetUserDBValue(playerid, "Angle")));
 		SetPlayerInterior(playerid, strval(GetUserDBValue(playerid, "Interior")));
-		SetPlayerSkin(playerid, GetPVar:playerid[SKIN]);
+		SetPlayerSkin(playerid, PVar:playerid[SKIN]);
 	}
 	return true;
 }

@@ -2,14 +2,17 @@ PlayRadioStation(playerID, id)
 {
 	if (id)
 	{
-		SetPVar:playerID[RADIOON](true);
-		SetPVar:playerID[LASTRADIOSTATION](id);
-		FormatNew:string[100]("%s", GetMySQLValue("radiostations", "Name", "ID", val2str(id)));
 		PlayAudioStreamForPlayer(playerID, GetMySQLValue("radiostations", "URL", "ID", val2str(id)));
-		TextDrawSetString(textDrawRadioStation[playerID], string);
+		new vehicleID = GetPlayerVehicleID(playerID);
+		if (vehicles[vehicleID][VEHICLE_SAVEID])
+		{
+			vehicles[vehicleID][VEHICLE_RADIOSTATION] = id;
+			SetMySQLValue("savedvehicles", "LastRadioStation", val2str(id), "ID", val2str(vehicles[vehicleID][VEHICLE_RADIOSTATION]));
+		}
+		TextDrawSetString(textDrawRadioStation[playerID], GetMySQLValue("radiostations", "Name", "ID", val2str(id)));
 		TextDrawShowForPlayer(playerID, textDrawRadioStation[playerID]);
-		Format:string("Du hörst jetzt %s", string);
-		SendClientMessage(playerID, COLOR_INFO, string);
+		KillTimer(PVar:playerID[RADIODISPLAYTIMER]);
+		PVar:playerID[RADIODISPLAYTIMER] = SetTimerEx("Timer_HideRadioDisplay", TIMER_HIDERADIODISPLAY, false, "i", playerID);
 	}
 	else
 	{
