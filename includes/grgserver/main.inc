@@ -100,6 +100,7 @@
 #include <grgserver\Callbacks\OnPlayerKeyStateChange.inc>
 #include <grgserver\Callbacks\OnPlayerPickUpPickup.inc>
 #include <grgserver\Callbacks\OnPlayerRequestClass.inc>
+#include <grgserver\Callbacks\OnPlayerRequestSpawn.inc>
 #include <grgserver\Callbacks\OnPlayerSpawn.inc>
 #include <grgserver\Callbacks\OnPlayerStateChange.inc>
 #include <grgserver\Callbacks\OnPlayerText.inc>

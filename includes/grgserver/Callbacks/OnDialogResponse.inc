@@ -694,6 +694,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						MySQLQuery("UPDATE `users` SET `LoginTime` = NOW() WHERE `UserID` = '%d'", PVar:playerid[USERID]);
 						printf("Player logged in: %s (UserID: %d)", GetPlayerNameEx(playerid), PVar:playerid[USERID]);
+						TogglePlayerSpectating(playerid, false);
 						LoadPlayer(playerid);
 						PVar:playerid[SPAWNAFTERLOGIN] = true;
 						SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich eingeloggt.");
@@ -862,14 +863,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `Gender`, `BirthDate`, `Location`, `RegisterTime`, `LoginTime`) VALUES ('%s', '%s', '%c', '%s', '%s', NOW(), NOW())", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(PVar:playerid[REGISTERPASSWORD]), PVar:playerid[GENDER], PVar:playerid[BIRTHDATE], MySQLEscapeString(inputtext));
-				PVar:playerid[USERID] = mysql_insert_id();
-				PVar:playerid[ONLINESINCE] = gettime();
-				SavePlayer(playerid);
-				printf("Player registered: %s (UserID: %d)", GetPlayerNameEx(playerid), PVar:playerid[USERID]);
-				SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
-				TeleportTo(playerid, 1.7414, 31.6997, 1199.6012, 177.4850, 1, playerid);
-				SetPlayerCheckpointEx(playerid, CHECKPOINT_WALKTOSEAT);
+				SetPVarStr:playerid[REGISTERLOCATION][STRINGLENGTH_LOCATION](inputtext);
+				PVar:playerid[REGISTER_SELECTSKIN] = true;
 			}
 			else
 			{

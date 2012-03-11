@@ -103,6 +103,7 @@
 // String sizes
 #define STRINGLENGTH_BUILDINGTYPE	10
 #define STRINGLENGTH_DATETIME		20
+#define STRINGLENGTH_LOCATION		100
 
 
 // 3D text labels

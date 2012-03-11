@@ -39,6 +39,7 @@ public OnPlayerConnect(playerid)
 		mysql_store_result();
 		if (strval(GetMySQLField("UserID")))
 		{
+			TogglePlayerSpectating(playerid, true);
 			ShowDialog(playerid, DIALOG_LOGIN);
 		}
 		else
