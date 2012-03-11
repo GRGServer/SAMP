@@ -752,6 +752,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							SendClientMessage(playerid, COLOR_ERROR, "Du musst Zuerst einen beruf Kündigen!");
 						}
 					}
+					case 2: // Betreten
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Betreten noch in Bearbeitung.");
+					}
 				}
 			}
 		}
@@ -776,6 +780,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 3: // Job Kündigen
 					{
 						SendClientMessage(playerid, COLOR_INFO, "Kündigung noch in Bearbeitung!");
+					}
+					case 4: // Betreten
+					{
+						SendClientMessage(playerid, COLOR_INFO, "Betreten noch in Bearbeitung!");
 					}
 				}
 			}

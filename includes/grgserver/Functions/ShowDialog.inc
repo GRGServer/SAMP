@@ -210,16 +210,18 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_POLICE_JOB:
 		{
-			FormatNew:options[40]("Polizeirevier kaufen");
+			FormatNew:options[60]("Polizeirevier kaufen");
 			Format:options("%s\nBewerben", options);
+			Format:options("%s\nBetreten", options);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Polizei", options, "OK", "Abbrechen");
 		}
 		case DIALOG_POLICE_OPTIONS:
 		{
-			FormatNew:options[50]("Aufträge");
+			FormatNew:options[70]("Aufträge");
 			Format:options("%s\nFinazen", options);
 			Format:options("%s\nBewerbungsübersicht", options);
 			Format:options("%s\nKündigen", options);
+			Format:options("%s\nBetreten", options);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Polizei", options, "OK", "Abbrechen");
 		}
 		case DIALOG_RADIO:
