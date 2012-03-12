@@ -1,15 +1,19 @@
 LoadPlayer(playerID)
 {
-	PVar:playerID[BANKMONEY] = floatstr(GetUserDBValue(playerID, "BankMoney"));
-	PVar:playerID[CREDITMONEY] = floatstr(GetUserDBValue(playerID, "CreditMoney"));
-	PVar:playerID[MONEY] = floatstr(GetUserDBValue(playerID, "Money"));
-	PVar:playerID[SKIN] = strval(GetUserDBValue(playerID, "Skin"));
-	PVar:playerID[CURRENTBUILDINGID] = strval(GetUserDBValue(playerID, "CurrentBuildingID"));
-	PVar:playerID[JOBID] = strval(GetUserDBValue(playerID, "JobID"));
-	PVar:playerID[ONLINETIME] = strval(GetUserDBValue(playerID, "OnlineTime"));
+	MySQLQuery("SELECT * FROM `users` WHERE `UserID` = '%d'", PVar:playerID[USERID]);
+	mysql_store_result();
+	PVar:playerID[BANKMONEY] = floatstr(GetMySQLField("BankMoney"));
+	PVar:playerID[CREDITMONEY] = floatstr(GetMySQLField("CreditMoney"));
+	PVar:playerID[CURRENTBUILDINGID] = strval(GetMySQLField("CurrentBuildingID"));
+	PVar:playerID[JOBID] = strval(GetMySQLField("JobID"));
+	PVar:playerID[MONEY] = floatstr(GetMySQLField("Money"));
 	PVar:playerID[ONLINESINCE] = gettime();
+	PVar:playerID[ONLINETIME] = strval(GetMySQLField("OnlineTime"));
+	PVar:playerID[SKIN] = strval(GetMySQLField("Skin"));
+	SetPlayerHealth(playerID, floatstr(GetMySQLField("Health")));
 	SetPlayerMoney(playerID, PVar:playerID[MONEY]);
 	SetPlayerSkin(playerID, PVar:playerID[SKIN]);
+	mysql_free_result();
 	MySQLQuery("SELECT * FROM `permissions` WHERE `UserID` = '%d'", PVar:playerID[USERID]);
 	mysql_store_result();
 	if (strval(GetMySQLField("UserID")))

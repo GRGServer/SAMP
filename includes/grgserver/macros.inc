@@ -31,3 +31,4 @@ for(new i_%0 = 0; ; ++i_%0) \
 #define SetUserDBValue(%0,%1,%3) SetMySQLValue("users", %1, %3, "UserID", val2str(PVar:%0[USERID]))
 #define StartTimer:%0(%1,%2) SetTimer(%1, TIMER_%0, %2); printf("Timer %s (Interval: %d; Repeating: %d) started", %1, TIMER_%0, %2)
 #define Timer:%0(%1) forward Timer_%0(%1); public Timer_%0(%1)
+#define UpdateUserDB(%0,%1) Format:sqlQuery(%1); Format:sqlQuery("UPDATE `users` SET %s WHERE `UserID` = '%d'", sqlQuery, PVar:%0[USERID]); mysql_query(sqlQuery)

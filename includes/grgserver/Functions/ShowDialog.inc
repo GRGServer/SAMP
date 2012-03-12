@@ -315,27 +315,28 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			new string[1024];
 			SavePlayer(playerID);
-			Format:string("SELECT `users`.`UserID`, `users`.`Username`, UNIX_TIMESTAMP(`users`.`BirthDate`) AS `BirthDate`, `users`.`Location`, `users`.`MobilePhoneNumber`, `users`.`BankID`, ,`users`.`BankMoney`,`users`.`JobID`, `users`.`OnlineTime`, `users`.`LoginTime`, `banks`.`Name` AS `Bank`, `jobs`.`Name` AS `JobName` FROM `users`");
+			Format:string("SELECT `users`.`UserID`, `users`.`Username`, UNIX_TIMESTAMP(`users`.`BirthDate`) AS `BirthDate`, `users`.`Location`, `users`.`MobilePhoneNumber`, `users`.`BankID`, `users`.`BankMoney`, `users`.`CreditMoney`, `users`.`JobID`, `users`.`OnlineTime`, `users`.`RegisterTime`, `users`.`LoginTime`, `banks`.`Name` AS `Bank`, `jobs`.`Name` AS `JobName` FROM `users`");
 			MySQLQuery("%s LEFT JOIN (`banks`, `jobs`) ON (`banks`.`ID` = `users`.`BankID` AND `jobs`.`ID` = `users`.`JobID`) WHERE `users`.`UserID` = '%d'", string, PVar:playerID[USERID]);
 			mysql_store_result();
-			Format:string("ID:\t%s", GetMySQLField("UserID"));
-			Format:string("%s\nName:\t%s", string, GetMySQLField("Username"));
-			Format:string("%s\nAlter:\t%d Jahre", string, CalculateAge(strval(GetMySQLField("BirthDate"))));
-			Format:string("%s\nWohnort:\t%s", string, GetMySQLField("Location"));
-			Format:string("%s\nHandynummer:\t%s", string, GetMySQLField("MobilePhoneNumber"));
+			Format:string("ID:\t\t\t%s", GetMySQLField("UserID"));
+			Format:string("%s\nName:\t\t\t%s", string, GetMySQLField("Username"));
+			Format:string("%s\nAlter:\t\t\t%d Jahre", string, CalculateAge(strval(GetMySQLField("BirthDate"))));
+			Format:string("%s\nWohnort:\t\t%s", string, GetMySQLField("Location"));
+			Format:string("%s\nHandynummer:\t\t%s", string, GetMySQLField("MobilePhoneNumber"));
 			if (strval(GetMySQLField("BankID")))
 			{
-				Format:string("%s\nBank:\t%s", string, GetMySQLField("Bank"));
-				Format:string("%s\nBank Guthaben:\t%s", string, GetMySQLField("BankMoney"));
+				Format:string("%s\nBank:\t\t%s", string, GetMySQLField("Bank"));
+				Format:string("%s\nGuthaben (Bank):\t\t%s", string, FormatMoney(floatstr(GetMySQLField("BankMoney"))));
+				Format:string("%s\nGuthaben (Kreditkarte):\t\t%s", string, FormatMoney(floatstr(GetMySQLField("CreditMoney"))));
 			}
-			Format:string("%s\nGuthaben:\t$%s", string, FormatMoney(PVar:playerID[MONEY]));
+			Format:string("%s\nGuthaben:\t\t$%s", string, FormatMoney(PVar:playerID[MONEY]));
 			if (strval(GetMySQLField("JobID")))
 			{
-				Format:string("%s\nBeruf:\t%s", string, GetMySQLField("JobName"));
+				Format:string("%s\nBeruf:\t\t\t%s", string, GetMySQLField("JobName"));
 			}
-			Format:string("%s\nSpielzeit:\t%s", string, FormatTime(strval(GetMySQLField("OnlineTime"))));
-			Format:string("%s\nRegistriert seit:\t%s", string, FormatDate(GetMySQLField("RegisterTime")));
-			Format:string("%s\nLetzter Login:\t%s", string, FormatDate(GetMySQLField("LoginTime")));
+			Format:string("%s\nSpielzeit:\t\t%s", string, FormatTime(strval(GetMySQLField("OnlineTime"))));
+			Format:string("%s\nRegistriert seit:\t\t%s", string, FormatDate(GetMySQLField("RegisterTime")));
+			Format:string("%s\nLetzter Login:\t\t%s", string, FormatDate(GetMySQLField("LoginTime")));
 			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Personalien", string, "OK", "");
 		}
