@@ -179,13 +179,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							}
 						}
 					}
-					case 1: // Konto übersicht 
+					case 1: // Konto übersicht
 					{
-						new Float:bankMoney = floatstr(GetUserDBValue(playerid, "BankMoney"));
-						FormatNew:string[50]("Dein Bank Guthaben beträgt %s", FormatMoney(bankMoney));
+						FormatNew:string[50]("Dein Bank Guthaben beträgt $%s", FormatMoney(PVar:playerid[BANKMONEY]));
 						SendClientMessage(playerid, COLOR_INFO, string);
 					}
-					case 2: // Konto Kündigen 
+					case 2: // Konto Kündigen
 					{
 						SetUserDBValue(playerid, "BankID", "0");
 						SendClientMessage(playerid, COLOR_INFO, "Du hast dein konto erfolgreich Gekündigt!");
@@ -277,7 +276,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				else
 				{
 					new Float:money = floatstr(inputtext);
-					if(money >= PVar:playerid[MONEY])
+					if(money > PVar:playerid[MONEY])
 					{
 						SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht so viel Geld bei dir!");
 						SendClientMessage(playerid, COLOR_ERROR, "Gebe einen Betrag ein der auf deiner Hand ist!");
@@ -286,8 +285,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					else
 					{
 						PVar:playerid[MONEY] = floatsub(PVar:playerid[MONEY], money);
-						SetUserDBValue(playerid, "BankMoney", Float2Str(floatadd(floatstr(GetUserDBValue(playerid, "BankMoney")), money)));
-						FormatNew:string[90]("Du hast $%s auf dein Bankkonto eingezahlt", FormatMoney(money));
+						PVar:playerid[BANKMONEY] = floatadd(PVar:playerid[BANKMONEY], money);
+						FormatNew:string[60]("Du hast $%s auf dein Bankkonto eingezahlt", FormatMoney(money));
 						SendClientMessage(playerid, COLOR_INFO, string);
 					}
 				}
@@ -363,7 +362,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				else
 				{
 					new Float:money = floatstr(inputtext);
-					if(money >= floatstr(GetUserDBValue(playerid, "BankMoney")))
+					if(money > PVar:playerid[BANKMONEY])
 					{
 						SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht genug Geld auf der Bank!");
 						SendClientMessage(playerid, COLOR_ERROR, "Gebe einen neuen betrag ein der auf deinem Konto entahlten ist!");
@@ -371,9 +370,9 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					else
 					{
-						SetUserDBValue(playerid, "BankMoney", Float2Str(floatsub(floatstr(GetUserDBValue(playerid, "BankMoney")), money)));
 						PVar:playerid[MONEY] = floatadd(PVar:playerid[MONEY], money);
-						FormatNew:string[50]("Du hast $%s von deinem Bankkonto abgehoben", FormatMoney(money));
+						PVar:playerid[BANKMONEY] = floatsub(PVar:playerid[BANKMONEY], money);
+						FormatNew:string[60]("Du hast $%s von deinem Bankkonto abgehoben", FormatMoney(money));
 						SendClientMessage(playerid, COLOR_INFO, string);
 					}
 				}

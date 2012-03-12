@@ -25,7 +25,6 @@
 #include <grgserver\Functions\CreateGlobalTextDraws.inc>
 #include <grgserver\Functions\CreateVehicleEx.inc>
 #include <grgserver\Functions\FetchMySQLRow.inc>
-#include <grgserver\Functions\Float2Str.inc>
 #include <grgserver\Functions\FormatDate.inc>
 #include <grgserver\Functions\FormatTime.inc>
 #include <grgserver\Functions\GetMySQLField.inc>
