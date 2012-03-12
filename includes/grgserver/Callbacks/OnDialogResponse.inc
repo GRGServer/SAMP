@@ -1079,7 +1079,34 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 0: // Kaufe Autohändler
 					{
 						// TODO: MySQL Daten bank hinzufügen bei Jobs die OwnerUserID zum kaufen.
-						SendClientMessage(playerid, COLOR_INFO, "Kaufen in bearbeitung!");
+						new pickupID = PVar:playerid[CURRENTPICKUPID];
+						new ownerUserID = strval(GetMySQLValue("pickups", "OwnerUserID", "ID", val2str(pickupID)));
+						if (ownerUserID)
+						{
+							if (ownerUserID == PVar:playerid[USERID])
+							{
+								SendClientMessage(playerid, COLOR_INFO, "Diesen Autohändler besitzt du Bereits!");
+							}
+							else
+							{
+								SendClientMessage(playerid, COLOR_INFO, "Dieser Autohändler ist bereits Gekauft!");
+							}
+						}
+						else
+						{
+							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(pickupID)));
+							if (price <= PVar:playerid[MONEY])
+							{
+								GivePlayerMoneyEx(playerid, -price);
+								SetMySQLValue("pickups", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(pickupID));
+								SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen Autohändler");
+							}
+							else
+							{
+								FormatNew:string[80]("Du benötigst $%s für diesen Autohändler! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(PVar:playerid[MONEY]));
+								SendClientMessage(playerid, COLOR_ERROR, string);
+							}
+						}
 					}
 					case 1: // Bewerben für den job
 					{
