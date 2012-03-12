@@ -6,6 +6,7 @@ LoadPlayer(playerID)
 	PVar:playerID[CREDITMONEY] = floatstr(GetMySQLField("CreditMoney"));
 	PVar:playerID[CURRENTBUILDINGID] = strval(GetMySQLField("CurrentBuildingID"));
 	PVar:playerID[JOBID] = strval(GetMySQLField("JobID"));
+	PVar:playerID[LASTNEWSID] = strval(GetMySQLField("LastNewsID"));
 	PVar:playerID[MONEY] = floatstr(GetMySQLField("Money"));
 	PVar:playerID[ONLINESINCE] = gettime();
 	PVar:playerID[ONLINETIME] = strval(GetMySQLField("OnlineTime"));

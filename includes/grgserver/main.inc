@@ -64,6 +64,7 @@
 #include <grgserver\Functions\SetVehicleEngineState.inc>
 #include <grgserver\Functions\ShowDialog.inc>
 #include <grgserver\Functions\ShowInteriorDialog.inc>
+#include <grgserver\Functions\ShowNews.inc>
 #include <grgserver\Functions\StartNPCPlayback.inc>
 #include <grgserver\Functions\StopRadioStation.inc>
 #include <grgserver\Functions\Str2Val.inc>
@@ -145,6 +146,7 @@
 #include <grgserver\Commands\command_me.inc>
 #include <grgserver\Commands\command_money.inc>
 #include <grgserver\Commands\command_motor.inc>
+#include <grgserver\Commands\command_news.inc>
 #include <grgserver\Commands\command_npccmd.inc>
 #include <grgserver\Commands\command_ordervehicle.inc>
 #include <grgserver\Commands\command_radio.inc>

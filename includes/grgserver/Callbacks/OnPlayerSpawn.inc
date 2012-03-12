@@ -21,6 +21,7 @@ public OnPlayerSpawn(playerid)
 		SetPlayerPos(playerid, floatstr(GetUserDBValue(playerid, "PosX")), floatstr(GetUserDBValue(playerid, "PosY")), floatstr(GetUserDBValue(playerid, "PosZ")));
 		SetPlayerFacingAngle(playerid, floatstr(GetUserDBValue(playerid, "Angle")));
 		SetPlayerInterior(playerid, strval(GetUserDBValue(playerid, "Interior")));
+		ShowNews(playerid, PVar:playerid[LASTNEWSID]);
 	}
 	SetPlayerSkin(playerid, PVar:playerid[SKIN]);
 	return true;

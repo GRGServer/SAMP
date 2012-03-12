@@ -2,7 +2,7 @@ SavePlayer(playerID)
 {
 	if (IsLoggedIn(playerID))
 	{
-		Format:sqlQuery("`BankMoney` = '%f', `CreditMoney` = '%f', `Money` = '%f', `JobID` = '%d'", PVar:playerID[BANKMONEY], PVar:playerID[CREDITMONEY], PVar:playerID[MONEY], PVar:playerID[JOBID]);
+		Format:sqlQuery("`BankMoney` = '%f', `CreditMoney` = '%f', `Money` = '%f', `JobID` = '%d', `LastNewsID` = '%d'", PVar:playerID[BANKMONEY], PVar:playerID[CREDITMONEY], PVar:playerID[MONEY], PVar:playerID[JOBID], PVar:playerID[LASTNEWSID]);
 		UpdateUserDB(playerID, "%s, `CurrentBuildingID` = '%d', `OnlineTime` = '%d', `Skin` = '%d'", sqlQuery, PVar:playerID[CURRENTBUILDINGID], PVar:playerID[ONLINETIME] + (gettime() - PVar:playerID[ONLINESINCE]), PVar:playerID[SKIN]);
 		new Float:health;
 		new Float:posX;
