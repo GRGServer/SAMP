@@ -479,6 +479,41 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP2);
 			}
 		}
+		case DIALOG_FUNACTION:
+		{
+			if (response)
+			{
+				new action;
+				switch (listitem)
+				{
+					case 0:// Stop
+						action = SPECIAL_ACTION_NONE;
+					case 1:// Dance 1
+						action = SPECIAL_ACTION_DANCE1;
+					case 2:// Dance 2
+						action = SPECIAL_ACTION_DANCE2;
+					case 3:// Dance 3
+						action = SPECIAL_ACTION_DANCE3;
+					case 4:// Dance 4
+						action = SPECIAL_ACTION_DANCE4;
+					case 5:// Hands Up
+						action = SPECIAL_ACTION_HANDSUP;
+					case 6:// Setting
+						action = SPECIAL_ACTION_SITTING;
+					case 7:// Drink Beer
+						action = SPECIAL_ACTION_DRINK_BEER;
+					case 8:// Smoke Ciggy
+						action = SPECIAL_ACTION_SMOKE_CIGGY;
+					case 9:// Drink Wine
+						action = SPECIAL_ACTION_DRINK_WINE;
+					case 10:// Drink Sprunk
+						action = SPECIAL_ACTION_DRINK_SPRUNK;
+					case 11:// Pissing
+						action = SPECIAL_ACTION_PISSING;
+				}
+				SetPlayerSpecialAction(playerid, action);
+			}
+		}
 		case DIALOG_HOTEL_MAIN_AVAILABLE:
 		{
 			if (response)

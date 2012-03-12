@@ -119,6 +119,15 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Accountpasswort ändern", "Wiederhole zur Sicherheit dein neues Passwort.", "OK", "Zurück");
 		}
+		case DIALOG_FUNACTION:
+		{
+			FormatNew:string[1024]("Animation/Aktion stoppen\n");
+			Format:string("%s\nDance 1\nDance 2\nDance 3\nDance 4", string);
+			Format:string("%s\nHands Up\nSitting", string);
+			Format:string("%s\nDrink Beer\nSmoke Ciggy\nDrink Wine\nDrink Sprunk", string);
+			Format:string("%s\nPissing", string);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Fun Action", string, "OK", "Abbrechen");
+		}
 		case DIALOG_HOTEL_MAIN_AVAILABLE:
 		{
 			FormatNew:options[40]("Hotel kaufen"); // Item 0

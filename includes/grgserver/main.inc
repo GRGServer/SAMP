@@ -134,6 +134,7 @@
 #include <grgserver\Commands\command_cmds.inc>
 #include <grgserver\Commands\command_controlnpc.inc>
 #include <grgserver\Commands\command_exit.inc>
+#include <grgserver\Commands\command_funaction.inc>
 #include <grgserver\Commands\command_getbalance.inc>
 #include <grgserver\Commands\command_givepermission.inc>
 #include <grgserver\Commands\command_giveweapon.inc>
