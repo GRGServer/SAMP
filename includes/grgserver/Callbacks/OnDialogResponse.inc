@@ -95,7 +95,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					else
 					{
-						PVar:playerid[MONEY] = floatadd(PVar:playerid[MONEY], money);
+						PVar:playerid[MONEY] = floatsub(PVar:playerid[MONEY], money);
 						SetUserDBValue(playerid, "BankMoney", Float2Str(floatadd(floatstr(GetUserDBValue(playerid, "BankMoney")), money)));
 						FormatNew:string[90]("Du hast $%s auf dein Bankkonto eingezahlt", FormatMoney(money));
 						SendClientMessage(playerid, COLOR_INFO, string);
@@ -124,7 +124,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					else
 					{
 						SetUserDBValue(playerid, "BankMoney", Float2Str(floatsub(floatstr(GetUserDBValue(playerid, "BankMoney")), money)));
-						PVar:playerid[MONEY] = floatsub(PVar:playerid[MONEY], money);
+						PVar:playerid[MONEY] = floatadd(PVar:playerid[MONEY], money);
 						FormatNew:string[50]("Du hast $%s von deinem Bankkonto abgehoben", FormatMoney(money));
 						SendClientMessage(playerid, COLOR_INFO, string);
 					}
