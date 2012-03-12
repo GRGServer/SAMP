@@ -2,9 +2,6 @@
 new ircBot;
 new svnRevisionChanged;
 new Float:gasPrice;
-new Float:power;
-new Float:vehicle;
-new Float:withouttax;
 new Text:textDrawSpeedoColumn1;
 new Text:textDrawClock;
 
