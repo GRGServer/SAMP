@@ -959,7 +959,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+				PlayerLoop(playerID)
 				{
 					SavePlayer(playerID);
 				}

@@ -8,7 +8,7 @@ ReloadPermissions()
 		new userID = strval(GetMySQLField("UserID"));
 		if (userID)
 		{
-			Count(playerID, MAX_PLAYERS)
+			PlayerLoop(playerID)
 			{
 				if (PVar:playerID[USERID] == userID)
 				{

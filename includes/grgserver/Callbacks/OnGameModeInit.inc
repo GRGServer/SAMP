@@ -22,6 +22,8 @@ public OnGameModeInit()
 		}
 		fclose(changesFile);
 	}
+	print("* Defining variables...");
+	maxPlayers = GetServerVarAsInt("maxplayers");
 	print("* Checking SVN stuff...");
 	new File:svnRevisionFile;
 	new oldSvnRevision[16];

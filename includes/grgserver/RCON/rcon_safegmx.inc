@@ -1,7 +1,7 @@
 RCMD:safegmx(params[], "Safely restart the gamemode")
 {
 	print("Restarting gamemode...");
-	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+	PlayerLoop(playerID)
 	{
 		SavePlayer(playerID);
 	}

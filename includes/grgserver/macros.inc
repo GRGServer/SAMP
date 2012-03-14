@@ -26,6 +26,7 @@ for(new i_%0 = 0; ; ++i_%0) \
 #define LoadPermission:%0(%1,%2) permissions[%1][PERMISSION_%0] = strval(GetMySQLField(%2))
 #define MD5(%0) MD5_Hash(%0, true)
 #define MySQLQuery(%0) Format:sqlQuery(%0); mysql_query(sqlQuery)
+#define PlayerLoop(%0) Count(%0, maxPlayers)
 #define PVar:%0[%1] playerVariables[%0][PVAR_%1]
 #define SetPVarStr:%0[%1][%2](%3) format(PVar:%0[%1], %2, %3)
 #define SetUserDBValue(%0,%1,%3) SetMySQLValue("users", %1, %3, "UserID", val2str(PVar:%0[USERID]))

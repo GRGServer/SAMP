@@ -1,7 +1,7 @@
 ReconnectNPCs()
 {
 	print("* Kicking NPCs...");
-	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+	PlayerLoop(playerID)
 	{
 		if (IsPlayerNPC(playerID))
 		{

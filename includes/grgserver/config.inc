@@ -1,3 +1,9 @@
+// Money/Cash transaction types
+#define CASHTRANS_PAYDAY			"PAYDAY"
+#define CASHTRANS_POWERTAX			"POWERTAX"
+#define CASHTRANS_VEHICLETAX		"VEHICLETAX"
+
+
 // Colors
 #define COLOR_CHAT					0xFFFFFFAA
 #define COLOR_CHATOWN				0xAAAAAAAA
@@ -73,6 +79,10 @@
 // NPC configuration
 #define NPC_PAUSEDISTANCE			5// Distance to a player to pause a NPC
 #define NPC_SCRIPTNAME				"npcplayer"
+
+
+// Pay Day configuration
+#define PAYDAY_INTERVAL				3600// 1 hour
 
 
 // Pickups

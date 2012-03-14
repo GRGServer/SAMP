@@ -22,7 +22,7 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 		{
 			new npcsOnline;
 			new playersOnline;
-			for (new playerID; playerID < MAX_PLAYERS; playerID++)
+			PlayerLoop(playerID)
 			{
 				if (IsPlayerConnected(playerID))
 				{

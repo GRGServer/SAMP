@@ -1,6 +1,6 @@
 GetPlayerID(playerName[])
 {
-	for (new playerID; playerID < MAX_PLAYERS; playerID++)
+	PlayerLoop(playerID)
 	{
 		if (IsPlayerConnected(playerID))
 		{

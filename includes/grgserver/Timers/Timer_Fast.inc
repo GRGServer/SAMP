@@ -1,9 +1,15 @@
 Timer:Fast()
 {
-	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+	PlayerLoop(playerID)
 	{
-		if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID))
+		if (IsLoggedIn(playerID))
 		{
+			new onlineTime = GetOnlineTime(playerID);
+			if (onlineTime - PVar:playerID[LASTPAYDAY] >= PAYDAY_INTERVAL)
+			{
+				PVar:playerID[LASTPAYDAY] = onlineTime;
+				PVar:playerID[PAYDAY] = true;
+			}
 			if (IsPlayerInAnyVehicle(playerID) && GetPlayerVehicleSeat(playerID) == 0)
 			{
 				new Float:velocityX;

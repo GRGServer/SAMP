@@ -29,6 +29,7 @@
 #include <grgserver\Functions\FormatTime.inc>
 #include <grgserver\Functions\GetMySQLField.inc>
 #include <grgserver\Functions\GetMySQLValue.inc>
+#include <grgserver\Functions\GetOnlineTime.inc>
 #include <grgserver\Functions\GetPermissionByName.inc>
 #include <grgserver\Functions\GetPermissionName.inc>
 #include <grgserver\Functions\GetPickupInfoByType.inc>
@@ -42,6 +43,7 @@
 #include <grgserver\Functions\IsValidWeapon.inc>
 #include <grgserver\Functions\LeaveBuilding.inc>
 #include <grgserver\Functions\LoadPlayer.inc>
+#include <grgserver\Functions\MoneyTransaction.inc>
 #include <grgserver\Functions\MySQLEscapeString.inc>
 #include <grgserver\Functions\PayDay.inc>
 #include <grgserver\Functions\PlayRadioStation.inc>
@@ -149,6 +151,7 @@
 #include <grgserver\Commands\command_news.inc>
 #include <grgserver\Commands\command_npccmd.inc>
 #include <grgserver\Commands\command_ordervehicle.inc>
+#include <grgserver\Commands\command_payday.inc>
 #include <grgserver\Commands\command_radio.inc>
 #include <grgserver\Commands\command_rc.inc>
 #include <grgserver\Commands\command_recnpc.inc>

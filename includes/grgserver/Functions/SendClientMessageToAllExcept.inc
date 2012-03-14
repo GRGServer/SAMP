@@ -1,6 +1,6 @@
 SendClientMessageToAllExcept(exceptPlayerID, color, message[])
 {
-	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
+	PlayerLoop(playerID)
 	{
 		if (playerID != exceptPlayerID && IsPlayerConnected(playerID))
 		{

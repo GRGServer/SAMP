@@ -8,14 +8,16 @@ PayDay(playerID)
 	if (strval(GetMySQLValue("jobs", "OwnerUserID", "ID", val2str(PVar:playerID[JOBID]))) == PVar:playerID[USERID])
 	{
 		salaryWithTax = floatstr(GetMySQLValue("jobs", "EmployerSalary", "ID", val2str(PVar:playerID[JOBID])));
-		salaryWithoutTax = floatsub(salaryWithTax, tax);
 	}
 	else
 	{
 		salaryWithTax = floatstr(GetMySQLValue("jobs", "EmployeeSalary", "ID", val2str(PVar:playerID[JOBID])));
-		salaryWithoutTax = floatsub(salaryWithTax, tax);
 	}
+	salaryWithoutTax = floatsub(salaryWithTax, tax);
 	PVar:playerID[BANKMONEY] += salaryWithoutTax;
+	MoneyTransaction(playerID, CASHTRANS_VEHICLETAX, 0, 0, -vehicleTax);
+	MoneyTransaction(playerID, CASHTRANS_POWERTAX, 0, 0, -powerTax);
+	MoneyTransaction(playerID, CASHTRANS_PAYDAY, 0, 0, salaryWithoutTax);
 	FormatNew:string[110]("Es ist Zahltag! Du bekommst $%s (Brutto) bzw. $%s (Netto) auf deinem Konto gutgeschrieben.", FormatMoney(salaryWithTax), FormatMoney(salaryWithoutTax));
 	SendClientMessage(playerID, COLOR_INFO, string);
 }

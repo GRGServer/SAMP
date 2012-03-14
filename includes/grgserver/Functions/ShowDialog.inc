@@ -191,7 +191,7 @@ ShowDialog(playerID, dialogID, ...)
 			FormatNew:options[20]("Betreten");// Item 0
 			Format:options("%s\nVerkaufen", options);// Item 1
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hausoptionen", options, "OK", "Abbrechen");
-		}			
+		}
 		case DIALOG_LOGIN:
 		{
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Login", "Bitte gebe das Passwort von deinen Account ein.", "OK", "Abbrechen");
@@ -211,6 +211,18 @@ ShowDialog(playerID, dialogID, ...)
 			}
 			mysql_free_result();
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Fahrzeug bestellen", vehicleList, "Bestellen", "Abbrechen");
+		}
+		case DIALOG_PAYDAYINFO:
+		{
+			new difference = GetOnlineTime(playerID) - PVar:playerID[LASTPAYDAY];
+			MySQLQuery("SELECT * FROM `moneytransactions` WHERE `UserID` = '%d' AND `Type` = '%s'", PVar:playerID[USERID], CASHTRANS_PAYDAY);
+			mysql_store_result();
+			new Float:amount = floatstr(GetMySQLField("Amount"));
+			mysql_free_result();
+			FormatNew:string[160]("Letztes Nettoeinkommen:\t\t\t$%s", FormatMoney(amount));
+			Format:string("%s\n\nVergangene Zeit seit dem letzten Zahltag:\t%s", string, FormatTime(difference));
+			Format:string("%s\n\nZeit bis zum nächsten Zahltag:\t\t\t%s", string, FormatTime(PAYDAY_INTERVAL - difference));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Informationen über den Zahltag", string, "OK", "");
 		}
 		case DIALOG_POLICE:
 		{

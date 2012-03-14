@@ -13,7 +13,7 @@ NCMD:npccmd(playerid, params[], "Befehle zurück an den Server schicken")
 				Kick(playerid);
 				Format:string("Die Wiedergabe von NPC '%s' wurde gestoppt.", GetPlayerNameEx(playerid));
 				SendClientMessage(realPlayerID, COLOR_INFO, string);
-				Count(playerID, MAX_PLAYERS)
+				PlayerLoop(playerID)
 				{
 					if (IsPlayerNPC(playerID) && PVar:playerID[RECORDNPCFORPLAYER] != INVALID_PLAYER_ID && PVar:playerID[RECORDNPCFORPLAYER] == realPlayerID)
 					{
