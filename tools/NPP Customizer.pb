@@ -60,6 +60,7 @@ If MessageRequester(#Title, "Please verify the following paths:" + Chr(13) + Chr
 			CloseFile(File)
 		EndIf
 		CopyFile(MainPath$ + "npp\pawn.api", NppPath$ + "plugins\APIs\pawn.api")
+		CopyFile(MainPath$ + "npp\PAWN.xml", NppPath$ + "plugins\APIs\PAWN.xml")
 		CopyFile(MainPath$ + "npp\NppExec.dll", NppPath$ + "plugins\NppExec.dll")
 		CopyFile(MainPath$ + "npp\insertExt.ini", NppAppData$ + "insertExt.ini")
 		CopyFile(MainPath$ + "npp\NppExec.ini", NppAppData$ + "plugins\config\NppExec.ini")
@@ -69,15 +70,15 @@ If MessageRequester(#Title, "Please verify the following paths:" + Chr(13) + Chr
 	EndIf
 EndIf
 ; IDE Options = PureBasic 4.60 (Windows - x86)
-; CursorPosition = 60
+; CursorPosition = 62
 ; FirstLine = 27
 ; Folding = -
 ; EnableXP
 ; EnableAdmin
 ; UseIcon = NPP Customizer.ico
 ; Executable = NPP Customizer.exe
-; EnableCompileCount = 16
-; EnableBuildCount = 9
+; EnableCompileCount = 17
+; EnableBuildCount = 10
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0
