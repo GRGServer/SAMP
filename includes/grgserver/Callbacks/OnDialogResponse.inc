@@ -63,8 +63,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						Format:type("HOUSE");
 					case 3:
 						Format:type("POLICE");
-					case 4:
-						Format:type("DRIVINGSCOOL");
 				}
 				SetPVarStr:playerid[ADDBUILDING_TYPE][STRINGLENGTH_BUILDINGTYPE](type);
 				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
@@ -426,20 +424,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					FormatNew:string[80]("Du benötigst $%s für dieses Haus! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(PVar:playerid[MONEY]));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 				}
-			}
-		}
-		case DIALOG_DRIVING_SCOOL_NOOWNER:
-		{
-			if (response)
-			{
-				SendClientMessage(playerid, COLOR_INFO, "Noch in Bearbeitung");
-			}
-		}
-		case DIALOG_DRIVING_SCOOL_OWNER:
-		{
-			if (response)
-			{
-				SendClientMessage(playerid, COLOR_INFO, "Noch in bearbeitung");
 			}
 		}
 		case DIALOG_CHANGEPASSWORD_STEP1:

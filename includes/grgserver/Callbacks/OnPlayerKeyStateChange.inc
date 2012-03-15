@@ -51,26 +51,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 							}
 						}
 					}
-					case PICKUPTYPE_DRIVESCOOL:
-					{
-						new buildingID = PVar:playerid[CURRENTBUILDINGID];
-						new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "ID", val2str(buildingID)));
-						if (ownerUserID)
-						{
-							if (ownerUserID == PVar:playerid[USERID])
-							{
-								ShowDialog(playerid, DIALOG_DRIVING_SCOOL_OWNER);
-							}
-							else
-							{
-								ShowDialog(playerid, DIALOG_DRIVING_SCOOL_NOOWNER);
-							}
-						}
-						else
-						{
-							ShowDialog(playerid, DIALOG_DRIVING_SCOOL_NOOWNER);
-						}
-					}
 					case PICKUPTYPE_GASSTATION:
 					{
 						new vehicleID = GetPlayerVehicleID(playerid);

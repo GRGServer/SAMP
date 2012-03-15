@@ -5,7 +5,6 @@
 #include <grgserver\macros.inc>
 
 // Structures
-#include <grgserver\Structures\enum_license.inc>
 #include <grgserver\Structures\enum_permission.inc>
 #include <grgserver\Structures\enum_pickup.inc>
 #include <grgserver\Structures\enum_pickupLoader.inc>
@@ -32,7 +31,6 @@
 #include <grgserver\Functions\GetMySQLValue.inc>
 #include <grgserver\Functions\GetOnlineTime.inc>
 #include <grgserver\Functions\GetPermissionByName.inc>
-// #include <grgserver\Functions\GetLicenseByName.inc>
 #include <grgserver\Functions\GetPermissionName.inc>
 #include <grgserver\Functions\GetPickupInfoByType.inc>
 #include <grgserver\Functions\GetPlayerID.inc>
@@ -142,7 +140,6 @@
 #include <grgserver\Commands\command_getbalance.inc>
 #include <grgserver\Commands\command_givepermission.inc>
 #include <grgserver\Commands\command_giveweapon.inc>
-#include <grgserver\Commands\command_givelicense.inc>
 #include <grgserver\Commands\command_gmx.inc>
 #include <grgserver\Commands\command_goto.inc>
 #include <grgserver\Commands\command_help.inc>

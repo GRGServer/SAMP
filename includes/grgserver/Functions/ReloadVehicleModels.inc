@@ -9,6 +9,7 @@ ReloadVehicleModels()
 		vehicleModels[index][VEHICLEMODEL_FUELUSAGE] = floatstr(GetMySQLField("FuelUsage"));
 		vehicleModels[index][VEHICLEMODEL_MAXFUEL] = floatstr(GetMySQLField("MaxFuel"));
 		format(vehicleModels[index][VEHICLEMODEL_NAME], 20, GetMySQLField("Name"));
+		format(vehicleModels[index][VEHICLEMODEL_TYPE], 16, GetMySQLField("Type"));
 	}
 	mysql_free_result();
 }
