@@ -1,6 +1,8 @@
 public IRC_OnUserJoinChannel(botid, channel[], user[], host[])
 {
-	new string[256];
-	Format:string("%s hat den IRC Channel betreten", user);
-	SendClientMessageToAll(COLOR_JOINLEAVE, string);
+	Count(playerID, maxPlayers)
+	{
+		FormatNew:string[256](LanguageString(playerID, "%s has joined the IRC channel"), user);
+		SendClientMessage(playerID, COLOR_JOINLEAVE, string);
+	}
 }

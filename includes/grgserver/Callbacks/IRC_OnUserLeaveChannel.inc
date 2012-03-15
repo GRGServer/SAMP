@@ -1,6 +1,8 @@
 public IRC_OnUserLeaveChannel(botid, channel[], user[], host[], message[])
 {
-	new string[256];
-	Format:string("%s hat den IRC Channel verlassen", user);
-	SendClientMessageToAll(COLOR_JOINLEAVE, string);
+	Count(playerID, maxPlayers)
+	{
+		FormatNew:string[256](LanguageString(playerID, "%s has left the IRC channel"), user);
+		SendClientMessage(playerID, COLOR_JOINLEAVE, string);
+	}
 }

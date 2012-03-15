@@ -41,6 +41,7 @@
 #include <grgserver\Functions\IsLoggedIn.inc>
 #include <grgserver\Functions\IsValidSkin.inc>
 #include <grgserver\Functions\IsValidWeapon.inc>
+#include <grgserver\Functions\LanguageString.inc>
 #include <grgserver\Functions\LeaveBuilding.inc>
 #include <grgserver\Functions\LoadPlayer.inc>
 #include <grgserver\Functions\MoneyTransaction.inc>
@@ -145,6 +146,7 @@
 #include <grgserver\Commands\command_help.inc>
 #include <grgserver\Commands\command_jetpack.inc>
 #include <grgserver\Commands\command_kick.inc>
+#include <grgserver\Commands\command_language.inc>
 #include <grgserver\Commands\command_me.inc>
 #include <grgserver\Commands\command_money.inc>
 #include <grgserver\Commands\command_motor.inc>

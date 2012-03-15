@@ -119,6 +119,7 @@
 // String sizes
 #define STRINGLENGTH_BUILDINGTYPE	10
 #define STRINGLENGTH_DATETIME		20
+#define STRINGLENGTH_LANGUAGEKEY	3// Language keys like "de" or "en"
 #define STRINGLENGTH_LOCATION		100
 
 
