@@ -63,6 +63,8 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						Format:type("HOUSE");
 					case 3:
 						Format:type("POLICE");
+					case 4:
+						Format:type("DRIVINGSCOOL");
 				}
 				SetPVarStr:playerid[ADDBUILDING_TYPE][STRINGLENGTH_BUILDINGTYPE](type);
 				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
@@ -104,6 +106,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								GivePlayerMoneyEx(playerid, price);
 								SetMySQLValue("buildings", "OwnerUserID", "0", "ID", val2str(buildingID));
 								SendClientMessage(playerid, COLOR_INFO, "Bank erfolgreich Verkauft!");
+								PVar:playerid[JOBID] = 0;
 							}
 						}
 					}
@@ -171,6 +174,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								GivePlayerMoneyEx(playerid, -price);
 								SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
 								SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deiner neuen Bank");
+								PVar:playerid[JOBID] = 7;
 							}
 							else
 							{
@@ -238,6 +242,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								GivePlayerMoneyEx(playerid, -price);
 								SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
 								SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deiner neuen Bank");
+								PVar:playerid[JOBID] = 7;
 							}
 							else
 							{
@@ -321,6 +326,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 								GivePlayerMoneyEx(playerid, price);
 								SetMySQLValue("buildings", "OwnerUserID", "0", "ID", val2str(buildingID));
 								SendClientMessage(playerid, COLOR_INFO, "Bank erfolgreich Verkauft!");
+								PVar:playerid[JOBID] = 0;
 							}
 						}
 					}
@@ -420,6 +426,20 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					FormatNew:string[80]("Du benötigst $%s für dieses Haus! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(PVar:playerid[MONEY]));
 					SendClientMessage(playerid, COLOR_ERROR, string);
 				}
+			}
+		}
+		case DIALOG_DRIVING_SCOOL_NOOWNER:
+		{
+			if (response)
+			{
+				SendClientMessage(playerid, COLOR_INFO, "Noch in Bearbeitung");
+			}
+		}
+		case DIALOG_DRIVING_SCOOL_OWNER:
+		{
+			if (response)
+			{
+				SendClientMessage(playerid, COLOR_INFO, "Noch in bearbeitung");
 			}
 		}
 		case DIALOG_CHANGEPASSWORD_STEP1:

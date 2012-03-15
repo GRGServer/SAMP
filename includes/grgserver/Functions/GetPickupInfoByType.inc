@@ -6,6 +6,12 @@ GetPickupInfoByType(pickupID, type[], &typeID, &modelID)
 		modelID = PICKUP_BANK;
 		return true;
 	}
+	if (!strcmp(type, "DRIVINGSCOOL", true))
+	{
+		typeID = PICKUPTYPE_DRIVESCOOL;
+		modelID = PICKUP_DRIVESCOOL;
+		return true;
+	}
 	if (!strcmp(type, "GASSTATION", true))
 	{
 		typeID = PICKUPTYPE_GASSTATION;

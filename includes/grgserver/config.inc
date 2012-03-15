@@ -48,9 +48,11 @@
 
 // Jobs
 #define JOB_ADAC					2
+#define JOB_ARMEE					8
 #define JOB_AMBULANCE				6
 #define JOB_BANK					7
 #define JOB_ESTATEAGENT				3
+#define JOB_DRIVINGSCOOL			9
 #define JOB_POLICE					5
 #define JOB_TRUCKER					4
 #define JOB_UNEMPLOYED				0
@@ -87,6 +89,7 @@
 
 // Pickups
 #define PICKUP_BANK					1559
+#define PICKUP_DRIVESCOOL			1239
 #define PICKUP_GASSTATION			1008
 #define PICKUP_HOUSEAVAILABLE		1273
 #define PICKUP_HOUSEBOUGHT			1272
