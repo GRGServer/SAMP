@@ -55,6 +55,7 @@ If MessageRequester(#Title, "Please verify the following paths:" + Chr(13) + Chr
 			WriteStringN(File, Chr(34) + ServerRoot$ + "tools\pawn\pawncc.exe" + Chr(34)+ " $(FILE_NAME) " + Chr(34) + "-i" + ServerRoot$ + "includes" + Chr(34) + " -; -(")
 			WriteStringN(File, "::Compile grgscript")
 			WriteStringN(File, "NPP_SAVE")
+			WriteStringN(File, Chr(34) + ServerRoot$ + "tools\Includes Updater.exe" + Chr(34))
 			WriteStringN(File, "cd " + Chr(34) + ServerRoot$ + "gamemodes" + Chr(34))
 			WriteStringN(File, Chr(34) + ServerRoot$ + "tools\pawn\pawncc.exe" + Chr(34) + " grgscript.pwn " + Chr(34) + "-i" + ServerRoot$ + "includes" + Chr(34) + " -; -(")
 			CloseFile(File)
@@ -70,15 +71,15 @@ If MessageRequester(#Title, "Please verify the following paths:" + Chr(13) + Chr
 	EndIf
 EndIf
 ; IDE Options = PureBasic 4.60 (Windows - x86)
-; CursorPosition = 62
+; CursorPosition = 31
 ; FirstLine = 27
 ; Folding = -
 ; EnableXP
 ; EnableAdmin
 ; UseIcon = NPP Customizer.ico
 ; Executable = NPP Customizer.exe
-; EnableCompileCount = 17
-; EnableBuildCount = 10
+; EnableCompileCount = 19
+; EnableBuildCount = 12
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0
