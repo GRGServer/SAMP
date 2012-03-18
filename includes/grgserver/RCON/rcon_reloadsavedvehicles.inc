@@ -1,4 +1,4 @@
-RCMD:reloadsavedvehicles(params[], "Reload all saved vehicles from database")
+RCMD:reloadsavedvehicles(params[], 153)
 {
 	Exec:ReloadSavedVehicles();
 	return true;

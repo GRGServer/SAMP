@@ -1,5 +1,5 @@
-CMD:help(playerid, params[], "Hilfe anzeigen")
+CMD:help(playerid, params[], 107)
 {
-	SendClientMessage(playerid, COLOR_INFO, "Verwende /cmds um eine Liste an Befehlen zu sehen.");
+	SendClientMessageEx(playerid, COLOR_INFO, 82);
 	return COMMAND_OK;
 }

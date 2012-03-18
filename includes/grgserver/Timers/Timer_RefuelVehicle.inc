@@ -20,11 +20,11 @@ Timer:RefuelVehicle(playerID, Float:totalAmount)
 			SetTimerEx("Timer_RefuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, floatsub(totalAmount, amount));
 			return true;
 		}
-		SendClientMessage(playerID, COLOR_INFO, "Dein Fahrzeug wurde getankt.");
+		SendClientMessageEx(playerID, COLOR_INFO, 91);
 	}
 	else
 	{
-		SendClientMessage(playerID, COLOR_ERROR, "Du hast nicht genügend Geld!");
+		SendClientMessageEx(playerID, COLOR_ERROR, 92);
 	}
 	TogglePlayerControllable(playerID, true);
 	return true;

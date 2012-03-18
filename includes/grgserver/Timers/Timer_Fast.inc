@@ -8,7 +8,7 @@ Timer:Fast()
 			if (onlineTime - PVar:playerID[LASTPAYDAY] >= PAYDAY_INTERVAL)
 			{
 				PVar:playerID[LASTPAYDAY] = onlineTime;
-				PVar:playerID[PAYDAY] = true;
+				PayDay(playerID);
 			}
 			if (IsPlayerInAnyVehicle(playerID) && GetPlayerVehicleSeat(playerID) == 0)
 			{
@@ -30,7 +30,7 @@ Timer:Fast()
 				if (vehicles[vehicleID][VEHICLE_CURRENTFUEL] <= 0)
 				{
 					SetVehicleEngineState(vehicleID, false);
-					GameTextForPlayer(playerID, "Der Tank von deinem Fahrzeug ist leer!", 3000, 5);
+					GameTextForPlayer(playerID, LanguageString(playerID, 159), 3000, 5);
 				}
 				else
 				{
@@ -58,7 +58,7 @@ Timer:Fast()
 					{
 						SetVehicleHealth(vehicleID, float(VEHICLE_MINHEALTH * 10));
 						SetVehicleEngineState(vehicleID, false);
-						GameTextForPlayer(playerID, "Dein Fahrzeug ist kaputt!", 3000, 5);
+						GameTextForPlayer(playerID, LanguageString(playerID, 158), 3000, 5);
 					}
 				}
 				if (fuelPercentage > 70)
@@ -77,17 +77,17 @@ Timer:Fast()
 					}
 				}
 				FormatNew:textDrawString[60]("~n~%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~~n~%sl", speed, healthColor, healthPercentage, fuelColor, fuelPercentage, FormatNumber(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 1, '.', ','));
-				TextDrawSetString(textDrawSpeedoName[playerID], vehicleModels[vehicleModelIndex][VEHICLEMODEL_NAME]);
-				TextDrawSetString(textDrawSpeedoColumn2[playerID], textDrawString);
-				TextDrawShowForPlayer(playerID, textDrawSpeedoName[playerID]);
-				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn1);
-				TextDrawShowForPlayer(playerID, textDrawSpeedoColumn2[playerID]);
+				TextDrawSetString(PTextDraw:playerID[SPEEDO_COLUMN2], textDrawString);
+				TextDrawSetString(PTextDraw:playerID[VEHICLENAME], vehicleModels[vehicleModelIndex][VEHICLEMODEL_NAME]);
+				TextDrawShowForPlayer(playerID, PTextDraw:playerID[SPEEDO_COLUMN1]);
+				TextDrawShowForPlayer(playerID, PTextDraw:playerID[SPEEDO_COLUMN2]);
+				TextDrawShowForPlayer(playerID, PTextDraw:playerID[VEHICLENAME]);
 			}
 			else
 			{
-				TextDrawHideForPlayer(playerID, textDrawSpeedoName[playerID]);
-				TextDrawHideForPlayer(playerID, textDrawSpeedoColumn1);
-				TextDrawHideForPlayer(playerID, textDrawSpeedoColumn2[playerID]);
+				TextDrawHideForPlayer(playerID, PTextDraw:playerID[SPEEDO_COLUMN1]);
+				TextDrawHideForPlayer(playerID, PTextDraw:playerID[SPEEDO_COLUMN2]);
+				TextDrawHideForPlayer(playerID, PTextDraw:playerID[VEHICLENAME]);
 			}
 		}
 	}

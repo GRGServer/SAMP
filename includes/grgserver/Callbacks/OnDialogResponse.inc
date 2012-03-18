@@ -11,14 +11,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				sscanf(inputtext, "p:ds", missionID, text);
 				if (strval(GetMySQLValue("missions", "AcceptUserID", "ID", val2str(missionID))))
 				{
-					SendClientMessage(playerid, COLOR_ERROR, LanguageString(playerid, "This job has been already accepted by another player!"));
+					SendClientMessageEx(playerid, COLOR_ERROR, 12);
 				}
 				else
 				{
 					SetMySQLValue("missions", "AcceptUserID", val2str(PVar:playerid[USERID]), "ID", val2str(missionID));
-					SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "You have accepted the job"));
-					FormatNew:string[256](LanguageString(playerid, "%s has accepted your job (Job ID: %d)"), GetPlayerNameEx(playerid), missionID);
-					SendClientMessage(strval(GetMySQLValue("missions", "CreatorUserID", "ID", val2str(missionID))), COLOR_INFO, string);// TODO: Can not work!
+					SendClientMessageEx(playerid, COLOR_INFO, 15);
+					SendClientMessageEx(GetPlayerByUserID(strval(GetMySQLValue("missions", "CreatorUserID", "ID", val2str(missionID)))), COLOR_INFO, 1, playerid, missionID);
 				}
 			}
 		}
@@ -35,12 +34,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				if (pickupID > 0)
 				{
 					MySQLQuery("INSERT INTO `buildings` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%d', '%s', '%f')", pickupID, PVar:playerid[ADDBUILDING_INTERIORID], MySQLEscapeString(inputtext), PVar:playerid[ADDBUILDING_PRICE]);
-					FormatNew:string[256](LanguageString(playerid, "The building %s (Price: $%s) has been saved with ID %d."), inputtext, FormatMoney(PVar:playerid[ADDBUILDING_PRICE]), mysql_insert_id());
-					SendClientMessage(playerid, COLOR_INFO, string);
+					SendClientMessageEx(playerid, COLOR_INFO, 10, inputtext, PVar:playerid[ADDBUILDING_PRICE], mysql_insert_id());
 				}
 				else
 				{
-					SendClientMessage(playerid, COLOR_ERROR, LanguageString(playerid, "Error while creating the pickup!"));
+					SendClientMessageEx(playerid, COLOR_ERROR, 6);
 				}
 			}
 			else
@@ -89,11 +87,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							if (ownerUserID == PVar:playerid[USERID])
 							{
-								SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "You already own this bank!"));
+								SendClientMessageEx(playerid, COLOR_INFO, 13);
 							}
 							else
 							{
-								SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "This bank has been already bought!"));
+								SendClientMessageEx(playerid, COLOR_INFO, 11);
 							}
 						}
 						else
@@ -103,7 +101,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							{
 								GivePlayerMoneyEx(playerid, price);
 								SetMySQLValue("buildings", "OwnerUserID", "0", "ID", val2str(buildingID));
-								SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "The bank has been sold!"));
+								SendClientMessageEx(playerid, COLOR_INFO, 9);
 								PVar:playerid[JOBID] = 0;
 							}
 						}
@@ -118,14 +116,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 3: // Eigenes Konto Übersicht 
 					{
-						new Float:bankMoney = floatstr(GetUserDBValue(playerid, "BankMoney"));
-						FormatNew:string[256](LanguageString(playerid, "Your current balance is $%s"), FormatMoney(bankMoney));
-						SendClientMessage(playerid, COLOR_INFO, string);
+						SendClientMessageEx(playerid, COLOR_INFO, 23, PVar:playerid[BANKMONEY]);
 					}
 					case 4: // Konto Kündigen
 					{
 						SetUserDBValue(playerid, "BankID", "0");
-						SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "You have terminated your bank account!"));
+						SendClientMessageEx(playerid, COLOR_INFO, 18);
 					}
 					case 5: // Einzahlen
 					{
@@ -156,11 +152,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							if (ownerUserID == PVar:playerid[USERID])
 							{
-								SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "You already own this bank!"));
+								SendClientMessageEx(playerid, COLOR_INFO, 13);
 							}
 							else
 							{
-								SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "This bank has been already bought!"));
+								SendClientMessageEx(playerid, COLOR_INFO, 11);
 							}
 						}
 						else
@@ -170,26 +166,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							{
 								GivePlayerMoneyEx(playerid, -price);
 								SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
-								SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "You have bought the bank"));
+								SendClientMessageEx(playerid, COLOR_INFO, 16);
 								PVar:playerid[JOBID] = 7;
 							}
 							else
 							{
-								FormatNew:string[256](LanguageString(playerid, "You need $%s to buy this bank! You only have $%s."), FormatMoney(price), FormatMoney(PVar:playerid[MONEY]));
-								SendClientMessage(playerid, COLOR_ERROR, string);
+								SendClientMessageEx(playerid, COLOR_ERROR, 22, price, PVar:playerid[MONEY]);
 							}
 						}
 					}
 					case 1: // Konto übersicht
 					{
-						FormatNew:string[50](LanguageString(playerid, "Your current bank balance is $%s"), FormatMoney(PVar:playerid[BANKMONEY]));
-						SendClientMessage(playerid, COLOR_INFO, string);
+						SendClientMessageEx(playerid, COLOR_INFO, 23, PVar:playerid[BANKMONEY]);
 					}
 					case 2: // Konto Kündigen
 					{
 						SetUserDBValue(playerid, "BankID", "0");
-						SendClientMessage(playerid, COLOR_INFO, "Du hast dein konto erfolgreich Gekündigt!");
-						SendClientMessage(playerid, COLOR_INFO, "Nun kannst du auf einer anderren Bank ein Konto eröffnen!");
+						SendClientMessageEx(playerid, COLOR_INFO, 18);
 					}
 					case 3: // Einzahlen
 					{
@@ -224,11 +217,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							if (ownerUserID == PVar:playerid[USERID])
 							{
-								SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "You already own this bank!"));
+								SendClientMessageEx(playerid, COLOR_INFO, 13);
 							}
 							else
 							{
-								SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "This bank has been already bought!"));
+								SendClientMessageEx(playerid, COLOR_INFO, 11);
 							}
 						}
 						else
@@ -238,13 +231,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							{
 								GivePlayerMoneyEx(playerid, -price);
 								SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
-								SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "You have bought the bank"));
+								SendClientMessageEx(playerid, COLOR_INFO, 16);
 								PVar:playerid[JOBID] = 7;
 							}
 							else
 							{
-								FormatNew:string[256](LanguageString(playerid, "You need $%s to buy this bank! You only have $%s."), FormatMoney(price), FormatMoney(PVar:playerid[MONEY]));
-								SendClientMessage(playerid, COLOR_ERROR, string);
+								SendClientMessageEx(playerid, COLOR_ERROR, 22, price, PVar:playerid[MONEY]);
 							}
 						}
 					}
@@ -252,7 +244,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						new bankID = PVar:playerid[CURRENTBUILDINGID];
 						SetUserDBValue(playerid, "BankID", val2str(bankID));
-						SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "You have successfully created your bank account and can now transfer money to this account."));
+						SendClientMessageEx(playerid, COLOR_INFO, 17);
 					}
 					case 2: // Aktueler Zinssatz
 					{
@@ -271,7 +263,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				if (!strlen(inputtext))
 				{
-					SendClientMessage(playerid, COLOR_ERROR, LanguageString(playerid, "You have to input the amount!"));
+					SendClientMessageEx(playerid, COLOR_ERROR, 19);
 					ShowDialog(playerid, DIALOG_BANK_INPUT);
 				}
 				else
@@ -279,15 +271,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					new Float:money = floatstr(inputtext);
 					if(money > PVar:playerid[MONEY])
 					{
-						SendClientMessage(playerid, COLOR_ERROR, LanguageString(playerid, "You don't have enough money!"));
+						SendClientMessageEx(playerid, COLOR_ERROR, 14);
 						ShowDialog(playerid, DIALOG_BANK_INPUT);
 					}
 					else
 					{
 						PVar:playerid[MONEY] = floatsub(PVar:playerid[MONEY], money);
 						PVar:playerid[BANKMONEY] = floatadd(PVar:playerid[BANKMONEY], money);
-						FormatNew:string[256](LanguageString(playerid, "You have transferred $%s to your bank account"), FormatMoney(money));
-						SendClientMessage(playerid, COLOR_INFO, string);
+						SendClientMessageEx(playerid, COLOR_INFO, 21, money);
 					}
 				}
 			}
@@ -306,11 +297,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							if (ownerUserID == PVar:playerid[USERID])
 							{
-								SendClientMessage(playerid, COLOR_INFO, "Diese Bank besitzt du Bereits!");
+								SendClientMessageEx(playerid, COLOR_INFO, 13);
 							}
 							else
 							{
-								SendClientMessage(playerid, COLOR_INFO, "Diese Bank ist bereits Gekauft!");
+								SendClientMessageEx(playerid, COLOR_INFO, 11);
 							}
 						}
 						else
@@ -320,7 +311,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							{
 								GivePlayerMoneyEx(playerid, price);
 								SetMySQLValue("buildings", "OwnerUserID", "0", "ID", val2str(buildingID));
-								SendClientMessage(playerid, COLOR_INFO, "Bank erfolgreich Verkauft!");
+								SendClientMessageEx(playerid, COLOR_INFO, 9);
 								PVar:playerid[JOBID] = 0;
 							}
 						}
@@ -341,8 +332,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						new bankID = PVar:playerid[CURRENTBUILDINGID];
 						SetUserDBValue(playerid, "BankID", val2str(bankID));
-						SendClientMessage(playerid, COLOR_INFO, "Du hast dein konto erfolgreich Erstellt!");
-						SendClientMessage(playerid, COLOR_INFO, "Nun kannst du darauf Geld einzahlen!");
+						SendClientMessageEx(playerid, COLOR_INFO, 17);
 					}
 					case 4: // Aktueler Zinssatz 
 					{
@@ -357,7 +347,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				if (!strlen(inputtext))
 				{
-					SendClientMessage(playerid, COLOR_ERROR, "Du musst einen Betrag eingeben!");
+					SendClientMessageEx(playerid, COLOR_ERROR, 19);
 					ShowDialog(playerid, DIALOG_BANK_OUTPUT);
 				}
 				else
@@ -365,16 +355,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					new Float:money = floatstr(inputtext);
 					if(money > PVar:playerid[BANKMONEY])
 					{
-						SendClientMessage(playerid, COLOR_ERROR, "Du hast nicht genug Geld auf der Bank!");
-						SendClientMessage(playerid, COLOR_ERROR, "Gebe einen neuen betrag ein der auf deinem Konto entahlten ist!");
+						SendClientMessageEx(playerid, COLOR_ERROR, 25);
 						ShowDialog(playerid, DIALOG_BANK_OUTPUT);
 					}
 					else
 					{
 						PVar:playerid[MONEY] = floatadd(PVar:playerid[MONEY], money);
 						PVar:playerid[BANKMONEY] = floatsub(PVar:playerid[BANKMONEY], money);
-						FormatNew:string[60]("Du hast $%s von deinem Bankkonto abgehoben", FormatMoney(money));
-						SendClientMessage(playerid, COLOR_INFO, string);
+						SendClientMessageEx(playerid, COLOR_INFO, 26, money);
 					}
 				}
 			}
@@ -393,8 +381,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					FormatNew:string[80]("Du benötigst $%s für dieses Fahrzeug! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(PVar:playerid[MONEY]));
-					SendClientMessage(playerid, COLOR_ERROR, string);
+					SendClientMessageEx(playerid, COLOR_ERROR, 27, price, PVar:playerid[MONEY]);
 					RemovePlayerFromVehicle(playerid);
 				}
 			}
@@ -414,12 +401,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					GivePlayerMoneyEx(playerid, -price);
 					SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
 					ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
-					SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen Haus");
+					SendClientMessageEx(playerid, COLOR_INFO, 28);
 				}
 				else
 				{
-					FormatNew:string[80]("Du benötigst $%s für dieses Haus! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(PVar:playerid[MONEY]));
-					SendClientMessage(playerid, COLOR_ERROR, string);
+					SendClientMessageEx(playerid, COLOR_ERROR, 29, price, PVar:playerid[MONEY]);
 				}
 			}
 		}
@@ -433,7 +419,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					SendClientMessage(playerid, COLOR_ERROR, "Das eingegebene Passwort ist falsch!");
+					SendClientMessageEx(playerid, COLOR_ERROR, 30);
 					ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP1);
 				}
 			}
@@ -449,8 +435,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					FormatNew:string[80]("Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_PASSWORD_MIN, REGISTER_PASSWORD_MAX);
-					SendClientMessage(playerid, COLOR_ERROR, string);
+					SendClientMessageEx(playerid, COLOR_ERROR, 31, REGISTER_PASSWORD_MIN, REGISTER_PASSWORD_MAX);
 					ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP2);
 				}
 			}
@@ -466,11 +451,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				if (!strcmp(PVar:playerid[CHANGEPASSWORD], inputtext))
 				{
 					SetUserDBValue(playerid, "Password", MD5(inputtext));
-					SendClientMessage(playerid, COLOR_INFO, "Dein Passwort wurde geändert");
+					SendClientMessageEx(playerid, COLOR_INFO, 20);
 				}
 				else
 				{
-					SendClientMessage(playerid, COLOR_ERROR, "Die eingegebenen Passwörter stimmen nicht überein! Bitte versuche es erneut.");
+					SendClientMessageEx(playerid, COLOR_ERROR, 32);
 					ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP3);
 				}
 			}
@@ -529,19 +514,17 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							GivePlayerMoneyEx(playerid, -price);
 							SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
 							ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
-							SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen Hotel");
+							SendClientMessageEx(playerid, COLOR_INFO, 33);
 							ShowDialog(playerid, DIALOG_HOTEL_MAIN_OWNER);
 						}
 						else
 						{
-							FormatNew:string[80]("Du benötigst $%s für dieses Hotel! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(PVar:playerid[MONEY]));
-							SendClientMessage(playerid, COLOR_ERROR, string);
+							SendClientMessageEx(playerid, COLOR_ERROR, 34, price, PVar:playerid[MONEY]);
 							ShowDialog(playerid, DIALOG_HOTEL_MAIN_AVAILABLE);
 						}
 					}
 					case 1: // Rent
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM,"Zimmer Mieten");
 						ShowDialog(playerid, DIALOG_HOTEL_MAIN_AVAILABLE);
 					}
 					case 2: // Enter
@@ -565,17 +548,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					case 0: // Enter
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Eintrit in eigenes Hotel Zimmer");
 						ShowDialog(playerid, DIALOG_HOTEL_MAIN_BOUGHT);
 					}
 					case 1: // Rent
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Zimmer Mieten");
 						ShowDialog(playerid, DIALOG_HOTEL_MAIN_BOUGHT);
 					}
 					case 2: // Stop contract
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Kündigen");
 						ShowDialog(playerid, DIALOG_HOTEL_MAIN_BOUGHT);
 					}
 				}
@@ -599,12 +579,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 1: // Sell
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Hotel verkaufen");
 						ShowDialog(playerid, DIALOG_HOTEL_MAIN_OWNER);
 					}
 					case 2: // Incoming (Money)
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Einnahmen");
 						ShowDialog(playerid, DIALOG_HOTEL_MAIN_OWNER);
 					}
 					case 3: // Room options
@@ -700,10 +678,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						SendClientMessage(playerid, COLOR_SYSTEM, "Haus verkaufen");
 					}
-					default:
-					{
-						SendClientMessage(playerid, COLOR_ERROR, "Ungültige Auswahl!");
-					}
 				}
 			}
 		}
@@ -721,7 +695,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					else
 					{
-						SendClientMessage(playerid, COLOR_ERROR, "Das angegebene Passwort ist falsch! Btte versuche es erneut.");
+						SendClientMessageEx(playerid, COLOR_ERROR, 30);
 						ShowDialog(playerid, DIALOG_LOGIN);
 					}
 					mysql_free_result();
@@ -731,19 +705,20 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						printf("Player logged in: %s (UserID: %d)", GetPlayerNameEx(playerid), PVar:playerid[USERID]);
 						TogglePlayerSpectating(playerid, false);
 						LoadPlayer(playerid);
+						ReloadTextDraws(playerid);
 						PVar:playerid[SPAWNAFTERLOGIN] = true;
-						SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich eingeloggt.");
+						SendClientMessageEx(playerid, COLOR_INFO, 35);
 					}
 				}
 				else
 				{
-					SendClientMessage(playerid, COLOR_ERROR, "Kein Passwort eingegeben! Bitte versuche es erneut.");
+					SendClientMessageEx(playerid, COLOR_ERROR, 36);
 					ShowDialog(playerid, DIALOG_LOGIN);
 				}
 			}
 			else
 			{
-				SendClientMessage(playerid, COLOR_INFO, "Du kannst nun das Spiel beenden!");
+				SendClientMessageEx(playerid, COLOR_INFO, 37);
 				Kick(playerid);
 			}
 			return true;
@@ -760,8 +735,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					if (missionID)
 					{
 						MySQLQuery("INSERT INTO `missiondata` (`MissionID`, `Name`, `Value`) VALUES ('%d', 'Type', 'GetOrderedVehicle'), ('%d', 'VehicleModelID', '%d')", missionID, missionID, modelID);
-						FormatNew:string[50]("Auftrag erstellt (Auftragsnummer: %d)", missionID);
-						SendClientMessage(playerid, COLOR_INFO, string);
+						SendClientMessageEx(playerid, COLOR_INFO, 38, missionID);
 					}
 				}
 			}
@@ -784,7 +758,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						}
 						else
 						{
-							SendClientMessage(playerid, COLOR_ERROR, "Du musst Zuerst einen beruf Kündigen!");
+							SendClientMessageEx(playerid, COLOR_ERROR, 39);
 						}
 					}
 					case 2: // Betreten
@@ -856,7 +830,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				new year;
 				if (sscanf(inputtext, "p.ddd", day, month, year))
 				{
-					SendClientMessage(playerid, COLOR_ERROR, "Falsches Datumsformat! Bitte verwende das Format TT.MM.JJJJ.");
+					SendClientMessageEx(playerid, COLOR_ERROR, 40);
 					ShowDialog(playerid, DIALOG_REGISTER_BIRTHDATE);
 				}
 				else
@@ -868,7 +842,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					else
 					{
-						SendClientMessage(playerid, COLOR_ERROR, "Ungültiges Datum!");
+						SendClientMessageEx(playerid, COLOR_ERROR, 41);
 						ShowDialog(playerid, DIALOG_REGISTER_BIRTHDATE);
 					}
 				}
@@ -925,14 +899,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					FormatNew:string[80]("Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!", REGISTER_PASSWORD_MIN, REGISTER_PASSWORD_MAX);
-					SendClientMessage(playerid, COLOR_ERROR, string);
+					SendClientMessageEx(playerid, COLOR_ERROR, 31, REGISTER_PASSWORD_MIN, REGISTER_PASSWORD_MAX);
 					ShowDialog(playerid, DIALOG_REGISTER_PASSWORD1);
 				}
 			}
 			else
 			{
-				SendClientMessage(playerid, COLOR_INFO, "Du kannst nun das Spiel beenden!");
+				SendClientMessageEx(playerid, COLOR_INFO, 37);
 				Kick(playerid);
 			}
 		}
@@ -946,7 +919,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					SendClientMessage(playerid, COLOR_ERROR, "Die eingegebenen Passwörter stimmen nicht überein! Bitte versuche es erneut.");
+					SendClientMessageEx(playerid, COLOR_ERROR, 32);
 					ShowDialog(playerid, DIALOG_REGISTER_PASSWORD1);
 				}
 			}
@@ -964,9 +937,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					SavePlayer(playerID);
 				}
-				SendClientMessage(playerid, COLOR_INFO, "Du hast den Gamemode neugestartet");
-				FormatNew:string[60]("%s hat den Gamemode neugestartet", GetPlayerNameEx(playerid));
-				SendClientMessageToAllExcept(playerid, COLOR_INFO, string);
+				SendClientMessageEx(playerid, COLOR_INFO, 42);
+				PlayerLoop(playerID)
+				{
+					if (playerID != playerid && IsPlayerConnected(playerID))
+					{
+						SendClientMessageEx(playerID, COLOR_INFO, 43);
+					}
+				}
 				printf("%s has restarted the gamemode", GetPlayerNameEx(playerid));
 				SendRconCommand("gmx");
 			}
@@ -998,10 +976,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				return true;
 			}
 			interiorID = strval(GetMySQLValue("interiors", "ID", "Name", inputtext));
-			if (!interiorID)
-			{
-				SendClientMessage(playerid, COLOR_ERROR, "Ungültige Auswahl!");
-			}
 			OnInteriorDialogSelect(playerid, interiorDialogID, interiorID);
 		}
 		case DIALOG_TELEPORTLOCATIONS:
@@ -1038,7 +1012,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						}
 						else
 						{
-							SendClientMessage(playerid, COLOR_ERROR, "Du musst Zuerst einen beruf Kündigen!");
+							SendClientMessageEx(playerid, COLOR_ERROR, 39);
 						}
 					}
 				}
@@ -1085,11 +1059,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							if (ownerUserID == PVar:playerid[USERID])
 							{
-								SendClientMessage(playerid, COLOR_INFO, "Diesen Autohändler besitzt du Bereits!");
+								SendClientMessageEx(playerid, COLOR_INFO, 44);
 							}
 							else
 							{
-								SendClientMessage(playerid, COLOR_INFO, "Dieser Autohändler ist bereits Gekauft!");
+								SendClientMessageEx(playerid, COLOR_INFO, 45);
 							}
 						}
 						else
@@ -1099,12 +1073,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							{
 								GivePlayerMoneyEx(playerid, -price);
 								SetMySQLValue("pickups", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(pickupID));
-								SendClientMessage(playerid, COLOR_INFO, "Viel Spaß mit deinem neuen Autohändler");
+								SendClientMessageEx(playerid, COLOR_INFO, 46);
 							}
 							else
 							{
-								FormatNew:string[80]("Du benötigst $%s für diesen Autohändler! Leider hast du nur $%s.", FormatMoney(price), FormatMoney(PVar:playerid[MONEY]));
-								SendClientMessage(playerid, COLOR_ERROR, string);
+								SendClientMessageEx(playerid, COLOR_ERROR, 47, price, PVar:playerid[MONEY]);
 							}
 						}
 					}
@@ -1118,7 +1091,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						}
 						else
 						{
-							SendClientMessage(playerid, COLOR_ERROR, "Du musst Zuerst einen beruf Kündigen!");
+							SendClientMessageEx(playerid, COLOR_ERROR, 39);
 						}
 					}
 					case 2:

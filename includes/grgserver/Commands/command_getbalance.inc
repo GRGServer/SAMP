@@ -1,7 +1,5 @@
-CMD:getbalance(playerid, params[], "Kontostand anzeigen")
+CMD:getbalance(playerid, params[], 67)
 {
-	new string[256];
-	Format:string("Aktueller Kontostand: $%s", FormatMoney(PVar:playerid[MONEY]));
-	SendClientMessage(playerid, COLOR_INFO, string);
+	SendClientMessageEx(playerid, COLOR_INFO, 66, PVar:playerid[MONEY]);
 	return COMMAND_OK;
 }

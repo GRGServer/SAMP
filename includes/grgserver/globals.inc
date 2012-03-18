@@ -17,7 +17,3 @@ new Float:gasPrice;
 
 // TextDraws
 new Text:textDrawClock;
-new Text:textDrawRadioStation[MAX_PLAYERS];
-new Text:textDrawSpeedoColumn1;
-new Text:textDrawSpeedoColumn2[MAX_PLAYERS];
-new Text:textDrawSpeedoName[MAX_PLAYERS];

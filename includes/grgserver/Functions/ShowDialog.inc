@@ -22,7 +22,7 @@ ShowDialog(playerID, dialogID, ...)
 			}
 			else
 			{
-				SendClientMessage(playerID, COLOR_ERROR, "Es stehen derzeit keine Aufträge in deinem Beruf zur Verfügung!");
+				SendClientMessageEx(playerID, COLOR_ERROR, 134);
 			}
 		}
 		case DIALOG_ADDBUILDING_NAME:

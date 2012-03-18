@@ -1,4 +1,4 @@
-RCMD:reloadvehiclemodels(params[], "Reload all vehicle models from database")
+RCMD:reloadvehiclemodels(params[], 154)
 {
 	Exec:ReloadVehicleModels();
 	return true;

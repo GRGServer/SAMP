@@ -33,19 +33,29 @@ Timer:Slow()
 		if (revision > COMPILER_SVN_REVISION)
 		{
 			printf("Detected update to revision %d", revision);
-			Format:string("Es steht ein Update auf Revision %d zur Verfügung!", revision);
-			SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
-			Format:string("Committer: %s", committerName);
-			SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
 			fread(file, string);// Skip ""
-			SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, "*** SVN Changelog:");
+			PlayerLoop(playerID)
+			{
+				if (IsPlayerConnected(playerID) && permissions[playerID][PERMISSION_SERVERADMIN])
+				{
+					SendClientMessageEx(playerID, COLOR_SYSTEM, 127, revision);
+					SendClientMessageEx(playerID, COLOR_SYSTEM, 128, committerName);
+					SendClientMessage(playerID, COLOR_SYSTEM, "*** SVN Changelog:");
+				}
+			}
 			while (fread(file, string))
 			{
 				RemoveNewLine(string);
 				if (strlen(string) && strcmp(string, "------------------------------------------------------------------------"))
 				{
 					Format:string("> %s", string);
-					SendClientMessageToAdmins(PERMISSION_SERVERADMIN, COLOR_SYSTEM, string);
+					PlayerLoop(playerID)
+					{
+						if (IsPlayerConnected(playerID) && permissions[playerID][PERMISSION_SERVERADMIN])
+						{
+							SendClientMessage(playerID, COLOR_SYSTEM, string);
+						}
+					}
 				}
 			}
 		}

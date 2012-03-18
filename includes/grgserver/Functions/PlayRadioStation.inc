@@ -9,13 +9,13 @@ PlayRadioStation(playerID, id)
 		{
 			SetMySQLValue("savedvehicles", "LastRadioStation", val2str(id), "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID]));
 		}
-		TextDrawSetString(textDrawRadioStation[playerID], GetMySQLValue("radiostations", "Name", "ID", val2str(id)));
-		TextDrawShowForPlayer(playerID, textDrawRadioStation[playerID]);
+		TextDrawSetString(PVar:playerID[TEXTDRAW_RADIOSTATION], GetMySQLValue("radiostations", "Name", "ID", val2str(id)));
+		TextDrawShowForPlayer(playerID, PVar:playerID[TEXTDRAW_RADIOSTATION]);
 		KillTimer(PVar:playerID[RADIODISPLAYTIMER]);
 		PVar:playerID[RADIODISPLAYTIMER] = SetTimerEx("Timer_HideRadioDisplay", TIMER_HIDERADIODISPLAY, false, "i", playerID);
 	}
 	else
 	{
-		SendClientMessage(playerID, COLOR_ERROR, "Ungültiger Radiosender!");
+		SendClientMessageEx(playerID, COLOR_ERROR, 131);
 	}
 }

@@ -1,4 +1,4 @@
-RCMD:cmds(params[], "List available RCON commands")
+RCMD:cmds(params[], 149)
 {
 	if (fexist(FILE_COMMANDS))
 	{

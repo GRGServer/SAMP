@@ -1,11 +1,10 @@
-PCMD:money[ADMIN](playerid, params[], "Gebe dir Geld")
+PCMD:money[ADMIN](playerid, params[], 110)
 {
 	new Float:money;
 	if (!sscanf(params, "f", money))
 	{
 		GivePlayerMoneyEx(playerid, money);
-		FormatNew:string[80]("Du hast dir $%s gegeben und hast daher nun $%s", FormatMoney(money), FormatMoney(PVar:playerid[MONEY]));
-		SendClientMessage(playerid, COLOR_INFO, string);
+		SendClientMessageEx(playerid, COLOR_INFO, 81, money, PVar:playerid[MONEY]);
 		return COMMAND_OK;
 	}
 	else

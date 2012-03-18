@@ -1,4 +1,4 @@
-CMD:testunfreeze(playerid, params[], "Steuerungsbehinderung aufheben")
+CMD:testunfreeze(playerid, params[], 0)
 {
 	TogglePlayerControllable(playerid, true);
 	return COMMAND_OK;

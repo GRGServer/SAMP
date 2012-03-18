@@ -1,11 +1,11 @@
-RCMD:safegmx(params[], "Safely restart the gamemode")
+RCMD:safegmx(params[], 155)
 {
 	print("Restarting gamemode...");
 	PlayerLoop(playerID)
 	{
 		SavePlayer(playerID);
+		SendClientMessageEx(playerID, COLOR_INFO, 156);
 	}
-	SendClientMessageToAll(COLOR_INFO, "Der Gamemode wurde per RCON neugestartet");
 	SendRconCommand("gmx");
 	print("Done");
 	return true;

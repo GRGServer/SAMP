@@ -48,31 +48,18 @@ public OnPlayerConnect(playerid)
 		}
 		mysql_free_result();
 		SendDeathMessage(INVALID_PLAYER_ID, playerid, 200);
-		SendClientMessage(playerid, COLOR_SYSTEM, "Willkommen auf GRG Server!");
-		FormatNew:string[70]("Auf diesem Server läuft aktuell Revision %d unserer Gamemode.", COMPILER_SVN_REVISION);
-		SendClientMessage(playerid, COLOR_SYSTEM, string);
-		Format:string("%s hat den Server betreten", GetPlayerNameEx(playerid));
-		SendClientMessageToAllExcept(playerid, COLOR_JOINLEAVE, string);
+		SendClientMessageEx(playerid, COLOR_SYSTEM, 138);
+		SendClientMessageEx(playerid, COLOR_SYSTEM, 5, COMPILER_SVN_REVISION);
+		PlayerLoop(playerID)
+		{
+			if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && playerID != playerid)
+			{
+				SendClientMessageEx(playerid, COLOR_JOINLEAVE, 3, playerid);
+			}
+		}
+		FormatNew:string[MAX_PLAYER_NAME + 30]("%s has joined the server", GetPlayerNameEx(playerid));
 		IRC_Say(ircBot, IRC_CHANNEL, string);
-		textDrawSpeedoName[playerid] = TextDrawCreate(480, 385, "_");
-		TextDrawAlignment(textDrawSpeedoName[playerid], 1);
-		TextDrawLetterSize(textDrawSpeedoName[playerid], 0.3, 0.9);
-		TextDrawFont(textDrawSpeedoName[playerid], 1);
-		TextDrawSetShadow(textDrawSpeedoName[playerid], 2);
-		textDrawSpeedoColumn2[playerid] = TextDrawCreate(580, 385, "_");
-		TextDrawAlignment(textDrawSpeedoColumn2[playerid], 1);
-		TextDrawLetterSize(textDrawSpeedoColumn2[playerid], 0.3, 0.9);
-		TextDrawFont(textDrawSpeedoColumn2[playerid], 1);
-		TextDrawSetShadow(textDrawSpeedoColumn2[playerid], 2);
-		textDrawRadioStation[playerid] = TextDrawCreate(320, 20, "_");
-		TextDrawAlignment(textDrawRadioStation[playerid], 2);
-		TextDrawBackgroundColor(textDrawRadioStation[playerid], 0x000000ff);
-		TextDrawFont(textDrawRadioStation[playerid], 2);
-		TextDrawLetterSize(textDrawRadioStation[playerid], 0.4, 1.6);
-		TextDrawColor(textDrawRadioStation[playerid], 0x906010ff);
-		TextDrawSetOutline(textDrawRadioStation[playerid], 1);
-		TextDrawSetProportional(textDrawRadioStation[playerid], 2);
-		TextDrawSetShadow(textDrawRadioStation[playerid], 1);
+		ReloadTextDraws(playerid);
 		TextDrawShowForPlayer(playerid, textDrawClock);
 	}
 	return true;

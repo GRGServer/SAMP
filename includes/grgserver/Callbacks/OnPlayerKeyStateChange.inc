@@ -61,7 +61,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 						}
 						else
 						{
-							SendClientMessage(playerid, COLOR_ERROR, "Der Tank ist bereits voll!");
+							SendClientMessageEx(playerid, COLOR_ERROR, 140);
 						}
 					}
 					case PICKUPTYPE_HOTEL:
@@ -108,8 +108,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 							}
 							else
 							{
-								FormatNew:string[MAX_PLAYER_NAME + 40]("Dieses Haus wurde bereits von %s gekauft.", GetMySQLValue("users", "Username", "UserID", val2str(ownerUserID)));
-								SendClientMessage(playerid, COLOR_ERROR, string);
+								SendClientMessageEx(playerid, COLOR_ERROR, 141, GetMySQLValue("users", "Username", "UserID", val2str(ownerUserID)));
 							}
 						}
 						else
@@ -122,8 +121,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 							}
 							else
 							{
-								FormatNew:string[100]("Du hast nicht genügend Geld, um dieses Haus zu kaufen! Du benötigst mindestens $%s.", FormatMoney(price));
-								SendClientMessage(playerid, COLOR_ERROR, string);
+								SendClientMessageEx(playerid, COLOR_ERROR, 142, price, PVar:playerid[MONEY]);
 							}
 						}
 					}

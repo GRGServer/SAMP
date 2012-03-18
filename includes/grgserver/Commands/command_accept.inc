@@ -1,4 +1,4 @@
-CMD:accept(playerid, params[], "Annehmen eines Auftrages")
+CMD:accept(playerid, params[], 94)
 {
 	switch (PVar:playerid[JOBID])
 	{

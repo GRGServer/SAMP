@@ -4,8 +4,7 @@ AddNPCRecorderPlayback(playerID, recordingName[], recordingType)
 	new npcPlayerID = GetPlayerID(npcPlayerName);
 	if (npcPlayerID == INVALID_PLAYER_ID)
 	{
-		FormatNew:string[140]("Der NPC '%s' ist nicht verbunden! Verwende /controlnpc %s connect und versuche es erneut.", npcPlayerName, npcPlayerName);
-		SendClientMessage(playerID, COLOR_ERROR, string);
+		SendClientMessageEx(playerID, COLOR_ERROR, 132, npcPlayerName, npcPlayerName);
 	}
 	else
 	{

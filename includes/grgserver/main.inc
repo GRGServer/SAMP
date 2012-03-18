@@ -33,6 +33,7 @@
 #include <grgserver\Functions\GetPermissionByName.inc>
 #include <grgserver\Functions\GetPermissionName.inc>
 #include <grgserver\Functions\GetPickupInfoByType.inc>
+#include <grgserver\Functions\GetPlayerByUserID.inc>
 #include <grgserver\Functions\GetPlayerID.inc>
 #include <grgserver\Functions\GetPlayerNameEx.inc>
 #include <grgserver\Functions\GetVehicleEngineState.inc>
@@ -53,13 +54,13 @@
 #include <grgserver\Functions\ReloadPickup.inc>
 #include <grgserver\Functions\ReloadPickups.inc>
 #include <grgserver\Functions\ReloadSavedVehicles.inc>
+#include <grgserver\Functions\ReloadTextDraws.inc>
 #include <grgserver\Functions\ReloadVehicleModels.inc>
 #include <grgserver\Functions\RemoveNewLine.inc>
 #include <grgserver\Functions\ResetPlayerVariables.inc>
 #include <grgserver\Functions\SavePlayer.inc>
 #include <grgserver\Functions\SaveVehicle.inc>
-#include <grgserver\Functions\SendClientMessageToAdmins.inc>
-#include <grgserver\Functions\SendClientMessageToAllExcept.inc>
+#include <grgserver\Functions\SendClientMessageEx.inc>
 #include <grgserver\Functions\SendNPCCommand.inc>
 #include <grgserver\Functions\SetMySQLValue.inc>
 #include <grgserver\Functions\SetPlayerCheckpointEx.inc>
@@ -107,7 +108,6 @@
 #include <grgserver\Callbacks\OnPlayerSpawn.inc>
 #include <grgserver\Callbacks\OnPlayerStateChange.inc>
 #include <grgserver\Callbacks\OnPlayerText.inc>
-#include <grgserver\Callbacks\OnPlayerUpdate.inc>
 #include <grgserver\Callbacks\OnVehicleDeath.inc>
 #include <grgserver\Callbacks\OnVehicleMod.inc>
 #include <grgserver\Callbacks\OnVehiclePaintjob.inc>

@@ -1,4 +1,4 @@
-CMD:radio(playerid, params[], "Webradio aktivieren")
+CMD:radio(playerid, params[], 115)
 {
 	if (IsPlayerInAnyVehicle(playerid))
 	{

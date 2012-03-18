@@ -1,6 +1,6 @@
-PCMD:stoprec[NPCADMIN](playerid, params[], "Aktuelle NPC Aufnahme beenden")
+PCMD:stoprec[NPCADMIN](playerid, params[], 49)
 {
 	StopRecordingPlayerData(playerid);
-	SendClientMessage(playerid, COLOR_INFO, "Aufnahme gestoppt");
+	SendClientMessageEx(playerid, COLOR_INFO, 48);
 	return COMMAND_OK;
 }

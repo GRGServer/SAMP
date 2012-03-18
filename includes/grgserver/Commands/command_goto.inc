@@ -1,4 +1,4 @@
-PCMD:goto[TELEPORT](playerid, params[], "Zu einen anderen Spieler teleportieren")
+PCMD:goto[TELEPORT](playerid, params[], 106)
 {
 	new targetPlayerID;
 	if (sscanf(params, "u", targetPlayerID))

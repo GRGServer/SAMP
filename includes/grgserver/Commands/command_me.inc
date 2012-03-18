@@ -1,4 +1,4 @@
-CMD:me(playerid, params[], "Sagen, was du machst (z.B. '/me rennt Admin hinterher' sehen alle Spieler als '*<Dein Name> rennt Admin hinterher')")
+CMD:me(playerid, params[], 109)
 {
 	if (strlen(params))
 	{

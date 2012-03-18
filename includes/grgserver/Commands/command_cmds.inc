@@ -1,4 +1,4 @@
-CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
+CMD:cmds(playerid, params[] , 93)
 {
 	if (fexist(FILE_COMMANDS))
 	{
@@ -8,17 +8,16 @@ CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
 		{
 			new type;
 			new command[MAX_FUNC_NAME];
-			new infoText[256];
+			new infoTextID;
 			new permission[30];
 			RemoveNewLine(string);
-			if (sscanf(string, "css", type, command, permission))
+			if (sscanf(string, "cssd", type, command, permission, infoTextID))
 			{
-				sscanf(string, "cs", type, command);
+				sscanf(string, "csd", type, command, infoTextID);
 			}
 			if (type)
 			{
 				new showCommand;
-				fread(file, infoText);
 				if (type == '-')
 				{
 					showCommand = true;
@@ -47,7 +46,7 @@ CMD:cmds(playerid, params[] , "Liste mit Befehlen anzeigen")
 							command[character] = ' ';
 						}
 					}*/
-					Format:string("%s{FF8C55} - %s", command, infoText);
+					Format:string("%s{FF8C55} - %s", command, LanguageString(playerid, infoTextID));
 					SendClientMessage(playerid, COLOR_INFO, string);
 				}
 			}

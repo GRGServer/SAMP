@@ -3,14 +3,20 @@ public OnPlayerDisconnect(playerid, reason)
 	if (!IsPlayerNPC(playerid))
 	{
 		SavePlayer(playerid);
-		FormatNew:string[MAX_PLAYER_NAME + 30]("%s hat den Server verlassen", GetPlayerNameEx(playerid));
-		SendClientMessageToAll(COLOR_JOINLEAVE, string);
+		
+		PlayerLoop(playerID)
+		{
+			if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && playerID != playerid)
+			{
+				SendClientMessageEx(playerid, COLOR_JOINLEAVE, 161, playerid);
+			}
+		}
+		FormatNew:string[MAX_PLAYER_NAME + 30]("%s has left the server", GetPlayerNameEx(playerid));
 		IRC_Say(ircBot, IRC_CHANNEL, string);
-		TextDrawHideForPlayer(playerid, textDrawSpeedoColumn1);
-		TextDrawHideForPlayer(playerid, textDrawClock);
-		TextDrawDestroy(textDrawSpeedoName[playerid]);
-		TextDrawDestroy(textDrawSpeedoColumn2[playerid]);
-		TextDrawDestroy(textDrawRadioStation[playerid]);
+		TextDrawDestroy(PTextDraw:playerid[RADIOSTATION]);
+		TextDrawDestroy(PTextDraw:playerid[SPEEDO_COLUMN1]);
+		TextDrawDestroy(PTextDraw:playerid[SPEEDO_COLUMN2]);
+		TextDrawDestroy(PTextDraw:playerid[VEHICLENAME]);
 		SendDeathMessage(INVALID_PLAYER_ID, playerid, 201);
 	}
 	StopAudioStreamForPlayer(playerid);

@@ -1,4 +1,4 @@
 Timer:HideRadioDisplay(playerID)
 {
-	TextDrawHideForPlayer(playerID, textDrawRadioStation[playerID]);
+	TextDrawHideForPlayer(playerID, PTextDraw:playerID[RADIOSTATION]);
 }

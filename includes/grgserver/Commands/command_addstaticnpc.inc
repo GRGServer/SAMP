@@ -1,4 +1,4 @@
-PCMD:addstaticnpc[NPCADMIN](playerid, params[], "NPC ohne Aufnahme an die aktuelle Position stellen")
+PCMD:addstaticnpc[NPCADMIN](playerid, params[], 97)
 {
 	new playerName[MAX_PLAYER_NAME];
 	if (sscanf(params, "s", playerName))
@@ -18,13 +18,12 @@ PCMD:addstaticnpc[NPCADMIN](playerid, params[], "NPC ohne Aufnahme an die aktuel
 	{
 		Format:playerName("NPC_%s", playerName);
 		ConnectNPC(playerName, NPC_SCRIPTNAME);
-		FormatNew:string[70]("Der NPC wurde erfolgreich unter der ID %d gespeichert", id);
-		SendClientMessage(playerid, COLOR_INFO, string);
+		SendClientMessageEx(playerid, COLOR_INFO, 83, id);
 		return COMMAND_OK;
 	}
 	else
 	{
-		SendClientMessage(playerid, COLOR_ERROR, "Während dem Speichern ist ein Fehler aufgetreten!");
+		SendClientMessageEx(playerid, COLOR_ERROR, 84);
 	}
 	return COMMAND_ERROR;
 }

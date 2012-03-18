@@ -1,4 +1,4 @@
-PCMD:veh[MAPPER](playerid, params[], "Fahrzeug spawnen")
+PCMD:veh[MAPPER](playerid, params[], 122)
 {
 	new vehicleName[20];
 	new modelID;
@@ -42,23 +42,23 @@ PCMD:veh[MAPPER](playerid, params[], "Fahrzeug spawnen")
 			SetVehicleVirtualWorld(vehicleID, GetPlayerVirtualWorld(playerid));
 			PutPlayerInVehicle(playerid, vehicleID, 0);
 			printf("%s spawned a vehicle (ModelID: %d)", GetPlayerNameEx(playerid), modelID);
-			SendClientMessage(playerid, COLOR_INFO, "Das Fahrzeug wurde gespawnt");
+			SendClientMessageEx(playerid, COLOR_INFO, 62);
 			return COMMAND_OK;
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_ERROR, "Die Farbe muss zwischen 0 und 127 sein!");
+			SendClientMessageEx(playerid, COLOR_ERROR, 63);
 		}
 	}
 	else
 	{
 		if (strlen(vehicleName))
 		{
-			SendClientMessage(playerid, COLOR_ERROR, "Das Fahrzeug wurde nicht gefunden!");
+			SendClientMessageEx(playerid, COLOR_ERROR, 64);
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_ERROR, "Die ModelID muss zwischen 400 und 611 sein!");
+			SendClientMessageEx(playerid, COLOR_ERROR, 65);
 		}
 	}
 	return COMMAND_ERROR;

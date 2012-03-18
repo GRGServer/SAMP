@@ -1,4 +1,4 @@
-PCMD:controlnpc[NPCADMIN](playerid, params[], "NPCs steuern (z.B. Starten oder stoppen)")
+PCMD:controlnpc[NPCADMIN](playerid, params[], 100)
 {
 	new command[256];
 	new recordingName[256];
@@ -10,14 +10,14 @@ PCMD:controlnpc[NPCADMIN](playerid, params[], "NPCs steuern (z.B. Starten oder s
 		if (sscanf(params, "ss", targetPlayerName, command))
 		{
 			CmdUsageMsg(playerid, "controlnpc", "Playername", "command(connect|start|stop|pause|resume)", "[recordingName]", "[playbackType]", "[autoRepeat]");
-			SendClientMessage(playerid, COLOR_INFO, "Hinweis: recordingName, playbackType und autoRepeat wird nur für den Befehl 'start' benötigt.");
+			SendClientMessageEx(playerid, COLOR_INFO, 124);
 			return COMMAND_USAGE;
 		}
 	}
 	Format:targetPlayerName("NPC_%s", targetPlayerName);
 	if (!strcmp(command, "connect", true))
 	{
-		SendClientMessage(playerid, COLOR_INFO, "NPC verbunden");
+		SendClientMessageEx(playerid, COLOR_INFO, 125);
 		ConnectNPC(targetPlayerName, NPC_SCRIPTNAME);
 		return COMMAND_OK;
 	}
@@ -36,7 +36,7 @@ PCMD:controlnpc[NPCADMIN](playerid, params[], "NPCs steuern (z.B. Starten oder s
 			}
 			if (type)
 			{
-				SendClientMessage(playerid, COLOR_INFO, "Wiedergabe gestartet");
+				SendClientMessageEx(playerid, COLOR_INFO, 126);
 				StartNPCPlayback(GetPlayerID(targetPlayerName), recordingName, type, autoRepeat);
 				return COMMAND_OK;
 			}
@@ -45,8 +45,7 @@ PCMD:controlnpc[NPCADMIN](playerid, params[], "NPCs steuern (z.B. Starten oder s
 				return COMMAND_ERROR;
 			}
 		}
-		FormatNew:string[100]("Befehl gesendet: %s", command);
-		SendClientMessage(playerid, COLOR_INFO, string);
+		SendClientMessageEx(playerid, COLOR_INFO, 123, command);
 		SendNPCCommand(GetPlayerID(targetPlayerName), command);
 		return COMMAND_OK;
 	}

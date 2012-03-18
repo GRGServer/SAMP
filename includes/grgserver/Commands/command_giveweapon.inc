@@ -1,4 +1,4 @@
-PCMD:giveweapon[ADMIN](playerid, params[], "Sich selber Waffen geben")
+PCMD:giveweapon[ADMIN](playerid, params[], 104)
 {
 	new weaponID;
 	new ammo;
@@ -9,11 +9,10 @@ PCMD:giveweapon[ADMIN](playerid, params[], "Sich selber Waffen geben")
 	}
 	if (!IsValidWeapon(weaponID))
 	{
-		SendClientMessage(playerid, COLOR_ERROR, "Ungültige WeaponID!");
+		SendClientMessageEx(playerid, COLOR_ERROR, 68);
 		return COMMAND_ERROR;
 	}
 	GivePlayerWeapon(playerid, weaponID, ammo);
-	FormatNew:string[70]("Viel Spaß mit deiner neuen Waffe '%s'!", GetWeaponNameEx(weaponID));
-	SendClientMessage(playerid, COLOR_INFO, string);
+	SendClientMessageEx(playerid, COLOR_INFO, 69, GetWeaponNameEx(weaponID));
 	return COMMAND_OK;
 }

@@ -1,4 +1,4 @@
-CMD:motor(playerid, params[], "Starten oder stoppen des Motors deines Fahrzeugs")
+CMD:motor(playerid, params[], 111)
 {
 	if (!IsPlayerInAnyVehicle(playerid))
 	{
@@ -6,7 +6,7 @@ CMD:motor(playerid, params[], "Starten oder stoppen des Motors deines Fahrzeugs"
 	}
 	if (GetPlayerState(playerid) != PLAYER_STATE_DRIVER)
 	{
-		SendClientMessage(playerid, COLOR_ERROR, "Du bist nicht der Fahrer dieses Fahrzeugs!");
+		SendClientMessageEx(playerid, COLOR_ERROR, 52);
 		return COMMAND_ERROR;
 	}
 	new vehicleID = GetPlayerVehicleID(playerid);
@@ -17,7 +17,7 @@ CMD:motor(playerid, params[], "Starten oder stoppen des Motors deines Fahrzeugs"
 	if (GetVehicleEngineState(vehicleID))
 	{
 		SetVehicleEngineState(vehicleID, false);
-		SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde ausgeschalten.");
+		SendClientMessageEx(playerid, COLOR_INFO, 53);
 		return COMMAND_OK;
 	}
 	new Float:health;
@@ -29,9 +29,9 @@ CMD:motor(playerid, params[], "Starten oder stoppen des Motors deines Fahrzeugs"
 		{
 			PlayRadioStation(playerid, vehicles[vehicleID][VEHICLE_RADIOSTATION]);
 		}
-		SendClientMessage(playerid, COLOR_INFO, "Der Motor deines Fahrzeuges wurde gestartet.");
+		SendClientMessageEx(playerid, COLOR_INFO, 54);
 		return COMMAND_OK;
 	}
-	SendClientMessage(playerid, COLOR_ERROR, "Der Motor deines Fahrzeuges konnte nicht gestartet werden (Motorschaden)!");
+	SendClientMessageEx(playerid, COLOR_ERROR, 55);
 	return COMMAND_ERROR;
 }

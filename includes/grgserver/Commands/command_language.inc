@@ -1,4 +1,4 @@
-CMD:language(playerid, params[], "Switch language")
+CMD:language(playerid, params[], 8)
 {
 	if (!strcmp(PVar:playerid[LANGUAGE], "de", true))
 	{
@@ -8,6 +8,7 @@ CMD:language(playerid, params[], "Switch language")
 	{
 		format(PVar:playerid[LANGUAGE], STRINGLENGTH_LANGUAGEKEY, "de");
 	}
-	SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "Your language has been switched"));
+	ReloadTextDraws(playerid);
+	SendClientMessageEx(playerid, COLOR_INFO, 24);
 	return COMMAND_OK;
 }

@@ -1,4 +1,4 @@
-PCMD:addbuilding[MAPPER](playerid, params[], "Gebäude erstellen")
+PCMD:addbuilding[MAPPER](playerid, params[], 95)
 {
 	new Float:price;
 	if (sscanf(params, "f", price))

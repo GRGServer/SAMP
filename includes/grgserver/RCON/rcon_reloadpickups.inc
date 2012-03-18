@@ -1,4 +1,4 @@
-RCMD:reloadpickups(params[], "Reload all pickups from database")
+RCMD:reloadpickups(params[], 152)
 {
 	Exec:ReloadPickups();
 	return true;

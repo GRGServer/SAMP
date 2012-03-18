@@ -18,6 +18,5 @@ PayDay(playerID)
 	MoneyTransaction(playerID, CASHTRANS_VEHICLETAX, 0, 0, -vehicleTax);
 	MoneyTransaction(playerID, CASHTRANS_POWERTAX, 0, 0, -powerTax);
 	MoneyTransaction(playerID, CASHTRANS_PAYDAY, 0, 0, salaryWithoutTax);
-	FormatNew:string[110]("Es ist Zahltag! Du bekommst $%s (Brutto) bzw. $%s (Netto) auf deinem Konto gutgeschrieben.", FormatMoney(salaryWithTax), FormatMoney(salaryWithoutTax));
-	SendClientMessage(playerID, COLOR_INFO, string);
+	SendClientMessageEx(playerID, COLOR_INFO, 133, salaryWithoutTax);
 }

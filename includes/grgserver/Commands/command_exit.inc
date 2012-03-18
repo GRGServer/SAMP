@@ -1,4 +1,4 @@
-CMD:exit(playerid, params[], "Gebäude verlassen")
+CMD:exit(playerid, params[], 101)
 {
 	if (PVar:playerid[SHOWINTERIOR_OLDINTERIOR] == -1)
 	{
@@ -8,7 +8,7 @@ CMD:exit(playerid, params[], "Gebäude verlassen")
 		}
 		else
 		{
-			SendClientMessage(playerid, COLOR_ERROR, "Du bist in keinem Haus!");
+			SendClientMessageEx(playerid, COLOR_ERROR, 61);
 			return COMMAND_ERROR;
 		}
 	}

@@ -1,7 +1,6 @@
 ShowNews(playerID, lastID)
 {
-	new truncated;
-	MySQLQuery("SELECT * FROM `news` WHERE `ID` > '%d' ORDER BY `Date` DESC LIMIT %d", lastID, NEWS_MAXIMUM);
+	MySQLQuery("SELECT * FROM `news` WHERE `ID` > '%d' ORDER BY `Date` DESC LIMIT %d", lastID, NEWS_MAXIMUM);// TODO: Use player language
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
@@ -15,16 +14,11 @@ ShowNews(playerID, lastID)
 		{
 			strmid(string, string, 0, NEWS_LINELENGTH, sizeof(string));
 			Format:string("%s...", string);
-			truncated = true;
 		}
 		Format:string("[%s] %s", FormatDate(GetMySQLField("Date"), false), string);
 		SendClientMessage(playerID, COLOR_INFO, string);
 	}
 	mysql_free_result();
 	PVar:playerID[LASTNEWSID] = lastID;
-	if (truncated)
-	{
-		SendClientMessage(playerID, COLOR_INFO, "Hinweis: Einige News wurden aufgrund der Länge nicht vollständig angezeigt!");
-		SendClientMessage(playerID, COLOR_INFO, "Sehe dir die vollständigen News auf grgserver.net an.");
-	}
+	SendClientMessageEx(playerID, COLOR_INFO, 135);
 }

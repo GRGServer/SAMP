@@ -1,4 +1,4 @@
-RCMD:reloadpermissions(params[], "Reload all permissions from database")
+RCMD:reloadpermissions(params[], 151)
 {
 	Exec:ReloadPermissions();
 	return true;

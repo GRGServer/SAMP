@@ -1,6 +1,6 @@
-PCMD:jetpack[ADMIN](playerid, params[], "Bekomme ein Jetpack")
+PCMD:jetpack[ADMIN](playerid, params[], 88)
 {
 	SetPlayerSpecialAction(playerid, SPECIAL_ACTION_USEJETPACK);
-	SendClientMessage(playerid, COLOR_INFO, "Viel Spaﬂ mit deinem neuen JetPack!");
+	SendClientMessageEx(playerid, COLOR_INFO, 87);
 	return COMMAND_OK;
 }

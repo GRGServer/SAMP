@@ -1,4 +1,4 @@
-PCMD:addpickup[MAPPER](playerid, params[], "Pickup erstellen")
+PCMD:addpickup[MAPPER](playerid, params[], 96)
 {
 	new type[256];
 	new Float:posX;
@@ -16,14 +16,13 @@ PCMD:addpickup[MAPPER](playerid, params[], "Pickup erstellen")
 		new id = AddPickup(-1, type, posX, posY, posZ, true);
 		if (id > 0)
 		{
-			FormatNew:string[80]("Das Pickup %s wurde unter der ID %d gespeichert", type, id);
-			SendClientMessage(playerid, COLOR_INFO, string);
+			SendClientMessageEx(playerid, COLOR_INFO, 57, type, id);
 			return COMMAND_OK;
 		}
 	}
 	else
 	{
-		SendClientMessage(playerid, COLOR_ERROR, "Ungültiger Typ!");
+		SendClientMessageEx(playerid, COLOR_ERROR, 58);
 	}
 	return COMMAND_ERROR;
 }

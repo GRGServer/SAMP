@@ -4,7 +4,7 @@ CheckVehiclePermission(playerID, vehicleID)
 	{
 		if (!permissions[playerID][PERMISSION_MAPPER])
 		{
-			SendClientMessage(playerID, COLOR_ERROR, "Dieses Fahrzeug kann nur von der Gruppe 'Mapper' verwendet werden!");
+			SendClientMessageEx(playerID, COLOR_ERROR, 129, GetPermissionName(PERMISSION_MAPPER));
 			RemovePlayerFromVehicle(playerID);
 			return false;
 		}
@@ -21,7 +21,7 @@ CheckVehiclePermission(playerID, vehicleID)
 	}
 	if (ownerUserID != PVar:playerID[USERID])
 	{
-		SendClientMessage(playerID, COLOR_ERROR, "Dieses Fahrzeug besitzt bereits ein anderer Spieler");
+		SendClientMessageEx(playerID, COLOR_ERROR, 130);
 		RemovePlayerFromVehicle(playerID);
 		return false;
 	}

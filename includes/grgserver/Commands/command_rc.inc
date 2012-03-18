@@ -1,10 +1,10 @@
-PCMD:rc[SERVERADMIN](playerid, params[], "RCON Befehl ausführen")
+PCMD:rc[SERVERADMIN](playerid, params[], 51)
 {
 	if (strlen(params))
 	{
 		printf("%s sent a RCON command: %s", GetPlayerNameEx(playerid), params);
 		SendRconCommand(params);
-		SendClientMessage(playerid, COLOR_INFO, "Der Befehl wurde ausgeführt");
+		SendClientMessageEx(playerid, COLOR_INFO, 50);
 		return COMMAND_OK;
 	}
 	else

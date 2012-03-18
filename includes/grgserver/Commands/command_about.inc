@@ -1,5 +1,5 @@
-CMD:about(playerid, params[], "Informationen über dieses Script")
+CMD:about(playerid, params[], 86)
 {
-	SendClientMessage(playerid, COLOR_INFO, "Erstellt von Aerox_Tobi (aerox@grgserver.net) und Programie (programie@selfcoders.com)");
+	SendClientMessageEx(playerid, COLOR_INFO, 85);
 	return COMMAND_OK;
 }

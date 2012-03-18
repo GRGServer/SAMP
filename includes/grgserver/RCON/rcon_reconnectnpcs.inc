@@ -1,4 +1,4 @@
-RCMD:reconnectnpcs(params[], "Reconnect all NPCs")
+RCMD:reconnectnpcs(params[], 150)
 {
 	Exec:ReconnectNPCs();
 	return true;

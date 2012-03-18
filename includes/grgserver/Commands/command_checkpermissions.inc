@@ -1,4 +1,4 @@
-PCMD:checkpermissions[ADMIN](playerid, params[], "Rechte von dir oder einem anderen Spieler anzeigen")
+PCMD:checkpermissions[ADMIN](playerid, params[], 99)
 {
 	new targetPlayerID;
 	new string[1024];
@@ -21,13 +21,12 @@ PCMD:checkpermissions[ADMIN](playerid, params[], "Rechte von dir oder einem ande
 		}
 		if (targetPlayerID == playerid)
 		{
-			Format:string("Du hast die folgenden Rechte: %s", string);
+			SendClientMessageEx(playerid, COLOR_INFO, 59, string);
 		}
 		else
 		{
-			Format:string("%s hat die folgenden Rechte: %s", GetPlayerNameEx(targetPlayerID), string);
+			SendClientMessageEx(playerid, COLOR_INFO, 60, targetPlayerID, string);
 		}
-		SendClientMessage(playerid, COLOR_INFO, string);
 		return COMMAND_OK;
 	}
 	else

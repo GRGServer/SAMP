@@ -1,4 +1,4 @@
-NCMD:npccmd(playerid, params[], "Befehle zurück an den Server schicken")
+NCMD:npccmd(playerid, params[], 0)
 {
 	new string[70];
 	if (!sscanf(params, "s", string))
@@ -11,8 +11,7 @@ NCMD:npccmd(playerid, params[], "Befehle zurück an den Server schicken")
 				new realPlayerID = PVar:playerid[RECORDNPCFORPLAYER];
 				PVar:playerid[RECORDNPCFORPLAYER] = INVALID_PLAYER_ID;
 				Kick(playerid);
-				Format:string("Die Wiedergabe von NPC '%s' wurde gestoppt.", GetPlayerNameEx(playerid));
-				SendClientMessage(realPlayerID, COLOR_INFO, string);
+				SendClientMessageEx(realPlayerID, COLOR_INFO, 76, playerid);
 				PlayerLoop(playerID)
 				{
 					if (IsPlayerNPC(playerID) && PVar:playerID[RECORDNPCFORPLAYER] != INVALID_PLAYER_ID && PVar:playerID[RECORDNPCFORPLAYER] == realPlayerID)
@@ -22,13 +21,12 @@ NCMD:npccmd(playerid, params[], "Befehle zurück an den Server schicken")
 				}
 				if (npcs)
 				{
-					Format:string("Es werden noch %d weitere NPCs für diese Aufnahme verwendet.", npcs);
-					SendClientMessage(realPlayerID, COLOR_INFO, string);
+					SendClientMessageEx(realPlayerID, COLOR_INFO, 77, npcs);
 				}
 				else
 				{
 					StopRecordingPlayerData(realPlayerID);
-					SendClientMessage(realPlayerID, COLOR_INFO, "Der letzte NPC hat die Aufnahme gestoppt!");
+					SendClientMessageEx(realPlayerID, COLOR_INFO, 78);
 				}
 			}
 		}

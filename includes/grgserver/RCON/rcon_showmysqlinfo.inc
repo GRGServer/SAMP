@@ -1,4 +1,4 @@
-RCMD:showmysqlinfo(params[], "Show various information about the MySQL connection (i.e. number of occured warnings)")
+RCMD:showmysqlinfo(params[], 157)
 {
 	printf("Number of warnings: %d", mysql_warning_count());
 	return true;

@@ -6,7 +6,7 @@ Teleport(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, vi
 	}
 	else
 	{
-		SendClientMessage(playerID, COLOR_ERROR, "Beim Teleportieren ist ein Fehler aufgetreten! Bitte versuche es erneut.");
+		SendClientMessageEx(playerID, COLOR_ERROR, 136);
 		return false;
 	}
 }

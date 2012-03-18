@@ -5,6 +5,6 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 	if (PVar:playerid[LASTPICKUP] != pickupid)
 	{
 		PVar:playerid[LASTPICKUP] = pickupid;
-		SendClientMessage(playerid, COLOR_INFO, LanguageString(playerid, "Press ~k~~CONVERSATION_YES~ to use this pickup"));
+		SendClientMessageEx(playerid, COLOR_INFO, 7);
 	}
 }

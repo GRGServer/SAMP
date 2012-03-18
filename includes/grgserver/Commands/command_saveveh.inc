@@ -1,4 +1,4 @@
-PCMD:saveveh[MAPPER](playerid, params[], "Aktuelles Fahrzeug als kaufbares Fahrzeug speichern")
+PCMD:saveveh[MAPPER](playerid, params[], 118)
 {
 	new Float:price;
 	if (sscanf(params, "f", price))
@@ -10,7 +10,6 @@ PCMD:saveveh[MAPPER](playerid, params[], "Aktuelles Fahrzeug als kaufbares Fahrz
 	{
 		if (IsPlayerInAnyVehicle(playerid))
 		{
-			new string[256];
 			new Float:posX;
 			new Float:posY;
 			new Float:posZ;
@@ -21,8 +20,7 @@ PCMD:saveveh[MAPPER](playerid, params[], "Aktuelles Fahrzeug als kaufbares Fahrz
 			GetVehicleZAngle(vehicleID, angle);
 			MySQLQuery("INSERT INTO `savedvehicles` (`PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `ModelID`, `Color1`, `Color2`, `Price`, `CurrentFuel`) VALUES('%f', '%f', '%f', '%f', '%d', '%d', '%d', '%d', '%f', '%f')", posX, posY, posZ, angle, GetPlayerInterior(playerid), modelID, vehicles[vehicleID][VEHICLE_COLOR1], vehicles[vehicleID][VEHICLE_COLOR2], price, vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
 			vehicles[vehicleID][VEHICLE_SAVEID] = mysql_insert_id();
-			Format:string("Fahrzeug wurde unter der ID %d gespeichert", mysql_insert_id());
-			SendClientMessage(playerid, COLOR_INFO, string);
+			SendClientMessageEx(playerid, COLOR_INFO, 79, vehicles[vehicleID][VEHICLE_SAVEID]);
 			return COMMAND_OK;
 		}
 		else
@@ -32,7 +30,7 @@ PCMD:saveveh[MAPPER](playerid, params[], "Aktuelles Fahrzeug als kaufbares Fahrz
 	}
 	else
 	{
-		SendClientMessage(playerid, COLOR_ERROR, "Der Preis darf nicht negativ sein!");
+		SendClientMessageEx(playerid, COLOR_ERROR, 80);
 	}
 	return COMMAND_ERROR;
 }

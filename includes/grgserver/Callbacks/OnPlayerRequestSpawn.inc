@@ -7,8 +7,9 @@ public OnPlayerRequestSpawn(playerid)
 		PVar:playerid[USERID] = mysql_insert_id();
 		PVar:playerid[ONLINESINCE] = gettime();
 		SavePlayer(playerid);
+		ReloadTextDraws(playerid);
 		printf("Player registered: %s (UserID: %d)", GetPlayerNameEx(playerid), PVar:playerid[USERID]);
-		SendClientMessage(playerid, COLOR_INFO, "Du wurdest erfolgreich registriert und bist nun eingeloggt.");
+		SendClientMessageEx(playerid, COLOR_INFO, 139);
 		TeleportTo(playerid, 1.7414, 31.6997, 1199.6012, 177.4850, 1, playerid);
 		SetPlayerCheckpointEx(playerid, CHECKPOINT_WALKTOSEAT);
 	}

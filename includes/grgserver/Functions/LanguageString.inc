@@ -1,13 +1,23 @@
-LanguageString(playerID, englishString[])
+LanguageString(playerID, stringID)
 {
 	new string[256];
-	if (!strcmp(PVar:playerID[LANGUAGE], "de", true))
+	MySQLQuery("SELECT * FROM `languagestrings` WHERE `ID` = '%d'", stringID);
+	mysql_store_result();
+	if (mysql_num_rows())
 	{
-		Format:string(GetMySQLValue("languagestrings", "German", "English", englishString));
+		if (!strcmp(PVar:playerID[LANGUAGE], "de", true))
+		{
+			mysql_fetch_field("German", string);
+		}
+		else
+		{
+			mysql_fetch_field("English", string);
+		}
 	}
-	if (!strlen(string))
+	else
 	{
-		Format:string(englishString);
+		printf("Language string not found! (ID: %d)", stringID);
 	}
+	mysql_free_result();
 	return string;
 }
