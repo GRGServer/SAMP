@@ -13,7 +13,7 @@ ReloadPickups()
 	while (FetchMySQLRow())
 	{
 		new pickupID = strval(GetMySQLField("ID"));
-		format(pickupLoader[pickupID][PICKUPLOADER_TYPE], 20, GetMySQLField("Type"));
+		format(pickupLoader[pickupID][PICKUPLOADER_TYPE], STRINGLENGTH_PICKUPTYPE, GetMySQLField("Type"));
 		pickupLoader[pickupID][PICKUPLOADER_POSX] = floatstr(GetMySQLField("PosX"));
 		pickupLoader[pickupID][PICKUPLOADER_POSY] = floatstr(GetMySQLField("PosY"));
 		pickupLoader[pickupID][PICKUPLOADER_POSZ] = floatstr(GetMySQLField("PosZ"));

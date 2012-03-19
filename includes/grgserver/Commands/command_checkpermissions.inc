@@ -16,7 +16,7 @@ PCMD:checkpermissions[ADMIN](playerid, params[], 99)
 				{
 					Format:string("%s, ", string);
 				}
-				Format:string("%s%s", string, GetPermissionName(permission));
+				strcat(string, GetPermissionName(permission));
 			}
 		}
 		if (targetPlayerID == playerid)

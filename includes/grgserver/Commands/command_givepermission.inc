@@ -14,7 +14,7 @@ PCMD:givepermission[SERVERADMIN](playerid, params[], 103)
 		explode(permissionString, permissionsArray, ',', sizeof(permissionsArray));
 		for (new permissionIndex = 0; permissionIndex < sizeof(permissionsArray); permissionIndex++)
 		{
-			Format:permission(permissionsArray[permissionIndex]);
+			permission = permissionsArray[permissionIndex];
 			if (strcmp(permission, "UserID", true))
 			{
 				new newState = true;

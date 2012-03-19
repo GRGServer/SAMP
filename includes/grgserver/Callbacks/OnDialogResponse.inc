@@ -54,13 +54,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				switch (listitem)
 				{
 					case 0:
-						Format:type("BANK");
+						type = "BANK";
 					case 1:
-						Format:type("HOTEL");
+						type = "HOTEL";
 					case 2:
-						Format:type("HOUSE");
+						type = "HOUSE";
 					case 3:
-						Format:type("POLICE");
+						type = "POLICE";
 				}
 				SetPVarStr:playerid[ADDBUILDING_TYPE][STRINGLENGTH_BUILDINGTYPE](type);
 				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
