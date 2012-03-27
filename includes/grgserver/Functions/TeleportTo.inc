@@ -4,7 +4,7 @@ TeleportTo(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, 
 	{
 		case PLAYER_STATE_ONFOOT:
 		{
-			SetPlayerPos(playerID, posX, posY, posZ);
+			SetPlayerPosEx(playerID, posX, posY, posZ);
 			SetPlayerFacingAngle(playerID, angle);
 			SetPlayerInterior(playerID, interior);
 			SetPlayerVirtualWorld(playerID, virtualWorld);

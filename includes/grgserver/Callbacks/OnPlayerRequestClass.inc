@@ -66,7 +66,7 @@ public OnPlayerRequestClass(playerid, classid)
 	}
 	PVar:playerid[SKIN] = skinID;
 	SetPlayerSkin(playerid, skinID);
-	SetPlayerPos(playerid, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ);
+	SetPlayerPosEx(playerid, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ);
 	SetPlayerFacingAngle(playerid, SPAWN_ANGLE);
 	SetPlayerCameraPos(playerid, SPAWN_CAMERAPOSX, SPAWN_CAMERAPOSY, SPAWN_CAMERAPOSZ);
 	SetPlayerCameraLookAt(playerid, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ);

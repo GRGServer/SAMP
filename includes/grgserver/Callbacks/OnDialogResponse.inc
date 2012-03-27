@@ -535,7 +535,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			else
 			{
-				SetPlayerPos(playerid, PVar:playerid[HOTEL_PREVIOUSPOSITION_X], PVar:playerid[HOTEL_PREVIOUSPOSITION_Y], PVar:playerid[HOTEL_PREVIOUSPOSITION_Z]);
+				SetPlayerPosEx(playerid, PVar:playerid[HOTEL_PREVIOUSPOSITION_X], PVar:playerid[HOTEL_PREVIOUSPOSITION_Y], PVar:playerid[HOTEL_PREVIOUSPOSITION_Z]);
 				SetPlayerInterior(playerid, 0);
 				SetPlayerVirtualWorld(playerid, 0);
 			}
@@ -562,7 +562,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			else
 			{
-				SetPlayerPos(playerid, PVar:playerid[HOTEL_PREVIOUSPOSITION_X], PVar:playerid[HOTEL_PREVIOUSPOSITION_Y], PVar:playerid[HOTEL_PREVIOUSPOSITION_Z]);
+				SetPlayerPosEx(playerid, PVar:playerid[HOTEL_PREVIOUSPOSITION_X], PVar:playerid[HOTEL_PREVIOUSPOSITION_Y], PVar:playerid[HOTEL_PREVIOUSPOSITION_Z]);
 				SetPlayerInterior(playerid, 0);
 				SetPlayerVirtualWorld(playerid, 0);
 			}
@@ -593,7 +593,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			else
 			{
-				SetPlayerPos(playerid, PVar:playerid[HOTEL_PREVIOUSPOSITION_X], PVar:playerid[HOTEL_PREVIOUSPOSITION_Y], PVar:playerid[HOTEL_PREVIOUSPOSITION_Z]);
+				SetPlayerPosEx(playerid, PVar:playerid[HOTEL_PREVIOUSPOSITION_X], PVar:playerid[HOTEL_PREVIOUSPOSITION_Y], PVar:playerid[HOTEL_PREVIOUSPOSITION_Z]);
 				SetPlayerInterior(playerid, 0);
 				SetPlayerVirtualWorld(playerid, 0);
 			}

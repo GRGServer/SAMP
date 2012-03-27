@@ -17,7 +17,7 @@ for(new i_%0 = 0; ; ++i_%0) \
 
 // Functions
 #define Count%0(%1,%2) for (new %1 = 0; %1 < %2; %1++)
-#define Exec:%0(%1) %0(%1); print("Done")
+#define Exec:%0(%1) %0(%1); print("Done"); return true
 #define Format:%0(%1) format(%0, sizeof(%0), %1)
 #define FormatNew:%0[%1](%2) new %0[%1]; Format:%0(%2)
 #define FormatMoney(%0) FormatNumber(%0, 2, '.', ',')

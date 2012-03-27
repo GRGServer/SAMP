@@ -10,6 +10,7 @@
 #include <mysql>
 #include <regex>
 #include <sscanf>
+#include <streamer>
 #include <zcmd>
 
 // GRG Server main include

@@ -75,6 +75,7 @@ public OnGameModeInit()
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
+	ReloadObjects();
 	ReloadVehicleModels();
 	ReloadSavedVehicles();
 	ReloadPickups();
@@ -83,6 +84,7 @@ public OnGameModeInit()
 	FormatNew:gameModeTextString[30]("GRG Server r%d", COMPILER_SVN_REVISION);
 	SetGameModeText(gameModeTextString);
 	DisableInteriorEnterExits();
+	Streamer_VisibleItems(STREAMER_TYPE_OBJECT, MAX_OBJECTS);
 	UpdateGasPrice();
 	print("* Starting timers...");
 	StartTimer:EVERYMINUTE("Timer_EveryMinute", true);

@@ -5,7 +5,7 @@ TeleportToInterior(playerID, interiorID)
 	mysql_store_result();
 	if (strval(GetMySQLField("ID")))
 	{
-		SetPlayerPos(playerID, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")));
+		SetPlayerPosEx(playerID, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")));
 		SetPlayerFacingAngle(playerID, floatstr(GetMySQLField("Angle")));
 		SetPlayerInterior(playerID, strval(GetMySQLField("Interior")));
 		result = true;

@@ -50,6 +50,7 @@
 #include <grgserver\Functions\PayDay.inc>
 #include <grgserver\Functions\PlayRadioStation.inc>
 #include <grgserver\Functions\ReconnectNPCs.inc>
+#include <grgserver\Functions\ReloadObjects.inc>
 #include <grgserver\Functions\ReloadPermissions.inc>
 #include <grgserver\Functions\ReloadPickup.inc>
 #include <grgserver\Functions\ReloadPickups.inc>
@@ -65,6 +66,7 @@
 #include <grgserver\Functions\SetMySQLValue.inc>
 #include <grgserver\Functions\SetPlayerCheckpointEx.inc>
 #include <grgserver\Functions\SetPlayerMoney.inc>
+#include <grgserver\Functions\SetPlayerPosEx.inc>
 #include <grgserver\Functions\SetVehicleEngineState.inc>
 #include <grgserver\Functions\ShowDialog.inc>
 #include <grgserver\Functions\ShowInteriorDialog.inc>
@@ -170,6 +172,7 @@
 // RCON
 #include <grgserver\RCON\rcon_cmds.inc>
 #include <grgserver\RCON\rcon_reconnectnpcs.inc>
+#include <grgserver\RCON\rcon_reloadobjects.inc>
 #include <grgserver\RCON\rcon_reloadpermissions.inc>
 #include <grgserver\RCON\rcon_reloadpickups.inc>
 #include <grgserver\RCON\rcon_reloadsavedvehicles.inc>

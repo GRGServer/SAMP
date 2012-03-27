@@ -14,7 +14,7 @@ CMD:exit(playerid, params[], 101)
 	}
 	else
 	{
-		SetPlayerPos(playerid, PVar:playerid[SHOWINTERIOR_OLDPOSX], PVar:playerid[SHOWINTERIOR_OLDPOSY], PVar:playerid[SHOWINTERIOR_OLDPOSZ]);
+		SetPlayerPosEx(playerid, PVar:playerid[SHOWINTERIOR_OLDPOSX], PVar:playerid[SHOWINTERIOR_OLDPOSY], PVar:playerid[SHOWINTERIOR_OLDPOSZ]);
 		SetPlayerInterior(playerid, PVar:playerid[SHOWINTERIOR_OLDINTERIOR]);
 		PVar:playerid[SHOWINTERIOR_OLDINTERIOR] = -1;
 		return COMMAND_OK;

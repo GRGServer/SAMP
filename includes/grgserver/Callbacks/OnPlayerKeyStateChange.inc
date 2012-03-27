@@ -75,7 +75,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 						PVar:playerid[HOTEL_PREVIOUSPOSITION_X] = posX;
 						PVar:playerid[HOTEL_PREVIOUSPOSITION_Y] = posY;
 						PVar:playerid[HOTEL_PREVIOUSPOSITION_Z] = posZ;
-						SetPlayerPos(playerid, HOTEL_RECEPTION_POSX, HOTEL_RECEPTION_POSY, HOTEL_RECEPTION_POSZ);
+						SetPlayerPosEx(playerid, HOTEL_RECEPTION_POSX, HOTEL_RECEPTION_POSY, HOTEL_RECEPTION_POSZ);
 						SetPlayerFacingAngle(playerid, HOTEL_RECEPTION_ANGLE);
 						SetPlayerInterior(playerid, HOTEL_RECEPTION_INTERIOR);
 						SetPlayerVirtualWorld(playerid, buildingID);
