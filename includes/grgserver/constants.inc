@@ -10,7 +10,7 @@ enum
 // Command returns
 enum
 {
-	COMMAND_NOT_FOUND,// Must be the first!
+	COMMAND_NOT_FOUND,// Must be the first (0)!
 	COMMAND_ERROR,
 	COMMAND_NOT_IN_VEHICLE,
 	COMMAND_NPC_ONLY,
@@ -78,6 +78,15 @@ enum
 {
 	INTERIORDIALOG_ADDBUILDING,
 	INTERIORDIALOG_SHOWINTERIOR
+}
+
+
+// Message box styles
+enum
+{
+	MSGBOXSTYLE_OK,// Must be the first to be the default (0)
+	MSGBOXSTYLE_OKCANCEL,
+	MSGBOXSTYLE_YESNO
 }
 
 

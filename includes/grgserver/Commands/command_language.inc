@@ -1,12 +1,12 @@
 CMD:language(playerid, params[], 8)
 {
-	if (!strcmp(PVar:playerid[LANGUAGE], "de", true))
+	if (PVar:playerid[LANGUAGE] == LANGUAGE_GERMAN)
 	{
-		PVar:playerid[LANGUAGE] = "en";
+		PVar:playerid[LANGUAGE] = LANGUAGE_ENGLISH;
 	}
 	else
 	{
-		PVar:playerid[LANGUAGE] = "de";
+		PVar:playerid[LANGUAGE] = LANGUAGE_GERMAN;
 	}
 	ReloadTextDraws(playerid);
 	SendClientMessageEx(playerid, COLOR_INFO, 24);

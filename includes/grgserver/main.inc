@@ -5,6 +5,7 @@
 #include <grgserver\macros.inc>
 
 // Structures
+#include <grgserver\Structures\enum_languageString.inc>
 #include <grgserver\Structures\enum_permission.inc>
 #include <grgserver\Structures\enum_pickup.inc>
 #include <grgserver\Structures\enum_pickupLoader.inc>
@@ -50,6 +51,7 @@
 #include <grgserver\Functions\PayDay.inc>
 #include <grgserver\Functions\PlayRadioStation.inc>
 #include <grgserver\Functions\ReconnectNPCs.inc>
+#include <grgserver\Functions\ReloadLanguageStrings.inc>
 #include <grgserver\Functions\ReloadObjects.inc>
 #include <grgserver\Functions\ReloadPermissions.inc>
 #include <grgserver\Functions\ReloadPickup.inc>
@@ -70,6 +72,7 @@
 #include <grgserver\Functions\SetVehicleEngineState.inc>
 #include <grgserver\Functions\ShowDialog.inc>
 #include <grgserver\Functions\ShowInteriorDialog.inc>
+#include <grgserver\Functions\ShowMsgBox.inc>
 #include <grgserver\Functions\ShowNews.inc>
 #include <grgserver\Functions\StartNPCPlayback.inc>
 #include <grgserver\Functions\StopRadioStation.inc>
@@ -172,6 +175,7 @@
 // RCON
 #include <grgserver\RCON\rcon_cmds.inc>
 #include <grgserver\RCON\rcon_reconnectnpcs.inc>
+#include <grgserver\RCON\rcon_reloadlanguagestrings.inc>
 #include <grgserver\RCON\rcon_reloadobjects.inc>
 #include <grgserver\RCON\rcon_reloadpermissions.inc>
 #include <grgserver\RCON\rcon_reloadpickups.inc>

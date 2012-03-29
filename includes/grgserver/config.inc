@@ -58,6 +58,12 @@
 #define JOB_VEHICLEDEALER			1
 
 
+// Language configuration
+#define LANGUAGE_ENGLISH			0
+#define LANGUAGE_GERMAN				1
+#define LANGUAGE_MAXSTRINGS			200
+
+
 // MySQL development database credentials
 #define MYSQL_DEV_DATABASE			"grg_dev"
 #define MYSQL_DEV_HOST				"127.0.0.1"
@@ -119,7 +125,7 @@
 // String sizes
 #define STRINGLENGTH_BUILDINGTYPE	10
 #define STRINGLENGTH_DATETIME		20
-#define STRINGLENGTH_LANGUAGEKEY	3// Language keys like "de" or "en"
+#define STRINGLENGTH_LANGUAGESTRING	256
 #define STRINGLENGTH_LOCATION		100
 #define STRINGLENGTH_PICKUPTYPE		20
 #define STRINGLENGTH_VEHICLENAME	20

@@ -1,5 +1,6 @@
 // Variables
 new ircBot;
+new languageStrings[LANGUAGE_MAXSTRINGS][enum_languageString];
 new maxPlayers;
 new permissions[MAX_PLAYERS][enum_permission];
 new pickupLoader[MAX_PICKUPS][enum_pickupLoader];

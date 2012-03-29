@@ -1,3 +1,17 @@
+/*
+	Description:
+		Spawn a pickup and add a 3D text label
+		Adds the pickup to the database if saveToDB is true
+	Parameters:
+		pickupID: ID from pickups table in database (Only required if saveToDB is false)
+		type: Type of the pickup as string (See GetPickupInfoByType for details)
+		posX/Y/Z: Position as float
+		saveToDB: Adds the pickup to the database if true (Used to create new pickup)
+	Return:
+		-1: Invalid pickup type
+		-2: Spawned without adding to pickups table
+		ID: The ID of the new pickup in the pickups table
+*/
 AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 {
 	new pickupTypeID;
