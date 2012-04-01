@@ -167,6 +167,7 @@
 #include <grgserver\Commands\command_rc.inc>
 #include <grgserver\Commands\command_recnpc.inc>
 #include <grgserver\Commands\command_reloadplayer.inc>
+#include <grgserver\Commands\command_resetcam.inc>
 #include <grgserver\Commands\command_saveveh.inc>
 #include <grgserver\Commands\command_setcampos.inc>
 #include <grgserver\Commands\command_showinterior.inc>
