@@ -1,6 +1,6 @@
 /*  SA-MP Player Functions
  *
- *  (c) Copyright 2005-2011, SA-MP Team
+ *  (c) Copyright 2005-2012, SA-MP Team
  *
  */
 
@@ -27,6 +27,7 @@
 #define SPECIAL_ACTION_SMOKE_CIGGY		21
 #define SPECIAL_ACTION_DRINK_WINE		22
 #define SPECIAL_ACTION_DRINK_SPRUNK		23
+#define SPECIAL_ACTION_CUFFED			24
 
 #define FIGHT_STYLE_NORMAL				4
 #define FIGHT_STYLE_BOXING				5
@@ -127,6 +128,26 @@ native RemoveBuildingForPlayer(playerid, modelid, Float:fX, Float:fY, Float:fZ, 
 native SetPlayerAttachedObject(playerid, index, modelid, bone, Float:fOffsetX = 0.0, Float:fOffsetY = 0.0, Float:fOffsetZ = 0.0, Float:fRotX = 0.0, Float:fRotY = 0.0, Float:fRotZ = 0.0, Float:fScaleX = 1.0, Float:fScaleY = 1.0, Float:fScaleZ = 1.0);
 native RemovePlayerAttachedObject(playerid, index);
 native IsPlayerAttachedObjectSlotUsed(playerid, index);
+native EditAttachedObject(playerid, index);
+
+// Per-player TextDraws
+native PlayerText:CreatePlayerTextDraw(playerid, Float:x, Float:y, text[]);
+native PlayerTextDrawDestroy(playerid, PlayerText:text);
+native PlayerTextDrawLetterSize(playerid, PlayerText:text, Float:x, Float:y);
+native PlayerTextDrawTextSize(playerid, PlayerText:text, Float:x, Float:y);
+native PlayerTextDrawAlignment(playerid, PlayerText:text, alignment);
+native PlayerTextDrawColor(playerid, PlayerText:text, color);
+native PlayerTextDrawUseBox(playerid, PlayerText:text, use);
+native PlayerTextDrawBoxColor(playerid, PlayerText:text, color);
+native PlayerTextDrawSetShadow(playerid, PlayerText:text, size);
+native PlayerTextDrawSetOutline(playerid, PlayerText:text, size);
+native PlayerTextDrawBackgroundColor(playerid, PlayerText:text, color);
+native PlayerTextDrawFont(playerid, PlayerText:text, font);
+native PlayerTextDrawSetProportional(playerid, PlayerText:text, set);
+native PlayerTextDrawSetSelectable(playerid, PlayerText:text, set);
+native PlayerTextDrawShow(playerid, PlayerText:text);
+native PlayerTextDrawHide(playerid, PlayerText:text);
+native PlayerTextDrawSetString(playerid, PlayerText:text, string[]);
 
 // Per-player variable system (PVars)
 native SetPVarInt(playerid, varname[], int_value);
@@ -185,11 +206,19 @@ native AllowPlayerTeleport(playerid, allow);
 
 // Player camera
 native SetPlayerCameraPos(playerid,Float:x, Float:y, Float:z);
-native SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z);
+
+#define CAMERA_CUT	2
+#define CAMERA_MOVE 1
+
+native SetPlayerCameraLookAt(playerid, Float:x, Float:y, Float:z, cut = CAMERA_CUT);
 native SetCameraBehindPlayer(playerid);
 native GetPlayerCameraPos(playerid, &Float:x, &Float:y, &Float:z);
 native GetPlayerCameraFrontVector(playerid, &Float:x, &Float:y, &Float:z);
 native GetPlayerCameraMode(playerid);
+native AttachCameraToObject(playerid, objectid);
+native AttachCameraToPlayerObject(playerid, playerobjectid);
+native InterpolateCameraPos(playerid, Float:FromX, Float:FromY, Float:FromZ, Float:ToX, Float:ToY, Float:ToZ, time, cut = CAMERA_CUT);
+native InterpolateCameraLookAt(playerid, Float:FromX, Float:FromY, Float:FromZ, Float:ToX, Float:ToY, Float:ToZ, time, cut = CAMERA_CUT);
 
 // Player conditionals
 native IsPlayerConnected(playerid);
@@ -222,3 +251,6 @@ native PlayerSpectateVehicle(playerid, targetvehicleid, mode = SPECTATE_MODE_NOR
 
 native StartRecordingPlayerData(playerid, recordtype, recordname[]);
 native StopRecordingPlayerData(playerid);
+
+native SelectTextDraw(playerid, hovercolor); // enables the mouse so the player can select a textdraw
+native CancelSelectTextDraw(playerid);	// cancel textdraw selection with the mouse

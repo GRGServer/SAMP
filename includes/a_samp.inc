@@ -1,6 +1,6 @@
 /*  SA-MP Functions
  *
- *  (c) Copyright 2005-2011, SA-MP Team
+ *  (c) Copyright 2005-2012, SA-MP Team
  *
  */
 
@@ -36,6 +36,7 @@
 #define INVALID_OBJECT_ID						(0xFFFF)
 #define MAX_GANG_ZONES							(1024)
 #define MAX_TEXT_DRAWS							(2048)
+#define MAX_PLAYER_TEXT_DRAWS					(256)
 #define MAX_MENUS								(128)
 #define MAX_3DTEXT_GLOBAL						(1024)
 #define MAX_3DTEXT_PLAYER						(1024)
@@ -117,6 +118,7 @@ native GetServerVarAsInt(const varname[]);
 native GetServerVarAsBool(const varname[]);
 native GetPlayerNetworkStats(playerid, retstr[], retstr_size);
 native GetNetworkStats(retstr[], retstr_size);
+native GetPlayerVersion(playerid, const version[], len); // Returns the SA-MP client revision as reported by the player
 
 // Menu
 native Menu:CreateMenu(const title[], columns, Float:x, Float:y, Float:col1width, Float:col2width = 0.0);
@@ -144,6 +146,7 @@ native TextDrawSetOutline(Text:text, size);
 native TextDrawBackgroundColor(Text:text, color);
 native TextDrawFont(Text:text, font);
 native TextDrawSetProportional(Text:text, set);
+native TextDrawSetSelectable(Text:text, set);
 native TextDrawShowForPlayer(playerid, Text:text);
 native TextDrawHideForPlayer(playerid, Text:text);
 native TextDrawShowForAll(Text:text);
@@ -324,8 +327,27 @@ forward OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]);
 forward OnPlayerTakeDamage(playerid, issuerid, Float:amount, weaponid);
 forward OnPlayerGiveDamage(playerid, damagedid, Float:amount, weaponid);
 forward OnPlayerClickMap(playerid, Float:fX, Float:fY, Float:fZ);
+forward OnPlayerClickTextDraw(playerid, Text:clickedid);
+forward OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid);
 
 #define CLICK_SOURCE_SCOREBOARD		0
 forward OnPlayerClickPlayer(playerid, clickedplayerid, source);
+
+#define EDIT_RESPONSE_CANCEL		0
+#define EDIT_RESPONSE_FINAL			1
+#define EDIT_RESPONSE_UPDATE		2
+
+forward OnPlayerEditObject( playerid, playerobject, objectid, response, 
+Float:fX, Float:fY, Float:fZ, Float:fRotX, Float:fRotY, Float:fRotZ );
+
+forward OnPlayerEditAttachedObject( playerid, response, index, modelid, boneid,
+Float:fOffsetX, Float:fOffsetY, Float:fOffsetZ,
+Float:fRotX, Float:fRotY, Float:fRotZ,
+Float:fScaleX, Float:fScaleY, Float:fScaleZ );
+
+#define SELECT_OBJECT_GLOBAL_OBJECT	1
+#define SELECT_OBJECT_PLAYER_OBJECT 2
+
+forward OnPlayerSelectObject(playerid, type, objectid, modelid, Float:fX, Float:fY, Float:fZ);
 
 // --------------------------------------------------

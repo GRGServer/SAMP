@@ -1,6 +1,6 @@
 /*  SA-MP Object Functions
  *
- *  (c) Copyright 2005-2011, SA-MP Team
+ *  (c) Copyright 2005-2012, SA-MP Team
  *
  */
 
@@ -25,7 +25,12 @@ native DestroyObject(objectid);
 native MoveObject(objectid, Float:X, Float:Y, Float:Z, Float:Speed, Float:RotX = -1000.0, Float:RotY = -1000.0, Float:RotZ = -1000.0);
 native StopObject(objectid);
 native IsObjectMoving(objectid);
+native EditObject(playerid, objectid);
+native EditPlayerObject(playerid, objectid);
+native SelectObject(playerid);
+native CancelEdit(playerid);
 native CreatePlayerObject(playerid, modelid, Float:X, Float:Y, Float:Z, Float:rX, Float:rY, Float:rZ, Float:DrawDistance = 0.0);
+native AttachPlayerObjectToVehicle(playerid, objectid, vehicleid, Float:fOffsetX, Float:fOffsetY, Float:fOffsetZ, Float:fRotX, Float:fRotY, Float:RotZ);
 native SetPlayerObjectPos(playerid, objectid, Float:X, Float:Y, Float:Z);
 native GetPlayerObjectPos(playerid, objectid, &Float:X, &Float:Y, &Float:Z);
 native SetPlayerObjectRot(playerid, objectid, Float:RotX, Float:RotY, Float:RotZ);
