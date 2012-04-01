@@ -54,14 +54,21 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					case PICKUPTYPE_GASSTATION:
 					{
 						new vehicleID = GetPlayerVehicleID(playerid);
-						new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
-						if (maximum > 0)
+						if (vehicleID)
 						{
-							ShowDialog(playerid, DIALOG_REFUEL, FormatMoney(maximum));
+							new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
+							if (maximum > 0)
+							{
+								ShowDialog(playerid, DIALOG_REFUEL, FormatMoney(maximum));
+							}
+							else
+							{
+								SendClientMessageEx(playerid, COLOR_ERROR, 140);
+							}
 						}
 						else
 						{
-							SendClientMessageEx(playerid, COLOR_ERROR, 140);
+							SendClientMessageEx(playerid, COLOR_ERROR, 146);
 						}
 					}
 					case PICKUPTYPE_HOTEL:

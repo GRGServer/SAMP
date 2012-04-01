@@ -2,19 +2,14 @@ PCMD:setcampos[SERVERADMIN](playerID, params[], 181)
 {
 	new moveLook[10];
 	new startStop[10];
-	new time;
-	if ((sscanf(params, "ssd", moveLook, startStop, time) && sscanf(params, "ss", moveLook, startStop)) || (strcmp(moveLook, "Move", true) && strcmp(moveLook, "Look", true)) || (strcmp(startStop, "Start", true) && strcmp(startStop, "End", true)))
+	if (sscanf(params, "ss", moveLook, startStop) || (strcmp(moveLook, "Move", true) && strcmp(moveLook, "Look", true)) || (strcmp(startStop, "Start", true) && strcmp(startStop, "End", true)))
 	{
-		CmdUsageMsg(playerID, "setcampos", "Move/Look", "Start/End", "[Time]");
+		CmdUsageMsg(playerID, "setcampos", "Move/Look", "Start/End");
 		return COMMAND_USAGE;
 	}
 	if (!PVar:playerID[CAMERAMOVEMENT_EDITID])
 	{
-		if (!time)
-		{
-			time = 5000;
-		}
-		MySQLQuery("INSERT INTO `cameramovements` (`Time`) VALUES('%d')", time);
+		mysql_query("INSERT INTO `cameramovements` (`Time`) VALUES('5000')");
 		PVar:playerID[CAMERAMOVEMENT_EDITID] = mysql_insert_id();
 	}
 	if (!PVar:playerID[CAMERAMOVEMENT_EDITID])
@@ -27,10 +22,6 @@ PCMD:setcampos[SERVERADMIN](playerID, params[], 181)
 	new Float:posZ;
 	GetPlayerPos(playerID, posX, posY, posZ);
 	MySQLQuery("UPDATE `cameramovements` SET `%s%sX` = '%f', `%s%sY` = '%f', `%s%sZ` = '%f' WHERE `ID` = '%d'", startStop, moveLook, posX, startStop, moveLook, posY, startStop, moveLook, posZ, PVar:playerID[CAMERAMOVEMENT_EDITID]);
-	if (time)
-	{
-		MySQLQuery("UPDATE `cameramovements` SET `Time` = '%d' WHERE `ID` = '%d'", time, PVar:playerID[CAMERAMOVEMENT_EDITID]);
-	}
 	SendClientMessageEx(playerID, COLOR_INFO, 186, PVar:playerID[CAMERAMOVEMENT_EDITID]);
 	return COMMAND_OK;
 }

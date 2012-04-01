@@ -1,12 +1,6 @@
 PCMD:newcammovement[SERVERADMIN](playerID, params[], 181)
 {
-	new time;
-	sscanf(params, "d", time);
-	if (!time)
-	{
-		time = 5000;
-	}
-	MySQLQuery("INSERT INTO `cameramovements` (`Time`) VALUES('%d')", time);
+	mysql_query("INSERT INTO `cameramovements` (`Time`) VALUES('5000')");
 	PVar:playerID[CAMERAMOVEMENT_EDITID] = mysql_insert_id();
 	if (!PVar:playerID[CAMERAMOVEMENT_EDITID])
 	{

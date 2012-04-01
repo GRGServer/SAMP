@@ -128,6 +128,7 @@
 #include <grgserver\Timers\Timer_HideRadioDisplay.inc>
 #include <grgserver\Timers\Timer_Hourly.inc>
 #include <grgserver\Timers\Timer_PickupTimeout.inc>
+#include <grgserver\Timers\Timer_PlayCameraMovement.inc>
 #include <grgserver\Timers\Timer_RefuelVehicle.inc>
 #include <grgserver\Timers\Timer_Slow.inc>
 #include <grgserver\Timers\Timer_SpawnPlayer.inc>
@@ -139,6 +140,7 @@
 #include <grgserver\Commands\command_addbuilding.inc>
 #include <grgserver\Commands\command_addpickup.inc>
 #include <grgserver\Commands\command_addstaticnpc.inc>
+#include <grgserver\Commands\command_cammovementcfg.inc>
 #include <grgserver\Commands\command_changepw.inc>
 #include <grgserver\Commands\command_checkpermissions.inc>
 #include <grgserver\Commands\command_cmds.inc>
