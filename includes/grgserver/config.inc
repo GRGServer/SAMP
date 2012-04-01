@@ -27,6 +27,8 @@
 
 
 // Gas station configuration
+#define GASSTATION_MAXDIFFERENCE	15// Maximum difference between minimum and maximum gas price
+#define GASSTATION_MINPRICE			158// Minimum gas price
 #define GASSTATION_REFUELSPEED		500// Time per liter
 
 
@@ -62,6 +64,10 @@
 #define LANGUAGE_ENGLISH			0
 #define LANGUAGE_GERMAN				1
 #define LANGUAGE_MAXSTRINGS			200
+
+
+// Limits
+#define MAX_DYNAMICOBJECTS			2000// Used for dynamic objects array
 
 
 // MySQL development database credentials
