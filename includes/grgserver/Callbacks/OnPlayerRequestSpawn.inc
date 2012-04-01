@@ -3,9 +3,10 @@ public OnPlayerRequestSpawn(playerid)
 	if (PVar:playerid[REGISTER_SELECTSKIN])
 	{
 		PVar:playerid[REGISTER_SELECTSKIN] = false;
-		MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `Gender`, `BirthDate`, `Location`, `RegisterTime`, `LoginTime`) VALUES ('%s', '%s', '%c', '%s', '%s', NOW(), NOW())", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(PVar:playerid[REGISTERPASSWORD]), PVar:playerid[GENDER], PVar:playerid[BIRTHDATE], MySQLEscapeString(PVar:playerid[REGISTERLOCATION]));
+		MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `Gender`, `BirthDate`, `Location`) VALUES('%s', '%s', '%c', '%s', '%s')", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(PVar:playerid[REGISTERPASSWORD]), PVar:playerid[GENDER], PVar:playerid[BIRTHDATE], MySQLEscapeString(PVar:playerid[REGISTERLOCATION]));
 		PVar:playerid[USERID] = mysql_insert_id();
 		PVar:playerid[ONLINESINCE] = gettime();
+		UpdateUserDB(playerid, "`RegisterTime`, `LoginTime`, `ClientVersion`) VALUES (NOW(), NOW(), '%s')", GetPlayerVersionEx(playerid));
 		SavePlayer(playerid);
 		ReloadTextDraws(playerid);
 		printf("Player registered: %s (UserID: %d)", GetPlayerNameEx(playerid), PVar:playerid[USERID]);

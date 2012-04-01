@@ -37,6 +37,7 @@
 #include <grgserver\Functions\GetPlayerByUserID.inc>
 #include <grgserver\Functions\GetPlayerID.inc>
 #include <grgserver\Functions\GetPlayerNameEx.inc>
+#include <grgserver\Functions\GetPlayerVersionEx.inc>
 #include <grgserver\Functions\GetVehicleEngineState.inc>
 #include <grgserver\Functions\GetWeaponNameEx.inc>
 #include <grgserver\Functions\GivePlayerMoneyEx.inc>
@@ -49,6 +50,7 @@
 #include <grgserver\Functions\MoneyTransaction.inc>
 #include <grgserver\Functions\MySQLEscapeString.inc>
 #include <grgserver\Functions\PayDay.inc>
+#include <grgserver\Functions\PlayCameraMovement.inc>
 #include <grgserver\Functions\PlayRadioStation.inc>
 #include <grgserver\Functions\ReconnectNPCs.inc>
 #include <grgserver\Functions\ReloadLanguageStrings.inc>
@@ -155,21 +157,25 @@
 #include <grgserver\Commands\command_me.inc>
 #include <grgserver\Commands\command_money.inc>
 #include <grgserver\Commands\command_motor.inc>
+#include <grgserver\Commands\command_newcammovement.inc>
 #include <grgserver\Commands\command_news.inc>
 #include <grgserver\Commands\command_npccmd.inc>
 #include <grgserver\Commands\command_ordervehicle.inc>
 #include <grgserver\Commands\command_payday.inc>
+#include <grgserver\Commands\command_playcammovement.inc>
 #include <grgserver\Commands\command_radio.inc>
 #include <grgserver\Commands\command_rc.inc>
 #include <grgserver\Commands\command_recnpc.inc>
 #include <grgserver\Commands\command_reloadplayer.inc>
 #include <grgserver\Commands\command_saveveh.inc>
+#include <grgserver\Commands\command_setcampos.inc>
 #include <grgserver\Commands\command_showinterior.inc>
 #include <grgserver\Commands\command_stats.inc>
 #include <grgserver\Commands\command_stoprec.inc>
 #include <grgserver\Commands\command_teleport.inc>
 #include <grgserver\Commands\command_teststart.inc>
 #include <grgserver\Commands\command_testunfreeze.inc>
+#include <grgserver\Commands\command_usecammovement.inc>
 #include <grgserver\Commands\command_veh.inc>
 
 // RCON

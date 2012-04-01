@@ -12,7 +12,7 @@ ReloadLanguageStrings()
 	while (FetchMySQLRow())
 	{
 		new id = strval(GetMySQLField("ID"));
-		format(languageStrings[id][LANGUAGESTRING_ENGLISH], STRINGLENGTH_LANGUAGESTRING, GetMySQLField("English"));
-		format(languageStrings[id][LANGUAGESTRING_GERMAN], STRINGLENGTH_LANGUAGESTRING, GetMySQLField("German"));
+		strcat(languageStrings[id][LANGUAGESTRING_ENGLISH], GetMySQLField("English"), STRINGLENGTH_LANGUAGESTRING);
+		strcat(languageStrings[id][LANGUAGESTRING_GERMAN], GetMySQLField("German"), STRINGLENGTH_LANGUAGESTRING);
 	}
 }

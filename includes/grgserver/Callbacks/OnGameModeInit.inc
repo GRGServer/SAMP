@@ -84,6 +84,7 @@ public OnGameModeInit()
 	print("* Doing misc stuff...");
 	FormatNew:gameModeTextString[30]("GRG Server r%d", COMPILER_SVN_REVISION);
 	SetGameModeText(gameModeTextString);
+	EnableStuntBonusForAll(false);
 	DisableInteriorEnterExits();
 	Streamer_VisibleItems(STREAMER_TYPE_OBJECT, MAX_OBJECTS);
 	UpdateGasPrice();
