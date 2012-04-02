@@ -122,6 +122,7 @@
 #include <grgserver\Callbacks\OnVehicleSpawn.inc>
 
 // Timers
+#include <grgserver\Timers\Timer_CameraMovementEnd.inc>
 #include <grgserver\Timers\Timer_EveryMinute.inc>
 #include <grgserver\Timers\Timer_Fast.inc>
 #include <grgserver\Timers\Timer_FlyWithPlane.inc>
@@ -130,7 +131,6 @@
 #include <grgserver\Timers\Timer_PickupTimeout.inc>
 #include <grgserver\Timers\Timer_PlayCameraMovement.inc>
 #include <grgserver\Timers\Timer_RefuelVehicle.inc>
-#include <grgserver\Timers\Timer_ResetCameraMovement.inc>
 #include <grgserver\Timers\Timer_Slow.inc>
 #include <grgserver\Timers\Timer_SpawnPlayer.inc>
 #include <grgserver\Timers\Timer_StableCheck.inc>
