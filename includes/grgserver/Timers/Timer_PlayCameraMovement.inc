@@ -15,6 +15,7 @@ Timer:PlayCameraMovement(playerID, movementID)
 	new Float:endLookY = floatstr(GetMySQLField("EndLookY"));
 	new Float:endLookZ = floatstr(GetMySQLField("EndLookZ"));
 	new time = strval(GetMySQLField("Time"));
+	new waitEnd = strval(GetMySQLField("WaitEnd"));
 	mysql_free_result();
 	if (!endMoveX && !endMoveY && !endMoveZ)
 	{
@@ -30,4 +31,12 @@ Timer:PlayCameraMovement(playerID, movementID)
 		endLookZ = startLookZ;
 	}
 	InterpolateCameraLookAt(playerID, startLookX, startLookY, startLookZ, endLookX, endLookY, endLookZ, time, CAMERA_CUT);
+	if (waitEnd < 0)
+	{
+		TogglePlayerControllable(playerID, true);
+	}
+	else
+	{
+		SetTimerEx("Timer_ResetCameraMovement", time + waitEnd, false, "d", playerID);
+	}
 }

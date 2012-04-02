@@ -130,6 +130,7 @@
 #include <grgserver\Timers\Timer_PickupTimeout.inc>
 #include <grgserver\Timers\Timer_PlayCameraMovement.inc>
 #include <grgserver\Timers\Timer_RefuelVehicle.inc>
+#include <grgserver\Timers\Timer_ResetCameraMovement.inc>
 #include <grgserver\Timers\Timer_Slow.inc>
 #include <grgserver\Timers\Timer_SpawnPlayer.inc>
 #include <grgserver\Timers\Timer_StableCheck.inc>
@@ -155,6 +156,7 @@
 #include <grgserver\Commands\command_help.inc>
 #include <grgserver\Commands\command_jetpack.inc>
 #include <grgserver\Commands\command_kick.inc>
+#include <grgserver\Commands\command_kill.inc>
 #include <grgserver\Commands\command_language.inc>
 #include <grgserver\Commands\command_me.inc>
 #include <grgserver\Commands\command_money.inc>

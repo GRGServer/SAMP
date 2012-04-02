@@ -23,6 +23,10 @@ public OnPlayerSpawn(playerid)
 		SetPlayerInterior(playerid, strval(GetUserDBValue(playerid, "Interior")));
 		ShowNews(playerid, PVar:playerid[LASTNEWSID]);
 	}
+	else
+	{
+		PlayCameraMovement(playerid, 4);
+	}
 	SetPlayerSkin(playerid, PVar:playerid[SKIN]);
 	return true;
 }

@@ -12,5 +12,6 @@ PlayCameraMovement(playerID, movementID)
 	mysql_free_result();
 	SetPlayerCameraPos(playerID, startMoveX, startMoveY, startMoveZ);
 	SetPlayerCameraLookAt(playerID, startLookX, startLookY, startLookZ);
+	TogglePlayerControllable(playerID, false);
 	SetTimerEx("Timer_PlayCameraMovement", waitStart, false, "dd", playerID, movementID);
 }

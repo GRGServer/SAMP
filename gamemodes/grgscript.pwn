@@ -3,6 +3,9 @@
 // SAMP standard includes
 #include <a_samp>
 
+// Custom includes configuration
+#define TIMER_FIX_PERFORMANCE_CHECKS false
+
 // Custom includes
 #include <formatnumber>
 #include <irc>
@@ -11,6 +14,7 @@
 #include <regex>
 #include <sscanf>
 #include <streamer>
+#include <timerfix>
 #include <zcmd>
 
 // GRG Server main include
