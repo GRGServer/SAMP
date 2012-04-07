@@ -29,6 +29,7 @@ native EditObject(playerid, objectid);
 native EditPlayerObject(playerid, objectid);
 native SelectObject(playerid);
 native CancelEdit(playerid);
+native SetObjectMaterial(objectid, materialindex, modelid, txdname[], texturename[], materialcolor=0);
 native CreatePlayerObject(playerid, modelid, Float:X, Float:Y, Float:Z, Float:rX, Float:rY, Float:rZ, Float:DrawDistance = 0.0);
 native AttachPlayerObjectToVehicle(playerid, objectid, vehicleid, Float:fOffsetX, Float:fOffsetY, Float:fOffsetZ, Float:fRotX, Float:fRotY, Float:RotZ);
 native SetPlayerObjectPos(playerid, objectid, Float:X, Float:Y, Float:Z);
@@ -41,3 +42,4 @@ native MovePlayerObject(playerid, objectid, Float:X, Float:Y, Float:Z, Float:Spe
 native StopPlayerObject(playerid, objectid);
 native IsPlayerObjectMoving(playerid, objectid);
 native AttachPlayerObjectToPlayer(objectplayer, objectid, attachplayer, Float:OffsetX, Float:OffsetY, Float:OffsetZ, Float:rX, Float:rY, Float:rZ);
+native SetPlayerObjectMaterial(playerid, objectid, materialindex, modelid, txdname[], texturename[], materialcolor=0);
