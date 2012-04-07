@@ -1,6 +1,4 @@
-GivePlayerMoneyEx(playerID, Float:amount)
+GivePlayerMoneyEx(playerID, type, Float:amount)
 {
-	PVar:playerID[MONEY] = floatadd(PVar:playerID[MONEY], amount);
-	ResetPlayerMoney(playerID);
-	GivePlayerMoney(playerID, floatround(PVar:playerID[MONEY], floatround_tozero) * 100);
+	SetPlayerMoney(playerID, type, floatadd(PVar:playerID[MONEY], amount));
 }

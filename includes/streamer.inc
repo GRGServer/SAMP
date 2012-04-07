@@ -1,5 +1,5 @@
 /*
-    SA-MP Streamer Plugin v2.6
+    SA-MP Streamer Plugin v2.6.1
     Copyright © 2012 Incognito
 
     This program is free software: you can redistribute it and/or modify
@@ -34,16 +34,36 @@
 #define STREAMER_AREA_TYPE_CUBE (3)
 #define STREAMER_AREA_TYPE_POLYGON (4)
 
+#define STREAMER_OBJECT_TYPE_GLOBAL (0)
+#define STREAMER_OBJECT_TYPE_PLAYER (1)
+#define STREAMER_OBJECT_TYPE_DYNAMIC (2)
+
 #if !defined FLOAT_INFINITY
     #define FLOAT_INFINITY (Float:0x7F800000)
 #endif
+
+// Include File Version
+
+public Streamer_IncludeFileVersion = 0x26102;
+
+#pragma unused Streamer_IncludeFileVersion
 
 // Enumerator
 
 enum
 {
+	E_STREAMER_ATTACHED_OBJECT,
 	E_STREAMER_ATTACHED_PLAYER,
 	E_STREAMER_ATTACHED_VEHICLE,
+	E_STREAMER_ATTACH_OFFSET_X,
+	E_STREAMER_ATTACH_OFFSET_Y,
+	E_STREAMER_ATTACH_OFFSET_Z,
+	E_STREAMER_ATTACH_R_X,
+	E_STREAMER_ATTACH_R_Y,
+	E_STREAMER_ATTACH_R_Z,
+	E_STREAMER_ATTACH_X,
+	E_STREAMER_ATTACH_Y,
+	E_STREAMER_ATTACH_Z,
 	E_STREAMER_COLOR,
 	E_STREAMER_DRAW_DISTANCE,
 	E_STREAMER_EXTRA_ID,
@@ -90,9 +110,10 @@ native Streamer_CellSize(Float:size);
 
 // Update Natives
 
+native Streamer_ProcessActiveItems();
+native Streamer_ToggleIdleUpdate(playerid, toggle);
 native Streamer_Update(playerid);
 native Streamer_UpdateEx(playerid, Float:x, Float:y, Float:z, worldid = -1, interiorid = -1);
-native Streamer_ToggleIdleUpdate(playerid, toggle);
 
 // Data Manipulation Natives
 
@@ -109,6 +130,7 @@ native Streamer_GetUpperBound(type);
 
 // Miscellaneous Natives
 
+native Streamer_GetDistanceToItem(Float:x, Float:y, Float:z, type, {Text3D,_}:id, &Float:distance);
 native Streamer_IsItemVisible(playerid, type, {Text3D,_}:id);
 native Streamer_DestroyAllVisibleItems(playerid, type);
 native Streamer_CountVisibleItems(playerid, type);
@@ -125,6 +147,10 @@ native GetDynamicObjectRot(objectid, &Float:rx, &Float:ry, &Float:rz);
 native MoveDynamicObject(objectid, Float:x, Float:y, Float:z, Float:speed, Float:rx = -1000.0, Float:ry = -1000.0, Float:rz = -1000.0);
 native StopDynamicObject(objectid);
 native IsDynamicObjectMoving(objectid);
+native AttachCameraToDynamicObject(playerid, objectid);
+native AttachDynamicObjectToVehicle(objectid, vehicleid, Float:offsetx, Float:offsety, Float:offsetz, Float:rx, Float:ry, Float:rz);
+native EditDynamicObject(playerid, objectid);
+native SetDynamicObjectMaterial(objectid, materialindex, modelid, txdname[], texturename[], materialcolor = 0);
 native DestroyAllDynamicObjects();
 native CountDynamicObjects();
 
@@ -144,6 +170,7 @@ native IsValidDynamicCP(checkpointid);
 native TogglePlayerDynamicCP(playerid, checkpointid, toggle);
 native TogglePlayerAllDynamicCPs(playerid, toggle);
 native IsPlayerInDynamicCP(playerid, checkpointid);
+native GetPlayerVisibleDynamicCP(playerid);
 native DestroyAllDynamicCPs();
 native CountDynamicCPs();
 
@@ -155,6 +182,7 @@ native IsValidDynamicRaceCP(checkpointid);
 native TogglePlayerDynamicRaceCP(playerid, checkpointid, toggle);
 native TogglePlayerAllDynamicRaceCPs(playerid, toggle);
 native IsPlayerInDynamicRaceCP(playerid, checkpointid);
+native GetPlayerVisibleDynamicRaceCP(playerid);
 native DestroyAllDynamicRaceCPs();
 native CountDynamicRaceCPs();
 
@@ -188,6 +216,9 @@ native TogglePlayerDynamicArea(playerid, areaid, toggle);
 native TogglePlayerAllDynamicAreas(playerid, toggle);
 native IsPlayerInDynamicArea(playerid, areaid);
 native IsPlayerInAnyDynamicArea(playerid);
+native IsPointInDynamicArea(areaid, Float:x, Float:y, Float:z);
+native IsPointInAnyDynamicArea(Float:x, Float:y, Float:z);
+native AttachDynamicAreaToObject(areaid, objectid, type = STREAMER_OBJECT_TYPE_DYNAMIC, playerid = INVALID_PLAYER_ID);
 native AttachDynamicAreaToPlayer(areaid, playerid);
 native AttachDynamicAreaToVehicle(areaid, vehicleid);
 native DestroyAllDynamicAreas();
@@ -209,11 +240,13 @@ native CreateDynamicPolygonEx(Float:points[], Float:minz = -FLOAT_INFINITY, Floa
 
 // Internal Natives
 
-native Streamer_CallbackHook(callback, ...);
+native Streamer_CallbackHook(callback, {Float,_}:...);
 
 // Callbacks
 
 forward OnDynamicObjectMoved(objectid);
+forward OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y, Float:z, Float:rx, Float:ry, Float:rz);
+forward OnPlayerSelectDynamicObject(playerid, objectid, modelid, Float:x, Float:y, Float:z);
 forward OnPlayerPickUpDynamicPickup(playerid, pickupid);
 forward OnPlayerEnterDynamicCP(playerid, checkpointid);
 forward OnPlayerLeaveDynamicCP(playerid, checkpointid);
@@ -226,14 +259,18 @@ forward OnPlayerLeaveDynamicArea(playerid, areaid);
 
 #define STREAMER_OPC (0)
 #define STREAMER_OPDC (1)
-#define STREAMER_OPPP (2)
-#define STREAMER_OPEC (3)
-#define STREAMER_OPLC (4)
-#define STREAMER_OPERC (5)
-#define STREAMER_OPLRC (6)
+#define STREAMER_OPEO (2)
+#define STREAMER_OPSO (3)
+#define STREAMER_OPPP (4)
+#define STREAMER_OPEC (5)
+#define STREAMER_OPLC (6)
+#define STREAMER_OPERC (7)
+#define STREAMER_OPLRC (8)
 
 static bool:Streamer_g_OPC = false;
 static bool:Streamer_g_OPDC = false;
+static bool:Streamer_g_OPEO = false;
+static bool:Streamer_g_OPSO = false;
 static bool:Streamer_g_OPPP = false;
 static bool:Streamer_g_OPEC = false;
 static bool:Streamer_g_OPLC = false;
@@ -244,6 +281,8 @@ public OnFilterScriptInit()
 {
 	Streamer_g_OPC = funcidx("Streamer_OnPlayerConnect") != -1;
 	Streamer_g_OPDC = funcidx("Streamer_OnPlayerDisconnect") != -1;
+	Streamer_g_OPEO = funcidx("Streamer_OnPlayerEditObject") != -1;
+	Streamer_g_OPSO = funcidx("Streamer_OnPlayerSelectObject") != -1;
 	Streamer_g_OPPP = funcidx("Streamer_OnPlayerPickUpPickup") != -1;
 	Streamer_g_OPEC = funcidx("Streamer_OnPlayerEnterCP") != -1;
 	Streamer_g_OPLC = funcidx("Streamer_OnPlayerLeaveCP") != -1;
@@ -269,6 +308,8 @@ public OnGameModeInit()
 {
 	Streamer_g_OPC = funcidx("Streamer_OnPlayerConnect") != -1;
 	Streamer_g_OPDC = funcidx("Streamer_OnPlayerDisconnect") != -1;
+	Streamer_g_OPEO = funcidx("Streamer_OnPlayerEditObject") != -1;
+	Streamer_g_OPSO = funcidx("Streamer_OnPlayerSelectObject") != -1;
 	Streamer_g_OPPP = funcidx("Streamer_OnPlayerPickUpPickup") != -1;
 	Streamer_g_OPEC = funcidx("Streamer_OnPlayerEnterCP") != -1;
 	Streamer_g_OPLC = funcidx("Streamer_OnPlayerLeaveCP") != -1;
@@ -333,6 +374,50 @@ public OnPlayerDisconnect(playerid, reason)
 #define OnPlayerDisconnect Streamer_OnPlayerDisconnect
 
 forward Streamer_OnPlayerDisconnect(playerid, reason);
+
+public OnPlayerEditObject(playerid, playerobject, objectid, response, Float:fX, Float:fY, Float:fZ, Float:fRotX, Float:fRotY, Float:fRotZ)
+{
+	if (!IsPlayerNPC(playerid) && playerobject)
+	{
+		Streamer_CallbackHook(STREAMER_OPEO, playerid, playerobject, objectid, response, fX, fY, fZ, fRotX, fRotY, fRotZ);
+	}
+	if (Streamer_g_OPEO)
+	{
+		return CallLocalFunction("Streamer_OnPlayerEditObject", "ddddffffff", playerid, playerobject, objectid, response, fX, fY, fZ, fRotX, fRotY, fRotZ);
+	}
+	return 1;
+}
+
+#if defined _ALS_OnPlayerEditObject
+	#undef OnPlayerEditObject
+#else
+	#define _ALS_OnPlayerEditObject
+#endif
+#define OnPlayerEditObject Streamer_OnPlayerEditObject
+
+forward Streamer_OnPlayerEditObject(playerid, playerobject, objectid, response, Float:fX, Float:fY, Float:fZ, Float:fRotX, Float:fRotY, Float:fRotZ);
+
+public OnPlayerSelectObject(playerid, type, objectid, modelid, Float:fX, Float:fY, Float:fZ)
+{
+	if (!IsPlayerNPC(playerid) && type == SELECT_OBJECT_PLAYER_OBJECT)
+	{
+		Streamer_CallbackHook(STREAMER_OPSO, playerid, type, objectid, modelid, fX, fY, fZ);
+	}
+	if (Streamer_g_OPSO)
+	{
+		return CallLocalFunction("Streamer_OnPlayerSelectObject", "ddddfff", playerid, type, objectid, modelid, fX, fY, fZ);
+	}
+	return 1;
+}
+
+#if defined _ALS_OnPlayerSelectObject
+	#undef OnPlayerSelectObject
+#else
+	#define _ALS_OnPlayerSelectObject
+#endif
+#define OnPlayerSelectObject Streamer_OnPlayerSelectObject
+
+forward Streamer_OnPlayerSelectObject(playerid, type, objectid, modelid, Float:fX, Float:fY, Float:fZ);
 
 public OnPlayerPickUpPickup(playerid, pickupid)
 {

@@ -105,6 +105,7 @@
 #include <grgserver\Callbacks\OnPlayerConnect.inc>
 #include <grgserver\Callbacks\OnPlayerDeath.inc>
 #include <grgserver\Callbacks\OnPlayerDisconnect.inc>
+#include <grgserver\Callbacks\OnPlayerEditDynamicObject.inc>
 #include <grgserver\Callbacks\OnPlayerEnterCheckpoint.inc>
 #include <grgserver\Callbacks\OnPlayerEnterVehicle.inc>
 #include <grgserver\Callbacks\OnPlayerExitVehicle.inc>
@@ -112,6 +113,7 @@
 #include <grgserver\Callbacks\OnPlayerPickUpPickup.inc>
 #include <grgserver\Callbacks\OnPlayerRequestClass.inc>
 #include <grgserver\Callbacks\OnPlayerRequestSpawn.inc>
+#include <grgserver\Callbacks\OnPlayerSelectDynamicObject.inc>
 #include <grgserver\Callbacks\OnPlayerSpawn.inc>
 #include <grgserver\Callbacks\OnPlayerStateChange.inc>
 #include <grgserver\Callbacks\OnPlayerText.inc>
@@ -139,6 +141,7 @@
 #include <grgserver\Commands\command_about.inc>
 #include <grgserver\Commands\command_accept.inc>
 #include <grgserver\Commands\command_addbuilding.inc>
+#include <grgserver\Commands\command_addobject.inc>
 #include <grgserver\Commands\command_addpickup.inc>
 #include <grgserver\Commands\command_addstaticnpc.inc>
 #include <grgserver\Commands\command_cammovementcfg.inc>
@@ -146,6 +149,7 @@
 #include <grgserver\Commands\command_checkpermissions.inc>
 #include <grgserver\Commands\command_cmds.inc>
 #include <grgserver\Commands\command_controlnpc.inc>
+#include <grgserver\Commands\command_editobject.inc>
 #include <grgserver\Commands\command_exit.inc>
 #include <grgserver\Commands\command_funaction.inc>
 #include <grgserver\Commands\command_getbalance.inc>

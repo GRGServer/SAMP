@@ -1,5 +1,4 @@
 // Variables
-new dynamicObjects[MAX_DYNAMICOBJECTS];
 new ircBot;
 new languageStrings[LANGUAGE_MAXSTRINGS][enum_languageString];
 new maxPlayers;

@@ -12,7 +12,15 @@ ReloadLanguageStrings()
 	while (FetchMySQLRow())
 	{
 		new id = strval(GetMySQLField("ID"));
-		strcat(languageStrings[id][LANGUAGESTRING_ENGLISH], GetMySQLField("English"), STRINGLENGTH_LANGUAGESTRING);
-		strcat(languageStrings[id][LANGUAGESTRING_GERMAN], GetMySQLField("German"), STRINGLENGTH_LANGUAGESTRING);
+		if (id < LANGUAGE_MAXSTRINGS)
+		{
+			strcat(languageStrings[id][LANGUAGESTRING_ENGLISH], GetMySQLField("English"), STRINGLENGTH_LANGUAGESTRING);
+			strcat(languageStrings[id][LANGUAGESTRING_GERMAN], GetMySQLField("German"), STRINGLENGTH_LANGUAGESTRING);
+		}
+		else
+		{
+			printf("Language string ID %d is greater than language array size (%d)", id, LANGUAGE_MAXSTRINGS);
+			break;
+		}
 	}
 }

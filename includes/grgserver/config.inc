@@ -63,11 +63,11 @@
 // Language configuration
 #define LANGUAGE_ENGLISH			0
 #define LANGUAGE_GERMAN				1
-#define LANGUAGE_MAXSTRINGS			200
+#define LANGUAGE_MAXSTRINGS			300
 
 
 // Limits
-#define MAX_DYNAMICOBJECTS			2000// Used for dynamic objects array
+#define MAX_MONEY					999999.99
 
 
 // MySQL development database credentials

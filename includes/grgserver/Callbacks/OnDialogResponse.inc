@@ -99,7 +99,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
 							if (price <= PVar:playerid[MONEY])
 							{
-								GivePlayerMoneyEx(playerid, price);
+								GivePlayerMoneyEx(playerid, MONEY_CASH, price);
 								SetMySQLValue("buildings", "OwnerUserID", "0", "ID", val2str(buildingID));
 								SendClientMessageEx(playerid, COLOR_INFO, 9);
 								PVar:playerid[JOBID] = 0;
@@ -164,7 +164,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
 							if (price <= PVar:playerid[MONEY])
 							{
-								GivePlayerMoneyEx(playerid, -price);
+								GivePlayerMoneyEx(playerid, MONEY_CASH, -price);
 								SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
 								SendClientMessageEx(playerid, COLOR_INFO, 16);
 								PVar:playerid[JOBID] = 7;
@@ -229,7 +229,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
 							if (price <= PVar:playerid[MONEY])
 							{
-								GivePlayerMoneyEx(playerid, -price);
+								GivePlayerMoneyEx(playerid, MONEY_CASH, -price);
 								SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
 								SendClientMessageEx(playerid, COLOR_INFO, 16);
 								PVar:playerid[JOBID] = 7;
@@ -309,7 +309,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
 							if (price <= PVar:playerid[MONEY])
 							{
-								GivePlayerMoneyEx(playerid, price);
+								GivePlayerMoneyEx(playerid, MONEY_CASH, price);
 								SetMySQLValue("buildings", "OwnerUserID", "0", "ID", val2str(buildingID));
 								SendClientMessageEx(playerid, COLOR_INFO, 9);
 								PVar:playerid[JOBID] = 0;
@@ -375,7 +375,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				new Float:price = floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(saveID)));
 				if (price <= PVar:playerid[MONEY])
 				{
-					GivePlayerMoneyEx(playerid, -price);
+					GivePlayerMoneyEx(playerid, MONEY_CASH, -price);
 					SetMySQLValue("savedvehicles", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(saveID));
 					SavePlayer(playerid);
 				}
@@ -398,7 +398,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
 				if (price <= PVar:playerid[MONEY])
 				{
-					GivePlayerMoneyEx(playerid, -price);
+					GivePlayerMoneyEx(playerid, MONEY_CASH, -price);
 					SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
 					ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
 					SendClientMessageEx(playerid, COLOR_INFO, 28);
@@ -511,7 +511,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
 						if (price <= PVar:playerid[MONEY])
 						{
-							GivePlayerMoneyEx(playerid, -price);
+							GivePlayerMoneyEx(playerid, MONEY_CASH, -price);
 							SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
 							ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
 							SendClientMessageEx(playerid, COLOR_INFO, 33);
@@ -1071,7 +1071,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(pickupID)));
 							if (price <= PVar:playerid[MONEY])
 							{
-								GivePlayerMoneyEx(playerid, -price);
+								GivePlayerMoneyEx(playerid, MONEY_CASH, -price);
 								SetMySQLValue("pickups", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(pickupID));
 								SendClientMessageEx(playerid, COLOR_INFO, 46);
 							}

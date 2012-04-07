@@ -81,6 +81,15 @@ enum
 }
 
 
+// Money types
+enum
+{
+	MONEY_BANK,
+	MONEY_CASH,
+	MONEY_CREDITCARD
+}
+
+
 // Message box styles
 enum
 {
