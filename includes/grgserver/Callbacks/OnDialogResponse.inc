@@ -66,6 +66,21 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
 			}
 		}
+		case DIALOG_ADDOBJECT:
+		{
+			if (response)
+			{
+				new modelID;
+				new name[STRINGLENGTH_OBJECTNAME];
+				if (!sscanf(inputtext, "p:ds", modelID, name))
+				{
+					if (modelID)
+					{
+						AddObject(playerid, modelID);
+					}
+				}
+			}
+		}
 		case DIALOG_APPLICATION_PLAYER:
 		{
 			if (response)
@@ -727,7 +742,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				new modelID = strval(GetMySQLValue("vehiclemodels", "ModelID", "Name", inputtext));
+				new modelID = strval(GetMySQLValue("vehiclemodels", "ID", "Name", inputtext));
 				if (modelID)
 				{
 					MySQLQuery("INSERT INTO `missions` (`Name`, `CreationTime`, `CreatorUserID`) VALUES ('%s', NOW(), '%d')", "%s abholen", MySQLEscapeString(inputtext), playerid, MySQLEscapeString(inputtext));
@@ -949,13 +964,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SendRconCommand("gmx");
 			}
 		}
-		case DIALOG_STATS:
-		{
-			if (response)
-			{
-				return COMMAND_OK;
-			}
-		}
 		case DIALOG_SELECTINTERIOR:
 		{
 			new interiorDialogID = PVar:playerid[INTERIORDIALOGID];
@@ -977,6 +985,28 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			interiorID = strval(GetMySQLValue("interiors", "ID", "Name", inputtext));
 			OnInteriorDialogSelect(playerid, interiorDialogID, interiorID);
+		}
+		case DIALOG_SPAWNVEHICLE:
+		{
+			if (response)
+			{
+				new modelID;
+				new name[STRINGLENGTH_VEHICLENAME];
+				if (!sscanf(inputtext, "p:ds", modelID, name))
+				{
+					if (modelID)
+					{
+						SpawnVehicle(playerid, modelID, PVar:playerid[SPAWNVEHICLE_COLOR1], PVar:playerid[SPAWNVEHICLE_COLOR1], true);
+					}
+				}
+			}
+		}
+		case DIALOG_STATS:
+		{
+			if (response)
+			{
+				return COMMAND_OK;
+			}
 		}
 		case DIALOG_TELEPORTLOCATIONS:
 		{

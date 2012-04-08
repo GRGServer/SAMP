@@ -205,11 +205,12 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		if (PVar:playerid[OBJEDITOR_CURRENTOBJECTID])
 		{
 			MySQLQuery("DELETE FROM `objects` WHERE `ID` = '%d'", Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_EXTRA_ID));
+			new modelID = Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_MODEL_ID);
 			DestroyDynamicObject(PVar:playerid[OBJEDITOR_CURRENTOBJECTID]);
 			PVar:playerid[OBJEDITOR_CURRENTOBJECTID] = 0;
 			CancelEdit(playerid);
 			SelectObject(playerid);
-			SendClientMessageEx(playerid, COLOR_INFO, 203);
+			SendClientMessageEx(playerid, COLOR_INFO, 203, GetMySQLValue("objectmodels", "Name", "ID", val2str(modelID)));
 			return true;
 		}
 	}

@@ -26,40 +26,44 @@ PCMD:veh[MAPPER](playerid, params[], 122)
 					return COMMAND_USAGE;
 				}
 			}
-			modelID = strval(GetMySQLValue("vehiclemodels", "ModelID", "Name", str_replace("*", "%%", vehicleName), "LIKE"));
+			MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `Name` LIKE '%s' LIMIT 50", str_replace("*", "%%", MySQLEscapeString(vehicleName)));
+			mysql_store_result();
+			if (!mysql_num_rows() && strfind(vehicleName, "*") == -1)
+			{
+				mysql_free_result();
+				MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `Name` LIKE '%%%s%%' LIMIT 50", MySQLEscapeString(vehicleName));
+				mysql_store_result();
+			}
+			if (mysql_num_rows() > 1)
+			{
+				new vehicleList[2048];
+				while (FetchMySQLRow())
+				{
+					if (strlen(vehicleList))
+					{
+						strcat(vehicleList, "\n");
+					}
+					Format:vehicleList("%s%s:%s", vehicleList, GetMySQLField("ID"), GetMySQLField("Name"));
+				}
+				PVar:playerid[SPAWNVEHICLE_COLOR1] = color1;
+				PVar:playerid[SPAWNVEHICLE_COLOR2] = color2;
+				ShowPlayerDialog(playerid, DIALOG_SPAWNVEHICLE, DIALOG_STYLE_LIST, LanguageString(playerid, 122), vehicleList, LanguageString(playerid, 205), LanguageString(playerid, 165));
+				modelID = -1;
+			}
+			else
+			{
+				modelID = strval(GetMySQLField("ID"));
+			}
+			mysql_free_result();
 		}
 	}
-	if (modelID >= 400 && modelID <= 611)
+	if (modelID == -1)
 	{
-		if (color1 >= 0 && color1 <= 127 && color2 >= 0 && color2 <= 127)
-		{
-			new Float:posX;
-			new Float:posY;
-			new Float:posZ;
-			GetPlayerPos(playerid, posX, posY, posZ);
-			new vehicleID = CreateVehicleEx(modelID, posX, posY, posZ, 0.0, color1, color2, -1);
-			LinkVehicleToInterior(vehicleID, GetPlayerInterior(playerid));
-			SetVehicleVirtualWorld(vehicleID, GetPlayerVirtualWorld(playerid));
-			PutPlayerInVehicle(playerid, vehicleID, 0);
-			printf("%s spawned a vehicle (ModelID: %d)", GetPlayerNameEx(playerid), modelID);
-			SendClientMessageEx(playerid, COLOR_INFO, 62);
-			return COMMAND_OK;
-		}
-		else
-		{
-			SendClientMessageEx(playerid, COLOR_ERROR, 63);
-		}
+		return COMMAND_OK;
 	}
-	else
+	if (SpawnVehicle(playerid, modelID, color1, color2, true))
 	{
-		if (strlen(vehicleName))
-		{
-			SendClientMessageEx(playerid, COLOR_ERROR, 64);
-		}
-		else
-		{
-			SendClientMessageEx(playerid, COLOR_ERROR, 65);
-		}
+		return COMMAND_OK;
 	}
 	return COMMAND_ERROR;
 }

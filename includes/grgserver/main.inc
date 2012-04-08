@@ -18,6 +18,7 @@
 
 // Functions
 #include <grgserver\Functions\AddNPCRecorderPlayback.inc>
+#include <grgserver\Functions\AddObject.inc>
 #include <grgserver\Functions\AddPickup.inc>
 #include <grgserver\Functions\AddVehicleComponentEx.inc>
 #include <grgserver\Functions\CalculateAge.inc>
@@ -76,6 +77,7 @@
 #include <grgserver\Functions\ShowInteriorDialog.inc>
 #include <grgserver\Functions\ShowMsgBox.inc>
 #include <grgserver\Functions\ShowNews.inc>
+#include <grgserver\Functions\SpawnVehicle.inc>
 #include <grgserver\Functions\StartNPCPlayback.inc>
 #include <grgserver\Functions\StopRadioStation.inc>
 #include <grgserver\Functions\Str2Val.inc>

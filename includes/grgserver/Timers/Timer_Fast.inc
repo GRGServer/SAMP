@@ -19,14 +19,17 @@ Timer:Fast()
 				new healthColor;
 				new fuelColor;
 				new speed;
-				new healthPercentage;
-				new fuelPercentage;
+				new Float:distance;
+				new Float:healthPercentage;
+				new Float:fuelPercentage;
 				new vehicleID = GetPlayerVehicleID(playerID);
 				new vehicleModelIndex = GetVehicleModel(vehicleID) - 400;
 				GetVehicleVelocity(vehicleID, velocityX, velocityY, velocityZ);
 				GetVehicleHealth(vehicleID, health);
 				speed = floatround(floatsqroot(floatabs(floatpower(velocityX + velocityY + velocityZ, 2))) * 100 * 1.61);
-				healthPercentage = floatround(health /10);
+				distance = floatdiv(speed, 60 * 60 * 4);
+				vehicles[vehicleID][VEHICLE_MILEAGE] = floatadd(vehicles[vehicleID][VEHICLE_MILEAGE], distance);
+				healthPercentage = floatdiv(health, 10);
 				if (vehicles[vehicleID][VEHICLE_CURRENTFUEL] <= 0)
 				{
 					SetVehicleEngineState(vehicleID, false);
@@ -34,9 +37,9 @@ Timer:Fast()
 				}
 				else
 				{
-					vehicles[vehicleID][VEHICLE_CURRENTFUEL] = floatsub(vehicles[vehicleID][VEHICLE_CURRENTFUEL], floatdiv(speed, 60 * 60 * 4) * floatdiv(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 100));
+					vehicles[vehicleID][VEHICLE_CURRENTFUEL] = floatsub(vehicles[vehicleID][VEHICLE_CURRENTFUEL], distance * floatdiv(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 100));
 				}
-				fuelPercentage = floatround((vehicles[vehicleID][VEHICLE_CURRENTFUEL] / vehicleModels[vehicleModelIndex][VEHICLEMODEL_MAXFUEL]) * 100);
+				fuelPercentage = floatmul(floatdiv(vehicles[vehicleID][VEHICLE_CURRENTFUEL], vehicleModels[vehicleModelIndex][VEHICLEMODEL_MAXFUEL]), 100);
 				if (healthPercentage > 65)
 				{
 					healthColor = 'g';
@@ -76,7 +79,7 @@ Timer:Fast()
 						fuelColor = 'r';
 					}
 				}
-				FormatNew:textDrawString[60]("~n~%d Km/h~n~~%c~%d%%~w~~n~~%c~%d%%~w~~n~%sl", speed, healthColor, healthPercentage, fuelColor, fuelPercentage, FormatNumber(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 1, '.', ','));
+				FormatNew:textDrawString[60]("~n~%d Km/h~n~~%c~%s%%~w~~n~~%c~%s%%~w~~n~%sl~n~%s", speed, healthColor, FormatNumber(healthPercentage, 2, '.', ','), fuelColor, FormatNumber(fuelPercentage, 2, '.', ','), FormatNumber(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 1, '.', ','), FormatNumber(vehicles[vehicleID][VEHICLE_MILEAGE], 2, '.', ','));
 				TextDrawSetString(PTextDraw:playerID[SPEEDO_COLUMN2], textDrawString);
 				TextDrawSetString(PTextDraw:playerID[VEHICLENAME], vehicleModels[vehicleModelIndex][VEHICLEMODEL_NAME]);
 				TextDrawShowForPlayer(playerID, PTextDraw:playerID[SPEEDO_COLUMN1]);

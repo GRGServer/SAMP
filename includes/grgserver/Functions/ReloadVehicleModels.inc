@@ -5,7 +5,7 @@ ReloadVehicleModels()
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new index = strval(GetMySQLField("ModelID")) - 400;
+		new index = strval(GetMySQLField("ID")) - 400;
 		vehicleModels[index][VEHICLEMODEL_FUELUSAGE] = floatstr(GetMySQLField("FuelUsage"));
 		vehicleModels[index][VEHICLEMODEL_MAXFUEL] = floatstr(GetMySQLField("MaxFuel"));
 		format(vehicleModels[index][VEHICLEMODEL_NAME], STRINGLENGTH_VEHICLENAME, GetMySQLField("Name"));
