@@ -207,6 +207,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			MySQLQuery("DELETE FROM `objects` WHERE `ID` = '%d'", Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_EXTRA_ID));
 			DestroyDynamicObject(PVar:playerid[OBJEDITOR_CURRENTOBJECTID]);
 			PVar:playerid[OBJEDITOR_CURRENTOBJECTID] = 0;
+			CancelEdit(playerid);
+			SelectObject(playerid);
 			SendClientMessageEx(playerid, COLOR_INFO, 203);
 			return true;
 		}
