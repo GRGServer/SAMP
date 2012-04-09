@@ -15,7 +15,7 @@ SetPlayerMoney(playerID, type, Float:amount)
 		{
 			PVar:playerID[MONEY] = amount;
 			ResetPlayerMoney(playerID);
-			GivePlayerMoney(playerID, floatround(amount, floatround_tozero) * 100);
+			GivePlayerMoney(playerID, floatround(amount * 100, floatround_tozero));
 		}
 		case MONEY_CREDITCARD:// Money on credit card
 		{

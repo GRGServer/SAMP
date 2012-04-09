@@ -20,7 +20,7 @@ for(new i_%0 = 0; ; ++i_%0) \
 #define Exec:%0(%1) %0(%1); print("Done"); return true
 #define Format:%0(%1) format(%0, sizeof(%0), %1)
 #define FormatNew:%0[%1](%2) new %0[%1]; Format:%0(%2)
-#define FormatMoney(%0) FormatNumber(%0, 2, '.', ',')
+#define FormatMoney(%0) FormatNumber(Float:%0, 2, '.', ',')
 #define GetUserDBValue(%0,%1) GetMySQLValue("users", %1, "UserID", val2str(PVar:%0[USERID]))
 #define IsKeyPressed(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
 #define LoadPermission:%0(%1,%2) permissions[%1][PERMISSION_%0] = strval(GetMySQLField(%2))

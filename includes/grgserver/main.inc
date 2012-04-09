@@ -17,6 +17,8 @@
 #include <grgserver\globals.inc>
 
 // Functions
+#include <grgserver\Functions\AddJobData.inc>
+#include <grgserver\Functions\AddLine.inc>
 #include <grgserver\Functions\AddNPCRecorderPlayback.inc>
 #include <grgserver\Functions\AddObject.inc>
 #include <grgserver\Functions\AddPickup.inc>
@@ -25,6 +27,7 @@
 #include <grgserver\Functions\CheckVehiclePermission.inc>
 #include <grgserver\Functions\CmdUsageMsg.inc>
 #include <grgserver\Functions\CreateGlobalTextDraws.inc>
+#include <grgserver\Functions\CreateJob.inc>
 #include <grgserver\Functions\CreateVehicleEx.inc>
 #include <grgserver\Functions\FetchMySQLRow.inc>
 #include <grgserver\Functions\FormatDate.inc>

@@ -67,8 +67,8 @@ If OpenConsole()
 EndIf
 ; IDE Options = PureBasic 4.60 (Windows - x86)
 ; ExecutableFormat = Console
-; CursorPosition = 46
-; FirstLine = 24
+; CursorPosition = 61
+; FirstLine = 19
 ; Folding = -
 ; EnableXP
 ; UseIcon = Includes Updater.ico

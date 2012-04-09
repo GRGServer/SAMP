@@ -14,8 +14,8 @@ ReloadLanguageStrings()
 		new id = strval(GetMySQLField("ID"));
 		if (id < LANGUAGE_MAXSTRINGS)
 		{
-			strcat(languageStrings[id][LANGUAGESTRING_ENGLISH], GetMySQLField("English"), STRINGLENGTH_LANGUAGESTRING);
-			strcat(languageStrings[id][LANGUAGESTRING_GERMAN], GetMySQLField("German"), STRINGLENGTH_LANGUAGESTRING);
+			strcat(languageStrings[id][LANGUAGESTRING_ENGLISH], str_replace("\\n", "\n", GetMySQLField("English")), STRINGLENGTH_LANGUAGESTRING);
+			strcat(languageStrings[id][LANGUAGESTRING_GERMAN], str_replace("\\n", "\n", GetMySQLField("German")), STRINGLENGTH_LANGUAGESTRING);
 		}
 		else
 		{

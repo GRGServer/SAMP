@@ -2,6 +2,10 @@ ShowDialog(playerID, dialogID, ...)
 {
 	switch (dialogID)
 	{
+		/*
+			Accept a job created via the following:
+			- DIALOG_ORDERVEHICLE
+		*/
 		case DIALOG_ACCEPT:
 		{
 			new missionList[2048];
@@ -25,15 +29,18 @@ ShowDialog(playerID, dialogID, ...)
 				SendClientMessageEx(playerID, COLOR_ERROR, 134);
 			}
 		}
+		// Enter name of the new building
 		case DIALOG_ADDBUILDING_NAME:
 		{
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, LanguageString(playerID, 168), LanguageString(playerID, 169), LanguageString(playerID, 170), LanguageString(playerID, 171));
 		}
+		// Select type of the new building
 		case DIALOG_ADDBUILDING_TYPE:
 		{
 			FormatNew:options[50]("%s\n%s\n%s\n%s", LanguageString(playerID, 173), LanguageString(playerID, 174), LanguageString(playerID, 175), LanguageString(playerID, 176));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 172), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
 		}
+		// ???
 		case DIALOG_APPLICATION_PLAYER:
 		{
 			// TODO: Can not work!
@@ -47,53 +54,35 @@ ShowDialog(playerID, dialogID, ...)
 			}
 			mysql_free_result();
 		}
+		// Cancel the bank account
+		case DIALOG_BANK_CANCELACCOUNT:
+		{
+			ShowMsgBox(playerID, dialogID, LanguageString(playerID, 209), LanguageString(playerID, 214), MSGBOXSTYLE_YESNO);
+		}
+		// Deposit money from the bank account
+		case DIALOG_BANK_DEPOSITMONEY:
+		{
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, LanguageString(playerID, 208), LanguageString(playerID, 213), "OK", LanguageString(playerID, 165));
+		}
+		// Show options for the bank account
 		case DIALOG_BANK_HASACCOUNT:
 		{
-			FormatNew:options[100]("Bank Kaufen");
-			Format:options("%s\nKonto Übersicht", options);
-			Format:options("%s\nKonto Kündigen", options);
-			Format:options("%s\nEinzahlen", options);
-			Format:options("%s\nAuszahlen", options);
-			Format:options("%s\nAktueler Zinssatz", options);
-			Format:options("%s\nBewerben", options);
+			new options[1024];
+			AddLine(options, LanguageString(playerID, 206));// Bank balance
+			AddLine(options, LanguageString(playerID, 207));// Withdraw money
+			AddLine(options, LanguageString(playerID, 208));// Deposit money
+			AddLine(options, LanguageString(playerID, 209));// Cancel account
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", LanguageString(playerID, 165));
 		}
-		case DIALOG_BANK_HASNOACCOUNT:
+		// Ask to create a new bank account
+		case DIALOG_BANK_NEWACCOUNT:
 		{
-			FormatNew:options[50]("Bank Kaufen");
-			Format:options("%s\nKonto Erstellen", options);
-			Format:options("%s\nAktueler Zinssatz", options);
-			Format:options("%s\nBewerben", options);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", LanguageString(playerID, 165));
+			ShowMsgBox(playerID, dialogID, LanguageString(playerID, 210), LanguageString(playerID, 211), MSGBOXSTYLE_YESNO);
 		}
-		case DIALOG_BANK_NOACCOUNT:
+		// Withdraw money to the bank account
+		case DIALOG_BANK_WITHDRAWMONEY:
 		{
-			FormatNew:options[200]("Bank Verkaufen");
-			Format:options("%s\nFinazen Übersicht", options);
-			Format:options("%s\nBewerbungs Übersicht", options);
-			Format:options("%s\nEigenes Konto Erstellen", options);
-			Format:options("%s\nAktueler Zinssatz", options);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", LanguageString(playerID, 165));
-		}
-		case DIALOG_BANK_ACCOUNTOWNER:
-		{
-			FormatNew:options[300]("Bank Verkaufen");
-			Format:options("%s\nFinazen Übersicht", options);
-			Format:options("%s\nBewerbungs Übersicht", options);
-			Format:options("%s\nEigene Konto Übersicht", options);
-			Format:options("%s\nEigenes Konto Kündigen", options);
-			Format:options("%s\nEigenes Konto Einzahlen", options);
-			Format:options("%s\nEigenes Konto Auszahlen", options);
-			Format:options("%s\nAktueler Zinssatz", options);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bank", options, "OK", LanguageString(playerID, 165));
-		}
-		case DIALOG_BANK_INPUT:
-		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Einzahlung", "Wie viel möchtest du Einzahlen?", "Einzahlen", LanguageString(playerID, 165));
-		}
-		case DIALOG_BANK_OUTPUT:
-		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Auszahlung", "Wie viel möchstest du Auszahlen?", "Auszahlen", LanguageString(playerID, 165));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, LanguageString(playerID, 207), LanguageString(playerID, 212), "OK", LanguageString(playerID, 165));
 		}
 		case DIALOG_BUYHOUSE:
 		{

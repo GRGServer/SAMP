@@ -2,6 +2,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 {
 	switch (dialogid)
 	{
+		// Accept the selected mission and send a message to the player created the job (If online)
 		case DIALOG_ACCEPT:
 		{
 			if (response)
@@ -21,6 +22,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
+		// Asked for the name of the new building
 		case DIALOG_ADDBUILDING_NAME:
 		{
 			if (response)
@@ -46,6 +48,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
 			}
 		}
+		// Asked for the type of the new building
 		case DIALOG_ADDBUILDING_TYPE:
 		{
 			if (response)
@@ -66,6 +69,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
 			}
 		}
+		// Add the selected object (Dialog created in command_addobject)
 		case DIALOG_ADDOBJECT:
 		{
 			if (response)
@@ -81,6 +85,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
+		// ???
 		case DIALOG_APPLICATION_PLAYER:
 		{
 			if (response)
@@ -88,282 +93,28 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SendClientMessage(playerid, COLOR_INFO, "Work in process!");
 			}
 		}
-		case DIALOG_BANK_ACCOUNTOWNER:
+		// Cancel the bank account
+		case DIALOG_BANK_CANCELACCOUNT:
 		{
 			if (response)
 			{
-				switch (listitem)
-				{
-					case 0: // Bank Sell
-					{
-						new buildingID = PVar:playerid[CURRENTBUILDINGID];
-						new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "ID", val2str(buildingID)));
-						if (ownerUserID)
-						{
-							if (ownerUserID == PVar:playerid[USERID])
-							{
-								SendClientMessageEx(playerid, COLOR_INFO, 13);
-							}
-							else
-							{
-								SendClientMessageEx(playerid, COLOR_INFO, 11);
-							}
-						}
-						else
-						{
-							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
-							if (price <= PVar:playerid[MONEY])
-							{
-								GivePlayerMoneyEx(playerid, MONEY_CASH, price);
-								SetMySQLValue("buildings", "OwnerUserID", "0", "ID", val2str(buildingID));
-								SendClientMessageEx(playerid, COLOR_INFO, 9);
-								PVar:playerid[JOBID] = 0;
-							}
-						}
-					}
-					case 1: // Bank Finanzen
-					{
-						SendClientMessage(playerid, COLOR_INFO, "Bank Finanzen noch in Bearbeitung!");
-					}
-					case 2: // Bewerbungs übersicht 
-					{
-						ShowDialog(playerid, DIALOG_APPLICATION_PLAYER);
-					}
-					case 3: // Eigenes Konto Übersicht 
-					{
-						SendClientMessageEx(playerid, COLOR_INFO, 23, PVar:playerid[BANKMONEY]);
-					}
-					case 4: // Konto Kündigen
-					{
-						SetUserDBValue(playerid, "BankID", "0");
-						SendClientMessageEx(playerid, COLOR_INFO, 18);
-					}
-					case 5: // Einzahlen
-					{
-						ShowDialog(playerid, DIALOG_BANK_INPUT);
-					}
-					case 6: // Auszahlen
-					{
-						ShowDialog(playerid, DIALOG_BANK_OUTPUT);
-					}
-					case 7: // Aktueler Zinssatz 
-					{
-						SendClientMessage(playerid, COLOR_INFO, "Zinssatz noch in Bearbeitung!");
-					}
-				}
+				SetUserDBValue(playerid, "BankID", "0");
+				LeaveBuilding(playerid);
 			}
-		}
-		case DIALOG_BANK_HASACCOUNT:
-		{
-			if (response)
+			else
 			{
-				switch (listitem)
-				{
-					case 0:
-					{
-						new buildingID = PVar:playerid[CURRENTBUILDINGID];
-						new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "ID", val2str(buildingID)));
-						if (ownerUserID)
-						{
-							if (ownerUserID == PVar:playerid[USERID])
-							{
-								SendClientMessageEx(playerid, COLOR_INFO, 13);
-							}
-							else
-							{
-								SendClientMessageEx(playerid, COLOR_INFO, 11);
-							}
-						}
-						else
-						{
-							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
-							if (price <= PVar:playerid[MONEY])
-							{
-								GivePlayerMoneyEx(playerid, MONEY_CASH, -price);
-								SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
-								SendClientMessageEx(playerid, COLOR_INFO, 16);
-								PVar:playerid[JOBID] = 7;
-							}
-							else
-							{
-								SendClientMessageEx(playerid, COLOR_ERROR, 22, price, PVar:playerid[MONEY]);
-							}
-						}
-					}
-					case 1: // Konto übersicht
-					{
-						SendClientMessageEx(playerid, COLOR_INFO, 23, PVar:playerid[BANKMONEY]);
-					}
-					case 2: // Konto Kündigen
-					{
-						SetUserDBValue(playerid, "BankID", "0");
-						SendClientMessageEx(playerid, COLOR_INFO, 18);
-					}
-					case 3: // Einzahlen
-					{
-						ShowDialog(playerid, DIALOG_BANK_INPUT);
-					}
-					case 4: // Auszahlen
-					{
-						ShowDialog(playerid, DIALOG_BANK_OUTPUT);
-					}
-					case 5: // Aktueler Zinssatz
-					{
-						SendClientMessage(playerid, COLOR_INFO, "Zinssatz in bearbeitung!");
-					}
-					case 6: // Bewerben
-					{
-						SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in bearbeitung!");
-					}
-				}
+				ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
 			}
 		}
-		case DIALOG_BANK_HASNOACCOUNT:
-		{
-			if (response)
-			{
-				switch (listitem)
-				{
-					case 0: // Bank Kaufen
-					{
-						new buildingID = PVar:playerid[CURRENTBUILDINGID];
-						new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "ID", val2str(buildingID)));
-						if (ownerUserID)
-						{
-							if (ownerUserID == PVar:playerid[USERID])
-							{
-								SendClientMessageEx(playerid, COLOR_INFO, 13);
-							}
-							else
-							{
-								SendClientMessageEx(playerid, COLOR_INFO, 11);
-							}
-						}
-						else
-						{
-							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
-							if (price <= PVar:playerid[MONEY])
-							{
-								GivePlayerMoneyEx(playerid, MONEY_CASH, -price);
-								SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
-								SendClientMessageEx(playerid, COLOR_INFO, 16);
-								PVar:playerid[JOBID] = 7;
-							}
-							else
-							{
-								SendClientMessageEx(playerid, COLOR_ERROR, 22, price, PVar:playerid[MONEY]);
-							}
-						}
-					}
-					case 1: // Konto Erstellen 
-					{
-						new bankID = PVar:playerid[CURRENTBUILDINGID];
-						SetUserDBValue(playerid, "BankID", val2str(bankID));
-						SendClientMessageEx(playerid, COLOR_INFO, 17);
-					}
-					case 2: // Aktueler Zinssatz
-					{
-						SendClientMessage(playerid, COLOR_INFO, "Zinssatz in bearbeitung!");
-					}
-					case 3: // Bewerben
-					{
-						SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in bearbeitung!");
-					}
-				}	
-			}
-		}
-		case DIALOG_BANK_INPUT:
+		// Deposit money from bank account
+		case DIALOG_BANK_DEPOSITMONEY:
 		{
 			if (response)
 			{
 				if (!strlen(inputtext))
 				{
 					SendClientMessageEx(playerid, COLOR_ERROR, 19);
-					ShowDialog(playerid, DIALOG_BANK_INPUT);
-				}
-				else
-				{
-					new Float:money = floatstr(inputtext);
-					if(money > PVar:playerid[MONEY])
-					{
-						SendClientMessageEx(playerid, COLOR_ERROR, 14);
-						ShowDialog(playerid, DIALOG_BANK_INPUT);
-					}
-					else
-					{
-						PVar:playerid[MONEY] = floatsub(PVar:playerid[MONEY], money);
-						PVar:playerid[BANKMONEY] = floatadd(PVar:playerid[BANKMONEY], money);
-						SendClientMessageEx(playerid, COLOR_INFO, 21, money);
-					}
-				}
-			}
-		}
-		case DIALOG_BANK_NOACCOUNT:
-		{
-			if (response)
-			{
-				switch (listitem)
-				{
-					case 0: // Bank Sell
-					{
-						new buildingID = PVar:playerid[CURRENTBUILDINGID];
-						new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "ID", val2str(buildingID)));
-						if (ownerUserID)
-						{
-							if (ownerUserID == PVar:playerid[USERID])
-							{
-								SendClientMessageEx(playerid, COLOR_INFO, 13);
-							}
-							else
-							{
-								SendClientMessageEx(playerid, COLOR_INFO, 11);
-							}
-						}
-						else
-						{
-							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
-							if (price <= PVar:playerid[MONEY])
-							{
-								GivePlayerMoneyEx(playerid, MONEY_CASH, price);
-								SetMySQLValue("buildings", "OwnerUserID", "0", "ID", val2str(buildingID));
-								SendClientMessageEx(playerid, COLOR_INFO, 9);
-								PVar:playerid[JOBID] = 0;
-							}
-						}
-					}
-					case 1: // Bank Finanzen
-					{
-						// TODO: Eine übersicht über die Finazen der Bank wie viel die Bank ein Nimmt und wie viel sie ausgibt.
-						SendClientMessage(playerid, COLOR_INFO, "Bank Finanzen noch in Bearbeitung!");
-					}
-					case 2: // Bewerbungs übersicht 
-					{
-						// TODO: Noch nicht Fertig Soll eine Übersicht der Bewerbungen da stellen.
-						// TODO: Man klickt auf einen Spieler und es kommt eine MSGBOX in der mann dann
-						// TODO: Annehmen kann oder ablehnen.
-						ShowDialog(playerid, DIALOG_APPLICATION_PLAYER);
-					}
-					case 3: // Eigene Konto Erstellen
-					{
-						new bankID = PVar:playerid[CURRENTBUILDINGID];
-						SetUserDBValue(playerid, "BankID", val2str(bankID));
-						SendClientMessageEx(playerid, COLOR_INFO, 17);
-					}
-					case 4: // Aktueler Zinssatz 
-					{
-						SendClientMessage(playerid, COLOR_INFO, "Zinssatz noch in Bearbeitung!");
-					}
-				}
-			}
-		}
-		case DIALOG_BANK_OUTPUT:
-		{
-			if (response)
-			{
-				if (!strlen(inputtext))
-				{
-					SendClientMessageEx(playerid, COLOR_ERROR, 19);
-					ShowDialog(playerid, DIALOG_BANK_OUTPUT);
+					ShowDialog(playerid, DIALOG_BANK_DEPOSITMONEY);
 				}
 				else
 				{
@@ -371,15 +122,106 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					if(money > PVar:playerid[BANKMONEY])
 					{
 						SendClientMessageEx(playerid, COLOR_ERROR, 25);
-						ShowDialog(playerid, DIALOG_BANK_OUTPUT);
+						ShowDialog(playerid, DIALOG_BANK_DEPOSITMONEY);
 					}
 					else
 					{
-						PVar:playerid[MONEY] = floatadd(PVar:playerid[MONEY], money);
-						PVar:playerid[BANKMONEY] = floatsub(PVar:playerid[BANKMONEY], money);
+						SetPlayerMoney(playerid, MONEY_BANK, floatsub(PVar:playerid[BANKMONEY], money));
+						SetPlayerMoney(playerid, MONEY_CASH, floatadd(PVar:playerid[MONEY], money));
 						SendClientMessageEx(playerid, COLOR_INFO, 26, money);
+						ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
 					}
 				}
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
+			}
+		}
+		// Do selected action for a player with a bank account
+		case DIALOG_BANK_HASACCOUNT:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0:// Bank balance
+					{
+						SendClientMessageEx(playerid, COLOR_INFO, 23, PVar:playerid[BANKMONEY]);
+						ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
+					}
+					case 1:// Withdraw money
+					{
+						ShowDialog(playerid, DIALOG_BANK_WITHDRAWMONEY);
+					}
+					case 2:// Deposit money
+					{
+						ShowDialog(playerid, DIALOG_BANK_DEPOSITMONEY);
+					}
+					case 3:// Cancel account
+					{
+						if (PVar:playerid[BANKMONEY] > 0)
+						{
+							SendClientMessageEx(playerid, COLOR_ERROR, 215);
+							ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
+						}
+						else
+						{
+							ShowDialog(playerid, DIALOG_BANK_CANCELACCOUNT);
+						}
+					}
+				}
+			}
+			else
+			{
+				LeaveBuilding(playerid);
+			}
+		}
+		// Create a new bank account
+		case DIALOG_BANK_NEWACCOUNT:
+		{
+			if (response)
+			{
+				new bankID = strval(GetMySQLValue("bankbranches", "BankID", "BuildingID", val2str(PVar:playerid[CURRENTBUILDINGID])));
+				SetUserDBValue(playerid, "BankID", val2str(bankID));
+				SendClientMessageEx(playerid, COLOR_INFO, 216, GetMySQLValue("banks", "Name", "ID", val2str(bankID)));
+				ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
+			}
+			else
+			{
+				LeaveBuilding(playerid);
+			}
+		}
+		// Withdraw money to bank account
+		case DIALOG_BANK_WITHDRAWMONEY:
+		{
+			if (response)
+			{
+				if (!strlen(inputtext))
+				{
+					SendClientMessageEx(playerid, COLOR_ERROR, 19);
+					ShowDialog(playerid, DIALOG_BANK_WITHDRAWMONEY);
+				}
+				else
+				{
+					new Float:money = floatstr(inputtext);
+					if(money > PVar:playerid[MONEY])
+					{
+						SendClientMessageEx(playerid, COLOR_ERROR, 14);
+						ShowDialog(playerid, DIALOG_BANK_WITHDRAWMONEY);
+					}
+					else
+					{
+						SetPlayerMoney(playerid, MONEY_BANK, floatadd(PVar:playerid[BANKMONEY], money));
+						SetPlayerMoney(playerid, MONEY_CASH, floatsub(PVar:playerid[MONEY], money));
+						SendClientMessageEx(playerid, COLOR_INFO, 21, money);
+						ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
+					}
+				}
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
 			}
 		}
 		case DIALOG_BUYVEHICLE:
@@ -745,11 +587,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				new modelID = strval(GetMySQLValue("vehiclemodels", "ID", "Name", inputtext));
 				if (modelID)
 				{
-					MySQLQuery("INSERT INTO `missions` (`Name`, `CreationTime`, `CreatorUserID`) VALUES ('%s', NOW(), '%d')", "%s abholen", MySQLEscapeString(inputtext), playerid, MySQLEscapeString(inputtext));
-					new missionID = mysql_insert_id();
+					new missionID = CreateJob(playerid, JOB_VEHICLEDEALER);
 					if (missionID)
 					{
-						MySQLQuery("INSERT INTO `missiondata` (`MissionID`, `Name`, `Value`) VALUES ('%d', 'Type', 'GetOrderedVehicle'), ('%d', 'VehicleModelID', '%d')", missionID, missionID, modelID);
+						AddJobData(missionID, "Type", "GetOrderedVehicle");
+						AddJobData(missionID, "VehicleModelID", val2str(modelID));
 						SendClientMessageEx(playerid, COLOR_INFO, 38, missionID);
 					}
 				}

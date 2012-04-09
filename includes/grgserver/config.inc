@@ -67,7 +67,7 @@
 
 
 // Limits
-#define MAX_MONEY					999999.99
+#define MAX_MONEY					999999.99// Display on screen
 
 
 // MySQL development database credentials

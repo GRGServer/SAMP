@@ -11,44 +11,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					case PICKUPTYPE_BANK:
 					{
 						TeleportToBuilding(playerid, strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
-						new account = strval(GetUserDBValue(playerid, "BankID"));
-						new buildingID = PVar:playerid[CURRENTBUILDINGID];
-						new ownerUserID = strval(GetMySQLValue("buildings", "OwnerUserID", "ID", val2str(buildingID)));
-						if (ownerUserID)
+						new bankID = strval(GetUserDBValue(playerid, "BankID"));
+						if (bankID)
 						{
-							if (ownerUserID == PVar:playerid[USERID])
-							{
-								if(account == 0)
-								{
-									ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);	
-								}
-								else
-								{
-									ShowDialog(playerid, DIALOG_BANK_ACCOUNTOWNER);
-								}
-							}
-							else
-							{
-								if (account == 0)
-								{
-									ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);
-								}
-								else
-								{
-									ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
-								}
-							}
+							ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
 						}
 						else
 						{
-							if (account == 0)
-							{
-								ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);	
-							}
-							else
-							{
-								ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
-							}
+							ShowDialog(playerid, DIALOG_BANK_NEWACCOUNT);
 						}
 					}
 					case PICKUPTYPE_GASSTATION:
@@ -129,32 +99,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 							else
 							{
 								SendClientMessageEx(playerid, COLOR_ERROR, 142, price, PVar:playerid[MONEY]);
-							}
-						}
-					}
-					case PICKUPTYPE_INBANK:
-					{
-						new account = strval(GetUserDBValue(playerid, "BankID"));
-						if (PVar:playerid[JOBID] == JOB_BANK)
-						{
-							if(account)
-							{
-								ShowDialog(playerid, DIALOG_BANK_ACCOUNTOWNER);
-							}
-							else
-							{
-								ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);
-							}
-						}
-						else
-						{
-							if (account)
-							{
-								ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
-							}
-							else
-							{
-								ShowDialog(playerid, DIALOG_BANK_NOACCOUNT);
 							}
 						}
 					}

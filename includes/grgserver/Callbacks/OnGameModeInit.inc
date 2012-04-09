@@ -85,6 +85,7 @@ public OnGameModeInit()
 	FormatNew:gameModeTextString[30]("GRG Server r%d", COMPILER_SVN_REVISION);
 	SetGameModeText(gameModeTextString);
 	EnableStuntBonusForAll(false);
+	ShowPlayerMarkers(PLAYER_MARKERS_MODE_OFF);
 	DisableInteriorEnterExits();
 	Streamer_VisibleItems(STREAMER_TYPE_OBJECT, MAX_OBJECTS);
 	UpdateGasPrice();
