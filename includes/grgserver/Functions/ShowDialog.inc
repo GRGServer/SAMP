@@ -29,6 +29,21 @@ ShowDialog(playerID, dialogID, ...)
 				SendClientMessageEx(playerID, COLOR_ERROR, 134);
 			}
 		}
+		case DIALOG_ADAC:
+		{
+			FormatNew:options[50]("%s\n%s", LanguageString(playerID, 217), LanguageString(playerID, 218));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 219), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
+		}
+		case DIALOG_ARMEE:
+		{
+			FormatNew:options[50]("%s\n%s", LanguageString(playerID, 217), LanguageString(playerID, 218));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 220), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
+		}
+		case DIALOG_AMBULANCE:
+		{
+			FormatNew:options[50]("%s\n%s", LanguageString(playerID, 217), LanguageString(playerID, 218));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 221), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
+		}
 		// Enter name of the new building
 		case DIALOG_ADDBUILDING_NAME:
 		{
@@ -97,6 +112,11 @@ ShowDialog(playerID, dialogID, ...)
 			GetStringArg(2, string);
 			Format:string("Möchtest du dieses Fahrzeug Kaufen?\n\nPreis: $%s", string);
 			ShowMsgBox(playerID, dialogID, "Fahrzeug kaufen", string, MSGBOXSTYLE_YESNO);
+		}
+		case DIALOG_ESTATEAGENTS:
+		{
+			FormatNew:options[50]("%s\n%s", LanguageString(playerID, 217), LanguageString(playerID, 218));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 222), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
 		}
 		case DIALOG_CHANGEPASSWORD_STEP1:
 		{
@@ -284,6 +304,11 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			ShowMsgBox(playerID, dialogID, "Gamemode neustarten", "Soll der Gamemode wirklich neugestartet werden?", MSGBOXSTYLE_YESNO);
 		}
+		case DIALOG_SCHOOLDRIVER:
+		{
+			FormatNew:options[50]("%s\n%s", LanguageString(playerID, 217), LanguageString(playerID, 218));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 223), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
+		}
 		case DIALOG_SELECTINTERIOR:
 		{
 			new interiors[2048];
@@ -351,6 +376,11 @@ ShowDialog(playerID, dialogID, ...)
 			Format:string("%s\nLetzter Login:\t\t%s", string, FormatDate(GetMySQLField("LoginTime")));
 			mysql_free_result();
 			ShowMsgBox(playerID, dialogID, "Personalien", string);
+		}
+		case DIALOG_TAXI:
+		{
+			FormatNew:options[50]("%s\n%s", LanguageString(playerID, 217), LanguageString(playerID, 218));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 224), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
 		}
 		case DIALOG_TELEPORTLOCATIONS:
 		{

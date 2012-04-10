@@ -1,9 +1,33 @@
 GetPickupInfoByType(pickupID, type[], &typeID, &modelID)
 {
+	if (!strcmp(type, "ADAC", true))
+	{
+		typeID = PICKUPTYPE_ADAC;
+		modelID = PICKUP_ADAC;
+		return true;
+	}
+	if (!strcmp(type, "ARMEE", true))
+	{
+		typeID = PICKUPTYPE_ARMEE;
+		modelID = PICKUP_ARMEE;
+		return true;
+	}
+	if (!strcmp(type, "AMBULANCE", true))
+	{
+		typeID = PICKUPTYPE_AMBULANCE;
+		modelID = PICKUP_AMBULANCE;
+		return true;
+	}
 	if (!strcmp(type, "BANK", true))
 	{
 		typeID = PICKUPTYPE_BANK;
 		modelID = PICKUP_BANK;
+		return true;
+	}
+	if (!strcmp(type, "ESTATEAGENTS", true))
+	{
+		typeID = PICKUPTYPE_ESTATEAGENTS;
+		modelID = PICKUP_ESTATEAGENTS;
 		return true;
 	}
 	if (!strcmp(type, "GASSTATION", true))
@@ -47,6 +71,18 @@ GetPickupInfoByType(pickupID, type[], &typeID, &modelID)
 	{
 		typeID = PICKUPTYPE_POLICE;
 		modelID = PICKUP_POLICE;
+		return true;
+	}
+	if (!strcmp(type, "SCHOOLDRIVER", true))
+	{
+		typeID = PICKUPTYPE_SCHOOLDRIVER;
+		modelID = PICKUP_SCHOOLDRIVER;
+		return true;
+	}
+	if (!strcmp(type, "TAXI", true))
+	{
+		typeID = PICKUPTYPE_TAXI;
+		modelID = PICKUP_TAXI;
 		return true;
 	}
 	if (!strcmp(type, "TRUCKER", true))

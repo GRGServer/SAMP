@@ -22,6 +22,57 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
+		case DIALOG_ADAC:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0:
+					{
+						PVar:playerid[JOBID] = JOB_ADAC;
+					}
+					case 1:
+					{
+						PVar:playerid[JOBID] = 0;
+					}
+				}
+			}
+		}
+		case DIALOG_ARMEE:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0:
+					{
+						PVar:playerid[JOBID] = JOB_ARMEE;
+					}
+					case 1:
+					{
+						PVar:playerid[JOBID] = 0;
+					}
+				}
+			}
+		}
+		case DIALOG_AMBULANCE:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0:
+					{
+						PVar:playerid[JOBID] = JOB_AMBULANCE;
+					}
+					case 1:
+					{
+						PVar:playerid[JOBID] = 0;
+					}
+				}
+			}
+		}
 		// Asked for the name of the new building
 		case DIALOG_ADDBUILDING_NAME:
 		{
@@ -319,6 +370,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			else
 			{
 				ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP2);
+			}
+		}
+		case DIALOG_ESTATEAGENTS:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0:
+					{
+						PVar:playerid[JOBID] = JOB_ESTATEAGENTS;
+					}
+					case 1:
+					{
+						PVar:playerid[JOBID] = 0;
+					}
+				}
 			}
 		}
 		case DIALOG_FUNACTION:
@@ -806,6 +874,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SendRconCommand("gmx");
 			}
 		}
+		case DIALOG_SCHOOLDRIVER:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0:
+					{
+						PVar:playerid[JOBID] = JOB_SCHOOLDRIVER;
+					}
+					case 1:
+					{
+						PVar:playerid[JOBID] = 0;
+					}
+				}
+			}
+		}
 		case DIALOG_SELECTINTERIOR:
 		{
 			new interiorDialogID = PVar:playerid[INTERIORDIALOGID];
@@ -848,6 +933,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if (response)
 			{
 				return COMMAND_OK;
+			}
+		}
+		case DIALOG_TAXI:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0:
+					{
+						PVar:playerid[JOBID] = JOB_TAXI;
+					}
+					case 1:
+					{
+						PVar:playerid[JOBID] = 0;
+					}
+				}
 			}
 		}
 		case DIALOG_TELEPORTLOCATIONS:

@@ -8,6 +8,18 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			{
 				switch (pickups[pickupID][PICKUP_TYPE])
 				{
+					case PICKUPTYPE_ADAC:
+					{
+						ShowDialog(playerid, DIALOG_ADAC);
+					}
+					case PICKUPTYPE_ARMEE:
+					{
+						ShowDialog(playerid, DIALOG_ARMEE);
+					}
+					case PICKUPTYPE_AMBULANCE:
+					{
+						ShowDialog(playerid, DIALOG_AMBULANCE);
+					}
 					case PICKUPTYPE_BANK:
 					{
 						TeleportToBuilding(playerid, strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
@@ -20,6 +32,10 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 						{
 							ShowDialog(playerid, DIALOG_BANK_NEWACCOUNT);
 						}
+					}
+					case PICKUPTYPE_ESTATEAGENTS:
+					{
+						ShowDialog(playerid, DIALOG_ESTATEAGENTS);
 					}
 					case PICKUPTYPE_GASSTATION:
 					{
@@ -112,6 +128,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 						{
 							ShowDialog(playerid, DIALOG_POLICE_JOB);
 						}
+					}
+					case PICKUPTYPE_SCHOOLDRIVER:
+					{
+						ShowDialog(playerid, DIALOG_SCHOOLDRIVER);
+					}
+					case PICKUPTYPE_TAXI:
+					{
+						ShowDialog(playerid, DIALOG_TAXI);
 					}
 					case PICKUPTYPE_TRUCKER:
 					{

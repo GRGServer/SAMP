@@ -53,8 +53,10 @@
 #define JOB_ARMEE					8
 #define JOB_AMBULANCE				6
 #define JOB_BANK					7
-#define JOB_ESTATEAGENT				3
+#define JOB_ESTATEAGENTS			3
 #define JOB_POLICE					5
+#define JOB_SCHOOLDRIVER				9
+#define JOB_TAXI					10
 #define JOB_TRUCKER					4
 #define JOB_UNEMPLOYED				0
 #define JOB_VEHICLEDEALER			1
@@ -99,16 +101,23 @@
 
 
 // Pickups
+#define PICKUP_ARMEE				1239
+#define PICKUP_ADAC					1239
+#define PICKUP_AMBULANCE			1239
 #define PICKUP_BANK					1559
+#define PICKUP_ESTATEAGENTS			1239
 #define PICKUP_GASSTATION			1008
 #define PICKUP_HOUSEAVAILABLE		1273
 #define PICKUP_HOUSEBOUGHT			1272
 #define PICKUP_HOTEL				1239
 #define PICKUP_INBANK				1239
 #define PICKUP_INPOLICE				1239
+#define PICKUP_SCHOOLDRIVER			1239
 #define PICKUP_POLICE				1559
+#define PICKUP_TAXI					1239
 #define PICKUP_TRUCKER				1239
 #define PICKUP_VEHICLEDEALER		1239
+
 
 
 // Register values
