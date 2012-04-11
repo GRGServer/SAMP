@@ -1,7 +1,7 @@
 #define GetStringArg(%0,%1); \
-for(new i_%0 = 0; ; ++i_%0) \
+for (new i_%0 = 0; ; ++i_%0) \
 { \
-	if((%1[i_%0] = getarg((%0), i_%0)) != EOS) \
+	if ((%1[i_%0] = getarg((%0), i_%0)) != EOS) \
 		continue; \
 	else \
 		break; \
