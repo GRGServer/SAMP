@@ -157,7 +157,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
 			}
 		}
-		// Deposit money from bank account
+		// Deposit money to bank account
 		case DIALOG_BANK_DEPOSITMONEY:
 		{
 			if (response)
@@ -170,16 +170,16 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				else
 				{
 					new Float:money = floatstr(inputtext);
-					if(money > PVar:playerid[BANKMONEY])
+					if(money > PVar:playerid[MONEY])
 					{
-						SendClientMessageEx(playerid, COLOR_ERROR, 25);
+						SendClientMessageEx(playerid, COLOR_ERROR, 14);
 						ShowDialog(playerid, DIALOG_BANK_DEPOSITMONEY);
 					}
 					else
 					{
-						SetPlayerMoney(playerid, MONEY_BANK, floatsub(PVar:playerid[BANKMONEY], money));
-						SetPlayerMoney(playerid, MONEY_CASH, floatadd(PVar:playerid[MONEY], money));
-						SendClientMessageEx(playerid, COLOR_INFO, 26, money);
+						SetPlayerMoney(playerid, MONEY_BANK, floatadd(PVar:playerid[BANKMONEY], money));
+						SetPlayerMoney(playerid, MONEY_CASH, floatsub(PVar:playerid[MONEY], money));
+						SendClientMessageEx(playerid, COLOR_INFO, 21, money);
 						ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
 					}
 				}
@@ -243,7 +243,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				LeaveBuilding(playerid);
 			}
 		}
-		// Withdraw money to bank account
+		// Withdraw money from bank account
 		case DIALOG_BANK_WITHDRAWMONEY:
 		{
 			if (response)
@@ -256,16 +256,16 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				else
 				{
 					new Float:money = floatstr(inputtext);
-					if(money > PVar:playerid[MONEY])
+					if(money > PVar:playerid[BANKMONEY])
 					{
-						SendClientMessageEx(playerid, COLOR_ERROR, 14);
+						SendClientMessageEx(playerid, COLOR_ERROR, 25);
 						ShowDialog(playerid, DIALOG_BANK_WITHDRAWMONEY);
 					}
 					else
 					{
-						SetPlayerMoney(playerid, MONEY_BANK, floatadd(PVar:playerid[BANKMONEY], money));
-						SetPlayerMoney(playerid, MONEY_CASH, floatsub(PVar:playerid[MONEY], money));
-						SendClientMessageEx(playerid, COLOR_INFO, 21, money);
+						SetPlayerMoney(playerid, MONEY_BANK, floatsub(PVar:playerid[BANKMONEY], money));
+						SetPlayerMoney(playerid, MONEY_CASH, floatadd(PVar:playerid[MONEY], money));
+						SendClientMessageEx(playerid, COLOR_INFO, 26, money);
 						ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
 					}
 				}

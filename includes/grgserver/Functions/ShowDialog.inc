@@ -74,10 +74,10 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			ShowMsgBox(playerID, dialogID, LanguageString(playerID, 209), LanguageString(playerID, 214), MSGBOXSTYLE_YESNO);
 		}
-		// Deposit money from the bank account
+		// Deposit money to the bank account
 		case DIALOG_BANK_DEPOSITMONEY:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, LanguageString(playerID, 208), LanguageString(playerID, 213), "OK", LanguageString(playerID, 165));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, LanguageString(playerID, 208), LanguageString(playerID, 212), "OK", LanguageString(playerID, 165));
 		}
 		// Show options for the bank account
 		case DIALOG_BANK_HASACCOUNT:
@@ -94,10 +94,10 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			ShowMsgBox(playerID, dialogID, LanguageString(playerID, 210), LanguageString(playerID, 211), MSGBOXSTYLE_YESNO);
 		}
-		// Withdraw money to the bank account
+		// Withdraw money from the bank account
 		case DIALOG_BANK_WITHDRAWMONEY:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, LanguageString(playerID, 207), LanguageString(playerID, 212), "OK", LanguageString(playerID, 165));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, LanguageString(playerID, 207), LanguageString(playerID, 213), "OK", LanguageString(playerID, 165));
 		}
 		case DIALOG_BUYHOUSE:
 		{
