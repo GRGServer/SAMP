@@ -69,6 +69,7 @@
 
 
 // Limits
+#define MAX_FUNCTION_NAME			32
 #define MAX_MONEY					999999.99// Display on screen
 
 
@@ -98,26 +99,6 @@
 
 // Pay Day configuration
 #define PAYDAY_INTERVAL				3600// 1 hour
-
-
-// Pickups
-#define PICKUP_ARMEE				1239
-#define PICKUP_ADAC					1239
-#define PICKUP_AMBULANCE			1239
-#define PICKUP_BANK					1559
-#define PICKUP_ESTATEAGENTS			1239
-#define PICKUP_GASSTATION			1008
-#define PICKUP_HOUSEAVAILABLE		1273
-#define PICKUP_HOUSEBOUGHT			1272
-#define PICKUP_HOTEL				1239
-#define PICKUP_INBANK				1239
-#define PICKUP_INPOLICE				1239
-#define PICKUP_SCHOOLDRIVER			1239
-#define PICKUP_POLICE				1559
-#define PICKUP_TAXI					1239
-#define PICKUP_TRUCKER				1239
-#define PICKUP_VEHICLEDEALER		1239
-
 
 
 // Register values

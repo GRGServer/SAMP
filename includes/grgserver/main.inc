@@ -37,7 +37,6 @@
 #include <grgserver\Functions\GetOnlineTime.inc>
 #include <grgserver\Functions\GetPermissionByName.inc>
 #include <grgserver\Functions\GetPermissionName.inc>
-#include <grgserver\Functions\GetPickupInfoByType.inc>
 #include <grgserver\Functions\GetPlayerByUserID.inc>
 #include <grgserver\Functions\GetPlayerID.inc>
 #include <grgserver\Functions\GetPlayerNameEx.inc>
@@ -127,6 +126,21 @@
 #include <grgserver\Callbacks\OnVehiclePaintjob.inc>
 #include <grgserver\Callbacks\OnVehicleRespray.inc>
 #include <grgserver\Callbacks\OnVehicleSpawn.inc>
+
+// Pickups
+#include <grgserver\Pickups\Pickup_ADAC.inc>
+#include <grgserver\Pickups\Pickup_Ambulance.inc>
+#include <grgserver\Pickups\Pickup_Army.inc>
+#include <grgserver\Pickups\Pickup_Bank.inc>
+#include <grgserver\Pickups\Pickup_DrivingInstructor.inc>
+#include <grgserver\Pickups\Pickup_EstateAgents.inc>
+#include <grgserver\Pickups\Pickup_GasStation.inc>
+#include <grgserver\Pickups\Pickup_Hotel.inc>
+#include <grgserver\Pickups\Pickup_House.inc>
+#include <grgserver\Pickups\Pickup_Police.inc>
+#include <grgserver\Pickups\Pickup_Taxi.inc>
+#include <grgserver\Pickups\Pickup_Trucker.inc>
+#include <grgserver\Pickups\Pickup_VehicleDealer.inc>
 
 // Timers
 #include <grgserver\Timers\Timer_CameraMovementEnd.inc>

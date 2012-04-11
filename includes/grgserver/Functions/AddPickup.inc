@@ -14,17 +14,18 @@
 */
 AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 {
-	new pickupTypeID;
 	new modelID;
 	new pickup;
-	if (GetPickupInfoByType(pickupID, type, pickupTypeID, modelID))
+	FormatNew:functionName[MAX_FUNCTION_NAME]("PUMID_%s", type);// PUMID = PickUpModelID
+	modelID = CallLocalFunction(functionName, "d", pickupID);
+	if (modelID)
 	{
 		pickup = CreatePickup(modelID, 23, posX, posY, posZ);
-		Create3DTextLabel("Drücke ~k~~CONVERSATION_YES~", COLOR_TEXTLABEL, posX, posY, posZ, TEXTLABEL_DRAWDISTANCE, 0, true);
+		Create3DTextLabel("~k~~CONVERSATION_YES~", COLOR_TEXTLABEL, posX, posY, posZ, TEXTLABEL_DRAWDISTANCE, 0, true);
 		pickups[pickup][PICKUP_POSX] = posX;
 		pickups[pickup][PICKUP_POSY] = posY;
 		pickups[pickup][PICKUP_POSZ] = posZ;
-		pickups[pickup][PICKUP_TYPE] = pickupTypeID;
+		format(pickups[pickup][PICKUP_TYPE], STRINGLENGTH_PICKUPTYPE, type);
 		if (saveToDB)
 		{
 			MySQLQuery("INSERT INTO `pickups` (`PosX`, `PosY`, `PosZ`, `Type`) VALUES('%f', '%f', '%f', '%s')", posX, posY, posZ, type);

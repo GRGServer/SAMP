@@ -26,6 +26,8 @@ for(new i_%0 = 0; ; ++i_%0) \
 #define LoadPermission:%0(%1,%2) permissions[%1][PERMISSION_%0] = strval(GetMySQLField(%2))
 #define MD5(%0) MD5_Hash(%0, true)
 #define MySQLQuery(%0) Format:sqlQuery(%0); mysql_query(sqlQuery)
+#define PickupEvent:%0(%1) forward PUE_%0(%1); public PUE_%0(%1)
+#define PickupModelID:%0(%1) forward PUMID_%0(%1); public PUMID_%0(%1)
 #define PlayerLoop(%0) Count(%0, maxPlayers)
 #define PTextDraw:%0[%1] PVar:%0[TEXTDRAW_%1]
 #define PVar:%0[%1] playerVariables[%0][PVAR_%1]
