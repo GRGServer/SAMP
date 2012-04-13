@@ -135,7 +135,7 @@
 
 // Timers
 #define TIMER_EVERYMINUTE			60000// 1 minute
-#define TIMER_FAST					250// 1/4 seconds (Update fuel usage calculation on change!)
+#define TIMER_FAST					250// 1/4 seconds
 #define TIMER_HIDERADIODISPLAY		3000// Hide radio display after 3 seconds
 #define TIMER_HOURLY				3600000// 1 hour
 #define TIMER_PICKUPTIMEOUT			2000// Only show pickup message if the player didn't pick up a pickup before the timeout of 2 seconds has been reached

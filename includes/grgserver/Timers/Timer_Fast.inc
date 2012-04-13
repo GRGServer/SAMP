@@ -26,8 +26,8 @@ Timer:Fast()
 				new vehicleModelIndex = GetVehicleModel(vehicleID) - 400;
 				GetVehicleVelocity(vehicleID, velocityX, velocityY, velocityZ);
 				GetVehicleHealth(vehicleID, health);
-				speed = floatround(floatsqroot(floatabs(floatpower(velocityX + velocityY + velocityZ, 2))) * 100 * 1.61);
-				distance = floatdiv(speed, 60 * 60 * 4);
+				speed = floatround(floatsqroot(floatpower(velocityX, 2) + floatpower(velocityY, 2) + floatpower(velocityZ, 2)) * 100 * 1.61);
+				distance = floatdiv(speed, floatdiv(1000 * 60 * 60, TIMER_FAST));
 				vehicles[vehicleID][VEHICLE_MILEAGE] = floatadd(vehicles[vehicleID][VEHICLE_MILEAGE], distance);
 				healthPercentage = floatdiv(health, 10);
 				if (vehicles[vehicleID][VEHICLE_CURRENTFUEL] <= 0)
