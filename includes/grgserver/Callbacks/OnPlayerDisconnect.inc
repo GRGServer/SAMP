@@ -17,6 +17,7 @@ public OnPlayerDisconnect(playerid, reason)
 		TextDrawDestroy(PTextDraw:playerid[SPEEDO_COLUMN1]);
 		TextDrawDestroy(PTextDraw:playerid[SPEEDO_COLUMN2]);
 		TextDrawDestroy(PTextDraw:playerid[VEHICLENAME]);
+		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[SCREENFADER]);
 		SendDeathMessage(INVALID_PLAYER_ID, playerid, 201);
 	}
 	StopAudioStreamForPlayer(playerid);

@@ -43,4 +43,11 @@ ReloadTextDraws(playerID)
 	TextDrawSetOutline(PTextDraw:playerID[RADIOSTATION], 1);
 	TextDrawSetProportional(PTextDraw:playerID[RADIOSTATION], 2);
 	TextDrawSetShadow(PTextDraw:playerID[RADIOSTATION], 1);
+	if (PTextDraw:playerID[SCREENFADER])
+	{
+		PlayerTextDrawDestroy(playerID, PTextDraw:playerID[SCREENFADER]);
+	}
+	PTextDraw:playerID[SCREENFADER] = CreatePlayerTextDraw(playerID, 0, 0, "~r~");
+	PlayerTextDrawLetterSize(playerID, PTextDraw:playerID[SCREENFADER], 0, 50);
+	PlayerTextDrawUseBox(playerID, PTextDraw:playerID[SCREENFADER], true);
 }

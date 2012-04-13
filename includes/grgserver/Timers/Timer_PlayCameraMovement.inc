@@ -32,5 +32,5 @@ Timer:PlayCameraMovement(playerID, movementID)
 		endLookZ = startLookZ;
 	}
 	InterpolateCameraLookAt(playerID, startLookX, startLookY, startLookZ, endLookX, endLookY, endLookZ, time, cutType);
-	SetTimerEx("Timer_CameraMovementEnd", time + waitEnd, false, "dd", playerID, movementID);
+	SetTimerEx("OnCameraMovementStop", time + waitEnd, false, "dd", playerID, movementID);
 }

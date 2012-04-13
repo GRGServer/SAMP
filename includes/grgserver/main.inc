@@ -32,6 +32,7 @@
 #include <grgserver\Functions\FetchMySQLRow.inc>
 #include <grgserver\Functions\FormatDate.inc>
 #include <grgserver\Functions\FormatTime.inc>
+#include <grgserver\Functions\GetColor.inc>
 #include <grgserver\Functions\GetMySQLField.inc>
 #include <grgserver\Functions\GetMySQLValue.inc>
 #include <grgserver\Functions\GetOnlineTime.inc>
@@ -101,6 +102,7 @@
 #include <grgserver\Callbacks\IRC_OnUserJoinChannel.inc>
 #include <grgserver\Callbacks\IRC_OnUserLeaveChannel.inc>
 #include <grgserver\Callbacks\IRC_OnUserSay.inc>
+#include <grgserver\Callbacks\OnCameraMovementStop.inc>
 #include <grgserver\Callbacks\OnDialogResponse.inc>
 #include <grgserver\Callbacks\OnGameModeExit.inc>
 #include <grgserver\Callbacks\OnGameModeInit.inc>
@@ -121,6 +123,7 @@
 #include <grgserver\Callbacks\OnPlayerSpawn.inc>
 #include <grgserver\Callbacks\OnPlayerStateChange.inc>
 #include <grgserver\Callbacks\OnPlayerText.inc>
+#include <grgserver\Callbacks\OnScreenFadeStop.inc>
 #include <grgserver\Callbacks\OnVehicleDeath.inc>
 #include <grgserver\Callbacks\OnVehicleMod.inc>
 #include <grgserver\Callbacks\OnVehiclePaintjob.inc>
@@ -143,7 +146,6 @@
 #include <grgserver\Pickups\Pickup_VehicleDealer.inc>
 
 // Timers
-#include <grgserver\Timers\Timer_CameraMovementEnd.inc>
 #include <grgserver\Timers\Timer_EveryMinute.inc>
 #include <grgserver\Timers\Timer_Fast.inc>
 #include <grgserver\Timers\Timer_FlyWithPlane.inc>
@@ -152,6 +154,7 @@
 #include <grgserver\Timers\Timer_PickupTimeout.inc>
 #include <grgserver\Timers\Timer_PlayCameraMovement.inc>
 #include <grgserver\Timers\Timer_RefuelVehicle.inc>
+#include <grgserver\Timers\Timer_ScreenFader.inc>
 #include <grgserver\Timers\Timer_Slow.inc>
 #include <grgserver\Timers\Timer_SpawnPlayer.inc>
 #include <grgserver\Timers\Timer_StableCheck.inc>
