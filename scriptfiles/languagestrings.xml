@@ -1,0 +1,902 @@
+<languagestrings>
+	<string id="1">
+		<en>%p has accepted your job (Order ID: %d)</en>
+		<de>%p hat deinen Auftrag (Auftragsnummer: %d) angenommen</de>
+	</string>
+	<string id="2">
+		<en>%s has joined the IRC channel</en>
+		<de>%s hat den IRC Channel betreten</de>
+	</string>
+	<string id="3">
+		<en>%p has joined the server</en>
+		<de>%p hat den Server betreten</de>
+	</string>
+	<string id="4">
+		<en>%s has left the IRC channel</en>
+		<de>%s hat den IRC Channel verlassen</de>
+	</string>
+	<string id="5">
+		<en>Currently revision %d of our game mode is running on this server.</en>
+		<de>Auf diesem Server läuft aktuell Revision %d unserer Gamemode.</de>
+	</string>
+	<string id="6">
+		<en>Error while creating the pickup!</en>
+		<de>Fehler beim Erstellen des Pickups!</de>
+	</string>
+	<string id="7">
+		<en>Press ~k~~CONVERSATION_YES~ to use this pickup</en>
+		<de>Drücke ~k~~CONVERSATION_YES~ um dieses Pickup aufzunehmen</de>
+	</string>
+	<string id="8">
+		<en>Switch language</en>
+		<de>Sprache wechseln</de>
+	</string>
+	<string id="9">
+		<en>The bank has been sold!</en>
+		<de>Die Bank wurde verkauft!</de>
+	</string>
+	<string id="10">
+		<en>The building %s (Price: %m) has been saved with ID %d.</en>
+		<de>Das Gebäude %s (Preis: %m) wurde unter der ID %d gespeichert.</de>
+	</string>
+	<string id="11">
+		<en>This bank has been already bought!</en>
+		<de>Diese Bank ist bereits gekauft!</de>
+	</string>
+	<string id="12">
+		<en>This job has been already accepted by another player!</en>
+		<de>Dieser Auftrag wurde bereits von einem anderen Spieler angenommen!</de>
+	</string>
+	<string id="13">
+		<en>You already own this bank!</en>
+		<de>Diese Bank besitzt du Bereits!</de>
+	</string>
+	<string id="14">
+		<en>You don't have enough money!</en>
+		<de>Du hast nicht so viel Geld bei dir!</de>
+	</string>
+	<string id="15">
+		<en>You have accepted the job</en>
+		<de>Du hast den Auftrag angenommen</de>
+	</string>
+	<string id="16">
+		<en>You have bought the bank</en>
+		<de>Du hast die Bank gekauft</de>
+	</string>
+	<string id="17">
+		<en>You have successfully created your bank account and can now transfer money to this account.</en>
+		<de>Du hast dein Konto erfolgreich erstellt und kannst nun Geld auf dieses Konto einzahlen.</de>
+	</string>
+	<string id="18">
+		<en>You have terminated your bank account!</en>
+		<de>Du hast dein Konto gekündigt!</de>
+	</string>
+	<string id="19">
+		<en>You have to enter the amount!</en>
+		<de>Du musst einen Betrag eingeben!</de>
+	</string>
+	<string id="20">
+		<en>Your password has been changed</en>
+		<de>Dein Passwort wurde geändert</de>
+	</string>
+	<string id="21">
+		<en>You have transferred %m to your bank account</en>
+		<de>Du hast %m auf dein Bankkonto eingezahlt</de>
+	</string>
+	<string id="22">
+		<en>You need %m to buy this bank! You only have %m.</en>
+		<de>Du benötigst %m für diese Bank! Leider hast du nur %m.</de>
+	</string>
+	<string id="23">
+		<en>Your current bank balance is %m</en>
+		<de>Dein aktuelles Bankguthaben beträgt %m</de>
+	</string>
+	<string id="24">
+		<en>Your language has been switched</en>
+		<de>Deine Sprache wurde gewechselt</de>
+	</string>
+	<string id="25">
+		<en>You don't have enough money at your bank!</en>
+		<de>Du hast nicht genug Geld auf deiner Bank!</de>
+	</string>
+	<string id="26">
+		<en>You got %m from your bank account</en>
+		<de>Du hast %m von deinem Bankkonto abgehoben</de>
+	</string>
+	<string id="27">
+		<en>You need %m to buy this vehicle! But you only have %m.</en>
+		<de>Du benötigst %m für dieses Fahrzeug! Leider hast du nur %m.</de>
+	</string>
+	<string id="28">
+		<en>Have fun with your new house!</en>
+		<de>Viel Spaß mit deinem neuen Haus!</de>
+	</string>
+	<string id="29">
+		<en>You need %m for this house! But you only have %m.</en>
+		<de>Du benötigst %m für dieses Haus! Leider hast du nur %m.</de>
+	</string>
+	<string id="30">
+		<en>The entered password is wrong!</en>
+		<de>Das eingegebene Passwort ist falsch!</de>
+	</string>
+	<string id="31">
+		<en>Please use a password with a length between %d and %d!</en>
+		<de>Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!</de>
+	</string>
+	<string id="32">
+		<en>The entered passwords do not match! Please try again.</en>
+		<de>Die eingegebenen Passwörter stimmen nicht überein! Bitte versuche es erneut.</de>
+	</string>
+	<string id="33">
+		<en>Have fun with your new hotel!</en>
+		<de>Viel Spaß mit deinem neuen Hotel!</de>
+	</string>
+	<string id="34">
+		<en>You need %m to buy this hotel! But you only have %m.</en>
+		<de>Du benötigst %m für dieses Hotel! Leider hast du nur %m.</de>
+	</string>
+	<string id="35">
+		<en>You have been logged in successfully</en>
+		<de>Du wurdest erfolgreich eingeloggt</de>
+	</string>
+	<string id="36">
+		<en>You have to enter your password!</en>
+		<de>Du musst dein Passwort eingeben!</de>
+	</string>
+	<string id="37">
+		<en>You can now quit the game</en>
+		<de>Du kannst nun das Spiel beenden</de>
+	</string>
+	<string id="38">
+		<en>Job created (Order number: %d)</en>
+		<de>Auftrag erstellt (Auftragsnummer: %d)</de>
+	</string>
+	<string id="39">
+		<en>You already hae a job! Please terminate it first.</en>
+		<de>Du hast bereits einen Arbeitsplatz! Bitte kündige diesen zuerst.</de>
+	</string>
+	<string id="40">
+		<en>Please use the format TT.MM.JJJJ!</en>
+		<de>Bitte verwende das Format TT.MM.JJJJ!</de>
+	</string>
+	<string id="41">
+		<en>Invalid date!</en>
+		<de>Ungültiges Datum!</de>
+	</string>
+	<string id="42">
+		<en>You have restarted the game mode</en>
+		<de>Du hast den Gamemode neugestartet</de>
+	</string>
+	<string id="43">
+		<en>%s has restarted the game mode</en>
+		<de>%s hat den Gamemode neugestartet</de>
+	</string>
+	<string id="44">
+		<en>You already own this company!</en>
+		<de>Du bist bereits Besitzer dieses Unternehmens!</de>
+	</string>
+	<string id="45">
+		<en>Another player is already owner of this company!</en>
+		<de>Ein anderer Spieler ist bereits Besitzer dieses Unternehmens!</de>
+	</string>
+	<string id="46">
+		<en>You are now owner of this company</en>
+		<de>Du bist nun Besitzer dieses Unternehmens</de>
+	</string>
+	<string id="47">
+		<en>You need %m to buy this company! But you only have %m.</en>
+		<de>Du benötigst %m um dieses Unternehmen zu kaufen! Leider hast du nur %m.</de>
+	</string>
+	<string id="48">
+		<en>Recording stopped</en>
+		<de>Aufnahme gestoppt</de>
+	</string>
+	<string id="49">
+		<en>Stop the current NPC recording</en>
+		<de>Aktuelle NPC Aufnahme beenden</de>
+	</string>
+	<string id="50">
+		<en>The command has been executed</en>
+		<de>Der Befehl wurde ausgeführt</de>
+	</string>
+	<string id="51">
+		<en>Execute RCON command</en>
+		<de>RCON Befehl ausführen</de>
+	</string>
+	<string id="52">
+		<en>You are not the driver of this vehicle!</en>
+		<de>Du bist nicht der Fahrer dieses Fahrzeugs!</de>
+	</string>
+	<string id="53">
+		<en>The engine of your vehicle has been turned off.</en>
+		<de>Der Motor deines Fahrzeuges wurde ausgeschalten.</de>
+	</string>
+	<string id="54">
+		<en>The engine of your vehicle has been turned on.</en>
+		<de>Der Motor deines Fahrzeuges wurde gestartet.</de>
+	</string>
+	<string id="55">
+		<en>The engine of your vehicle could not be started (Engine damaged)!</en>
+		<de>Der Motor deines Fahrzeuges konnte nicht gestartet werden (Motorschaden)!</de>
+	</string>
+	<string id="56">
+		<en>You are currently in a building! Please exit the building and try it again.</en>
+		<de>Du bist aktuell in einem Gebäude! Bitte verlasse das Gebäude und versuche es erneut.</de>
+	</string>
+	<string id="57">
+		<en>The pickup %s has been saved with ID %d</en>
+		<de>Das Pickup %s wurde unter der ID %d gespeichert</de>
+	</string>
+	<string id="58">
+		<en>Invalid type!</en>
+		<de>Ungültiger Typ!</de>
+	</string>
+	<string id="59">
+		<en>You have the following permissions: %s</en>
+		<de>Du hast die folgenden Rechte: %s</de>
+	</string>
+	<string id="60">
+		<en>%p has the following permissions: %s</en>
+		<de>%p hat die folgenden Rechte: %s</de>
+	</string>
+	<string id="61">
+		<en>You are not in a building!</en>
+		<de>Du bist in keinem Gebäude!</de>
+	</string>
+	<string id="62">
+		<en>The vehicle has been spawned</en>
+		<de>Das Fahrzeug wurde gespawnt</de>
+	</string>
+	<string id="63">
+		<en>The color must be between 0 and 127!</en>
+		<de>Die Farbe muss zwischen 0 und 127 sein!</de>
+	</string>
+	<string id="64">
+		<en>The vehicle was not found!</en>
+		<de>Das Fahrzeug wurde nicht gefunden!</de>
+	</string>
+	<string id="65">
+		<en>The model ID must be between 400 and 611!</en>
+		<de>Die Model ID muss zwischen 400 und 611 sein!</de>
+	</string>
+	<string id="66">
+		<en>Current balance: %m</en>
+		<de>Aktueller Kontostand: %m</de>
+	</string>
+	<string id="67">
+		<en>Show balance</en>
+		<de>Kontostand anzeigen</de>
+	</string>
+	<string id="68">
+		<en>Invalid WeaponID!</en>
+		<de>Ungültige WeaponID!</de>
+	</string>
+	<string id="69">
+		<en>Have fun with your new weapon (%s)!</en>
+		<de>Viel Spaß mit deiner neuen Waffe (%s)!</de>
+	</string>
+	<string id="70">
+		<en>%p already has the permission '%s'!</en>
+		<de>%p hat bereits das Recht '%s'!</de>
+	</string>
+	<string id="71">
+		<en>%p does not have the permission '%s' so it can not be removed!</en>
+		<de>%p hatte das Recht '%s' noch nicht und kann daher nicht entfernt werden!</de>
+	</string>
+	<string id="72">
+		<en>You got the permission '%s' from %p</en>
+		<de>Du hast das Recht '%s' von %p bekommen</de>
+	</string>
+	<string id="73">
+		<en>You gave the permission '%s' to %p</en>
+		<de>Du hast das Recht '%s' an %p gegeben</de>
+	</string>
+	<string id="74">
+		<en>%p has revoked the permission '%s' from you</en>
+		<de>%p hat dir das Recht '%s' weggenommen!</de>
+	</string>
+	<string id="75">
+		<en>You have revoked the permission '%s' from %p</en>
+		<de>Du hast das Recht '%s' von %p weggenommen</de>
+	</string>
+	<string id="76">
+		<en>The playback of NPC '%p' was stopped.</en>
+		<de>Die Wiedergabe von NPC '%p' wurde gestoppt.</de>
+	</string>
+	<string id="77">
+		<en>%d more NPCs are still in use for this recording.</en>
+		<de>Es werden noch %d weitere NPCs für diese Aufnahme verwendet.</de>
+	</string>
+	<string id="78">
+		<en>The last NPC has stopped the recording!</en>
+		<de>Der letzte NPC hat die Aufnahme gestoppt!</de>
+	</string>
+	<string id="79">
+		<en>The vehicle has been saved with ID %d</en>
+		<de>Fahrzeug wurde unter der ID %d gespeichert</de>
+	</string>
+	<string id="80">
+		<en>The price can not be negative!</en>
+		<de>Der Preis darf nicht negativ sein!</de>
+	</string>
+	<string id="81">
+		<en>You gave you %m and have now %m</en>
+		<de>Du hast dir %m gegeben und hast daher nun %m</de>
+	</string>
+	<string id="82">
+		<en>Use /cmds to see a list of commands.</en>
+		<de>Verwende /cmds um eine Liste an Befehlen zu sehen.</de>
+	</string>
+	<string id="83">
+		<en>The NPC has been successfully saved with ID %d</en>
+		<de>Der NPC wurde erfolgreich unter der ID %d gespeichert</de>
+	</string>
+	<string id="84">
+		<en>An error occurred while saving!</en>
+		<de>Während dem Speichern ist ein Fehler aufgetreten!</de>
+	</string>
+	<string id="85">
+		<en>Created by Aerox_Tobi (aerox@grgserver.net) and Programie (programie@selfcoders.com)</en>
+		<de>Erstellt von Aerox_Tobi (aerox@grgserver.net) und Programie (programie@selfcoders.com)</de>
+	</string>
+	<string id="86">
+		<en>Information about this script</en>
+		<de>Informationen über dieses Script</de>
+	</string>
+	<string id="87">
+		<en>Have fun with your new JetPack!</en>
+		<de>Viel Spaß mit deinem neuen JetPack!</de>
+	</string>
+	<string id="88">
+		<en>Get a JetPack</en>
+		<de>Bekomme ein Jetpack</de>
+	</string>
+	<string id="89">
+		<en>Recording '%s' started with %d more NPCs</en>
+		<de>Aufnahme '%s' mit %d weiteren NPCs gestartet</de>
+	</string>
+	<string id="90">
+		<en>Use /stoprec to stop.</en>
+		<de>Verwende /stoprec zum stoppen.</de>
+	</string>
+	<string id="91">
+		<en>Your vehicle has been refueled.</en>
+		<de>Dein Fahrzeug wurde betankt.</de>
+	</string>
+	<string id="92">
+		<en>You have not enough money!</en>
+		<de>Du hast nicht genügend Geld!</de>
+	</string>
+	<string id="93">
+		<en>Show a list with command</en>
+		<de>Liste mit Befehlen anzeigen</de>
+	</string>
+	<string id="94">
+		<en>Accept a job</en>
+		<de>Annehmen eines Auftrages</de>
+	</string>
+	<string id="95">
+		<en>Create a building</en>
+		<de>Gebäude erstellen</de>
+	</string>
+	<string id="96">
+		<en>Create a pickup</en>
+		<de>Pickup erstellen</de>
+	</string>
+	<string id="97">
+		<en>Place a NPC without recording at your current position</en>
+		<de>NPC ohne Aufnahme an deine aktuelle Position stellen</de>
+	</string>
+	<string id="98">
+		<en>Change account password</en>
+		<de>Accountpasswort ändern</de>
+	</string>
+	<string id="99">
+		<en>Show the permissions of yourself or another player</en>
+		<de>Rechte von dir oder einem anderen Spieler anzeigen</de>
+	</string>
+	<string id="100">
+		<en>Control NPCs (e.g. start or stop)</en>
+		<de>NPCs steuern (z.B. Starten oder stoppen)</de>
+	</string>
+	<string id="101">
+		<en>Leave the current building</en>
+		<de>Aktuelles Gebäude verlassen</de>
+	</string>
+	<string id="102">
+		<en>Perform actions like dancing</en>
+		<de>Aktion wie z.B. tanzen ausführen</de>
+	</string>
+	<string id="103">
+		<en>Give permissions to a player</en>
+		<de>Rechte an einen Spieler geben</de>
+	</string>
+	<string id="104">
+		<en>Give weapons to yourself</en>
+		<de>Gebe dir Waffen</de>
+	</string>
+	<string id="105">
+		<en>Restart game mode</en>
+		<de>Gamemode neustarten</de>
+	</string>
+	<string id="106">
+		<en>Teleport to another player</en>
+		<de>Zu einen anderen Spieler teleportieren</de>
+	</string>
+	<string id="107">
+		<en>Show help</en>
+		<de>Hilfe anzeigen</de>
+	</string>
+	<string id="108">
+		<en>Kick a player from the server</en>
+		<de>Spieler vom Server kicken</de>
+	</string>
+	<string id="109">
+		<en>Say what you do (e.g. '/me follows an admin' will be shown to all players as '* &lt;Your name&gt; follows an admin')</en>
+		<de>Sagen, was du machst (z.B. '/me rennt Admin hinterher' sehen alle Spieler als '*&lt;Dein Name&gt; rennt Admin hinterher')</de>
+	</string>
+	<string id="110">
+		<en>Give money to yourself</en>
+		<de>Gebe dir Geld</de>
+	</string>
+	<string id="111">
+		<en>Start or stop the engine of your vehicle</en>
+		<de>Starten oder stoppen des Motors deines Fahrzeugs</de>
+	</string>
+	<string id="112">
+		<en>Show the last 10 news of GRG Server</en>
+		<de>Letzte 10 News-Einträge von GRG Server anzeigen</de>
+	</string>
+	<string id="113">
+		<en>Order a vehicle</en>
+		<de>Fahrzeug bestellen</de>
+	</string>
+	<string id="114">
+		<en>Show information about the pay day</en>
+		<de>Informationen über den Zahltag anzeigen</de>
+	</string>
+	<string id="115">
+		<en>Activate web radio</en>
+		<de>Webradio aktivieren</de>
+	</string>
+	<string id="116">
+		<en>Create a new NPC recording</en>
+		<de>Neue NPC Aufnahme erstellen</de>
+	</string>
+	<string id="117">
+		<en>Reload the data of a player from the database</en>
+		<de>Lade die Daten eines Spielers erneut von der Datenbank</de>
+	</string>
+	<string id="118">
+		<en>Save the current vehicle as buyable</en>
+		<de>Aktuelles Fahrzeug als kaufbares Fahrzeug speichern</de>
+	</string>
+	<string id="119">
+		<en>Teleport to an interior</en>
+		<de>In einen Interior teleportieren</de>
+	</string>
+	<string id="120">
+		<en>Show information about your player</en>
+		<de>Informationen über deinen Spieler anzeigen</de>
+	</string>
+	<string id="121">
+		<en>Teleport to a predefined location</en>
+		<de>An einen vordefinierten Ort teleportieren</de>
+	</string>
+	<string id="122">
+		<en>Spawn a vehicle</en>
+		<de>Fahrzeug spawnen</de>
+	</string>
+	<string id="123">
+		<en>Command sent: %s</en>
+		<de>Befehl gesendet: %s</de>
+	</string>
+	<string id="124">
+		<en>recordingName, playbackType and autoRepeat  is only required for the command 'start'.</en>
+		<de>recordingName, playbackType und autoRepeat wird nur für den Befehl 'start' benötigt.</de>
+	</string>
+	<string id="125">
+		<en>NPC connected</en>
+		<de>NPC verbunden</de>
+	</string>
+	<string id="126">
+		<en>Playback started</en>
+		<de>Wiedergabe gestartet</de>
+	</string>
+	<string id="127">
+		<en>An update to revision %d is available!</en>
+		<de>Es steht ein Update auf Revision %d zur Verfügung!</de>
+	</string>
+	<string id="128">
+		<en>Committed by: %s</en>
+		<de>Committet von: %s</de>
+	</string>
+	<string id="129">
+		<en>This vehicle can only be used by the group '%s'!</en>
+		<de>Dieses Fahrzeug kann nur von der Gruppe '%s' verwendet werden!</de>
+	</string>
+	<string id="130">
+		<en>This vehicle is already owned by another player!</en>
+		<de>Dieses Fahrzeug besitzt bereits ein anderer Spieler!</de>
+	</string>
+	<string id="131">
+		<en>Invalid radio station!</en>
+		<de>Ungültiger Radiosender!</de>
+	</string>
+	<string id="132">
+		<en>The NPC '%s' is not connected! Use /controlnpc %s connect and try again.</en>
+		<de>Der NPC '%s' ist nicht verbunden! Verwende /controlnpc %s connect und versuche es erneut.</de>
+	</string>
+	<string id="133">
+		<en>It's pay day! You get %m deposited into your bank account.</en>
+		<de>Es ist Zahltag! Du bekommst %m auf deinem Bankkonto gutgeschrieben.</de>
+	</string>
+	<string id="134">
+		<en>There are currently no orders available for your job!</en>
+		<de>Es stehen derzeit keine Aufträge in deinem Beruf zur Verfügung!</de>
+	</string>
+	<string id="135">
+		<en>See all news on grgserver.net.</en>
+		<de>Sehe dir alle News auf grgserver.net an.</de>
+	</string>
+	<string id="136">
+		<en>An error occurred while teleporting! Please try again.</en>
+		<de>Beim Teleportieren ist ein Fehler aufgetreten! Bitte versuche es erneut.</de>
+	</string>
+	<string id="137">
+		<en>Usage: /%s</en>
+		<de>Verwendung: /%s</de>
+	</string>
+	<string id="138">
+		<en>Welcome to the GRG server!</en>
+		<de>Willkommen auf dem GRG Server!</de>
+	</string>
+	<string id="139">
+		<en>You were registered successfully and are now logged in.</en>
+		<de>Du wurdest erfolgreich registriert und bist nun eingeloggt.</de>
+	</string>
+	<string id="140">
+		<en>The tank is already full!</en>
+		<de>Der Tank ist bereits voll!</de>
+	</string>
+	<string id="141">
+		<en>This house has been already bought by %s!</en>
+		<de>Dieses Haus wurde bereits von %s gekauft!</de>
+	</string>
+	<string id="142">
+		<en>You need %m to buy this house! But you only have %m.</en>
+		<de>Du benötigst %m um dieses Haus zu kaufen! Leider hast du nur %m.</de>
+	</string>
+	<string id="143">
+		<en>An error occurred while processing the command!</en>
+		<de>Es ist ein Fehler bei der Befehlsausführung aufgetreten!</de>
+	</string>
+	<string id="144">
+		<en>You got teleported</en>
+		<de>Du wurdest teleportiert</de>
+	</string>
+	<string id="145">
+		<en>This command is only available for NPCs!</en>
+		<de>Dieser Befehl ist nur für NPCs verfügbar!</de>
+	</string>
+	<string id="146">
+		<en>You are not in a vehicle!</en>
+		<de>Du bist nicht in einem Fahrzeug!</de>
+	</string>
+	<string id="147">
+		<en>Player not found!</en>
+		<de>Spieler nicht gefunden!</de>
+	</string>
+	<string id="148">
+		<en>You do not have the required permissions to use this command!</en>
+		<de>Du hast nicht die nötigen Rechte um diesen Befehl zu verwenden!</de>
+	</string>
+	<string id="149">
+		<en>List available RCON commands</en>
+		<de>Verfügbare RCOn Befehle auflisten</de>
+	</string>
+	<string id="150">
+		<en>Reconnect all NPCs</en>
+		<de>Alle NPCs neu verbinden</de>
+	</string>
+	<string id="151">
+		<en>Reload all permissions from database</en>
+		<de>Alle Berechtigungen von der Datenbank neu laden</de>
+	</string>
+	<string id="152">
+		<en>Reload all pickups from database</en>
+		<de>Alle Pickups von der Datenbank neu laden</de>
+	</string>
+	<string id="153">
+		<en>Reload all saved vehicles from database</en>
+		<de>Alle gespeicherten Fahrzeuge von der Datenbank neu laden</de>
+	</string>
+	<string id="154">
+		<en>Reload all vehicle models from database</en>
+		<de>Alle Fahrzeugmodelle von der Datenbank neu laden</de>
+	</string>
+	<string id="155">
+		<en>Safely restart the game mode</en>
+		<de>Gamemode sicher neustarten</de>
+	</string>
+	<string id="156">
+		<en>The game mode has been restarted via RCON</en>
+		<de>Der Gamemode wurde per RCON neugestartet</de>
+	</string>
+	<string id="157">
+		<en>Show various information about the MySQL connection</en>
+		<de>Verschiedene Informationen über die MySQL Verbindung anzeigen</de>
+	</string>
+	<string id="158">
+		<en>Your vehicle is broken!</en>
+		<de>Dein Fahrzeug ist kaputt!</de>
+	</string>
+	<string id="159">
+		<en>The tank of your vehicle is empty!</en>
+		<de>Der Tank von deinem Fahrzeug ist leer!</de>
+	</string>
+	<string id="160">
+		<en>~n~Speed:~n~State:~n~Tank:~n~Usage/100km:~n~KM:</en>
+		<de>~n~Geschwindigkeit:~n~Zustand:~n~Tank:~n~Verbrauch/100km:~n~KM:</de>
+	</string>
+	<string id="161">
+		<en>%p has left the server</en>
+		<de>%p hat den Server verlassen</de>
+	</string>
+	<string id="162">
+		<en>Reload all objects</en>
+		<de>Alle Objekte neuladen</de>
+	</string>
+	<string id="163">
+		<en>Accept order</en>
+		<de>Auftragsannahme</de>
+	</string>
+	<string id="164">
+		<en>Accept</en>
+		<de>Annehmen</de>
+	</string>
+	<string id="165">
+		<en>Cancel</en>
+		<de>Abbrechen</de>
+	</string>
+	<string id="166">
+		<en>Yes</en>
+		<de>Ja</de>
+	</string>
+	<string id="167">
+		<en>No</en>
+		<de>Nein</de>
+	</string>
+	<string id="168">
+		<en>Enter name</en>
+		<de>Name eingeben</de>
+	</string>
+	<string id="169">
+		<en>Enter the name for the building.</en>
+		<de>Gebe den Name für das Gebäude ein.</de>
+	</string>
+	<string id="170">
+		<en>Create</en>
+		<de>Erstellen</de>
+	</string>
+	<string id="171">
+		<en>Back</en>
+		<de>Zurück</de>
+	</string>
+	<string id="172">
+		<en>Select building type</en>
+		<de>Gebäudetyp auswählen</de>
+	</string>
+	<string id="173">
+		<en>Bank</en>
+		<de>Bank</de>
+	</string>
+	<string id="174">
+		<en>Hotel</en>
+		<de>Hotel</de>
+	</string>
+	<string id="175">
+		<en>House</en>
+		<de>Haus</de>
+	</string>
+	<string id="176">
+		<en>Police</en>
+		<de>Polizei</de>
+	</string>
+	<string id="177">
+		<en>Next</en>
+		<de>Weiter</de>
+	</string>
+	<string id="178">
+		<en>Player</en>
+		<de>Spieler</de>
+	</string>
+	<string id="179">
+		<en>Press ~k~~CONVERSATION_YES~</en>
+		<de>Drücke ~k~~CONVERSATION_YES~</de>
+	</string>
+	<string id="180">
+		<en>Reload all language strings</en>
+		<de>Alle Sprachstrings neuladen</de>
+	</string>
+	<string id="181">
+		<en>Create a new camera movement</en>
+		<de>Neue Kamerabewegung erstellen</de>
+	</string>
+	<string id="182">
+		<en>Set camera movement position</en>
+		<de>Kamerabewegungsposition festlegen</de>
+	</string>
+	<string id="183">
+		<en>Use existing camera movement</en>
+		<de>Bereits existierende Kamerabewegung verwenden</de>
+	</string>
+	<string id="184">
+		<en>Failed to create a new entry in the database!</en>
+		<de>Fehler beim Erstellen des neuen Eintrags in der Datenbank!</de>
+	</string>
+	<string id="185">
+		<en>New entry %d created. Use /setcampos to define the positions.</en>
+		<de>Der neue Eintrag %d wurde erstellt. Verwende /setcampos um die Positionen zu definieren.</de>
+	</string>
+	<string id="186">
+		<en>The position of the camera movement entry %d has been set.</en>
+		<de>Die Position des Kamerabewegungseintrags %d wurde festgelegt.</de>
+	</string>
+	<string id="187">
+		<en>Camera movement entry not found!</en>
+		<de>Kamerabewegungseintrag nicht gefunden!</de>
+	</string>
+	<string id="188">
+		<en>Camera movement entry %d selected. Use /setcampos to define the positions.</en>
+		<de>Kamerabewegungseintrag %d ausgewählt. Verwende /setcampos um die Positionen zu definieren.</de>
+	</string>
+	<string id="189">
+		<en>Play an existing camera movement</en>
+		<de>Vorhandene Kamerabewegung abspielen</de>
+	</string>
+	<string id="190">
+		<en>No camera movement entry selected! Use /usecammovement to select one.</en>
+		<de>Kein Kamerabewegungseintrag ausgewählt! Verwende /usecammovement um einen auszuwählen.</de>
+	</string>
+	<string id="191">
+		<en>Playback of camera movement %d started</en>
+		<de>Wiedergabe der Kamerabewegung %d gestartet</de>
+	</string>
+	<string id="192">
+		<en>Set camera behind your player</en>
+		<de>Setze die Kamera wieder hinter deinen Spieler</de>
+	</string>
+	<string id="193">
+		<en>The configuration has been updated.</en>
+		<de>Die Konfiguration wurde aktualisiert.</de>
+	</string>
+	<string id="194">
+		<en>Change configuration parameters of the current camera movement</en>
+		<de>Konfigurationsparameter der aktuellen Kamerabewegung ändern</de>
+	</string>
+	<string id="195">
+		<en>You got killed by %p</en>
+		<de>Du wurdest von %p getötet</de>
+	</string>
+	<string id="196">
+		<en>You killed %p</en>
+		<de>Du hast %p getötet</de>
+	</string>
+	<string id="197">
+		<en>Kill a player</en>
+		<de>Töte einen Spieler</de>
+	</string>
+	<string id="198">
+		<en>Invalid cut type!</en>
+		<de>Ungültiger Schnitttyp!</de>
+	</string>
+	<string id="199">
+		<en>The changes have been saved</en>
+		<de>Die Änderungen wurden gespeichert</de>
+	</string>
+	<string id="200">
+		<en>The edited object is not a streamed object!</en>
+		<de>Das bearbeitete Objekt ist kein gestreamtes Objekt!</de>
+	</string>
+	<string id="201">
+		<en>Edit an object</en>
+		<de>Bearbeite ein Objekt</de>
+	</string>
+	<string id="202">
+		<en>Add a new object</en>
+		<de>Füge ein neues Objekt hinzu</de>
+	</string>
+	<string id="203">
+		<en>The object '%s' has been removed</en>
+		<de>Das Objekt '%s' wurde entfernt</de>
+	</string>
+	<string id="204">
+		<en>You can now edit the object or remove it using ~k~~CONVERSATION_NO~</en>
+		<de>Du kannst jetzt das Objekt bearbeiten oder es mit ~k~~CONVERSATION_NO~ entfernen</de>
+	</string>
+	<string id="205">
+		<en>Spawn</en>
+		<de>Spawnen</de>
+	</string>
+	<string id="206">
+		<en>Bank balance</en>
+		<de>Kontostand</de>
+	</string>
+	<string id="207">
+		<en>Withdraw money</en>
+		<de>Geld abheben</de>
+	</string>
+	<string id="208">
+		<en>Deposit money</en>
+		<de>Geld einzahlen</de>
+	</string>
+	<string id="209">
+		<en>Cancel account</en>
+		<de>Konto kündigen</de>
+	</string>
+	<string id="210">
+		<en>New bank account</en>
+		<de>Neues Bankkonto</de>
+	</string>
+	<string id="211">
+		<en>You do not own a bank account yet.\nDo you want to create a new one?</en>
+		<de>Du hast noch kein Bankkonto.\nMöchtest du ein neues erstellen?</de>
+	</string>
+	<string id="212">
+		<en>Enter the amount how much money you want to deposit to your account.</en>
+		<de>Gebe die Menge ein, wie viel du auf dein Konto einzahlen möchtest.</de>
+	</string>
+	<string id="213">
+		<en>Enter the amount how much money you want to withdraw from your account.</en>
+		<de>Gebe die Menge ein, wie viel du von deim Konto abheben möchtest.</de>
+	</string>
+	<string id="214">
+		<en>Are you sure to cancel your account?</en>
+		<de>Bist du sicher, dass du dein Bankkonto auflösen möchtest?</de>
+	</string>
+	<string id="215">
+		<en>Your bank account must be empty in order to cancel your account.</en>
+		<de>Das Konto muss leer sein um es aufzulösen!</de>
+	</string>
+	<string id="216">
+		<en>You now have a bank account at the %s</en>
+		<de>Du hast jetzt ein Bankkonto bei der %s</de>
+	</string>
+	<string id="217">
+		<en>Accept job</en>
+		<de>Arbeit annehmen</de>
+	</string>
+	<string id="218">
+		<en>Cancel job</en>
+		<de>Arbeit kündigen</de>
+	</string>
+	<string id="219">
+		<en>ADAC</en>
+		<de>ADAC</de>
+	</string>
+	<string id="220">
+		<en>Army</en>
+		<de>Bundeswehr</de>
+	</string>
+	<string id="221">
+		<en>Ambulance</en>
+		<de>Sanitäter</de>
+	</string>
+	<string id="222">
+		<en>Estate agent</en>
+		<de>Immobilienmarkler</de>
+	</string>
+	<string id="223">
+		<en>Driving instructor</en>
+		<de>Fahrlehrer</de>
+	</string>
+	<string id="224">
+		<en>Taxi driver</en>
+		<de>Taxifahrer</de>
+	</string>
+	<string id="225">
+		<en>It's pay day but you can't receive money because you don't have a bank account! Get a bank account!</en>
+		<de>Es ist Zahltag, aber du kannst kein Geld bekommen, da du kein Bankkonto hast! Lege dir ein Bankkonto zu!</de>
+	</string>
+</languagestrings>

@@ -7,20 +7,47 @@ ReloadLanguageStrings()
 		strdel(languageStrings[id][LANGUAGESTRING_GERMAN], 0, STRINGLENGTH_LANGUAGESTRING);
 	}
 	print("* Loading language strings...");
-	mysql_query("SELECT * FROM `languagestrings`");
-	mysql_store_result();
-	while (FetchMySQLRow())
+	new XMLNode:xml = XML_LoadDocument("languagestrings.xml");
+	xml = XML_GetFirstChild(xml, "languagestrings");
+	new XMLNode:stringNode = XML_GetFirstChild(xml, "string");
+	while (stringNode)
 	{
-		new id = strval(GetMySQLField("ID"));
-		if (id < LANGUAGE_MAXSTRINGS)
+		new value[256];
+		new stringIDstr[16];
+		XML_GetAttribute(stringNode, "id", stringIDstr);
+		new stringID = strval(stringIDstr);
+		if (stringID < LANGUAGE_MAXSTRINGS)
 		{
-			strcat(languageStrings[id][LANGUAGESTRING_ENGLISH], str_replace("\\n", "\n", GetMySQLField("English")), STRINGLENGTH_LANGUAGESTRING);
-			strcat(languageStrings[id][LANGUAGESTRING_GERMAN], str_replace("\\n", "\n", GetMySQLField("German")), STRINGLENGTH_LANGUAGESTRING);
+			new XMLNode:translationNode;
+			translationNode = XML_GetFirstChild(stringNode, "en");
+			if (translationNode)
+			{
+				XML_GetValue(XML_GetFirstChild(translationNode), value);
+				value = str_replace("\\n", "\n", value);
+				strcat(languageStrings[stringID][LANGUAGESTRING_ENGLISH], value, STRINGLENGTH_LANGUAGESTRING);
+			}
+			else
+			{
+				printf("Missing English language string for string %d", stringID);
+			}
+			translationNode = XML_GetFirstChild(stringNode, "de");
+			if (translationNode)
+			{
+				XML_GetValue(XML_GetFirstChild(translationNode), value);
+				value = str_replace("\\n", "\n", value);
+				strcat(languageStrings[stringID][LANGUAGESTRING_GERMAN], value, STRINGLENGTH_LANGUAGESTRING);
+			}
+			else
+			{
+				printf("Missing German language string for string %d", stringID);
+			}
 		}
 		else
 		{
-			printf("Language string ID %d is greater than language array size (%d)", id, LANGUAGE_MAXSTRINGS);
+			printf("Language string ID %d is greater than language array size (%d)", stringID, LANGUAGE_MAXSTRINGS);
 			break;
 		}
+		stringNode = XML_GetNextSibling(stringNode, "string");
 	}
+	XML_UnloadDocument(xml);
 }

@@ -15,6 +15,7 @@
 #include <sscanf>
 #include <streamer>
 #include <timerfix>
+#include <xml>
 #include <zcmd>
 
 // GRG Server main include
