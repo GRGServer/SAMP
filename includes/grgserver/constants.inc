@@ -80,6 +80,16 @@ enum
 }
 
 
+// Screen fade extra IDs
+enum
+{
+	FADE_GASSTATION_BACK,
+	FADE_GASSTATION_BLACK,
+	FADE_RESPAWN_BACK,
+	FADE_RESPAWN_BLACK
+}
+
+
 // Interior dialogs
 enum
 {

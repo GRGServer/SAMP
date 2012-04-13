@@ -3,14 +3,23 @@ public OnScreenFadeStop(playerID, extraID)
 {
 	switch (extraID)
 	{
-		case 1:// Gas station camera movement (Fade to black)
-		{
-			SetCameraBehindPlayer(playerID);
-			StartScreenFader(playerID, 0, 0, 0, -5, 0, 2);
-		}
-		case 2:// Gas station camera movement (Fade back to game)
+		case FADE_GASSTATION_BACK:
 		{
 			TogglePlayerControllable(playerID, true);
+		}
+		case FADE_GASSTATION_BLACK:
+		{
+			SetCameraBehindPlayer(playerID);
+			StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_GASSTATION_BACK);
+		}
+		case FADE_RESPAWN_BACK:
+		{
+			TogglePlayerControllable(playerID, true);
+		}
+		case FADE_RESPAWN_BLACK:
+		{
+			SetCameraBehindPlayer(playerID);
+			StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_RESPAWN_BACK);
 		}
 	}
 }
