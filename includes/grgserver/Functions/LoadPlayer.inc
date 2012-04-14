@@ -1,6 +1,6 @@
 LoadPlayer(playerID)
 {
-	MySQLQuery("SELECT * FROM `users` WHERE `UserID` = '%d'", PVar:playerID[USERID]);
+	MySQLQuery("SELECT * FROM `users` WHERE `ID` = '%d'", PVar:playerID[USERID]);
 	mysql_store_result();
 	SetPlayerMoney(playerID, MONEY_BANK, floatstr(GetMySQLField("BankMoney")));
 	SetPlayerMoney(playerID, MONEY_CREDITCARD, floatstr(GetMySQLField("CreditMoney")));

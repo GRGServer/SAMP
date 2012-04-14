@@ -616,7 +616,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					mysql_store_result();
 					if (!strcmp(MD5(inputtext), GetMySQLField("Password"), true))
 					{
-						PVar:playerid[USERID] = strval(GetMySQLField("UserID"));
+						PVar:playerid[USERID] = strval(GetMySQLField("ID"));
 					}
 					else
 					{
@@ -626,7 +626,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					mysql_free_result();
 					if (PVar:playerid[USERID])
 					{
-						MySQLQuery("UPDATE `users` SET `LoginTime` = NOW(), `ClientVersion` = '%s' WHERE `UserID` = '%d'", GetPlayerVersionEx(playerid), PVar:playerid[USERID]);
+						MySQLQuery("UPDATE `users` SET `LoginTime` = NOW(), `ClientVersion` = '%s' WHERE `ID` = '%d'", GetPlayerVersionEx(playerid), PVar:playerid[USERID]);
 						printf("Player logged in: %s (UserID: %d)", GetPlayerNameEx(playerid), PVar:playerid[USERID]);
 						TogglePlayerSpectating(playerid, false);
 						LoadPlayer(playerid);

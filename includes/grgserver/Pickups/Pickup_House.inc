@@ -10,7 +10,7 @@ PickupEvent:HOUSE(playerID, pickupID)
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 141, GetMySQLValue("users", "Username", "UserID", val2str(ownerUserID)));
+			SendClientMessageEx(playerID, COLOR_ERROR, 141, GetMySQLValue("users", "Username", "ID", val2str(ownerUserID)));
 		}
 	}
 	else
