@@ -35,6 +35,7 @@ public OnPlayerConnect(playerid)
 	}
 	else
 	{
+		printf("%s connected from %s", GetPlayerNameEx(playerid), GetPlayerCountryName(playerid));
 		MySQLQuery("SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
 		mysql_store_result();
 		if (strval(GetMySQLField("ID")))
@@ -45,6 +46,16 @@ public OnPlayerConnect(playerid)
 		}
 		else
 		{
+			new countryCode[2];
+			strcat(countryCode, GetPlayerCountryCode(playerid));
+			if (strlen(countryCode) && (!strcmp(countryCode, "AT", true) || !strcmp(countryCode, "CH", true) || !strcmp(countryCode, "DE", true)))
+			{
+				PVar:playerid[LANGUAGE] = LANGUAGE_GERMAN;
+			}
+			else
+			{
+				PVar:playerid[LANGUAGE] = LANGUAGE_ENGLISH;
+			}
 			ShowDialog(playerid, DIALOG_REGISTER_PASSWORD1);
 		}
 		mysql_free_result();
