@@ -37,7 +37,7 @@ public OnPlayerConnect(playerid)
 	{
 		MySQLQuery("SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
 		mysql_store_result();
-		if (strval(GetMySQLField("UserID")))
+		if (strval(GetMySQLField("ID")))
 		{
 			TogglePlayerSpectating(playerid, true);
 			ShowDialog(playerid, DIALOG_LOGIN);
