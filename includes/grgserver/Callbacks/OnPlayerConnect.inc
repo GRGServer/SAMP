@@ -3,6 +3,14 @@ public OnPlayerConnect(playerid)
 	ResetPlayerVariables(playerid);
 	if (IsPlayerNPC(playerid))
 	{
+		new ip[16];
+		GetPlayerIp(playerid, ip, sizeof(ip));
+		if (strcmp(ip, "127.0.0.1", true))
+		{
+			printf("External NPC connection from %s -> Banned", ip);
+			BanEx(playerid, "External NPC connection");
+			return false;
+		}
 		new npcName[MAX_PLAYER_NAME];
 		GetPlayerName(playerid, npcName, sizeof(npcName));
 		strdel(npcName, 0, 4);
