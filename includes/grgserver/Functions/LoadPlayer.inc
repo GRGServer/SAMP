@@ -3,13 +3,12 @@ LoadPlayer(playerID)
 	MySQLQuery("SELECT * FROM `users` WHERE `ID` = '%d'", PVar:playerID[USERID]);
 	mysql_store_result();
 	SetPlayerMoney(playerID, MONEY_BANK, floatstr(GetMySQLField("BankMoney")));
-	SetPlayerMoney(playerID, MONEY_CREDITCARD, floatstr(GetMySQLField("CreditMoney")));
+	SetPlayerMoney(playerID, MONEY_CASH, floatstr(GetMySQLField("Money")));
 	PVar:playerID[CURRENTBUILDINGID] = strval(GetMySQLField("CurrentBuildingID"));
 	PVar:playerID[JOBID] = strval(GetMySQLField("JobID"));
 	PVar:playerID[LANGUAGE] = strval(GetMySQLField("Language"));
 	PVar:playerID[LASTNEWSID] = strval(GetMySQLField("LastNewsID"));
 	PVar:playerID[LASTPAYDAY] = strval(GetMySQLField("LastPayDay"));
-	SetPlayerMoney(playerID, MONEY_CASH, floatstr(GetMySQLField("Money")));
 	PVar:playerID[ONLINESINCE] = gettime();
 	PVar:playerID[ONLINETIME] = strval(GetMySQLField("OnlineTime"));
 	PVar:playerID[SKIN] = strval(GetMySQLField("Skin"));

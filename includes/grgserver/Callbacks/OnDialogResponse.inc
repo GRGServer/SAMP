@@ -900,12 +900,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				OnInteriorDialogSelect(playerid, interiorDialogID, 0);
 				return true;
 			}
-			if (!strcmp(inputtext, "Zurück", true))
+			if (!strcmp(inputtext, LanguageString(playerid, 171), true))
 			{
 				ShowDialog(playerid, DIALOG_SELECTINTERIOR, interiorDialogID, 0);
 				return true;
 			}
-			if (!strcmp(inputtext, "Weiter", true))
+			if (!strcmp(inputtext, LanguageString(playerid, 177), true))
 			{
 				ShowDialog(playerid, DIALOG_SELECTINTERIOR, interiorDialogID, 75);
 				return true;

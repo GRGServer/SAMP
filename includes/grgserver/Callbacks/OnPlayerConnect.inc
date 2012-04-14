@@ -39,6 +39,7 @@ public OnPlayerConnect(playerid)
 		mysql_store_result();
 		if (strval(GetMySQLField("ID")))
 		{
+			PVar:playerid[LANGUAGE] = strval(GetMySQLField("Language"));
 			TogglePlayerSpectating(playerid, true);
 			ShowDialog(playerid, DIALOG_LOGIN);
 		}

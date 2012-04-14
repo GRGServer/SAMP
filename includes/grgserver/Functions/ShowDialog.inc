@@ -103,15 +103,15 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			new string[70];
 			GetStringArg(2, string);
-			Format:string("Dieses Haus kann noch gekauft werden.\n\nPreis: $%s", string);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, "Haus kaufen", string, "Kaufen", LanguageString(playerID, 165));
+			Format:string(LanguageString(playerID, 235), string);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, LanguageString(playerID, 236), string, LanguageString(playerID, 237), LanguageString(playerID, 165));
 		}
 		case DIALOG_BUYVEHICLE:
 		{
 			new string[70];
 			GetStringArg(2, string);
-			Format:string("Möchtest du dieses Fahrzeug Kaufen?\n\nPreis: $%s", string);
-			ShowMsgBox(playerID, dialogID, "Fahrzeug kaufen", string, MSGBOXSTYLE_YESNO);
+			Format:string(LanguageString(playerID, 244), string);
+			ShowMsgBox(playerID, dialogID, LanguageString(playerID, 245), string, MSGBOXSTYLE_YESNO);
 		}
 		case DIALOG_ESTATEAGENTS:
 		{
@@ -120,15 +120,15 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_CHANGEPASSWORD_STEP1:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Accountpasswort ändern", "Gebe dein aktuelles Passwort ein.", "Weiter", LanguageString(playerID, 165));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, LanguageString(playerID, 240), LanguageString(playerID, 241), LanguageString(playerID, 177), LanguageString(playerID, 165));
 		}
 		case DIALOG_CHANGEPASSWORD_STEP2:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Accountpasswort ändern", "Gebe ein neues Passwort ein.", "Weiter", "Zurück");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, LanguageString(playerID, 240), LanguageString(playerID, 242), LanguageString(playerID, 177), LanguageString(playerID, 171));
 		}
 		case DIALOG_CHANGEPASSWORD_STEP3:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Accountpasswort ändern", "Wiederhole zur Sicherheit dein neues Passwort.", "OK", "Zurück");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, LanguageString(playerID, 240), LanguageString(playerID, 243), "OK", LanguageString(playerID, 171));
 		}
 		case DIALOG_FUNACTION:
 		{
@@ -205,7 +205,7 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_LOGIN:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Login", "Bitte gebe das Passwort von deinen Account ein.", "OK", LanguageString(playerID, 165));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Login", LanguageString(playerID, 262), "OK", LanguageString(playerID, 165));
 		}
 		case DIALOG_ORDERVEHICLE:
 		{
@@ -270,39 +270,40 @@ ShowDialog(playerID, dialogID, ...)
 				Format:stations("%s%s", stations, GetMySQLField("Name"));
 			}
 			mysql_free_result();
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Radiosender wählen", stations, "OK", LanguageString(playerID, 165));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 252), stations, "OK", LanguageString(playerID, 165));
 		}
 		case DIALOG_REFUEL:
 		{
 			new string[80];
 			GetStringArg(2, string);
 			PVar:playerID[CURRENTGASPRICE] = gasPrice;
-			Format:string("Wie viel möchtest du tanken (0 - %s)?\n\nAktueller Preis: $%s/Liter", string, FormatMoney(gasPrice));
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Tanken", string, "Tanken", LanguageString(playerID, 165));
+			Format:string(LanguageString(playerID, 238), string, FormatMoney(gasPrice));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, LanguageString(playerID, 239), string, "OK", LanguageString(playerID, 165));
 		}
 		case DIALOG_REGISTER_BIRTHDATE:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Geburtsdatum eingeben", "Gebe dein Geburtsdatum im Format TT.MM.JJJJ ein.\n\nBeispiel: 05.02.1990", "Weiter", "Zurück");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, LanguageString(playerID, 253), LanguageString(playerID, 254), LanguageString(playerID, 177), LanguageString(playerID, 171));
 		}
 		case DIALOG_REGISTER_GENDER:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Geschlecht auswählen", "Männlich\nWeiblich", "Weiter", "Zurück");
+			FormatNew:options[50](options, "%s\n%s", LanguageString(playerID, 256), LanguageString(playerID, 257));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 255), options, LanguageString(playerID, 177), LanguageString(playerID, 171));
 		}
 		case DIALOG_REGISTER_LOCATION:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, "Wohnort eingeben", "Gebe deinen Wohnort ein.\n\nHinweis: Kann auch ein Wohnort in San Andreas sein.", "OK", "Zurück");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, LanguageString(playerID, 258), LanguageString(playerID, 259), "OK", LanguageString(playerID, 171));
 		}
 		case DIALOG_REGISTER_PASSWORD1:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Registrieren", "Du bist noch nicht registriert!\nBitte gebe ein neues Passwort für deinen Account ein.", "Weiter", LanguageString(playerID, 165));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, LanguageString(playerID, 260), LanguageString(playerID, 261), LanguageString(playerID, 177), LanguageString(playerID, 165));
 		}
 		case DIALOG_REGISTER_PASSWORD2:
 		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Passwort wiederholen", "Wiederhole zur Sicherheit dein neues Passwort.", "Weiter", "Zurück");
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, LanguageString(playerID, 251), LanguageString(playerID, 243), LanguageString(playerID, 177), LanguageString(playerID, 171));
 		}
 		case DIALOG_RESTARTGAMEMODE:
 		{
-			ShowMsgBox(playerID, dialogID, "Gamemode neustarten", "Soll der Gamemode wirklich neugestartet werden?", MSGBOXSTYLE_YESNO);
+			ShowMsgBox(playerID, dialogID, LanguageString(playerID, 249), LanguageString(playerID, 250), MSGBOXSTYLE_YESNO);
 		}
 		case DIALOG_SCHOOLDRIVER:
 		{
@@ -337,14 +338,14 @@ ShowDialog(playerID, dialogID, ...)
 			{
 				case 1:
 				{
-					Format:interiors("%s\nWeiter", interiors);
+					Format:interiors("%s\n%s", interiors, LanguageString(playerID, 177));
 				}
 				case 2:
 				{
-					Format:interiors("%s\nZurück", interiors);
+					Format:interiors("%s\n%s", interiors, LanguageString(playerID, 177));
 				}
 			}
-			FormatNew:string[30]("Ziel auswählen (Seite %d)", page);
+			FormatNew:string[30]("%s (%s %d)", LanguageString(playerID, 247), LanguageString(playerID, 248), page);
 			PVar:playerID[INTERIORDIALOGID] = getarg(2);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, string, interiors, "OK", LanguageString(playerID, 165));
 		}
@@ -352,30 +353,29 @@ ShowDialog(playerID, dialogID, ...)
 		{
 			new string[1024];
 			SavePlayer(playerID);
-			Format:string("SELECT `users`.`ID`, `users`.`Username`, UNIX_TIMESTAMP(`users`.`BirthDate`) AS `BirthDate`, `users`.`Location`, `users`.`MobilePhoneNumber`, `users`.`BankID`, `users`.`BankMoney`, `users`.`CreditMoney`, `users`.`JobID`, `users`.`OnlineTime`, `users`.`RegisterTime`, `users`.`LoginTime`, `banks`.`Name` AS `Bank`, `jobs`.`Name` AS `JobName` FROM `users`");
-			MySQLQuery("%s LEFT JOIN (`banks`, `jobs`) ON (`banks`.`ID` = `users`.`BankID` AND `jobs`.`ID` = `users`.`JobID`) WHERE `users`.`ID` = '%d'", string, PVar:playerID[USERID]);
+			Format:sqlQuery("SELECT `users`.`ID`, `users`.`Username`, UNIX_TIMESTAMP(`users`.`BirthDate`) AS `BirthDate`, `users`.`Location`, `users`.`MobilePhoneNumber`, `users`.`BankID`, `users`.`BankMoney`, `users`.`JobID`, `users`.`OnlineTime`, `users`.`RegisterTime`, `users`.`LoginTime`, `banks`.`Name` AS `Bank`, `jobs`.`Name` AS `JobName` FROM `users`");
+			MySQLQuery("%s LEFT JOIN (`banks`, `jobs`) ON (`banks`.`ID` = `users`.`BankID` AND `jobs`.`ID` = `users`.`JobID`) WHERE `users`.`ID` = '%d'", sqlQuery, PVar:playerID[USERID]);
 			mysql_store_result();
-			Format:string("ID:\t\t\t%s", GetMySQLField("ID"));
-			Format:string("%s\nName:\t\t\t%s", string, GetMySQLField("Username"));
-			Format:string("%s\nAlter:\t\t\t%d Jahre", string, CalculateAge(strval(GetMySQLField("BirthDate"))));
-			Format:string("%s\nWohnort:\t\t%s", string, GetMySQLField("Location"));
-			Format:string("%s\nHandynummer:\t\t%s", string, GetMySQLField("MobilePhoneNumber"));
+			Format:string("ID: %s", GetMySQLField("ID"));
+			Format:string("%s\nName: %s", string, GetMySQLField("Username"));
+			Format:string("%s\n%s: %d Jahre", string, LanguageString(playerID, 226), CalculateAge(strval(GetMySQLField("BirthDate"))));
+			Format:string("%s\n%s: %s", string, LanguageString(playerID, 227), GetMySQLField("Location"));
+			Format:string("%s\n%s: %s", string, LanguageString(playerID, 228), GetMySQLField("MobilePhoneNumber"));
 			if (strval(GetMySQLField("BankID")))
 			{
-				Format:string("%s\nBank:\t\t%s", string, GetMySQLField("Bank"));
-				Format:string("%s\nGuthaben (Bank):\t\t%s", string, FormatMoney(floatstr(GetMySQLField("BankMoney"))));
-				Format:string("%s\nGuthaben (Kreditkarte):\t\t%s", string, FormatMoney(floatstr(GetMySQLField("CreditMoney"))));
+				Format:string("%s\nBank: %s", string, GetMySQLField("Bank"));
+				Format:string("%s\n%s (Bank): %s", string, LanguageString(playerID, 229), FormatMoney(floatstr(GetMySQLField("BankMoney"))));
 			}
-			Format:string("%s\nGuthaben:\t\t$%s", string, FormatMoney(PVar:playerID[MONEY]));
+			Format:string("%s\n%s: $%s", string, LanguageString(playerID, 229), FormatMoney(PVar:playerID[MONEY]));
 			if (strval(GetMySQLField("JobID")))
 			{
-				Format:string("%s\nBeruf:\t\t\t%s", string, GetMySQLField("JobName"));
+				Format:string("%s\n%s: %s", string, LanguageString(playerID, 230), GetMySQLField("JobName"));
 			}
-			Format:string("%s\nSpielzeit:\t\t%s", string, FormatTime(strval(GetMySQLField("OnlineTime"))));
-			Format:string("%s\nRegistriert seit:\t\t%s", string, FormatDate(GetMySQLField("RegisterTime")));
-			Format:string("%s\nLetzter Login:\t\t%s", string, FormatDate(GetMySQLField("LoginTime")));
+			Format:string("%s\n%s: %s", string, LanguageString(playerID, 231), FormatTime(strval(GetMySQLField("OnlineTime"))));
+			Format:string("%s\n%s: %s", string, LanguageString(playerID, 232), FormatDate(GetMySQLField("RegisterTime")));
+			Format:string("%s\n%s: %s", string, LanguageString(playerID, 233), FormatDate(GetMySQLField("LoginTime")));
 			mysql_free_result();
-			ShowMsgBox(playerID, dialogID, "Personalien", string);
+			ShowMsgBox(playerID, dialogID, LanguageString(playerID, 234), string);
 		}
 		case DIALOG_TAXI:
 		{
@@ -396,7 +396,7 @@ ShowDialog(playerID, dialogID, ...)
 				Format:locations("%s%s", locations, GetMySQLField("Name"));
 			}
 			mysql_free_result();
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Teleportieren", locations, "OK", LanguageString(playerID, 165));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 246), locations, "OK", LanguageString(playerID, 165));
 		}
 		case DIALOG_TRUCKER_JOB:
 		{

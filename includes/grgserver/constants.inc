@@ -103,7 +103,6 @@ enum
 {
 	MONEY_BANK,
 	MONEY_CASH,
-	MONEY_CREDITCARD
 }
 
 

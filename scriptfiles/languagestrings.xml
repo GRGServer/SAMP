@@ -899,4 +899,152 @@
 		<en>It's pay day but you can't receive money because you don't have a bank account! Get a bank account!</en>
 		<de>Es ist Zahltag, aber du kannst kein Geld bekommen, da du kein Bankkonto hast! Lege dir ein Bankkonto zu!</de>
 	</string>
+	<string id="226">
+		<en>Age</en>
+		<de>Alter</de>
+	</string>
+	<string id="227">
+		<en>Home location</en>
+		<de>Wohnort</de>
+	</string>
+	<string id="228">
+		<en>Mobile phone number</en>
+		<de>Handynummer</de>
+	</string>
+	<string id="229">
+		<en>Credit</en>
+		<de>Guthaben</de>
+	</string>
+	<string id="230">
+		<en>Occupation</en>
+		<de>Beruf</de>
+	</string>
+	<string id="231">
+		<en>Online time</en>
+		<de>Onlinezeit</de>
+	</string>
+	<string id="232">
+		<en>Registered since</en>
+		<de>Registriert seit</de>
+	</string>
+	<string id="233">
+		<en>Last login</en>
+		<de>Letzter Login</de>
+	</string>
+	<string id="234">
+		<en>Personal data</en>
+		<de>Personalien</de>
+	</string>
+	<string id="235">
+		<en>This house can be bought.\n\nPrice: $%s</en>
+		<de>Dieses Haus kann noch gekauft werden.\n\nPreis: $%s</de>
+	</string>
+	<string id="236">
+		<en>Buy house</en>
+		<de>Haus kaufen</de>
+	</string>
+	<string id="237">
+		<en>Buy</en>
+		<de>Kaufen</de>
+	</string>
+	<string id="238">
+		<en>How much do you want to fill up (0 - %s)?\n\nCurrent price: $%s/Liter</en>
+		<de>Wie viel möchtest du tanken (0 - %s)?\n\nAktueller Preis: $%s/Liter</de>
+	</string>
+	<string id="239">
+		<en>Refuel</en>
+		<de>Tanken</de>
+	</string>
+	<string id="240">
+		<en>Change account password</en>
+		<de>Accountpasswort ändern</de>
+	</string>
+	<string id="241">
+		<en>Enter your current password.</en>
+		<de>Gebe dein aktuelles Passwort ein.</de>
+	</string>
+	<string id="242">
+		<en>Enter your new password.</en>
+		<de>Gebe ein neues Passwort ein.</de>
+	</string>
+	<string id="243">
+		<en>Please repeat your new password to verfify.</en>
+		<de>Wiederhole zur Sicherheit dein neues Passwort.</de>
+	</string>
+	<string id="244">
+		<en>Do you want to buy this vehicle?\n\nPrice: $%s</en>
+		<de>Möchtest du dieses Fahrzeug Kaufen?\n\nPreis: $%s</de>
+	</string>
+	<string id="245">
+		<en>Buy vehicle</en>
+		<de>Fahrzeug kaufen</de>
+	</string>
+	<string id="246">
+		<en>Teleport</en>
+		<de>Teleportieren</de>
+	</string>
+	<string id="247">
+		<en>Select target</en>
+		<de>Ziel auswählen</de>
+	</string>
+	<string id="248">
+		<en>Page</en>
+		<de>Seite</de>
+	</string>
+	<string id="249">
+		<en>Restart gamemode</en>
+		<de>Gamemode neustarten</de>
+	</string>
+	<string id="250">
+		<en>Are you sure to restart the gamemode?</en>
+		<de>Soll der Gamemode wirklich neugestartet werden?</de>
+	</string>
+	<string id="251">
+		<en>Repeat password</en>
+		<de>Passwort wiederholen</de>
+	</string>
+	<string id="252">
+		<en>Select radio station</en>
+		<de>Radiosender wählen</de>
+	</string>
+	<string id="253">
+		<en>Enter birthdate</en>
+		<de>Geburtsdatum eingeben</de>
+	</string>
+	<string id="254">
+		<en>Enter your birthdate in the format DD.MM.YYYY.\n\nExample" 05.02.1990</en>
+		<de>Gebe dein Geburtsdatum im Format TT.MM.JJJJ ein.\n\nBeispiel: 05.02.1990</de>
+	</string>
+	<string id="255">
+		<en>Select gender</en>
+		<de>Geschlecht auswählen</de>
+	</string>
+	<string id="256">
+		<en>Male</en>
+		<de>Männlich</de>
+	</string>
+	<string id="257">
+		<en>Female</en>
+		<de>Weiblich</de>
+	</string>
+	<string id="258">
+		<en>Enter home location</en>
+		<de>Wohnort eingeben</de>
+	</string>
+	<string id="259">
+		<en>Enter your home location.\n\nNote: This can also be a location in San Andreas.</en>
+		<de>Gebe deinen Wohnort ein.\n\nHinweis: Kann auch ein Wohnort in San Andreas sein.</de>
+	</string>
+	<string id="260">
+		<en>Register</en>
+		<de>Registrieren</de>
+	</string>
+	<string id="261">
+		<en>You are not registered yet!\n\nPlease enter a new password for your account.</en>
+		<de>Du bist noch nicht registriert!\n\nBitte gebe ein neues Passwort für deinen Account ein.</de>
+	</string>
+	<string id="262">
+		<en>Please enter the password of your account.</en>
+		<de>Bitte gebe das Passwort von deinen Account ein.</de>
+	</string>
 </languagestrings>
