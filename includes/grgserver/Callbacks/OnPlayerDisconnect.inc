@@ -2,8 +2,10 @@ public OnPlayerDisconnect(playerid, reason)
 {
 	if (!IsPlayerNPC(playerid))
 	{
-		SavePlayer(playerid);
-		
+		if (reason == 1)
+		{
+			SavePlayer(playerid);
+		}
 		PlayerLoop(playerID)
 		{
 			if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && playerID != playerid)
@@ -11,7 +13,23 @@ public OnPlayerDisconnect(playerid, reason)
 				SendClientMessageEx(playerid, COLOR_JOINLEAVE, 161, playerid);
 			}
 		}
-		FormatNew:string[MAX_PLAYER_NAME + 30]("%s has left the server", GetPlayerNameEx(playerid));
+		new reasonString[16];
+		switch (reason)
+		{
+			case 0:
+			{
+				strcat(reasonString, "Timed out");
+			}
+			case 1:
+			{
+				strcat(reasonString, "Leaving");
+			}
+			case 2:
+			{
+				strcat(reasonString, "Kicked/Banned");
+			}
+		}
+		FormatNew:string[MAX_PLAYER_NAME + 30]("%s has left the server (%s)", GetPlayerNameEx(playerid), reasonString);
 		IRC_Say(ircBot, IRC_CHANNEL, string);
 		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[RADIOSTATION]);
 		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[SPEEDO_COLUMN1]);

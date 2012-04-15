@@ -24,6 +24,7 @@ ReloadLanguageStrings()
 			{
 				XML_GetValue(XML_GetFirstChild(translationNode), value);
 				value = str_replace("\\n", "\n", value);
+				value = str_replace("\\t", "\t", value);
 				strcat(languageStrings[stringID][LANGUAGESTRING_ENGLISH], value, STRINGLENGTH_LANGUAGESTRING);
 			}
 			else
@@ -35,6 +36,7 @@ ReloadLanguageStrings()
 			{
 				XML_GetValue(XML_GetFirstChild(translationNode), value);
 				value = str_replace("\\n", "\n", value);
+				value = str_replace("\\t", "\t", value);
 				strcat(languageStrings[stringID][LANGUAGESTRING_GERMAN], value, STRINGLENGTH_LANGUAGESTRING);
 			}
 			else

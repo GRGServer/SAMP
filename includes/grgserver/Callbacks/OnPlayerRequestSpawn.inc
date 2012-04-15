@@ -6,7 +6,7 @@ public OnPlayerRequestSpawn(playerid)
 		MySQLQuery("INSERT INTO `users` (`Username`, `Password`, `Gender`, `BirthDate`, `Location`) VALUES('%s', '%s', '%c', '%s', '%s')", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(PVar:playerid[REGISTERPASSWORD]), PVar:playerid[GENDER], PVar:playerid[BIRTHDATE], MySQLEscapeString(PVar:playerid[REGISTERLOCATION]));
 		PVar:playerid[USERID] = mysql_insert_id();
 		PVar:playerid[ONLINESINCE] = gettime();
-		UpdateUserDB(playerid, "`RegisterTime`, `LoginTime`, `ClientVersion`) VALUES (NOW(), NOW(), '%s')", GetPlayerVersionEx(playerid));
+		UpdateUserDB(playerid, "`RegisterTime` = NOW(), `LoginTime` = NOW(), `ClientVersion` = '%s'", MySQLEscapeString(GetPlayerVersionEx(playerid)));
 		SavePlayer(playerid);
 		ReloadTextDraws(playerid);
 		printf("Player registered: %s (UserID: %d)", GetPlayerNameEx(playerid), PVar:playerid[USERID]);

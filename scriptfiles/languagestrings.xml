@@ -156,7 +156,7 @@
 		<de>Du hast bereits einen Arbeitsplatz! Bitte kündige diesen zuerst.</de>
 	</string>
 	<string id="40">
-		<en>Please use the format TT.MM.JJJJ!</en>
+		<en>Please use the format DD.MM.YYYY!</en>
 		<de>Bitte verwende das Format TT.MM.JJJJ!</de>
 	</string>
 	<string id="41">
@@ -1012,7 +1012,7 @@
 		<de>Geburtsdatum eingeben</de>
 	</string>
 	<string id="254">
-		<en>Enter your birthdate in the format DD.MM.YYYY.\n\nExample" 05.02.1990</en>
+		<en>Enter your birthdate in the format DD.MM.YYYY.\n\nExample: 05.02.1990</en>
 		<de>Gebe dein Geburtsdatum im Format TT.MM.JJJJ ein.\n\nBeispiel: 05.02.1990</de>
 	</string>
 	<string id="255">
@@ -1054,5 +1054,29 @@
 	<string id="264">
 		<en>You have not selected the target on your map!</en>
 		<de>Du hast noch nicht das Ziel auf deiner Karte ausgewählt!</de>
+	</string>
+	<string id="265">
+		<en>You vehicle gets filled up. Please wait...</en>
+		<de>Dein Fahrzeug wird getankt. Bitte warten...</de>
+	</string>
+	<string id="266">
+		<en>Buy hotel</en>
+		<de>Hotel kaufen</de>
+	</string>
+	<string id="267">
+		<en>Rent a room</en>
+		<de>Zimmer mieten</de>
+	</string>
+	<string id="268">
+		<en>Enter</en>
+		<de>Betreten</de>
+	</string>
+	<string id="269">
+		<en>Preview</en>
+		<de>Vorschauversion</de>
+	</string>
+	<string id="270">
+		<en>This is just a preview of our SA-MP Server!\nSome features may not work or are not free of bugs.\n\nIf you found a bug, please report it on http://bugs.grgserver.net.</en>
+		<de>Das ist nur eine Vorschauversion unseres SA-MP Servers!\nEinige Funktionen funktionieren eventuell noch nicht oder sind noch nicht frei von Fehlern!\n\nSolltest du einen Fehler finden, berichte diesen uns bitte auf http://bugs.grgserver.net.</de>
 	</string>
 </languagestrings>

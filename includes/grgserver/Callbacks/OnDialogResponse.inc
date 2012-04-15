@@ -601,7 +601,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 1:// Sell
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Haus verkaufen");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
 				}
 			}
@@ -671,24 +671,24 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				switch (listitem)
 				{
-					case 0: // Buy Police
+					case 0: // Buy police
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Kaufen noch in Bearbeitung!");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
-					case 1: // Bewerben by Police
+					case 1: // Apply to police
 					{
 						if(PVar:playerid[JOBID] >= 0)
 						{
-							SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in Bearbeitung!");
+							SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 						}
 						else
 						{
 							SendClientMessageEx(playerid, COLOR_ERROR, 39);
 						}
 					}
-					case 2: // Betreten
+					case 2: // Enter
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Betreten noch in Bearbeitung.");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
 				}
 			}
@@ -699,27 +699,38 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				switch (listitem)
 				{
-					case 0: // Aufträge annehmen
+					case 0: // Accept jobs
 					{
 						ShowDialog(playerid, DIALOG_ACCEPT);
 					}
 					case 1: // Finanzen
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Finanzen noch in Bearbeitung!");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
-					case 2: // bewerbungs übersicht
+					case 2: // Applications overview
 					{
-						SendClientMessage(playerid, COLOR_INFO, "bewerbung noch in Bearbeitung!");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
-					case 3: // Job Kündigen
+					case 3: // Cancel job
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Kündigung noch in Bearbeitung!");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
-					case 4: // Betreten
+					case 4: // Enter
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Betreten noch in Bearbeitung!");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
 				}
+			}
+		}
+		case DIALOG_PREVIEWINFO:
+		{
+			if (PVar:playerid[REGISTERED])
+			{
+				ShowDialog(playerid, DIALOG_LOGIN);
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_REGISTER_PASSWORD1);
 			}
 		}
 		case DIALOG_RADIO:
@@ -742,7 +753,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				TogglePlayerControllable(playerid, false);
 				SetVehicleEngineState(vehicleID, false);
-				GameTextForPlayer(playerid, "Dein Fahrzeug wird getankt. Bitte warten...", 3000, 4);
+				GameTextForPlayer(playerid, LanguageString(playerid, 265), 3000, 4);
 				Timer_RefuelVehicle(playerid, amount);
 			}
 		}
@@ -781,19 +792,17 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				switch (listitem)
+				if (listitem)
 				{
-					case 0:
-					{
-						PVar:playerid[GENDER] = 'M';// Male
-						SetPlayerSkin(playerid, REGISTER_SKIN_MALE);
-					}
-					case 1:
-					{
-						PVar:playerid[GENDER] = 'F';// Female
-						SetPlayerSkin(playerid, REGISTER_SKIN_FEMALE);
-					}
+					PVar:playerid[GENDER] = 'F';// Female
+					PVar:playerid[SKIN] = REGISTER_SKIN_FEMALE;
 				}
+				else
+				{
+					PVar:playerid[GENDER] = 'M';// Male
+					PVar:playerid[SKIN] = REGISTER_SKIN_MALE;
+				}
+				SetPlayerSkin(playerid, PVar:playerid[SKIN]);
 				ShowDialog(playerid, DIALOG_REGISTER_BIRTHDATE);
 			}
 			else
@@ -974,7 +983,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 0: // Kaufe Trucker
 					{
 						// TODO: MySQL Daten bank hinzufügen bei Jobs die OwnerUserID zum kaufen.
-						SendClientMessage(playerid, COLOR_INFO, "Kaufen in Bearbeitung!");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
 					case 1: // Bewerben für den Job Trucker
 					{
@@ -982,7 +991,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							// TODO: MySQL DB erstellen für Bewerbung jeglicher Jobarten.
 							// TODO: Diese der Owner des Jobs bearbeiten kann anneehmen kann und ablehnen kann.
-							SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in Bearbeitung!");
+							SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 						}
 						else
 						{
@@ -1005,15 +1014,15 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					case 1: // Finanzen
 					{
 						// TODO: Finanzen für jeden Job erstellen: Job Guthaben
-						SendClientMessage(playerid, COLOR_INFO, "Finanzen in Bearbeitung");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
 					case 2: // Kündigen
 					{
-						SendClientMessage(playerid, COLOR_INFO, "KÜndigung noch in Bearbeitung!");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
 					case 3: // Bewerbungs übersicht
 					{
-						SendClientMessage(playerid, COLOR_INFO, "Bewerbungs übersicht in bearbeitung!");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
 				}
 			}
@@ -1061,7 +1070,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						{
 							// TODO: MySQL DB erstellen für Bewerbung jeglicher Jobarten.
 							// TODO: Diese der Owner des Jobs bearbeiten kann anneehmen kann und ablehnen kann.
-							SendClientMessage(playerid, COLOR_INFO, "Bewerben noch in Bearbeitung!");
+							SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 						}
 						else
 						{
@@ -1072,7 +1081,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					{
 						// TODO: noch am überlegen wie es gestaltet werden soll. 
 						// TODO: eventuel Wen auto nicht da anfordern beim Autohändler zum bestellen.
-						SendClientMessage(playerid, COLOR_INFO, "Fahrzeug kaufen in Bearbeitung!");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
 				}
 			}
@@ -1083,24 +1092,24 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				switch (listitem)
 				{
-					case 0: // Fahrzeug Bestellen
+					case 0: // Order vehicle
 					{
 						ShowDialog(playerid, DIALOG_ORDERVEHICLE);
 					}
 					case 1: // Finazübersicht
 					{
 						// TODO: Jeder Job hat eine Job Kasse in der DB diese hier abgerufen wird.
-						SendClientMessage(playerid, COLOR_INFO, "Finanzen in Bearbeitung!");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
-					case 2: // Kündigen
+					case 2: // Cancel
 					{
 						// TODO: Kündigung seines Jobs
-						SendClientMessage(playerid, COLOR_INFO, "Kündigen in Bearbeitung!");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
-					case 3: // Bewerbungs übrsicht
+					case 3: // Application overview
 					{
 						// TODO: MySQL DB abrufen für Bewerbungen vom AUtohändler dort kann man Annehmen/Ablehnen ist angenommen wird invitet ist abgelehnt bleibt user so.
-						SendClientMessage(playerid, COLOR_INFO, "Bewerbung in bearbeitung!");
+						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
 					}
 				}
 			}

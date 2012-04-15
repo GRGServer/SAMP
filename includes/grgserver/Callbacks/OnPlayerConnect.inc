@@ -50,7 +50,7 @@ public OnPlayerConnect(playerid)
 		{
 			PVar:playerid[LANGUAGE] = strval(GetMySQLField("Language"));
 			TogglePlayerSpectating(playerid, true);
-			ShowDialog(playerid, DIALOG_LOGIN);
+			PVar:playerid[REGISTERED] = true;
 		}
 		else
 		{
@@ -64,9 +64,10 @@ public OnPlayerConnect(playerid)
 			{
 				PVar:playerid[LANGUAGE] = LANGUAGE_ENGLISH;
 			}
-			ShowDialog(playerid, DIALOG_REGISTER_PASSWORD1);
+			PVar:playerid[REGISTERED] = false;
 		}
 		mysql_free_result();
+		ShowDialog(playerid, DIALOG_PREVIEWINFO);
 		SendDeathMessage(INVALID_PLAYER_ID, playerid, 200);
 		SendClientMessageEx(playerid, COLOR_SYSTEM, 138);
 		SendClientMessageEx(playerid, COLOR_SYSTEM, 5, COMPILER_SVN_REVISION);

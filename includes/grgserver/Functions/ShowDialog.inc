@@ -132,7 +132,7 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_FUNACTION:
 		{
-			FormatNew:string[1024]("Animation/Aktion stoppen\n");
+			FormatNew:string[1024]("Stop\n");
 			Format:string("%s\nDance 1\nDance 2\nDance 3\nDance 4", string);
 			Format:string("%s\nHands Up\nSitting", string);
 			Format:string("%s\nDrink Beer\nSmoke Ciggy\nDrink Wine\nDrink Sprunk", string);
@@ -141,21 +141,21 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_HOTEL_MAIN_AVAILABLE:
 		{
-			FormatNew:options[40]("Hotel kaufen"); // Item 0
-			Format:options("%s\nZimmer mieten", options); // Item 1
-			Format:options("%s\nBetreten", options); // Item 2
+			FormatNew:options[40](LanguageString(playerID, 266)); // Item 0
+			Format:options("%s\n%s", options, LanguageString(playerID, 267)); // Item 1
+			Format:options("%s\n%s", options, LanguageString(playerID, 268)); // Item 2
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hotel", options, "OK", LanguageString(playerID, 165));
 		}
 		case DIALOG_HOTEL_MAIN_BOUGHT:
 		{
-			FormatNew:options[30]("Betreten"); // Item 0
+			FormatNew:options[30](LanguageString(playerID, 268)); // Item 0
 			Format:options("%s\nMieten", options); // Item 1
 			Format:options("%s\nKündigen", options); // item 2
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", LanguageString(playerID, 165));
 		}
 		case DIALOG_HOTEL_MAIN_OWNER:
 		{
-			FormatNew:options[50]("Betreten"); // Item 0
+			FormatNew:options[50](LanguageString(playerID, 268)); // Item 0
 			Format:options("%s\nVerkaufen", options); // Item 1
 			Format:options("%s\nEinnahmen", options); // item 2
 			Format:options("%s\nZimmeroptionen", options); // Item 3
@@ -256,6 +256,10 @@ ShowDialog(playerID, dialogID, ...)
 			Format:options("%s\nBetreten", options);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Polizei", options, "OK", LanguageString(playerID, 165));
 		}
+		case DIALOG_PREVIEWINFO:
+		{
+			ShowMsgBox(playerID, dialogID, LanguageString(playerID, 269), LanguageString(playerID, 270));
+		}
 		case DIALOG_RADIO:
 		{
 			new stations[2048];
@@ -286,7 +290,7 @@ ShowDialog(playerID, dialogID, ...)
 		}
 		case DIALOG_REGISTER_GENDER:
 		{
-			FormatNew:options[50](options, "%s\n%s", LanguageString(playerID, 256), LanguageString(playerID, 257));
+			FormatNew:options[50]("%s\n%s", LanguageString(playerID, 256), LanguageString(playerID, 257));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 255), options, LanguageString(playerID, 177), LanguageString(playerID, 171));
 		}
 		case DIALOG_REGISTER_LOCATION:
