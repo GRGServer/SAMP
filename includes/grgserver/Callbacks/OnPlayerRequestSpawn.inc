@@ -11,8 +11,8 @@ public OnPlayerRequestSpawn(playerid)
 		ReloadTextDraws(playerid);
 		printf("Player registered: %s (UserID: %d)", GetPlayerNameEx(playerid), PVar:playerid[USERID]);
 		SendClientMessageEx(playerid, COLOR_INFO, 139);
-		TeleportTo(playerid, 1.7414, 31.6997, 1199.6012, 177.4850, 1, playerid);
-		SetPlayerCheckpointEx(playerid, CHECKPOINT_WALKTOSEAT);
+		TogglePlayerControllable(playerid, false);
+		StartScreenFader(playerid, 0, 0, 0, 2, 500, FADE_START_INPLANE1_BLACK);
 	}
 	return true;
 }

@@ -17,26 +17,33 @@ public OnPlayerConnect(playerid)
 		MySQLQuery("SELECT * FROM `npcs` WHERE `Name` = '%s'", MySQLEscapeString(npcName));
 		mysql_store_result();
 		SetPlayerSkin(playerid, strval(GetMySQLField("Skin")));
+		new color1;
+		new color2;
+		new modelID;
+		new playbackType;
+		modelID = strval(GetMySQLField("VehicleModelID"));
+		if (modelID)
+		{
+			playbackType = PLAYER_RECORDING_TYPE_DRIVER;
+			color1 = strval(GetMySQLField("VehicleColor1"));
+			if (color1 == -1)
+			{
+				color1 = random(127);
+			}
+			color2 = strval(GetMySQLField("VehicleColor2"));
+			if (color2 == -1)
+			{
+				color2 = random(127);
+			}
+			PVar:playerid[NPC_VEHICLEID] = CreateVehicleEx(modelID, floatstr(GetMySQLField("SpawnPosX")), floatstr(GetMySQLField("SpawnPosY")), floatstr(GetMySQLField("SpawnPosZ")), floatstr(GetMySQLField("SpawnAngle")), color1, color2, 0);
+			PutPlayerInVehicle(playerid, PVar:playerid[NPC_VEHICLEID], 0);
+		}
+		else
+		{
+			playbackType = PLAYER_RECORDING_TYPE_ONFOOT;
+		}
 		if (strval(GetMySQLField("StartOnConnect")))
 		{
-			new color1;
-			new color2;
-			new modelID;
-			new playbackType;
-			new vehicleID;
-			modelID = strval(GetMySQLField("VehicleModelID"));
-			if (modelID)
-			{
-				playbackType = PLAYER_RECORDING_TYPE_DRIVER;
-				color1 = random(127);
-				color2 = random(127);
-				vehicleID = CreateVehicleEx(modelID, 0.0, 0.0, 0.0, 0.0, color1, color2, 0);
-				PutPlayerInVehicle(playerid, vehicleID, 0);
-			}
-			else
-			{
-				playbackType = PLAYER_RECORDING_TYPE_ONFOOT;
-			}
 			StartNPCPlayback(playerid, GetMySQLField("Recording"), playbackType, strval(GetMySQLField("AutoRepeat")));
 		}
 		mysql_free_result();

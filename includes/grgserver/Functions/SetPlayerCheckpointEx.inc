@@ -6,25 +6,18 @@ SetPlayerCheckpointEx(playerID, checkpointID)
 	new Float:size;
 	switch (checkpointID)
 	{
-		case CHECKPOINT_WALKTOPLANEEXIT:
+		case CHECKPOINT_INPLANE_EXIT:
 		{
-			posX = 1.7176;
-			posY = 32.3707;
+			posX = 2.6446;
+			posY = 33.1288;
 			posZ = 1199.5938;
-			size = 0.5;
+			size = 0.8;
 		}
-		case CHECKPOINT_WALKTOSEAT:
+		case CHECKPOINT_TUTORIAL_SPEAKER1:
 		{
-			posX = 0.6138;
-			posY = 25.7723;
-			posZ = 1199.5938;
-			size = 0.5;
-		}
-		case CHECKPOINT_SPEAKER:
-		{
-			posX = 1717.1071;
-			posY = 1615.0365;
-			posZ = 10.1408;
+			posX = 1716.9218;
+			posY = 1615.4843;
+			posZ = 10.1052;
 			size = 0.8;
 		}
 	}

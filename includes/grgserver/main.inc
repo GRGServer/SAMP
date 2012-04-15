@@ -66,6 +66,7 @@
 #include <grgserver\Functions\ReloadTextDraws.inc>
 #include <grgserver\Functions\ReloadVehicleModels.inc>
 #include <grgserver\Functions\RemoveNewLine.inc>
+#include <grgserver\Functions\RemovePlayerCheckpoint.inc>
 #include <grgserver\Functions\ResetPlayerVariables.inc>
 #include <grgserver\Functions\SavePlayer.inc>
 #include <grgserver\Functions\SaveVehicle.inc>
@@ -78,8 +79,10 @@
 #include <grgserver\Functions\SetVehicleEngineState.inc>
 #include <grgserver\Functions\ShowDialog.inc>
 #include <grgserver\Functions\ShowInteriorDialog.inc>
+#include <grgserver\Functions\ShowMessage.inc>
 #include <grgserver\Functions\ShowMsgBox.inc>
 #include <grgserver\Functions\ShowNews.inc>
+#include <grgserver\Functions\ShowSubtitle.inc>
 #include <grgserver\Functions\SpawnVehicle.inc>
 #include <grgserver\Functions\StartNPCPlayback.inc>
 #include <grgserver\Functions\StopRadioStation.inc>
@@ -107,6 +110,7 @@
 #include <grgserver\Callbacks\OnGameModeExit.inc>
 #include <grgserver\Callbacks\OnGameModeInit.inc>
 #include <grgserver\Callbacks\OnInteriorDialogSelect.inc>
+#include <grgserver\Callbacks\OnMessageShown.inc>
 #include <grgserver\Callbacks\OnPlayerClickMap.inc>
 #include <grgserver\Callbacks\OnPlayerCommandPerformed.inc>
 #include <grgserver\Callbacks\OnPlayerConnect.inc>
@@ -149,7 +153,7 @@
 // Timers
 #include <grgserver\Timers\Timer_EveryMinute.inc>
 #include <grgserver\Timers\Timer_Fast.inc>
-#include <grgserver\Timers\Timer_FlyWithPlane.inc>
+#include <grgserver\Timers\Timer_FlyCam.inc>
 #include <grgserver\Timers\Timer_HideRadioDisplay.inc>
 #include <grgserver\Timers\Timer_Hourly.inc>
 #include <grgserver\Timers\Timer_PickupTimeout.inc>
@@ -174,6 +178,7 @@
 #include <grgserver\Commands\command_controlnpc.inc>
 #include <grgserver\Commands\command_editobject.inc>
 #include <grgserver\Commands\command_exit.inc>
+#include <grgserver\Commands\command_flycam.inc>
 #include <grgserver\Commands\command_funaction.inc>
 #include <grgserver\Commands\command_getbalance.inc>
 #include <grgserver\Commands\command_givepermission.inc>
@@ -202,6 +207,7 @@
 #include <grgserver\Commands\command_resetcam.inc>
 #include <grgserver\Commands\command_saveveh.inc>
 #include <grgserver\Commands\command_setcampos.inc>
+#include <grgserver\Commands\command_setnpcspawn.inc>
 #include <grgserver\Commands\command_showinterior.inc>
 #include <grgserver\Commands\command_stats.inc>
 #include <grgserver\Commands\command_stoprec.inc>

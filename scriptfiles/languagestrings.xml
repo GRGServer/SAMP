@@ -1079,4 +1079,60 @@
 		<en>This is just a preview of our SA-MP Server!\nSome features may not work or are not free of bugs.\n\nIf you found a bug, please report it on http://bugs.grgserver.net.</en>
 		<de>Das ist nur eine Vorschauversion unseres SA-MP Servers!\nEinige Funktionen funktionieren eventuell noch nicht oder sind noch nicht frei von Fehlern!\n\nSolltest du einen Fehler finden, berichte diesen uns bitte auf http://bugs.grgserver.net.</de>
 	</string>
+	<string id="271">
+		<en>Fly trough San Andreas</en>
+		<de>Fliege durch San Andreas</de>
+	</string>
+	<string id="272">
+		<en>Fly mode activated</en>
+		<de>Flugmodus aktiviert</de>
+	</string>
+	<string id="273">
+		<en>Fly mode deactivated</en>
+		<de>Flugmodus deaktiviert</de>
+	</string>
+	<string id="274">
+		<en>%d hours later...</en>
+		<de>%d Stunden später</de>
+	</string>
+	<string id="275">
+		<en>Go to the air port entrance</en>
+		<de>Gehe zum Eingang des Airports</de>
+	</string>
+	<string id="276">
+		<en>Halt!!! If you once again try to steal the cucumbers of my sandwich, your head makes a city tour!</en>
+		<de>Stillgestanden!!! Wenn du noch einmal meine Gurken vom Pausenbrot klaust, macht dein Kopf eine Stadtrundfahrt!</de>
+	</string>
+	<string id="277">
+		<en>What? I'm new in this city!</en>
+		<de>Was? Ich bin neu hier!</de>
+	</string>
+	<string id="278">
+		<en>Yeah yeah, everyone who steals my cucumbers say that!</en>
+		<de>Ja ja, das sagen alle die mir meine Gurken klauen!</de>
+	</string>
+	<string id="279">
+		<en>Ehm... I just want to know what I should do now...</en>
+		<de>Ehm... Ich möchte eigentlich nur wissen, was ich jetzt machen soll...</de>
+	</string>
+	<string id="280">
+		<en>You are asking what you should do??? Get out of my face before I change my mind with the city tour!</en>
+		<de>Du fragst, was du machen sollst??? Hau ab bevor ich mir das mit der Stadtrundfahrt doch noch anders überlege!</de>
+	</string>
+	<string id="281">
+		<en>Catch a taxi</en>
+		<de>Steig in ein Taxi</de>
+	</string>
+	<string id="282">
+		<en>Set the spawn position of a NPC</en>
+		<de>Ändere die Spawnposition von einem NPC</de>
+	</string>
+	<string id="283">
+		<en>The spawn position of the NPC has been changed</en>
+		<de>Die Spawnposition von dem NPC wurde geändert</de>
+	</string>
+	<string id="284">
+		<en>NPC not found!</en>
+		<de>NPC nicht gefunden!</de>
+	</string>
 </languagestrings>

@@ -1,4 +1,4 @@
-Timer:ScreenFader(playerID, red, green, blue, steps, fadeBackTime, extraID)
+Timer:ScreenFader(playerID, red, green, blue, steps, waitOnEnd, extraID)
 {
 	new alpha;
 	PVar:playerID[SCREENFADE_CURRENTSTEP] += steps;
@@ -23,17 +23,14 @@ Timer:ScreenFader(playerID, red, green, blue, steps, fadeBackTime, extraID)
 	if ((steps < 0 && !alpha) || (steps > 0 && alpha == 255))
 	{
 		PVar:playerID[SCREENFADE_CURRENTSTEP] = 0;
-		if (fadeBackTime)
+		CallLocalFunction("OnScreenFadeStop", "ddd", playerID, extraID, false);
+		if (waitOnEnd)
 		{
-			SetTimerEx("Timer_ScreenFader", fadeBackTime, false, "ddddddd", playerID, red, green, blue, -steps, 0, extraID);
-		}
-		else
-		{
-			CallLocalFunction("OnScreenFadeStop", "dd", playerID, extraID);
+			SetTimerEx("OnScreenFadeStop", waitOnEnd, false, "ddd", playerID, extraID, true);
 		}
 	}
 	else
 	{
-		SetTimerEx("Timer_ScreenFader", TIMER_SCREENFADER, false, "ddddddd", playerID, red, green, blue, steps, fadeBackTime, extraID);
+		SetTimerEx("Timer_ScreenFader", TIMER_SCREENFADER, false, "ddddddd", playerID, red, green, blue, steps, waitOnEnd, extraID);
 	}
 }

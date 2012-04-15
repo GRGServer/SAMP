@@ -6,6 +6,10 @@ public OnPlayerDisconnect(playerid, reason)
 		{
 			SavePlayer(playerid);
 		}
+		if (PVar:playerid[FLYCAM])
+		{
+			KillTimer(PVar:playerid[FLYCAM]);
+		}
 		PlayerLoop(playerID)
 		{
 			if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && playerID != playerid)
