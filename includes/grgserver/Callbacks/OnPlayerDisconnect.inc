@@ -13,10 +13,10 @@ public OnPlayerDisconnect(playerid, reason)
 		}
 		FormatNew:string[MAX_PLAYER_NAME + 30]("%s has left the server", GetPlayerNameEx(playerid));
 		IRC_Say(ircBot, IRC_CHANNEL, string);
-		TextDrawDestroy(PTextDraw:playerid[RADIOSTATION]);
-		TextDrawDestroy(PTextDraw:playerid[SPEEDO_COLUMN1]);
-		TextDrawDestroy(PTextDraw:playerid[SPEEDO_COLUMN2]);
-		TextDrawDestroy(PTextDraw:playerid[VEHICLENAME]);
+		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[RADIOSTATION]);
+		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[SPEEDO_COLUMN1]);
+		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[SPEEDO_COLUMN2]);
+		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[VEHICLENAME]);
 		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[SCREENFADER]);
 		SendDeathMessage(INVALID_PLAYER_ID, playerid, 201);
 	}

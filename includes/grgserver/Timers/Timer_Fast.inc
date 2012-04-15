@@ -80,17 +80,17 @@ Timer:Fast()
 					}
 				}
 				FormatNew:textDrawString[60]("~n~%d Km/h~n~~%c~%s%%~w~~n~~%c~%s%%~w~~n~%sl~n~%s", speed, healthColor, FormatNumber(healthPercentage, 2, '.', ','), fuelColor, FormatNumber(fuelPercentage, 2, '.', ','), FormatNumber(vehicleModels[vehicleModelIndex][VEHICLEMODEL_FUELUSAGE], 1, '.', ','), FormatNumber(vehicles[vehicleID][VEHICLE_MILEAGE], 2, '.', ','));
-				TextDrawSetString(PTextDraw:playerID[SPEEDO_COLUMN2], textDrawString);
-				TextDrawSetString(PTextDraw:playerID[VEHICLENAME], vehicleModels[vehicleModelIndex][VEHICLEMODEL_NAME]);
-				TextDrawShowForPlayer(playerID, PTextDraw:playerID[SPEEDO_COLUMN1]);
-				TextDrawShowForPlayer(playerID, PTextDraw:playerID[SPEEDO_COLUMN2]);
-				TextDrawShowForPlayer(playerID, PTextDraw:playerID[VEHICLENAME]);
+				PlayerTextDrawSetString(playerID, PTextDraw:playerID[SPEEDO_COLUMN2], textDrawString);
+				PlayerTextDrawSetString(playerID, PTextDraw:playerID[VEHICLENAME], vehicleModels[vehicleModelIndex][VEHICLEMODEL_NAME]);
+				PlayerTextDrawShow(playerID, PTextDraw:playerID[SPEEDO_COLUMN1]);
+				PlayerTextDrawShow(playerID, PTextDraw:playerID[SPEEDO_COLUMN2]);
+				PlayerTextDrawShow(playerID, PTextDraw:playerID[VEHICLENAME]);
 			}
 			else
 			{
-				TextDrawHideForPlayer(playerID, PTextDraw:playerID[SPEEDO_COLUMN1]);
-				TextDrawHideForPlayer(playerID, PTextDraw:playerID[SPEEDO_COLUMN2]);
-				TextDrawHideForPlayer(playerID, PTextDraw:playerID[VEHICLENAME]);
+				PlayerTextDrawHide(playerID, PTextDraw:playerID[SPEEDO_COLUMN1]);
+				PlayerTextDrawHide(playerID, PTextDraw:playerID[SPEEDO_COLUMN2]);
+				PlayerTextDrawHide(playerID, PTextDraw:playerID[VEHICLENAME]);
 			}
 		}
 	}

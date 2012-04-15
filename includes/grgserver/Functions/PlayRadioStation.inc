@@ -9,8 +9,8 @@ PlayRadioStation(playerID, id)
 		{
 			SetMySQLValue("savedvehicles", "LastRadioStation", val2str(id), "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID]));
 		}
-		TextDrawSetString(PVar:playerID[TEXTDRAW_RADIOSTATION], GetMySQLValue("radiostations", "Name", "ID", val2str(id)));
-		TextDrawShowForPlayer(playerID, PVar:playerID[TEXTDRAW_RADIOSTATION]);
+		PlayerTextDrawSetString(playerID, PTextDraw:playerID[RADIOSTATION], GetMySQLValue("radiostations", "Name", "ID", val2str(id)));
+		PlayerTextDrawShow(playerID, PTextDraw:playerID[RADIOSTATION]);
 		KillTimer(PVar:playerID[RADIODISPLAYTIMER]);
 		PVar:playerID[RADIODISPLAYTIMER] = SetTimerEx("Timer_HideRadioDisplay", TIMER_HIDERADIODISPLAY, false, "i", playerID);
 	}
