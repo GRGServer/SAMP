@@ -107,6 +107,7 @@
 #include <grgserver\Callbacks\OnGameModeExit.inc>
 #include <grgserver\Callbacks\OnGameModeInit.inc>
 #include <grgserver\Callbacks\OnInteriorDialogSelect.inc>
+#include <grgserver\Callbacks\OnPlayerClickMap.inc>
 #include <grgserver\Callbacks\OnPlayerCommandPerformed.inc>
 #include <grgserver\Callbacks\OnPlayerConnect.inc>
 #include <grgserver\Callbacks\OnPlayerDeath.inc>
@@ -184,6 +185,7 @@
 #include <grgserver\Commands\command_kick.inc>
 #include <grgserver\Commands\command_kill.inc>
 #include <grgserver\Commands\command_language.inc>
+#include <grgserver\Commands\command_maptp.inc>
 #include <grgserver\Commands\command_me.inc>
 #include <grgserver\Commands\command_money.inc>
 #include <grgserver\Commands\command_motor.inc>

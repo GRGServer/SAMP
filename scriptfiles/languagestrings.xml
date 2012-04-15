@@ -1045,6 +1045,14 @@
 	</string>
 	<string id="262">
 		<en>Please enter the password of your account.</en>
-		<de>Bitte gebe das Passwort von deinen Account ein.</de>
+		<de>Bitte gebe das Passwort von deinem Account ein.</de>
+	</string>
+	<string id="263">
+		<en>Teleport you to the target selected on the map</en>
+		<de>Teleportiere dich zu deinem auf der Karte ausgewählten Ziel</de>
+	</string>
+	<string id="264">
+		<en>You have not selected the target on your map!</en>
+		<de>Du hast noch nicht das Ziel auf deiner Karte ausgewählt!</de>
 	</string>
 </languagestrings>
