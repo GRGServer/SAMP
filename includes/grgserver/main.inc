@@ -43,6 +43,7 @@
 #include <grgserver\Functions\GetPlayerNameEx.inc>
 #include <grgserver\Functions\GetPlayerVersionEx.inc>
 #include <grgserver\Functions\GetVehicleEngineState.inc>
+#include <grgserver\Functions\GetVehicleWithinDistance.inc>
 #include <grgserver\Functions\GetWeaponNameEx.inc>
 #include <grgserver\Functions\GivePlayerMoneyEx.inc>
 #include <grgserver\Functions\IsLoggedIn.inc>
@@ -214,6 +215,7 @@
 #include <grgserver\Commands\command_teleport.inc>
 #include <grgserver\Commands\command_teststart.inc>
 #include <grgserver\Commands\command_testunfreeze.inc>
+#include <grgserver\Commands\command_tow.inc>
 #include <grgserver\Commands\command_usecammovement.inc>
 #include <grgserver\Commands\command_veh.inc>
 

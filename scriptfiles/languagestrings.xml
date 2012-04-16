@@ -1135,4 +1135,16 @@
 		<en>NPC not found!</en>
 		<de>NPC nicht gefunden!</de>
 	</string>
+	<string id="285">
+		<en>Tow Vehicle</en>
+		<de>Abschleppen</de>
+	</string>
+	<string id="286">
+		<en>You must be in a TowTruck!</en>
+		<de>Du musst in einem TowTruck sein!</de>
+	</string>
+	<string id="287">
+		<en>You dont a ADAC!</en>
+		<de>Du bist nicht beim Adac!</de>
+	</string>
 </languagestrings>
