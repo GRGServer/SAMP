@@ -15,9 +15,9 @@ SetPlayerCheckpointEx(playerID, checkpointID)
 		}
 		case CHECKPOINT_TUTORIAL_SPEAKER1:
 		{
-			posX = 1716.9218;
-			posY = 1615.4843;
-			posZ = 10.1052;
+			posX = 1715.0739;
+			posY = 1616.4000;
+			posZ = 10.0717;
 			size = 0.8;
 		}
 	}

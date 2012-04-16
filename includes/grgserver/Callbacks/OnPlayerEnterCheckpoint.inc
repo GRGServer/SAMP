@@ -10,7 +10,8 @@ public OnPlayerEnterCheckpoint(playerid)
 		}
 		case CHECKPOINT_TUTORIAL_SPEAKER1:
 		{
-			ShowMessage(playerid, 1, 3000);
+			StartScreenFader(playerid, 0, 0, 0, 5, 0, FADE_TUTORIAL_S1_START_BLACK);
+			TogglePlayerControllable(playerid, false);
 		}
 		default:
 		{

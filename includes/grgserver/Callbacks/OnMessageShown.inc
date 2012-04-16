@@ -21,8 +21,7 @@ public OnMessageShown(playerID, messageID)
 		}
 		case 5:
 		{
-			ShowSubtitle(playerID, LanguageString(playerID, 281));
-			//SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_TAXI);
+			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIAL_S1_END_BLACK);
 		}
 	}
 }

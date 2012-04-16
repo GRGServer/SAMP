@@ -1159,4 +1159,8 @@
 		<en>Vehicle attached</en>
 		<de>fahrzeug angehängt</de>
 	</string>
+	<string id="291">
+		<en>Go to the exit</en>
+		<de>Gehe zum Ausgang</de>
+	</string>
 </languagestrings>

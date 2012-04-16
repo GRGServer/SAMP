@@ -3,7 +3,6 @@ PCMD:flycam[MAPPER](playerID, params, 271)
 	if (PVar:playerID[FLYCAM])
 	{
 		KillTimer(PVar:playerID[FLYCAM]);
-		SetPlayerVirtualWorld(playerID, playerID);
 		PVar:playerID[FLYCAM] = 0;
 		SendClientMessageEx(playerID, COLOR_INFO, 273);
 	}
