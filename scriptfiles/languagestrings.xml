@@ -1136,15 +1136,27 @@
 		<de>NPC nicht gefunden!</de>
 	</string>
 	<string id="285">
-		<en>Tow Vehicle</en>
+		<en>Tow vehicle</en>
 		<de>Abschleppen</de>
 	</string>
 	<string id="286">
-		<en>You must be in a TowTruck!</en>
+		<en>You have to be in a TowTruck!</en>
 		<de>Du musst in einem TowTruck sein!</de>
 	</string>
 	<string id="287">
-		<en>You dont a ADAC!</en>
-		<de>Du bist nicht beim Adac!</de>
+		<en>You are not the ADAC!</en>
+		<de>Du bist nicht beim ADAC!</de>
+	</string>
+	<string id="288">
+		<en>There is no vehicle in range!</en>
+		<de>Es befindet sich kein Fahrzeug in der Nähe!</de>
+	</string>
+	<string id="289">
+		<en>Vehicle dettached</en>
+		<de>Fahrzeug abgehängt</de>
+	</string>
+	<string id="290">
+		<en>Vehicle attached</en>
+		<de>fahrzeug angehängt</de>
 	</string>
 </languagestrings>

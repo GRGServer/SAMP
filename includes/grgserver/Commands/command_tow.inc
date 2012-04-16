@@ -1,30 +1,51 @@
-//TODO: Fahrzeug wird nicht an den TowTruck gehängt. Finde Fehler nicht /*Aerox*/
-CMD:tow(playerid, params[], 285)
+CMD:tow(playerID, params[], 285)
 {
-	if(PVar:playerid[JOBID] == JOB_ADAC)
+	if (PVar:playerID[JOBID] == JOB_ADAC)
 	{
-		if(IsPlayerInAnyVehicle(playerid))
+		if (IsPlayerInAnyVehicle(playerID))
 		{
-			new vehID = GetPlayerVehicleID(playerid);
-			if(GetVehicleModel(vehID) == 525)
+			new vehicleID = GetPlayerVehicleID(playerID);
+			if (GetVehicleModel(vehicleID) == 525)
 			{
-				new Float:x, Float:y, Float:z;
-				GetVehiclePos(vehID,x,y,z);
-				new trailer;
-				GetVehicleWithinDistance(playerid, x, y, z, 10.0, trailer);
-				AttachTrailerToVehicle(trailer, vehID);
+				if (IsTrailerAttachedToVehicle(vehicleID))
+				{
+					DetachTrailerFromVehicle(vehicleID);
+					SendClientMessageEx(playerID, COLOR_INFO, 289);
+					return COMMAND_OK;
+				}
+				else
+				{
+					new Float:posX;
+					new Float:posY;
+					new Float:posZ;
+					GetVehiclePos(vehicleID, posX, posY, posZ);
+					new trailerVehicleID = GetClosestVehicleInRange(posX, posY, posZ, 10.0, vehicleID);
+					if (trailerVehicleID == INVALID_VEHICLE_ID)
+					{
+						SendClientMessageEx(playerID, COLOR_ERROR, 288);
+						return COMMAND_ERROR;
+					}
+					else
+					{
+						AttachTrailerToVehicle(trailerVehicleID, vehicleID);
+						SendClientMessageEx(playerID, COLOR_INFO, 290);
+						return COMMAND_OK;
+					}
+				}
+			}
+			else
+			{
+				SendClientMessageEx(playerID, COLOR_ERROR, 286);
+				return COMMAND_ERROR;
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerid, COLOR_ERROR, 286);
-			return 1;
+			return COMMAND_NOT_IN_VEHICLE;
 		}
 	}
 	else 
 	{
-		SendClientMessageEx(playerid, COLOR_ERROR, 287);
-		return 1;
+		return COMMAND_PERMISSION_DENIED;
 	}
-	return COMMAND_OK;
 }

@@ -32,6 +32,7 @@
 #include <grgserver\Functions\FetchMySQLRow.inc>
 #include <grgserver\Functions\FormatDate.inc>
 #include <grgserver\Functions\FormatTime.inc>
+#include <grgserver\Functions\GetClosestVehicleInRange.inc>
 #include <grgserver\Functions\GetColor.inc>
 #include <grgserver\Functions\GetMySQLField.inc>
 #include <grgserver\Functions\GetMySQLValue.inc>
@@ -43,7 +44,6 @@
 #include <grgserver\Functions\GetPlayerNameEx.inc>
 #include <grgserver\Functions\GetPlayerVersionEx.inc>
 #include <grgserver\Functions\GetVehicleEngineState.inc>
-#include <grgserver\Functions\GetVehicleWithinDistance.inc>
 #include <grgserver\Functions\GetWeaponNameEx.inc>
 #include <grgserver\Functions\GivePlayerMoneyEx.inc>
 #include <grgserver\Functions\IsLoggedIn.inc>
