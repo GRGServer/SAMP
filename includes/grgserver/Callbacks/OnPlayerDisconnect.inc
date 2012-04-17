@@ -1,6 +1,14 @@
 public OnPlayerDisconnect(playerid, reason)
 {
-	if (!IsPlayerNPC(playerid))
+	if (IsPlayerNPC(playerid))
+	{
+		if (PVar:playerid[NPC_VEHICLEID])
+		{
+			DestroyVehicle(PVar:playerid[NPC_VEHICLEID]);
+		}
+		return true;
+	}
+	else
 	{
 		if (reason == 1)
 		{

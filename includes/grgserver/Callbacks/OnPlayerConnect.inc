@@ -46,6 +46,11 @@ public OnPlayerConnect(playerid)
 		{
 			StartNPCPlayback(playerid, GetMySQLField("Recording"), playbackType, strval(GetMySQLField("AutoRepeat")));
 		}
+		else
+		{
+			FormatNew:command[40]("setrec %s %d %d", GetMySQLField("Recording"), playbackType, strval(GetMySQLField("AutoRepeat")));
+			SendNPCCommand(playerid, command);
+		}
 		mysql_free_result();
 	}
 	else

@@ -5,23 +5,21 @@
 new recordingName[256];
 new playbackType;
 new autoRepeat;
-new isPaused;
-new isTimer;
-new timer;
-
-forward Timer();
 
 public OnClientMessage(color, text[])
 {
 	/*
 	Accepted content for "text":
-	<recordingName> <playbackType> <autoRepeat>
 	pause
 	resume
+	setrec <recordingName> <playbackType> <autoRepeat>
+	start (<recordingName> <playbackType> <autoRepeat>)
 	stop
-	teleport
+	teleport <posX> <posY> <posZ> <angle>
+	
+	Command "start" without additional parameters will use the last recordingName, playbackType and autoRepeat state
 	*/
-	new command[256];
+	new command[16];
 	new Float:posX;
 	new Float:posY;
 	new Float:posZ;
@@ -30,143 +28,60 @@ public OnClientMessage(color, text[])
 	{
 		return false;
 	}
-	if (!sscanf(text, "sdd", recordingName, playbackType, autoRepeat))
+	if (sscanf(text, "ssdd", command, recordingName, playbackType, autoRepeat))
 	{
-		StartNPC();
+		if (sscanf(text, "sffff", command, posX, posY, posZ, angle))
+		{
+			if (sscanf(text, "s", command))
+			{
+				return false;
+			}
+		}
+	}
+	if (!strcmp(command, "pause", true))
+	{
+		PauseRecordingPlayback();
 		return true;
 	}
-	if (!sscanf(text, "sffff", command, posX, posY, posZ, angle))
+	if (!strcmp(command, "resume", true))
 	{
-		SetMyPos(posX, posY, posZ);
-		SetMyFacingAngle(angle);
+		ResumeRecordingPlayback();
 		return true;
 	}
-	if (!sscanf(text, "s", command))
+	if (!strcmp(command, "setrec", true))// Only sets recordingName, playbackType and autoRepeat (For later use of "start" without additional parameters)
 	{
-		if (!strcmp(command, "pause", true))
+		return true;
+	}
+	if (!strcmp(command, "start", true))
+	{
+		StartRecordingPlayback(playbackType, recordingName);
+		return true;
+	}
+	if (!strcmp(command, "stop", true))
+	{
+		StopRecordingPlayback();
+		return true;
+	}
+	if (!strcmp(command, "teleport", true))
+	{
+		if (posX && posY && posZ)
 		{
-			StopTimer();
-			PauseNPC(true);
-		}
-		if (!strcmp(command, "resume", true))
-		{
-			PauseNPC(true);
-			StartTimer();
-		}
-		if (!strcmp(command, "stop", true))
-		{
-			StopRecordingPlayback();
+			SetMyPos(posX, posY, posZ);
+			SetMyFacingAngle(angle);
 		}
 		return true;
 	}
 	return false;
 }
 
-public OnNPCEnterVehicle(vehicleid,seatid)
-{
-	if (playbackType == PLAYER_RECORDING_TYPE_DRIVER)
-	{
-		StartNPC();
-	}
-}
-
-public OnNPCExitVehicle()
-{
-	if (playbackType == PLAYER_RECORDING_TYPE_DRIVER)
-	{
-		StopRecordingPlayback();
-	}
-}
-
 public OnRecordingPlaybackEnd()
 {
 	if (autoRepeat)
 	{
-		StartNPC();
+		StartRecordingPlayback(playbackType, recordingName);
 	}
 	else
 	{
 		SendCommand("/npccmd stopped");
-	}
-}
-
-public Timer()
-{
-	new pause;
-	for (new playerID = 0; playerID < MAX_PLAYERS; playerID++)
-	{
-		if (IsPlayerConnected(playerID))
-		{
-			new playerName[MAX_PLAYER_NAME];
-			GetPlayerName(playerID, playerName, sizeof(playerName));
-			strdel(playerName, 4, strlen(playerName));
-			if (strcmp(playerName, "NPC_", true))
-			{
-				new Float:posX;
-				new Float:posY;
-				new Float:posZ;
-				new Float:distance;
-				GetPlayerPos(playerID, posX, posY, posZ);
-				GetDistanceFromMeToPoint(posX, posY, posZ, distance);
-				if (distance <= NPC_PAUSEDISTANCE)
-				{
-					pause = true;
-					break;
-				}
-			}
-		}
-	}
-	if (pause)
-	{
-		if (!isPaused)
-		{
-			PauseNPC(true);
-		}
-	}
-	else
-	{
-		if (isPaused)
-		{
-			PauseNPC(false);
-		}
-	}
-}
-
-PauseNPC(newState)
-{
-	if (newState)
-	{
-		isPaused = true;
-		PauseRecordingPlayback();
-	}
-	else
-	{
-		isPaused = false;
-		ResumeRecordingPlayback();
-	}
-}
-
-StartNPC()
-{
-	isPaused = false;
-	StartRecordingPlayback(playbackType, recordingName);
-	// StartTimer();
-}
-
-StartTimer()
-{
-	if (!isTimer)
-	{
-		timer = SetTimer("Timer", 200, true);
-		isTimer = true;
-	}
-}
-
-StopTimer()
-{
-	if (isTimer)
-	{
-		KillTimer(timer);
-		isTimer = false;
 	}
 }

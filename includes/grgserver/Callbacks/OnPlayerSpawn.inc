@@ -7,10 +7,22 @@ public OnPlayerSpawn(playerid)
 		strdel(npcName, 0, 4);
 		MySQLQuery("SELECT * FROM `npcs` WHERE `Name` = '%s'", MySQLEscapeString(npcName));
 		mysql_store_result();
-		if (!strval(GetMySQLField("VehicleModelID")) && floatstr(GetMySQLField("SpawnPosX")) || floatstr(GetMySQLField("SpawnPosY")) || floatstr(GetMySQLField("SpawnPosZ")))
+		SetPlayerSkin(playerid, strval(GetMySQLField("Skin")));
+		if (PVar:playerid[NPC_VEHICLEID])
 		{
-			FormatNew:command[100]("teleport %s %s %s %s 0", GetMySQLField("SpawnPosX"), GetMySQLField("SpawnPosY"), GetMySQLField("SpawnPosZ"), GetMySQLField("SpawnAngle"));
-			SendNPCCommand(playerid, command);
+			PutPlayerInVehicle(playerid, PVar:playerid[NPC_VEHICLEID], 0);
+		}
+		else
+		{
+			if (floatstr(GetMySQLField("SpawnPosX")) || floatstr(GetMySQLField("SpawnPosY")) || floatstr(GetMySQLField("SpawnPosZ")))
+			{
+				FormatNew:command[100]("teleport %s %s %s %s 0", GetMySQLField("SpawnPosX"), GetMySQLField("SpawnPosY"), GetMySQLField("SpawnPosZ"), GetMySQLField("SpawnAngle"));
+				SendNPCCommand(playerid, command);
+			}
+			else
+			{
+				printf("WARNING: %s spawned without vehicle and no spawn position information!", npcName);
+			}
 		}
 		mysql_free_result();
 		return true;

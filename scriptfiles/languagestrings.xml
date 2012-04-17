@@ -1120,8 +1120,8 @@
 		<de>Du fragst, was du machen sollst??? Hau ab bevor ich mir das mit der Stadtrundfahrt doch noch anders überlege!</de>
 	</string>
 	<string id="281">
-		<en>Catch a taxi</en>
-		<de>Steig in ein Taxi</de>
+		<en>Catch a taxi and drive to the bank</en>
+		<de>Steig in ein Taxi und fahre zur Bank</de>
 	</string>
 	<string id="282">
 		<en>Set the spawn position of a NPC</en>
@@ -1162,5 +1162,21 @@
 	<string id="291">
 		<en>Go to the exit</en>
 		<de>Gehe zum Ausgang</de>
+	</string>
+	<string id="292">
+		<en>This is one of the banks in San Andreas</en>
+		<de>Dies ist eine der vielen Banken in San Andreas</de>
+	</string>
+	<string id="293">
+		<en>Here you can create bank accounts which are for example required to get paid by the hourly payday or to buy vehicles and houses</en>
+		<de>Hier kannst du Bankkonten anlegen, welche du z.B. benötigst, um beim stündlichen Payday Geld zu bekommen oder Fahrzeuge und Häuser zu kaufen</de>
+	</string>
+	<string id="294">
+		<en>You can enter a bank by going into the bank pickup and press ~k~~CONVERSATION_YES~ to pick up the pickup</en>
+		<de>Du kannst eine Bank betreten indem du in das Bankenpickup gehst und ~k~~CONVERSATION_YES~ drückst um das Pickup aufzunehmen</de>
+	</string>
+	<string id="295">
+		<en>Goto the bank and create an account</en>
+		<de>Gehe zur Bank und erstelle ein Konto</de>
 	</string>
 </languagestrings>

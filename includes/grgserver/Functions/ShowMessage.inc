@@ -1,4 +1,4 @@
-ShowMessage(playerID, messageID, waitTime = 0)
+ShowMessage(playerID, messageID, waitTime = 3000)
 {
 	new stringID;
 	switch (messageID)
@@ -22,6 +22,18 @@ ShowMessage(playerID, messageID, waitTime = 0)
 		case 5:
 		{
 			stringID = 280;
+		}
+		case 6:
+		{
+			stringID = 292;
+		}
+		case 7:
+		{
+			stringID = 293;
+		}
+		case 8:
+		{
+			stringID = 294;
 		}
 	}
 	if (stringID)
