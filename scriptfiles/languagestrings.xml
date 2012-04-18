@@ -1179,4 +1179,12 @@
 		<en>Goto the bank and create an account</en>
 		<de>Gehe zur Bank und erstelle ein Konto</de>
 	</string>
+	<string id="296">
+		<en>Repair Vehicle</en>
+		<de>Fahrzeug Reparieren</de>
+	</string>
+	<string id="297">
+		<en>Fill Vehicle</en>
+		<de>Fahrzeug Tanken</de>
+	</string>
 </languagestrings>

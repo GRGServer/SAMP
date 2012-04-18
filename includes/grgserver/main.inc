@@ -179,6 +179,7 @@
 #include <grgserver\Commands\command_controlnpc.inc>
 #include <grgserver\Commands\command_editobject.inc>
 #include <grgserver\Commands\command_exit.inc>
+#include <grgserver\Commands\command_fill.inc>
 #include <grgserver\Commands\command_flycam.inc>
 #include <grgserver\Commands\command_funaction.inc>
 #include <grgserver\Commands\command_getbalance.inc>
@@ -205,6 +206,7 @@
 #include <grgserver\Commands\command_rc.inc>
 #include <grgserver\Commands\command_recnpc.inc>
 #include <grgserver\Commands\command_reloadplayer.inc>
+#include <grgserver\Commands\command_repair.inc>
 #include <grgserver\Commands\command_resetcam.inc>
 #include <grgserver\Commands\command_saveveh.inc>
 #include <grgserver\Commands\command_setcampos.inc>
