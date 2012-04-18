@@ -9,7 +9,8 @@ CMD:repair(playerid, params[], 296)
 			CmdUsageMsg(playerid, "repair", "Playername/ID", "Prise");
 			return COMMAND_USAGE;
 		}
-		SetVehicleHealth(targetPlayerID, 1000.0);
+		SetVehicleHealth(targetPlayerID, 1000.00);
+		SetVehicleHealth(playerid, 1000.00);
 		GivePlayerMoneyEx(targetPlayerID, MONEY_CASH, -price);
 		GivePlayerMoneyEx(playerid, MONEY_CASH, price);
 		return COMMAND_OK;
