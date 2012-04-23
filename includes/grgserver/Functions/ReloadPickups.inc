@@ -19,10 +19,14 @@ ReloadPickups()
 		pickupLoader[pickupID][PICKUPLOADER_POSZ] = floatstr(GetMySQLField("PosZ"));
 	}
 	mysql_free_result();
-	print("* Creating pickups...");
+	print("* Destroying pickups...");
 	for (new pickupID = 0; pickupID < MAX_PICKUPS; pickupID++)
 	{
 		DestroyPickup(pickupID);
+	}
+	print("* Creating pickups...");
+	for (new pickupID = 0; pickupID < MAX_PICKUPS; pickupID++)
+	{
 		if (strlen(pickupLoader[pickupID][PICKUPLOADER_TYPE]))
 		{
 			if (AddPickup(pickupID, pickupLoader[pickupID][PICKUPLOADER_TYPE], pickupLoader[pickupID][PICKUPLOADER_POSX], pickupLoader[pickupID][PICKUPLOADER_POSY], pickupLoader[pickupID][PICKUPLOADER_POSZ], false) == -1)

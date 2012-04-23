@@ -17,7 +17,7 @@ Timer:Slow()
 	FormatNew:clockString[6]("%s:%s", hourString, minuteString);
 	TextDrawSetString(textDrawClock, clockString);
 	SetWorldTime(hour);
-	mysql_ping();
+	//mysql_ping();
 	if (fexist(FILE_UPDATENOTIFICATION))
 	{
 		new string[256];

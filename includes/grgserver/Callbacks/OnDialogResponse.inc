@@ -868,6 +868,30 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 			return true;
 		}
+		case DIALOG_REPAIR:
+		{
+			if (response)
+			{
+				new vehicleID = GetPlayerVehicleID(playerid);
+				if (vehicleID)
+				{
+					RepairVehicle(vehicleID);
+					GivePlayerMoneyEx(playerid, MONEY_CASH, -PVar:playerid[REPAIR_PRICE]);
+					GivePlayerMoneyEx(PVar:playerid[REPAIR_EXECUTOR], MONEY_CASH, PVar:playerid[REPAIR_PRICE]);
+					SendClientMessageEx(playerid, COLOR_INFO, 304);
+					SendClientMessageEx(PVar:playerid[REPAIR_EXECUTOR], COLOR_INFO, 305, GetPlayerNameEx(playerid), FormatMoney(PVar:playerid[REPAIR_PRICE]));
+				}
+				else
+				{
+					SendClientMessageEx(playerid, COLOR_ERROR, 146);
+				}
+			}
+			else
+			{
+				SendClientMessageEx(PVar:playerid[REPAIR_EXECUTOR], COLOR_ERROR, 306, GetPlayerNameEx(playerid));
+			}
+			return true;
+		}
 		case DIALOG_RESTARTGAMEMODE:
 		{
 			if (response)

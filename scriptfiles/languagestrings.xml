@@ -1180,11 +1180,47 @@
 		<de>Gehe zur Bank und erstelle ein Konto</de>
 	</string>
 	<string id="296">
-		<en>Repair Vehicle</en>
-		<de>Fahrzeug Reparieren</de>
+		<en>Repair vehicle</en>
+		<de>Fahrzeug reparieren</de>
 	</string>
 	<string id="297">
-		<en>Fill Vehicle</en>
-		<de>Fahrzeug Tanken</de>
+		<en>Refill vehicle</en>
+		<de>Fahrzeug tanken</de>
+	</string>
+	<string id="298">
+		<en>Price</en>
+		<de>Preis</de>
+	</string>
+	<string id="299">
+		<en>%p has not enought money!</en>
+		<de>%p hat nicht genügend Geld!</de>
+	</string>
+	<string id="300">
+		<en>%p is not in any vehicle</en>
+		<de>%p ist in keinem Fahrzeug</de>
+	</string>
+	<string id="301">
+		<en>Repair vehicle</en>
+		<de>Fahrzeug reparieren</de>
+	</string>
+	<string id="302">
+		<en>%s wants to repair your vehicle for %s\n\nIs that OK?</en>
+		<de>%s möchte dein fahrzeug für %s reparieren\n\nIst das OK?</de>
+	</string>
+	<string id="303">
+		<en>The request has been send to the player</en>
+		<de>Die Anfrage wurde an den Spieler gesendet</de>
+	</string>
+	<string id="304">
+		<en>Your vehicle has been repaired</en>
+		<de>Dein fahrzeug wurde repariert</de>
+	</string>
+	<string id="305">
+		<en>%s has accepted your repair request. You get %s.</en>
+		<de>%s hat deine Reparaturanfrage angenommen. Du bekommst %s.</de>
+	</string>
+	<string id="306">
+		<en>%s has rejected your repair request.</en>
+		<de>%s hat deine Reparaturannfrage abgelehnt.</de>
 	</string>
 </languagestrings>

@@ -1,4 +1,4 @@
-ShowDialog(playerID, dialogID, ...)
+ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool, File, hex, bit, bit_byte, Bit}:...)
 {
 	switch (dialogID)
 	{
@@ -304,6 +304,11 @@ ShowDialog(playerID, dialogID, ...)
 		case DIALOG_REGISTER_PASSWORD2:
 		{
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, LanguageString(playerID, 251), LanguageString(playerID, 243), LanguageString(playerID, 177), LanguageString(playerID, 171));
+		}
+		case DIALOG_REPAIR:
+		{
+			FormatNew:string[100](LanguageString(playerID, 302), GetPlayerNameEx(PVar:playerID[REPAIR_EXECUTOR]), FormatMoney(PVar:playerID[REPAIR_PRICE]));
+			ShowMsgBox(playerID, dialogID, LanguageString(playerID, 301), string, MSGBOXSTYLE_YESNO);
 		}
 		case DIALOG_RESTARTGAMEMODE:
 		{

@@ -65,7 +65,7 @@
 // Language configuration
 #define LANGUAGE_ENGLISH			0
 #define LANGUAGE_GERMAN				1
-#define LANGUAGE_MAXSTRINGS			300
+#define LANGUAGE_MAXSTRINGS			400
 
 
 // Limits
