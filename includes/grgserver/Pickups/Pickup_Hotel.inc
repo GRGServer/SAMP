@@ -33,5 +33,5 @@ PickupEvent:HOTEL(playerID, pickupID)
 
 PickupModelID:HOTEL(pickupID)
 {
-	return 1239;
+	return 1314;
 }

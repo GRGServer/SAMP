@@ -5,5 +5,5 @@ PickupEvent:AMBULANCE(playerID, pickupID)
 
 PickupModelID:AMBULANCE(pickupID)
 {
-	return 1239;
+	return 1240;
 }

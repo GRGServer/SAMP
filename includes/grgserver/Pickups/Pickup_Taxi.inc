@@ -5,5 +5,5 @@ PickupEvent:TAXI(playerID, pickupID)
 
 PickupModelID:TAXI(pickupID)
 {
-	return 1239;
+	return 1210;
 }

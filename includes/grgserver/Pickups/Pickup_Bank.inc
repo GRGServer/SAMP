@@ -14,5 +14,5 @@ PickupEvent:BANK(playerID, pickupID)
 
 PickupModelID:BANK(pickupID)
 {
-	return 1559;
+	return 1274;
 }

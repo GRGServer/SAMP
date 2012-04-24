@@ -367,7 +367,7 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 			mysql_store_result();
 			Format:string("ID: %s", GetMySQLField("ID"));
 			Format:string("%s\nName: %s", string, GetMySQLField("Username"));
-			Format:string("%s\n%s: %d Jahre", string, LanguageString(playerID, 226), CalculateAge(strval(GetMySQLField("BirthDate"))));
+			Format:string("%s\n%s: %d %s", string, LanguageString(playerID, 226), CalculateAge(strval(GetMySQLField("BirthDate"))), LanguageString(playerID, 307));
 			Format:string("%s\n%s: %s", string, LanguageString(playerID, 227), GetMySQLField("Location"));
 			Format:string("%s\n%s: %s", string, LanguageString(playerID, 228), GetMySQLField("MobilePhoneNumber"));
 			if (strval(GetMySQLField("BankID")))

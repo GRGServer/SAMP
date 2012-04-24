@@ -12,5 +12,5 @@ PickupEvent:POLICE(playerID, pickupID)
 
 PickupModelID:POLICE(pickupID)
 {
-	return 1559;
+	return 1247;
 }

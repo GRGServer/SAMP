@@ -5,5 +5,5 @@ PickupEvent:ADAC(playerID, pickupID)
 
 PickupModelID:ADAC(pickupID)
 {
-	return 1239;
+	return 1210;
 }

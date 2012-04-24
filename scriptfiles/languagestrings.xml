@@ -1223,4 +1223,8 @@
 		<en>%s has rejected your repair request.</en>
 		<de>%s hat deine Reparaturannfrage abgelehnt.</de>
 	</string>
+	<string id="307">
+		<en>Years</en>
+		<de>Jahre</de>
+	</string>
 </languagestrings>

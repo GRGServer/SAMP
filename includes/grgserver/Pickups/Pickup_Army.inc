@@ -5,5 +5,5 @@ PickupEvent:ARMY(playerID, pickupID)
 
 PickupModelID:ARMY(pickupID)
 {
-	return 1239;
+	return 1210;
 }
