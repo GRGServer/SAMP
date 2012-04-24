@@ -1,6 +1,6 @@
-ReloadSavedVehicles()
+ReloadSavedVehicles(playerID = INVALID_PLAYER_ID)
 {
-	print("* Destroying vehicles...");
+	AdminPrint(playerID, COLOR_INFO, "* Destroying vehicles...");
 	for (new vehicleID = 0; vehicleID < MAX_VEHICLES; vehicleID++)
 	{
 		DestroyVehicle(vehicleID);
@@ -8,7 +8,8 @@ ReloadSavedVehicles()
 		vehicles[vehicleID][VEHICLE_JOBID] = 0;
 		vehicles[vehicleID][VEHICLE_SAVEID] = 0;
 	}
-	print("* Loading saved vehicles...");
+	AdminPrint(playerID, COLOR_INFO, "* Loading saved vehicles...");
+	new count;
 	mysql_query("SELECT * FROM `savedvehicles`");
 	mysql_store_result();
 	while (FetchMySQLRow())
@@ -17,9 +18,12 @@ ReloadSavedVehicles()
 		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
 		ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
 		SetVehicleHealth(vehicleID, floatstr(GetMySQLField("Health")));
+		count++;
 	}
 	mysql_free_result();
-	print("* Adding vehicle components...");
+	AdminPrint(playerID, COLOR_INFO, "  %d saved vehicles loaded", count);
+	count = 0;
+	AdminPrint(playerID, COLOR_INFO, "* Adding vehicle components...");
 	mysql_query("SELECT * FROM `vehiclecomponents`");
 	mysql_store_result();
 	while (FetchMySQLRow())
@@ -29,12 +33,15 @@ ReloadSavedVehicles()
 			if (vehicles[vehicleID][VEHICLE_SAVEID] == strval(GetMySQLField("VehicleID")))
 			{
 				AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component")));
+				count++;
 				break;
 			}
 		}
 	}
 	mysql_free_result();
-	print("* Adding number plates...");
+	AdminPrint(playerID, COLOR_INFO, "  %d vehicle components added", count);
+	count = 0;
+	AdminPrint(playerID, COLOR_INFO, "* Adding number plates...");
 	mysql_query("SELECT * FROM `numberplates`");
 	mysql_store_result();
 	while (FetchMySQLRow())
@@ -46,8 +53,11 @@ ReloadSavedVehicles()
 			{
 				FormatNew:numberPlateText[16]("%s %s %d", GetMySQLField("Content1"), GetMySQLField("Content2"), strval(GetMySQLField("Content3")));
 				SetVehicleNumberPlate(vehicleID, numberPlateText);
+				count++;
 				break;
 			}
 		}
 	}
+	mysql_free_result();
+	AdminPrint(playerID, COLOR_INFO, "  %d number plates added", count);
 }

@@ -1,6 +1,6 @@
-ReloadPermissions()
+ReloadPermissions(playerID = INVALID_PLAYER_ID)
 {
-	print("* Reloading permissions...");
+	AdminPrint(playerID, COLOR_INFO, "* Reloading permissions...");
 	mysql_query("SELECT * FROM `permissions`");
 	mysql_store_result();
 	while (FetchMySQLRow())
@@ -8,19 +8,20 @@ ReloadPermissions()
 		new userID = strval(GetMySQLField("UserID"));
 		if (userID)
 		{
-			PlayerLoop(playerID)
+			PlayerLoop(currentPlayerID)
 			{
-				if (PVar:playerID[USERID] == userID)
+				if (PVar:currentPlayerID[USERID] == userID)
 				{
-					LoadPermission:ADMIN(playerID, "Admin");
-					LoadPermission:MAPPER(playerID, "Mapper");
-					LoadPermission:MODERATOR(playerID, "Moderator");
-					LoadPermission:NPCADMIN(playerID, "NPCAdmin");
-					LoadPermission:SERVERADMIN(playerID, "ServerAdmin");
-					LoadPermission:TELEPORT(playerID, "Teleport");
+					LoadPermission:ADMIN(currentPlayerID, "Admin");
+					LoadPermission:MAPPER(currentPlayerID, "Mapper");
+					LoadPermission:MODERATOR(currentPlayerID, "Moderator");
+					LoadPermission:NPCADMIN(currentPlayerID, "NPCAdmin");
+					LoadPermission:SERVERADMIN(currentPlayerID, "ServerAdmin");
+					LoadPermission:TELEPORT(currentPlayerID, "Teleport");
 				}
 			}
 		}
 	}
 	mysql_free_result();
+	AdminPrint(playerID, COLOR_INFO, "  done");
 }

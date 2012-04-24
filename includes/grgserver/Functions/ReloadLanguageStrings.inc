@@ -1,12 +1,13 @@
-ReloadLanguageStrings()
+ReloadLanguageStrings(playerID = INVALID_PLAYER_ID)
 {
-	print("* Unloading language strings...");
+	AdminPrint(playerID, COLOR_INFO, "* Unloading language strings...");
 	Count(id, LANGUAGE_MAXSTRINGS)
 	{
 		strdel(languageStrings[id][LANGUAGESTRING_ENGLISH], 0, STRINGLENGTH_LANGUAGESTRING);
 		strdel(languageStrings[id][LANGUAGESTRING_GERMAN], 0, STRINGLENGTH_LANGUAGESTRING);
 	}
-	print("* Loading language strings...");
+	AdminPrint(playerID, COLOR_INFO, "* Loading language strings...");
+	new count;
 	new XMLNode:xml = XML_LoadDocument("languagestrings.xml");
 	xml = XML_GetFirstChild(xml, "languagestrings");
 	new XMLNode:stringNode = XML_GetFirstChild(xml, "string");
@@ -29,7 +30,7 @@ ReloadLanguageStrings()
 			}
 			else
 			{
-				printf("Missing English language string for string %d", stringID);
+				AdminPrint(playerID, COLOR_INFO, "Missing English language string for string %d", stringID);
 			}
 			translationNode = XML_GetFirstChild(stringNode, "de");
 			if (translationNode)
@@ -41,15 +42,17 @@ ReloadLanguageStrings()
 			}
 			else
 			{
-				printf("Missing German language string for string %d", stringID);
+				AdminPrint(playerID, COLOR_INFO, "Missing German language string for string %d", stringID);
 			}
+			count++;
 		}
 		else
 		{
-			printf("Language string ID %d is greater than language array size (%d)", stringID, LANGUAGE_MAXSTRINGS);
+			AdminPrint(playerID, COLOR_INFO, "Language string ID %d is greater than language array size (%d)", stringID, LANGUAGE_MAXSTRINGS);
 			break;
 		}
 		stringNode = XML_GetNextSibling(stringNode, "string");
 	}
 	XML_UnloadDocument(xml);
+	AdminPrint(playerID, COLOR_INFO, "  %d language strings loaded", count);
 }

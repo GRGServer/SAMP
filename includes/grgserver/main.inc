@@ -204,8 +204,15 @@
 #include <grgserver\Commands\command_radio.inc>
 #include <grgserver\Commands\command_rc.inc>
 #include <grgserver\Commands\command_recnpc.inc>
+#include <grgserver\Commands\command_reconnectnpcs.inc>
 #include <grgserver\Commands\command_refuel.inc>
+#include <grgserver\Commands\command_reloadlanguagestrings.inc>
+#include <grgserver\Commands\command_reloadobjects.inc>
+#include <grgserver\Commands\command_reloadpermissions.inc>
+#include <grgserver\Commands\command_reloadpickups.inc>
 #include <grgserver\Commands\command_reloadplayer.inc>
+#include <grgserver\Commands\command_reloadsavedvehicles.inc>
+#include <grgserver\Commands\command_reloadvehiclemodels.inc>
 #include <grgserver\Commands\command_repair.inc>
 #include <grgserver\Commands\command_resetcam.inc>
 #include <grgserver\Commands\command_saveveh.inc>
@@ -220,16 +227,4 @@
 #include <grgserver\Commands\command_tow.inc>
 #include <grgserver\Commands\command_usecammovement.inc>
 #include <grgserver\Commands\command_veh.inc>
-
-// RCON
-#include <grgserver\RCON\rcon_cmds.inc>
-#include <grgserver\RCON\rcon_reconnectnpcs.inc>
-#include <grgserver\RCON\rcon_reloadlanguagestrings.inc>
-#include <grgserver\RCON\rcon_reloadobjects.inc>
-#include <grgserver\RCON\rcon_reloadpermissions.inc>
-#include <grgserver\RCON\rcon_reloadpickups.inc>
-#include <grgserver\RCON\rcon_reloadsavedvehicles.inc>
-#include <grgserver\RCON\rcon_reloadvehiclemodels.inc>
-#include <grgserver\RCON\rcon_safegmx.inc>
-#include <grgserver\RCON\rcon_showmysqlinfo.inc>
 

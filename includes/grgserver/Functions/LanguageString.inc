@@ -1,15 +1,22 @@
 LanguageString(playerID, stringID)
 {
 	new string[STRINGLENGTH_LANGUAGESTRING];
-	switch (PVar:playerID[LANGUAGE])
+	if (playerID == INVALID_PLAYER_ID)
 	{
-		case LANGUAGE_ENGLISH:
+		strcat(string, languageStrings[stringID][LANGUAGESTRING_ENGLISH]);
+	}
+	else
+	{
+		switch (PVar:playerID[LANGUAGE])
 		{
-			strcat(string, languageStrings[stringID][LANGUAGESTRING_ENGLISH]);
-		}
-		case LANGUAGE_GERMAN:
-		{
-			strcat(string, languageStrings[stringID][LANGUAGESTRING_GERMAN]);
+			case LANGUAGE_ENGLISH:
+			{
+				strcat(string, languageStrings[stringID][LANGUAGESTRING_ENGLISH]);
+			}
+			case LANGUAGE_GERMAN:
+			{
+				strcat(string, languageStrings[stringID][LANGUAGESTRING_GERMAN]);
+			}
 		}
 	}
 	return string;

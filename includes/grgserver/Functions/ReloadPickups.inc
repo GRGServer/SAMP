@@ -1,6 +1,11 @@
-ReloadPickups()
+ReloadPickups(playerID = INVALID_PLAYER_ID)
 {
-	print("* Loading pickups...");
+	AdminPrint(playerID, COLOR_INFO, "* Destroying pickups...");
+	for (new pickupID = 0; pickupID < MAX_PICKUPS; pickupID++)
+	{
+		DestroyPickup(pickupID);
+	}
+	AdminPrint(playerID, COLOR_INFO, "* Loading pickups...");
 	for (new pickupID = 0; pickupID < MAX_PICKUPS; pickupID++)
 	{
 		if (strlen(pickupLoader[pickupID][PICKUPLOADER_TYPE]))
@@ -19,12 +24,8 @@ ReloadPickups()
 		pickupLoader[pickupID][PICKUPLOADER_POSZ] = floatstr(GetMySQLField("PosZ"));
 	}
 	mysql_free_result();
-	print("* Destroying pickups...");
-	for (new pickupID = 0; pickupID < MAX_PICKUPS; pickupID++)
-	{
-		DestroyPickup(pickupID);
-	}
-	print("* Creating pickups...");
+	AdminPrint(playerID, COLOR_INFO, "* Creating pickups...");
+	new count;
 	for (new pickupID = 0; pickupID < MAX_PICKUPS; pickupID++)
 	{
 		if (strlen(pickupLoader[pickupID][PICKUPLOADER_TYPE]))
@@ -33,6 +34,11 @@ ReloadPickups()
 			{
 				printf("Invalid pickup type: %s", pickupLoader[pickupID][PICKUPLOADER_TYPE]);
 			}
+			else
+			{
+				count++;
+			}
 		}
 	}
+	AdminPrint(playerID, COLOR_INFO, "  %d pickups created", count);
 }

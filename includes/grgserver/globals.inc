@@ -1,4 +1,5 @@
 // Variables
+new clientMessageString[256];
 new ircBot;
 new languageStrings[LANGUAGE_MAXSTRINGS][enum_languageString];
 new maxPlayers;

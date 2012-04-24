@@ -1,3 +1,33 @@
+/* Commands */
+
+// CMD:name(playerID, params, languageStringID)
+#define CMD:%0(%1,%2,%3) COMMAND:%0(%1, %2)
+
+// NCMD:name(playerID, params, languageStringID)
+#define NCMD:%0(%1,%2,%3) COMMAND:%0(%1, %2) if (!IsPlayerNPC(%1)) return COMMAND_NPC_ONLY; else
+
+// PCMD:name[permissionField](playerID, params, languageStringID)
+#define PCMD:%0[%1](%2,%3,%4) COMMAND:%0(%2, %3) if (!permissions[%2][PERMISSION_%1]) return COMMAND_PERMISSION_DENIED; else
+
+
+/* Functions */
+
+// AdminPrint(playerID, color, string, parameters)
+#define AdminPrint(%0,%1,%2) Format:clientMessageString(%2); print(clientMessageString); if (%0 != INVALID_PLAYER_ID) SendClientMessage(%0, %1, clientMessageString)
+
+// Count(countingVariable, maximumValue)
+#define Count%0(%1,%2) for (new %1 = 0; %1 < %2; %1++)
+
+// Format:string(formatString, parameters)
+#define Format:%0(%1) format(%0, sizeof(%0), %1)
+
+// FormatNew:string[size](formatString, parameters)
+#define FormatNew:%0[%1](%2) new %0[%1]; Format:%0(%2)
+
+// FormatMoney(floatValue)
+#define FormatMoney(%0) FormatNumber(Float:%0, 2, '.', ',')
+
+// GetStringArg(argumentIndex, returnString)
 #define GetStringArg(%0,%1); \
 for (new i_%0 = 0; ; ++i_%0) \
 { \
@@ -7,33 +37,50 @@ for (new i_%0 = 0; ; ++i_%0) \
 		break; \
 }
 
-
-// Commands
-#define CMD:%0(%1,%2,%3) COMMAND:%0(%1, %2)
-#define NCMD:%0(%1,%2,%3) COMMAND:%0(%1, %2) if (!IsPlayerNPC(%1)) return COMMAND_NPC_ONLY; else
-#define PCMD:%0[%1](%2,%3,%4) COMMAND:%0(%2, %3) if (!permissions[%2][PERMISSION_%1]) return COMMAND_PERMISSION_DENIED; else
-#define RCMD:%0(%1,%2) forward rcmd_%0(%1); public rcmd_%0(%1)
-
-
-// Functions
-#define Count%0(%1,%2) for (new %1 = 0; %1 < %2; %1++)
-#define Exec:%0(%1) %0(%1); print("Done"); return true
-#define Format:%0(%1) format(%0, sizeof(%0), %1)
-#define FormatNew:%0[%1](%2) new %0[%1]; Format:%0(%2)
-#define FormatMoney(%0) FormatNumber(Float:%0, 2, '.', ',')
+// GetUserDBValue(playerID, field)
 #define GetUserDBValue(%0,%1) GetMySQLValue("users", %1, "ID", val2str(PVar:%0[USERID]))
+
+// IsKeyPressed(keys)
 #define IsKeyPressed(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
+
+// LoadPermission:permissionField(playerID, tableField)
 #define LoadPermission:%0(%1,%2) permissions[%1][PERMISSION_%0] = strval(GetMySQLField(%2))
+
+// MD5(string)
 #define MD5(%0) MD5_Hash(%0, true)
+
+// MySQLQuery(formattedString, parameters)
 #define MySQLQuery(%0) Format:sqlQuery(%0); if (mysql_query(sqlQuery)) printf("SQL: %s", sqlQuery)
+
+// PickupEvent:pickupType(parameters)
 #define PickupEvent:%0(%1) forward PUE_%0(%1); public PUE_%0(%1)
+
+// PickupModelID:pickupType(parameters)
 #define PickupModelID:%0(%1) forward PUMID_%0(%1); public PUMID_%0(%1)
+
+// PlayerLoop(returningPlayerID)
 #define PlayerLoop(%0) Count(%0, maxPlayers)
+
+// PTextDraw:playerID[textDrawField]
 #define PTextDraw:%0[%1] PVar:%0[TEXTDRAW_%1]
+
+// PVar:playerID[field]
 #define PVar:%0[%1] playerVariables[%0][PVAR_%1]
+
+// SetPVarStr:playerID[field][size](string)
 #define SetPVarStr:%0[%1][%2](%3) format(PVar:%0[%1], %2, %3)
-#define SetUserDBValue(%0,%1,%3) SetMySQLValue("users", %1, %3, "ID", val2str(PVar:%0[USERID]))
+
+// SetUserDBValue(playerID, field, value)
+#define SetUserDBValue(%0,%1,%2) SetMySQLValue("users", %1, %2, "ID", val2str(PVar:%0[USERID]))
+
+// StartScreenFader(playerID, red, green, blue, steps, waitOnEnd, extraID)
 #define StartScreenFader(%0) Timer_ScreenFader(%0)
+
+// StartTimer:name(functionName, repeat)
 #define StartTimer:%0(%1,%2) SetTimer(%1, TIMER_%0, %2)
+
+// Timer:name(parameters)
 #define Timer:%0(%1) forward Timer_%0(%1); public Timer_%0(%1)
+
+// UpdateUserDB(playerID, formattedQuery, parameters)
 #define UpdateUserDB(%0,%1) Format:sqlQuery(%1); Format:sqlQuery("UPDATE `users` SET %s WHERE `ID` = '%d'", sqlQuery, PVar:%0[USERID]); if (mysql_query(sqlQuery)) printf("SQL: %s", sqlQuery)
