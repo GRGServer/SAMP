@@ -377,6 +377,28 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP2);
 			}
 		}
+		case DIALOG_CHATMODE:
+		{
+			if (response)
+			{
+				switch (listitem)
+				{
+					case 0:// In range
+					{
+						PVar:playerid[CHATMODE] = CHATMODE_INRANGE;
+					}
+					case 1:// All
+					{
+						PVar:playerid[CHATMODE] = CHATMODE_ALL;
+					}
+					case 2:// Job
+					{
+						PVar:playerid[CHATMODE] = CHATMODE_JOB;
+					}
+				}
+				SendClientMessageEx(playerid, COLOR_INFO, 313, GetChatModeName(playerid, PVar:playerid[CHATMODE]));
+			}
+		}
 		case DIALOG_ESTATEAGENTS:
 		{
 			if (response)

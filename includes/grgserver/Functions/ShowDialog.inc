@@ -130,6 +130,14 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 		{
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, LanguageString(playerID, 240), LanguageString(playerID, 243), "OK", LanguageString(playerID, 171));
 		}
+		case DIALOG_CHATMODE:
+		{
+			new options[1024];
+			AddLine(options, LanguageString(playerID, 311));// Item 0
+			AddLine(options, LanguageString(playerID, 310));// Item 1
+			AddLine(options, "Job");// Item 2
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 312), options, "OK", LanguageString(playerID, 165));
+		}
 		case DIALOG_FUNACTION:
 		{
 			FormatNew:string[1024]("Stop\n");

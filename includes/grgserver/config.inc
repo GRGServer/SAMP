@@ -4,9 +4,14 @@
 #define CASHTRANS_VEHICLETAX		"VEHICLETAX"
 
 
+// Chat configuration
+#define CHAT_MAXDISTANCE			100
+
+
 // Colors
-#define COLOR_CHAT					0xFFFFFFAA
-#define COLOR_CHATOWN				0xAAAAAAAA
+#define COLOR_CHAT_ALL				0xAAFFAAAA
+#define COLOR_CHAT_INRANGE			0xFFFFFFAA
+#define COLOR_CHAT_JOB				0xAAAAFFAA
 #define COLOR_ERROR					0xA00000AA
 #define COLOR_INFO					0xFF8C55FF
 #define COLOR_IRC					0x33AA33AA
@@ -55,7 +60,7 @@
 #define JOB_BANK					7
 #define JOB_ESTATEAGENTS			3
 #define JOB_POLICE					5
-#define JOB_SCHOOLDRIVER				9
+#define JOB_SCHOOLDRIVER			9
 #define JOB_TAXI					10
 #define JOB_TRUCKER					4
 #define JOB_UNEMPLOYED				0

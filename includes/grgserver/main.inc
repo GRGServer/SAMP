@@ -32,6 +32,7 @@
 #include <grgserver\Functions\FetchMySQLRow.inc>
 #include <grgserver\Functions\FormatDate.inc>
 #include <grgserver\Functions\FormatTime.inc>
+#include <grgserver\Functions\GetChatModeName.inc>
 #include <grgserver\Functions\GetClosestVehicleInRange.inc>
 #include <grgserver\Functions\GetColor.inc>
 #include <grgserver\Functions\GetMySQLField.inc>
@@ -174,6 +175,7 @@
 #include <grgserver\Commands\addstaticnpc.inc>
 #include <grgserver\Commands\cammovementcfg.inc>
 #include <grgserver\Commands\changepw.inc>
+#include <grgserver\Commands\chatmode.inc>
 #include <grgserver\Commands\checkpermissions.inc>
 #include <grgserver\Commands\cmds.inc>
 #include <grgserver\Commands\controlnpc.inc>

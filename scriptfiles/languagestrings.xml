@@ -1227,4 +1227,28 @@
 		<en>Years</en>
 		<de>Jahre</de>
 	</string>
+	<string id="308">
+		<en>Change the channel in which your messages should be send</en>
+		<de>Wechsel den Kanal in welchen deine Nachrichten gesendet werden</de>
+	</string>
+	<string id="309">
+		<en>Current chat channel: %s</en>
+		<de>Aktueller Chatkanal: %s</de>
+	</string>
+	<string id="310">
+		<en>All</en>
+		<de>Alle</de>
+	</string>
+	<string id="311">
+		<en>In range (max 100m)</en>
+		<de>Im Umkreis (max 100m)</de>
+	</string>
+	<string id="312">
+		<en>Change chat channel</en>
+		<de>Chatkanal wechseln</de>
+	</string>
+	<string id="313">
+		<en>Chat channel changed to '%s'</en>
+		<de>Chatkanal gewechselt auf '%s'</de>
+	</string>
 </languagestrings>
