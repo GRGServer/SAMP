@@ -54,7 +54,6 @@ If OpenConsole()
 			AddDir("Pickups")
 			AddDir("Timers")
 			AddDir("Commands")
-			AddDir("RCON")
 			CloseFile(mainInclude)
 			Print(" Done")
 		Else
@@ -68,14 +67,14 @@ If OpenConsole()
 EndIf
 ; IDE Options = PureBasic 4.60 (Windows - x86)
 ; ExecutableFormat = Console
-; CursorPosition = 35
-; FirstLine = 19
+; CursorPosition = 48
+; FirstLine = 24
 ; Folding = -
 ; EnableXP
 ; UseIcon = Includes Updater.ico
 ; Executable = Includes Updater.exe
-; EnableCompileCount = 8
-; EnableBuildCount = 8
+; EnableCompileCount = 9
+; EnableBuildCount = 9
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0
