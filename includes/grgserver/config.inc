@@ -78,18 +78,11 @@
 #define MAX_MONEY					999999.99// Display on screen
 
 
-// MySQL development database credentials
-#define MYSQL_DEV_DATABASE			"grg_dev"
-#define MYSQL_DEV_HOST				"127.0.0.1"
-#define MYSQL_DEV_PASSWORD			"wrF9TvPuQDQNX9mZ"
-#define MYSQL_DEV_USERNAME			"grg_dev"
-
-
-// MySQL public database credentials
-#define MYSQL_PUBLIC_DATABASE		"grg_public"
-#define MYSQL_PUBLIC_HOST			"127.0.0.1"
-#define MYSQL_PUBLIC_PASSWORD		"fYTA3Cw4KJpuF6Az"
-#define MYSQL_PUBLIC_USERNAME		"grg_public"
+// MySQL database credentials
+#define MYSQL_DATABASE				"grg_server"
+#define MYSQL_HOST					"127.0.0.1"
+#define MYSQL_PASSWORD				"9wLjVfZLJPHbnS5A"
+#define MYSQL_USERNAME				"grg_server"
 
 
 // News configuration
