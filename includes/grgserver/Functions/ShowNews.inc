@@ -1,6 +1,6 @@
 ShowNews(playerID, lastID)
 {
-	MySQLQuery("SELECT * FROM `news` WHERE `ID` > '%d' ORDER BY `Date` DESC LIMIT %d", lastID, NEWS_MAXIMUM);// TODO: Use player language
+	MySQLQuery("SELECT `ID`, `Date`, LEFT(`Text`, 255) AS `Text` FROM `news` WHERE `ID` > '%d' ORDER BY `Date` DESC LIMIT %d", lastID, NEWS_MAXIMUM);// TODO: Use player language
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{

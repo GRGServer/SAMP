@@ -1251,4 +1251,56 @@
 		<en>Chat channel changed to '%s'</en>
 		<de>Chatkanal gewechselt auf '%s'</de>
 	</string>
+	<string id="314">
+		<en>There are currently no rooms available</en>
+		<de>Es stehen derzeit keine Zimmer zur Verfügung</de>
+	</string>
+	<string id="315">
+		<en>Select room</en>
+		<de>Zimmer wählen</de>
+	</string>
+	<string id="316">
+		<en>Your hotel room</en>
+		<de>Dein Hotelzimmer</de>
+	</string>
+	<string id="317">
+		<en>Enter hotel room</en>
+		<de>Hotelzimmer betreten</de>
+	</string>
+	<string id="318">
+		<en>Cancel hotel room</en>
+		<de>Hotelzimmer kündigen</de>
+	</string>
+	<string id="319">
+		<en>Room information</en>
+		<de>Informationen über das Zimmer</de>
+	</string>
+	<string id="320">
+		<en>Hourly price: %m</en>
+		<de>Stündlicher Preis: %m</de>
+	</string>
+	<string id="321">
+		<en>You have cancelled the hotel room</en>
+		<de>Du hast das Hotelzimmer gekündigt</de>
+	</string>
+	<string id="322">
+		<en>You have the permission 'MAPPER' and are now able to add hotel rooms using /addhotelroom</en>
+		<de>Du hast die Berechtigung 'MAPPER' und hast nun die Möglichkeit Hotelzimmer mit /addhotelroom hinzuzufügen</de>
+	</string>
+	<string id="323">
+		<en>Add a new hotel room to the current hotel</en>
+		<de>Füge ein neues Hotelzimmer zum aktuellen Hotel hinzu</de>
+	</string>
+	<string id="324">
+		<en>You are not in a hotel!</en>
+		<de>Du bist nicht in einem Hotel!</de>
+	</string>
+	<string id="325">
+		<en>The hotel room (%d) has been created</en>
+		<de>Das Hotelzimmer (%d) wurde erstellt</de>
+	</string>
+	<string id="326">
+		<en>Teleport you to the specified coordinates</en>
+		<de>Teleportiere dich zu den angegebenen Koordinaten</de>
+	</string>
 </languagestrings>

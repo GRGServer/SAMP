@@ -170,6 +170,7 @@
 #include <grgserver\Commands\about.inc>
 #include <grgserver\Commands\accept.inc>
 #include <grgserver\Commands\addbuilding.inc>
+#include <grgserver\Commands\addhotelroom.inc>
 #include <grgserver\Commands\addobject.inc>
 #include <grgserver\Commands\addpickup.inc>
 #include <grgserver\Commands\addstaticnpc.inc>
@@ -179,6 +180,7 @@
 #include <grgserver\Commands\checkpermissions.inc>
 #include <grgserver\Commands\cmds.inc>
 #include <grgserver\Commands\controlnpc.inc>
+#include <grgserver\Commands\coordtp.inc>
 #include <grgserver\Commands\editobject.inc>
 #include <grgserver\Commands\exit.inc>
 #include <grgserver\Commands\flycam.inc>

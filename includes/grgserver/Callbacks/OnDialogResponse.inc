@@ -451,170 +451,53 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SetPlayerSpecialAction(playerid, action);
 			}
 		}
-		case DIALOG_HOTEL_MAIN_AVAILABLE:
+		case DIALOG_HOTEL_HASROOM:
 		{
 			if (response)
 			{
 				switch (listitem)
 				{
-					case 0: // Buy
+					case 0:// Enter hotel room
 					{
-						new buildingID = PVar:playerid[DIALOGBUILDINGID];
-						new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
-						if (price <= PVar:playerid[MONEY])
-						{
-							GivePlayerMoneyEx(playerid, MONEY_CASH, -price);
-							SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
-							ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
-							SendClientMessageEx(playerid, COLOR_INFO, 33);
-							ShowDialog(playerid, DIALOG_HOTEL_MAIN_OWNER);
-						}
-						else
-						{
-							SendClientMessageEx(playerid, COLOR_ERROR, 34, price, PVar:playerid[MONEY]);
-							ShowDialog(playerid, DIALOG_HOTEL_MAIN_AVAILABLE);
-						}
+						TeleportToInterior(playerid, HOTEL_ROOM_INTERIOR);
+						SetPlayerVirtualWorld(playerid, playerid);
 					}
-					case 1: // Rent
+					case 1:// Cancel hotel room
 					{
-						ShowDialog(playerid, DIALOG_HOTEL_MAIN_AVAILABLE);
+						MySQLQuery("UPDATE `hotelrooms` SET `OwnerUserID` = '0' WHERE `BuildingID` = '%d' AND `RoomID` = '%d'", PVar:playerid[CURRENTBUILDINGID], PVar:playerid[HOTEL_ROOMID]);
+						SendClientMessageEx(playerid, COLOR_INFO, 321);
+						LeaveBuilding(playerid);
 					}
-					case 2: // Enter
+					case 2:// Room information
 					{
-						TeleportToBuilding(playerid, PVar:playerid[DIALOGBUILDINGID]);
+						MySQLQuery("SELECT * FROM `hotelrooms` WHERE `BuildingID` = '%d' AND `RoomID` = '%d'", PVar:playerid[CURRENTBUILDINGID], PVar:playerid[HOTEL_ROOMID]);
+						mysql_store_result();
+						new Float:price = floatstr(GetMySQLField("Price"));
+						mysql_free_result();
+						SendClientMessageEx(playerid, COLOR_INFO, 320, price);
+						ShowDialog(playerid, DIALOG_HOTEL_HASROOM);
 					}
 				}
 			}
 			else
 			{
-				SetPlayerPosEx(playerid, PVar:playerid[HOTEL_PREVIOUSPOSITION_X], PVar:playerid[HOTEL_PREVIOUSPOSITION_Y], PVar:playerid[HOTEL_PREVIOUSPOSITION_Z]);
-				SetPlayerInterior(playerid, 0);
-				SetPlayerVirtualWorld(playerid, 0);
+				LeaveBuilding(playerid);
 			}
 		}
-		case DIALOG_HOTEL_MAIN_BOUGHT:
+		case DIALOG_HOTEL_ROOMLIST:
 		{
 			if (response)
 			{
-				switch (listitem)
-				{
-					case 0: // Enter
-					{
-						ShowDialog(playerid, DIALOG_HOTEL_MAIN_BOUGHT);
-					}
-					case 1: // Rent
-					{
-						ShowDialog(playerid, DIALOG_HOTEL_MAIN_BOUGHT);
-					}
-					case 2: // Stop contract
-					{
-						ShowDialog(playerid, DIALOG_HOTEL_MAIN_BOUGHT);
-					}
-				}
+				new string[256];
+				sscanf(inputtext, "p:ds", PVar:playerid[HOTEL_ROOMID], string);
+				MySQLQuery("UPDATE `hotelrooms` SET `OwnerUserID` = '%d' WHERE `BuildingID` = '%d' AND `RoomID` = '%d'", PVar:playerid[USERID], PVar:playerid[CURRENTBUILDINGID], PVar:playerid[HOTEL_ROOMID]);
+				TeleportToInterior(playerid, HOTEL_ROOM_INTERIOR);
+				SetPlayerVirtualWorld(playerid, playerid);
 			}
 			else
 			{
-				SetPlayerPosEx(playerid, PVar:playerid[HOTEL_PREVIOUSPOSITION_X], PVar:playerid[HOTEL_PREVIOUSPOSITION_Y], PVar:playerid[HOTEL_PREVIOUSPOSITION_Z]);
-				SetPlayerInterior(playerid, 0);
-				SetPlayerVirtualWorld(playerid, 0);
+				LeaveBuilding(playerid);
 			}
-		}
-		case DIALOG_HOTEL_MAIN_OWNER:
-		{
-			if (response)
-			{
-				switch (listitem)
-				{
-					case 0: // Enter
-					{
-						TeleportToBuilding(playerid, PVar:playerid[DIALOGBUILDINGID]);
-					}
-					case 1: // Sell
-					{
-						ShowDialog(playerid, DIALOG_HOTEL_MAIN_OWNER);
-					}
-					case 2: // Incoming (Money)
-					{
-						ShowDialog(playerid, DIALOG_HOTEL_MAIN_OWNER);
-					}
-					case 3: // Room options
-					{
-						ShowDialog(playerid, DIALOG_HOTEL_ROOMS_LIST);
-					}
-				}
-			}
-			else
-			{
-				SetPlayerPosEx(playerid, PVar:playerid[HOTEL_PREVIOUSPOSITION_X], PVar:playerid[HOTEL_PREVIOUSPOSITION_Y], PVar:playerid[HOTEL_PREVIOUSPOSITION_Z]);
-				SetPlayerInterior(playerid, 0);
-				SetPlayerVirtualWorld(playerid, 0);
-			}
-		}
-		case DIALOG_HOTEL_ROOMS_FREEOPTIONS:
-		{
-			if (response)
-			{
-				switch (listitem)
-				{
-					case 0:// Set room rent price
-					{
-						ShowDialog(playerid, DIALOG_HOTEL_ROOMS_SETPRICE);
-					}
-				}
-			}
-			else
-			{
-				ShowDialog(playerid, DIALOG_HOTEL_ROOMS_LIST);
-			}
-		}
-		case DIALOG_HOTEL_ROOMS_LIST:
-		{
-			if (response)
-			{
-				new playerName[MAX_PLAYER_NAME];
-				new roomID;
-				if (!sscanf(inputtext, "p:ds", roomID, playerName))
-				{
-					PVar:playerid[HOTEL_OPTIONS_ROOMID] = roomID;
-					if (strval(GetMySQLValue("hotelrooms", "OwnerUserID", "RoomID", val2str(roomID))))
-					{
-						ShowDialog(playerid, DIALOG_HOTEL_ROOMS_OWNEDOPTIONS);
-					}
-					else
-					{
-						ShowDialog(playerid, DIALOG_HOTEL_ROOMS_FREEOPTIONS);
-					}
-				}
-			}
-			else
-			{
-				ShowDialog(playerid, DIALOG_HOTEL_MAIN_OWNER);
-			}
-		}
-		case DIALOG_HOTEL_ROOMS_OWNEDOPTIONS:
-		{
-			if (response)
-			{
-				switch (listitem)
-				{
-					case 0:// Kick renter
-					{
-						// Kick
-					}
-				}
-			}
-			else
-			{
-				ShowDialog(playerid, DIALOG_HOTEL_ROOMS_LIST);
-			}
-		}
-		case DIALOG_HOTEL_ROOMS_SETPRICE:
-		{
-			if (response)
-			{
-				MySQLQuery("UPDATE `hotelrooms` SET `Price` = '%s' WHERE `BuildingID` = '%d' AND `RoomID` = '%d'", MySQLEscapeString(inputtext), PVar:playerid[DIALOGBUILDINGID], PVar:playerid[HOTEL_OPTIONS_ROOMID]);
-			}
-			ShowDialog(playerid, DIALOG_HOTEL_ROOMS_LIST);
 		}
 		case DIALOG_HOUSEOPTIONS:
 		{

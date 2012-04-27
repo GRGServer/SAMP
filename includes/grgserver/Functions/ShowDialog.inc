@@ -147,63 +147,19 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 			Format:string("%s\nPissing", string);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Fun Action", string, "OK", LanguageString(playerID, 165));
 		}
-		case DIALOG_HOTEL_MAIN_AVAILABLE:
+		case DIALOG_HOTEL_HASROOM:
 		{
-			FormatNew:options[40](LanguageString(playerID, 266)); // Item 0
-			Format:options("%s\n%s", options, LanguageString(playerID, 267)); // Item 1
-			Format:options("%s\n%s", options, LanguageString(playerID, 268)); // Item 2
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hotel", options, "OK", LanguageString(playerID, 165));
+			new options[1024];
+			AddLine(options, LanguageString(playerID, 317));// Item 0
+			AddLine(options, LanguageString(playerID, 318));// Item 1
+			AddLine(options, LanguageString(playerID, 319));// Item 2
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 316), options, "OK", LanguageString(playerID, 165));
 		}
-		case DIALOG_HOTEL_MAIN_BOUGHT:
-		{
-			FormatNew:options[30](LanguageString(playerID, 268)); // Item 0
-			Format:options("%s\nMieten", options); // Item 1
-			Format:options("%s\nKündigen", options); // item 2
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", LanguageString(playerID, 165));
-		}
-		case DIALOG_HOTEL_MAIN_OWNER:
-		{
-			FormatNew:options[50](LanguageString(playerID, 268)); // Item 0
-			Format:options("%s\nVerkaufen", options); // Item 1
-			Format:options("%s\nEinnahmen", options); // item 2
-			Format:options("%s\nZimmeroptionen", options); // Item 3
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hoteloptionen", options, "OK", LanguageString(playerID, 165));
-		}
-		case DIALOG_HOTEL_ROOMS_FREEOPTIONS:
-		{
-			FormatNew:options[20]("Mietpreis festlegen"); // Item 0
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Zimmeroptionen", options, "OK", LanguageString(playerID, 165));
-		}
-		case DIALOG_HOTEL_ROOMS_LIST:
+		case DIALOG_HOTEL_ROOMLIST:
 		{
 			new rooms[2048];
-			new string[MAX_PLAYER_NAME];
-			MySQLQuery("SELECT `RoomID`, `Username` FROM `hotelrooms` LEFT JOIN `users` ON `hotelrooms`.`OwnerUserID` = `users`.`ID` WHERE `hotelrooms`.`BuildingID` = '%d' ORDER BY `RoomID` ASC", PVar:playerID[DIALOGBUILDINGID]);
-			mysql_store_result();
-			while (FetchMySQLRow())
-			{
-				if (strlen(rooms))
-				{
-					Format:rooms("%s\n", rooms);
-				}
-				if (strlen(GetMySQLField("Username")))
-				{
-					Format:string(GetMySQLField("Username"));
-				}
-				else
-				{
-					Format:string("[Leer]");
-				}
-				Format:rooms("%%s: %s", GetMySQLField("RoomID"), string);
-			}
-			mysql_free_result();
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Zimmer wählen", rooms, "Optionen", LanguageString(playerID, 165));
-		}
-		case DIALOG_HOTEL_ROOMS_OWNEDOPTIONS:
-		{
-			new options[20];
-			Format:options("Mieter rauswerfen", options); // Item 0
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Zimmeroptionen", options, "OK", LanguageString(playerID, 165));
+			GetStringArg(2, rooms);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 315), rooms, "OK", LanguageString(playerID, 165));
 		}
 		case DIALOG_HOUSEOPTIONS:
 		{
