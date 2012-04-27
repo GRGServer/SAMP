@@ -1303,4 +1303,8 @@
 		<en>Teleport you to the specified coordinates</en>
 		<de>Teleportiere dich zu den angegebenen Koordinaten</de>
 	</string>
+	<string id="327">
+		<en>This vehicle is reserved for a job!</en>
+		<de>Dieses fahrzeug ist für einen Job reserviert!</de>
+	</string>
 </languagestrings>

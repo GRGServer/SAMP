@@ -13,6 +13,19 @@ CheckVehiclePermission(playerID, vehicleID)
 			return true;
 		}
 	}
+	if (vehicles[vehicleID][VEHICLE_JOBID])
+	{
+		if (PVar:playerID[JOBID] == vehicles[vehicleID][VEHICLE_JOBID])
+		{
+			return true;
+		}
+		else
+		{
+			SendClientMessageEx(playerID, COLOR_ERROR, 327);
+			RemovePlayerFromVehicle(playerID);
+			return false;
+		}
+	}
 	new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID])));
 	if (!ownerUserID)
 	{
