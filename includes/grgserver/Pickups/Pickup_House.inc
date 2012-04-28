@@ -6,7 +6,7 @@ PickupEvent:HOUSE(playerID, pickupID)
 		if (ownerUserID == PVar:playerID[USERID])
 		{
 			PVar:playerID[DIALOGBUILDINGID] = strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
-			ShowDialog(playerID, DIALOG_HOUSEOPTIONS);
+			ShowDialog(playerID, DIALOG_HOUSE);
 		}
 		else
 		{
@@ -16,14 +16,14 @@ PickupEvent:HOUSE(playerID, pickupID)
 	else
 	{
 		new Float:price = floatstr(GetMySQLValue("buildings", "Price", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
-		if (price <= PVar:playerID[MONEY])
+		if (price <= PVar:playerID[BANKMONEY])
 		{
 			PVar:playerID[DIALOGBUILDINGID] = strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
 			ShowDialog(playerID, DIALOG_BUYHOUSE, FormatMoney(price));
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 142, price, PVar:playerID[MONEY]);
+			SendClientMessageEx(playerID, COLOR_ERROR, 22, price, PVar:playerID[BANKMONEY]);
 		}
 	}
 }

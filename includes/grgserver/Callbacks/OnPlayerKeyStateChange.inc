@@ -13,6 +13,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				}
 				else
 				{
+					PlaySound(playerid, SOUND_PICKUPKEYPRESSED);
 					CallLocalFunction(functionName, "dd", playerid, pickupID);
 				}
 				return true;

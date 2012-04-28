@@ -30,6 +30,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 				SendClientMessageEx(playerid, COLOR_ERROR, 200);
 			}
 			PVar:playerid[OBJEDITOR_CURRENTOBJECTID] = 0;
+			PlaySound(playerid, SOUND_OBJECTPLACED);
 			SelectObject(playerid);
 		}
 	}

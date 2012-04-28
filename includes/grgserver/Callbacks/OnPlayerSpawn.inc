@@ -38,6 +38,7 @@ public OnPlayerSpawn(playerid)
 	else
 	{
 		PlayCameraMovement(playerid, 4);
+		PVar:playerid[CURRENTBUILDINGID] = 0;
 	}
 	SetPlayerSkin(playerid, PVar:playerid[SKIN]);
 	return true;

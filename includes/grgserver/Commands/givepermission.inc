@@ -4,7 +4,7 @@ PCMD:givepermission[SERVERADMIN](playerid, params[], 103)
 	new permissionString[256];
 	if (sscanf(params, "us", targetPlayerID, permissionString))
 	{
-		CmdUsageMsg(playerid, "givepermission", "Spielername", "Recht(Admin|Mapper|Moderator|NPCAdmin|ServerAdmin|Teleport)");
+		CmdUsageMsg(playerid, "givepermission", "PlayerID/Name", "Admin|Mapper|Moderator|NPCAdmin|ServerAdmin|Teleport");
 		return COMMAND_USAGE;
 	}
 	if (IsPlayerConnected(targetPlayerID))

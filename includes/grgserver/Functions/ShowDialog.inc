@@ -34,7 +34,7 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 			FormatNew:options[50]("%s\n%s", LanguageString(playerID, 217), LanguageString(playerID, 218));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 219), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
 		}
-		case DIALOG_ARMEE:
+		case DIALOG_ARMY:
 		{
 			FormatNew:options[50]("%s\n%s", LanguageString(playerID, 217), LanguageString(playerID, 218));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 220), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
@@ -54,20 +54,6 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 		{
 			FormatNew:options[50]("%s\n%s\n%s\n%s", LanguageString(playerID, 173), LanguageString(playerID, 174), LanguageString(playerID, 175), LanguageString(playerID, 176));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 172), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
-		}
-		// ???
-		case DIALOG_APPLICATION_PLAYER:
-		{
-			// TODO: Can not work!
-			MySQLQuery("SELECT * FROM `application` WHERE `ID` = '%d' ORDER BY `UserName` ASC", PVar:playerID[APPLICATIONID]);
-			mysql_store_result();
-			while (FetchMySQLRow())
-			{
-				new UserName[MAX_PLAYER_NAME];//SPAAAAAAAAAAAAAAAAAAAAAAACEEEEEE
-				FormatNew:string[100]("%s: %s\n", LanguageString(playerID, 178), UserName);
-				ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Bewerbungs Übersicht", string, "Anschauen", LanguageString(playerID, 165));
-			}
-			mysql_free_result();
 		}
 		// Cancel the bank account
 		case DIALOG_BANK_CANCELACCOUNT:
@@ -161,11 +147,12 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 			GetStringArg(2, rooms);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 315), rooms, "OK", LanguageString(playerID, 165));
 		}
-		case DIALOG_HOUSEOPTIONS:
+		case DIALOG_HOUSE:
 		{
-			FormatNew:options[20]("Betreten");// Item 0
-			Format:options("%s\nVerkaufen", options);// Item 1
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Hausoptionen", options, "OK", LanguageString(playerID, 165));
+			new options[1024];
+			AddLine(options, LanguageString(playerID, 268));// Item 0
+			AddLine(options, LanguageString(playerID, 328));// Item 1
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 329), options, "OK", LanguageString(playerID, 165));
 		}
 		case DIALOG_LOGIN:
 		{

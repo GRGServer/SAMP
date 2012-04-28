@@ -9,7 +9,7 @@ PCMD:money[ADMIN](playerid, params[], 110)
 	}
 	else
 	{
-		CmdUsageMsg(playerid, "money", "Wert");
+		CmdUsageMsg(playerid, "money", "$$$");
 		return COMMAND_USAGE;
 	}
 }

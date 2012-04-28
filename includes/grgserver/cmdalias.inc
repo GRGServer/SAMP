@@ -1,0 +1,1 @@
+AddCmdAlias:tp[teleport];

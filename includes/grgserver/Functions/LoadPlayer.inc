@@ -2,8 +2,8 @@ LoadPlayer(playerID)
 {
 	MySQLQuery("SELECT * FROM `users` WHERE `ID` = '%d'", PVar:playerID[USERID]);
 	mysql_store_result();
-	SetPlayerMoney(playerID, MONEY_BANK, floatstr(GetMySQLField("BankMoney")));
-	SetPlayerMoney(playerID, MONEY_CASH, floatstr(GetMySQLField("Money")));
+	new Float:bankMoney = floatstr(GetMySQLField("BankMoney"));
+	new Float:cashMoney = floatstr(GetMySQLField("Money"));
 	PVar:playerID[CURRENTBUILDINGID] = strval(GetMySQLField("CurrentBuildingID"));
 	PVar:playerID[JOBID] = strval(GetMySQLField("JobID"));
 	PVar:playerID[LANGUAGE] = strval(GetMySQLField("Language"));
@@ -15,6 +15,8 @@ LoadPlayer(playerID)
 	SetPlayerHealth(playerID, floatstr(GetMySQLField("Health")));
 	SetPlayerSkin(playerID, PVar:playerID[SKIN]);
 	mysql_free_result();
+	SetPlayerMoney(playerID, MONEY_BANK, bankMoney);
+	SetPlayerMoney(playerID, MONEY_CASH, cashMoney);
 	MySQLQuery("SELECT * FROM `permissions` WHERE `UserID` = '%d'", PVar:playerID[USERID]);
 	mysql_store_result();
 	if (strval(GetMySQLField("UserID")))

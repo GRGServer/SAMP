@@ -3,6 +3,7 @@
 #include <grgserver\config.inc>
 #include <grgserver\constants.inc>
 #include <grgserver\macros.inc>
+#include <grgserver\cmdalias.inc>
 
 // Structures
 #include <grgserver\Structures\enum_languageString.inc>
@@ -58,6 +59,7 @@
 #include <grgserver\Functions\PayDay.inc>
 #include <grgserver\Functions\PlayCameraMovement.inc>
 #include <grgserver\Functions\PlayRadioStation.inc>
+#include <grgserver\Functions\PlaySound.inc>
 #include <grgserver\Functions\ReconnectNPCs.inc>
 #include <grgserver\Functions\ReloadLanguageStrings.inc>
 #include <grgserver\Functions\ReloadObjects.inc>
@@ -174,6 +176,7 @@
 #include <grgserver\Commands\addobject.inc>
 #include <grgserver\Commands\addpickup.inc>
 #include <grgserver\Commands\addstaticnpc.inc>
+#include <grgserver\Commands\addteleport.inc>
 #include <grgserver\Commands\cammovementcfg.inc>
 #include <grgserver\Commands\changepw.inc>
 #include <grgserver\Commands\chatmode.inc>
@@ -185,7 +188,6 @@
 #include <grgserver\Commands\exit.inc>
 #include <grgserver\Commands\flycam.inc>
 #include <grgserver\Commands\funaction.inc>
-#include <grgserver\Commands\getbalance.inc>
 #include <grgserver\Commands\givepermission.inc>
 #include <grgserver\Commands\giveweapon.inc>
 #include <grgserver\Commands\gmx.inc>

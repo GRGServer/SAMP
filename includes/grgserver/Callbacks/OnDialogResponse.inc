@@ -44,7 +44,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
-		case DIALOG_ARMEE:
+		case DIALOG_ARMY:
 		{
 			if (response)
 			{
@@ -122,6 +122,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						type = "POLICE";
 				}
 				SetPVarStr:playerid[ADDBUILDING_TYPE][STRINGLENGTH_BUILDINGTYPE](type);
+				if (!strcmp(type, "HOTEL", true))
+				{
+					PVar:playerid[ADDBUILDING_INTERIORID] = 0;
+					ShowDialog(playerid, DIALOG_ADDBUILDING_NAME);
+					return true;
+				}
 				ShowInteriorDialog(playerid, INTERIORDIALOG_ADDBUILDING);
 			}
 		}
@@ -139,14 +145,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						AddObject(playerid, modelID);
 					}
 				}
-			}
-		}
-		// ???
-		case DIALOG_APPLICATION_PLAYER:
-		{
-			if (response)
-			{
-				SendClientMessage(playerid, COLOR_INFO, "Work in process!");
 			}
 		}
 		// Cancel the bank account
@@ -280,13 +278,32 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ShowDialog(playerid, DIALOG_BANK_HASACCOUNT);
 			}
 		}
+		case DIALOG_BUYHOUSE:
+		{
+			if (response)
+			{
+				new buildingID = PVar:playerid[DIALOGBUILDINGID];
+				new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
+				if (price <= PVar:playerid[BANKMONEY])
+				{
+					GivePlayerMoneyEx(playerid, MONEY_BANK, -price);
+					SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
+					ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
+					SendClientMessageEx(playerid, COLOR_INFO, 28);
+				}
+				else
+				{
+					SendClientMessageEx(playerid, COLOR_ERROR, 29, price, PVar:playerid[BANKMONEY]);
+				}
+			}
+		}
 		case DIALOG_BUYVEHICLE:
 		{
 			if (response)
 			{
 				new saveID = vehicles[GetPlayerVehicleID(playerid)][VEHICLE_SAVEID];
 				new Float:price = floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(saveID)));
-				if (price <= PVar:playerid[MONEY])
+				if (price <= PVar:playerid[BANKMONEY])
 				{
 					GivePlayerMoneyEx(playerid, MONEY_CASH, -price);
 					SetMySQLValue("savedvehicles", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(saveID));
@@ -294,32 +311,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				else
 				{
-					SendClientMessageEx(playerid, COLOR_ERROR, 27, price, PVar:playerid[MONEY]);
+					SendClientMessageEx(playerid, COLOR_ERROR, 27, price, PVar:playerid[BANKMONEY]);
 					RemovePlayerFromVehicle(playerid);
 				}
 			}
 			else
 			{
 				RemovePlayerFromVehicle(playerid);
-			}
-		}
-		case DIALOG_BUYHOUSE:
-		{
-			if (response)
-			{
-				new buildingID = PVar:playerid[DIALOGBUILDINGID];
-				new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
-				if (price <= PVar:playerid[MONEY])
-				{
-					GivePlayerMoneyEx(playerid, MONEY_CASH, -price);
-					SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
-					ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
-					SendClientMessageEx(playerid, COLOR_INFO, 28);
-				}
-				else
-				{
-					SendClientMessageEx(playerid, COLOR_ERROR, 29, price, PVar:playerid[MONEY]);
-				}
 			}
 		}
 		case DIALOG_CHANGEPASSWORD_STEP1:
@@ -499,7 +497,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				LeaveBuilding(playerid);
 			}
 		}
-		case DIALOG_HOUSEOPTIONS:
+		case DIALOG_HOUSE:
 		{
 			if (response)
 			{
@@ -511,7 +509,10 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					}
 					case 1:// Sell
 					{
-						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
+						MySQLQuery("UPDATE `buildings` SET `OwnerUserID` = '0' WHERE `ID` = '%d'", PVar:playerid[DIALOGBUILDINGID]);
+						GivePlayerMoneyEx(playerid, MONEY_BANK, floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(PVar:playerid[DIALOGBUILDINGID]))));
+						ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(PVar:playerid[DIALOGBUILDINGID]))));
+						SendClientMessageEx(playerid, COLOR_INFO, 330);
 					}
 				}
 			}

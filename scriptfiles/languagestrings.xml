@@ -84,8 +84,8 @@
 		<de>Du hast %m auf dein Bankkonto eingezahlt</de>
 	</string>
 	<string id="22">
-		<en>You need %m to buy this bank! You only have %m.</en>
-		<de>Du benötigst %m für diese Bank! Leider hast du nur %m.</de>
+		<en>You need %m to buy this building! But you only have %m at you bank account.</en>
+		<de>Du benötigst %m um dieses Gebäude zu kaufen! Leider hast du nur %m auf deinem Bankkonto.</de>
 	</string>
 	<string id="23">
 		<en>Your current bank balance is %m</en>
@@ -104,17 +104,14 @@
 		<de>Du hast %m von deinem Bankkonto abgehoben</de>
 	</string>
 	<string id="27">
-		<en>You need %m to buy this vehicle! But you only have %m.</en>
-		<de>Du benötigst %m für dieses Fahrzeug! Leider hast du nur %m.</de>
+		<en>You need %m to buy this vehicle! But you only have %m at your bank account.</en>
+		<de>Du benötigst %m für dieses Fahrzeug! Leider hast du nur %m auf deinem Bankkonto.</de>
 	</string>
 	<string id="28">
 		<en>Have fun with your new house!</en>
 		<de>Viel Spaß mit deinem neuen Haus!</de>
 	</string>
-	<string id="29">
-		<en>You need %m for this house! But you only have %m.</en>
-		<de>Du benötigst %m für dieses Haus! Leider hast du nur %m.</de>
-	</string>
+	<!-- 29 is free -->
 	<string id="30">
 		<en>The entered password is wrong!</en>
 		<de>Das eingegebene Passwort ist falsch!</de>
@@ -131,10 +128,7 @@
 		<en>Have fun with your new hotel!</en>
 		<de>Viel Spaß mit deinem neuen Hotel!</de>
 	</string>
-	<string id="34">
-		<en>You need %m to buy this hotel! But you only have %m.</en>
-		<de>Du benötigst %m für dieses Hotel! Leider hast du nur %m.</de>
-	</string>
+	<!-- 34 is free -->
 	<string id="35">
 		<en>You have been logged in successfully</en>
 		<de>Du wurdest erfolgreich eingeloggt</de>
@@ -184,8 +178,8 @@
 		<de>Du bist nun Besitzer dieses Unternehmens</de>
 	</string>
 	<string id="47">
-		<en>You need %m to buy this company! But you only have %m.</en>
-		<de>Du benötigst %m um dieses Unternehmen zu kaufen! Leider hast du nur %m.</de>
+		<en>You need %m to buy this company! But you only have %m at your bank account.</en>
+		<de>Du benötigst %m um dieses Unternehmen zu kaufen! Leider hast du nur %m auf deinem Bankkonto.</de>
 	</string>
 	<string id="48">
 		<en>Recording stopped</en>
@@ -563,10 +557,7 @@
 		<en>This house has been already bought by %s!</en>
 		<de>Dieses Haus wurde bereits von %s gekauft!</de>
 	</string>
-	<string id="142">
-		<en>You need %m to buy this house! But you only have %m.</en>
-		<de>Du benötigst %m um dieses Haus zu kaufen! Leider hast du nur %m.</de>
-	</string>
+	<!-- 142 is free -->
 	<string id="143">
 		<en>An error occurred while processing the command!</en>
 		<de>Es ist ein Fehler bei der Befehlsausführung aufgetreten!</de>
@@ -812,8 +803,8 @@
 		<de>Das Objekt '%s' wurde entfernt</de>
 	</string>
 	<string id="204">
-		<en>You can now edit the object or remove it using ~k~~CONVERSATION_NO~</en>
-		<de>Du kannst jetzt das Objekt bearbeiten oder es mit ~k~~CONVERSATION_NO~ entfernen</de>
+		<en>Object '%s' selected. You can now edit the object or remove it using ~k~~CONVERSATION_NO~</en>
+		<de>Objekt '%s' ausgewählt. Du kannst jetzt das Objekt bearbeiten oder es mit ~k~~CONVERSATION_NO~ entfernen</de>
 	</string>
 	<string id="205">
 		<en>Spawn</en>
@@ -1306,5 +1297,33 @@
 	<string id="327">
 		<en>This vehicle is reserved for a job!</en>
 		<de>Dieses fahrzeug ist für einen Job reserviert!</de>
+	</string>
+	<string id="328">
+		<en>Sell</en>
+		<de>Verkaufen</de>
+	</string>
+	<string id="329">
+		<en>Your house</en>
+		<de>Dein Haus</de>
+	</string>
+	<string id="330">
+		<en>Your house has been sold!</en>
+		<de>Dein Haus wurde verkauft!</de>
+	</string>
+	<string id="331">
+		<en>Reason</en>
+		<de>Grund</de>
+	</string>
+	<string id="332">
+		<en>%p has been kicked by %p, Reason: %s</en>
+		<de>%p wurde von %p gekickt, Grund: %s</de>
+	</string>
+	<string id="333">
+		<en>Save your current location as teleport location</en>
+		<de>Speicher deinen aktuellen Ort als Teleportort</de>
+	</string>
+	<string id="334">
+		<en>The teleport location has been saved. Use /teleport to teleport to the location</en>
+		<de>Der Teleportort wurde gespeichert. Verwende /teleport um dich zu dem Ort zu teleportieren</de>
 	</string>
 </languagestrings>

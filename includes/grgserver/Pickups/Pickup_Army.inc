@@ -1,6 +1,6 @@
 PickupEvent:ARMY(playerID, pickupID)
 {
-	ShowDialog(playerID, DIALOG_ARMEE);
+	ShowDialog(playerID, DIALOG_ARMY);
 }
 
 PickupModelID:ARMY(pickupID)

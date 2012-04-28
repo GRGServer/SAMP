@@ -12,6 +12,9 @@
 
 /* Functions */
 
+// AddCmdAlias:newName[oldName]
+#define AddCmdAlias:%0[%1] COMMAND:%0(playerID, params[]) return cmd_%1(playerID, params)
+
 // AdminPrint(playerID, color, string, parameters)
 #define AdminPrint(%0,%1,%2) Format:clientMessageString(%2); print(clientMessageString); if (%0 != INVALID_PLAYER_ID) SendClientMessage(%0, %1, clientMessageString)
 

@@ -3,11 +3,17 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 	switch (success)
 	{
 		case COMMAND_ERROR:
+		{
+			PlaySound(playerid, SOUND_COMMAND_ERROR);
 			SendClientMessageEx(playerid, COLOR_ERROR, 143);
+		}
 		case COMMAND_USAGE:
 			return true;// Command usage message displayed -> Nothing to do yet
 		case COMMAND_OK:
+		{
+			PlaySound(playerid, SOUND_COMMAND_OK);
 			return true;// Command executed successfully -> Do nothing
+		}
 		case COMMAND_TELEPORTED:
 			SendClientMessageEx(playerid, COLOR_INFO, 144);
 		case COMMAND_NPC_ONLY:
@@ -18,6 +24,7 @@ public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 			SendClientMessageEx(playerid, COLOR_ERROR, 147);
 		case COMMAND_PERMISSION_DENIED:
 		{
+			PlaySound(playerid, SOUND_COMMAND_DENIED);
 			SendClientMessageEx(playerid, COLOR_ERROR, 148);
 			printf("%s tried to execute %s but has not the required permission!", GetPlayerNameEx(playerid), cmdtext);
 		}
