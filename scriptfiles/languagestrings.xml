@@ -108,10 +108,13 @@
 		<de>Du benötigst %m für dieses Fahrzeug! Leider hast du nur %m auf deinem Bankkonto.</de>
 	</string>
 	<string id="28">
-		<en>Have fun with your new house!</en>
-		<de>Viel Spaß mit deinem neuen Haus!</de>
+		<en>Property bought</en>
+		<de>Immobilie gekauft</de>
 	</string>
-	<!-- 29 is free -->
+	<string id="29">
+		<en>Camera position saved</en>
+		<de>Kameraposition gespeichert</de>
+	</string>
 	<string id="30">
 		<en>The entered password is wrong!</en>
 		<de>Das eingegebene Passwort ist falsch!</de>
@@ -128,7 +131,10 @@
 		<en>Have fun with your new hotel!</en>
 		<de>Viel Spaß mit deinem neuen Hotel!</de>
 	</string>
-	<!-- 34 is free -->
+	<string id="34">
+		<en>No building selected! Go into a building and use /selectbuilding to select it.</en>
+		<de>Kein Gebäude ausgewählt! Gehe in ein Gebäude und verwende /selectbuilding um es auszuwählen.</de>
+	</string>
 	<string id="35">
 		<en>You have been logged in successfully</en>
 		<de>Du wurdest erfolgreich eingeloggt</de>
@@ -557,7 +563,10 @@
 		<en>This house has been already bought by %s!</en>
 		<de>Dieses Haus wurde bereits von %s gekauft!</de>
 	</string>
-	<!-- 142 is free -->
+	<string id="142">
+		<en>Building selected</en>
+		<de>Gebäude ausgewählt</de>
+	</string>
 	<string id="143">
 		<en>An error occurred while processing the command!</en>
 		<de>Es ist ein Fehler bei der Befehlsausführung aufgetreten!</de>
@@ -1325,5 +1334,13 @@
 	<string id="334">
 		<en>The teleport location has been saved. Use /teleport to teleport to the location</en>
 		<de>Der Teleportort wurde gespeichert. Verwende /teleport um dich zu dem Ort zu teleportieren</de>
+	</string>
+	<string id="335">
+		<en>Select a building to set various properties like the 'Building Bought' camera position</en>
+		<de>Wähle ein Gebäude aus um verschiedene Eigenschaften wie die 'Gebäude gekauft' Kameraposition zu definieren</de>
+	</string>
+	<string id="336">
+		<en>Set the 'Building bought' camera position</en>
+		<de>Definiere die 'Gebäude gekauft' Kameraposition</de>
 	</string>
 </languagestrings>

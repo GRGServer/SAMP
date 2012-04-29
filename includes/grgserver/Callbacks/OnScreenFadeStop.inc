@@ -15,6 +15,12 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 	{
 		switch (extraID)
 		{
+			case FADE_BUILDINGBOUGHT_BLACK:
+			{
+				TogglePlayerControllable(playerID, true);
+				SetCameraBehindPlayer(playerID);
+				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_BUILDINGBOUGHT_BACK);
+			}
 			case FADE_GASSTATION_BACK:
 			{
 				TogglePlayerControllable(playerID, true);

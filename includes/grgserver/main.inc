@@ -222,9 +222,12 @@
 #include <grgserver\Commands\repair.inc>
 #include <grgserver\Commands\resetcam.inc>
 #include <grgserver\Commands\saveveh.inc>
+#include <grgserver\Commands\selectbuilding.inc>
+#include <grgserver\Commands\setbuildingcam.inc>
 #include <grgserver\Commands\setcampos.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
 #include <grgserver\Commands\showinterior.inc>
+#include <grgserver\Commands\sound.inc>
 #include <grgserver\Commands\stats.inc>
 #include <grgserver\Commands\stoprec.inc>
 #include <grgserver\Commands\teleport.inc>

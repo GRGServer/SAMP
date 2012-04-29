@@ -286,10 +286,18 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(buildingID)));
 				if (price <= PVar:playerid[BANKMONEY])
 				{
-					GivePlayerMoneyEx(playerid, MONEY_BANK, -price);
+					TogglePlayerControllable(playerid, false);
+					PlayAudioStreamForPlayer(playerid, "http://audio.grgserver.net/mission_complete2.ogg");
+					MySQLQuery("SELECT * FROM `buildings` LEFT JOIN `pickups` ON `buildings`.`PickupID` = `pickups`.`ID` WHERE `buildings`.`ID` = '%d'", buildingID);
+					mysql_store_result();
+					SetPlayerCameraPos(playerid, floatstr(GetMySQLField("CameraPosX")), floatstr(GetMySQLField("CameraPosY")), floatstr(GetMySQLField("CameraPosZ")));
+					SetPlayerCameraLookAt(playerid, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")));
+					mysql_free_result();
+					GameTextForPlayer(playerid, LanguageString(playerid, 28), 8000, 1);
 					SetMySQLValue("buildings", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(buildingID));
+					GivePlayerMoneyEx(playerid, MONEY_BANK, -price);
 					ReloadPickup(strval(GetMySQLValue("buildings", "PickupID", "ID", val2str(buildingID))));
-					SendClientMessageEx(playerid, COLOR_INFO, 28);
+					SetTimerEx("Timer_ScreenFader", 8000, false, "ddddddd", playerid, 0, 0, 0, 5, 0, FADE_BUILDINGBOUGHT_BLACK);
 				}
 				else
 				{

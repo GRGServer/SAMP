@@ -34,6 +34,7 @@ public OnPlayerSpawn(playerid)
 		SetPlayerFacingAngle(playerid, floatstr(GetUserDBValue(playerid, "Angle")));
 		SetPlayerInterior(playerid, strval(GetUserDBValue(playerid, "Interior")));
 		ShowNews(playerid, PVar:playerid[LASTNEWSID]);
+		PlayerPlaySound(playerid, 1063, 0.0, 0.0, 0.0);// Stop music
 	}
 	else
 	{

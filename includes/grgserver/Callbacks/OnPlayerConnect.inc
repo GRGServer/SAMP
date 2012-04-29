@@ -56,6 +56,7 @@ public OnPlayerConnect(playerid)
 	else
 	{
 		printf("%s connected from %s", GetPlayerNameEx(playerid), GetPlayerCountryName(playerid));
+		PlaySound(playerid, SOUND_LOGIN);
 		MySQLQuery("SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
 		mysql_store_result();
 		if (strval(GetMySQLField("ID")))
