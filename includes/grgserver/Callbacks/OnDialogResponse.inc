@@ -23,7 +23,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					mysql_store_result();
 					new modelID = strval(GetMySQLField("Value"));
 					mysql_free_result();
-					CreateVehicleEx(modelID, -1557.4092, 114.7485, 3.0939, 136.5509, 12, 41, -1, 50.0, 0.0, 0, 0, 0, 0);
+					CreateVehicleEx(modelID, -1557.4092, 114.7485, 3.0939, 136.5509, 12, 41, -1);
 				}
 			}
 		}
@@ -566,6 +566,56 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				Kick(playerid);
 			}
 			return true;
+		}
+		case DIALOG_NAVITARGET:
+		{
+			new Float:target[3];
+			switch (listitem)
+			{
+				case 0:// Bank
+				{
+					new pickupID = GetClosestPickup(playerid, "BANK");
+					target[0] = pickups[pickupID][PICKUP_POSX];
+					target[1] = pickups[pickupID][PICKUP_POSY];
+					target[2] = pickups[pickupID][PICKUP_POSZ];
+				}
+				case 1:// Hotel
+				{
+					new pickupID = GetClosestPickup(playerid, "HOTEL");
+					target[0] = pickups[pickupID][PICKUP_POSX];
+					target[1] = pickups[pickupID][PICKUP_POSY];
+					target[2] = pickups[pickupID][PICKUP_POSZ];
+				}
+				case 2:// House
+				{
+					new pickupID = GetClosestPickup(playerid, "HOUSE");
+					target[0] = pickups[pickupID][PICKUP_POSX];
+					target[1] = pickups[pickupID][PICKUP_POSY];
+					target[2] = pickups[pickupID][PICKUP_POSZ];
+				}
+				case 3:// Target on map
+				{
+					if (PVar:playerid[MAP_POSX] && PVar:playerid[MAP_POSY] && PVar:playerid[MAP_POSZ])
+					{
+						target[0] = PVar:playerid[MAP_POSX];
+						target[1] = PVar:playerid[MAP_POSY];
+						target[2] = PVar:playerid[MAP_POSZ];
+					}
+					else
+					{
+						SendClientMessageEx(playerid, COLOR_ERROR, 264);
+						return false;
+					}
+				}
+			}
+			if (target[0] && target[1] && target[2])
+			{
+				SetPlayerCheckpointEx(playerid, CHECKPOINT_NAVITARGET, target[0], target[1], target[2], 5.0);
+			}
+			else
+			{
+				SendClientMessageEx(playerid, COLOR_ERROR, 343);
+			}
 		}
 		case DIALOG_ORDERVEHICLE:
 		{

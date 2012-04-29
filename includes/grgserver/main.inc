@@ -34,6 +34,7 @@
 #include <grgserver\Functions\FormatDate.inc>
 #include <grgserver\Functions\FormatTime.inc>
 #include <grgserver\Functions\GetChatModeName.inc>
+#include <grgserver\Functions\GetClosestPickup.inc>
 #include <grgserver\Functions\GetClosestVehicleInRange.inc>
 #include <grgserver\Functions\GetColor.inc>
 #include <grgserver\Functions\GetMySQLField.inc>
@@ -202,6 +203,7 @@
 #include <grgserver\Commands\maptp.inc>
 #include <grgserver\Commands\me.inc>
 #include <grgserver\Commands\money.inc>
+#include <grgserver\Commands\navi.inc>
 #include <grgserver\Commands\newcammovement.inc>
 #include <grgserver\Commands\news.inc>
 #include <grgserver\Commands\npccmd.inc>

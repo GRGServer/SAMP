@@ -87,3 +87,6 @@ for (new i_%0 = 0; ; ++i_%0) \
 
 // UpdateUserDB(playerID, formattedQuery, parameters)
 #define UpdateUserDB(%0,%1) Format:sqlQuery(%1); Format:sqlQuery("UPDATE `users` SET %s WHERE `ID` = '%d'", sqlQuery, PVar:%0[USERID]); if (mysql_query(sqlQuery)) printf("SQL: %s", sqlQuery)
+
+// VehicleProperty:vehicleID[property]
+#define VehicleProperty:%0[%1] vehicles[%0][VEHICLE_%1]

@@ -4,9 +4,9 @@ ReloadSavedVehicles(playerID = INVALID_PLAYER_ID)
 	for (new vehicleID = 0; vehicleID < MAX_VEHICLES; vehicleID++)
 	{
 		DestroyVehicle(vehicleID);
-		vehicles[vehicleID][VEHICLE_CURRENTFUEL] = 0;
-		vehicles[vehicleID][VEHICLE_JOBID] = 0;
-		vehicles[vehicleID][VEHICLE_SAVEID] = 0;
+		VehicleProperty:vehicleID[CURRENTFUEL] = 0;
+		VehicleProperty:vehicleID[JOBID] = 0;
+		VehicleProperty:vehicleID[SAVEID] = 0;
 	}
 	AdminPrint(playerID, COLOR_INFO, "* Loading saved vehicles...");
 	new count;
@@ -14,7 +14,14 @@ ReloadSavedVehicles(playerID = INVALID_PLAYER_ID)
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new vehicleID = CreateVehicleEx(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1, floatstr(GetMySQLField("MileAge")), floatstr(GetMySQLField("CurrentFuel")), strval(GetMySQLField("ID")), strval(GetMySQLField("JobID")), strval(GetMySQLField("LastRadioStation")), strval(GetMySQLField("NumberPlateID")));
+		new vehicleID = CreateVehicleEx(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1);
+		VehicleProperty:vehicleID[CURRENTFUEL] = floatstr(GetMySQLField("CurrentFuel"));
+		VehicleProperty:vehicleID[HASNAVI] = strval(GetMySQLField("HasNavi"));
+		VehicleProperty:vehicleID[JOBID] = strval(GetMySQLField("JobID"));
+		VehicleProperty:vehicleID[MILEAGE] = floatstr(GetMySQLField("MileAge"));
+		VehicleProperty:vehicleID[NUMBERPLATE] = strval(GetMySQLField("NumberPlateID"));
+		VehicleProperty:vehicleID[RADIOSTATION] = strval(GetMySQLField("LastRadioStation"));
+		VehicleProperty:vehicleID[SAVEID] = strval(GetMySQLField("ID"));
 		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
 		ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
 		SetVehicleHealth(vehicleID, floatstr(GetMySQLField("Health")));

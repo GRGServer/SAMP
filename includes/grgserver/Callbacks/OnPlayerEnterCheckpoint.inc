@@ -8,6 +8,11 @@ public OnPlayerEnterCheckpoint(playerid)
 			StartScreenFader(playerid, 0, 0, 0, 2, 0, FADE_START_PLANEEXIT_BLACK);
 			TogglePlayerControllable(playerid, false);
 		}
+		case CHECKPOINT_NAVITARGET:
+		{
+			SendClientMessageEx(playerid, COLOR_INFO, 344);
+			PlaySound(playerid, SOUND_NAVITARGETREACHED);
+		}
 		case CHECKPOINT_TUTORIAL_BANK:
 		{
 			StartScreenFader(playerid, 0, 0, 0, 5, 0, FADE_TUTORIAL_BANK_START_BLACK);

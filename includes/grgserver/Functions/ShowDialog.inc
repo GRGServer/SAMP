@@ -158,6 +158,15 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 		{
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_PASSWORD, "Login", LanguageString(playerID, 262), "OK", LanguageString(playerID, 165));
 		}
+		case DIALOG_NAVITARGET:
+		{
+			new targets[1024];
+			AddLine(targets, LanguageString(playerID, 173));// Item 0 (Bank)
+			AddLine(targets, LanguageString(playerID, 174));// Item 1 (Hotel)
+			AddLine(targets, LanguageString(playerID, 175));// Item 2 (House)
+			AddLine(targets, LanguageString(playerID, 342));// Item 3 (Target on map)
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 247), targets, LanguageString(playerID, 341), LanguageString(playerID, 165));
+		}
 		case DIALOG_ORDERVEHICLE:
 		{
 			new vehicleList[2048];

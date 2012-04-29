@@ -1351,4 +1351,28 @@
 		<en>Press ~k~~SNEAK_ABOUT~ to select the building linked to this pickup (If available)</en>
 		<de>Drücke ~k~~SNEAK_ABOUT~ um das Gebäude auszuwählen welches mit diesem Pickup verknüpft ist (Wenn verfügbar)</de>
 	</string>
+	<string id="339">
+		<en>Activate the navigation system</en>
+		<de>Aktiviere das Navigationssystem</de>
+	</string>
+	<string id="340">
+		<en>Your vehicle does not have a navigation system!</en>
+		<de>Dein fahrzeug hat kein Navigationssystem!</de>
+	</string>
+	<string id="341">
+		<en>Start</en>
+		<de>Starten</de>
+	</string>
+	<string id="342">
+		<en>Target on map</en>
+		<de>Ziel auf der Karte</de>
+	</string>
+	<string id="343">
+		<en>No target found!</en>
+		<de>Kein Ziel gefunden!</de>
+	</string>
+	<string id="344">
+		<en>You have reached your target</en>
+		<de>Du hast dein Ziel erreicht</de>
+	</string>
 </languagestrings>

@@ -53,7 +53,7 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			}
 			case FADE_START_INPLANE2_BLACK:
 			{
-				SetPlayerCheckpointEx(playerID, CHECKPOINT_INPLANE_EXIT);
+				SetPlayerCheckpointEx(playerID, CHECKPOINT_INPLANE_EXIT, 2.6446, 33.1288, 1199.5938, 0.8);
 				SetPlayerPosEx(playerID, 1.6918, 26.2581, 1199.5938, 1);
 				SetPlayerFacingAngle(playerID, 0.0);
 				SetCameraBehindPlayer(playerID);
@@ -65,7 +65,7 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			}
 			case FADE_START_PLANEEXIT_BLACK:
 			{
-				SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_SPEAKER1);
+				SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_SPEAKER1, 1715.0739, 1616.4, 10.0717, 1.0);
 				SetPlayerPosEx(playerID, 1674.8492, 1582.8899, 13.9236, 0);
 				SetPlayerFacingAngle(playerID, 0.0);
 				SetCameraBehindPlayer(playerID);
@@ -94,7 +94,7 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			case FADE_TUTORIAL_S1_END_BACK:
 			{
 				TogglePlayerControllable(playerID, true);
-				SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_BANK);
+				SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_BANK, -2757.0632, 375.7754, 4.3342, 1.5);
 				ShowSubtitle(playerID, LanguageString(playerID, 281));
 				//SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_TAXI);
 			}

@@ -1,17 +1,8 @@
-CreateVehicleEx(modelID, Float:posX, Float:posY, Float:posZ, Float:angle, color1, color2, respawnDelay, Float:fuel = -1.0, Float:mileAge = 0.0, saveID = 0, jobID = 0, radioStation = 0, numberPlate = 0)
+CreateVehicleEx(modelID, Float:posX, Float:posY, Float:posZ, Float:angle, color1, color2, respawnDelay)
 {
-	if (fuel < 0)
-	{
-		fuel = vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL];
-	}
 	new vehicleID = CreateVehicle(modelID, posX, posY, posZ, angle, color1, color2, respawnDelay);
-	vehicles[vehicleID][VEHICLE_COLOR1] = color1;
-	vehicles[vehicleID][VEHICLE_COLOR2] = color2;
-	vehicles[vehicleID][VEHICLE_CURRENTFUEL] = fuel;
-	vehicles[vehicleID][VEHICLE_JOBID] = jobID;
-	vehicles[vehicleID][VEHICLE_MILEAGE] = mileAge;
-	vehicles[vehicleID][VEHICLE_NUMBERPLATE] = numberPlate;
-	vehicles[vehicleID][VEHICLE_RADIOSTATION] = radioStation;
-	vehicles[vehicleID][VEHICLE_SAVEID] = saveID;
+	VehicleProperty:vehicleID[COLOR1] = color1;
+	VehicleProperty:vehicleID[COLOR2] = color2;
+	VehicleProperty:vehicleID[CURRENTFUEL] = vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL];
 	return vehicleID;
 }
