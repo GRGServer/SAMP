@@ -6,5 +6,9 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 	{
 		PVar:playerid[LASTPICKUP] = pickupid;
 		SendClientMessageEx(playerid, COLOR_INFO, 7);
+		if (permissions[playerid][PERMISSION_MAPPER])
+		{
+			SendClientMessageEx(playerid, COLOR_INFO, 338);
+		}
 	}
 }

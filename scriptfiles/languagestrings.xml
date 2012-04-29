@@ -1347,4 +1347,8 @@
 		<en>This pickup is not linked to a building!</en>
 		<de>Dieses Pickup ist nicht mit einem Gebäude verknüpft!</de>
 	</string>
+	<string id="338">
+		<en>Press ~k~~SNEAK_ABOUT~ to select the building linked to this pickup (If available)</en>
+		<de>Drücke ~k~~SNEAK_ABOUT~ um das Gebäude auszuwählen welches mit diesem Pickup verknüpft ist (Wenn verfügbar)</de>
+	</string>
 </languagestrings>
