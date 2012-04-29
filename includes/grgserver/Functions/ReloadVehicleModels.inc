@@ -7,7 +7,7 @@ ReloadVehicleModels(playerID = INVALID_PLAYER_ID)
 	while (FetchMySQLRow())
 	{
 		new index = strval(GetMySQLField("ID")) - 400;
-		if (index > 0 && index <= sizeof(vehicleModels))
+		if (index >= 0 && index <= sizeof(vehicleModels))
 		{
 			vehicleModels[index][VEHICLEMODEL_FUELUSAGE] = floatstr(GetMySQLField("FuelUsage"));
 			vehicleModels[index][VEHICLEMODEL_MAXFUEL] = floatstr(GetMySQLField("MaxFuel"));
