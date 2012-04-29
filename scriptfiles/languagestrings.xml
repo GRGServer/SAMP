@@ -564,8 +564,8 @@
 		<de>Dieses Haus wurde bereits von %s gekauft!</de>
 	</string>
 	<string id="142">
-		<en>Building selected</en>
-		<de>Gebäude ausgewählt</de>
+		<en>Building '%s' selected</en>
+		<de>Gebäude '%s' ausgewählt</de>
 	</string>
 	<string id="143">
 		<en>An error occurred while processing the command!</en>
@@ -1342,5 +1342,9 @@
 	<string id="336">
 		<en>Set the 'Building bought' camera position</en>
 		<de>Definiere die 'Gebäude gekauft' Kameraposition</de>
+	</string>
+	<string id="337">
+		<en>This pickup is not linked to a building!</en>
+		<de>Dieses Pickup ist nicht mit einem Gebäude verknüpft!</de>
 	</string>
 </languagestrings>

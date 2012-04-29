@@ -2,22 +2,20 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
 	if (IsKeyPressed(KEY_YES))
 	{
-		Count(pickupID, MAX_PICKUPS)
+		new pickupID = IsPlayerInPickup(playerid);
+		if (pickupID)
 		{
-			if (GetPlayerDistanceFromPoint(playerid, pickups[pickupID][PICKUP_POSX], pickups[pickupID][PICKUP_POSY], pickups[pickupID][PICKUP_POSZ]) <= 1)
+			FormatNew:functionName[MAX_FUNCTION_NAME]("PUE_%s", pickups[pickupID][PICKUP_TYPE]);// PUE = PickUpEvent
+			if (funcidx(functionName) == -1)
 			{
-				FormatNew:functionName[MAX_FUNCTION_NAME]("PUE_%s", pickups[pickupID][PICKUP_TYPE]);// PUE = PickUpEvent
-				if (funcidx(functionName) == -1)
-				{
-					printf("Unknown pickup type: %s", pickups[pickupID][PICKUP_TYPE]);
-				}
-				else
-				{
-					PlaySound(playerid, SOUND_PICKUPKEYPRESSED);
-					CallLocalFunction(functionName, "dd", playerid, pickupID);
-				}
-				return true;
+				printf("Unknown pickup type: %s", pickups[pickupID][PICKUP_TYPE]);
 			}
+			else
+			{
+				PlaySound(playerid, SOUND_PICKUPKEYPRESSED);
+				CallLocalFunction(functionName, "dd", playerid, pickupID);
+			}
+			return true;
 		}
 	}
 	if (IsKeyPressed(KEY_NO))
@@ -32,6 +30,28 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			SelectObject(playerid);
 			SendClientMessageEx(playerid, COLOR_INFO, 203, GetMySQLValue("objectmodels", "Name", "ID", val2str(modelID)));
 			return true;
+		}
+	}
+	if (IsKeyPressed(KEY_WALK))
+	{
+		if (permissions[playerid][PERMISSION_MAPPER])
+		{
+			new pickupID = IsPlayerInPickup(playerid);
+			if (pickupID)
+			{
+				MySQLQuery("SELECT * FROM `buildings` WHERE `PickupID` = '%d'", pickups[pickupID][PICKUP_ID]);
+				mysql_store_result();
+				if (mysql_num_rows())
+				{
+					PVar:playerid[SELECTEDBUILDINGID] = strval(GetMySQLField("ID"));
+					SendClientMessageEx(playerid, COLOR_INFO, 142, GetMySQLField("Name"));
+				}
+				else
+				{
+					SendClientMessageEx(playerid, COLOR_INFO, 337);
+				}
+				mysql_free_result();
+			}
 		}
 	}
 	return false;

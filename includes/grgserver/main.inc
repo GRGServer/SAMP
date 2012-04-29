@@ -49,6 +49,7 @@
 #include <grgserver\Functions\GetWeaponNameEx.inc>
 #include <grgserver\Functions\GivePlayerMoneyEx.inc>
 #include <grgserver\Functions\IsLoggedIn.inc>
+#include <grgserver\Functions\IsPlayerInPickup.inc>
 #include <grgserver\Functions\IsValidSkin.inc>
 #include <grgserver\Functions\IsValidWeapon.inc>
 #include <grgserver\Functions\LanguageString.inc>
