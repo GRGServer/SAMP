@@ -186,6 +186,7 @@
 #include <grgserver\Commands\controlnpc.inc>
 #include <grgserver\Commands\coordtp.inc>
 #include <grgserver\Commands\editobject.inc>
+#include <grgserver\Commands\engine.inc>
 #include <grgserver\Commands\exit.inc>
 #include <grgserver\Commands\flycam.inc>
 #include <grgserver\Commands\funaction.inc>
@@ -201,7 +202,6 @@
 #include <grgserver\Commands\maptp.inc>
 #include <grgserver\Commands\me.inc>
 #include <grgserver\Commands\money.inc>
-#include <grgserver\Commands\motor.inc>
 #include <grgserver\Commands\newcammovement.inc>
 #include <grgserver\Commands\news.inc>
 #include <grgserver\Commands\npccmd.inc>
@@ -222,13 +222,14 @@
 #include <grgserver\Commands\reloadvehiclemodels.inc>
 #include <grgserver\Commands\repair.inc>
 #include <grgserver\Commands\resetcam.inc>
-#include <grgserver\Commands\saveveh.inc>
+#include <grgserver\Commands\savevehicle.inc>
 #include <grgserver\Commands\selectbuilding.inc>
 #include <grgserver\Commands\setbuildingcam.inc>
 #include <grgserver\Commands\setcampos.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
 #include <grgserver\Commands\showinterior.inc>
 #include <grgserver\Commands\sound.inc>
+#include <grgserver\Commands\spawnvehicle.inc>
 #include <grgserver\Commands\stats.inc>
 #include <grgserver\Commands\stoprec.inc>
 #include <grgserver\Commands\teleport.inc>
@@ -236,5 +237,4 @@
 #include <grgserver\Commands\testunfreeze.inc>
 #include <grgserver\Commands\tow.inc>
 #include <grgserver\Commands\usecammovement.inc>
-#include <grgserver\Commands\veh.inc>
 

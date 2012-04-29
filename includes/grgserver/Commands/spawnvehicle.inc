@@ -1,4 +1,4 @@
-PCMD:veh[MAPPER](playerid, params[], 122)
+PCMD:spawnvehicle[MAPPER](playerID, params[], 122)
 {
 	new vehicleName[20];
 	new modelID;
@@ -22,7 +22,7 @@ PCMD:veh[MAPPER](playerid, params[], 122)
 				}
 				else
 				{
-					CmdUsageMsg(playerid, "veh", "ModelID/Name", "[Color1]", "[Color2]");
+					CmdUsageMsg(playerID, "spawnvehicle", "ModelID/Name", "[Color1]", "[Color2]");
 					return COMMAND_USAGE;
 				}
 			}
@@ -45,9 +45,9 @@ PCMD:veh[MAPPER](playerid, params[], 122)
 					}
 					Format:vehicleList("%s%s:%s", vehicleList, GetMySQLField("ID"), GetMySQLField("Name"));
 				}
-				PVar:playerid[SPAWNVEHICLE_COLOR1] = color1;
-				PVar:playerid[SPAWNVEHICLE_COLOR2] = color2;
-				ShowPlayerDialog(playerid, DIALOG_SPAWNVEHICLE, DIALOG_STYLE_LIST, LanguageString(playerid, 122), vehicleList, LanguageString(playerid, 205), LanguageString(playerid, 165));
+				PVar:playerID[SPAWNVEHICLE_COLOR1] = color1;
+				PVar:playerID[SPAWNVEHICLE_COLOR2] = color2;
+				ShowPlayerDialog(playerID, DIALOG_SPAWNVEHICLE, DIALOG_STYLE_LIST, LanguageString(playerID, 122), vehicleList, LanguageString(playerID, 205), LanguageString(playerID, 165));
 				modelID = -1;
 			}
 			else
@@ -61,7 +61,7 @@ PCMD:veh[MAPPER](playerid, params[], 122)
 	{
 		return COMMAND_OK;
 	}
-	if (SpawnVehicle(playerid, modelID, color1, color2, true))
+	if (SpawnVehicle(playerID, modelID, color1, color2, true))
 	{
 		return COMMAND_OK;
 	}
