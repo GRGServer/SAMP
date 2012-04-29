@@ -168,8 +168,8 @@
 		<de>Du hast den Gamemode neugestartet</de>
 	</string>
 	<string id="43">
-		<en>%s has restarted the game mode</en>
-		<de>%s hat den Gamemode neugestartet</de>
+		<en>%p has restarted the game mode</en>
+		<de>%p hat den Gamemode neugestartet</de>
 	</string>
 	<string id="44">
 		<en>You already own this company!</en>
@@ -1374,5 +1374,37 @@
 	<string id="344">
 		<en>You have reached your target</en>
 		<de>Du hast dein Ziel erreicht</de>
+	</string>
+	<string id="345">
+		<en>Give you infinite health</en>
+		<de>Gebe dir unendlich Gesundheit</de>
+	</string>
+	<string id="346">
+		<en>God mode enabled</en>
+		<de>Gottmodus aktiviert</de>
+	</string>
+	<string id="347">
+		<en>God mode disabled</en>
+		<de>Gottmodus deaktiviert</de>
+	</string>
+	<string id="348">
+		<en>Change your current interior</en>
+		<de>Wechsel deinen aktuellen Interior</de>
+	</string>
+	<string id="349">
+		<en>Interior changed to %d</en>
+		<de>Interior gewechselt zu %d</de>
+	</string>
+	<string id="350">
+		<en>Teleport you to the next building without camera position</en>
+		<de>Teleportiere dich zum nächsten Gebäude ohne Kameraposition</de>
+	</string>
+	<string id="351">
+		<en>You got teleported to the next building (%s). There are %d buildings without a camera position.</en>
+		<de>Du wurdest zum nächsten Gebäude (%s) teleportiert. Es gibt %d Gebäude ohne Kameraposition</de>
+	</string>
+	<string id="352">
+		<en>There are no more buildings without camera position!</en>
+		<de>Es gbt keine weiteren Gebäude ohne Kameraposition!</de>
 	</string>
 </languagestrings>

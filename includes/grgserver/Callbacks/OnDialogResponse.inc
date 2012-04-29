@@ -715,15 +715,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			{
 				new Float:amount = floatstr(inputtext);
 				new vehicleID = GetPlayerVehicleID(playerid);
-				new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
-				if (amount > maximum)
+				new modelID = GetVehicleModel(vehicleID);
+				if (modelID >= 400 && modelID <= 611)
 				{
-					amount = maximum;
+					new Float:maximum = floatsub(vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
+					if (amount > maximum)
+					{
+						amount = maximum;
+					}
+					TogglePlayerControllable(playerid, false);
+					SetVehicleEngineState(vehicleID, false);
+					GameTextForPlayer(playerid, LanguageString(playerid, 265), 3000, 4);
+					Timer_RefuelVehicle(playerid, amount);
 				}
-				TogglePlayerControllable(playerid, false);
-				SetVehicleEngineState(vehicleID, false);
-				GameTextForPlayer(playerid, LanguageString(playerid, 265), 3000, 4);
-				Timer_RefuelVehicle(playerid, amount);
+				else
+				{
+					SendClientMessageEx(playerid, COLOR_ERROR, 146);
+				}
 			}
 		}
 		case DIALOG_REGISTER_BIRTHDATE:
@@ -869,7 +877,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					if (playerID != playerid && IsPlayerConnected(playerID))
 					{
-						SendClientMessageEx(playerID, COLOR_INFO, 43);
+						SendClientMessageEx(playerID, COLOR_INFO, 43, playerid);
 					}
 				}
 				printf("%s has restarted the gamemode", GetPlayerNameEx(playerid));

@@ -3,14 +3,22 @@ PickupEvent:GASSTATION(playerID, pickupID)
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (vehicleID)
 	{
-		new Float:maximum = floatsub(vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
-		if (maximum > 0)
+		new modelID = GetVehicleModel(vehicleID);
+		if (modelID >= 400 && modelID <= 611)
 		{
-			ShowDialog(playerID, DIALOG_REFUEL, FormatMoney(maximum));
+			new Float:maximum = floatsub(vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
+			if (maximum > 0)
+			{
+				ShowDialog(playerID, DIALOG_REFUEL, FormatMoney(maximum));
+			}
+			else
+			{
+				SendClientMessageEx(playerID, COLOR_ERROR, 140);
+			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 140);
+			SendClientMessageEx(playerID, COLOR_ERROR, 146);
 		}
 	}
 	else

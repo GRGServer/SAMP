@@ -134,6 +134,7 @@
 #include <grgserver\Callbacks\OnPlayerSpawn.inc>
 #include <grgserver\Callbacks\OnPlayerStateChange.inc>
 #include <grgserver\Callbacks\OnPlayerText.inc>
+#include <grgserver\Callbacks\OnPlayerUpdate.inc>
 #include <grgserver\Callbacks\OnScreenFadeStop.inc>
 #include <grgserver\Callbacks\OnVehicleDeath.inc>
 #include <grgserver\Callbacks\OnVehicleMod.inc>
@@ -194,6 +195,7 @@
 #include <grgserver\Commands\givepermission.inc>
 #include <grgserver\Commands\giveweapon.inc>
 #include <grgserver\Commands\gmx.inc>
+#include <grgserver\Commands\god.inc>
 #include <grgserver\Commands\goto.inc>
 #include <grgserver\Commands\help.inc>
 #include <grgserver\Commands\jetpack.inc>
@@ -206,6 +208,7 @@
 #include <grgserver\Commands\navi.inc>
 #include <grgserver\Commands\newcammovement.inc>
 #include <grgserver\Commands\news.inc>
+#include <grgserver\Commands\nocambuilding.inc>
 #include <grgserver\Commands\npccmd.inc>
 #include <grgserver\Commands\ordervehicle.inc>
 #include <grgserver\Commands\payday.inc>
@@ -228,9 +231,9 @@
 #include <grgserver\Commands\selectbuilding.inc>
 #include <grgserver\Commands\setbuildingcam.inc>
 #include <grgserver\Commands\setcampos.inc>
+#include <grgserver\Commands\setinterior.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
 #include <grgserver\Commands\showinterior.inc>
-#include <grgserver\Commands\sound.inc>
 #include <grgserver\Commands\spawnvehicle.inc>
 #include <grgserver\Commands\stats.inc>
 #include <grgserver\Commands\stoprec.inc>

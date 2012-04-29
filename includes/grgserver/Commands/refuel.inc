@@ -12,8 +12,17 @@ CMD:refuel(playerID, params[], 297)
 		if (vehicleID)
 		{
 			// TODO: Ask player using dialog (Like in /repair)
-			Timer_RefuelVehicle(targetPlayerID, vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL]);
-			return COMMAND_OK;
+			new modelID = GetVehicleModel(vehicleID);
+			if (modelID >= 400 && modelID <= 611)
+			{
+				Timer_RefuelVehicle(targetPlayerID, vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
+				return COMMAND_OK;
+			}
+			else
+			{
+				SendClientMessageEx(playerID, COLOR_ERROR, 300, targetPlayerID);
+				return COMMAND_ERROR;
+			}
 		}
 		else
 		{

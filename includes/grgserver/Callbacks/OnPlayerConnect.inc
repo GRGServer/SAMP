@@ -88,7 +88,7 @@ public OnPlayerConnect(playerid)
 		{
 			if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && playerID != playerid)
 			{
-				SendClientMessageEx(playerid, COLOR_JOINLEAVE, 3, playerid);
+				SendClientMessageEx(playerID, COLOR_JOINLEAVE, 3, playerid);
 			}
 		}
 		FormatNew:string[MAX_PLAYER_NAME + 30]("%s has joined the server", GetPlayerNameEx(playerid));

@@ -2,8 +2,8 @@ SavePlayer(playerID)
 {
 	if (IsLoggedIn(playerID))
 	{
-		Format:sqlQuery("`BankMoney` = '%f', `Money` = '%f', `JobID` = '%d', `LastNewsID` = '%d', `ChatMode` = '%d'", PVar:playerID[BANKMONEY], PVar:playerID[MONEY], PVar:playerID[JOBID], PVar:playerID[LASTNEWSID], PVar:playerID[CHATMODE]);
-		Format:sqlQuery("%s, `CurrentBuildingID` = '%d', `OnlineTime` = '%d', `LastPayDay` = '%d', `Skin` = '%d'", sqlQuery, PVar:playerID[CURRENTBUILDINGID], GetOnlineTime(playerID), PVar:playerID[LASTPAYDAY], PVar:playerID[SKIN]);
+		Format:sqlQuery("`BankMoney` = '%f', `Money` = '%f', `JobID` = '%d', `LastNewsID` = '%d', `ChatMode` = '%d', `GodMode` = '%d'", PVar:playerID[BANKMONEY], PVar:playerID[MONEY], PVar:playerID[JOBID], PVar:playerID[LASTNEWSID], PVar:playerID[CHATMODE], PVar:playerID[GODMODE]);
+		Format:sqlQuery("%s, `CurrentBuildingID` = '%d', `OnlineTime` = '%d', `LastPayDay` = '%d', `Skin` = '%d', `Deaths` = '%d'", sqlQuery, PVar:playerID[CURRENTBUILDINGID], GetOnlineTime(playerID), PVar:playerID[LASTPAYDAY], PVar:playerID[SKIN], PVar:playerID[DEATHS]);
 		UpdateUserDB(playerID, "%s, `Language` = '%d'", sqlQuery, PVar:playerID[LANGUAGE]);
 		new Float:health;
 		new Float:posX;

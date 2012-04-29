@@ -22,7 +22,7 @@ public OnPlayerDisconnect(playerid, reason)
 		{
 			if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && playerID != playerid)
 			{
-				SendClientMessageEx(playerid, COLOR_JOINLEAVE, 161, playerid);
+				SendClientMessageEx(playerID, COLOR_JOINLEAVE, 161, playerid);
 			}
 		}
 		new reasonString[16];
