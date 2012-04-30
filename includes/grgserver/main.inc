@@ -13,6 +13,7 @@
 #include <grgserver\Structures\enum_playerVariable.inc>
 #include <grgserver\Structures\enum_vehicle.inc>
 #include <grgserver\Structures\enum_vehicleModel.inc>
+#include <grgserver\Structures\enum_weapon.inc>
 
 // Global variables
 #include <grgserver\globals.inc>
@@ -47,8 +48,8 @@
 #include <grgserver\Functions\GetPlayerNameEx.inc>
 #include <grgserver\Functions\GetPlayerVersionEx.inc>
 #include <grgserver\Functions\GetVehicleEngineState.inc>
-#include <grgserver\Functions\GetWeaponNameEx.inc>
 #include <grgserver\Functions\GivePlayerMoneyEx.inc>
+#include <grgserver\Functions\GivePlayerWeaponEx.inc>
 #include <grgserver\Functions\IsLoggedIn.inc>
 #include <grgserver\Functions\IsPlayerInPickup.inc>
 #include <grgserver\Functions\IsValidSkin.inc>

@@ -133,6 +133,22 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 			Format:string("%s\nPissing", string);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Fun Action", string, "OK", LanguageString(playerID, 165));
 		}
+		case DIALOG_GIVEWEAPON:
+		{
+			new weaponList[1024];
+			Count(weaponID, sizeof(weapons))
+			{
+				if (weapons[weaponID][WEAPON_AMMO])
+				{
+					if (strlen(weaponList))
+					{
+						Format:weaponList("%s\n", weaponList);
+					}
+					Format:weaponList("%s%d: %s", weaponList, weaponID, weapons[weaponID][WEAPON_NAME]);
+				}
+			}
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 361), weaponList, "OK", LanguageString(playerID, 165));
+		}
 		case DIALOG_HOTEL_HASROOM:
 		{
 			new options[1024];
@@ -383,20 +399,21 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 		}
 		case DIALOG_VEHICLEDEALER_JOB:
 		{
-			new options[50];
-			Format:options("Autohändler kaufen");
-			Format:options("%s\nBewerben", options);
-			Format:options("%s\nFahrzeug Kaufen", options);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Autohändler", options, "OK", LanguageString(playerID, 165));
+			ShowMsgBox(playerID, dialogID, LanguageString(playerID, 353), LanguageString(playerID, 354), MSGBOXSTYLE_YESNO);
 		}
 		case DIALOG_VEHICLEDEALER_OPTIONS:
 		{
-			new options[70];
-			Format:options("Fahrzeug bestellen");
-			Format:options("%s\nFinanzen", options);
-			Format:options("%s\nKündigen", options);
-			Format:options("%s\nBewerbungsübersicht", options);
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Autohändlerübersicht", options, "OK", LanguageString(playerID, 165));
+			new options[1024];
+			if (PVar:playerID[ATWORK])
+			{
+				AddLine(options, LanguageString(playerID, 356));
+			}
+			else
+			{
+				AddLine(options, LanguageString(playerID, 357));
+			}
+			AddLine(options, LanguageString(playerID, 358));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 353), options, "OK", LanguageString(playerID, 165));
 		}
 	}
 }

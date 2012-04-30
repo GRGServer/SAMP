@@ -457,6 +457,23 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				SetPlayerSpecialAction(playerid, action);
 			}
 		}
+		case DIALOG_GIVEWEAPON:
+		{
+			if (response)
+			{
+				new weaponID;
+				new name[STRINGLENGTH_WEAPONNAME];
+				sscanf(inputtext, "p:ds", weaponID, name);
+				if (GivePlayerWeaponEx(playerid, weaponID))
+				{
+					SendClientMessageEx(playerid, COLOR_INFO, 69, weapons[weaponID][WEAPON_NAME]);
+				}
+				else
+				{
+					SendClientMessageEx(playerid, COLOR_ERROR, 68);
+				}
+			}
+		}
 		case DIALOG_HOTEL_HASROOM:
 		{
 			if (response)
@@ -1032,86 +1049,29 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				switch (listitem)
-				{
-					case 0: // Kaufe Autohändler
-					{
-						// TODO: MySQL Daten bank hinzufügen bei Jobs die OwnerUserID zum kaufen.
-						new pickupID = PVar:playerid[CURRENTPICKUPID];
-						new ownerUserID = strval(GetMySQLValue("pickups", "OwnerUserID", "ID", val2str(pickupID)));
-						if (ownerUserID)
-						{
-							if (ownerUserID == PVar:playerid[USERID])
-							{
-								SendClientMessageEx(playerid, COLOR_INFO, 44);
-							}
-							else
-							{
-								SendClientMessageEx(playerid, COLOR_INFO, 45);
-							}
-						}
-						else
-						{
-							new Float:price = floatstr(GetMySQLValue("buildings", "Price", "ID", val2str(pickupID)));
-							if (price <= PVar:playerid[MONEY])
-							{
-								GivePlayerMoneyEx(playerid, MONEY_CASH, -price);
-								SetMySQLValue("pickups", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(pickupID));
-								SendClientMessageEx(playerid, COLOR_INFO, 46);
-							}
-							else
-							{
-								SendClientMessageEx(playerid, COLOR_ERROR, 47, price, PVar:playerid[MONEY]);
-							}
-						}
-					}
-					case 1: // Bewerben für den job
-					{
-						if(PVar:playerid[JOBID] >= 0)
-						{
-							// TODO: MySQL DB erstellen für Bewerbung jeglicher Jobarten.
-							// TODO: Diese der Owner des Jobs bearbeiten kann anneehmen kann und ablehnen kann.
-							SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
-						}
-						else
-						{
-							SendClientMessageEx(playerid, COLOR_ERROR, 39);
-						}
-					}
-					case 2:
-					{
-						// TODO: noch am überlegen wie es gestaltet werden soll. 
-						// TODO: eventuel Wen auto nicht da anfordern beim Autohändler zum bestellen.
-						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
-					}
-				}
+				PVar:playerid[JOBID] = JOB_VEHICLEDEALER;
+				SendClientMessageEx(playerid, COLOR_INFO, 355);
 			}
 		}
 		case DIALOG_VEHICLEDEALER_OPTIONS:
 		{
 			if (response)
 			{
-				switch (listitem)
+				if (!strcmp(inputtext, LanguageString(playerid, 356)))// End work
 				{
-					case 0: // Order vehicle
-					{
-						ShowDialog(playerid, DIALOG_ORDERVEHICLE);
-					}
-					case 1: // Finazübersicht
-					{
-						// TODO: Jeder Job hat eine Job Kasse in der DB diese hier abgerufen wird.
-						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
-					}
-					case 2: // Cancel
-					{
-						// TODO: Kündigung seines Jobs
-						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
-					}
-					case 3: // Application overview
-					{
-						// TODO: MySQL DB abrufen für Bewerbungen vom AUtohändler dort kann man Annehmen/Ablehnen ist angenommen wird invitet ist abgelehnt bleibt user so.
-						SendClientMessage(playerid, COLOR_SYSTEM, "Work in progress");
-					}
+					PVar:playerid[ATWORK] = false;
+					new time = gettime() - PVar:playerid[WORKSTARTTIME];
+					SendClientMessageEx(playerid, COLOR_INFO, 360, time / 60 / 60);
+				}
+				if (!strcmp(inputtext, LanguageString(playerid, 357)))// Start work
+				{
+					PVar:playerid[ATWORK] = true;
+					PVar:playerid[WORKSTARTTIME] = gettime();
+				}
+				if (!strcmp(inputtext, LanguageString(playerid, 358)))// Cancel job
+				{
+					PVar:playerid[JOBID] = JOB_UNEMPLOYED;
+					SendClientMessageEx(playerid, COLOR_INFO, 359);
 				}
 			}
 		}

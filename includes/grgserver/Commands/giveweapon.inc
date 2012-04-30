@@ -1,18 +1,19 @@
-PCMD:giveweapon[ADMIN](playerid, params[], 104)
+PCMD:giveweapon[ADMIN](playerID, params[], 104)
 {
 	new weaponID;
-	new ammo;
-	if (sscanf(params, "dd", weaponID, ammo))
+	if (sscanf(params, "d", weaponID))
 	{
-		CmdUsageMsg(playerid, "giveweapon", "WeaponID", "Munition");
-		return COMMAND_USAGE;
+		ShowDialog(playerID, DIALOG_GIVEWEAPON);
+		return COMMAND_OK;
 	}
-	if (!IsValidWeapon(weaponID))
+	if (GivePlayerWeaponEx(playerID, weaponID))
 	{
-		SendClientMessageEx(playerid, COLOR_ERROR, 68);
+		SendClientMessageEx(playerID, COLOR_INFO, 69, weapons[weaponID][WEAPON_NAME]);
+		return COMMAND_OK;
+	}
+	else
+	{
+		SendClientMessageEx(playerID, COLOR_ERROR, 68);
 		return COMMAND_ERROR;
 	}
-	GivePlayerWeapon(playerid, weaponID, ammo);
-	SendClientMessageEx(playerid, COLOR_INFO, 69, GetWeaponNameEx(weaponID));
-	return COMMAND_OK;
 }

@@ -1407,4 +1407,40 @@
 		<en>There are no more buildings without camera position!</en>
 		<de>Es gbt keine weiteren Gebäude ohne Kameraposition!</de>
 	</string>
+	<string id="353">
+		<en>Vehicle dealer</en>
+		<de>Autohändler</de>
+	</string>
+	<string id="354">
+		<en>You are current no vehicle dealer.\n\nDo you want to accept the job?</en>
+		<de>Du bist zurzeit kein Autohändler.\n\nMöchtest du den Job annehmen?</de>
+	</string>
+	<string id="355">
+		<en>You are now vehicle dealer</en>
+		<de>Du bist jetzt Autohändler</de>
+	</string>
+	<string id="356">
+		<en>End work</en>
+		<de>Arbeit beenden</de>
+	</string>
+	<string id="357">
+		<en>Start work</en>
+		<de>Arbeit beginnen</de>
+	</string>
+	<string id="358">
+		<en>Cancel job</en>
+		<de>Job kündigen</de>
+	</string>
+	<string id="359">
+		<en>You have cancelled your job</en>
+		<de>Du hast deinen Job gekündigt</de>
+	</string>
+	<string id="360">
+		<en>You have ended your working day. Worked hours: %d</en>
+		<de>Du hast deinen Arbeitstag beendet. Gearbeitete Stunden: %d</de>
+	</string>
+	<string id="361">
+		<en>Select a weapon</en>
+		<de>Wähle eine Waffe aus</de>
+	</string>
 </languagestrings>

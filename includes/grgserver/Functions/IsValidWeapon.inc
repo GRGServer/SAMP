@@ -1,12 +1,8 @@
 IsValidWeapon(weaponID)
 {
-	if (weaponID < 0 || weaponID > 46)
+	if (weaponID >= 0 && weaponID < sizeof(weapons) && weapons[weaponID][WEAPON_AMMO])
 	{
-		return false;
+		return true;
 	}
-	if (weaponID == 44 || weaponID == 45)// Do not allow Night Vis Goggles and Thermal Goggles (Bugs in Multiplayer)
-	{
-		return false;
-	}
-	return true;
+	return false;
 }
