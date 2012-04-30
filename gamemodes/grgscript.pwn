@@ -26,10 +26,6 @@
 	#include <grgserver\main>
 #endif
 
-// Script version (Can be read of with other tools)
-public ScriptVersion = COMPILER_SVN_REVISION;
-#pragma unused ScriptVersion
-
 main()
 {
 	#if defined COMPILE_SERVER
