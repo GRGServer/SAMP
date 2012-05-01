@@ -185,12 +185,14 @@
 #include <grgserver\Commands\addproperty.inc>
 #include <grgserver\Commands\addstaticnpc.inc>
 #include <grgserver\Commands\addteleport.inc>
+#include <grgserver\Commands\attachobject.inc>
 #include <grgserver\Commands\changepw.inc>
 #include <grgserver\Commands\chatmode.inc>
 #include <grgserver\Commands\checkpermissions.inc>
 #include <grgserver\Commands\cmds.inc>
 #include <grgserver\Commands\controlnpc.inc>
 #include <grgserver\Commands\coordtp.inc>
+#include <grgserver\Commands\dettachobject.inc>
 #include <grgserver\Commands\editobject.inc>
 #include <grgserver\Commands\engine.inc>
 #include <grgserver\Commands\exit.inc>
@@ -202,6 +204,7 @@
 #include <grgserver\Commands\god.inc>
 #include <grgserver\Commands\goto.inc>
 #include <grgserver\Commands\help.inc>
+#include <grgserver\Commands\interpolatecam.inc>
 #include <grgserver\Commands\jetpack.inc>
 #include <grgserver\Commands\kick.inc>
 #include <grgserver\Commands\kill.inc>
@@ -231,6 +234,7 @@
 #include <grgserver\Commands\resetcam.inc>
 #include <grgserver\Commands\savevehicle.inc>
 #include <grgserver\Commands\selectproperty.inc>
+#include <grgserver\Commands\setcam.inc>
 #include <grgserver\Commands\setinterior.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
 #include <grgserver\Commands\setpropertycam.inc>

@@ -160,6 +160,7 @@
 
 
 // Vehicle configuration
+#define VEHICLE_MAXATTACHEDOBJECTS	10
 #define VEHICLE_MINHEALTH			30
 
 

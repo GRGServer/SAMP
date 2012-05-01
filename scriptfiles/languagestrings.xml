@@ -1547,4 +1547,32 @@
 		<en>Airport</en>
 		<de>Flughafen</de>
 	</string>
+	<string id="388">
+		<en>Format error in line %d</en>
+		<de>Formatfehler in Zeile %d</de>
+	</string>
+	<string id="389">
+		<en>Invalid slot!</en>
+		<de>Ungültiger Slot!</de>
+	</string>
+	<string id="390">
+		<en>Invalid model ID</en>
+		<de>Ungültige Model ID</de>
+	</string>
+	<string id="391">
+		<en>Object removed</en>
+		<de>Objekt entfernt</de>
+	</string>
+	<string id="392">
+		<en>Object attached</en>
+		<de>Objekt angehängt</de>
+	</string>
+	<string id="393">
+		<en>Attach an object to your vehicle</en>
+		<de>Hänge ein Objekt an dein Fahrzeug</de>
+	</string>
+	<string id="394">
+		<en>Remove an attached object from your vehicle</en>
+		<de>Entferne ein angehängtes Objekt von deinem Fahrzeug</de>
+	</string>
 </languagestrings>
