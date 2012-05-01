@@ -1,8 +1,18 @@
-CMD:radio(playerid, params[], 115)
+CMD:radio(playerID, params[], 115)
 {
-	if (IsPlayerInAnyVehicle(playerid))
+	new vehicleID = GetPlayerVehicleID(playerID);
+	if (vehicleID)
 	{
-		ShowDialog(playerid, DIALOG_RADIO);
+		if (VehicleProperty:vehicleID[RADIOSTATION])
+		{
+			StopAudioStreamForPlayer(playerID);
+			VehicleProperty:vehicleID[RADIOSTATION] = 0;
+		}
+		else
+		{
+			VehicleProperty:vehicleID[RADIOSTATION] = 1;
+			PlayRadioStation(playerID, VehicleProperty:vehicleID[RADIOSTATION]);
+		}
 		return COMMAND_OK;
 	}
 	else

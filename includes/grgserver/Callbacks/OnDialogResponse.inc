@@ -719,13 +719,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ShowDialog(playerid, DIALOG_REGISTER_PASSWORD1);
 			}
 		}
-		case DIALOG_RADIO:
-		{
-			if (response)
-			{
-				PlayRadioStation(playerid, strval(GetMySQLValue("radiostations", "ID", "Name", inputtext)));
-			}
-		}
 		case DIALOG_REFUEL:
 		{
 			if (response && strlen(inputtext))

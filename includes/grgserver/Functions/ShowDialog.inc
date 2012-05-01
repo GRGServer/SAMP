@@ -236,22 +236,6 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 		{
 			ShowMsgBox(playerID, dialogID, LanguageString(playerID, 269), LanguageString(playerID, 270));
 		}
-		case DIALOG_RADIO:
-		{
-			new stations[2048];
-			mysql_query("SELECT * FROM `radiostations`");
-			mysql_store_result();
-			while (FetchMySQLRow())
-			{
-				if (strlen(stations))
-				{
-					Format:stations("%s\n", stations);
-				}
-				Format:stations("%s%s", stations, GetMySQLField("Name"));
-			}
-			mysql_free_result();
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 252), stations, "OK", LanguageString(playerID, 165));
-		}
 		case DIALOG_REFUEL:
 		{
 			new string[80];

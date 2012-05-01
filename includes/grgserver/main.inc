@@ -124,7 +124,7 @@
 #include <grgserver\Callbacks\OnPlayerDisconnect.inc>
 #include <grgserver\Callbacks\OnPlayerEditDynamicObject.inc>
 #include <grgserver\Callbacks\OnPlayerEnterCheckpoint.inc>
-#include <grgserver\Callbacks\OnPlayerEnterVehicle.inc>
+#include <grgserver\Callbacks\OnPlayerEnteredVehicle.inc>
 #include <grgserver\Callbacks\OnPlayerExitVehicle.inc>
 #include <grgserver\Callbacks\OnPlayerKeyStateChange.inc>
 #include <grgserver\Callbacks\OnPlayerPickUpPickup.inc>

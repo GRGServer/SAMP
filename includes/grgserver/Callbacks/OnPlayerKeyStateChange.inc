@@ -1,21 +1,46 @@
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
-	if (IsKeyPressed(KEY_YES))
+	if (IsKeyPressed(KEY_ANALOG_DOWN))
 	{
-		new pickupID = IsPlayerInPickup(playerid);
-		if (pickupID)
+		new vehicleID = GetPlayerVehicleID(playerid);
+		if (vehicleID)
 		{
-			FormatNew:functionName[MAX_FUNCTION_NAME]("PUE_%s", pickups[pickupID][PICKUP_TYPE]);// PUE = PickUpEvent
-			if (funcidx(functionName) == -1)
+			new id = VehicleProperty:vehicleID[RADIOSTATION];
+			if (id <= 1)
 			{
-				printf("Unknown pickup type: %s", pickups[pickupID][PICKUP_TYPE]);
+				MySQLQuery("SELECT COUNT(*) AS `Count` FROM `radiostations`");
+				mysql_store_result();
+				id = strval(GetMySQLField("Count"));
+				mysql_free_result();
 			}
 			else
 			{
-				PlaySound(playerid, SOUND_PICKUPKEYPRESSED);
-				CallLocalFunction(functionName, "dd", playerid, pickupID);
+				id--;
 			}
-			return true;
+			printf("Station: %d", id);
+			PlayRadioStation(playerid, id);
+		}
+	}
+	if (IsKeyPressed(KEY_ANALOG_UP))
+	{
+		new vehicleID = GetPlayerVehicleID(playerid);
+		if (vehicleID)
+		{
+			MySQLQuery("SELECT COUNT(*) AS `Count` FROM `radiostations`");
+			mysql_store_result();
+			new count = strval(GetMySQLField("Count"));
+			mysql_free_result();
+			new id = VehicleProperty:vehicleID[RADIOSTATION];
+			if (id >= count)
+			{
+				id = 1;
+			}
+			else
+			{
+				id++;
+			}
+			printf("Station: %d", id);
+			PlayRadioStation(playerid, id);
 		}
 	}
 	if (IsKeyPressed(KEY_NO))
@@ -52,6 +77,24 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				}
 				mysql_free_result();
 			}
+		}
+	}
+	if (IsKeyPressed(KEY_YES))
+	{
+		new pickupID = IsPlayerInPickup(playerid);
+		if (pickupID)
+		{
+			FormatNew:functionName[MAX_FUNCTION_NAME]("PUE_%s", pickups[pickupID][PICKUP_TYPE]);// PUE = PickUpEvent
+			if (funcidx(functionName) == -1)
+			{
+				printf("Unknown pickup type: %s", pickups[pickupID][PICKUP_TYPE]);
+			}
+			else
+			{
+				PlaySound(playerid, SOUND_PICKUPKEYPRESSED);
+				CallLocalFunction(functionName, "dd", playerid, pickupID);
+			}
+			return true;
 		}
 	}
 	return false;
