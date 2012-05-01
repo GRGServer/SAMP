@@ -86,6 +86,11 @@
 #define MYSQL_USERNAME				"grg_server"
 
 
+// Neon lights
+#define NEONLIGHT_MAXSLOTS			2
+#define NEONLIGHT_MAXSUBSLOTS		2
+
+
 // News configuration
 #define NEWS_LINELENGTH				100// Maximum length of a news line
 #define NEWS_MAXIMUM				10// Maximum number of news items to show

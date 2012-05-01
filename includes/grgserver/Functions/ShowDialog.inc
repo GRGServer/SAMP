@@ -397,6 +397,21 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 			Format:options("%s\nBewerbungsübersicht", options);
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, "Trucker Übersicht", options, "OK", LanguageString(playerID, 165));
 		}
+		case DIALOG_UPGRADEVEHICLE:
+		{
+			new options[1024];
+			AddLine(options, LanguageString(playerID, 375));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 374), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
+		}
+		case DIALOG_UPGRADEVEHICLE_NEONLIGHT:
+		{
+			new options[1024];
+			for (new stringID = 362; stringID <=373; stringID++)
+			{
+				AddLine(options, LanguageString(playerID, stringID));
+			}
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 376), options, "OK", LanguageString(playerID, 171));
+		}
 		case DIALOG_VEHICLEDEALER_JOB:
 		{
 			ShowMsgBox(playerID, dialogID, LanguageString(playerID, 353), LanguageString(playerID, 354), MSGBOXSTYLE_YESNO);

@@ -12,6 +12,7 @@ new sqlQuery[1024];
 new svnRevisionChanged;
 new vehicles[MAX_VEHICLES][enum_vehicle];
 new vehicleModels[212][enum_vehicleModel];
+new vehicleNeonLightObjects[MAX_VEHICLES][NEONLIGHT_MAXSLOTS][NEONLIGHT_MAXSUBSLOTS];
 new weapons[][enum_weapon] =
 {
 	{"Fist", 0},// 0

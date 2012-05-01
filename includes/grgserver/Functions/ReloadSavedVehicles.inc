@@ -19,12 +19,17 @@ ReloadSavedVehicles(playerID = INVALID_PLAYER_ID)
 		VehicleProperty:vehicleID[HASNAVI] = strval(GetMySQLField("HasNavi"));
 		VehicleProperty:vehicleID[JOBID] = strval(GetMySQLField("JobID"));
 		VehicleProperty:vehicleID[MILEAGE] = floatstr(GetMySQLField("MileAge"));
+		VehicleProperty:vehicleID[NEONLIGHTID] = strval(GetMySQLField("NeonLightID"));
 		VehicleProperty:vehicleID[NUMBERPLATE] = strval(GetMySQLField("NumberPlateID"));
 		VehicleProperty:vehicleID[RADIOSTATION] = strval(GetMySQLField("LastRadioStation"));
 		VehicleProperty:vehicleID[SAVEID] = strval(GetMySQLField("ID"));
 		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
 		ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
 		SetVehicleHealth(vehicleID, floatstr(GetMySQLField("Health")));
+		if (VehicleProperty:vehicleID[NEONLIGHTID])
+		{
+			AddNeonLight(vehicleID, VehicleProperty:vehicleID[NEONLIGHTID] - 1);
+		}
 		count++;
 	}
 	mysql_free_result();

@@ -1045,6 +1045,32 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
+		case DIALOG_UPGRADEVEHICLE:
+		{
+			if (!strcmp(inputtext, LanguageString(playerid, 375)))// Neon lights
+			{
+				ShowDialog(playerid, DIALOG_UPGRADEVEHICLE_NEONLIGHT);
+			}
+		}
+		case DIALOG_UPGRADEVEHICLE_NEONLIGHT:
+		{
+			if (response)
+			{
+				new vehicleID = GetPlayerVehicleID(playerid);
+				if (vehicleID)
+				{
+					AddNeonLight(vehicleID, listitem);
+				}
+				else
+				{
+					SendClientMessageEx(playerid, COLOR_ERROR, 146);
+				}
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_UPGRADEVEHICLE);
+			}
+		}
 		case DIALOG_VEHICLEDEALER_JOB:
 		{
 			if (response)

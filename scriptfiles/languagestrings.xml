@@ -1443,4 +1443,64 @@
 		<en>Select a weapon</en>
 		<de>Wähle eine Waffe aus</de>
 	</string>
+	<string id="362">
+		<en>Dark blue</en>
+		<de>Dunkelblau</de>
+	</string>
+	<string id="363">
+		<en>Gold</en>
+		<de>Gold</de>
+	</string>
+	<string id="364">
+		<en>Green</en>
+		<de>Grün</de>
+	</string>
+	<string id="365">
+		<en>Light blue</en>
+		<de>Hellblau</de>
+	</string>
+	<string id="366">
+		<en>Light green</en>
+		<de>Hellgrün</de>
+	</string>
+	<string id="367">
+		<en>Orange</en>
+		<de>Orange</de>
+	</string>
+	<string id="368">
+		<en>Pink</en>
+		<de>Pink</de>
+	</string>
+	<string id="369">
+		<en>Purple</en>
+		<de>Lila</de>
+	</string>
+	<string id="370">
+		<en>Red</en>
+		<de>Rot</de>
+	</string>
+	<string id="371">
+		<en>Turquoise</en>
+		<de>Türkis</de>
+	</string>
+	<string id="372">
+		<en>White</en>
+		<de>Weiß</de>
+	</string>
+	<string id="373">
+		<en>Yellow</en>
+		<de>Gelb</de>
+	</string>
+	<string id="374">
+		<en>Upgrade your vehicle</en>
+		<de>Rüste dein Fahrzeug auf</de>
+	</string>
+	<string id="375">
+		<en>Neon lights</en>
+		<de>Neonröhren</de>
+	</string>
+	<string id="376">
+		<en>Add neon lights</en>
+		<de>Neonröhren einbauen</de>
+	</string>
 </languagestrings>

@@ -10,6 +10,7 @@ SaveVehicle(vehicleID, interior)
 		GetVehicleHealth(vehicleID, health);
 		GetVehiclePos(vehicleID, posX, posY, posZ);
 		GetVehicleZAngle(vehicleID, angle);
-		MySQLQuery("UPDATE `savedvehicles` SET `Health` = '%f', `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Angle` = '%f', `Interior` = '%d', `MileAge` = '%f', `CurrentFuel` = '%f', `HasNavi` = '%d' WHERE `ID` = '%d'", health, posX, posY, posZ, angle, interior, VehicleProperty:vehicleID[CURRENTFUEL], VehicleProperty:vehicleID[MILEAGE], VehicleProperty:vehicleID[HASNAVI], VehicleProperty:vehicleID[SAVEID]);
+		Format:sqlQuery("UPDATE `savedvehicles` SET `Health` = '%f', `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Angle` = '%f', `Interior` = '%d'", health, posX, posY, posZ, angle, interior);
+		MySQLQuery("%s, `MileAge` = '%f', `CurrentFuel` = '%f', `NeonLightID` = '%d', `HasNavi` = '%d' WHERE `ID` = '%d'", sqlQuery, VehicleProperty:vehicleID[MILEAGE], VehicleProperty:vehicleID[CURRENTFUEL], VehicleProperty:vehicleID[NEONLIGHTID], VehicleProperty:vehicleID[HASNAVI], VehicleProperty:vehicleID[SAVEID]);
 	}
 }

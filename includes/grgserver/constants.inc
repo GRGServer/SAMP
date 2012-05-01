@@ -85,6 +85,8 @@ enum
 	DIALOG_TELEPORTLOCATIONS,
 	DIALOG_TRUCKER_JOB,
 	DIALOG_TRUCKER_OPTIONS,
+	DIALOG_UPGRADEVEHICLE,
+	DIALOG_UPGRADEVEHICLE_NEONLIGHT,
 	DIALOG_VEHICLEDEALER_JOB,
 	DIALOG_VEHICLEDEALER_OPTIONS
 }
@@ -138,6 +140,31 @@ enum
 	MSGBOXSTYLE_OK,// Must be the first to be the default (0)
 	MSGBOXSTYLE_OKCANCEL,
 	MSGBOXSTYLE_YESNO
+}
+
+
+// Neon light IDs
+enum
+{
+	NEON_DARKBLUE,
+	NEON_GOLD,
+	NEON_GREEN,
+	NEON_LIGHTBLUE,
+	NEON_LIGHTGREEN,
+	NEON_ORANGE,
+	NEON_PINK,
+	NEON_PURPLE,
+	NEON_RED,
+	NEON_TURQUOISE,
+	NEON_WHITE,
+	NEON_YELLOW
+}
+
+
+// Object types (If object is not read from database like neon lights) -> Must be negative because ID from database is positive!
+enum
+{
+	OBJECTTYPE_NEONLIGHT = -1
 }
 
 

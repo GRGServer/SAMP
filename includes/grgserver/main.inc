@@ -22,6 +22,7 @@
 #include <grgserver\Functions\AddJobData.inc>
 #include <grgserver\Functions\AddLine.inc>
 #include <grgserver\Functions\AddNPCRecorderPlayback.inc>
+#include <grgserver\Functions\AddNeonLight.inc>
 #include <grgserver\Functions\AddObject.inc>
 #include <grgserver\Functions\AddPickup.inc>
 #include <grgserver\Functions\AddVehicleComponentEx.inc>
@@ -154,6 +155,7 @@
 #include <grgserver\Pickups\Pickup_Police.inc>
 #include <grgserver\Pickups\Pickup_Taxi.inc>
 #include <grgserver\Pickups\Pickup_Trucker.inc>
+#include <grgserver\Pickups\Pickup_UpgradeVehicle.inc>
 #include <grgserver\Pickups\Pickup_VehicleDealer.inc>
 
 // Timers
