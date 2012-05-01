@@ -7,6 +7,7 @@
 
 // Structures
 #include <grgserver\Structures\enum_languageString.inc>
+#include <grgserver\Structures\enum_naviLocation.inc>
 #include <grgserver\Structures\enum_permission.inc>
 #include <grgserver\Structures\enum_pickup.inc>
 #include <grgserver\Structures\enum_pickupLoader.inc>
@@ -36,11 +37,13 @@
 #include <grgserver\Functions\FormatDate.inc>
 #include <grgserver\Functions\FormatTime.inc>
 #include <grgserver\Functions\GetChatModeName.inc>
+#include <grgserver\Functions\GetClosestNavigationLocation.inc>
 #include <grgserver\Functions\GetClosestPickup.inc>
 #include <grgserver\Functions\GetClosestVehicleInRange.inc>
 #include <grgserver\Functions\GetColor.inc>
 #include <grgserver\Functions\GetMySQLField.inc>
 #include <grgserver\Functions\GetMySQLValue.inc>
+#include <grgserver\Functions\GetNavigationLocationTypeByName.inc>
 #include <grgserver\Functions\GetOnlineTime.inc>
 #include <grgserver\Functions\GetPermissionByName.inc>
 #include <grgserver\Functions\GetPermissionName.inc>
@@ -58,6 +61,7 @@
 #include <grgserver\Functions\LanguageString.inc>
 #include <grgserver\Functions\LeaveProperty.inc>
 #include <grgserver\Functions\LoadPlayer.inc>
+#include <grgserver\Functions\LoadPlayerPermissions.inc>
 #include <grgserver\Functions\MoneyTransaction.inc>
 #include <grgserver\Functions\MySQLEscapeString.inc>
 #include <grgserver\Functions\PayDay.inc>
@@ -175,6 +179,7 @@
 #include <grgserver\Commands\about.inc>
 #include <grgserver\Commands\accept.inc>
 #include <grgserver\Commands\addhotelroom.inc>
+#include <grgserver\Commands\addnavilocation.inc>
 #include <grgserver\Commands\addobject.inc>
 #include <grgserver\Commands\addpickup.inc>
 #include <grgserver\Commands\addproperty.inc>

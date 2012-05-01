@@ -1097,7 +1097,7 @@
 	</string>
 	<string id="275">
 		<en>Go to the air port entrance</en>
-		<de>Gehe zum Eingang des Airports</de>
+		<de>Gehe zum Eingang des Flughafens</de>
 	</string>
 	<string id="276">
 		<en>Halt!!! If you once again try to steal the cucumbers of my sandwich, your head makes a city tour!</en>
@@ -1502,5 +1502,49 @@
 	<string id="376">
 		<en>Add neon lights</en>
 		<de>Neonröhren einbauen</de>
+	</string>
+	<string id="377">
+		<en>Select location type</en>
+		<de>Orttyp auswählen</de>
+	</string>
+	<string id="378">
+		<en>Add new type</en>
+		<de>Neuen Typ hinzufügen</de>
+	</string>
+	<string id="379">
+		<en>You have to enter the name!</en>
+		<de>Du musst den Name eingeben!</de>
+	</string>
+	<string id="380">
+		<en>Save you current location as navigation target</en>
+		<de>Speicher deinen aktuellen Ort als Navigationsziel</de>
+	</string>
+	<string id="381">
+		<en>Invalid permission: %s</en>
+		<de>Ungültige Berechtigung: %s</de>
+	</string>
+	<string id="382">
+		<en>Enter the name for the new type.\n\nUse L:[LanguageStringID] (e.g. L:329) to use a language string defined in %s.</en>
+		<de>Gebe den Name für den neuen Typ ein.\n\nVerwende L:[LanguageStringID] (z.B. L:329) um einen Sprachstring aus der %s zu verwenden.</de>
+	</string>
+	<string id="383">
+		<en>The location has been added</en>
+		<de>Der Ort wurde hinzugefügt</de>
+	</string>
+	<string id="384">
+		<en>Gas station</en>
+		<de>Tankstelle</de>
+	</string>
+	<string id="385">
+		<en>Parking lot</en>
+		<de>Parkplatz</de>
+	</string>
+	<string id="386">
+		<en>Train station</en>
+		<de>Bahnhof</de>
+	</string>
+	<string id="387">
+		<en>Airport</en>
+		<de>Flughafen</de>
 	</string>
 </languagestrings>

@@ -34,6 +34,35 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 			FormatNew:options[50]("%s\n%s", LanguageString(playerID, 217), LanguageString(playerID, 218));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 219), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
 		}
+		case DIALOG_ADDNAVILOCATION_NEWTYPE:
+		{
+			FormatNew:string[256](LanguageString(playerID, 382), FILE_LANGUAGESTRINGS);
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, LanguageString(playerID, 378), string, "OK", LanguageString(playerID, 171));
+		}
+		case DIALOG_ADDNAVILOCATION_TYPE:
+		{
+			new options[2048];
+			MySQLQuery("SELECT * FROM `navigationlocationtypes`");
+			mysql_store_result();
+			while (FetchMySQLRow())
+			{
+				new string[256];
+				strcat(string, GetMySQLField("Name"));
+				new checkCharacter;
+				new languageStringID;
+				if (!sscanf(string, "p:cd", checkCharacter, languageStringID))
+				{
+					if (checkCharacter == 'L')
+					{
+						Format:string(LanguageString(playerID, languageStringID));
+					}
+				}
+				AddLine(options, string);
+			}
+			mysql_free_result();
+			AddLine(options, LanguageString(playerID, 378));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 377), options, "OK", LanguageString(playerID, 165));
+		}
 		// Enter name of the new building
 		case DIALOG_ADDPROPERTY_NAME:
 		{
@@ -176,11 +205,30 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 		}
 		case DIALOG_NAVITARGET:
 		{
-			new targets[1024];
-			AddLine(targets, LanguageString(playerID, 173));// Item 0 (Bank)
-			AddLine(targets, LanguageString(playerID, 174));// Item 1 (Hotel)
-			AddLine(targets, LanguageString(playerID, 175));// Item 2 (House)
-			AddLine(targets, LanguageString(playerID, 342));// Item 3 (Target on map)
+			new targets[2048];
+			AddLine(targets, LanguageString(playerID, 173));// Bank
+			AddLine(targets, LanguageString(playerID, 384));// Gas station
+			AddLine(targets, LanguageString(playerID, 174));// Hotel
+			AddLine(targets, LanguageString(playerID, 175));// House
+			MySQLQuery("SELECT * FROM `navigationlocationtypes` ORDER BY `Name` ASC");
+			mysql_store_result();
+			while (FetchMySQLRow())
+			{
+				new string[256];
+				strcat(string, GetMySQLField("Name"));
+				new checkCharacter;
+				new languageStringID;
+				if (!sscanf(string, "p:cd", checkCharacter, languageStringID))
+				{
+					if (checkCharacter == 'L')
+					{
+						Format:string(LanguageString(playerID, languageStringID));
+					}
+				}
+				AddLine(targets, string);
+			}
+			mysql_free_result();
+			AddLine(targets, LanguageString(playerID, 342));// Target on map
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 247), targets, LanguageString(playerID, 341), LanguageString(playerID, 165));
 		}
 		case DIALOG_ORDERVEHICLE:

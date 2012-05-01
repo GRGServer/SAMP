@@ -60,6 +60,66 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 			}
 		}
+		case DIALOG_ADDNAVILOCATION_NEWTYPE:
+		{
+			if (response)
+			{
+				if (strlen(inputtext))
+				{
+					MySQLQuery("INSERT INTO `navigationlocationtypes` (`Name`) VALUES('%s')", MySQLEscapeString(inputtext));
+					new typeID = mysql_insert_id();
+					if (typeID)
+					{
+						new Float:posX;
+						new Float:posY;
+						new Float:posZ;
+						GetPlayerPos(playerid, posX, posY, posZ);
+						MySQLQuery("INSERT INTO `navigationlocations` (`Type`, `PosX`, `PosY`, `PosZ`) VALUES('%d', '%f', '%f', '%f')", typeID, posX, posY, posZ);
+						SendClientMessageEx(playerid, COLOR_INFO, 383);
+					}
+					else
+					{
+						SendClientMessageEx(playerid, COLOR_ERROR, 143);
+					}
+				}
+				else
+				{
+					SendClientMessageEx(playerid, COLOR_ERROR, 379);
+					ShowDialog(playerid, DIALOG_ADDNAVILOCATION_NEWTYPE);
+				}
+			}
+			else
+			{
+				ShowDialog(playerid, DIALOG_ADDNAVILOCATION_TYPE);
+			}
+		}
+		case DIALOG_ADDNAVILOCATION_TYPE:
+		{
+			if (response)
+			{
+				if (IsStr(inputtext, LanguageString(playerid, 378)))
+				{
+					ShowDialog(playerid, DIALOG_ADDNAVILOCATION_NEWTYPE);
+				}
+				else
+				{
+					new typeID = GetNavigationLocationTypeByName(playerid, inputtext);
+					if (typeID)
+					{
+						new Float:posX;
+						new Float:posY;
+						new Float:posZ;
+						GetPlayerPos(playerid, posX, posY, posZ);
+						MySQLQuery("INSERT INTO `navigationlocations` (`Type`, `PosX`, `PosY`, `PosZ`) VALUES('%d', '%f', '%f', '%f')", typeID, posX, posY, posZ);
+						SendClientMessageEx(playerid, COLOR_INFO, 383);
+					}
+					else
+					{
+						SendClientMessageEx(playerid, COLOR_ERROR, 143);
+					}
+				}
+			}
+		}
 		// Asked for the name of the new building
 		case DIALOG_ADDPROPERTY_NAME:
 		{
@@ -586,31 +646,38 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		}
 		case DIALOG_NAVITARGET:
 		{
-			new Float:target[3];
-			switch (listitem)
+			if (response)
 			{
-				case 0:// Bank
+				new Float:target[3];
+				if (IsStr(inputtext, LanguageString(playerid, 173)))// Bank
 				{
 					new pickupID = GetClosestPickup(playerid, "BANK");
 					target[0] = pickups[pickupID][PICKUP_POSX];
 					target[1] = pickups[pickupID][PICKUP_POSY];
 					target[2] = pickups[pickupID][PICKUP_POSZ];
 				}
-				case 1:// Hotel
+				if (IsStr(inputtext, LanguageString(playerid, 384)))// Gas station
+				{
+					new pickupID = GetClosestPickup(playerid, "GASSTATION");
+					target[0] = pickups[pickupID][PICKUP_POSX];
+					target[1] = pickups[pickupID][PICKUP_POSY];
+					target[2] = pickups[pickupID][PICKUP_POSZ];
+				}
+				if (IsStr(inputtext, LanguageString(playerid, 174)))// Hotel
 				{
 					new pickupID = GetClosestPickup(playerid, "HOTEL");
 					target[0] = pickups[pickupID][PICKUP_POSX];
 					target[1] = pickups[pickupID][PICKUP_POSY];
 					target[2] = pickups[pickupID][PICKUP_POSZ];
 				}
-				case 2:// House
+				if (IsStr(inputtext, LanguageString(playerid, 175)))// House
 				{
 					new pickupID = GetClosestPickup(playerid, "HOUSE");
 					target[0] = pickups[pickupID][PICKUP_POSX];
 					target[1] = pickups[pickupID][PICKUP_POSY];
 					target[2] = pickups[pickupID][PICKUP_POSZ];
 				}
-				case 3:// Target on map
+				if (IsStr(inputtext, LanguageString(playerid, 342)))// Target on map
 				{
 					if (PVar:playerid[MAP_POSX] && PVar:playerid[MAP_POSY] && PVar:playerid[MAP_POSZ])
 					{
@@ -624,14 +691,22 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						return false;
 					}
 				}
-			}
-			if (target[0] && target[1] && target[2])
-			{
-				SetPlayerCheckpointEx(playerid, CHECKPOINT_NAVITARGET, target[0], target[1], target[2], 5.0);
-			}
-			else
-			{
-				SendClientMessageEx(playerid, COLOR_ERROR, 343);
+				if (!target[0] && !target[1] && !target[2])
+				{
+					new typeID = GetNavigationLocationTypeByName(playerid, inputtext);
+					if (typeID)
+					{
+						GetClosestNavigationLocation(playerid, typeID, target[0], target[1], target[2]);
+					}
+				}
+				if (target[0] || target[1] || target[2])
+				{
+					SetPlayerCheckpointEx(playerid, CHECKPOINT_NAVITARGET, target[0], target[1], target[2], 5.0);
+				}
+				else
+				{
+					SendClientMessageEx(playerid, COLOR_ERROR, 343);
+				}
 			}
 		}
 		case DIALOG_ORDERVEHICLE:

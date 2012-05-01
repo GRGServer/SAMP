@@ -9,6 +9,8 @@ GetPermissionName(permission)
 			string = "Mapper";
 		case PERMISSION_MODERATOR:
 			string = "Moderator";
+		case PERMISSION_NAVI:
+			string = "Navi";
 		case PERMISSION_NPCADMIN:
 			string = "NPCAdmin";
 		case PERMISSION_SERVERADMIN:

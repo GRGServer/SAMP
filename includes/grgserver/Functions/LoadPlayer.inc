@@ -24,12 +24,7 @@ LoadPlayer(playerID)
 	mysql_store_result();
 	if (strval(GetMySQLField("UserID")))
 	{
-		LoadPermission:ADMIN(playerID, "Admin");
-		LoadPermission:MAPPER(playerID, "Mapper");
-		LoadPermission:MODERATOR(playerID, "Moderator");
-		LoadPermission:NPCADMIN(playerID, "NPCAdmin");
-		LoadPermission:SERVERADMIN(playerID, "ServerAdmin");
-		LoadPermission:TELEPORT(playerID, "Teleport");
+		LoadPlayerPermissions(playerID);
 	}
 	mysql_free_result();
 }

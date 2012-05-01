@@ -12,6 +12,10 @@ GetPermissionByName(permissionName[])
 	{
 		return PERMISSION_MODERATOR;
 	}
+	if (!strcmp(permissionName, "Navi", true))
+	{
+		return PERMISSION_NAVI;
+	}
 	if (!strcmp(permissionName, "NPCAdmin", true))
 	{
 		return PERMISSION_NPCADMIN;

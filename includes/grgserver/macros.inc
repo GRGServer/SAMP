@@ -46,6 +46,9 @@ for (new i_%0 = 0; ; ++i_%0) \
 // IsKeyPressed(keys)
 #define IsKeyPressed(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
 
+// IsStr(string1, string2)
+#define IsStr(%0,%1) !strcmp(%0, %1, true)
+
 // LoadPermission:permissionField(playerID, tableField)
 #define LoadPermission:%0(%1,%2) permissions[%1][PERMISSION_%0] = strval(GetMySQLField(%2))
 

@@ -12,12 +12,7 @@ ReloadPermissions(playerID = INVALID_PLAYER_ID)
 			{
 				if (PVar:currentPlayerID[USERID] == userID)
 				{
-					LoadPermission:ADMIN(currentPlayerID, "Admin");
-					LoadPermission:MAPPER(currentPlayerID, "Mapper");
-					LoadPermission:MODERATOR(currentPlayerID, "Moderator");
-					LoadPermission:NPCADMIN(currentPlayerID, "NPCAdmin");
-					LoadPermission:SERVERADMIN(currentPlayerID, "ServerAdmin");
-					LoadPermission:TELEPORT(currentPlayerID, "Teleport");
+					LoadPlayerPermissions(currentPlayerID);
 				}
 			}
 		}

@@ -25,6 +25,7 @@
 
 // Files
 #define FILE_COMMANDS				"commands.txt"
+#define FILE_LANGUAGESTRINGS		"languagestrings.xml"
 #define FILE_LASTCHANGES			"svn_changes"
 #define FILE_RUNNINGREVISION		"running_revision"
 #define FILE_STABLEREVISION			"stable_revision"

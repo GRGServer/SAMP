@@ -8,7 +8,7 @@ ReloadLanguageStrings(playerID = INVALID_PLAYER_ID)
 	}
 	AdminPrint(playerID, COLOR_INFO, "* Loading language strings...");
 	new count;
-	new XMLNode:xml = XML_LoadDocument("languagestrings.xml");
+	new XMLNode:xml = XML_LoadDocument(FILE_LANGUAGESTRINGS);
 	xml = XML_GetFirstChild(xml, "languagestrings");
 	new XMLNode:stringNode = XML_GetFirstChild(xml, "string");
 	while (stringNode)
