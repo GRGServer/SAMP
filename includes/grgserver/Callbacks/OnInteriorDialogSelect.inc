@@ -2,16 +2,16 @@ OnInteriorDialogSelect(playerID, dialogID, interiorID)
 {
 	switch (dialogID)
 	{
-		case INTERIORDIALOG_ADDBUILDING:
+		case INTERIORDIALOG_ADDPROPERTY:
 		{
 			if (interiorID)
 			{
-				PVar:playerID[ADDBUILDING_INTERIORID] = interiorID;
-				ShowDialog(playerID, DIALOG_ADDBUILDING_NAME);
+				PVar:playerID[ADDPROPERTY_INTERIORID] = interiorID;
+				ShowDialog(playerID, DIALOG_ADDPROPERTY_NAME);
 			}
 			else
 			{
-				ShowDialog(playerID, DIALOG_ADDBUILDING_TYPE);
+				ShowDialog(playerID, DIALOG_ADDPROPERTY_TYPE);
 			}
 		}
 		case INTERIORDIALOG_SHOWINTERIOR:

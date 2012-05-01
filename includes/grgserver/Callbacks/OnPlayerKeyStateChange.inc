@@ -39,11 +39,11 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			new pickupID = IsPlayerInPickup(playerid);
 			if (pickupID)
 			{
-				MySQLQuery("SELECT * FROM `buildings` WHERE `PickupID` = '%d'", pickups[pickupID][PICKUP_ID]);
+				MySQLQuery("SELECT * FROM `properties` WHERE `PickupID` = '%d'", pickups[pickupID][PICKUP_ID]);
 				mysql_store_result();
 				if (mysql_num_rows())
 				{
-					PVar:playerid[SELECTEDBUILDINGID] = strval(GetMySQLField("ID"));
+					PVar:playerid[SELECTEDPROPERTYID] = strval(GetMySQLField("ID"));
 					SendClientMessageEx(playerid, COLOR_INFO, 142, GetMySQLField("Name"));
 				}
 				else

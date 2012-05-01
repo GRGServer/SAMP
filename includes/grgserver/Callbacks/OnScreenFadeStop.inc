@@ -15,11 +15,11 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 	{
 		switch (extraID)
 		{
-			case FADE_BUILDINGBOUGHT_BLACK:
+			case FADE_PROPERTYBOUGHT_BLACK:
 			{
 				TogglePlayerControllable(playerID, true);
 				SetCameraBehindPlayer(playerID);
-				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_BUILDINGBOUGHT_BACK);
+				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_PROPERTYBOUGHT_BACK);
 			}
 			case FADE_GASSTATION_BACK:
 			{
@@ -42,9 +42,10 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			case FADE_START_INPLANE1_BLACK:
 			{
 				TeleportToInterior(playerID, 138);
-				PlayCameraMovement(playerID, 6);
+				InterpolateCameraPos(playerID, 315.8, 825.206, 1981.83, 315.075, 1035.86, 1939.33, 5000, CAMERA_CUT);
+				InterpolateCameraLookAt(playerID, 313.852, 976.442, 1959.13, 316.852, 1082.44, 1925.13, 5000, CAMERA_CUT);
 				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_START_INPLANE1_BACK);
-				
+				SetTimerEx("Timer_ScreenFader", 5000, false, "ddddddd", playerID, 0, 0, 0, 5, 0, FADE_START_INPLANE2_BLACK);
 			}
 			case FADE_START_INPLANE2_BACK:
 			{
@@ -57,6 +58,7 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 				SetPlayerPosEx(playerID, 1.6918, 26.2581, 1199.5938, 1);
 				SetPlayerFacingAngle(playerID, 0.0);
 				SetCameraBehindPlayer(playerID);
+				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_START_INPLANE2_BACK);
 			}
 			case FADE_START_PLANEEXIT_BACK:
 			{

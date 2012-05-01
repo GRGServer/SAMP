@@ -1,6 +1,6 @@
 PickupEvent:BANK(playerID, pickupID)
 {
-	TeleportToBuilding(playerID, strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
+	TeleportToProperty(playerID, strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
 	new bankID = strval(GetUserDBValue(playerID, "BankID"));
 	if (bankID)
 	{

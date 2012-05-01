@@ -2,7 +2,7 @@ CMD:exit(playerid, params[], 101)
 {
 	if (PVar:playerid[SHOWINTERIOR_OLDINTERIOR] == -1)
 	{
-		if (LeaveBuilding(playerid))
+		if (LeaveProperty(playerid))
 		{
 			return COMMAND_OK;
 		}

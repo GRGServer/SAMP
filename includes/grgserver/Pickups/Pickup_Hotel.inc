@@ -1,11 +1,11 @@
 PickupEvent:HOTEL(playerID, pickupID)
 {
-	PVar:playerID[CURRENTBUILDINGID] = strval(GetMySQLValue("buildings", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
+	PVar:playerID[CURRENTPROPERTYID] = strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
 	SetPlayerPosEx(playerID, HOTEL_RECEPTION_POSX, HOTEL_RECEPTION_POSY, HOTEL_RECEPTION_POSZ);
 	SetPlayerFacingAngle(playerID, HOTEL_RECEPTION_ANGLE);
 	SetPlayerInterior(playerID, HOTEL_RECEPTION_INTERIOR);
-	SetPlayerVirtualWorld(playerID, PVar:playerID[CURRENTBUILDINGID]);
-	MySQLQuery("SELECT * FROM `hotelrooms` WHERE `BuildingID` = '%d' AND `OwnerUserID` = '%d'", PVar:playerID[CURRENTBUILDINGID], PVar:playerID[USERID]);
+	SetPlayerVirtualWorld(playerID, PVar:playerID[CURRENTPROPERTYID]);
+	MySQLQuery("SELECT * FROM `hotelrooms` WHERE `PropertyID` = '%d' AND `OwnerUserID` = '%d'", PVar:playerID[CURRENTPROPERTYID], PVar:playerID[USERID]);
 	mysql_store_result();
 	PVar:playerID[HOTEL_ROOMID] = strval(GetMySQLField("RoomID"));
 	mysql_free_result();
@@ -15,7 +15,7 @@ PickupEvent:HOTEL(playerID, pickupID)
 	}
 	else
 	{
-		MySQLQuery("SELECT * FROM `hotelrooms` WHERE `BuildingID` = '%d' AND `OwnerUserID` = '0' ORDER BY `RoomID` ASC", PVar:playerID[CURRENTBUILDINGID]);
+		MySQLQuery("SELECT * FROM `hotelrooms` WHERE `PropertyID` = '%d' AND `OwnerUserID` = '0' ORDER BY `RoomID` ASC", PVar:playerID[CURRENTPROPERTYID]);
 		mysql_store_result();
 		if (mysql_num_rows())
 		{
@@ -39,7 +39,7 @@ PickupEvent:HOTEL(playerID, pickupID)
 			}
 			else
 			{
-				LeaveBuilding(playerID);
+				LeaveProperty(playerID);
 			}
 		}
 		mysql_free_result();

@@ -1,6 +1,6 @@
 PCMD:showinterior[TELEPORT](playerid, params[], 119)
 {
-	if (PVar:playerid[CURRENTBUILDINGID])
+	if (PVar:playerid[CURRENTPROPERTYID])
 	{
 		SendClientMessageEx(playerid, COLOR_ERROR, 56);
 		return COMMAND_ERROR;

@@ -34,6 +34,17 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 			FormatNew:options[50]("%s\n%s", LanguageString(playerID, 217), LanguageString(playerID, 218));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 219), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
 		}
+		// Enter name of the new building
+		case DIALOG_ADDPROPERTY_NAME:
+		{
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, LanguageString(playerID, 168), LanguageString(playerID, 169), LanguageString(playerID, 170), LanguageString(playerID, 171));
+		}
+		// Select type of the new building
+		case DIALOG_ADDPROPERTY_TYPE:
+		{
+			FormatNew:options[50]("%s\n%s\n%s\n%s", LanguageString(playerID, 173), LanguageString(playerID, 174), LanguageString(playerID, 175), LanguageString(playerID, 176));
+			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 172), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
+		}
 		case DIALOG_ARMY:
 		{
 			FormatNew:options[50]("%s\n%s", LanguageString(playerID, 217), LanguageString(playerID, 218));
@@ -43,17 +54,6 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 		{
 			FormatNew:options[50]("%s\n%s", LanguageString(playerID, 217), LanguageString(playerID, 218));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 221), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
-		}
-		// Enter name of the new building
-		case DIALOG_ADDBUILDING_NAME:
-		{
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_INPUT, LanguageString(playerID, 168), LanguageString(playerID, 169), LanguageString(playerID, 170), LanguageString(playerID, 171));
-		}
-		// Select type of the new building
-		case DIALOG_ADDBUILDING_TYPE:
-		{
-			FormatNew:options[50]("%s\n%s\n%s\n%s", LanguageString(playerID, 173), LanguageString(playerID, 174), LanguageString(playerID, 175), LanguageString(playerID, 176));
-			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 172), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
 		}
 		// Cancel the bank account
 		case DIALOG_BANK_CANCELACCOUNT:

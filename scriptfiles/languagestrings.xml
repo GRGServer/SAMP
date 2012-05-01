@@ -36,8 +36,8 @@
 		<de>Die Bank wurde verkauft!</de>
 	</string>
 	<string id="10">
-		<en>The building %s (Price: %m) has been saved with ID %d.</en>
-		<de>Das Gebäude %s (Preis: %m) wurde unter der ID %d gespeichert.</de>
+		<en>The property %s (Price: %m) has been saved with ID %d.</en>
+		<de>Die Immobilie %s (Preis: %m) wurde unter der ID %d gespeichert.</de>
 	</string>
 	<string id="11">
 		<en>This bank has been already bought!</en>
@@ -84,8 +84,8 @@
 		<de>Du hast %m auf dein Bankkonto eingezahlt</de>
 	</string>
 	<string id="22">
-		<en>You need %m to buy this building! But you only have %m at you bank account.</en>
-		<de>Du benötigst %m um dieses Gebäude zu kaufen! Leider hast du nur %m auf deinem Bankkonto.</de>
+		<en>You need %m to buy this property! But you only have %m at you bank account.</en>
+		<de>Du benötigst %m um diese Immobilie zu kaufen! Leider hast du nur %m auf deinem Bankkonto.</de>
 	</string>
 	<string id="23">
 		<en>Your current bank balance is %m</en>
@@ -132,8 +132,8 @@
 		<de>Viel Spaß mit deinem neuen Hotel!</de>
 	</string>
 	<string id="34">
-		<en>No building selected! Go into a building and use /selectbuilding to select it.</en>
-		<de>Kein Gebäude ausgewählt! Gehe in ein Gebäude und verwende /selectbuilding um es auszuwählen.</de>
+		<en>No property selected! Go into a property pickup and press ~k~~SNEAK_ABOUT~ to select it.</en>
+		<de>Keine Immobilie ausgewählt! Gehe in ein Immobilienpickup und drücke ~k~~SNEAK_ABOUT~ um sie auszuwählen.</de>
 	</string>
 	<string id="35">
 		<en>You have been logged in successfully</en>
@@ -376,8 +376,8 @@
 		<de>Annehmen eines Auftrages</de>
 	</string>
 	<string id="95">
-		<en>Create a building</en>
-		<de>Gebäude erstellen</de>
+		<en>Create a property</en>
+		<de>Immobilie erstellen</de>
 	</string>
 	<string id="96">
 		<en>Create a pickup</en>
@@ -564,8 +564,8 @@
 		<de>Dieses Haus wurde bereits von %s gekauft!</de>
 	</string>
 	<string id="142">
-		<en>Building '%s' selected</en>
-		<de>Gebäude '%s' ausgewählt</de>
+		<en>Property '%s' selected</en>
+		<de>Immobilie '%s' ausgewählt</de>
 	</string>
 	<string id="143">
 		<en>An error occurred while processing the command!</en>
@@ -672,8 +672,8 @@
 		<de>Name eingeben</de>
 	</string>
 	<string id="169">
-		<en>Enter the name for the building.</en>
-		<de>Gebe den Name für das Gebäude ein.</de>
+		<en>Enter the name for the property.</en>
+		<de>Gebe den Name für die Immobilie ein.</de>
 	</string>
 	<string id="170">
 		<en>Create</en>
@@ -684,8 +684,8 @@
 		<de>Zurück</de>
 	</string>
 	<string id="172">
-		<en>Select building type</en>
-		<de>Gebäudetyp auswählen</de>
+		<en>Select property type</en>
+		<de>Immobilientyp auswählen</de>
 	</string>
 	<string id="173">
 		<en>Bank</en>
@@ -1336,20 +1336,20 @@
 		<de>Der Teleportort wurde gespeichert. Verwende /teleport um dich zu dem Ort zu teleportieren</de>
 	</string>
 	<string id="335">
-		<en>Select a building to set various properties like the 'Building Bought' camera position</en>
-		<de>Wähle ein Gebäude aus um verschiedene Eigenschaften wie die 'Gebäude gekauft' Kameraposition zu definieren</de>
+		<en>Select a property to set various properties like the 'Property bought' camera position</en>
+		<de>Wähle eine Immobilie aus um verschiedene Eigenschaften wie die 'Immobilie gekauft' Kameraposition zu definieren</de>
 	</string>
 	<string id="336">
-		<en>Set the 'Building bought' camera position</en>
-		<de>Definiere die 'Gebäude gekauft' Kameraposition</de>
+		<en>Set the 'Property bought' camera position</en>
+		<de>Definiere die 'Immobilie gekauft' Kameraposition</de>
 	</string>
 	<string id="337">
-		<en>This pickup is not linked to a building!</en>
-		<de>Dieses Pickup ist nicht mit einem Gebäude verknüpft!</de>
+		<en>This pickup is not linked to a property!</en>
+		<de>Dieses Pickup ist nicht mit einer Immobilie verknüpft!</de>
 	</string>
 	<string id="338">
-		<en>Press ~k~~SNEAK_ABOUT~ to select the building linked to this pickup (If available)</en>
-		<de>Drücke ~k~~SNEAK_ABOUT~ um das Gebäude auszuwählen welches mit diesem Pickup verknüpft ist (Wenn verfügbar)</de>
+		<en>Press ~k~~SNEAK_ABOUT~ to select the property linked to this pickup (If available)</en>
+		<de>Drücke ~k~~SNEAK_ABOUT~ um die Immobilie auszuwählen welches mit diesem Pickup verknüpft ist (Wenn verfügbar)</de>
 	</string>
 	<string id="339">
 		<en>Activate the navigation system</en>
@@ -1396,16 +1396,16 @@
 		<de>Interior gewechselt zu %d</de>
 	</string>
 	<string id="350">
-		<en>Teleport you to the next building without camera position</en>
-		<de>Teleportiere dich zum nächsten Gebäude ohne Kameraposition</de>
+		<en>Teleport you to the next property without camera position</en>
+		<de>Teleportiere dich zur nächsten Immobilie ohne Kameraposition</de>
 	</string>
 	<string id="351">
-		<en>You got teleported to the next building (%s). There are %d buildings without a camera position.</en>
-		<de>Du wurdest zum nächsten Gebäude (%s) teleportiert. Es gibt %d Gebäude ohne Kameraposition</de>
+		<en>You got teleported to the next property (%s). There are %d properties without a camera position.</en>
+		<de>Du wurdest zur nächsten Immobilie (%s) teleportiert. Es gibt %d Immobilien ohne Kameraposition</de>
 	</string>
 	<string id="352">
-		<en>There are no more buildings without camera position!</en>
-		<de>Es gbt keine weiteren Gebäude ohne Kameraposition!</de>
+		<en>There are no more properties without camera position!</en>
+		<de>Es gbt keine weiteren Immobilien ohne Kameraposition!</de>
 	</string>
 	<string id="353">
 		<en>Vehicle dealer</en>

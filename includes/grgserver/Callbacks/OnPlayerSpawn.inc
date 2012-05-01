@@ -38,8 +38,10 @@ public OnPlayerSpawn(playerid)
 	}
 	else
 	{
-		PlayCameraMovement(playerid, 4);
-		PVar:playerid[CURRENTBUILDINGID] = 0;
+		InterpolateCameraPos(playerid, 2326.3, 1284.69, 160.559, 2037.28, 1344.28, 10.8203, 2500, CAMERA_CUT);
+		InterpolateCameraLookAt(playerid, 2032.08, 1344.08, 10.8203, 2032.08, 1344.08, 10.8203, 2500, CAMERA_CUT);
+		SetTimerEx("Timer_ScreenFader", 3500, false, "ddddddd", playerid, 0, 0, 0, 5, 0, FADE_RESPAWN_BLACK);
+		PVar:playerid[CURRENTPROPERTYID] = 0;
 	}
 	SetPlayerSkin(playerid, PVar:playerid[SKIN]);
 	return true;

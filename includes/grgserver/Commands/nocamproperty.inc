@@ -1,6 +1,6 @@
-PCMD:nocambuilding[MAPPER](playerID, params[], 350)
+PCMD:nocamproperty[MAPPER](playerID, params[], 350)
 {
-	MySQLQuery("SELECT * FROM `buildings` LEFT JOIN `pickups` ON `buildings`.`PickupID` = `pickups`.`ID` WHERE `CameraPosX` = '0' AND `CameraPosY` = '0' AND `CameraPosZ` = '0'");
+	MySQLQuery("SELECT * FROM `properties` LEFT JOIN `pickups` ON `properties`.`PickupID` = `pickups`.`ID` WHERE `CameraPosX` = '0' AND `CameraPosY` = '0' AND `CameraPosZ` = '0'");
 	mysql_store_result();
 	new rows = mysql_num_rows();
 	if (rows)

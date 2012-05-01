@@ -55,12 +55,11 @@
 #include <grgserver\Functions\IsValidSkin.inc>
 #include <grgserver\Functions\IsValidWeapon.inc>
 #include <grgserver\Functions\LanguageString.inc>
-#include <grgserver\Functions\LeaveBuilding.inc>
+#include <grgserver\Functions\LeaveProperty.inc>
 #include <grgserver\Functions\LoadPlayer.inc>
 #include <grgserver\Functions\MoneyTransaction.inc>
 #include <grgserver\Functions\MySQLEscapeString.inc>
 #include <grgserver\Functions\PayDay.inc>
-#include <grgserver\Functions\PlayCameraMovement.inc>
 #include <grgserver\Functions\PlayRadioStation.inc>
 #include <grgserver\Functions\PlaySound.inc>
 #include <grgserver\Functions\ReconnectNPCs.inc>
@@ -96,8 +95,8 @@
 #include <grgserver\Functions\Str2Val.inc>
 #include <grgserver\Functions\Teleport.inc>
 #include <grgserver\Functions\TeleportTo.inc>
-#include <grgserver\Functions\TeleportToBuilding.inc>
 #include <grgserver\Functions\TeleportToInterior.inc>
+#include <grgserver\Functions\TeleportToProperty.inc>
 #include <grgserver\Functions\UpdateGasPrice.inc>
 #include <grgserver\Functions\WriteChatToDatabase.inc>
 #include <grgserver\Functions\explode.inc>
@@ -112,7 +111,6 @@
 #include <grgserver\Callbacks\IRC_OnUserJoinChannel.inc>
 #include <grgserver\Callbacks\IRC_OnUserLeaveChannel.inc>
 #include <grgserver\Callbacks\IRC_OnUserSay.inc>
-#include <grgserver\Callbacks\OnCameraMovementStop.inc>
 #include <grgserver\Callbacks\OnDialogResponse.inc>
 #include <grgserver\Callbacks\OnGameModeExit.inc>
 #include <grgserver\Callbacks\OnGameModeInit.inc>
@@ -165,7 +163,6 @@
 #include <grgserver\Timers\Timer_HideRadioDisplay.inc>
 #include <grgserver\Timers\Timer_Hourly.inc>
 #include <grgserver\Timers\Timer_PickupTimeout.inc>
-#include <grgserver\Timers\Timer_PlayCameraMovement.inc>
 #include <grgserver\Timers\Timer_RefuelVehicle.inc>
 #include <grgserver\Timers\Timer_ScreenFader.inc>
 #include <grgserver\Timers\Timer_Slow.inc>
@@ -175,13 +172,12 @@
 // Commands
 #include <grgserver\Commands\about.inc>
 #include <grgserver\Commands\accept.inc>
-#include <grgserver\Commands\addbuilding.inc>
 #include <grgserver\Commands\addhotelroom.inc>
 #include <grgserver\Commands\addobject.inc>
 #include <grgserver\Commands\addpickup.inc>
+#include <grgserver\Commands\addproperty.inc>
 #include <grgserver\Commands\addstaticnpc.inc>
 #include <grgserver\Commands\addteleport.inc>
-#include <grgserver\Commands\cammovementcfg.inc>
 #include <grgserver\Commands\changepw.inc>
 #include <grgserver\Commands\chatmode.inc>
 #include <grgserver\Commands\checkpermissions.inc>
@@ -207,13 +203,11 @@
 #include <grgserver\Commands\me.inc>
 #include <grgserver\Commands\money.inc>
 #include <grgserver\Commands\navi.inc>
-#include <grgserver\Commands\newcammovement.inc>
 #include <grgserver\Commands\news.inc>
-#include <grgserver\Commands\nocambuilding.inc>
+#include <grgserver\Commands\nocamproperty.inc>
 #include <grgserver\Commands\npccmd.inc>
 #include <grgserver\Commands\ordervehicle.inc>
 #include <grgserver\Commands\payday.inc>
-#include <grgserver\Commands\playcammovement.inc>
 #include <grgserver\Commands\radio.inc>
 #include <grgserver\Commands\rc.inc>
 #include <grgserver\Commands\recnpc.inc>
@@ -229,11 +223,10 @@
 #include <grgserver\Commands\repair.inc>
 #include <grgserver\Commands\resetcam.inc>
 #include <grgserver\Commands\savevehicle.inc>
-#include <grgserver\Commands\selectbuilding.inc>
-#include <grgserver\Commands\setbuildingcam.inc>
-#include <grgserver\Commands\setcampos.inc>
+#include <grgserver\Commands\selectproperty.inc>
 #include <grgserver\Commands\setinterior.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
+#include <grgserver\Commands\setpropertycam.inc>
 #include <grgserver\Commands\showinterior.inc>
 #include <grgserver\Commands\spawnvehicle.inc>
 #include <grgserver\Commands\stats.inc>
@@ -242,5 +235,4 @@
 #include <grgserver\Commands\teststart.inc>
 #include <grgserver\Commands\testunfreeze.inc>
 #include <grgserver\Commands\tow.inc>
-#include <grgserver\Commands\usecammovement.inc>
 
