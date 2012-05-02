@@ -1575,4 +1575,8 @@
 		<en>Remove an attached object from your vehicle</en>
 		<de>Entferne ein angehängtes Objekt von deinem Fahrzeug</de>
 	</string>
+	<string id="395">
+		<en>Front headlights</en>
+		<de>Frontscheinwerfer</de>
+	</string>
 </languagestrings>

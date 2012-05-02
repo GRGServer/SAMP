@@ -12,8 +12,8 @@ new playerVariables[MAX_PLAYERS][enum_playerVariable];
 new sqlQuery[1024];
 new svnRevisionChanged;
 new vehicles[MAX_VEHICLES][enum_vehicle];
+new vehicleLightObjects[MAX_VEHICLES][enum_neonType][LIGHTOBJECT_MAXCOLORS];
 new vehicleModels[212][enum_vehicleModel];
-new vehicleNeonLightObjects[MAX_VEHICLES][NEONLIGHT_MAXSLOTS][NEONLIGHT_MAXSUBSLOTS];
 new weapons[][enum_weapon] =
 {
 	{"Fist", 0},// 0

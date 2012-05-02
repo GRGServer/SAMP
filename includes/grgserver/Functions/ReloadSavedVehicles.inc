@@ -16,6 +16,7 @@ ReloadSavedVehicles(playerID = INVALID_PLAYER_ID)
 	{
 		new vehicleID = CreateVehicleEx(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1);
 		VehicleProperty:vehicleID[CURRENTFUEL] = floatstr(GetMySQLField("CurrentFuel"));
+		VehicleProperty:vehicleID[FRONTLIGHTID] = strval(GetMySQLField("FrontLightID"));
 		VehicleProperty:vehicleID[HASNAVI] = strval(GetMySQLField("HasNavi"));
 		VehicleProperty:vehicleID[JOBID] = strval(GetMySQLField("JobID"));
 		VehicleProperty:vehicleID[MILEAGE] = floatstr(GetMySQLField("MileAge"));
@@ -26,9 +27,16 @@ ReloadSavedVehicles(playerID = INVALID_PLAYER_ID)
 		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
 		ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
 		SetVehicleHealth(vehicleID, floatstr(GetMySQLField("Health")));
+		if (VehicleProperty:vehicleID[FRONTLIGHTID])
+		{
+			AddNeonLight(vehicleID, NEONTYPE_FRONT_LEFT, VehicleProperty:vehicleID[FRONTLIGHTID] - 1);
+			AddNeonLight(vehicleID, NEONTYPE_FRONT_CENTER, VehicleProperty:vehicleID[FRONTLIGHTID]  -1);
+			AddNeonLight(vehicleID, NEONTYPE_FRONT_RIGHT, VehicleProperty:vehicleID[FRONTLIGHTID] - 1);
+		}
 		if (VehicleProperty:vehicleID[NEONLIGHTID])
 		{
-			AddNeonLight(vehicleID, VehicleProperty:vehicleID[NEONLIGHTID] - 1);
+			AddNeonLight(vehicleID, NEONTYPE_LEFT, VehicleProperty:vehicleID[NEONLIGHTID] - 1);
+			AddNeonLight(vehicleID, NEONTYPE_RIGHT, VehicleProperty:vehicleID[NEONLIGHTID] - 1);
 		}
 		count++;
 	}

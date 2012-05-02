@@ -75,6 +75,10 @@
 #define LANGUAGE_MAXSTRINGS			400
 
 
+// Light objects
+#define LIGHTOBJECT_MAXCOLORS		2
+
+
 // Limits
 #define MAX_FUNCTION_NAME			32
 #define MAX_MONEY					999999.99// Display on screen
@@ -85,11 +89,6 @@
 #define MYSQL_HOST					"127.0.0.1"
 #define MYSQL_PASSWORD				"9wLjVfZLJPHbnS5A"
 #define MYSQL_USERNAME				"grg_server"
-
-
-// Neon lights
-#define NEONLIGHT_MAXSLOTS			2
-#define NEONLIGHT_MAXSUBSLOTS		2
 
 
 // News configuration

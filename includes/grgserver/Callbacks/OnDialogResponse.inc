@@ -1115,19 +1115,40 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		}
 		case DIALOG_UPGRADEVEHICLE:
 		{
+			if (!strcmp(inputtext, LanguageString(playerid, 395)))// Front headlights
+			{
+				PVar:playerid[UPGRADEVEHICLE_LIGHTTYPE] = 1;
+				ShowDialog(playerid, DIALOG_UPGRADEVEHICLE_LIGHT);
+			}
 			if (!strcmp(inputtext, LanguageString(playerid, 375)))// Neon lights
 			{
-				ShowDialog(playerid, DIALOG_UPGRADEVEHICLE_NEONLIGHT);
+				PVar:playerid[UPGRADEVEHICLE_LIGHTTYPE] = 2;
+				ShowDialog(playerid, DIALOG_UPGRADEVEHICLE_LIGHT);
 			}
 		}
-		case DIALOG_UPGRADEVEHICLE_NEONLIGHT:
+		case DIALOG_UPGRADEVEHICLE_LIGHT:
 		{
 			if (response)
 			{
 				new vehicleID = GetPlayerVehicleID(playerid);
 				if (vehicleID)
 				{
-					AddNeonLight(vehicleID, listitem);
+					switch (PVar:playerid[UPGRADEVEHICLE_LIGHTTYPE])
+					{
+						case 1:
+						{
+							AddNeonLight(vehicleID, NEONTYPE_FRONT_LEFT, listitem);
+							AddNeonLight(vehicleID, NEONTYPE_FRONT_CENTER, listitem);
+							AddNeonLight(vehicleID, NEONTYPE_FRONT_RIGHT, listitem);
+							VehicleProperty:vehicleID[FRONTLIGHTID] = listitem + 1;
+						}
+						case 2:
+						{
+							AddNeonLight(vehicleID, NEONTYPE_LEFT, listitem);
+							AddNeonLight(vehicleID, NEONTYPE_RIGHT, listitem);
+							VehicleProperty:vehicleID[NEONLIGHTID] = listitem + 1;
+						}
+					}
 				}
 				else
 				{

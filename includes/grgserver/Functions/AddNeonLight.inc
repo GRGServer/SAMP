@@ -1,104 +1,113 @@
-AddNeonLight(vehicleID, neonID)
+AddNeonLight(vehicleID, type, neonID)
 {
-	new slot[NEONLIGHT_MAXSLOTS][NEONLIGHT_MAXSUBSLOTS];
-	new Float:slotOffset[NEONLIGHT_MAXSLOTS][3] = 
+	new color[LIGHTOBJECT_MAXCOLORS];
+	new Float:posX;
+	new Float:posY;
+	new Float:posZ;
+	new Float:rotX;
+	new Float:rotY;
+	new Float:rotZ;
+	switch (type)
 	{
-		{0.8, 0.0, -0.70},
-		{-0.8, 0.0, -0.70}
-	};
-	new Float:slotRotation[NEONLIGHT_MAXSLOTS][3] = 
-	{
-		{0.0, 0.0, 0.0},
-		{0.0, 0.0, 0.0}
-	};
-	VehicleProperty:vehicleID[NEONLIGHTID] = neonID + 1;
+		case NEONTYPE_FRONT_LEFT:
+		{
+			posX = -1;
+			posY = 7;
+			posZ = -1;
+		}
+		case NEONTYPE_FRONT_CENTER:
+		{
+			posX = 0;
+			posY = 2.55;
+			posZ = -0.2;
+			rotZ = -90;
+		}
+		case NEONTYPE_FRONT_RIGHT:
+		{
+			posX = 1;
+			posY = 7;
+			posZ = -1;
+		}
+		case NEONTYPE_LEFT:
+		{
+			posX = -0.8;
+			posZ = -0.7;
+		}
+		case NEONTYPE_RIGHT:
+		{
+			posX = 0.8;
+			posZ = -0.7;
+		}
+	}
 	switch (neonID)
 	{
 		case NEON_DARKBLUE:
 		{
-			slot[0][0] = 18648;
-			slot[1][0] = 18648;
+			color[0] = 18648;
 		}
 		case NEON_GOLD:
 		{
-			slot[0][0] = 18652;
-			slot[0][1] = 18650;
-			slot[1][0] = 18652;
-			slot[1][1] = 18650;
+			color[0] = 18652;
+			color[1] = 18650;
 		}
 		case NEON_GREEN:
 		{
-			slot[0][0] = 18649;
-			slot[1][0] = 18649;
+			color[0] = 18649;
 		}
 		case NEON_LIGHTBLUE:
 		{
-			slot[0][0] = 18648;
-			slot[0][1] = 18652;
-			slot[1][0] = 18648;
-			slot[1][1] = 18652;
+			color[0] = 18648;
+			color[1] = 18652;
 		}
 		case NEON_LIGHTGREEN:
 		{
-			slot[0][0] = 18649;
-			slot[0][1] = 18652;
-			slot[1][0] = 18649;
-			slot[1][1] = 18652;
+			color[0] = 18649;
+			color[1] = 18652;
 		}
 		case NEON_ORANGE:
 		{
-			slot[0][0] = 18647;
-			slot[0][1] = 18650;
-			slot[1][0] = 18647;
-			slot[1][1] = 18650;
+			color[0] = 18647;
+			color[1] = 18650;
 		}
 		case NEON_PINK:
 		{
-			slot[0][0] = 18647;
-			slot[0][1] = 18652;
-			slot[1][0] = 18647;
-			slot[1][1] = 18652;
+			color[0] = 18647;
+			color[1] = 18652;
 		}
 		case NEON_PURPLE:
 		{
-			slot[0][0] = 18651;
-			slot[1][0] = 18651;
+			color[0] = 18651;
 		}
 		case NEON_RED:
 		{
-			slot[0][0] = 18647;
-			slot[1][0] = 18647;
+			color[0] = 18647;
 		}
 		case NEON_TURQUOISE:
 		{
-			slot[0][0] = 18648;
-			slot[0][1] = 18649;
-			slot[1][0] = 18648;
-			slot[1][1] = 18649;
+			color[0] = 18648;
+			color[1] = 18649;
 		}
 		case NEON_WHITE:
 		{
-			slot[0][0] = 18652;
-			slot[1][0] = 18652;
+			color[0] = 18652;
 		}
 		case NEON_YELLOW:
 		{
-			slot[0][0] = 18650;
-			slot[1][0] = 18650;
+			color[0] = 18650;
 		}
 	}
-	Count(slotID, NEONLIGHT_MAXSLOTS)
+	Count(colorID, LIGHTOBJECT_MAXCOLORS)
 	{
-		Count(subSlotID, NEONLIGHT_MAXSUBSLOTS)
+		if (vehicleLightObjects[vehicleID][enum_neonType:type][colorID])
 		{
-			DestroyDynamicObject(vehicleNeonLightObjects[vehicleID][slotID][subSlotID]);
-			if (slot[slotID][subSlotID])
-			{
-				new objectID = CreateDynamicObject(slot[slotID][subSlotID], 0, 0, 0, 0, 0, 0);
-				AttachDynamicObjectToVehicle(objectID, vehicleID, slotOffset[slotID][0], slotOffset[slotID][1], slotOffset[slotID][2], slotRotation[slotID][0], slotRotation[slotID][1], slotRotation[slotID][2]);
-				Streamer_SetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID, OBJECTTYPE_NEONLIGHT);
-				vehicleNeonLightObjects[vehicleID][slotID][subSlotID] = objectID;
-			}
+			DestroyDynamicObject(vehicleLightObjects[vehicleID][enum_neonType:type][colorID]);
+		}
+		if (color[colorID])
+		{
+			new objectID = CreateDynamicObject(color[colorID], 0, 0, 0, 0, 0, 0);
+			AttachDynamicObjectToVehicle(objectID, vehicleID, posX, posY, posZ, rotX, rotY, rotZ);
+			Streamer_SetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID, OBJECTTYPE_NEONLIGHT);
+			vehicleLightObjects[vehicleID][enum_neonType:type][colorID] = objectID;
 		}
 	}
 }

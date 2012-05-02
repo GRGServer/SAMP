@@ -6,4 +6,5 @@ public OnVehicleDeath(vehicleid, killerid)
 		MySQLQuery("DELETE FROM `vehiclecomponents` WHERE `ID` = '%d'", vehicles[vehicleid][VEHICLE_SAVEID]);
 		vehicles[vehicleid][VEHICLE_SAVEID] = 0;
 	}
+	RemoveVehicleLightObjects(vehicleid);
 }

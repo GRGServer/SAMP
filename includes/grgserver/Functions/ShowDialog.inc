@@ -432,10 +432,11 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 		case DIALOG_UPGRADEVEHICLE:
 		{
 			new options[1024];
+			AddLine(options, LanguageString(playerID, 395));
 			AddLine(options, LanguageString(playerID, 375));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 374), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
 		}
-		case DIALOG_UPGRADEVEHICLE_NEONLIGHT:
+		case DIALOG_UPGRADEVEHICLE_LIGHT:
 		{
 			new options[1024];
 			for (new stringID = 362; stringID <=373; stringID++)

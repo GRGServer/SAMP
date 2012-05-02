@@ -8,6 +8,7 @@
 // Structures
 #include <grgserver\Structures\enum_languageString.inc>
 #include <grgserver\Structures\enum_naviLocation.inc>
+#include <grgserver\Structures\enum_neonType.inc>
 #include <grgserver\Structures\enum_permission.inc>
 #include <grgserver\Structures\enum_pickup.inc>
 #include <grgserver\Structures\enum_pickupLoader.inc>
@@ -78,6 +79,7 @@
 #include <grgserver\Functions\ReloadVehicleModels.inc>
 #include <grgserver\Functions\RemoveNewLine.inc>
 #include <grgserver\Functions\RemovePlayerCheckpoint.inc>
+#include <grgserver\Functions\RemoveVehicleLightObjects.inc>
 #include <grgserver\Functions\ResetPlayerVariables.inc>
 #include <grgserver\Functions\SavePlayer.inc>
 #include <grgserver\Functions\SaveVehicle.inc>
