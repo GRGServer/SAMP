@@ -95,16 +95,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		new pickupID = IsPlayerInPickup(playerid);
 		if (pickupID)
 		{
-			FormatNew:functionName[MAX_FUNCTION_NAME]("PUE_%s", pickups[pickupID][PICKUP_TYPE]);// PUE = PickUpEvent
-			if (funcidx(functionName) == -1)
-			{
-				printf("Unknown pickup type: %s", pickups[pickupID][PICKUP_TYPE]);
-			}
-			else
-			{
-				PlaySound(playerid, SOUND_PICKUPKEYPRESSED);
-				CallLocalFunction(functionName, "dd", playerid, pickupID);
-			}
+			PickupEvent(playerid, pickupID, PICKUPEVENT_KEYPRESS);
 			return true;
 		}
 	}

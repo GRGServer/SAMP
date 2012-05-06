@@ -61,6 +61,7 @@
 #include <grgserver\Functions\InterpolateCameraToPos.inc>
 #include <grgserver\Functions\IsLoggedIn.inc>
 #include <grgserver\Functions\IsPlayerInPickup.inc>
+#include <grgserver\Functions\IsValidPickupType.inc>
 #include <grgserver\Functions\IsValidSkin.inc>
 #include <grgserver\Functions\IsValidWeapon.inc>
 #include <grgserver\Functions\LanguageString.inc>
@@ -70,6 +71,7 @@
 #include <grgserver\Functions\MoneyTransaction.inc>
 #include <grgserver\Functions\MySQLEscapeString.inc>
 #include <grgserver\Functions\PayDay.inc>
+#include <grgserver\Functions\PickupEvent.inc>
 #include <grgserver\Functions\PlayRadioStation.inc>
 #include <grgserver\Functions\PlaySound.inc>
 #include <grgserver\Functions\ReconnectNPCs.inc>
@@ -164,6 +166,7 @@
 #include <grgserver\Pickups\Pickup_GasStation.inc>
 #include <grgserver\Pickups\Pickup_Hotel.inc>
 #include <grgserver\Pickups\Pickup_House.inc>
+#include <grgserver\Pickups\Pickup_InteriorExit.inc>
 #include <grgserver\Pickups\Pickup_Place.inc>
 #include <grgserver\Pickups\Pickup_Police.inc>
 #include <grgserver\Pickups\Pickup_Taxi.inc>
@@ -224,6 +227,7 @@
 #include <grgserver\Commands\mysqlstatus.inc>
 #include <grgserver\Commands\navi.inc>
 #include <grgserver\Commands\news.inc>
+#include <grgserver\Commands\nextinterior.inc>
 #include <grgserver\Commands\nocamproperty.inc>
 #include <grgserver\Commands\npccmd.inc>
 #include <grgserver\Commands\ordervehicle.inc>
@@ -249,12 +253,14 @@
 #include <grgserver\Commands\setinterior.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
 #include <grgserver\Commands\setpropertycam.inc>
+#include <grgserver\Commands\setspawn.inc>
 #include <grgserver\Commands\showinterior.inc>
 #include <grgserver\Commands\spawnvehicle.inc>
 #include <grgserver\Commands\stats.inc>
 #include <grgserver\Commands\stoprec.inc>
 #include <grgserver\Commands\teleport.inc>
 #include <grgserver\Commands\testbank.inc>
+#include <grgserver\Commands\testpickup.inc>
 #include <grgserver\Commands\teststart.inc>
 #include <grgserver\Commands\testunfreeze.inc>
 #include <grgserver\Commands\toggleclock.inc>

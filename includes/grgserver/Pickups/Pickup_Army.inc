@@ -1,6 +1,14 @@
-PickupEvent:ARMY(playerID, pickupID)
+PickupEvent:ARMY(playerID, pickupID, eventType)
 {
-	ShowDialog(playerID, DIALOG_ARMY);
+	switch (eventType)
+	{
+		case PICKUPEVENT_KEYPRESS:
+		{
+			ShowDialog(playerID, DIALOG_ARMY);
+			return true;
+		}
+	}
+	return false;
 }
 
 PickupModelID:ARMY(pickupID)

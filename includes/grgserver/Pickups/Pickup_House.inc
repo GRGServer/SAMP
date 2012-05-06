@@ -1,31 +1,47 @@
-PickupEvent:HOUSE(playerID, pickupID)
+PickupEvent:HOUSE(playerID, pickupID, eventType)
 {
-	new ownerUserID = strval(GetMySQLValue("properties", "OwnerUserID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
-	if (ownerUserID)
+	switch (eventType)
 	{
-		if (ownerUserID == PVar:playerID[USERID])
+		case PICKUPEVENT_KEYPRESS:
 		{
-			PVar:playerID[DIALOGPROPERTYID] = strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
-			ShowDialog(playerID, DIALOG_HOUSE);
+			new ownerUserID = strval(GetMySQLValue("properties", "OwnerUserID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
+			if (ownerUserID)
+			{
+				if (ownerUserID == PVar:playerID[USERID])
+				{
+					PVar:playerID[DIALOGPROPERTYID] = strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
+					ShowDialog(playerID, DIALOG_HOUSE);
+				}
+				else
+				{
+					SendClientMessageEx(playerID, COLOR_ERROR, 141, GetMySQLValue("users", "Username", "ID", val2str(ownerUserID)));
+				}
+			}
+			else
+			{
+				new Float:price = floatstr(GetMySQLValue("properties", "Price", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
+				if (price <= PVar:playerID[BANKMONEY])
+				{
+					PVar:playerID[DIALOGPROPERTYID] = strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
+					ShowDialog(playerID, DIALOG_BUYHOUSE, FormatMoney(price));
+				}
+				else
+				{
+					SendClientMessageEx(playerID, COLOR_ERROR, 22, price, PVar:playerID[BANKMONEY]);
+				}
+			}
+			return true;
 		}
-		else
+		case PICKUPEVENT_PICKUP:
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 141, GetMySQLValue("users", "Username", "ID", val2str(ownerUserID)));
+			if (permissions[playerID][PERMISSION_MAPPER])
+			{
+				SendClientMessageEx(playerID, COLOR_INFO, 338);
+			}
+			return false;
 		}
 	}
-	else
-	{
-		new Float:price = floatstr(GetMySQLValue("properties", "Price", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
-		if (price <= PVar:playerID[BANKMONEY])
-		{
-			PVar:playerID[DIALOGPROPERTYID] = strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
-			ShowDialog(playerID, DIALOG_BUYHOUSE, FormatMoney(price));
-		}
-		else
-		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 22, price, PVar:playerID[BANKMONEY]);
-		}
-	}
+	return false;
 }
 
 PickupModelID:HOUSE(pickupID)

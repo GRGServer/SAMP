@@ -1,12 +1,12 @@
-TeleportToProperty(playerID, buildingID)
+TeleportToProperty(playerID, propertyID)
 {
-	new interiorID = strval(GetMySQLValue("properties", "InteriorID", "ID", val2str(buildingID)));
+	new interiorID = strval(GetMySQLValue("properties", "InteriorID", "ID", val2str(propertyID)));
 	if (interiorID)
 	{
 		if (TeleportToInterior(playerID, interiorID))
 		{
-			PVar:playerID[CURRENTPROPERTYID] = buildingID;
-			SetPlayerVirtualWorld(playerID, buildingID);
+			PVar:playerID[CURRENTPROPERTYID] = propertyID;
+			SetPlayerVirtualWorld(playerID, propertyID);
 			return true;
 		}
 	}

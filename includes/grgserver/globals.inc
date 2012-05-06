@@ -73,3 +73,7 @@ new Float:gasPrice;
 
 // TextDraws
 new Text:textDrawClock;
+
+
+// Tests
+new testPickup[MAX_PLAYERS];

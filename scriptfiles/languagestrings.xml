@@ -1056,7 +1056,7 @@
 		<de>Du hast noch nicht das Ziel auf deiner Karte ausgewählt!</de>
 	</string>
 	<string id="265">
-		<en>You vehicle gets filled up. Please wait...</en>
+		<en>Your vehicle gets filled up. Please wait...</en>
 		<de>Dein Fahrzeug wird getankt. Bitte warten...</de>
 	</string>
 	<string id="266">
@@ -1348,8 +1348,8 @@
 		<de>Dieses Pickup ist nicht mit einer Immobilie verknüpft!</de>
 	</string>
 	<string id="338">
-		<en>Press ~k~~SNEAK_ABOUT~ to select the property linked to this pickup (If available)</en>
-		<de>Drücke ~k~~SNEAK_ABOUT~ um die Immobilie auszuwählen welches mit diesem Pickup verknüpft ist (Wenn verfügbar)</de>
+		<en>Press ~k~~SNEAK_ABOUT~ to select the property linked to this pickup</en>
+		<de>Drücke ~k~~SNEAK_ABOUT~ um die Immobilie auszuwählen welches mit diesem Pickup verknüpft ist</de>
 	</string>
 	<string id="339">
 		<en>Activate the navigation system</en>
@@ -1598,5 +1598,25 @@
 	<string id="400">
 		<en>Toggle the clock in the top right corner</en>
 		<de>Aktiviere/Deaktiviere die Uhr in der oberen rechten Ecke</de>
+	</string>
+	<string id="401">
+		<en>Set the interior spawn point</en>
+		<de>Den Spawnpunkt des Interiors festlegen</de>
+	</string>
+	<string id="402">
+		<en>Teleport to the next interior</en>
+		<de>Teleportiere dich zum nächsten Interior</de>
+	</string>
+	<string id="403">
+		<en>The spawn position for the interior has been set</en>
+		<de>Die Spawnposition für den Interior wurde festgelegt</de>
+	</string>
+	<string id="404">
+		<en>You are not in an interior!</en>
+		<de>Du bist in keinem Interior!</de>
+	</string>
+	<string id="405">
+		<en>You are now in interior %d</en>
+		<de>Du bist jetzt in Interior %d</de>
 	</string>
 </languagestrings>

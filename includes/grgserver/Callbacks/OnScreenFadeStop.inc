@@ -30,6 +30,15 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 				SetCameraBehindPlayer(playerID);
 				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_GASSTATION_BACK);
 			}
+			case FADE_LEAVEPROPERTY_BACK:
+			{
+				TogglePlayerControllable(playerID, true);
+			}
+			case FADE_LEAVEPROPERTY_BLACK:
+			{
+				LeaveProperty(playerID);
+				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_LEAVEPROPERTY_BACK);
+			}
 			case FADE_RESPAWN_BACK:
 			{
 				TogglePlayerControllable(playerID, true);

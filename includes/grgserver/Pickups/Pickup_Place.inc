@@ -1,6 +1,14 @@
-PickupEvent:PLACE(playerID, pickupID)
+PickupEvent:PLACE(playerID, pickupID, eventType)
 {
-	SendClientMessage(playerID, COLOR_SYSTEM, "This is a pickup used for open places which can be bought");
+	switch (eventType)
+	{
+		case PICKUPEVENT_KEYPRESS:
+		{
+			SendClientMessage(playerID, COLOR_SYSTEM, "This is a pickup used for open places which can be bought");
+			return true;
+		}
+	}
+	return false;
 }
 
 PickupModelID:PLACE(pickupID)

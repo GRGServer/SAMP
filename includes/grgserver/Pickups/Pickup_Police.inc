@@ -1,13 +1,21 @@
-PickupEvent:POLICE(playerID, pickupID)
+PickupEvent:POLICE(playerID, pickupID, eventType)
 {
-	if (PVar:playerID[JOBID] == JOB_POLICE)
+	switch (eventType)
 	{
-		ShowDialog(playerID, DIALOG_POLICE_OPTIONS);
+		case PICKUPEVENT_KEYPRESS:
+		{
+			if (PVar:playerID[JOBID] == JOB_POLICE)
+			{
+				ShowDialog(playerID, DIALOG_POLICE_OPTIONS);
+			}
+			else
+			{
+				ShowDialog(playerID, DIALOG_POLICE_JOB);
+			}
+			return true;
+		}
 	}
-	else
-	{
-		ShowDialog(playerID, DIALOG_POLICE_JOB);
-	}
+	return false;
 }
 
 PickupModelID:POLICE(pickupID)

@@ -1,13 +1,21 @@
-PickupEvent:TRUCKER(playerID, pickupID)
+PickupEvent:TRUCKER(playerID, pickupID, eventType)
 {
-	if (PVar:playerID[JOBID] == JOB_TRUCKER)
+	switch (eventType)
 	{
-		ShowDialog(playerID, DIALOG_TRUCKER_OPTIONS);
+		case PICKUPEVENT_KEYPRESS:
+		{
+			if (PVar:playerID[JOBID] == JOB_TRUCKER)
+			{
+				ShowDialog(playerID, DIALOG_TRUCKER_OPTIONS);
+			}
+			else
+			{
+				ShowDialog(playerID, DIALOG_TRUCKER_JOB);
+			}
+			return true;
+		}
 	}
-	else
-	{
-		ShowDialog(playerID, DIALOG_TRUCKER_JOB);
-	}
+	return false;
 }
 
 PickupModelID:TRUCKER(pickupID)

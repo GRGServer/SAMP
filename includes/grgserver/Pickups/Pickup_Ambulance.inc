@@ -1,6 +1,9 @@
-PickupEvent:AMBULANCE(playerID, pickupID)
+PickupEvent:AMBULANCE(playerID, pickupID, eventType)
 {
-	ShowDialog(playerID, DIALOG_AMBULANCE);
+	if (eventType == PICKUPEVENT_KEYPRESS)
+	{
+		ShowDialog(playerID, DIALOG_AMBULANCE);
+	}
 }
 
 PickupModelID:AMBULANCE(pickupID)

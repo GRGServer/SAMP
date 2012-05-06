@@ -1,6 +1,11 @@
-PickupEvent:ESTATEAGENTS(playerID, pickupID)
+PickupEvent:ESTATEAGENTS(playerID, pickupID, eventType)
 {
-	ShowDialog(playerID, DIALOG_ESTATEAGENTS);
+	if (eventType == PICKUPEVENT_KEYPRESS)
+	{
+		ShowDialog(playerID, DIALOG_ESTATEAGENTS);
+		return true;
+	}
+	return false;
 }
 
 PickupModelID:ESTATEAGENTS(pickupID)

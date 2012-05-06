@@ -1,13 +1,21 @@
-PickupEvent:VEHICLEDEALER(playerID, pickupID)
+PickupEvent:VEHICLEDEALER(playerID, pickupID, eventType)
 {
-	if (PVar:playerID[JOBID] == JOB_VEHICLEDEALER)
+	switch (eventType)
 	{
-		ShowDialog(playerID, DIALOG_VEHICLEDEALER_OPTIONS);
+		case PICKUPEVENT_KEYPRESS:
+		{
+			if (PVar:playerID[JOBID] == JOB_VEHICLEDEALER)
+			{
+				ShowDialog(playerID, DIALOG_VEHICLEDEALER_OPTIONS);
+			}
+			else
+			{
+				ShowDialog(playerID, DIALOG_VEHICLEDEALER_JOB);
+			}
+			return true;
+		}
 	}
-	else
-	{
-		ShowDialog(playerID, DIALOG_VEHICLEDEALER_JOB);
-	}
+	return false;
 }
 
 PickupModelID:VEHICLEDEALER(pickupID)

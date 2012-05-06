@@ -1,15 +1,23 @@
-PickupEvent:BANK(playerID, pickupID)
+PickupEvent:BANK(playerID, pickupID, eventType)
 {
-	TeleportToProperty(playerID, strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
-	new bankID = strval(GetUserDBValue(playerID, "BankID"));
-	if (bankID)
+	switch (eventType)
 	{
-		ShowDialog(playerID, DIALOG_BANK_HASACCOUNT);
+		case PICKUPEVENT_KEYPRESS:
+		{
+			TeleportToProperty(playerID, strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
+			new bankID = strval(GetUserDBValue(playerID, "BankID"));
+			if (bankID)
+			{
+				ShowDialog(playerID, DIALOG_BANK_HASACCOUNT);
+			}
+			else
+			{
+				ShowDialog(playerID, DIALOG_BANK_NEWACCOUNT);
+			}
+			return true;
+		}
 	}
-	else
-	{
-		ShowDialog(playerID, DIALOG_BANK_NEWACCOUNT);
-	}
+	return false;
 }
 
 PickupModelID:BANK(pickupID)

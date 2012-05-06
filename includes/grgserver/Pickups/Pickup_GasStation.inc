@@ -1,30 +1,35 @@
-PickupEvent:GASSTATION(playerID, pickupID)
+PickupEvent:GASSTATION(playerID, pickupID, eventType)
 {
-	new vehicleID = GetPlayerVehicleID(playerID);
-	if (vehicleID)
+	if (eventType == PICKUPEVENT_KEYPRESS)
 	{
-		new modelID = GetVehicleModel(vehicleID);
-		if (modelID >= 400 && modelID <= 611)
+		new vehicleID = GetPlayerVehicleID(playerID);
+		if (vehicleID)
 		{
-			new Float:maximum = floatsub(vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
-			if (maximum > 0)
+			new modelID = GetVehicleModel(vehicleID);
+			if (modelID >= 400 && modelID <= 611)
 			{
-				ShowDialog(playerID, DIALOG_REFUEL, FormatMoney(maximum));
+				new Float:maximum = floatsub(vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
+				if (maximum > 0)
+				{
+					ShowDialog(playerID, DIALOG_REFUEL, FormatMoney(maximum));
+				}
+				else
+				{
+					SendClientMessageEx(playerID, COLOR_ERROR, 140);
+				}
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, 140);
+				SendClientMessageEx(playerID, COLOR_ERROR, 146);
 			}
 		}
 		else
 		{
 			SendClientMessageEx(playerID, COLOR_ERROR, 146);
 		}
+		return true;
 	}
-	else
-	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 146);
-	}
+	return false;
 }
 
 PickupModelID:GASSTATION(pickupID)

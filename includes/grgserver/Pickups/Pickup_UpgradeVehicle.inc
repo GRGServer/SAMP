@@ -1,20 +1,28 @@
-PickupEvent:UPGRADEVEHICLE(playerID, pickupID)
+PickupEvent:UPGRADEVEHICLE(playerID, pickupID, eventType)
 {
-	if (IsPlayerInAnyVehicle(playerID))
+	switch (eventType)
 	{
-		if (GetPlayerVehicleSeat(playerID) == 0)
+		case PICKUPEVENT_KEYPRESS:
 		{
-			ShowDialog(playerID, DIALOG_UPGRADEVEHICLE);
-		}
-		else
-		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 52);
+			if (IsPlayerInAnyVehicle(playerID))
+			{
+				if (GetPlayerVehicleSeat(playerID) == 0)
+				{
+					ShowDialog(playerID, DIALOG_UPGRADEVEHICLE);
+				}
+				else
+				{
+					SendClientMessageEx(playerID, COLOR_ERROR, 52);
+				}
+			}
+			else
+			{
+				SendClientMessageEx(playerID, COLOR_ERROR, 146);
+			}
+			return true;
 		}
 	}
-	else
-	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 146);
-	}
+	return false;
 }
 
 PickupModelID:UPGRADEVEHICLE(pickupID)
