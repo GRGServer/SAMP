@@ -63,7 +63,7 @@ public OnGameModeInit()
 	ReloadLanguageStrings();
 	ReloadObjects();
 	ReloadVehicleModels();
-	ReloadSavedVehicles();
+	ReloadVehicles(true);
 	ReloadPickups();
 	CreateGlobalTextDraws();
 	print("* Doing misc stuff...");
@@ -73,11 +73,9 @@ public OnGameModeInit()
 	ShowPlayerMarkers(PLAYER_MARKERS_MODE_OFF);
 	DisableInteriorEnterExits();
 	Streamer_VisibleItems(STREAMER_TYPE_OBJECT, MAX_OBJECTS);
-	UpdateGasPrice();
 	print("* Starting timers...");
 	StartTimer:EVERYMINUTE("Timer_EveryMinute", true);
 	StartTimer:FAST("Timer_Fast", true);
-	StartTimer:HOURLY("Timer_Hourly", true);
 	StartTimer:SLOW("Timer_Slow", true);
 	StartTimer:STABLECHECK("Timer_StableCheck", false);
 	ReconnectNPCs();

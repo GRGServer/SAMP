@@ -32,7 +32,7 @@ ReloadPickups(playerID = INVALID_PLAYER_ID)
 		{
 			if (AddPickup(pickupID, pickupLoader[pickupID][PICKUPLOADER_TYPE], pickupLoader[pickupID][PICKUPLOADER_POSX], pickupLoader[pickupID][PICKUPLOADER_POSY], pickupLoader[pickupID][PICKUPLOADER_POSZ], false) == -1)
 			{
-				printf("Invalid pickup type: %s", pickupLoader[pickupID][PICKUPLOADER_TYPE]);
+				AdminPrint(playerID, COLOR_ERROR, "Invalid pickup type: %s", pickupLoader[pickupID][PICKUPLOADER_TYPE]);
 			}
 			else
 			{

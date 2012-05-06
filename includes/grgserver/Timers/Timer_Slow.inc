@@ -17,6 +17,12 @@ Timer:Slow()
 	FormatNew:clockString[6]("%s:%s", hourString, minuteString);
 	TextDrawSetString(textDrawClock, clockString);
 	SetWorldTime(hour);
+	if (hour != gasPriceChangeHour)
+	{
+		gasPrice = float(GASSTATION_MINPRICE + random(GASSTATION_MAXDIFFERENCE)) / 100;
+		gasPriceChangeHour = hour;
+		printf("Updated gas price to $%s", FormatMoney(gasPrice));
+	}
 	//mysql_ping();
 	if (fexist(FILE_UPDATENOTIFICATION))
 	{

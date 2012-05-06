@@ -1,10 +1,17 @@
 public OnVehicleDeath(vehicleid, killerid)
 {
-	if (vehicles[vehicleid][VEHICLE_SAVEID])
+	if (VehicleProperty:vehicleid[SAVEID] && VehicleProperty:vehicleid[ALLOWSAVE])
 	{
-		MySQLQuery("DELETE FROM `savedvehicles` WHERE `ID` = '%d'", vehicles[vehicleid][VEHICLE_SAVEID]);
-		MySQLQuery("DELETE FROM `vehiclecomponents` WHERE `ID` = '%d'", vehicles[vehicleid][VEHICLE_SAVEID]);
-		vehicles[vehicleid][VEHICLE_SAVEID] = 0;
+		if (strval(GetMySQLValue("vehicles", "OwnerUserID", "ID", val2str(VehicleProperty:vehicleid[SAVEID]))) > 0)
+		{
+			MySQLQuery("DELETE FROM `vehicles` WHERE `ID` = '%d'", VehicleProperty:vehicleid[SAVEID]);
+			MySQLQuery("DELETE FROM `vehiclecomponents` WHERE `VehicleID` = '%d'", VehicleProperty:vehicleid[SAVEID]);
+			VehicleProperty:vehicleid[SAVEID] = 0;
+		}
+		else
+		{
+			// TODO: Reload vehicle
+		}
 	}
 	RemoveVehicleLightObjects(vehicleid);
 }

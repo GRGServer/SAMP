@@ -1,4 +1,4 @@
-ReloadSavedVehicles(playerID = INVALID_PLAYER_ID)
+ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 {
 	AdminPrint(playerID, COLOR_INFO, "* Destroying vehicles...");
 	for (new vehicleID = 0; vehicleID < MAX_VEHICLES; vehicleID++)
@@ -8,29 +8,30 @@ ReloadSavedVehicles(playerID = INVALID_PLAYER_ID)
 		VehicleProperty:vehicleID[JOBID] = 0;
 		VehicleProperty:vehicleID[SAVEID] = 0;
 	}
-	AdminPrint(playerID, COLOR_INFO, "* Loading saved vehicles...");
+	AdminPrint(playerID, COLOR_INFO, "* Loading vehicles...");
 	new count;
-	mysql_query("SELECT * FROM `savedvehicles`");
+	mysql_query("SELECT * FROM `vehicles`");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new vehicleID = CreateVehicleEx(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1);
+		new vehicleID = CreateVehicleEx(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1, isStatic);
+		VehicleProperty:vehicleID[ALLOWSAVE] = true;
 		VehicleProperty:vehicleID[CURRENTFUEL] = floatstr(GetMySQLField("CurrentFuel"));
 		VehicleProperty:vehicleID[FRONTLIGHTID] = strval(GetMySQLField("FrontLightID"));
 		VehicleProperty:vehicleID[HASNAVI] = strval(GetMySQLField("HasNavi"));
 		VehicleProperty:vehicleID[JOBID] = strval(GetMySQLField("JobID"));
 		VehicleProperty:vehicleID[MILEAGE] = floatstr(GetMySQLField("MileAge"));
 		VehicleProperty:vehicleID[NEONLIGHTID] = strval(GetMySQLField("NeonLightID"));
-		VehicleProperty:vehicleID[NUMBERPLATE] = strval(GetMySQLField("NumberPlateID"));
+		format(VehicleProperty:vehicleID[NUMBERPLATE], STRINGLENGTH_NUMBERPLATE, GetMySQLField("Numberplate"));
 		VehicleProperty:vehicleID[RADIOSTATION] = strval(GetMySQLField("LastRadioStation"));
 		VehicleProperty:vehicleID[SAVEID] = strval(GetMySQLField("ID"));
 		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
 		ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
 		SetVehicleHealth(vehicleID, floatstr(GetMySQLField("Health")));
+		SetVehicleNumberPlate(vehicleID, VehicleProperty:vehicleID[NUMBERPLATE]);
 		if (VehicleProperty:vehicleID[FRONTLIGHTID])
 		{
 			AddNeonLight(vehicleID, NEONTYPE_FRONT_LEFT, VehicleProperty:vehicleID[FRONTLIGHTID] - 1);
-			AddNeonLight(vehicleID, NEONTYPE_FRONT_CENTER, VehicleProperty:vehicleID[FRONTLIGHTID]  -1);
 			AddNeonLight(vehicleID, NEONTYPE_FRONT_RIGHT, VehicleProperty:vehicleID[FRONTLIGHTID] - 1);
 		}
 		if (VehicleProperty:vehicleID[NEONLIGHTID])
@@ -41,43 +42,51 @@ ReloadSavedVehicles(playerID = INVALID_PLAYER_ID)
 		count++;
 	}
 	mysql_free_result();
-	AdminPrint(playerID, COLOR_INFO, "  %d saved vehicles loaded", count);
+	AdminPrint(playerID, COLOR_INFO, "  %d vehicles loaded", count);
 	count = 0;
 	AdminPrint(playerID, COLOR_INFO, "* Adding vehicle components...");
 	mysql_query("SELECT * FROM `vehiclecomponents`");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
+		new foundVehicle;
 		for (new vehicleID = 0; vehicleID < MAX_VEHICLES; vehicleID++)
 		{
 			if (vehicles[vehicleID][VEHICLE_SAVEID] == strval(GetMySQLField("VehicleID")))
 			{
 				AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component")));
 				count++;
+				foundVehicle = true;
 				break;
 			}
+		}
+		if (!foundVehicle)
+		{
+			AdminPrint(playerID, COLOR_ERROR, "  Vehicle not found: %d", strval(GetMySQLField("VehicleID")));
 		}
 	}
 	mysql_free_result();
 	AdminPrint(playerID, COLOR_INFO, "  %d vehicle components added", count);
 	count = 0;
-	AdminPrint(playerID, COLOR_INFO, "* Adding number plates...");
-	mysql_query("SELECT * FROM `numberplates`");
+	AdminPrint(playerID, COLOR_INFO, "* Put NPCs in vehicles...");
+	mysql_query("SELECT * FROM `npcs` WHERE `VehicleID` != '0'");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new numberPlateID = strval(GetMySQLField("ID"));
-		Count(vehicleID, MAX_VEHICLES)
+		new vehicleID = GetVehicleBySaveID(strval(GetMySQLField("VehicleID")));
+		if (vehicleID != INVALID_VEHICLE_ID)
 		{
-			if (vehicles[vehicleID][VEHICLE_NUMBERPLATE] == numberPlateID)
+			VehicleProperty:vehicleID[ALLOWSAVE] = false;
+			new npcPlayerID;
+			FormatNew:npcName[MAX_PLAYER_NAME]("NPC_%s", GetMySQLField("Name"));
+			sscanf(npcName, "u", npcPlayerID);
+			if (npcPlayerID != INVALID_PLAYER_ID)
 			{
-				FormatNew:numberPlateText[16]("%s %s %d", GetMySQLField("Content1"), GetMySQLField("Content2"), strval(GetMySQLField("Content3")));
-				SetVehicleNumberPlate(vehicleID, numberPlateText);
+				PutPlayerInVehicle(npcPlayerID, vehicleID, 0);
 				count++;
-				break;
 			}
 		}
 	}
 	mysql_free_result();
-	AdminPrint(playerID, COLOR_INFO, "  %d number plates added", count);
+	AdminPrint(playerID, COLOR_INFO, "  %d NPCs put in vehicles", count);
 }

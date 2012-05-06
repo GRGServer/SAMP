@@ -97,7 +97,6 @@
 
 
 // NPC configuration
-#define NPC_PAUSEDISTANCE			5// Distance to a player to pause a NPC
 #define NPC_SCRIPTNAME				"npcplayer"
 
 
@@ -135,6 +134,7 @@
 #define STRINGLENGTH_DATETIME		20
 #define STRINGLENGTH_LANGUAGESTRING	256
 #define STRINGLENGTH_LOCATION		100
+#define STRINGLENGTH_NUMBERPLATE	8
 #define STRINGLENGTH_OBJECTNAME		20
 #define STRINGLENGTH_PICKUPTYPE		20
 #define STRINGLENGTH_PROPERTYTYPE	10
@@ -151,7 +151,6 @@
 #define TIMER_EVERYMINUTE			60000// 1 minute
 #define TIMER_FAST					250// 1/4 seconds
 #define TIMER_HIDERADIODISPLAY		3000// Hide radio display after 3 seconds
-#define TIMER_HOURLY				3600000// 1 hour
 #define TIMER_PICKUPTIMEOUT			2000// Only show pickup message if the player didn't pick up a pickup before the timeout of 2 seconds has been reached
 #define TIMER_SLOW					5000// 5 seconds
 #define TIMER_STABLECHECK			600000// Mark server as stable after 10 minutes

@@ -25,12 +25,14 @@ public OnMessageShown(playerID, messageID)
 		}
 		case 6:
 		{
+			//InterpolateCameraToPos(playerID, 1082.5531, 1068.0121, 10.8359, 2000, CAMERA_MOVE);
+			//InterpolateCameraToLookAt(playerID, 1046.4423, 1021.8431, 33.3791, 2000, CAMERA_MOVE);
 			ShowMessage(playerID, 7, 6000);
 		}
 		case 7:
 		{
-			InterpolateCameraPos(playerID, -2740.1819, 405.7733, 4.8635, -2762.4102, 378.8224, 7.4445, 2000, CAMERA_MOVE);
-			InterpolateCameraLookAt(playerID, -2765.4817, 384.6495, 18.3012, -2765.2268, 375.2920, 6.3359, 2000, CAMERA_MOVE);
+			InterpolateCameraToPos(playerID, 1043.6639, 1015.4567, 12.9713, 2000, CAMERA_MOVE);
+			InterpolateCameraToLookAt(playerID, 1045.3195, 1010.8120, 11.0000, 2000, CAMERA_MOVE);
 			ShowMessage(playerID, 8, 5000);
 		}
 		case 8:

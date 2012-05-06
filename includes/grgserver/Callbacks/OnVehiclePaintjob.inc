@@ -1,8 +1,8 @@
 public OnVehiclePaintjob(playerid, vehicleid, paintjobid)
 {
-	if (vehicles[vehicleid][VEHICLE_SAVEID])
+	if (VehicleProperty:vehicleid[SAVEID])
 	{
-		MySQLQuery("UPDATE `savedvehicles` SET `Paintjob` = '%d' WHERE `ID` = '%d'", paintjobid, vehicles[vehicleid][VEHICLE_SAVEID]);
+		MySQLQuery("UPDATE `vehicles` SET `Paintjob` = '%d' WHERE `ID` = '%d'", paintjobid, VehicleProperty:vehicleid[SAVEID]);
 	}
 	return true;
 }

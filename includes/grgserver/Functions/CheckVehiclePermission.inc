@@ -5,7 +5,6 @@ CheckVehiclePermission(playerID, vehicleID)
 		if (!permissions[playerID][PERMISSION_MAPPER])
 		{
 			SendClientMessageEx(playerID, COLOR_ERROR, 129, GetPermissionName(PERMISSION_MAPPER));
-			RemovePlayerFromVehicle(playerID);
 			return false;
 		}
 		else
@@ -22,21 +21,34 @@ CheckVehiclePermission(playerID, vehicleID)
 		else
 		{
 			SendClientMessageEx(playerID, COLOR_ERROR, 327);
-			RemovePlayerFromVehicle(playerID);
 			return false;
 		}
 	}
-	new ownerUserID = strval(GetMySQLValue("savedvehicles", "OwnerUserID", "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID])));
-	if (!ownerUserID)
+	MySQLQuery("SELECT * FROM `vehicles` WHERE `ID` = '%d'", VehicleProperty:vehicleID[SAVEID]);
+	mysql_store_result();
+	new ownerUserID = strval(GetMySQLField("OwnerUserID"));
+	new Float:price = floatstr(GetMySQLField("Price"));
+	if (!ownerUserID && price)
 	{
-		ShowDialog(playerID, DIALOG_BUYVEHICLE, FormatMoney(floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(vehicles[vehicleID][VEHICLE_SAVEID])))));
+		ShowDialog(playerID, DIALOG_BUYVEHICLE, FormatMoney(price));
 		return true;
 	}
 	if (ownerUserID != PVar:playerID[USERID])
 	{
 		SendClientMessageEx(playerID, COLOR_ERROR, 130);
-		RemovePlayerFromVehicle(playerID);
 		return false;
+	}
+	if (!price)
+	{
+		if (!permissions[playerID][PERMISSION_MAPPER])
+		{
+			SendClientMessageEx(playerID, COLOR_ERROR, 129, GetPermissionName(PERMISSION_MAPPER));
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 	return true;
 }

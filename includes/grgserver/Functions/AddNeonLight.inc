@@ -11,32 +11,30 @@ AddNeonLight(vehicleID, type, neonID)
 	{
 		case NEONTYPE_FRONT_LEFT:
 		{
-			posX = -1;
-			posY = 7;
-			posZ = -1;
-		}
-		case NEONTYPE_FRONT_CENTER:
-		{
-			posX = 0;
-			posY = 2.55;
-			posZ = -0.2;
-			rotZ = -90;
+			posX = -1.0;
+			posY = 7.0;
+			posZ = -0.6;
 		}
 		case NEONTYPE_FRONT_RIGHT:
 		{
-			posX = 1;
-			posY = 7;
-			posZ = -1;
+			posX = 1.0;
+			posY = 7.0;
+			posZ = -0.6;
 		}
 		case NEONTYPE_LEFT:
 		{
 			posX = -0.8;
-			posZ = -0.7;
+			posZ = -1.0;
 		}
 		case NEONTYPE_RIGHT:
 		{
 			posX = 0.8;
-			posZ = -0.7;
+			posZ = -1.0;
+		}
+		default:
+		{
+			printf("Invalid neon light type: %d", type);
+			return false;
 		}
 	}
 	switch (neonID)
@@ -110,4 +108,5 @@ AddNeonLight(vehicleID, type, neonID)
 			vehicleLightObjects[vehicleID][enum_neonType:type][colorID] = objectID;
 		}
 	}
+	return true;
 }

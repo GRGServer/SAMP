@@ -33,6 +33,7 @@
 #include <grgserver\Functions\CmdUsageMsg.inc>
 #include <grgserver\Functions\CreateGlobalTextDraws.inc>
 #include <grgserver\Functions\CreateJob.inc>
+#include <grgserver\Functions\CreateUniqueNumberplateText.inc>
 #include <grgserver\Functions\CreateVehicleEx.inc>
 #include <grgserver\Functions\FetchMySQLRow.inc>
 #include <grgserver\Functions\FormatDate.inc>
@@ -52,9 +53,12 @@
 #include <grgserver\Functions\GetPlayerID.inc>
 #include <grgserver\Functions\GetPlayerNameEx.inc>
 #include <grgserver\Functions\GetPlayerVersionEx.inc>
+#include <grgserver\Functions\GetVehicleBySaveID.inc>
 #include <grgserver\Functions\GetVehicleEngineState.inc>
 #include <grgserver\Functions\GivePlayerMoneyEx.inc>
 #include <grgserver\Functions\GivePlayerWeaponEx.inc>
+#include <grgserver\Functions\InterpolateCameraToLookAt.inc>
+#include <grgserver\Functions\InterpolateCameraToPos.inc>
 #include <grgserver\Functions\IsLoggedIn.inc>
 #include <grgserver\Functions\IsPlayerInPickup.inc>
 #include <grgserver\Functions\IsValidSkin.inc>
@@ -74,9 +78,9 @@
 #include <grgserver\Functions\ReloadPermissions.inc>
 #include <grgserver\Functions\ReloadPickup.inc>
 #include <grgserver\Functions\ReloadPickups.inc>
-#include <grgserver\Functions\ReloadSavedVehicles.inc>
 #include <grgserver\Functions\ReloadTextDraws.inc>
 #include <grgserver\Functions\ReloadVehicleModels.inc>
+#include <grgserver\Functions\ReloadVehicles.inc>
 #include <grgserver\Functions\RemoveNewLine.inc>
 #include <grgserver\Functions\RemovePlayerCheckpoint.inc>
 #include <grgserver\Functions\RemoveVehicleLightObjects.inc>
@@ -86,6 +90,7 @@
 #include <grgserver\Functions\SendClientMessageEx.inc>
 #include <grgserver\Functions\SendNPCCommand.inc>
 #include <grgserver\Functions\SetMySQLValue.inc>
+#include <grgserver\Functions\SetPlayerCameraPosEx.inc>
 #include <grgserver\Functions\SetPlayerCheckpointEx.inc>
 #include <grgserver\Functions\SetPlayerMoney.inc>
 #include <grgserver\Functions\SetPlayerPosEx.inc>
@@ -104,7 +109,6 @@
 #include <grgserver\Functions\TeleportTo.inc>
 #include <grgserver\Functions\TeleportToInterior.inc>
 #include <grgserver\Functions\TeleportToProperty.inc>
-#include <grgserver\Functions\UpdateGasPrice.inc>
 #include <grgserver\Functions\WriteChatToDatabase.inc>
 #include <grgserver\Functions\explode.inc>
 #include <grgserver\Functions\str_replace.inc>
@@ -133,6 +137,7 @@
 #include <grgserver\Callbacks\OnPlayerEnteredVehicle.inc>
 #include <grgserver\Callbacks\OnPlayerExitVehicle.inc>
 #include <grgserver\Callbacks\OnPlayerKeyStateChange.inc>
+#include <grgserver\Callbacks\OnPlayerLeftVehicle.inc>
 #include <grgserver\Callbacks\OnPlayerPickUpPickup.inc>
 #include <grgserver\Callbacks\OnPlayerRequestClass.inc>
 #include <grgserver\Callbacks\OnPlayerRequestSpawn.inc>
@@ -158,6 +163,7 @@
 #include <grgserver\Pickups\Pickup_GasStation.inc>
 #include <grgserver\Pickups\Pickup_Hotel.inc>
 #include <grgserver\Pickups\Pickup_House.inc>
+#include <grgserver\Pickups\Pickup_Place.inc>
 #include <grgserver\Pickups\Pickup_Police.inc>
 #include <grgserver\Pickups\Pickup_Taxi.inc>
 #include <grgserver\Pickups\Pickup_Trucker.inc>
@@ -169,7 +175,6 @@
 #include <grgserver\Timers\Timer_Fast.inc>
 #include <grgserver\Timers\Timer_FlyCam.inc>
 #include <grgserver\Timers\Timer_HideRadioDisplay.inc>
-#include <grgserver\Timers\Timer_Hourly.inc>
 #include <grgserver\Timers\Timer_PickupTimeout.inc>
 #include <grgserver\Timers\Timer_RefuelVehicle.inc>
 #include <grgserver\Timers\Timer_ScreenFader.inc>
@@ -214,6 +219,7 @@
 #include <grgserver\Commands\maptp.inc>
 #include <grgserver\Commands\me.inc>
 #include <grgserver\Commands\money.inc>
+#include <grgserver\Commands\mysqlstatus.inc>
 #include <grgserver\Commands\navi.inc>
 #include <grgserver\Commands\news.inc>
 #include <grgserver\Commands\nocamproperty.inc>
@@ -230,8 +236,8 @@
 #include <grgserver\Commands\reloadpermissions.inc>
 #include <grgserver\Commands\reloadpickups.inc>
 #include <grgserver\Commands\reloadplayer.inc>
-#include <grgserver\Commands\reloadsavedvehicles.inc>
 #include <grgserver\Commands\reloadvehiclemodels.inc>
+#include <grgserver\Commands\reloadvehicles.inc>
 #include <grgserver\Commands\repair.inc>
 #include <grgserver\Commands\resetcam.inc>
 #include <grgserver\Commands\savevehicle.inc>
@@ -245,6 +251,7 @@
 #include <grgserver\Commands\stats.inc>
 #include <grgserver\Commands\stoprec.inc>
 #include <grgserver\Commands\teleport.inc>
+#include <grgserver\Commands\testbank.inc>
 #include <grgserver\Commands\teststart.inc>
 #include <grgserver\Commands\testunfreeze.inc>
 #include <grgserver\Commands\tow.inc>

@@ -17,8 +17,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			{
 				id--;
 			}
-			printf("Station: %d", id);
 			PlayRadioStation(playerid, id);
+			return true;
 		}
 	}
 	if (IsKeyPressed(KEY_ANALOG_UP))
@@ -39,8 +39,8 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			{
 				id++;
 			}
-			printf("Station: %d", id);
 			PlayRadioStation(playerid, id);
+			return true;
 		}
 	}
 	if (IsKeyPressed(KEY_NO))
@@ -59,6 +59,15 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	}
 	if (IsKeyPressed(KEY_WALK))
 	{
+		if (PVar:playerid[OBJEDITOR_CURRENTOBJECTID])
+		{
+			new Float:rotX;
+			new Float:rotY;
+			new Float:rotZ;
+			GetDynamicObjectRot(PVar:playerid[OBJEDITOR_CURRENTOBJECTID], rotX, rotY, rotZ);
+			AddObject(playerid, Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_MODEL_ID), rotX, rotY, rotZ);
+			return true;
+		}
 		if (permissions[playerid][PERMISSION_MAPPER])
 		{
 			new pickupID = IsPlayerInPickup(playerid);
@@ -76,6 +85,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					SendClientMessageEx(playerid, COLOR_INFO, 337);
 				}
 				mysql_free_result();
+				return true;
 			}
 		}
 	}

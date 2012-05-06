@@ -44,7 +44,7 @@
 
 // Include File Version
 
-public Streamer_IncludeFileVersion = 0x26102;
+public Streamer_IncludeFileVersion = 0x26104;
 
 #pragma unused Streamer_IncludeFileVersion
 
@@ -150,7 +150,10 @@ native IsDynamicObjectMoving(objectid);
 native AttachCameraToDynamicObject(playerid, objectid);
 native AttachDynamicObjectToVehicle(objectid, vehicleid, Float:offsetx, Float:offsety, Float:offsetz, Float:rx, Float:ry, Float:rz);
 native EditDynamicObject(playerid, objectid);
-native SetDynamicObjectMaterial(objectid, materialindex, modelid, txdname[], texturename[], materialcolor = 0);
+native GetDynamicObjectMaterial(objectid, materialindex, &modelid, txdname[], texturename[], &materialcolor, maxtxdname = sizeof txdname, maxtexturename = sizeof texturename);
+native SetDynamicObjectMaterial(objectid, materialindex, modelid, const txdname[], const texturename[], materialcolor = 0);
+native GetDynamicObjectMaterialText(objectid, materialindex, text[], &materialsize, fontface[], &fontsize, &bold, &fontcolor, &backcolor, &textalignment, maxtext = sizeof text, maxfontface = sizeof fontface);
+native SetDynamicObjectMaterialText(objectid, materialindex, const text[], materialsize = OBJECT_MATERIAL_SIZE_256x128, const fontface[] = "Arial", fontsize = 24, bold = 1, fontcolor = 0xFFFFFFFF, backcolor = 0, textalignment = 0);
 native DestroyAllDynamicObjects();
 native CountDynamicObjects();
 
@@ -199,6 +202,7 @@ native CountDynamicMapIcons();
 native Text3D:CreateDynamic3DTextLabel(const text[], color, Float:x, Float:y, Float:z, Float:drawdistance, attachedplayer = INVALID_PLAYER_ID, attachedvehicle = INVALID_VEHICLE_ID, testlos = 0, worldid = -1, interiorid = -1, playerid = -1, Float:streamdistance = 100.0);
 native DestroyDynamic3DTextLabel(Text3D:id);
 native IsValidDynamic3DTextLabel(Text3D:id);
+native GetDynamic3DTextLabelText(Text3D:id, text[], maxlength = sizeof text);
 native UpdateDynamic3DTextLabelText(Text3D:id, color, const text[]);
 native DestroyAllDynamic3DTextLabels();
 native CountDynamic3DTextLabels();

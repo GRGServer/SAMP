@@ -9,8 +9,10 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 				new Float:posX;
 				new Float:posY;
 				new Float:posZ;
+				new Float:angle;
 				GetPlayerPos(playerID, posX, posY, posZ);
-				new vehicleID = CreateVehicleEx(modelID, posX, posY, posZ, 0.0, color1, color2, -1);
+				GetPlayerFacingAngle(playerID, angle);
+				new vehicleID = CreateVehicleEx(modelID, posX, posY, posZ, angle, color1, color2, -1, false);
 				VehicleProperty:vehicleID[HASNAVI] = true;
 				LinkVehicleToInterior(vehicleID, GetPlayerInterior(playerID));
 				SetVehicleVirtualWorld(vehicleID, GetPlayerVirtualWorld(playerID));

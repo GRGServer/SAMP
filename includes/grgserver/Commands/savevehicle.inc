@@ -14,14 +14,20 @@ PCMD:savevehicle[MAPPER](playerID, params[], 118)
 			new Float:posY;
 			new Float:posZ;
 			new Float:angle;
+			new Float:health;
+			new numberplateString[STRINGLENGTH_NUMBERPLATE];
 			new vehicleID = GetPlayerVehicleID(playerID);
 			new modelID = GetVehicleModel(vehicleID);
 			if (modelID >= 400 && modelID <= 611)
 			{
 				GetVehiclePos(vehicleID, posX, posY, posZ);
 				GetVehicleZAngle(vehicleID, angle);
-				MySQLQuery("INSERT INTO `savedvehicles` (`PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `ModelID`, `Color1`, `Color2`, `Price`, `CurrentFuel`) VALUES('%f', '%f', '%f', '%f', '%d', '%d', '%d', '%d', '%f', '%f')", posX, posY, posZ, angle, GetPlayerInterior(playerID), modelID, vehicles[vehicleID][VEHICLE_COLOR1], vehicles[vehicleID][VEHICLE_COLOR2], price, vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
-				vehicles[vehicleID][VEHICLE_SAVEID] = mysql_insert_id();
+				GetVehicleHealth(vehicleID, health);
+				strcat(numberplateString, CreateUniqueNumberplateText());
+				Format:sqlQuery("INSERT INTO `vehicles` (`Numberplate`, `PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `Health`, `ModelID`, `Color1`, `Color2`, `Price`, `CurrentFuel`)");
+				MySQLQuery("%s VALUES('%s', '%f', '%f', '%f', '%f', '%d', '%f', '%d', '%d', '%d', '%f', '%f')", sqlQuery, numberplateString, posX, posY, posZ, angle, GetPlayerInterior(playerID), health, modelID, vehicles[vehicleID][VEHICLE_COLOR1], vehicles[vehicleID][VEHICLE_COLOR2], price, vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
+				VehicleProperty:vehicleID[SAVEID] = mysql_insert_id();
+				VehicleProperty:vehicleID[ALLOWSAVE] = true;
 				SendClientMessageEx(playerID, COLOR_INFO, 79, vehicles[vehicleID][VEHICLE_SAVEID]);
 				return COMMAND_OK;
 			}

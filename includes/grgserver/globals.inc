@@ -1,6 +1,7 @@
 // Variables
 new attachedObjects[MAX_PLAYERS][VEHICLE_MAXATTACHEDOBJECTS];
 new clientMessageString[256];
+new gasPriceChangeHour = -1;
 new ircBot;
 new languageStrings[LANGUAGE_MAXSTRINGS][enum_languageString];
 new maxPlayers;

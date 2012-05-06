@@ -58,7 +58,9 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 				SetPlayerPosEx(playerID, 1.6918, 26.2581, 1199.5938, 1);
 				SetPlayerFacingAngle(playerID, 0.0);
 				SetCameraBehindPlayer(playerID);
-				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_START_INPLANE2_BACK);
+				FormatNew:string[256](LanguageString(playerID, 274), 7);
+				GameTextForPlayer(playerID, string, 8000, 1);
+				SetTimerEx("Timer_ScreenFader", 8000, false, "ddddddd", playerID, 0, 0, 0, -5, 0, FADE_START_INPLANE2_BACK);
 			}
 			case FADE_START_PLANEEXIT_BACK:
 			{
@@ -89,16 +91,15 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			}
 			case FADE_TUTORIAL_BANK_START_BLACK:
 			{
-				SetPlayerCameraPos(playerID, -2740.1819, 405.7733, 4.8635);
-				SetPlayerCameraLookAt(playerID, -2765.4817, 384.6495, 18.3012);
+				SetPlayerCameraPos(playerID, 1121.8539, 1103.0247, 47.5297);
+				SetPlayerCameraLookAtEx(playerID, 1052.8539, 1024.0247, 28.5412);
 				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIAL_BANK_START_BACK);
 			}
 			case FADE_TUTORIAL_S1_END_BACK:
 			{
 				TogglePlayerControllable(playerID, true);
-				SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_BANK, -2757.0632, 375.7754, 4.3342, 1.5);
+				SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_BANK, 1047.7939, 1025.5156, 11.0, 1.5);
 				ShowSubtitle(playerID, LanguageString(playerID, 281));
-				//SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_TAXI);
 			}
 			case FADE_TUTORIAL_S1_END_BLACK:
 			{

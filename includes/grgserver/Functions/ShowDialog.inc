@@ -71,7 +71,12 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 		// Select type of the new building
 		case DIALOG_ADDPROPERTY_TYPE:
 		{
-			FormatNew:options[50]("%s\n%s\n%s\n%s", LanguageString(playerID, 173), LanguageString(playerID, 174), LanguageString(playerID, 175), LanguageString(playerID, 176));
+			new options[1024];
+			AddLine(options, LanguageString(playerID, 173));
+			AddLine(options, LanguageString(playerID, 174));
+			AddLine(options, LanguageString(playerID, 175));
+			AddLine(options, LanguageString(playerID, 397));
+			AddLine(options, LanguageString(playerID, 176));
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 172), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
 		}
 		case DIALOG_ARMY:

@@ -1,10 +1,15 @@
 public OnPlayerStateChange(playerid, newstate, oldstate)
 {
-	if (oldstate == PLAYER_STATE_DRIVER || oldstate == PLAYER_STATE_PASSENGER)
+	if (newstate != PLAYER_STATE_DRIVER && newstate != PLAYER_STATE_PASSENGER && (oldstate == PLAYER_STATE_DRIVER || oldstate == PLAYER_STATE_PASSENGER))
 	{
-		StopRadioStation(playerid);
+		new isPassenger;
+		if (oldstate == PLAYER_STATE_PASSENGER)
+		{
+			isPassenger = true;
+		}
+		OnPlayerLeftVehicle(playerid, PVar:playerid[OLDVEHICLEID], isPassenger);
 	}
-	if (newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER)
+	if (oldstate != PLAYER_STATE_DRIVER && oldstate != PLAYER_STATE_PASSENGER && (newstate == PLAYER_STATE_DRIVER || newstate == PLAYER_STATE_PASSENGER))
 	{
 		new isPassenger;
 		if (newstate == PLAYER_STATE_PASSENGER)

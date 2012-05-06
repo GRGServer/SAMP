@@ -8,11 +8,8 @@ public OnPlayerSpawn(playerid)
 		MySQLQuery("SELECT * FROM `npcs` WHERE `Name` = '%s'", MySQLEscapeString(npcName));
 		mysql_store_result();
 		SetPlayerSkin(playerid, strval(GetMySQLField("Skin")));
-		if (PVar:playerid[NPC_VEHICLEID])
-		{
-			PutPlayerInVehicle(playerid, PVar:playerid[NPC_VEHICLEID], 0);
-		}
-		else
+		new vehicleID = GetVehicleBySaveID(strval(GetMySQLField("VehicleID")));
+		if (vehicleID == INVALID_VEHICLE_ID)
 		{
 			if (floatstr(GetMySQLField("SpawnPosX")) || floatstr(GetMySQLField("SpawnPosY")) || floatstr(GetMySQLField("SpawnPosZ")))
 			{
@@ -23,6 +20,10 @@ public OnPlayerSpawn(playerid)
 			{
 				printf("WARNING: %s spawned without vehicle and no spawn position information!", npcName);
 			}
+		}
+		else
+		{
+			PutPlayerInVehicle(playerid, vehicleID, 0);
 		}
 		mysql_free_result();
 		return true;

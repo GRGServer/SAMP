@@ -1579,4 +1579,12 @@
 		<en>Front headlights</en>
 		<de>Frontscheinwerfer</de>
 	</string>
+	<string id="396">
+		<en>The object has been added</en>
+		<de>Das Objekt wurde hinzugefügt</de>
+	</string>
+	<string id="397">
+		<en>Place</en>
+		<de>Platz</de>
+	</string>
 </languagestrings>

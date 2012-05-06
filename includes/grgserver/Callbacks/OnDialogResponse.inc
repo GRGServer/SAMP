@@ -23,7 +23,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					mysql_store_result();
 					new modelID = strval(GetMySQLField("Value"));
 					mysql_free_result();
-					CreateVehicleEx(modelID, -1557.4092, 114.7485, 3.0939, 136.5509, 12, 41, -1);
+					CreateVehicleEx(modelID, -1557.4092, 114.7485, 3.0939, 136.5509, 12, 41, -1, false);
 				}
 			}
 		}
@@ -152,19 +152,28 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if (response)
 			{
 				new type[STRINGLENGTH_PROPERTYTYPE];
-				switch (listitem)
+				if (IsStr(inputtext, LanguageString(playerid, 173)))
 				{
-					case 0:
-						type = "BANK";
-					case 1:
-						type = "HOTEL";
-					case 2:
-						type = "HOUSE";
-					case 3:
-						type = "POLICE";
+					type = "BANK";
+				}
+				if (IsStr(inputtext, LanguageString(playerid, 174)))
+				{
+					type = "HOTEL";
+				}
+				if (IsStr(inputtext, LanguageString(playerid, 175)))
+				{
+					type = "HOUSE";
+				}
+				if (IsStr(inputtext, LanguageString(playerid, 397)))
+				{
+					type = "PLACE";
+				}
+				if (IsStr(inputtext, LanguageString(playerid, 176)))
+				{
+					type = "POLICE";
 				}
 				SetPVarStr:playerid[ADDPROPERTY_TYPE][STRINGLENGTH_PROPERTYTYPE](type);
-				if (!strcmp(type, "HOTEL", true))
+				if (IsStr(type, "HOTEL") || IsStr(type, "PLACE"))
 				{
 					PVar:playerid[ADDPROPERTY_INTERIORID] = 0;
 					ShowDialog(playerid, DIALOG_ADDPROPERTY_NAME);
@@ -370,11 +379,11 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if (response)
 			{
 				new saveID = vehicles[GetPlayerVehicleID(playerid)][VEHICLE_SAVEID];
-				new Float:price = floatstr(GetMySQLValue("savedvehicles", "Price", "ID", val2str(saveID)));
+				new Float:price = floatstr(GetMySQLValue("vehicles", "Price", "ID", val2str(saveID)));
 				if (price <= PVar:playerid[BANKMONEY])
 				{
 					GivePlayerMoneyEx(playerid, MONEY_CASH, -price);
-					SetMySQLValue("savedvehicles", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(saveID));
+					SetMySQLValue("vehicles", "OwnerUserID", val2str(PVar:playerid[USERID]), "ID", val2str(saveID));
 					SavePlayer(playerid);
 				}
 				else
@@ -1138,7 +1147,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						case 1:
 						{
 							AddNeonLight(vehicleID, NEONTYPE_FRONT_LEFT, listitem);
-							AddNeonLight(vehicleID, NEONTYPE_FRONT_CENTER, listitem);
 							AddNeonLight(vehicleID, NEONTYPE_FRONT_RIGHT, listitem);
 							VehicleProperty:vehicleID[FRONTLIGHTID] = listitem + 1;
 						}
