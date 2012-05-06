@@ -169,5 +169,13 @@ enum
 }
 
 
+// Time change events (OnServerTimeChange gets called when the hour or time changed and the event gets passed to the callback)
+enum
+{
+	TIMECHANGE_HOUR,
+	TIMECHANGE_MINUTE
+}
+
+
 // Constants not defined by default
 #define SPECIAL_ACTION_PISSING 68

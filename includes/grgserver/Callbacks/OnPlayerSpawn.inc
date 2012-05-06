@@ -36,6 +36,10 @@ public OnPlayerSpawn(playerid)
 		SetPlayerInterior(playerid, strval(GetUserDBValue(playerid, "Interior")));
 		ShowNews(playerid, PVar:playerid[LASTNEWSID]);
 		PlayerPlaySound(playerid, 1063, 0.0, 0.0, 0.0);// Stop music
+		if (PVar:playerid[SHOWCLOCK])
+		{
+			TextDrawShowForPlayer(playerid, textDrawClock);
+		}
 	}
 	else
 	{

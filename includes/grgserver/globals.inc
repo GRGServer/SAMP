@@ -1,11 +1,12 @@
 // Variables
 new attachedObjects[MAX_PLAYERS][VEHICLE_MAXATTACHEDOBJECTS];
 new clientMessageString[256];
-new gasPriceChangeHour = -1;
 new ircBot;
 new languageStrings[LANGUAGE_MAXSTRINGS][enum_languageString];
 new maxPlayers;
 new musicSoundIDs[] = {1062, 1068, 1076, 1097, 1183, 1185, 1187};
+new oldHour = -1;
+new oldMinute = -1;
 new permissions[MAX_PLAYERS][enum_permission];
 new pickupLoader[MAX_PICKUPS][enum_pickupLoader];
 new pickups[MAX_PICKUPS][enum_pickup];

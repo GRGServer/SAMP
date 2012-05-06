@@ -15,6 +15,7 @@ LoadPlayer(playerID)
 	PVar:playerID[ONLINESINCE] = gettime();
 	PVar:playerID[ONLINETIME] = strval(GetMySQLField("OnlineTime"));
 	PVar:playerID[SKIN] = strval(GetMySQLField("Skin"));
+	PVar:playerID[SHOWCLOCK] = strval(GetMySQLField("ShowClock"));
 	SetPlayerHealth(playerID, floatstr(GetMySQLField("Health")));
 	SetPlayerSkin(playerID, PVar:playerID[SKIN]);
 	mysql_free_result();

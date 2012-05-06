@@ -147,6 +147,7 @@
 #include <grgserver\Callbacks\OnPlayerText.inc>
 #include <grgserver\Callbacks\OnPlayerUpdate.inc>
 #include <grgserver\Callbacks\OnScreenFadeStop.inc>
+#include <grgserver\Callbacks\OnServerTimeChange.inc>
 #include <grgserver\Callbacks\OnVehicleDeath.inc>
 #include <grgserver\Callbacks\OnVehicleMod.inc>
 #include <grgserver\Callbacks\OnVehiclePaintjob.inc>
@@ -178,6 +179,7 @@
 #include <grgserver\Timers\Timer_PickupTimeout.inc>
 #include <grgserver\Timers\Timer_RefuelVehicle.inc>
 #include <grgserver\Timers\Timer_ScreenFader.inc>
+#include <grgserver\Timers\Timer_SetPlayerPosFindZ.inc>
 #include <grgserver\Timers\Timer_Slow.inc>
 #include <grgserver\Timers\Timer_SpawnPlayer.inc>
 #include <grgserver\Timers\Timer_StableCheck.inc>
@@ -241,6 +243,7 @@
 #include <grgserver\Commands\repair.inc>
 #include <grgserver\Commands\resetcam.inc>
 #include <grgserver\Commands\savevehicle.inc>
+#include <grgserver\Commands\selectlastobject.inc>
 #include <grgserver\Commands\selectproperty.inc>
 #include <grgserver\Commands\setcam.inc>
 #include <grgserver\Commands\setinterior.inc>
@@ -254,5 +257,6 @@
 #include <grgserver\Commands\testbank.inc>
 #include <grgserver\Commands\teststart.inc>
 #include <grgserver\Commands\testunfreeze.inc>
+#include <grgserver\Commands\toggleclock.inc>
 #include <grgserver\Commands\tow.inc>
 

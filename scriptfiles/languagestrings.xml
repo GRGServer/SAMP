@@ -1580,11 +1580,23 @@
 		<de>Frontscheinwerfer</de>
 	</string>
 	<string id="396">
-		<en>The object has been added</en>
-		<de>Das Objekt wurde hinzugefügt</de>
+		<en>The object has been added and selected for editing</en>
+		<de>Das Objekt wurde hinzugefügt und zum Bearbeiten ausgewählt</de>
 	</string>
 	<string id="397">
 		<en>Place</en>
 		<de>Platz</de>
+	</string>
+	<string id="398">
+		<en>Select your last added object</en>
+		<de>Wähle das zuletzt von dir hinzugefügte Objekt aus</de>
+	</string>
+	<string id="399">
+		<en>There are no objects which were added by you!</en>
+		<de>Es gibt keine Objekte welche du hinzugefügt hast!</de>
+	</string>
+	<string id="400">
+		<en>Toggle the clock in the top right corner</en>
+		<de>Aktiviere/Deaktiviere die Uhr in der oberen rechten Ecke</de>
 	</string>
 </languagestrings>

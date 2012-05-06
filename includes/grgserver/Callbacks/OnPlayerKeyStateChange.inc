@@ -51,6 +51,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			new modelID = Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_MODEL_ID);
 			DestroyDynamicObject(PVar:playerid[OBJEDITOR_CURRENTOBJECTID]);
 			PVar:playerid[OBJEDITOR_CURRENTOBJECTID] = 0;
+			Streamer_Update(playerid);
 			CancelEdit(playerid);
 			SelectObject(playerid);
 			SendClientMessageEx(playerid, COLOR_INFO, 203, GetMySQLValue("objectmodels", "Name", "ID", val2str(modelID)));

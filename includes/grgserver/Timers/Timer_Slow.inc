@@ -2,26 +2,16 @@ Timer:Slow()
 {
 	new hour;
 	new minute;
-	new second;
-	gettime(hour, minute, second);
-	FormatNew:hourString[3]("%2d", hour);
-	FormatNew:minuteString[3]("%2d", minute);
-	if (hour < 10)
+	gettime(hour, minute);
+	if (hour != oldHour)
 	{
-		hourString[0] = '0';
+		OnServerTimeChange(hour, minute, TIMECHANGE_HOUR);
+		oldHour = hour;
 	}
-	if (minute < 10)
+	if (minute != oldMinute)
 	{
-		minuteString[0] = '0';
-	}
-	FormatNew:clockString[6]("%s:%s", hourString, minuteString);
-	TextDrawSetString(textDrawClock, clockString);
-	SetWorldTime(hour);
-	if (hour != gasPriceChangeHour)
-	{
-		gasPrice = float(GASSTATION_MINPRICE + random(GASSTATION_MAXDIFFERENCE)) / 100;
-		gasPriceChangeHour = hour;
-		printf("Updated gas price to $%s", FormatMoney(gasPrice));
+		OnServerTimeChange(hour, minute, TIMECHANGE_MINUTE);
+		oldMinute = minute;
 	}
 	//mysql_ping();
 	if (fexist(FILE_UPDATENOTIFICATION))

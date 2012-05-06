@@ -80,7 +80,6 @@ public OnPlayerConnect(playerid)
 		FormatNew:string[MAX_PLAYER_NAME + 30]("%s has joined the server", GetPlayerNameEx(playerid));
 		IRC_Say(ircBot, IRC_CHANNEL, string);
 		ReloadTextDraws(playerid);
-		TextDrawShowForPlayer(playerid, textDrawClock);
 	}
 	return true;
 }
