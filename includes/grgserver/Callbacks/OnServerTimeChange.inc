@@ -9,17 +9,7 @@ OnServerTimeChange(hour, minute, changeType)
 		}
 		case TIMECHANGE_MINUTE:
 		{
-			FormatNew:hourString[3]("%02d", hour);
-			FormatNew:minuteString[3]("%02d", minute);
-			if (hour < 10)
-			{
-				hourString[0] = '0';
-			}
-			if (minute < 10)
-			{
-				minuteString[0] = '0';
-			}
-			FormatNew:string[16]("%2d:%2d", hour, minute);
+			FormatNew:string[16]("%02d:%02d", hour, minute);
 			TextDrawSetString(textDrawClock, string);
 			Format:string("worldtime %s", string);
 			SendRconCommand(string);
