@@ -33,22 +33,22 @@ CheckVehiclePermission(playerID, vehicleID)
 		ShowDialog(playerID, DIALOG_BUYVEHICLE, FormatMoney(price));
 		return true;
 	}
-	if (ownerUserID != PVar:playerID[USERID])
+	if (ownerUserID)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 130);
-		return false;
-	}
-	if (!price)
-	{
-		if (!permissions[playerID][PERMISSION_MAPPER])
-		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 129, GetPermissionName(PERMISSION_MAPPER));
-			return false;
-		}
-		else
+		if (ownerUserID == PVar:playerID[USERID])
 		{
 			return true;
 		}
+		else
+		{
+			SendClientMessageEx(playerID, COLOR_ERROR, 130);
+			return false;
+		}
+	}
+	if (!price && !permissions[playerID][PERMISSION_MAPPER])
+	{
+		SendClientMessageEx(playerID, COLOR_ERROR, 129, GetPermissionName(PERMISSION_MAPPER));
+		return false;
 	}
 	return true;
 }
