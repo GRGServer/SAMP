@@ -2,6 +2,7 @@
 <NotepadPlus>
 	<AutoComplete language="PAWN">
 		<Environment ignoreCase="no" startFunc="(" stopFunc=")" paramSeparator="," terminal=";" />
+		
 		<KeyWord name="#assert" />
 		<KeyWord name="#define" />
 		<KeyWord name="#else" />
@@ -155,6 +156,18 @@
 				<Param name="Float:OffsetZ" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="AttachCameraToObject" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="objectid" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AttachCameraToPlayerObject" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="playerobjectid" />
+			</Overload>
+		</KeyWord>		
 		<KeyWord name="AttachObjectToObject" func="yes">
 			<Overload retVal="">
 				<Param name="objectid" />
@@ -162,9 +175,9 @@
 				<Param name="Float:OffsetX" />
 				<Param name="Float:OffsetY" />
 				<Param name="Float:OffsetZ" />
-				<Param name="Float:rX" />
-				<Param name="Float:rY" />
-				<Param name="Float:rZ" />
+				<Param name="Float:RotX" />
+				<Param name="Float:RotY" />
+				<Param name="Float:RotZ" />
 				<Param name="SyncRotation = 1" />
 			</Overload>
 		</KeyWord>
@@ -184,12 +197,12 @@
 			<Overload retVal="">
 				<Param name="objectid" />
 				<Param name="vehicleid" />
-				<Param name="Float:OffsetX" />
-				<Param name="Float:OffsetY" />
-				<Param name="Float:OffsetZ" />
-				<Param name="Float:rX" />
-				<Param name="Float:rY" />
-				<Param name="Float:rZ" />
+				<Param name="Float:fOffsetX" />
+				<Param name="Float:fOffsetY" />
+				<Param name="Float:fOffsetZ" />
+				<Param name="Float:fRotX" />
+				<Param name="Float:fRotY" />
+				<Param name="Float:RotZ" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="AttachPlayerObjectToPlayer" func="yes">
@@ -203,6 +216,19 @@
 				<Param name="Float:rX" />
 				<Param name="Float:rY" />
 				<Param name="Float:rZ" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="AttachPlayerObjectToVehicle" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="objectid" />
+				<Param name="vehicleid" />
+				<Param name="Float:fOffsetX" />
+				<Param name="Float:fOffsetY" />
+				<Param name="Float:fOffsetZ" />
+				<Param name="Float:fRotX" />
+				<Param name="Float:fRotY" />
+				<Param name="Float:fRotZ" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="AttachTrailerToVehicle" func="yes">
@@ -249,6 +275,11 @@
 				<Param name="const function[ ]" />
 				<Param name="const format[ ]" />
 				<Param name="{mixed}" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="CancelSelectTextDraw" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="ChangeVehicleColor" func="yes">
@@ -583,26 +614,14 @@
 				<Param name="&amp;Float:Distance" />
 			</Overload>
 		</KeyWord>
-		<KeyWord name="GetNetworkStats" func="yes">
-			<Overload retVal="">
-			<Param name="retstr[]" />
-			<Param name="size" />
-			</Overload>
-		</KeyWord>
 		<KeyWord name="GetMaxPlayers" func="yes">
 			<Overload retVal="">
 			</Overload>
 		</KeyWord>
-		<KeyWord name="GetMyFacingAngle" func="yes">
+		<KeyWord name="GetNetworkStats" func="yes">
 			<Overload retVal="">
-				<Param name="&amp;Float:ang" />
-			</Overload>
-		</KeyWord>
-		<KeyWord name="GetMyPos" func="yes">
-			<Overload retVal="">
-				<Param name="&amp;Float:x" />
-				<Param name="&amp;Float:y" />
-				<Param name="&amp;Float:z" />
+				<Param name="retstr[ ]" />
+				<Param name="retstr_size[ ]" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="GetObjectPos" func="yes">
@@ -681,7 +700,7 @@
 				<Param name="&amp;Float:armour" />
 			</Overload>
 		</KeyWord>
-		<KeyWord name="GetPlayerCameraMode" func="yes">
+		<KeyWord name="GetPlayerArmour" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
 			</Overload>
@@ -705,14 +724,6 @@
 		<KeyWord name="GetPlayerColor" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
-			</Overload>
-		</KeyWord>
-		<KeyWord name="GetPlayerDistanceFromPoint" func="yes">
-			<Overload retVal="">
-				<Param name="playerid" />
-				<Param name="&amp;Float:x" />
-				<Param name="&amp;Float:y" />
-				<Param name="&amp;Float:z" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="GetPlayerDrunkLevel" func="yes">
@@ -779,13 +790,6 @@
 				<Param name="len" />
 			</Overload>
 		</KeyWord>
-		<KeyWord name="GetPlayerNetworkStats" func="yes">
-			<Overload retVal="">
-				<Param name="playerid" />
-				<Param name="retstr[ ]" />
-				<Param name="size" />
-			</Overload>
-		</KeyWord>
 		<KeyWord name="GetPlayerObjectPos" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
@@ -837,11 +841,6 @@
 				<Param name="playerid" />
 			</Overload>
 		</KeyWord>
-		<KeyWord name="GetPlayerSurfingObjectID" func="yes">
-			<Overload retVal="">
-				<Param name="playerid" />
-			</Overload>
-		</KeyWord>
 		<KeyWord name="GetPlayerSurfingVehicleID" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
@@ -880,6 +879,13 @@
 				<Param name="&amp;Float:X" />
 				<Param name="&amp;Float:Y" />
 				<Param name="&amp;Float:Z" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetPlayerVersion" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="const version[]" />
+				<Param name="len" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="GetPlayerVirtualWorld" func="yes">
@@ -951,14 +957,6 @@
 				<Param name="&amp;tires" />
 			</Overload>
 		</KeyWord>
-		<KeyWord name="GetVehicleDistanceFromPoint" func="yes">
-			<Overload retVal="">
-				<Param name="vehicleid" />
-				<Param name="&amp;Float:x" />
-				<Param name="&amp;Float:y" />
-				<Param name="&amp;Float:z" />
-			</Overload>
-		</KeyWord>
 		<KeyWord name="GetVehicleHealth" func="yes">
 			<Overload retVal="">
 				<Param name="vehicleid" />
@@ -972,7 +970,7 @@
 		</KeyWord>
 		<KeyWord name="GetVehicleParamsEx" func="yes">
 			<Overload retVal="">
-				<Param name="vehicleid" />
+				<Param name="&amp;vehicleid" />
 				<Param name="&amp;engine" />
 				<Param name="&amp;lights" />
 				<Param name="&amp;alarm" />
@@ -980,6 +978,15 @@
 				<Param name="&amp;bonnet" />
 				<Param name="&amp;boot" />
 				<Param name="&amp;objective" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="GetVehicleModelInfo" func="yes">
+			<Overload retVal="">
+				<Param name="&amp;vehiclemodel" />
+				<Param name="infotype" />
+				<Param name="&amp;Float:X" />
+				<Param name="&amp;Float:Y" />
+				<Param name="&amp;Float:Z" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="GetVehiclePos" func="yes">
@@ -1067,6 +1074,37 @@
 				<Param name="playerid" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="InterpolateCameraPos" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="Float:FromX" />
+				<Param name="Float:FromY" />
+				<Param name="Float:FromZ" />
+				<Param name="Float:ToX" />
+				<Param name="Float:ToY" />
+				<Param name="Float:ToZ" />
+				<Param name="time" />
+				<Param name="cut = CAMERA_CUT" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="InterpolateCameraLookAt" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="Float:FromX" />
+				<Param name="Float:FromY" />
+				<Param name="Float:FromZ" />
+				<Param name="Float:ToX" />
+				<Param name="Float:ToY" />
+				<Param name="Float:ToZ" />
+				<Param name="time" />
+				<Param name="cut = CAMERA_CUT" />
+			</Overload>
+		</KeyWord>		
+		<KeyWord name="IsObjectMoving" func="yes">
+			<Overload retVal="">
+				<Param name="objectid" />
+			</Overload>
+		</KeyWord>		
 		<KeyWord name="INVALID_3DTEXT_ID" />
 		<KeyWord name="INVALID_GANG_ZONE" />
 		<KeyWord name="INVALID_MENU" />
@@ -1074,22 +1112,18 @@
 		<KeyWord name="INVALID_PLAYER_ID" />
 		<KeyWord name="INVALID_TEXT_DRAW" />
 		<KeyWord name="INVALID_VEHICLE_ID" />
-		<KeyWord name="IsObjectMoving" func="yes">
-			<Overload retVal="">
-				<Param name="objectid" />
-			</Overload>
-		</KeyWord>
 		<KeyWord name="IsPlayerAdmin" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
 			</Overload>
 		</KeyWord>
-		<KeyWord name="IsPlayerConnected" func="yes">
+		<KeyWord name="IsPlayerAttachedObjectSlotUsed" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
+				<Param name="index" />
 			</Overload>
 		</KeyWord>
-		<KeyWord name="IsPlayerHoldingObject" func="yes">
+		<KeyWord name="IsPlayerConnected" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
 			</Overload>
@@ -1127,12 +1161,6 @@
 				<Param name="Float:z" />
 			</Overload>
 		</KeyWord>
-		<KeyWord name="IsPlayerObjectMoving" func="yes">
-			<Overload retVal="">
-				<Param name="playerid" />
-				<Param name="objectid" />
-			</Overload>
-		</KeyWord>
 		<KeyWord name="IsPlayerInVehicle" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
@@ -1144,10 +1172,9 @@
 				<Param name="playerid" />
 			</Overload>
 		</KeyWord>
-		<KeyWord name="IsPlayerAttachedObjectSlotUsed" func="yes">
+		<KeyWord name="IsPlayerObjectMoving" func="yes">
 			<Overload retVal="">
-				<Param name="playerid" />
-				<Param name="index" />
+				<Param name="objectid" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="IsPlayerStreamedIn" func="yes">
@@ -1199,7 +1226,6 @@
 		<KeyWord name="KEY_ANALOG_RIGHT" />
 		<KeyWord name="KEY_ANALOG_UP" />
 		<KeyWord name="KEY_CROUCH" />
-		<KeyWord name="KEY_CTRL_BACK" />
 		<KeyWord name="KEY_DOWN" />
 		<KeyWord name="KEY_FIRE" />
 		<KeyWord name="KEY_HANDBRAKE" />
@@ -1208,14 +1234,12 @@
 		<KeyWord name="KEY_LOOK_BEHIND" />
 		<KeyWord name="KEY_LOOK_LEFT" />
 		<KeyWord name="KEY_LOOK_RIGHT" />
-		<KeyWord name="KEY_NO" />
 		<KeyWord name="KEY_RIGHT" />
 		<KeyWord name="KEY_SECONDARY_ATTACK" />
 		<KeyWord name="KEY_SPRINT" />
 		<KeyWord name="KEY_SUBMISSION" />
 		<KeyWord name="KEY_UP" />
 		<KeyWord name="KEY_WALK" />
-		<KeyWord name="KEY_YES" />
 		<KeyWord name="Kick" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
@@ -1250,12 +1274,12 @@
 		<KeyWord name="MAX_OBJECTS" />
 		<KeyWord name="MAX_PICKUPS" />
 		<KeyWord name="MAX_PLAYERS" />
+		<KeyWord name="MAX_PLAYER_ATTACHED_OBJECTS" />
 		<KeyWord name="MAX_PLAYER_NAME" />
 		<KeyWord name="MAX_TEXT_DRAWS" />
 		<KeyWord name="MAX_VEHICLES" />
 		<KeyWord name="ManualVehicleEngineAndLights" func="yes">
 			<Overload retVal="">
-			<Param name="objectid" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="Menu" />
@@ -1266,9 +1290,6 @@
 				<Param name="Float:Y" />
 				<Param name="Float:Z" />
 				<Param name="Float:Speed" />
-				<Param name="Float:RotX = -1000.0" />
-				<Param name="Float:RotY = -1000.0" />
-				<Param name="Float:RotZ = -1000.0" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="MovePlayerObject" func="yes">
@@ -1357,11 +1378,25 @@
 				<Param name="objectid" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="OnPlayerClickMap" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="Float:fX" />
+				<Param name="Float:fY" />
+				<Param name="Float:fZ" />
+			</Overload>
+		</KeyWord>
 		<KeyWord name="OnPlayerClickPlayer" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
 				<Param name="clickedplayerid" />
 				<Param name="source" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="OnPlayerClickTextDraw" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="Text:clickedid" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="OnPlayerCommandText" func="yes">
@@ -1424,7 +1459,7 @@
 		<KeyWord name="OnPlayerGiveDamage" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
-				<Param name="damageid" />
+				<Param name="damagedid" />
 				<Param name="Float:amount" />
 				<Param name="weaponid" />
 			</Overload>
@@ -1523,7 +1558,7 @@
 				<Param name="Float:amount" />
 				<Param name="weaponid" />
 			</Overload>
-		</KeyWord>
+		</KeyWord>		
 		<KeyWord name="OnPlayerText" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
@@ -1549,13 +1584,6 @@
 		</KeyWord>
 		<KeyWord name="OnRecordingPlaybackEnd" func="yes">
 			<Overload retVal="">
-			</Overload>
-		</KeyWord>
-		<KeyWord name="OnUnoccupiedVehicleUpdate" func="yes">
-			<Overload retVal="">
-				<Param name="vehicleid" />
-				<Param name="playerid" />
-				<Param name="passenger_seat" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="OnVehicleDamageStatusUpdate" func="yes">
@@ -1639,6 +1667,34 @@
 		<KeyWord name="PLAYER_VARTYPE_INT" />
 		<KeyWord name="PLAYER_VARTYPE_NONE" />
 		<KeyWord name="PLAYER_VARTYPE_STRING" />
+		<KeyWord name="CAMERA_CUT" />
+		<KeyWord name="CAMERA_MOVE" />
+		<KeyWord name="VEHICLE_MODEL_INFO_SIZE" />
+		<KeyWord name="VEHICLE_MODEL_INFO_FRONTSEAT" />
+		<KeyWord name="VEHICLE_MODEL_INFO_REARSEAT" />
+		<KeyWord name="VEHICLE_MODEL_INFO_PETROLCAP" />
+		<KeyWord name="VEHICLE_MODEL_INFO_WHEELSFRONT" />
+		<KeyWord name="VEHICLE_MODEL_INFO_WHEELSREAR" />
+		<KeyWord name="VEHICLE_MODEL_INFO_WHEELSMID" />
+		<KeyWord name="VEHICLE_MODEL_INFO_FRONT_BUMPER_Z" />
+		<KeyWord name="VEHICLE_MODEL_INFO_REAR_BUMPER_Z" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_32x32" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_64x32" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_64x64" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_128x32" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_128x64" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_128x128" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_256x32" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_256x64" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_256x128" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_256x256" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_512x64" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_512x128" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_512x256" />
+		<KeyWord name="OBJECT_MATERIAL_SIZE_512x512" />
+		<KeyWord name="OBJECT_MATERIAL_TEXT_ALIGN_LEFT" />
+		<KeyWord name="OBJECT_MATERIAL_TEXT_ALIGN_CENTER" />
+		<KeyWord name="OBJECT_MATERIAL_TEXT_ALIGN_RIGHT" />
 		<KeyWord name="PauseRecordingPlayback" func="yes">
 			<Overload retVal="">
 			</Overload>
@@ -1646,14 +1702,14 @@
 		<KeyWord name="PlayAudioStreamForPlayer" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
-				<Param name="url[]" />
-				<Param name="Float:posX = 0.0" />
-				<Param name="Float:posY = 0.0" />
-				<Param name="Float:posZ = 0.0" />
+				<Param name="url[ ]" />
+				<Param name="Float:PosX = 0.0" />
+				<Param name="Float:PosY = 0.0" />
+				<Param name="Float:PosZ = 0.0" />
 				<Param name="Float:distance = 50.0" />
 				<Param name="usepos = 0" />
 			</Overload>
-		</KeyWord>
+		</KeyWord>		
 		<KeyWord name="PlayCrimeReportForPlayer" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
@@ -1685,6 +1741,125 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name="PlayerText3D" />
+		<KeyWord name="CreatePlayerTextDraw" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="Float:x" />
+				<Param name="Float:y" />
+				<Param name="text[]" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawDestroy" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawLetterSize" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+				<Param name="Float:x" />
+				<Param name="Float:y" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawTextSize" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+				<Param name="Float:x" />
+				<Param name="Float:y" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawAlignment" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+				<Param name="alignment" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawColor" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+				<Param name="color" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawUseBox" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+				<Param name="use" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawBoxColor" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+				<Param name="color" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawSetShadow" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+				<Param name="size" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawSetOutline" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+				<Param name="size" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawBackgroundColor" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+				<Param name="color" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawFont" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+				<Param name="font" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawSetProportional" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+				<Param name="set" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawSetSelectable" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+				<Param name="set" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawShow" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawHide" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="PlayerTextDrawSetString" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="PlayerText:text" />
+				<Param name="string[]" />
+			</Overload>
+		</KeyWord>
 		<KeyWord name="PutPlayerInVehicle" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
@@ -1701,7 +1876,7 @@
 				<Param name="Float:fZ" />
 				<Param name="Float:fRadius" />
 			</Overload>
-		</KeyWord>
+		</KeyWord>		
 		<KeyWord name="RemovePlayerAttachedObject" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
@@ -1764,6 +1939,13 @@
 		<KeyWord name="SPECTATE_MODE_FIXED" />
 		<KeyWord name="SPECTATE_MODE_NORMAL" />
 		<KeyWord name="SPECTATE_MODE_SIDE" />
+		<KeyWord name="SPECIAL_ACTION_CUFFED" />
+		<KeyWord name="SelectTextDraw" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="hovercolor" />
+			</Overload>
+		</KeyWord>
 		<KeyWord name="SendChat" func="yes">
 			<Overload retVal="">
 				<Param name="msg[ ]" />
@@ -1856,6 +2038,56 @@
 				<Param name="Float:distance" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="SetObjectMaterial" func="yes">
+			<Overload retVal="">
+				<Param name="objectid" />
+				<Param name="materialindex" />
+				<Param name="modelid" />
+				<Param name="txdname[]" />
+				<Param name="texturename[]" />
+				<Param name="materialcolor=0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetPlayerObjectMaterial" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="objectid" />
+				<Param name="materialindex" />
+				<Param name="modelid" />
+				<Param name="txdname[]" />
+				<Param name="texturename[]" />
+				<Param name="materialcolor = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetObjectMaterialText" func="yes">
+			<Overload retVal="">
+				<Param name="objectid" />
+				<Param name="text[]" />
+				<Param name="materialindex = 0" />
+				<Param name="materialsize = OBJECT_MATERIAL_SIZE_256x128" />
+				<Param name="fontface[] = Arial" />
+				<Param name="fontsize = 24" />
+				<Param name="bold = 1" />
+				<Param name="fontcolor = 0xFFFFFFFF" />
+				<Param name="backcolor = 0" />
+				<Param name="textalignment = 0" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="SetPlayerObjectMaterialText" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="objectid" />
+				<Param name="text[]" />
+				<Param name="materialindex = 0" />
+				<Param name="materialsize = OBJECT_MATERIAL_SIZE_256x128" />
+				<Param name="fontface[] = Arial" />
+				<Param name="fontsize = 24" />
+				<Param name="bold = 1" />
+				<Param name="fontcolor = 0xFFFFFFFF" />
+				<Param name="backcolor = 0" />
+				<Param name="textalignment = 0" />
+			</Overload>
+		</KeyWord>
 		<KeyWord name="SetObjectPos" func="yes">
 			<Overload retVal="">
 				<Param name="objectid" />
@@ -1870,23 +2102,6 @@
 				<Param name="Float:RotX" />
 				<Param name="Float:RotY" />
 				<Param name="Float:RotZ" />
-			</Overload>
-		</KeyWord>
-		<KeyWord name="SetPlayerAttachedObject" func="yes">
-			<Overload retVal="">
-				<Param name="playerid" />
-				<Param name="index" />
-				<Param name="modelid" />
-				<Param name="bone" />
-				<Param name="Float:OffsetX" />
-				<Param name="Float:OffsetY" />
-				<Param name="Float:OffsetZ" />
-				<Param name="Float:RotX" />
-				<Param name="Float:RotY" />
-				<Param name="Float:RotZ" />
-				<Param name="Float:ScaleX" />
-				<Param name="Float:ScaleY" />
-				<Param name="Float:ScaleZ" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="SetPVarFloat" func="yes">
@@ -1929,12 +2144,32 @@
 				<Param name="Float:armour" />
 			</Overload>
 		</KeyWord>
+		<KeyWord name="SetPlayerAttachedObject" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+				<Param name="index" />
+				<Param name="modelid" />
+				<Param name="bone" />
+				<Param name="Float:fOffsetX=0" />
+				<Param name="Float:fOffsetY=0" />
+				<Param name="Float:fOffsetZ=0" />
+				<Param name="Float:fRotX=0" />
+				<Param name="Float:fRotY=0" />
+				<Param name="Float:fRotZ=0" />
+				<Param name="Float:fScaleX=1" />
+				<Param name="Float:fScaleY=1" />
+				<Param name="Float:fScaleZ=1" />
+				<Param name="materialcolor1 = 0" />
+				<Param name="materialcolor2 = 0" />
+			</Overload>
+		</KeyWord>
 		<KeyWord name="SetPlayerCameraLookAt" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
 				<Param name="Float:x" />
 				<Param name="Float:y" />
 				<Param name="Float:z" />
+				<Param name="cut = 2" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="SetPlayerCameraPos" func="yes">
@@ -1991,19 +2226,6 @@
 			<Overload retVal="">
 				<Param name="playerid" />
 				<Param name="Float:health" />
-			</Overload>
-		</KeyWord>
-		<KeyWord name="SetPlayerHoldingObject" func="yes">
-			<Overload retVal="">
-				<Param name="playerid" />
-				<Param name="modelid" />
-				<Param name="bone" />
-				<Param name="Float:fOffsetX = 0.0" />
-				<Param name="Float:fOffsetY = 0.0" />
-				<Param name="Float:fOffsetZ = 0.0" />
-				<Param name="Float:fRotX = 0.0" />
-				<Param name="Float:fRotY = 0.0" />
-				<Param name="Float:fRotZ = 0.0" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="SetPlayerInterior" func="yes">
@@ -2335,19 +2557,9 @@
 				<Param name="recordname[ ]" />
 			</Overload>
 		</KeyWord>
-		<KeyWord name="StopAudioStreamForPlayer" func="yes">
-			<Overload retVal="">
-				<Param name="playerid" />
-			</Overload>
-		</KeyWord>
 		<KeyWord name="StopObject" func="yes">
 			<Overload retVal="">
 				<Param name="objectid" />
-			</Overload>
-		</KeyWord>
-		<KeyWord name="StopPlayerHoldingObject" func="yes">
-			<Overload retVal="">
-				<Param name="playerid" />
 			</Overload>
 		</KeyWord>
 		<KeyWord name="StopPlayerObject" func="yes">
@@ -2361,6 +2573,11 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name="StopRecordingPlayerData" func="yes">
+			<Overload retVal="">
+				<Param name="playerid" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="StopAudioStreamForPlayer" func="yes">
 			<Overload retVal="">
 				<Param name="playerid" />
 			</Overload>
@@ -2434,6 +2651,12 @@
 			</Overload>
 		</KeyWord>
 		<KeyWord name="TextDrawSetProportional" func="yes">
+			<Overload retVal="">
+				<Param name="Text:text" />
+				<Param name="set" />
+			</Overload>
+		</KeyWord>
+		<KeyWord name="TextDrawSetSelectable" func="yes">
 			<Overload retVal="">
 				<Param name="Text:text" />
 				<Param name="set" />
@@ -2521,6 +2744,9 @@
 			<Overload retVal="">
 			</Overload>
 		</KeyWord>
+		<KeyWord name="VEHICLE_PARAMS_UNSET" />
+		<KeyWord name="VEHICLE_PARAMS_OFF" />
+		<KeyWord name="VEHICLE_PARAMS_ON" />
 		<KeyWord name="WEAPONSKILL_AK47" />
 		<KeyWord name="WEAPONSKILL_DESERT_EAGLE" />
 		<KeyWord name="WEAPONSKILL_M4" />
