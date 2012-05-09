@@ -808,12 +808,12 @@
 		<de>Füge ein neues Objekt hinzu</de>
 	</string>
 	<string id="203">
-		<en>The object '%s' has been removed</en>
-		<de>Das Objekt '%s' wurde entfernt</de>
+		<en>The object %d (%s) has been removed</en>
+		<de>Das Objekt %d (%s) wurde entfernt</de>
 	</string>
 	<string id="204">
-		<en>Object '%s' selected. You can now edit the object or remove it using ~k~~CONVERSATION_NO~</en>
-		<de>Objekt '%s' ausgewählt. Du kannst jetzt das Objekt bearbeiten oder es mit ~k~~CONVERSATION_NO~ entfernen</de>
+		<en>Object %d (%s) selected. You can now edit the object or remove it using ~k~~CONVERSATION_NO~</en>
+		<de>Objekt %d (%s) ausgewählt. Du kannst jetzt das Objekt bearbeiten oder es mit ~k~~CONVERSATION_NO~ entfernen</de>
 	</string>
 	<string id="205">
 		<en>Spawn</en>
@@ -1580,8 +1580,8 @@
 		<de>Frontscheinwerfer</de>
 	</string>
 	<string id="396">
-		<en>The object has been added and selected for editing</en>
-		<de>Das Objekt wurde hinzugefügt und zum Bearbeiten ausgewählt</de>
+		<en>The object %d (%s) has been added and selected for editing</en>
+		<de>Das Objekt %d (%s) wurde hinzugefügt und zum Bearbeiten ausgewählt</de>
 	</string>
 	<string id="397">
 		<en>Place</en>

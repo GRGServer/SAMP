@@ -46,6 +46,7 @@
 #include <grgserver\Functions\GetMySQLField.inc>
 #include <grgserver\Functions\GetMySQLValue.inc>
 #include <grgserver\Functions\GetNavigationLocationTypeByName.inc>
+#include <grgserver\Functions\GetObjectByID.inc>
 #include <grgserver\Functions\GetOnlineTime.inc>
 #include <grgserver\Functions\GetPermissionByName.inc>
 #include <grgserver\Functions\GetPermissionName.inc>
