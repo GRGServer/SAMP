@@ -540,8 +540,8 @@
 		<de>Sehe dir alle News auf grgserver.net an.</de>
 	</string>
 	<string id="136">
-		<en>An error occurred while teleporting! Please try again.</en>
-		<de>Beim Teleportieren ist ein Fehler aufgetreten! Bitte versuche es erneut.</de>
+		<en>The pickup is linked to the target %d and is now selected. Use /settplink to set the target.</en>
+		<de>Das Pickup ist mit dem Ziel %d verknüpft und ist nun ausgewählt. Verwende /settplink um das Ziel festzulegen.</de>
 	</string>
 	<string id="137">
 		<en>Usage: /%s</en>
@@ -1618,5 +1618,17 @@
 	<string id="405">
 		<en>You are now in interior %d</en>
 		<de>Du bist jetzt in Interior %d</de>
+	</string>
+	<string id="406">
+		<en>Set the target of the selected LINK-pickup</en>
+		<de>Lege das Ziel für das ausgewählte LINK-Pickup fest</de>
+	</string>
+	<string id="407">
+		<en>No teleport link selected!</en>
+		<de>Keine Teleportverknüpfung ausgewählt!</de>
+	</string>
+	<string id="408">
+		<en>The target for the teleport link %d has been set</en>
+		<de>Das Ziel für die Teleportverknüpfung wurde festgelegt</de>
 	</string>
 </languagestrings>

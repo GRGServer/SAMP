@@ -168,6 +168,7 @@
 #include <grgserver\Pickups\Pickup_Hotel.inc>
 #include <grgserver\Pickups\Pickup_House.inc>
 #include <grgserver\Pickups\Pickup_InteriorExit.inc>
+#include <grgserver\Pickups\Pickup_Link.inc>
 #include <grgserver\Pickups\Pickup_Place.inc>
 #include <grgserver\Pickups\Pickup_Police.inc>
 #include <grgserver\Pickups\Pickup_Taxi.inc>
@@ -255,6 +256,7 @@
 #include <grgserver\Commands\setnpcspawn.inc>
 #include <grgserver\Commands\setpropertycam.inc>
 #include <grgserver\Commands\setspawn.inc>
+#include <grgserver\Commands\settplink.inc>
 #include <grgserver\Commands\showinterior.inc>
 #include <grgserver\Commands\spawnvehicle.inc>
 #include <grgserver\Commands\stats.inc>

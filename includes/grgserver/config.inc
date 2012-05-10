@@ -34,7 +34,7 @@
 
 // Gas station configuration
 #define GASSTATION_MAXDIFFERENCE	15// Maximum difference between minimum and maximum gas price
-#define GASSTATION_MINPRICE			158// Minimum gas price
+#define GASSTATION_MINPRICE			155// Minimum gas price
 #define GASSTATION_REFUELSPEED		500// Time per liter
 
 
@@ -128,6 +128,10 @@
 #define SPAWN_POSX					2032.0778
 #define SPAWN_POSY					1344.0790
 #define SPAWN_POSZ					10.8203
+
+
+// Streamer configuration
+#define STREAMER_OBJECTDISTANCE		300
 
 
 // String sizes

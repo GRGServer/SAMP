@@ -102,7 +102,7 @@ AddNeonLight(vehicleID, type, neonID)
 		}
 		if (color[colorID])
 		{
-			new objectID = CreateDynamicObject(color[colorID], 0, 0, 0, 0, 0, 0);
+			new objectID = CreateDynamicObject(color[colorID], 0, 0, 0, 0, 0, 0, -1, -1, -1, STREAMER_OBJECTDISTANCE);
 			AttachDynamicObjectToVehicle(objectID, vehicleID, posX, posY, posZ, rotX, rotY, rotZ);
 			Streamer_SetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID, OBJECTTYPE_NEONLIGHT);
 			vehicleLightObjects[vehicleID][enum_neonType:type][colorID] = objectID;

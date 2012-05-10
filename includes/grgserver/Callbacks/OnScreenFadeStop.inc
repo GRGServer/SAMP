@@ -24,6 +24,7 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			case FADE_GASSTATION_BACK:
 			{
 				TogglePlayerControllable(playerID, true);
+				SetCameraBehindPlayer(playerID);
 			}
 			case FADE_GASSTATION_BLACK:
 			{
@@ -33,6 +34,7 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			case FADE_LEAVEPROPERTY_BACK:
 			{
 				TogglePlayerControllable(playerID, true);
+				SetCameraBehindPlayer(playerID);
 			}
 			case FADE_LEAVEPROPERTY_BLACK:
 			{
@@ -42,6 +44,7 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			case FADE_RESPAWN_BACK:
 			{
 				TogglePlayerControllable(playerID, true);
+				SetCameraBehindPlayer(playerID);
 			}
 			case FADE_RESPAWN_BLACK:
 			{
@@ -59,6 +62,7 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			case FADE_START_INPLANE2_BACK:
 			{
 				TogglePlayerControllable(playerID, true);
+				SetCameraBehindPlayer(playerID);
 				ShowSubtitle(playerID, LanguageString(playerID, 291));
 			}
 			case FADE_START_INPLANE2_BLACK:
@@ -74,6 +78,7 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			case FADE_START_PLANEEXIT_BACK:
 			{
 				TogglePlayerControllable(playerID, true);
+				SetCameraBehindPlayer(playerID);
 				ShowSubtitle(playerID, LanguageString(playerID, 275));
 			}
 			case FADE_START_PLANEEXIT_BLACK:
@@ -84,10 +89,21 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 				SetCameraBehindPlayer(playerID);
 				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_START_PLANEEXIT_BACK);
 			}
+			case FADE_TELEPORT_BACK:
+			{
+				TogglePlayerControllable(playerID, true);
+				SetCameraBehindPlayer(playerID);
+			}
+			case FADE_TELEPORT_BLACK:
+			{
+				TeleportTo(playerID, PVar:playerID[TELEPORT_POSX], PVar:playerID[TELEPORT_POSY], PVar:playerID[TELEPORT_POSZ], PVar:playerID[TELEPORT_ANGLE], PVar:playerID[TELEPORT_INTERIOR], PVar:playerID[TELEPORT_VIRTUALWORLD]);
+				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TELEPORT_BACK);
+			}
 			case FADE_TUTORIAL_BANK_END_BACK:
 			{
 				ShowSubtitle(playerID, LanguageString(playerID, 295));
 				TogglePlayerControllable(playerID, true);
+				SetCameraBehindPlayer(playerID);
 			}
 			case FADE_TUTORIAL_BANK_END_BLACK:
 			{
@@ -107,6 +123,7 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			case FADE_TUTORIAL_S1_END_BACK:
 			{
 				TogglePlayerControllable(playerID, true);
+				SetCameraBehindPlayer(playerID);
 				SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_BANK, 1047.7939, 1025.5156, 11.0, 1.5);
 				ShowSubtitle(playerID, LanguageString(playerID, 281));
 			}

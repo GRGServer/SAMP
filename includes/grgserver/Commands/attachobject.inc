@@ -32,7 +32,7 @@ PCMD:attachobject[ADMIN](playerID, params[], 393)
 	{
 		DestroyDynamicObject(attachedObjects[playerID][slot]);
 	}
-	new objectID = CreateDynamicObject(modelID, 0, 0, 0, 0, 0, 0);
+	new objectID = CreateDynamicObject(modelID, 0, 0, 0, 0, 0, 0, -1, -1, -1, STREAMER_OBJECTDISTANCE);
 	AttachDynamicObjectToVehicle(objectID, vehicleID, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ);
 	Streamer_SetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID, -1000);
 	attachedObjects[playerID][slot] = objectID;
