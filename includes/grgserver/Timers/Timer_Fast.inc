@@ -97,6 +97,17 @@ Timer:Fast()
 				PlayerTextDrawHide(playerID, PTextDraw:playerID[SPEEDO_COLUMN2]);
 				PlayerTextDrawHide(playerID, PTextDraw:playerID[VEHICLENAME]);
 			}
+			if (PVar:playerID[SHOWPOS])
+			{
+				new Float:posX;
+				new Float:posY;
+				new Float:posZ;
+				new Float:angle;
+				GetPlayerPos(playerID, posX, posY, posZ);
+				GetPlayerFacingAngle(playerID, angle);
+				FormatNew:textDrawString[100]("~w~X: ~g~%.2f~w~~n~Y: ~g~%.2f~w~~n~Z: ~g~%.2f~w~~n~A: ~g~%.2f~w~~n~I: ~g~%d", posX, posY, posZ, angle, GetPlayerInterior(playerID));
+				PlayerTextDrawSetString(playerID, PTextDraw:playerID[SHOWPOS], textDrawString);
+			}
 		}
 	}
 }

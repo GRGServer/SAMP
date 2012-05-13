@@ -11,10 +11,16 @@ public OnPlayerText(playerid, text[])
 		{
 			switch (PVar:playerid[CHATMODE])
 			{
+				case CHATMODE_ADMINS:
+				{
+					if (permissions[playerID][PERMISSION_ADMIN] || playerID == playerid)
+					{
+						Format:string("[%s@Admins] %s", GetPlayerNameEx(playerid), text);
+						SendClientMessage(playerID, COLOR_CHAT_ADMINS, string);
+					}
+				}
 				case CHATMODE_ALL:
 				{
-					Format:string("[%s] %s", GetPlayerNameEx(playerid), text);
-					IRC_Say(ircBot, IRC_CHANNEL, string);
 					Format:string("[%s@%s] %s", GetPlayerNameEx(playerid), LanguageString(playerID, 310), text);
 					SendClientMessage(playerID, COLOR_CHAT_ALL, string);
 				}
@@ -37,6 +43,11 @@ public OnPlayerText(playerid, text[])
 				}
 			}
 		}
+	}
+	if (PVar:playerid[CHATMODE] == CHATMODE_ALL)
+	{
+		Format:string("[%s] %s", GetPlayerNameEx(playerid), text);
+		IRC_Say(ircBot, IRC_CHANNEL, string);
 	}
 	WriteChatToDatabase(playerid, text);
 	return false;

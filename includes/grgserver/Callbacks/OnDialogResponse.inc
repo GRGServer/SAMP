@@ -456,20 +456,21 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if (response)
 			{
-				switch (listitem)
+				if (IsStr(inputtext, LanguageString(playerid, 311)))
 				{
-					case 0:// In range
-					{
-						PVar:playerid[CHATMODE] = CHATMODE_INRANGE;
-					}
-					case 1:// All
-					{
-						PVar:playerid[CHATMODE] = CHATMODE_ALL;
-					}
-					case 2:// Job
-					{
-						PVar:playerid[CHATMODE] = CHATMODE_JOB;
-					}
+					PVar:playerid[CHATMODE] = CHATMODE_INRANGE;
+				}
+				if (IsStr(inputtext, LanguageString(playerid, 310)))
+				{
+					PVar:playerid[CHATMODE] = CHATMODE_ALL;
+				}
+				if (IsStr(inputtext, "Job"))
+				{
+					PVar:playerid[CHATMODE] = CHATMODE_JOB;
+				}
+				if (IsStr(inputtext, "Admins"))
+				{
+					PVar:playerid[CHATMODE] = CHATMODE_ADMINS;
 				}
 				SendClientMessageEx(playerid, COLOR_INFO, 313, GetChatModeName(playerid, PVar:playerid[CHATMODE]));
 			}

@@ -153,9 +153,10 @@ ShowDialog(playerID, dialogID, {_, Float, Text3D, Menu, Text, DB, DBResult, bool
 		case DIALOG_CHATMODE:
 		{
 			new options[1024];
-			AddLine(options, LanguageString(playerID, 311));// Item 0
-			AddLine(options, LanguageString(playerID, 310));// Item 1
-			AddLine(options, "Job");// Item 2
+			AddLine(options, LanguageString(playerID, 311));
+			AddLine(options, LanguageString(playerID, 310));
+			AddLine(options, "Job");
+			AddLine(options, "Admins");
 			ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_LIST, LanguageString(playerID, 312), options, "OK", LanguageString(playerID, 165));
 		}
 		case DIALOG_FUNACTION:

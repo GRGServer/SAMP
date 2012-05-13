@@ -1,12 +1,3 @@
-// Chat modes
-enum
-{
-	CHATMODE_INRANGE, // Must be the first (0)!
-	CHATMODE_ALL,
-	CHATMODE_JOB
-}
-
-
 // Checkpoints
 enum
 {

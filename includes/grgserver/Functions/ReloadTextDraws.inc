@@ -50,4 +50,13 @@ ReloadTextDraws(playerID)
 	PTextDraw:playerID[SCREENFADER] = CreatePlayerTextDraw(playerID, 0, 0, "~r~");
 	PlayerTextDrawLetterSize(playerID, PTextDraw:playerID[SCREENFADER], 0, 50);
 	PlayerTextDrawUseBox(playerID, PTextDraw:playerID[SCREENFADER], true);
+	if (PTextDraw:playerID[SHOWPOS])
+	{
+		PlayerTextDrawDestroy(playerID, PTextDraw:playerID[SHOWPOS]);
+	}
+	PTextDraw:playerID[SHOWPOS] = CreatePlayerTextDraw(playerID, 10, 140, "_");
+	PlayerTextDrawLetterSize(playerID, PTextDraw:playerID[SHOWPOS], 0.5, 1.2);
+	PlayerTextDrawFont(playerID, PTextDraw:playerID[SHOWPOS], 2);
+	PlayerTextDrawSetShadow(playerID, PTextDraw:playerID[SHOWPOS], 0);
+	PlayerTextDrawSetOutline(playerID, PTextDraw:playerID[SHOWPOS], 1);
 }

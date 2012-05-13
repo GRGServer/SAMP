@@ -234,6 +234,7 @@
 #include <grgserver\Commands\npccmd.inc>
 #include <grgserver\Commands\ordervehicle.inc>
 #include <grgserver\Commands\payday.inc>
+#include <grgserver\Commands\privatemessage.inc>
 #include <grgserver\Commands\radio.inc>
 #include <grgserver\Commands\rc.inc>
 #include <grgserver\Commands\recnpc.inc>
@@ -258,6 +259,7 @@
 #include <grgserver\Commands\setspawn.inc>
 #include <grgserver\Commands\settplink.inc>
 #include <grgserver\Commands\showinterior.inc>
+#include <grgserver\Commands\showpos.inc>
 #include <grgserver\Commands\spawnvehicle.inc>
 #include <grgserver\Commands\stats.inc>
 #include <grgserver\Commands\stoprec.inc>

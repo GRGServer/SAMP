@@ -1631,4 +1631,20 @@
 		<en>The target for the teleport link %d has been set</en>
 		<de>Das Ziel für die Teleportverknüpfung wurde festgelegt</de>
 	</string>
+	<string id="409">
+		<en>Send a private message to another player</en>
+		<de>Sende eine private Nachricht an einen anderen Spieler</de>
+	</string>
+	<string id="410">
+		<en>PM from %p: %s</en>
+		<de>PN von %p: %s</de>
+	</string>
+	<string id="411">
+		<en>PM to %p: %s</en>
+		<de>PN an %p: %s</de>
+	</string>
+	<string id="412">
+		<en>Show/Hide your current position</en>
+		<de>Deine aktuelle Position anzeigen/ausblenden</de>
+	</string>
 </languagestrings>
