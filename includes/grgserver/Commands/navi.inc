@@ -5,7 +5,7 @@ CMD:navi(playerID, params[], 339)
 	{
 		if (VehicleProperty:vehicleID[HASNAVI])
 		{
-			ShowDialog(playerID, DIALOG_NAVITARGET);
+			ShowDialog:NAVITARGET(playerID);
 			return COMMAND_OK;
 		}
 		else

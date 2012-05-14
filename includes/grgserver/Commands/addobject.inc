@@ -28,7 +28,7 @@ PCMD:addobject[MAPPER](playerID, params[], 202)
 				}
 				Format:objectList("%s%s:%s", objectList, GetMySQLField("ID"), GetMySQLField("Name"));
 			}
-			ShowPlayerDialog(playerID, DIALOG_ADDOBJECT, DIALOG_STYLE_LIST, LanguageString(playerID, 202), objectList, LanguageString(playerID, 170), LanguageString(playerID, 165));
+			CreateDialog(playerID, "ADDOBJECT", DIALOG_STYLE_LIST, LanguageString(playerID, 202), objectList, LanguageString(playerID, 170), LanguageString(playerID, 165));
 			modelID = -1;
 		}
 		else

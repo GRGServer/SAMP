@@ -1,5 +1,5 @@
-CMD:funaction(playerid, params[], 102)
+CMD:funaction(playerID, params[], 102)
 {
-	ShowDialog(playerid, DIALOG_FUNACTION);
+	ShowDialog:FUNACTION(playerID);
 	return COMMAND_OK;
 }

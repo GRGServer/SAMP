@@ -1,4 +1,4 @@
-ShowMsgBox(playerID, dialogID, caption[], info[], style = MSGBOXSTYLE_OK)
+ShowMsgBox(playerID, name[], caption[], info[], style = MSGBOXSTYLE_OK)
 {
 	new button1[32];
 	new button2[32];
@@ -19,5 +19,5 @@ ShowMsgBox(playerID, dialogID, caption[], info[], style = MSGBOXSTYLE_OK)
 			button1 = "OK";
 		}
 	}
-	ShowPlayerDialog(playerID, dialogID, DIALOG_STYLE_MSGBOX, caption, info, button1, button2);
+	CreateDialog(playerID, name, DIALOG_STYLE_MSGBOX, caption, info, button1, button2);
 }

@@ -1,5 +1,5 @@
 PCMD:addnavilocation[NAVI](playerID, params[], 380)
 {
-	ShowDialog(playerID, DIALOG_ADDNAVILOCATION_TYPE);
+	ShowDialog:ADDNAVILOCATION_TYPE(playerID);
 	return COMMAND_OK;
 }

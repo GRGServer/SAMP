@@ -4,7 +4,7 @@ PickupEvent:TAXI(playerID, pickupID, eventType)
 	{
 		case PICKUPEVENT_KEYPRESS:
 		{
-			ShowDialog(playerID, DIALOG_TAXI);
+			ShowDialog:TAXI(playerID);
 			return true;
 		}
 	}

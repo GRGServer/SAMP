@@ -52,6 +52,7 @@ If OpenConsole()
 			WriteStringN(mainInclude, "")
 			AddDir("Functions")
 			AddDir("Callbacks")
+			AddDir("Dialogs")
 			AddDir("Pickups")
 			AddDir("Timers")
 			AddDir("Commands")
@@ -68,14 +69,14 @@ If OpenConsole()
 EndIf
 ; IDE Options = PureBasic 4.60 (Windows - x86)
 ; ExecutableFormat = Console
-; CursorPosition = 44
-; FirstLine = 21
+; CursorPosition = 53
+; FirstLine = 18
 ; Folding = -
 ; EnableXP
 ; UseIcon = Includes Updater.ico
 ; Executable = Includes Updater.exe
-; EnableCompileCount = 11
-; EnableBuildCount = 11
+; EnableCompileCount = 12
+; EnableBuildCount = 12
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0

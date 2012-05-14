@@ -47,7 +47,7 @@ PCMD:spawnvehicle[MAPPER](playerID, params[], 122)
 				}
 				PVar:playerID[SPAWNVEHICLE_COLOR1] = color1;
 				PVar:playerID[SPAWNVEHICLE_COLOR2] = color2;
-				ShowPlayerDialog(playerID, DIALOG_SPAWNVEHICLE, DIALOG_STYLE_LIST, LanguageString(playerID, 122), vehicleList, LanguageString(playerID, 205), LanguageString(playerID, 165));
+				CreateDialog(playerID, "SPAWNVEHICLE", DIALOG_STYLE_LIST, LanguageString(playerID, 122), vehicleList, LanguageString(playerID, 205), LanguageString(playerID, 165));
 				modelID = -1;
 			}
 			else

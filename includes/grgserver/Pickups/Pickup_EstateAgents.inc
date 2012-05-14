@@ -2,7 +2,7 @@ PickupEvent:ESTATEAGENTS(playerID, pickupID, eventType)
 {
 	if (eventType == PICKUPEVENT_KEYPRESS)
 	{
-		ShowDialog(playerID, DIALOG_ESTATEAGENTS);
+		ShowDialog:ESTATEAGENTS(playerID);
 		return true;
 	}
 	return false;

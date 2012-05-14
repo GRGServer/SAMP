@@ -1,5 +1,5 @@
-CMD:changepw(playerid, params[], 98)
+CMD:changepw(playerID, params[], 98)
 {
-	ShowDialog(playerid, DIALOG_CHANGEPASSWORD_STEP1);
+	ShowDialog:CHANGEPASSWORD_STEP1(playerID);
 	return COMMAND_OK;
 }

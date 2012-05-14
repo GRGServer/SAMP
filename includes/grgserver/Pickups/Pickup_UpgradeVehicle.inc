@@ -8,7 +8,7 @@ PickupEvent:UPGRADEVEHICLE(playerID, pickupID, eventType)
 			{
 				if (GetPlayerVehicleSeat(playerID) == 0)
 				{
-					ShowDialog(playerID, DIALOG_UPGRADEVEHICLE);
+					ShowDialog:UPGRADEVEHICLE(playerID);
 				}
 				else
 				{

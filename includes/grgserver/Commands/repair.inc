@@ -15,7 +15,7 @@ CMD:repair(playerID, params[], 296)
 			{
 				PVar:targetPlayerID[REPAIR_EXECUTOR] = playerID;
 				PVar:targetPlayerID[REPAIR_PRICE] = price;
-				ShowDialog(targetPlayerID, DIALOG_REPAIR);
+				ShowDialog:REPAIR(targetPlayerID);
 				SendClientMessageEx(playerID, COLOR_INFO, 303);
 				return COMMAND_OK;
 			}

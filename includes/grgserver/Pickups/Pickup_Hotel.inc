@@ -15,26 +15,11 @@ PickupEvent:HOTEL(playerID, pickupID, eventType)
 			mysql_free_result();
 			if (PVar:playerID[HOTEL_ROOMID])
 			{
-				ShowDialog(playerID, DIALOG_HOTEL_HASROOM);
+				ShowDialog:HOTEL_HASROOM(playerID);
 			}
 			else
 			{
-				MySQLQuery("SELECT * FROM `hotelrooms` WHERE `PropertyID` = '%d' AND `OwnerUserID` = '0' ORDER BY `RoomID` ASC", PVar:playerID[CURRENTPROPERTYID]);
-				mysql_store_result();
-				if (mysql_num_rows())
-				{
-					new rooms[2048];
-					while (FetchMySQLRow())
-					{
-						if (strlen(rooms))
-						{
-							strcat(rooms, "\n");
-						}
-						Format:rooms("%s%s: $%s", rooms, GetMySQLField("RoomID"), FormatMoney(floatstr(GetMySQLField("Price"))));
-					}
-					ShowDialog(playerID, DIALOG_HOTEL_ROOMLIST, rooms);
-				}
-				else
+				if (!ShowDialog:HOTEL_ROOMLIST(playerID))
 				{
 					SendClientMessageEx(playerID, COLOR_INFO, 314);
 					if (permissions[playerID][PERMISSION_MAPPER])
@@ -46,7 +31,6 @@ PickupEvent:HOTEL(playerID, pickupID, eventType)
 						LeaveProperty(playerID);
 					}
 				}
-				mysql_free_result();
 			}
 			return true;
 		}

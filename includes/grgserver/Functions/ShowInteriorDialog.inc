@@ -1,4 +1,4 @@
 ShowInteriorDialog(playerID, dialogID)
 {
-	ShowDialog(playerID, DIALOG_SELECTINTERIOR, dialogID, 0);
+	ShowDialog:SELECTINTERIOR(playerID, dialogID, 0);
 }

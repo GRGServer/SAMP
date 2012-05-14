@@ -3,7 +3,7 @@ PCMD:giveweapon[ADMIN](playerID, params[], 104)
 	new weaponID;
 	if (sscanf(params, "d", weaponID))
 	{
-		ShowDialog(playerID, DIALOG_GIVEWEAPON);
+		ShowDialog:GIVEWEAPON(playerID);
 		return COMMAND_OK;
 	}
 	if (GivePlayerWeaponEx(playerID, weaponID))

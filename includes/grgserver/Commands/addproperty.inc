@@ -7,6 +7,6 @@ PCMD:addproperty[MAPPER](playerID, params[], 95)
 		return COMMAND_USAGE;
 	}
 	PVar:playerID[ADDPROPERTY_PRICE] = price;
-	ShowDialog(playerID, DIALOG_ADDPROPERTY_TYPE);
+	ShowDialog:ADDPROPERTY_TYPE(playerID);
 	return COMMAND_OK;
 }

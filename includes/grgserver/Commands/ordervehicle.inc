@@ -1,8 +1,8 @@
-CMD:ordervehicle(playerid, params[], 113)
+CMD:ordervehicle(playerID, params[], 113)
 {
-	if (PVar:playerid[JOBID] == JOB_VEHICLEDEALER)
+	if (PVar:playerID[JOBID] == JOB_VEHICLEDEALER)
 	{
-		ShowDialog(playerid, DIALOG_ORDERVEHICLE);
+		ShowDialog:ORDERVEHICLE(playerID);
 		return COMMAND_OK;
 	}
 	return COMMAND_PERMISSION_DENIED;

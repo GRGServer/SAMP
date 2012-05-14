@@ -1,5 +1,5 @@
-PCMD:gmx[SERVERADMIN](playerid, params[], 105)
+PCMD:gmx[SERVERADMIN](playerID, params[], 105)
 {
-	ShowDialog(playerid, DIALOG_RESTARTGAMEMODE);
+	ShowDialog:RESTARTGAMEMODE(playerID);
 	return COMMAND_OK;
 }

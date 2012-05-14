@@ -4,7 +4,7 @@ PickupEvent:DRIVINGINSTRUCTOR(playerID, pickupID, eventType)
 	{
 		case PICKUPEVENT_KEYPRESS:
 		{
-			ShowDialog(playerID, DIALOG_SCHOOLDRIVER);
+			ShowDialog:SCHOOLDRIVER(playerID);
 			return true;
 		}
 	}

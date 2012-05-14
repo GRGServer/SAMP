@@ -11,7 +11,8 @@ PickupEvent:GASSTATION(playerID, pickupID, eventType)
 				new Float:maximum = floatsub(vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
 				if (maximum > 0)
 				{
-					ShowDialog(playerID, DIALOG_REFUEL, FormatMoney(maximum));
+					PVar:playerID[REFUEL_MAXIMUM] = maximum;
+					ShowDialog:REFUEL(playerID);
 				}
 				else
 				{

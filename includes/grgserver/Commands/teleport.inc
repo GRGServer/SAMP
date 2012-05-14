@@ -1,5 +1,5 @@
-PCMD:teleport[TELEPORT](playerid, params[], 121)
+PCMD:teleport[TELEPORT](playerID, params[], 121)
 {
-	ShowDialog(playerid, DIALOG_TELEPORTLOCATIONS);
+	ShowDialog:TELEPORTLOCATIONS(playerID);
 	return COMMAND_OK;
 }

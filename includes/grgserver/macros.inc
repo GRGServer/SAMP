@@ -21,6 +21,9 @@
 // Count(countingVariable, maximumValue)
 #define Count%0(%1,%2) for (new %1 = 0; %1 < %2; %1++)
 
+// DialogResponse:DIALOGNAME(playerID, response, listItem, inputText[])
+#define DialogResponse:%0(%1) forward DR_%0(%1); public DR_%0(%1)
+
 // Format:string(formatString, parameters)
 #define Format:%0(%1) format(%0, sizeof(%0), %1)
 
@@ -78,6 +81,9 @@ for (new i_%0 = 0; ; ++i_%0) \
 
 // SetUserDBValue(playerID, field, value)
 #define SetUserDBValue(%0,%1,%2) SetMySQLValue("users", %1, %2, "ID", val2str(PVar:%0[USERID]))
+
+// ShowDialog:DIALOGNAME(playerID [,parameters...])
+#define ShowDialog:%0(%1) SD_%0(%1)
 
 // StartScreenFader(playerID, red, green, blue, steps, waitOnEnd, extraID)
 #define StartScreenFader(%0) Timer_ScreenFader(%0)

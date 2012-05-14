@@ -2,7 +2,7 @@ PickupEvent:ADAC(playerID, pickupID, eventType)
 {
 	if (eventType == PICKUPEVENT_KEYPRESS)
 	{
-		ShowDialog(playerID, DIALOG_ADAC);
+		ShowDialog:ADAC(playerID);
 	}
 }
 
