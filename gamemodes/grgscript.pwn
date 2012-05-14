@@ -20,7 +20,11 @@
 #include <zcmd>
 
 // GRG Server main include
-#include <grgserver\main>
+#if defined COMPILE_SERVER
+	#include <grgserver\main_server>
+#else
+	#include <grgserver\main>
+#endif
 
 main()
 {
