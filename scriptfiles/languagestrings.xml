@@ -1647,4 +1647,8 @@
 		<en>Show/Hide your current position</en>
 		<de>Deine aktuelle Position anzeigen/ausblenden</de>
 	</string>
+	<string id="413">
+		<en>Order</en>
+		<de>Bestellen</de>
+	</string>
 </languagestrings>

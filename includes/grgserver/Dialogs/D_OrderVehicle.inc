@@ -12,7 +12,7 @@ ShowDialog:ORDERVEHICLE(playerID)
 		Format:vehicleList("%s%s", vehicleList, GetMySQLField("Name"));
 	}
 	mysql_free_result();
-	CreateDialog(playerID, "ORDERVEHICLE", DIALOG_STYLE_LIST, "Fahrzeug bestellen", vehicleList, "Bestellen", LanguageString(playerID, 165));
+	CreateDialog(playerID, "ORDERVEHICLE", DIALOG_STYLE_LIST, LanguageString(playerID, 113), vehicleList, LanguageString(playerID, 413), LanguageString(playerID, 165));
 }
 
 DialogResponse:ORDERVEHICLE(playerID, response, listItem, inputText[])
