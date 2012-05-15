@@ -1,6 +1,6 @@
 GetPlayerByUserID(userID)
 {
-	PlayerLoop(playerID)
+	LoggedInPlayers(playerID)
 	{
 		if (PVar:playerID[USERID] == userID)
 		{

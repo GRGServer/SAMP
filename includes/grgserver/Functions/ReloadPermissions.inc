@@ -8,7 +8,7 @@ ReloadPermissions(playerID = INVALID_PLAYER_ID)
 		new userID = strval(GetMySQLField("UserID"));
 		if (userID)
 		{
-			PlayerLoop(currentPlayerID)
+			LoggedInPlayers(currentPlayerID)
 			{
 				if (PVar:currentPlayerID[USERID] == userID)
 				{

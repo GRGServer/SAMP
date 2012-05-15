@@ -1,6 +1,6 @@
 Timer:EveryMinute()
 {
-	PlayerLoop(playerID)
+	LoggedInPlayers(playerID)
 	{
 		SavePlayer(playerID);
 	}

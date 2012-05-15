@@ -16,7 +16,7 @@ public OnPlayerDisconnect(playerid, reason)
 		}
 		PlayerLoop(playerID)
 		{
-			if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && playerID != playerid)
+			if (!IsPlayerNPC(playerID) && playerID != playerid)
 			{
 				SendClientMessageEx(playerID, COLOR_JOINLEAVE, 161, playerid);
 			}

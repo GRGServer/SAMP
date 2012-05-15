@@ -10,7 +10,7 @@ DialogResponse:RESTARTGAMEMODE(playerID, response, listItem, inputText[])
 		PlayerLoop(currentPlayerID)
 		{
 			SavePlayer(currentPlayerID);
-			if (currentPlayerID != playerID && IsPlayerConnected(currentPlayerID))
+			if (currentPlayerID != playerID)
 			{
 				SendClientMessageEx(currentPlayerID, COLOR_INFO, 43, playerID);
 			}

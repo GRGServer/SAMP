@@ -30,9 +30,9 @@ Timer:Slow()
 		{
 			printf("Detected update to revision %d", revision);
 			fread(file, string);// Skip ""
-			PlayerLoop(playerID)
+			LoggedInPlayers(playerID)
 			{
-				if (IsPlayerConnected(playerID) && permissions[playerID][PERMISSION_SERVERADMIN])
+				if (permissions[playerID][PERMISSION_SERVERADMIN])
 				{
 					SendClientMessageEx(playerID, COLOR_SYSTEM, 127, revision);
 					SendClientMessageEx(playerID, COLOR_SYSTEM, 128, committerName);
@@ -45,9 +45,9 @@ Timer:Slow()
 				if (strlen(string) && strcmp(string, "------------------------------------------------------------------------"))
 				{
 					Format:string("> %s", string);
-					PlayerLoop(playerID)
+					LoggedInPlayers(playerID)
 					{
-						if (IsPlayerConnected(playerID) && permissions[playerID][PERMISSION_SERVERADMIN])
+						if (permissions[playerID][PERMISSION_SERVERADMIN])
 						{
 							SendClientMessage(playerID, COLOR_SYSTEM, string);
 						}

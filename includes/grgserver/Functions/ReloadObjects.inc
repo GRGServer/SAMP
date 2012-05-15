@@ -13,5 +13,9 @@ ReloadObjects(playerID = INVALID_PLAYER_ID)
 		count++;
 	}
 	mysql_free_result();
+	PlayerLoop(currentPlayerID)
+	{
+		Streamer_Update(currentPlayerID);
+	}
 	AdminPrint(playerID, COLOR_INFO, "  %d objects loaded", count);
 }

@@ -72,7 +72,7 @@ public OnPlayerConnect(playerid)
 		SendClientMessageEx(playerid, COLOR_SYSTEM, 5, COMPILER_SVN_REVISION);
 		PlayerLoop(playerID)
 		{
-			if (IsPlayerConnected(playerID) && !IsPlayerNPC(playerID) && playerID != playerid)
+			if (!IsPlayerNPC(playerID) && playerID != playerid)
 			{
 				SendClientMessageEx(playerID, COLOR_JOINLEAVE, 3, playerid);
 			}

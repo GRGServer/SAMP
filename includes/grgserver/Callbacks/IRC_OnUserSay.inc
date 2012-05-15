@@ -24,16 +24,13 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 			new playersOnline;
 			PlayerLoop(playerID)
 			{
-				if (IsPlayerConnected(playerID))
+				if (IsPlayerNPC(playerID))
 				{
-					if (IsPlayerNPC(playerID))
-					{
-						npcsOnline++;
-					}
-					else
-					{
-						playersOnline++;
-					}
+					npcsOnline++;
+				}
+				else
+				{
+					playersOnline++;
 				}
 			}
 			Format:string("%d players and %d NPCs are online", playersOnline, npcsOnline);

@@ -55,6 +55,9 @@ for (new i_%0 = 0; ; ++i_%0) \
 // LoadPermission:permissionField(playerID, tableField)
 #define LoadPermission:%0(%1,%2) permissions[%1][PERMISSION_%0] = strval(GetMySQLField(%2))
 
+// LoggedInPlayers(returningPlayerID)
+#define LoggedInPlayers(%0) Count(%0, maxPlayers) if (IsLoggedIn(%0))
+
 // MD5(string)
 #define MD5(%0) MD5_Hash(%0, true)
 
@@ -68,7 +71,7 @@ for (new i_%0 = 0; ; ++i_%0) \
 #define PickupModelID:%0(%1) forward PUMID_%0(%1); public PUMID_%0(%1)
 
 // PlayerLoop(returningPlayerID)
-#define PlayerLoop(%0) Count(%0, maxPlayers)
+#define PlayerLoop(%0) Count(%0, maxPlayers) if (IsPlayerConnected(%0))
 
 // PTextDraw:playerID[textDrawField]
 #define PTextDraw:%0[%1] PVar:%0[TEXTDRAW_%1]
