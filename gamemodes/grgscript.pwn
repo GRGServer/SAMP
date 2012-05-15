@@ -13,6 +13,7 @@
 #include <MD5>
 #include <mysql>
 #include <regex>
+#include <routeconnector>
 #include <sscanf>
 #include <streamer>
 //#include <timerfix>

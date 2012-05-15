@@ -90,6 +90,7 @@
 
 // Limits
 #define MAX_FUNCTION_NAME			32
+#define MAX_GPS_NODES				500
 #define MAX_MONEY					999999.99// Display on screen
 
 

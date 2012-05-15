@@ -71,6 +71,7 @@ public OnGameModeInit()
 	SetGameModeText(gameModeTextString);
 	EnableStuntBonusForAll(false);
 	ShowPlayerMarkers(PLAYER_MARKERS_MODE_OFF);
+	LimitPlayerMarkerRadius(6000);
 	DisableInteriorEnterExits();
 	Streamer_VisibleItems(STREAMER_TYPE_OBJECT, MAX_OBJECTS);
 	print("* Starting timers...");

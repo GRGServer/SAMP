@@ -87,6 +87,7 @@
 #include <grgserver\Functions\ReloadVehicles.inc>
 #include <grgserver\Functions\RemoveNewLine.inc>
 #include <grgserver\Functions\RemovePlayerCheckpoint.inc>
+#include <grgserver\Functions\RemovePlayerRaceCheckpoint.inc>
 #include <grgserver\Functions\RemoveVehicleLightObjects.inc>
 #include <grgserver\Functions\ResetPlayerVariables.inc>
 #include <grgserver\Functions\SavePlayer.inc>
@@ -98,7 +99,9 @@
 #include <grgserver\Functions\SetPlayerCheckpointEx.inc>
 #include <grgserver\Functions\SetPlayerMoney.inc>
 #include <grgserver\Functions\SetPlayerPosEx.inc>
+#include <grgserver\Functions\SetPlayerRaceCheckpointEx.inc>
 #include <grgserver\Functions\SetVehicleEngineState.inc>
+#include <grgserver\Functions\ShowGPSCheckpoint.inc>
 #include <grgserver\Functions\ShowInteriorDialog.inc>
 #include <grgserver\Functions\ShowMessage.inc>
 #include <grgserver\Functions\ShowMsgBox.inc>
@@ -119,6 +122,7 @@
 #include <grgserver\Functions\val2str.inc>
 
 // Callbacks
+#include <grgserver\Callbacks\GPS_WhenRouteIsCalculated.inc>
 #include <grgserver\Callbacks\IRC_OnConnect.inc>
 #include <grgserver\Callbacks\IRC_OnDisconnect.inc>
 #include <grgserver\Callbacks\IRC_OnJoinChannel.inc>
@@ -137,6 +141,7 @@
 #include <grgserver\Callbacks\OnPlayerDisconnect.inc>
 #include <grgserver\Callbacks\OnPlayerEditDynamicObject.inc>
 #include <grgserver\Callbacks\OnPlayerEnterCheckpoint.inc>
+#include <grgserver\Callbacks\OnPlayerEnterRaceCheckpoint.inc>
 #include <grgserver\Callbacks\OnPlayerEnteredVehicle.inc>
 #include <grgserver\Callbacks\OnPlayerExitVehicle.inc>
 #include <grgserver\Callbacks\OnPlayerKeyStateChange.inc>
@@ -273,6 +278,7 @@
 #include <grgserver\Commands\gmx.inc>
 #include <grgserver\Commands\god.inc>
 #include <grgserver\Commands\goto.inc>
+#include <grgserver\Commands\gps.inc>
 #include <grgserver\Commands\help.inc>
 #include <grgserver\Commands\interpolatecam.inc>
 #include <grgserver\Commands\jetpack.inc>
