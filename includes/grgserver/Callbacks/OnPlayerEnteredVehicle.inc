@@ -30,13 +30,5 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 			}
 		}
 	}
-	if (!isPassenger)
-	{
-		SetVehicleEngineState(vehicleID, false);
-		if (!CheckVehiclePermission(playerID, vehicleID))
-		{
-			return false;
-		}
-	}
 	return true;
 }

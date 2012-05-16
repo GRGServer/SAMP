@@ -84,7 +84,14 @@ DialogResponse:NAVITARGET(playerID, response, listItem, inputText[])
 		}
 		if (target[0] || target[1] || target[2])
 		{
-			SetPlayerCheckpointEx(playerID, CHECKPOINT_NAVITARGET, target[0], target[1], target[2], 5.0);
+			if (CalculateRoute(playerID, target[0], target[1], target[2]))
+			{
+				SendClientMessageEx(playerID, COLOR_INFO, 414);
+			}
+			else
+			{
+				SendClientMessageEx(playerID, COLOR_ERROR, 415);
+			}
 		}
 		else
 		{

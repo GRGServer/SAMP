@@ -1651,4 +1651,16 @@
 		<en>Order</en>
 		<de>Bestellen</de>
 	</string>
+	<string id="414">
+		<en>Calculating route</en>
+		<de>Die Route wird berechnet</de>
+	</string>
+	<string id="415">
+		<en>No GPS!</en>
+		<de>Kein GPS!</de>
+	</string>
+	<string id="416">
+		<en>Turn on or off the lights of your vehicle</en>
+		<de>Schalte das Lich von deinem Fahrzeug an oder aus</de>
+	</string>
 </languagestrings>

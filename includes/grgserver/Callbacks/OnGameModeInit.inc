@@ -72,6 +72,7 @@ public OnGameModeInit()
 	EnableStuntBonusForAll(false);
 	ShowPlayerMarkers(PLAYER_MARKERS_MODE_OFF);
 	LimitPlayerMarkerRadius(6000);
+	ManualVehicleEngineAndLights();
 	DisableInteriorEnterExits();
 	Streamer_VisibleItems(STREAMER_TYPE_OBJECT, MAX_OBJECTS);
 	print("* Starting timers...");

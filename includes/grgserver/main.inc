@@ -29,6 +29,7 @@
 #include <grgserver\Functions\AddPickup.inc>
 #include <grgserver\Functions\AddVehicleComponentEx.inc>
 #include <grgserver\Functions\CalculateAge.inc>
+#include <grgserver\Functions\CalculateRoute.inc>
 #include <grgserver\Functions\CheckVehiclePermission.inc>
 #include <grgserver\Functions\CmdUsageMsg.inc>
 #include <grgserver\Functions\CreateDialog.inc>
@@ -57,6 +58,7 @@
 #include <grgserver\Functions\GetPlayerVersionEx.inc>
 #include <grgserver\Functions\GetVehicleBySaveID.inc>
 #include <grgserver\Functions\GetVehicleEngineState.inc>
+#include <grgserver\Functions\GetVehicleLightsState.inc>
 #include <grgserver\Functions\GivePlayerMoneyEx.inc>
 #include <grgserver\Functions\GivePlayerWeaponEx.inc>
 #include <grgserver\Functions\InterpolateCameraToLookAt.inc>
@@ -101,6 +103,7 @@
 #include <grgserver\Functions\SetPlayerPosEx.inc>
 #include <grgserver\Functions\SetPlayerRaceCheckpointEx.inc>
 #include <grgserver\Functions\SetVehicleEngineState.inc>
+#include <grgserver\Functions\SetVehicleLightsState.inc>
 #include <grgserver\Functions\ShowGPSCheckpoint.inc>
 #include <grgserver\Functions\ShowInteriorDialog.inc>
 #include <grgserver\Functions\ShowMessage.inc>
@@ -135,6 +138,7 @@
 #include <grgserver\Callbacks\OnInteriorDialogSelect.inc>
 #include <grgserver\Callbacks\OnMessageShown.inc>
 #include <grgserver\Callbacks\OnPlayerClickMap.inc>
+#include <grgserver\Callbacks\OnPlayerClosestNodeIDChange.inc>
 #include <grgserver\Callbacks\OnPlayerCommandPerformed.inc>
 #include <grgserver\Callbacks\OnPlayerConnect.inc>
 #include <grgserver\Callbacks\OnPlayerDeath.inc>
@@ -278,13 +282,13 @@
 #include <grgserver\Commands\gmx.inc>
 #include <grgserver\Commands\god.inc>
 #include <grgserver\Commands\goto.inc>
-#include <grgserver\Commands\gps.inc>
 #include <grgserver\Commands\help.inc>
 #include <grgserver\Commands\interpolatecam.inc>
 #include <grgserver\Commands\jetpack.inc>
 #include <grgserver\Commands\kick.inc>
 #include <grgserver\Commands\kill.inc>
 #include <grgserver\Commands\language.inc>
+#include <grgserver\Commands\lights.inc>
 #include <grgserver\Commands\maptp.inc>
 #include <grgserver\Commands\me.inc>
 #include <grgserver\Commands\money.inc>
