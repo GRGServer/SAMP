@@ -1663,4 +1663,16 @@
 		<en>Turn on or off the lights of your vehicle</en>
 		<de>Schalte das Lich von deinem Fahrzeug an oder aus</de>
 	</string>
+	<string id="417">
+		<en>Name of a house</en>
+		<de>Name eines Hauses</de>
+	</string>
+	<string id="418">
+		<en>Enter the name of the target house.</en>
+		<de>Gebe den Name des Zielhauses ein.</de>
+	</string>
+	<string id="419">
+		<en>Select house</en>
+		<de>Haus auswählen</de>
+	</string>
 </languagestrings>

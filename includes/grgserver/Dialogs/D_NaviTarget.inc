@@ -24,7 +24,8 @@ ShowDialog:NAVITARGET(playerID)
 	}
 	mysql_free_result();
 	AddLine(targets, LanguageString(playerID, 342));// Target on map
-	CreateDialog(playerID, "NAVITARGET", DIALOG_STYLE_LIST, LanguageString(playerID, 247), targets, LanguageString(playerID, 341), LanguageString(playerID, 165));
+	AddLine(targets, LanguageString(playerID, 417));// Name of a house
+	CreateDialog(playerID, "NAVITARGET", DIALOG_STYLE_LIST, LanguageString(playerID, 247), targets, "OK", LanguageString(playerID, 165));
 }
 
 DialogResponse:NAVITARGET(playerID, response, listItem, inputText[])
@@ -73,6 +74,11 @@ DialogResponse:NAVITARGET(playerID, response, listItem, inputText[])
 				SendClientMessageEx(playerID, COLOR_ERROR, 264);
 				return false;
 			}
+		}
+		if (IsStr(inputText, LanguageString(playerID, 417)))// Name of a house
+		{
+			ShowDialog:NaviTarget_HouseName(playerID);
+			return true;
 		}
 		if (!target[0] && !target[1] && !target[2])
 		{
