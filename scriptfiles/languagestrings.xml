@@ -1675,4 +1675,20 @@
 		<en>Select house</en>
 		<de>Haus auswählen</de>
 	</string>
+	<string id="420">
+		<en>Last net income: $%s</en>
+		<de>Letztes Nettoeinkommen: $%s</de>
+	</string>
+	<string id="421">
+		<en>Time elapsed since the last payday: %s</en>
+		<de>Vergangene Zeit seit dem letzten Zahltag: %s</de>
+	</string>
+	<string id="422">
+		<en>Time till the next payday: %s</en>
+		<de>Zeit bis zum nächsten Zahltag: %s</de>
+	</string>
+	<string id="423">
+		<en>Information about the payday</en>
+		<de>Informationen über den Zahltag</de>
+	</string>
 </languagestrings>

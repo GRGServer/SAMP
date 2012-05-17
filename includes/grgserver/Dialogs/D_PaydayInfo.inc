@@ -1,12 +1,13 @@
-ShowDialog:PAYDAYINFO(playerID)
+ShowDialog:PaydayInfo(playerID)
 {
 	new difference = GetOnlineTime(playerID) - PVar:playerID[LASTPAYDAY];
 	MySQLQuery("SELECT * FROM `moneytransactions` WHERE `UserID` = '%d' AND `Type` = '%s'", PVar:playerID[USERID], CASHTRANS_PAYDAY);
 	mysql_store_result();
 	new Float:amount = floatstr(GetMySQLField("Amount"));
 	mysql_free_result();
-	FormatNew:string[160]("Letztes Nettoeinkommen:\t\t\t$%s", FormatMoney(amount));
-	Format:string("%s\n\nVergangene Zeit seit dem letzten Zahltag:\t%s", string, FormatTime(difference));
-	Format:string("%s\n\nZeit bis zum nächsten Zahltag:\t\t\t%s", string, FormatTime(PAYDAY_INTERVAL - difference));
-	CreateDialog(playerID, "PAYDAYINFO", DIALOG_STYLE_MSGBOX, "Informationen über den Zahltag", string, "OK", "");
+	new string[256];
+	AddLine:string(LanguageString(playerID, 420), FormatMoney(amount));
+	AddLine:string(LanguageString(playerID, 421), FormatTime(difference));
+	AddLine:string(LanguageString(playerID, 422), FormatTime(PAYDAY_INTERVAL - difference));
+	CreateDialog(playerID, "PaydayInfo", DIALOG_STYLE_MSGBOX, LanguageString(playerID, 423), string, "OK", "");
 }

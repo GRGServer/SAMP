@@ -1,4 +1,5 @@
 // Variables
+new addLineString[256];
 new attachedObjects[MAX_PLAYERS][VEHICLE_MAXATTACHEDOBJECTS];
 new clientMessageString[256];
 new ircBot;

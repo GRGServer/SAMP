@@ -15,6 +15,9 @@
 // AddCmdAlias:newName[oldName]
 #define AddCmdAlias:%0[%1] COMMAND:%0(playerID, params[]) return cmd_%1(playerID, params)
 
+// AddLine:string(string[, formatParameters])
+#define AddLine:%0(%1) if (strlen(%0)) strcat(%0, "\n"); Format:addLineString(%1); strcat(%0, addLineString)
+
 // AdminPrint(playerID, color, string, parameters)
 #define AdminPrint(%0,%1,%2) Format:clientMessageString(%2); print(clientMessageString); if (%0 != INVALID_PLAYER_ID) SendClientMessage(%0, %1, clientMessageString)
 

@@ -1,5 +1,5 @@
 CMD:payday(playerID, params[], 114)
 {
-	ShowDialog:PAYDAYINFO(playerID);
+	ShowDialog:PaydayInfo(playerID);
 	return COMMAND_OK;
 }
