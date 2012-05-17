@@ -21,14 +21,12 @@ PCMD:selectlastobject[MAPPER](playerID, params[], 398)
 		SendClientMessageEx(playerID, COLOR_ERROR, 399);
 		return COMMAND_ERROR;
 	}
-	new objects = CountDynamicObjects();
-	for (new objectID = 1; objectID <= objects; objectID++)
+	new objectID = GetObjectByID(id);
+	if (objectID)
 	{
-		if (Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID) == id)
-		{
-			OnPlayerSelectDynamicObject(playerID, objectID, modelID, posX, posY, posZ);
-			break;
-		}
+		OnPlayerSelectDynamicObject(playerID, objectID, modelID, posX, posY, posZ);
+		return COMMAND_OK;
 	}
-	return COMMAND_OK;
+	SendClientMessageEx(playerID, COLOR_ERROR, 425);
+	return COMMAND_ERROR;
 }

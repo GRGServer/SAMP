@@ -3,31 +3,62 @@ Timer:FlyCam(playerID)
 	new keys;
 	new updown;
 	new leftright;
+	new Float:speed = FLYCAM_SPEED_NORMAL;
+	new Float:posX;
+	new Float:posY;
+	new Float:posZ;
+	new Float:vectorX;
+	new Float:vectorY;
+	new Float:vectorZ;
+	new Float:angle;
+	new Float:angleElevation;
 	GetPlayerKeys(playerID, keys, updown, leftright);
-	if (leftright == KEY_LEFT)
+	GetPlayerCameraPos(playerID, posX, posY, posZ);
+	GetPlayerCameraFrontVector(playerID, vectorX, vectorY, vectorZ);
+	angle = 90 - atan2(vectorY, vectorX);
+	if (angle < 0.0)
 	{
-		PVar:playerID[FLYCAM_POSX] = floatsub(PVar:playerID[FLYCAM_POSX], 1);
+		angle = 360.0 + angle;
 	}
-	else if (leftright == KEY_RIGHT)
+	angleElevation = - (floatabs(atan2(floatsqroot(floatpower(vectorX, 2.0) + floatpower(vectorY, 2.0)), vectorZ)) - 90.0);
+	if (keys == KEY_JUMP)
 	{
-		PVar:playerID[FLYCAM_POSX] = floatadd(PVar:playerID[FLYCAM_POSX], 1);
+		speed = FLYCAM_SPEED_FAST;
+	}
+	if (keys == KEY_WALK)
+	{
+		speed = FLYCAM_SPEED_SLOW;
 	}
 	if (updown == KEY_UP)
 	{
-		PVar:playerID[FLYCAM_POSY] = floatadd(PVar:playerID[FLYCAM_POSY], 1);
+		GetXYZFromAngle(posX, posY, posZ, angle, angleElevation, 50.0);
+		MoveDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT], posX, posY, posZ, speed);
 	}
-	else if (updown == KEY_DOWN)
+	if (updown == KEY_DOWN)
 	{
-		PVar:playerID[FLYCAM_POSY] = floatsub(PVar:playerID[FLYCAM_POSY], 1);
+		GetXYZFromAngle(posX, posY, posZ, angle, angleElevation, -50.0);
+		MoveDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT], posX, posY, posZ, speed);
 	}
-	if (keys & KEY_JUMP)
+	if (leftright == KEY_LEFT)
 	{
-		PVar:playerID[FLYCAM_POSZ] = floatadd(PVar:playerID[FLYCAM_POSZ], 1);
+		GetXYFromAngle(posX, posY, -angle + 90.0, 50.0);
+		MoveDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT], posX, posY, posZ, speed);
 	}
-	else if (keys & KEY_SPRINT)
+	if (leftright == KEY_RIGHT)
 	{
-		PVar:playerID[FLYCAM_POSZ] = floatsub(PVar:playerID[FLYCAM_POSZ], 1);
+		GetXYFromAngle(posX, posY, -angle + 90.0, -50.0);
+		MoveDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT], posX, posY, posZ, speed);
 	}
-	SetPlayerCameraPos(playerID, PVar:playerID[FLYCAM_POSX], PVar:playerID[FLYCAM_POSY], PVar:playerID[FLYCAM_POSZ]);
-	SetPlayerPos(playerID, PVar:playerID[FLYCAM_POSX], PVar:playerID[FLYCAM_POSY], PVar:playerID[FLYCAM_POSZ]);
+	if (keys == KEY_SPRINT)
+	{
+		MoveDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT], posX, posY, posZ + 50.0, speed);
+	}
+	if (keys == KEY_CROUCH)
+	{
+		MoveDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT], posX, posY, posZ - 50.0, speed);
+	}
+	if (updown != KEY_UP && updown != KEY_DOWN && leftright != KEY_LEFT && leftright != KEY_RIGHT && keys != KEY_SPRINT && keys != KEY_CROUCH)
+	{
+		StopDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT]);
+	}
 }

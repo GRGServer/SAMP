@@ -7,7 +7,9 @@ RemoveVehicleLightObjects(vehicleID)
 			if (vehicleLightObjects[vehicleID][enum_neonType:slotID][colorID])
 			{
 				DestroyDynamicObject(vehicleLightObjects[vehicleID][enum_neonType:slotID][colorID]);
+				vehicleLightObjects[vehicleID][enum_neonType:slotID][colorID] = 0;
 			}
 		}
 	}
+	UpdateObjectsForAllPlayers();
 }

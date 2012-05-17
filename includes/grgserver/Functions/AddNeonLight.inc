@@ -99,6 +99,7 @@ AddNeonLight(vehicleID, type, neonID)
 		if (vehicleLightObjects[vehicleID][enum_neonType:type][colorID])
 		{
 			DestroyDynamicObject(vehicleLightObjects[vehicleID][enum_neonType:type][colorID]);
+			vehicleLightObjects[vehicleID][enum_neonType:type][colorID] = 0;
 		}
 		if (color[colorID])
 		{
@@ -108,5 +109,6 @@ AddNeonLight(vehicleID, type, neonID)
 			vehicleLightObjects[vehicleID][enum_neonType:type][colorID] = objectID;
 		}
 	}
+	UpdateObjectsForAllPlayers();
 	return true;
 }

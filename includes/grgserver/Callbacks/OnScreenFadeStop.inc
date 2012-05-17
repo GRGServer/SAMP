@@ -44,7 +44,6 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			case FADE_RESPAWN_BACK:
 			{
 				TogglePlayerControllable(playerID, true);
-				SetCameraBehindPlayer(playerID);
 			}
 			case FADE_RESPAWN_BLACK:
 			{

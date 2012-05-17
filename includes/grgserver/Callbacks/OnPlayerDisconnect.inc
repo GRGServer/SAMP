@@ -10,9 +10,9 @@ public OnPlayerDisconnect(playerid, reason)
 		{
 			SavePlayer(playerid);
 		}
-		if (PVar:playerid[FLYCAM])
+		if (PVar:playerid[FLYCAM_DUMMYOBJECT])
 		{
-			KillTimer(PVar:playerid[FLYCAM]);
+			DestroyDynamicObject(PVar:playerid[FLYCAM_DUMMYOBJECT]);
 		}
 		PlayerLoop(playerID)
 		{

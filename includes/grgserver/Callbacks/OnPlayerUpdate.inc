@@ -9,5 +9,9 @@ public OnPlayerUpdate(playerid)
 			SetVehicleHealth(vehicleID, 1000);
 		}
 	}
+	if (!IsAllowedWeapon(GetPlayerWeapon(playerid)))
+	{
+		BanEx(playerid, "Use not allowed weapon");
+	}
 	return true;
 }

@@ -87,6 +87,36 @@ Timer:Fast()
 				PlayerTextDrawShow(playerID, PTextDraw:playerID[SPEEDO_COLUMN2]);
 				PlayerTextDrawShow(playerID, PTextDraw:playerID[VEHICLENAME]);
 				inVehicle = true;
+				if (speed)
+				{
+					distance = 0;
+					new objectID = GetClosestObjectByModel(playerID, 18880, distance);// Search closest speed camera
+					if (objectID && distance <= 40)
+					{
+						if (objectID != PVar:playerID[SPEEDCAM_INRANGE])
+						{
+							PVar:playerID[SPEEDCAM_INRANGE] = objectID;
+							MySQLQuery("SELECT * FROM `speedcameras` WHERE `ObjectID` = '%d'", Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID));
+							mysql_store_result();
+							PVar:playerID[SPEEDCAM_SPEEDLIMIT] = strval(GetMySQLField("SpeedLimit"));
+							mysql_free_result();
+							if (!PVar:playerID[SPEEDCAM_SPEEDLIMIT])
+							{
+								printf("Speed camera object without speed camera data found or speed limit is zero (Object %d)", Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID));
+							}
+						}
+						if (!PVar:playerID[SPEEDCAM_LIMITREACHED] && PVar:playerID[SPEEDCAM_SPEEDLIMIT] && speed > PVar:playerID[SPEEDCAM_SPEEDLIMIT])
+						{
+							PVar:playerID[SPEEDCAM_LIMITREACHED] = true;
+							FormatNew:string[100]("You are driving too fast (%d km/h; Max: %d km/h", speed, PVar:playerID[SPEEDCAM_SPEEDLIMIT]);
+							SendClientMessage(playerID, COLOR_ERROR, string);
+						}
+					}
+					else
+					{
+						PVar:playerID[SPEEDCAM_LIMITREACHED] = false;
+					}
+				}
 			}
 		}
 		if (!inVehicle)

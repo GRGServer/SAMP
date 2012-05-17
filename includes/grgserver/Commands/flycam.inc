@@ -1,19 +1,31 @@
 PCMD:flycam[MAPPER](playerID, params, 271)
 {
-	if (PVar:playerID[FLYCAM])
+	if (PVar:playerID[FLYCAM_DUMMYOBJECT])
 	{
-		KillTimer(PVar:playerID[FLYCAM]);
-		PVar:playerID[FLYCAM] = 0;
+		KillTimer(PVar:playerID[FLYCAM_TIMER]);
+		DestroyDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT]);
+		SetCameraBehindPlayer(playerID);
+		ClearAnimations(playerID);
 		SendClientMessageEx(playerID, COLOR_INFO, 273);
+		PVar:playerID[FLYCAM_DUMMYOBJECT] = 0;
 	}
 	else
 	{
-		GetPlayerCameraPos(playerID, PVar:playerID[FLYCAM_POSX], PVar:playerID[FLYCAM_POSY], PVar:playerID[FLYCAM_POSZ]);
-		PVar:playerID[FLYCAM] = SetTimerEx("Timer_FlyCam", 50, true, "d", playerID);
+		new Float:posX;
+		new Float:posY;
+		new Float:posZ;
+		ApplyAnimation(playerID, "CARRY", "crry_prtial", 1.0, 0, 0, 0, 1, 0);
+		GetPlayerCameraPos(playerID, posX, posY, posZ);
+		new objectID = CreateDynamicObject(19300, posX, posY, posZ, 0, 0, 0, -1, -1, playerID);
+		Streamer_Update(playerID);
+		PVar:playerID[FLYCAM_DUMMYOBJECT] = objectID;
+		AttachCameraToDynamicObject(playerID, objectID);
+		Streamer_SetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID, OBJECTTYPE_FLYCAMDUMMY);
+		PVar:playerID[FLYCAM_TIMER] = SetTimerEx("Timer_FlyCam", TIMER_FLYCAM, true, "d", playerID);
 		SendClientMessageEx(playerID, COLOR_INFO, 272);
-		SendClientMessage(playerID, COLOR_INFO, "X: ~k~~GO_LEFT~, ~k~~GO_RIGHT~");
-		SendClientMessage(playerID, COLOR_INFO, "Y: ~k~~GO_FORWARD~, ~k~~GO_BACK~");
-		SendClientMessage(playerID, COLOR_INFO, "Z: ~k~~PED_JUMPING~, ~k~~PED_SPRINT~");
+		SendClientMessageEx(playerID, COLOR_INFO, 428);
+		SendClientMessageEx(playerID, COLOR_INFO, 429);
+		SendClientMessageEx(playerID, COLOR_INFO, 430);
 	}
 	return COMMAND_OK;
 }

@@ -22,7 +22,10 @@
 #define AdminPrint(%0,%1,%2) Format:clientMessageString(%2); print(clientMessageString); if (%0 != INVALID_PLAYER_ID) SendClientMessage(%0, %1, clientMessageString)
 
 // Count(countingVariable, maximumValue)
-#define Count%0(%1,%2) for (new %1 = 0; %1 < %2; %1++)
+#define Count(%0,%1) for (new %0 = 0; %0 < %1; %0++)
+
+// Count1(countingVariable, maximumValue) -> Same as Count(countingVariable, maximumValue) but starts at 1 and includes maximumValue
+#define Count1(%0,%1) for (new %0 = 1; %0 <= %1; %0++)
 
 // DialogResponse:DIALOGNAME(playerID, response, listItem, inputText[])
 #define DialogResponse:%0(%1) forward DR_%0(%1); public DR_%0(%1)

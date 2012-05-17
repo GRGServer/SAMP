@@ -29,16 +29,6 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 		ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
 		SetVehicleHealth(vehicleID, floatstr(GetMySQLField("Health")));
 		SetVehicleNumberPlate(vehicleID, VehicleProperty:vehicleID[NUMBERPLATE]);
-		if (VehicleProperty:vehicleID[FRONTLIGHTID])
-		{
-			AddNeonLight(vehicleID, NEONTYPE_FRONT_LEFT, VehicleProperty:vehicleID[FRONTLIGHTID] - 1);
-			AddNeonLight(vehicleID, NEONTYPE_FRONT_RIGHT, VehicleProperty:vehicleID[FRONTLIGHTID] - 1);
-		}
-		if (VehicleProperty:vehicleID[NEONLIGHTID])
-		{
-			AddNeonLight(vehicleID, NEONTYPE_LEFT, VehicleProperty:vehicleID[NEONLIGHTID] - 1);
-			AddNeonLight(vehicleID, NEONTYPE_RIGHT, VehicleProperty:vehicleID[NEONLIGHTID] - 1);
-		}
 		count++;
 	}
 	mysql_free_result();

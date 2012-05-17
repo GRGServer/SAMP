@@ -5,6 +5,7 @@ ShowDialog:NaviTarget(playerID)
 	AddLine(targets, LanguageString(playerID, 384));// Gas station
 	AddLine(targets, LanguageString(playerID, 174));// Hotel
 	AddLine(targets, LanguageString(playerID, 175));// House
+	AddLine(targets, LanguageString(playerID, 437));// Vehicle upgrader
 	MySQLQuery("SELECT * FROM `navigationlocationtypes` ORDER BY `Name` ASC");
 	mysql_store_result();
 	while (FetchMySQLRow())
@@ -57,6 +58,13 @@ DialogResponse:NaviTarget(playerID, response, listItem, inputText[])
 		if (IsStr(inputText, LanguageString(playerID, 175)))// House
 		{
 			new pickupID = GetClosestPickup(playerID, "HOUSE");
+			target[0] = pickups[pickupID][PICKUP_POSX];
+			target[1] = pickups[pickupID][PICKUP_POSY];
+			target[2] = pickups[pickupID][PICKUP_POSZ];
+		}
+		if (IsStr(inputText, LanguageString(playerID, 437)))// Vehicle upgrader
+		{
+			new pickupID = GetClosestPickup(playerID, "UPGRADEVEHICLE");
 			target[0] = pickups[pickupID][PICKUP_POSX];
 			target[1] = pickups[pickupID][PICKUP_POSY];
 			target[2] = pickups[pickupID][PICKUP_POSZ];

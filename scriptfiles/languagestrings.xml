@@ -1076,8 +1076,8 @@
 		<de>Vorschauversion</de>
 	</string>
 	<string id="270">
-		<en>This is just a preview of our SA-MP Server!\nSome features may not work or are not free of bugs.\n\nIf you found a bug, please report it on http://bugs.grgserver.net.</en>
-		<de>Das ist nur eine Vorschauversion unseres SA-MP Servers!\nEinige Funktionen funktionieren eventuell noch nicht oder sind noch nicht frei von Fehlern!\n\nSolltest du einen Fehler finden, berichte diesen uns bitte auf http://bugs.grgserver.net.</de>
+		<en>This is just a preview of our SA-MP Server!\nSome features may not work or are not free of bugs.\n\nIf you found a bug or have a suggestion, please report it on http://issues.grgserver.net.</en>
+		<de>Das ist nur eine Vorschauversion unseres SA-MP Servers!\nEinige Funktionen funktionieren eventuell noch nicht oder sind noch nicht frei von Fehlern!\n\nSolltest du einen Fehler finden oder einen Vorschlag haben, berichte diesen uns bitte auf http://issues.grgserver.net.</de>
 	</string>
 	<string id="271">
 		<en>Fly trough San Andreas</en>
@@ -1168,8 +1168,8 @@
 		<de>Dies ist eine der vielen Banken in San Andreas</de>
 	</string>
 	<string id="293">
-		<en>Here you can create bank accounts which are for example required to get paid by the hourly payday or to buy vehicles and houses</en>
-		<de>Hier kannst du Bankkonten anlegen, welche du z.B. benötigst, um beim stündlichen Payday Geld zu bekommen oder Fahrzeuge und Häuser zu kaufen</de>
+		<en>Here you can create bank accounts which are for example required to get paid at the payday or to buy vehicles and houses</en>
+		<de>Hier kannst du Bankkonten anlegen, welche du z.B. benötigst, um am Zahltag Geld zu bekommen oder Fahrzeuge und Häuser zu kaufen</de>
 	</string>
 	<string id="294">
 		<en>You can enter a bank by going into the bank pickup and press ~k~~CONVERSATION_YES~ to pick up the pickup</en>
@@ -1680,19 +1680,79 @@
 		<de>Letztes Nettoeinkommen: $%s</de>
 	</string>
 	<string id="421">
-		<en>Time elapsed since the last payday: %s</en>
+		<en>Time elapsed since the last pay day: %s</en>
 		<de>Vergangene Zeit seit dem letzten Zahltag: %s</de>
 	</string>
 	<string id="422">
-		<en>Time till the next payday: %s</en>
+		<en>Time till the next pay day: %s</en>
 		<de>Zeit bis zum nächsten Zahltag: %s</de>
 	</string>
 	<string id="423">
-		<en>Information about the payday</en>
+		<en>Information about the pay day</en>
 		<de>Informationen über den Zahltag</de>
 	</string>
 	<string id="424">
 		<en>Use /engine to start the engine of your vehicle.</en>
 		<de>Verwende /engine um den Motor deines Fahrzeuges zu starten.</de>
+	</string>
+	<string id="425">
+		<en>No object found!</en>
+		<de>Kein Objekt gefunden!</de>
+	</string>
+	<string id="426">
+		<en>Mark an object on your map</en>
+		<de>Markiere ein Objekt auf deiner Karte</de>
+	</string>
+	<string id="427">
+		<en>Object not found!</en>
+		<de>Objekt nicht gefunden!</de>
+	</string>
+	<string id="426">
+		<en>Mark up to 100 objects on your map</en>
+		<de>Markiere bis zu 100 Objekte auf deiner Karte</de>
+	</string>
+	<string id="427">
+		<en>Add a speed camera</en>
+		<de>Füge einen Blitzer hinzu</de>
+	</string>
+	<string id="428">
+		<en>Speed: ~k~~PED_JUMPING~, ~k~~SNEAK_ABOUT~</en>
+		<de>Geschwindigkeit: ~k~~PED_JUMPING~, ~k~~SNEAK_ABOUT~</de>
+	</string>
+	<string id="429">
+		<en>Up / Down: ~k~~PED_SPRINT~, ~k~~PED_DUCK~</en>
+		<de>Hoch / Runter: ~k~~PED_SPRINT~, ~k~~PED_DUCK~</de>
+	</string>
+	<string id="430">
+		<en>Move camera: ~k~~GO_FORWARD~, ~k~~GO_BACK~, ~k~~GO_LEFT~, ~k~~GO_RIGHT~</en>
+		<en>Kamera bewegen: ~k~~GO_FORWARD~, ~k~~GO_BACK~, ~k~~GO_LEFT~, ~k~~GO_RIGHT~</en>
+	</string>
+	<string id="431">
+		<en>Turn on or off neon lights</en>
+		<de>Schalte die Neonröhren an oder aus</de>
+	</string>
+	<string id="432">
+		<en>Your vehicle does not have neon lights!</en>
+		<de>Dein Fahrzeug hat keine Neonröhren!</de>
+	</string>
+	<string id="433">
+		<en>The neon lights were turned off</en>
+		<de>Die Neonröhren wurden ausgeschalten</de>
+	</string>
+	<string id="434">
+		<en>The neon lights were turned on</en>
+		<de>Die Neonröhren wurden eingeschalten</de>
+	</string>
+	<string id="435">
+		<en>The lights of your vehicle were turned off</en>
+		<de>Die Lichter von deinem Fahrzeug wurden ausgeschalten</de>
+	</string>
+	<string id="436">
+		<en>The lights of your vehicle were turned on</en>
+		<de>Die Lichter von deinem Fahrzeug wurden eingeschalten</de>
+	</string>
+	<string id="437">
+		<en>Vehicle upgrader</en>
+		<de>Fahrzeugaufrüster</de>
 	</string>
 </languagestrings>

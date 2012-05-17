@@ -42,6 +42,7 @@
 #include <grgserver\Functions\FormatTime.inc>
 #include <grgserver\Functions\GetChatModeName.inc>
 #include <grgserver\Functions\GetClosestNavigationLocation.inc>
+#include <grgserver\Functions\GetClosestObjectByModel.inc>
 #include <grgserver\Functions\GetClosestPickup.inc>
 #include <grgserver\Functions\GetClosestVehicleInRange.inc>
 #include <grgserver\Functions\GetColor.inc>
@@ -59,10 +60,14 @@
 #include <grgserver\Functions\GetVehicleBySaveID.inc>
 #include <grgserver\Functions\GetVehicleEngineState.inc>
 #include <grgserver\Functions\GetVehicleLightsState.inc>
+#include <grgserver\Functions\GetVehicleNeonLightsState.inc>
+#include <grgserver\Functions\GetXYFromAngle.inc>
+#include <grgserver\Functions\GetXYZFromAngle.inc>
 #include <grgserver\Functions\GivePlayerMoneyEx.inc>
 #include <grgserver\Functions\GivePlayerWeaponEx.inc>
 #include <grgserver\Functions\InterpolateCameraToLookAt.inc>
 #include <grgserver\Functions\InterpolateCameraToPos.inc>
+#include <grgserver\Functions\IsAllowedWeapon.inc>
 #include <grgserver\Functions\IsLoggedIn.inc>
 #include <grgserver\Functions\IsPlayerInPickup.inc>
 #include <grgserver\Functions\IsValidPickupType.inc>
@@ -104,6 +109,7 @@
 #include <grgserver\Functions\SetPlayerRaceCheckpointEx.inc>
 #include <grgserver\Functions\SetVehicleEngineState.inc>
 #include <grgserver\Functions\SetVehicleLightsState.inc>
+#include <grgserver\Functions\SetVehicleNeonLightsState.inc>
 #include <grgserver\Functions\ShowGPSCheckpoint.inc>
 #include <grgserver\Functions\ShowInteriorDialog.inc>
 #include <grgserver\Functions\ShowMessage.inc>
@@ -118,6 +124,7 @@
 #include <grgserver\Functions\TeleportTo.inc>
 #include <grgserver\Functions\TeleportToInterior.inc>
 #include <grgserver\Functions\TeleportToProperty.inc>
+#include <grgserver\Functions\UpdateObjectsForAllPlayers.inc>
 #include <grgserver\Functions\WriteChatToDatabase.inc>
 #include <grgserver\Functions\explode.inc>
 #include <grgserver\Functions\str_replace.inc>
@@ -264,6 +271,7 @@
 #include <grgserver\Commands\addobject.inc>
 #include <grgserver\Commands\addpickup.inc>
 #include <grgserver\Commands\addproperty.inc>
+#include <grgserver\Commands\addspeedcam.inc>
 #include <grgserver\Commands\addstaticnpc.inc>
 #include <grgserver\Commands\addteleport.inc>
 #include <grgserver\Commands\attachobject.inc>
@@ -292,10 +300,13 @@
 #include <grgserver\Commands\language.inc>
 #include <grgserver\Commands\lights.inc>
 #include <grgserver\Commands\maptp.inc>
+#include <grgserver\Commands\markobject.inc>
+#include <grgserver\Commands\markobjects.inc>
 #include <grgserver\Commands\me.inc>
 #include <grgserver\Commands\money.inc>
 #include <grgserver\Commands\mysqlstatus.inc>
 #include <grgserver\Commands\navi.inc>
+#include <grgserver\Commands\neon.inc>
 #include <grgserver\Commands\news.inc>
 #include <grgserver\Commands\nextinterior.inc>
 #include <grgserver\Commands\nocamproperty.inc>

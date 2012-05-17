@@ -13,10 +13,12 @@ CMD:lights(playerID, params[], 416)
 	if (GetVehicleLightsState(vehicleID))
 	{
 		SetVehicleLightsState(vehicleID, false);
+		SendClientMessageEx(playerID, COLOR_INFO, 435);
 	}
 	else
 	{
 		SetVehicleLightsState(vehicleID, true);
+		SendClientMessageEx(playerID, COLOR_INFO, 436);
 	}
 	return COMMAND_OK;
 }

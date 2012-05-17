@@ -3,7 +3,7 @@ ShowDialog:GiveWeapon(playerID)
 	new weaponList[1024];
 	Count(weaponID, sizeof(weapons))
 	{
-		if (weapons[weaponID][WEAPON_AMMO])
+		if (weapons[weaponID][WEAPON_AMMO] && IsAllowedWeapon(weaponID))
 		{
 			if (strlen(weaponList))
 			{

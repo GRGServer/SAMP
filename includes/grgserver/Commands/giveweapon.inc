@@ -1,12 +1,16 @@
 PCMD:giveweapon[ADMIN](playerID, params[], 104)
 {
 	new weaponID;
-	if (sscanf(params, "d", weaponID))
+	new ammo;
+	if (sscanf(params, "dd", weaponID, ammo))
 	{
-		ShowDialog:GiveWeapon(playerID);
-		return COMMAND_OK;
+		if (sscanf(params, "d", weaponID))
+		{
+			ShowDialog:GiveWeapon(playerID);
+			return COMMAND_OK;
+		}
 	}
-	if (GivePlayerWeaponEx(playerID, weaponID))
+	if (GivePlayerWeaponEx(playerID, weaponID, ammo))
 	{
 		SendClientMessageEx(playerID, COLOR_INFO, 69, weapons[weaponID][WEAPON_NAME]);
 		return COMMAND_OK;

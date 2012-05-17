@@ -19,15 +19,13 @@ DialogResponse:UpgradeVehicle_Light(playerID, response, listItem, inputText[])
 			{
 				case 1:
 				{
-					AddNeonLight(vehicleID, NEONTYPE_FRONT_LEFT, listItem);
-					AddNeonLight(vehicleID, NEONTYPE_FRONT_RIGHT, listItem);
 					VehicleProperty:vehicleID[FRONTLIGHTID] = listItem + 1;
+					SetVehicleLightsState(vehicleID, true);
 				}
 				case 2:
 				{
-					AddNeonLight(vehicleID, NEONTYPE_LEFT, listItem);
-					AddNeonLight(vehicleID, NEONTYPE_RIGHT, listItem);
 					VehicleProperty:vehicleID[NEONLIGHTID] = listItem + 1;
+					SetVehicleNeonLightsState(vehicleID, true);
 				}
 			}
 		}

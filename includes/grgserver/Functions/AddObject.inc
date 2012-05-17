@@ -20,8 +20,9 @@ AddObject(playerID, modelID, copyFromCurrent = false)
 	new extraID = mysql_insert_id();
 	new objectID = CreateDynamicObject(modelID, posX, posY, posZ, rotX, rotY, rotZ, -1, interior, -1, STREAMER_OBJECTDISTANCE);
 	Streamer_SetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID, extraID);
-	Streamer_Update(playerID);
+	UpdateObjectsForAllPlayers();
 	PlaySound(playerID, SOUND_OBJECTPLACED);
 	SendClientMessageEx(playerID, COLOR_INFO, 396, extraID, GetMySQLValue("objectmodels", "Name", "ID", val2str(modelID)));
 	OnPlayerSelectDynamicObject(playerID, objectID, modelID, posX, posY, posZ);
+	return objectID;
 }
