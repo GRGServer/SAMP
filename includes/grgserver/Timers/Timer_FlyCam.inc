@@ -21,11 +21,11 @@ Timer:FlyCam(playerID)
 		angle = 360.0 + angle;
 	}
 	angleElevation = - (floatabs(atan2(floatsqroot(floatpower(vectorX, 2.0) + floatpower(vectorY, 2.0)), vectorZ)) - 90.0);
-	if (keys == KEY_JUMP)
+	if (keys & KEY_JUMP)
 	{
 		speed = FLYCAM_SPEED_FAST;
 	}
-	if (keys == KEY_WALK)
+	if (keys & KEY_WALK)
 	{
 		speed = FLYCAM_SPEED_SLOW;
 	}
@@ -49,15 +49,15 @@ Timer:FlyCam(playerID)
 		GetXYFromAngle(posX, posY, -angle + 90.0, -50.0);
 		MoveDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT], posX, posY, posZ, speed);
 	}
-	if (keys == KEY_SPRINT)
+	if (keys & KEY_SPRINT)
 	{
 		MoveDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT], posX, posY, posZ + 50.0, speed);
 	}
-	if (keys == KEY_CROUCH)
+	if (keys & KEY_CROUCH)
 	{
 		MoveDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT], posX, posY, posZ - 50.0, speed);
 	}
-	if (updown != KEY_UP && updown != KEY_DOWN && leftright != KEY_LEFT && leftright != KEY_RIGHT && keys != KEY_SPRINT && keys != KEY_CROUCH)
+	if (!(updown & KEY_UP || updown & KEY_DOWN || leftright & KEY_LEFT || leftright & KEY_RIGHT || keys & KEY_SPRINT || keys & KEY_CROUCH))
 	{
 		StopDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT]);
 	}
