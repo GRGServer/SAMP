@@ -1691,4 +1691,8 @@
 		<en>Information about the payday</en>
 		<de>Informationen über den Zahltag</de>
 	</string>
+	<string id="424">
+		<en>Use /engine to start the engine of your vehicle.</en>
+		<de>Verwende /engine um den Motor deines Fahrzeuges zu starten.</de>
+	</string>
 </languagestrings>

@@ -30,5 +30,9 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 			}
 		}
 	}
+	if (!isPassenger && !GetVehicleEngineState(vehicleID))
+	{
+		SendClientMessageEx(playerID, COLOR_INFO, 424);
+	}
 	return true;
 }
