@@ -1,4 +1,4 @@
-ShowDialog:STATS(playerID)
+ShowDialog:Stats(playerID)
 {
 	new string[1024];
 	SavePlayer(playerID);
@@ -24,10 +24,10 @@ ShowDialog:STATS(playerID)
 	Format:string("%s\n%s: %s", string, LanguageString(playerID, 232), FormatDate(GetMySQLField("RegisterTime")));
 	Format:string("%s\n%s: %s", string, LanguageString(playerID, 233), FormatDate(GetMySQLField("LoginTime")));
 	mysql_free_result();
-	ShowMsgBox(playerID, "STATS", LanguageString(playerID, 234), string);
+	ShowMsgBox(playerID, "Stats", LanguageString(playerID, 234), string);
 }
 
-DialogResponse:STATS(playerID, response, listItem, inputText[])
+DialogResponse:Stats(playerID, response, listItem, inputText[])
 {
 	// Nothing to do here
 }

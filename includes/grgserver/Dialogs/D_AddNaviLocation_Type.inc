@@ -1,4 +1,4 @@
-ShowDialog:ADDNAVILOCATION_TYPE(playerID)
+ShowDialog:AddNaviLocation_Type(playerID)
 {
 	new options[2048];
 	MySQLQuery("SELECT * FROM `navigationlocationtypes`");
@@ -20,16 +20,16 @@ ShowDialog:ADDNAVILOCATION_TYPE(playerID)
 	}
 	mysql_free_result();
 	AddLine(options, LanguageString(playerID, 378));
-	CreateDialog(playerID, "ADDNAVILOCATION_TYPE", DIALOG_STYLE_LIST, LanguageString(playerID, 377), options, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "AddNaviLocation_Type", DIALOG_STYLE_LIST, LanguageString(playerID, 377), options, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:ADDNAVILOCATION_TYPE(playerID, response, listItem, inputText[])
+DialogResponse:AddNaviLocation_Type(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
 		if (IsStr(inputText, LanguageString(playerID, 378)))
 		{
-			ShowDialog:ADDNAVILOCATION_NEWTYPE(playerID);
+			ShowDialog:AddNaviLocation_NewType(playerID);
 		}
 		else
 		{

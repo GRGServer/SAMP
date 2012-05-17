@@ -30,7 +30,7 @@ CheckVehiclePermission(playerID, vehicleID)
 	new Float:price = floatstr(GetMySQLField("Price"));
 	if (!ownerUserID && price)
 	{
-		ShowDialog:BUYVEHICLE(playerID, price);
+		ShowDialog:BuyVehicle(playerID, price);
 		return true;
 	}
 	if (ownerUserID)

@@ -1,9 +1,9 @@
-ShowDialog:VEHICLEDEALER_JOB(playerID)
+ShowDialog:VehicleDealer_Job(playerID)
 {
-	ShowMsgBox(playerID, "VEHICLEDEALER_JOB", LanguageString(playerID, 353), LanguageString(playerID, 354), MSGBOXSTYLE_YESNO);
+	ShowMsgBox(playerID, "VehicleDealer_Job", LanguageString(playerID, 353), LanguageString(playerID, 354), MSGBOXSTYLE_YESNO);
 }
 
-DialogResponse:VEHICLEDEALER_JOB(playerID, response, listItem, inputText[])
+DialogResponse:VehicleDealer_Job(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

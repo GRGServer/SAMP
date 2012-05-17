@@ -1,5 +1,5 @@
 CMD:stats(playerID, params[], 120)
 {
-	ShowDialog:STATS(playerID);
+	ShowDialog:Stats(playerID);
 	return COMMAND_OK;
 }

@@ -1,14 +1,14 @@
-ShowDialog:POLICE_OPTIONS(playerID)
+ShowDialog:Police_Options(playerID)
 {
 	FormatNew:options[70]("Aufträge");
 	Format:options("%s\nFinazen", options);
 	Format:options("%s\nBewerbungsübersicht", options);
 	Format:options("%s\nKündigen", options);
 	Format:options("%s\nBetreten", options);
-	CreateDialog(playerID, "POLICE_OPTIONS", DIALOG_STYLE_LIST, "Polizei", options, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "Police_Options", DIALOG_STYLE_LIST, "Polizei", options, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:POLICE_OPTIONS(playerID, response, listItem, inputText[])
+DialogResponse:Police_Options(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
@@ -16,7 +16,7 @@ DialogResponse:POLICE_OPTIONS(playerID, response, listItem, inputText[])
 		{
 			case 0: // Accept jobs
 			{
-				ShowDialog:ACCEPT(playerID);
+				ShowDialog:Accept(playerID);
 			}
 			case 1: // Finanzen
 			{

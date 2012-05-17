@@ -25,13 +25,13 @@ DialogResponse:NaviTarget_HouseName(playerID, response, listItem, inputText[])
 			}
 			else
 			{
-				ShowDialog:NaviTargetHouseList(playerID, inputText);
+				ShowDialog:NaviTarget_HouseList(playerID, inputText);
 			}
 		}
 		mysql_free_result();
 	}
 	else
 	{
-		ShowDialog:NAVITARGET(playerID);
+		ShowDialog:NaviTarget(playerID);
 	}
 }

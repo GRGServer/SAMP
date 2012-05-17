@@ -1,9 +1,9 @@
-ShowDialog:LOGIN(playerID)
+ShowDialog:Login(playerID)
 {
-	CreateDialog(playerID, "LOGIN", DIALOG_STYLE_PASSWORD, "Login", LanguageString(playerID, 262), "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "Login", DIALOG_STYLE_PASSWORD, "Login", LanguageString(playerID, 262), "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:LOGIN(playerID, response, listItem, inputText[])
+DialogResponse:Login(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
@@ -18,7 +18,7 @@ DialogResponse:LOGIN(playerID, response, listItem, inputText[])
 			else
 			{
 				SendClientMessageEx(playerID, COLOR_ERROR, 30);
-				ShowDialog:LOGIN(playerID);
+				ShowDialog:Login(playerID);
 			}
 			mysql_free_result();
 			if (PVar:playerID[USERID])
@@ -35,7 +35,7 @@ DialogResponse:LOGIN(playerID, response, listItem, inputText[])
 		else
 		{
 			SendClientMessageEx(playerID, COLOR_ERROR, 36);
-			ShowDialog:LOGIN(playerID);
+			ShowDialog:Login(playerID);
 		}
 	}
 	else

@@ -1,4 +1,6 @@
-DialogResponse:ADDOBJECT(playerID, response, listItem, inputText[])
+// Dialog is created at another location
+
+DialogResponse:AddObject(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

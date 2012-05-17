@@ -10,7 +10,7 @@ PickupEvent:HOUSE(playerID, pickupID, eventType)
 				if (ownerUserID == PVar:playerID[USERID])
 				{
 					PVar:playerID[DIALOGPROPERTYID] = strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
-					ShowDialog:HOUSE(playerID);
+					ShowDialog:House(playerID);
 				}
 				else
 				{
@@ -23,7 +23,7 @@ PickupEvent:HOUSE(playerID, pickupID, eventType)
 				if (price <= PVar:playerID[BANKMONEY])
 				{
 					PVar:playerID[DIALOGPROPERTYID] = strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
-					ShowDialog:BUYHOUSE(playerID, price);
+					ShowDialog:BuyHouse(playerID, price);
 				}
 				else
 				{

@@ -1,10 +1,10 @@
-ShowDialog:ADDNAVILOCATION_NEWTYPE(playerID)
+ShowDialog:AddNaviLocation_NewType(playerID)
 {
 	FormatNew:string[256](LanguageString(playerID, 382), FILE_LANGUAGESTRINGS);
-	CreateDialog(playerID, "ADDNAVILOCATION_NEWTYPE", DIALOG_STYLE_INPUT, LanguageString(playerID, 378), string, "OK", LanguageString(playerID, 171));
+	CreateDialog(playerID, "AddNaviLocation_NewType", DIALOG_STYLE_INPUT, LanguageString(playerID, 378), string, "OK", LanguageString(playerID, 171));
 }
 
-DialogResponse:ADDNAVILOCATION_NEWTYPE(playerID, response, listItem, inputText[])
+DialogResponse:AddNaviLocation_NewType(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
@@ -29,11 +29,11 @@ DialogResponse:ADDNAVILOCATION_NEWTYPE(playerID, response, listItem, inputText[]
 		else
 		{
 			SendClientMessageEx(playerID, COLOR_ERROR, 379);
-			ShowDialog:ADDNAVILOCATION_NEWTYPE(playerID);
+			ShowDialog:AddNaviLocation_NewType(playerID);
 		}
 	}
 	else
 	{
-		ShowDialog:ADDNAVILOCATION_TYPE(playerID);
+		ShowDialog:AddNaviLocation_Type(playerID);
 	}
 }

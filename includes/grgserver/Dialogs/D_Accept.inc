@@ -1,4 +1,4 @@
-ShowDialog:ACCEPT(playerID)
+ShowDialog:Accept(playerID)
 {
 	new missionList[2048];
 	MySQLQuery("SELECT * FROM `missions` WHERE `JobID` = '%d' AND `AcceptUserID` = '0' ORDER BY `Name` ASC", PVar:playerID[JOBID]);
@@ -14,7 +14,7 @@ ShowDialog:ACCEPT(playerID)
 	mysql_free_result();
 	if (strlen(missionList))
 	{
-		CreateDialog(playerID, "ACCEPT", DIALOG_STYLE_LIST, LanguageString(playerID, 163), missionList, LanguageString(playerID, 164), LanguageString(playerID, 165));
+		CreateDialog(playerID, "Accept", DIALOG_STYLE_LIST, LanguageString(playerID, 163), missionList, LanguageString(playerID, 164), LanguageString(playerID, 165));
 	}
 	else
 	{
@@ -22,7 +22,7 @@ ShowDialog:ACCEPT(playerID)
 	}
 }
 
-DialogResponse:ACCEPT(playerID, response, listItem, inputText[])
+DialogResponse:Accept(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

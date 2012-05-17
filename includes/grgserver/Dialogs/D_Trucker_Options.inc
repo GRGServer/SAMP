@@ -1,13 +1,13 @@
-ShowDialog:TRUCKER_OPTIONS(playerID)
+ShowDialog:Trucker_Options(playerID)
 {
 	FormatNew:options[50]("Aufträge");
 	Format:options("%s\nFinanzen", options);
 	Format:options("%s\nKündigen", options);
 	Format:options("%s\nBewerbungsübersicht", options);
-	CreateDialog(playerID, "TRUCKER_OPTIONS", DIALOG_STYLE_LIST, "Trucker Übersicht", options, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "Trucker_Options", DIALOG_STYLE_LIST, "Trucker Übersicht", options, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:TRUCKER_OPTIONS(playerID, response, listItem, inputText[])
+DialogResponse:Trucker_Options(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
@@ -15,7 +15,7 @@ DialogResponse:TRUCKER_OPTIONS(playerID, response, listItem, inputText[])
 		{
 			case 0: // Aufträge
 			{
-				ShowDialog:ACCEPT(playerID);
+				ShowDialog:Accept(playerID);
 			}
 			case 1: // Finanzen
 			{

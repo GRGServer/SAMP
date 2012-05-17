@@ -1,10 +1,10 @@
-ShowDialog:REGISTER_GENDER(playerID)
+ShowDialog:Register_Gender(playerID)
 {
 	FormatNew:options[50]("%s\n%s", LanguageString(playerID, 256), LanguageString(playerID, 257));
-	CreateDialog(playerID, "REGISTER_GENDER", DIALOG_STYLE_LIST, LanguageString(playerID, 255), options, LanguageString(playerID, 177), LanguageString(playerID, 171));
+	CreateDialog(playerID, "Register_Gender", DIALOG_STYLE_LIST, LanguageString(playerID, 255), options, LanguageString(playerID, 177), LanguageString(playerID, 171));
 }
 
-DialogResponse:REGISTER_GENDER(playerID, response, listItem, inputText[])
+DialogResponse:Register_Gender(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
@@ -19,10 +19,10 @@ DialogResponse:REGISTER_GENDER(playerID, response, listItem, inputText[])
 			PVar:playerID[SKIN] = REGISTER_SKIN_MALE;
 		}
 		SetPlayerSkin(playerID, PVar:playerID[SKIN]);
-		ShowDialog:REGISTER_BIRTHDATE(playerID);
+		ShowDialog:Register_Birthdate(playerID);
 	}
 	else
 	{
-		ShowDialog:REGISTER_PASSWORD2(playerID);
+		ShowDialog:Register_Password2(playerID);
 	}
 }

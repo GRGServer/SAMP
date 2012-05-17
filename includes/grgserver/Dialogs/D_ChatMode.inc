@@ -1,14 +1,14 @@
-ShowDialog:CHATMODE(playerID)
+ShowDialog:ChatMode(playerID)
 {
 	new options[1024];
 	AddLine(options, LanguageString(playerID, 311));
 	AddLine(options, LanguageString(playerID, 310));
 	AddLine(options, "Job");
 	AddLine(options, "Admins");
-	CreateDialog(playerID, "CHATMODE", DIALOG_STYLE_LIST, LanguageString(playerID, 312), options, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "ChatMode", DIALOG_STYLE_LIST, LanguageString(playerID, 312), options, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:CHATMODE(playerID, response, listItem, inputText[])
+DialogResponse:ChatMode(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

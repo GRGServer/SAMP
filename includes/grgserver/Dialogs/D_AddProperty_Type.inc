@@ -1,4 +1,4 @@
-ShowDialog:ADDPROPERTY_TYPE(playerID)
+ShowDialog:AddProperty_Type(playerID)
 {
 	new options[1024];
 	AddLine(options, LanguageString(playerID, 173));
@@ -6,10 +6,10 @@ ShowDialog:ADDPROPERTY_TYPE(playerID)
 	AddLine(options, LanguageString(playerID, 175));
 	AddLine(options, LanguageString(playerID, 397));
 	AddLine(options, LanguageString(playerID, 176));
-	CreateDialog(playerID, "ADDPROPERTY_TYPE", DIALOG_STYLE_LIST, LanguageString(playerID, 172), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
+	CreateDialog(playerID, "AddProperty_Type", DIALOG_STYLE_LIST, LanguageString(playerID, 172), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
 }
 
-DialogResponse:ADDPROPERTY_TYPE(playerID, response, listItem, inputText[])
+DialogResponse:AddProperty_Type(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
@@ -38,7 +38,7 @@ DialogResponse:ADDPROPERTY_TYPE(playerID, response, listItem, inputText[])
 		if (IsStr(type, "HOTEL") || IsStr(type, "PLACE"))
 		{
 			PVar:playerID[ADDPROPERTY_INTERIORID] = 0;
-			ShowDialog:ADDPROPERTY_NAME(playerID);
+			ShowDialog:AddProperty_Name(playerID);
 			return true;
 		}
 		ShowInteriorDialog(playerID, INTERIORDIALOG_ADDPROPERTY);

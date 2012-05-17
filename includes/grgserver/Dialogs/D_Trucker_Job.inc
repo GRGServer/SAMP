@@ -1,11 +1,11 @@
-ShowDialog:TRUCKER_JOB(playerID)
+ShowDialog:Trucker_Job(playerID)
 {
 	FormatNew:options[30]("Truckerfirma kaufen");
 	Format:options("%s\nBewerben", options);
-	CreateDialog(playerID, "TRUCKER_JOB", DIALOG_STYLE_LIST, "Trucker", options, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "Trucker_Job", DIALOG_STYLE_LIST, "Trucker", options, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:TRUCKER_JOB(playerID, response, listItem, inputText[])
+DialogResponse:Trucker_Job(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

@@ -1,4 +1,4 @@
-ShowDialog:SELECTINTERIOR(playerID, dialogID, startID)
+ShowDialog:SelectInterior(playerID, dialogID, startID)
 {
 	new interiors[2048];
 	new page;
@@ -34,10 +34,10 @@ ShowDialog:SELECTINTERIOR(playerID, dialogID, startID)
 	}
 	FormatNew:string[30]("%s (%s %d)", LanguageString(playerID, 247), LanguageString(playerID, 248), page);
 	PVar:playerID[SELECTINTERIOR_ID] = dialogID;
-	CreateDialog(playerID, "SELECTINTERIOR", DIALOG_STYLE_LIST, string, interiors, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "SelectInterior", DIALOG_STYLE_LIST, string, interiors, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:SELECTINTERIOR(playerID, response, listItem, inputText[])
+DialogResponse:SelectInterior(playerID, response, listItem, inputText[])
 {
 	if (!response)
 	{
@@ -46,12 +46,12 @@ DialogResponse:SELECTINTERIOR(playerID, response, listItem, inputText[])
 	}
 	if (IsStr(inputText, LanguageString(playerID, 171)))
 	{
-		ShowDialog:SELECTINTERIOR(playerID,  PVar:playerID[SELECTINTERIOR_ID], 0);
+		ShowDialog:SelectInterior(playerID,  PVar:playerID[SELECTINTERIOR_ID], 0);
 		return true;
 	}
 	if (IsStr(inputText, LanguageString(playerID, 177)))
 	{
-		ShowDialog:SELECTINTERIOR(playerID,  PVar:playerID[SELECTINTERIOR_ID], 75);
+		ShowDialog:SelectInterior(playerID,  PVar:playerID[SELECTINTERIOR_ID], 75);
 		return true;
 	}
 	new interiorID = strval(GetMySQLValue("interiors", "ID", "Name", inputText));

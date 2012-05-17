@@ -1,12 +1,12 @@
-ShowDialog:HOUSE(playerID)
+ShowDialog:House(playerID)
 {
 	new options[1024];
 	AddLine(options, LanguageString(playerID, 268));// Item 0
 	AddLine(options, LanguageString(playerID, 328));// Item 1
-	CreateDialog(playerID, "HOUSE", DIALOG_STYLE_LIST, LanguageString(playerID, 329), options, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "House", DIALOG_STYLE_LIST, LanguageString(playerID, 329), options, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:HOUSE(playerID, response, listItem, inputText[])
+DialogResponse:House(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

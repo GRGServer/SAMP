@@ -4,7 +4,7 @@ CMD:accept(playerID, params[], 94)
 	{
 		case JOB_ADAC, JOB_AMBULANCE, JOB_POLICE, JOB_TRUCKER:
 		{
-			ShowDialog:ACCEPT(playerID);
+			ShowDialog:Accept(playerID);
 		}
 		default:
 		{

@@ -1,10 +1,10 @@
-ShowDialog:ESTATEAGENTS(playerID)
+ShowDialog:EstateAgents(playerID)
 {
 	FormatNew:options[50]("%s\n%s", LanguageString(playerID, 217), LanguageString(playerID, 218));
-	CreateDialog(playerID, "ESTATEAGENTS", DIALOG_STYLE_LIST, LanguageString(playerID, 222), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
+	CreateDialog(playerID, "EstateAgents", DIALOG_STYLE_LIST, LanguageString(playerID, 222), options, LanguageString(playerID, 177), LanguageString(playerID, 165));
 }
 
-DialogResponse:ESTATEAGENTS(playerID, response, listItem, inputText[])
+DialogResponse:EstateAgents(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

@@ -15,11 +15,11 @@ PickupEvent:HOTEL(playerID, pickupID, eventType)
 			mysql_free_result();
 			if (PVar:playerID[HOTEL_ROOMID])
 			{
-				ShowDialog:HOTEL_HASROOM(playerID);
+				ShowDialog:Hotel_HasRoom(playerID);
 			}
 			else
 			{
-				if (!ShowDialog:HOTEL_ROOMLIST(playerID))
+				if (!ShowDialog:Hotel_RoomList(playerID))
 				{
 					SendClientMessageEx(playerID, COLOR_INFO, 314);
 					if (permissions[playerID][PERMISSION_MAPPER])

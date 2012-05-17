@@ -1,4 +1,4 @@
-ShowDialog:VEHICLEDEALER_OPTIONS(playerID)
+ShowDialog:VehicleDealer_Options(playerID)
 {
 	new options[1024];
 	if (PVar:playerID[ATWORK])
@@ -10,10 +10,10 @@ ShowDialog:VEHICLEDEALER_OPTIONS(playerID)
 		AddLine(options, LanguageString(playerID, 357));
 	}
 	AddLine(options, LanguageString(playerID, 358));
-	CreateDialog(playerID, "VEHICLEDEALER_OPTIONS", DIALOG_STYLE_LIST, LanguageString(playerID, 353), options, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "VehicleDealer_Options", DIALOG_STYLE_LIST, LanguageString(playerID, 353), options, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:VEHICLEDEALER_OPTIONS(playerID, response, listItem, inputText[])
+DialogResponse:VehicleDealer_Options(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

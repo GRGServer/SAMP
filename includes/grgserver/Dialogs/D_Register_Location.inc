@@ -1,9 +1,9 @@
-ShowDialog:REGISTER_LOCATION(playerID)
+ShowDialog:Register_Location(playerID)
 {
-	CreateDialog(playerID, "REGISTER_LOCATION", DIALOG_STYLE_INPUT, LanguageString(playerID, 258), LanguageString(playerID, 259), "OK", LanguageString(playerID, 171));
+	CreateDialog(playerID, "Register_Location", DIALOG_STYLE_INPUT, LanguageString(playerID, 258), LanguageString(playerID, 259), "OK", LanguageString(playerID, 171));
 }
 
-DialogResponse:REGISTER_LOCATION(playerID, response, listItem, inputText[])
+DialogResponse:Register_Location(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
@@ -12,6 +12,6 @@ DialogResponse:REGISTER_LOCATION(playerID, response, listItem, inputText[])
 	}
 	else
 	{
-		ShowDialog:REGISTER_GENDER(playerID);
+		ShowDialog:Register_Gender(playerID);
 	}
 }

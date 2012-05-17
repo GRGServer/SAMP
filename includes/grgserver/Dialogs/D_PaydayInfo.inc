@@ -11,3 +11,8 @@ ShowDialog:PaydayInfo(playerID)
 	AddLine:string(LanguageString(playerID, 422), FormatTime(PAYDAY_INTERVAL - difference));
 	CreateDialog(playerID, "PaydayInfo", DIALOG_STYLE_MSGBOX, LanguageString(playerID, 423), string, "OK", "");
 }
+
+DialogResponse:PaydayInfo(playerID, response, listItem, inputText[])
+{
+	// Nothing to do here
+}

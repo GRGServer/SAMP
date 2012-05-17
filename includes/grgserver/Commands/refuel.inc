@@ -14,7 +14,7 @@ CMD:refuel(playerID, params[], 297)
 			new modelID = GetVehicleModel(vehicleID);
 			if (modelID >= 400 && modelID <= 611)
 			{
-				ShowDialog:REFUEL(targetPlayerID);
+				ShowDialog:Refuel(targetPlayerID);
 				return COMMAND_OK;
 			}
 			else

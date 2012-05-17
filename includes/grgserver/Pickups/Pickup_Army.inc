@@ -4,7 +4,7 @@ PickupEvent:ARMY(playerID, pickupID, eventType)
 	{
 		case PICKUPEVENT_KEYPRESS:
 		{
-			ShowDialog:ARMY(playerID);
+			ShowDialog:Army(playerID);
 			return true;
 		}
 	}

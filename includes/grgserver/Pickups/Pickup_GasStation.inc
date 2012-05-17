@@ -12,7 +12,7 @@ PickupEvent:GASSTATION(playerID, pickupID, eventType)
 				if (maximum > 0)
 				{
 					PVar:playerID[REFUEL_MAXIMUM] = maximum;
-					ShowDialog:REFUEL(playerID);
+					ShowDialog:Refuel(playerID);
 				}
 				else
 				{

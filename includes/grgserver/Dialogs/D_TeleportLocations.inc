@@ -1,4 +1,4 @@
-ShowDialog:TELEPORTLOCATIONS(playerID)
+ShowDialog:TeleportLocations(playerID)
 {
 	new locations[2048];
 	mysql_query("SELECT * FROM `teleports`");
@@ -12,10 +12,10 @@ ShowDialog:TELEPORTLOCATIONS(playerID)
 		Format:locations("%s%s", locations, GetMySQLField("Name"));
 	}
 	mysql_free_result();
-	CreateDialog(playerID, "TELEPORTLOCATIONS", DIALOG_STYLE_LIST, LanguageString(playerID, 246), locations, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "TeleportLocations", DIALOG_STYLE_LIST, LanguageString(playerID, 246), locations, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:TELEPORTLOCATIONS(playerID, response, listItem, inputText[])
+DialogResponse:TeleportLocations(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

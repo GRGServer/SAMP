@@ -1,16 +1,16 @@
-ShowDialog:PREVIEWINFO(playerID)
+ShowDialog:PreviewInfo(playerID)
 {
-	ShowMsgBox(playerID, "PREVIEWINFO", LanguageString(playerID, 269), LanguageString(playerID, 270));
+	ShowMsgBox(playerID, "PreviewInfo", LanguageString(playerID, 269), LanguageString(playerID, 270));
 }
 
-DialogResponse:PREVIEWINFO(playerID, response, listItem, inputText[])
+DialogResponse:PreviewInfo(playerID, response, listItem, inputText[])
 {
 	if (PVar:playerID[REGISTERED])
 	{
-		ShowDialog:LOGIN(playerID);
+		ShowDialog:Login(playerID);
 	}
 	else
 	{
-		ShowDialog:REGISTER_PASSWORD1(playerID);
+		ShowDialog:Register_Password1(playerID);
 	}
 }

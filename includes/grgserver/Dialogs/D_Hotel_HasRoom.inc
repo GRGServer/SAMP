@@ -1,13 +1,13 @@
-ShowDialog:HOTEL_HASROOM(playerID)
+ShowDialog:Hotel_HasRoom(playerID)
 {
 	new options[1024];
 	AddLine(options, LanguageString(playerID, 317));// Item 0
 	AddLine(options, LanguageString(playerID, 318));// Item 1
 	AddLine(options, LanguageString(playerID, 319));// Item 2
-	CreateDialog(playerID, "HOTEL_HASROOM", DIALOG_STYLE_LIST, LanguageString(playerID, 316), options, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "Hotel_HasRoom", DIALOG_STYLE_LIST, LanguageString(playerID, 316), options, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:HOTEL_HASROOM(playerID, response, listItem, inputText[])
+DialogResponse:Hotel_HasRoom(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
@@ -31,7 +31,7 @@ DialogResponse:HOTEL_HASROOM(playerID, response, listItem, inputText[])
 				new Float:price = floatstr(GetMySQLField("Price"));
 				mysql_free_result();
 				SendClientMessageEx(playerID, COLOR_INFO, 320, price);
-				ShowDialog:HOTEL_HASROOM(playerID);
+				ShowDialog:Hotel_HasRoom(playerID);
 			}
 		}
 	}

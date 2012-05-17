@@ -1,16 +1,16 @@
-ShowDialog:BANK_DEPOSITMONEY(playerID)
+ShowDialog:Bank_DepositMoney(playerID)
 {
-	CreateDialog(playerID, "BANK_DEPOSITMONEY", DIALOG_STYLE_INPUT, LanguageString(playerID, 208), LanguageString(playerID, 212), "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "Bank_DepositMoney", DIALOG_STYLE_INPUT, LanguageString(playerID, 208), LanguageString(playerID, 212), "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:BANK_DEPOSITMONEY(playerID, response, listItem, inputText[])
+DialogResponse:Bank_DepositMoney(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
 		if (!strlen(inputText))
 		{
 			SendClientMessageEx(playerID, COLOR_ERROR, 19);
-			ShowDialog:BANK_DEPOSITMONEY(playerID);
+			ShowDialog:Bank_DepositMoney(playerID);
 		}
 		else
 		{
@@ -18,19 +18,19 @@ DialogResponse:BANK_DEPOSITMONEY(playerID, response, listItem, inputText[])
 			if(money > PVar:playerID[MONEY])
 			{
 				SendClientMessageEx(playerID, COLOR_ERROR, 14);
-				ShowDialog:BANK_DEPOSITMONEY(playerID);
+				ShowDialog:Bank_DepositMoney(playerID);
 			}
 			else
 			{
 				SetPlayerMoney(playerID, MONEY_BANK, floatadd(PVar:playerID[BANKMONEY], money));
 				SetPlayerMoney(playerID, MONEY_CASH, floatsub(PVar:playerID[MONEY], money));
 				SendClientMessageEx(playerID, COLOR_INFO, 21, money);
-				ShowDialog:BANK_HASACCOUNT(playerID);
+				ShowDialog:Bank_HasAccount(playerID);
 			}
 		}
 	}
 	else
 	{
-		ShowDialog:BANK_HASACCOUNT(playerID);
+		ShowDialog:Bank_HasAccount(playerID);
 	}
 }

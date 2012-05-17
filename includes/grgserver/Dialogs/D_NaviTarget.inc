@@ -1,4 +1,4 @@
-ShowDialog:NAVITARGET(playerID)
+ShowDialog:NaviTarget(playerID)
 {
 	new targets[2048];
 	AddLine(targets, LanguageString(playerID, 173));// Bank
@@ -25,10 +25,10 @@ ShowDialog:NAVITARGET(playerID)
 	mysql_free_result();
 	AddLine(targets, LanguageString(playerID, 342));// Target on map
 	AddLine(targets, LanguageString(playerID, 417));// Name of a house
-	CreateDialog(playerID, "NAVITARGET", DIALOG_STYLE_LIST, LanguageString(playerID, 247), targets, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "NaviTarget", DIALOG_STYLE_LIST, LanguageString(playerID, 247), targets, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:NAVITARGET(playerID, response, listItem, inputText[])
+DialogResponse:NaviTarget(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

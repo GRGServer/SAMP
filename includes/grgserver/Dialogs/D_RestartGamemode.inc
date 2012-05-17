@@ -1,9 +1,9 @@
-ShowDialog:RESTARTGAMEMODE(playerID)
+ShowDialog:RestartGamemode(playerID)
 {
-	ShowMsgBox(playerID, "RESTARTGAMEMODE", LanguageString(playerID, 249), LanguageString(playerID, 250), MSGBOXSTYLE_YESNO);
+	ShowMsgBox(playerID, "RestartGamemode", LanguageString(playerID, 249), LanguageString(playerID, 250), MSGBOXSTYLE_YESNO);
 }
 
-DialogResponse:RESTARTGAMEMODE(playerID, response, listItem, inputText[])
+DialogResponse:RestartGamemode(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

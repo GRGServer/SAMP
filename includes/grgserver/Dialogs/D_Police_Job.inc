@@ -1,12 +1,12 @@
-ShowDialog:POLICE_JOB(playerID)
+ShowDialog:Police_Job(playerID)
 {
 	FormatNew:options[60]("Polizeirevier kaufen");
 	Format:options("%s\nBewerben", options);
 	Format:options("%s\nBetreten", options);
-	CreateDialog(playerID, "POLICE_JOB", DIALOG_STYLE_LIST, "Polizei", options, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "Police_Job", DIALOG_STYLE_LIST, "Polizei", options, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:POLICE_JOB(playerID, response, listItem, inputText[])
+DialogResponse:Police_Job(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

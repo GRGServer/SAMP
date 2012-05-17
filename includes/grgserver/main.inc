@@ -195,7 +195,7 @@
 #include <grgserver\Dialogs\D_House.inc>
 #include <grgserver\Dialogs\D_Login.inc>
 #include <grgserver\Dialogs\D_NaviTarget.inc>
-#include <grgserver\Dialogs\D_NaviTargetHouseList.inc>
+#include <grgserver\Dialogs\D_NaviTarget_HouseList.inc>
 #include <grgserver\Dialogs\D_NaviTarget_HouseName.inc>
 #include <grgserver\Dialogs\D_OrderVehicle.inc>
 #include <grgserver\Dialogs\D_PaydayInfo.inc>

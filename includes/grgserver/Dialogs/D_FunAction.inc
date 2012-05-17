@@ -1,14 +1,14 @@
-ShowDialog:FUNACTION(playerID)
+ShowDialog:FunAction(playerID)
 {
 	FormatNew:string[1024]("Stop\n");
 	Format:string("%s\nDance 1\nDance 2\nDance 3\nDance 4", string);
 	Format:string("%s\nHands Up\nSitting", string);
 	Format:string("%s\nDrink Beer\nSmoke Ciggy\nDrink Wine\nDrink Sprunk", string);
 	Format:string("%s\nPissing", string);
-	CreateDialog(playerID, "FUNACTION", DIALOG_STYLE_LIST, "Fun Action", string, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "FunAction", DIALOG_STYLE_LIST, "Fun Action", string, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:FUNACTION(playerID, response, listItem, inputText[])
+DialogResponse:FunAction(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

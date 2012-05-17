@@ -66,7 +66,7 @@ public OnPlayerConnect(playerid)
 			PVar:playerid[REGISTERED] = false;
 		}
 		mysql_free_result();
-		ShowDialog:PREVIEWINFO(playerid);
+		ShowDialog:PreviewInfo(playerid);
 		SendDeathMessage(INVALID_PLAYER_ID, playerid, 200);
 		SendClientMessageEx(playerid, COLOR_SYSTEM, 138);
 		SendClientMessageEx(playerid, COLOR_SYSTEM, 5, COMPILER_SVN_REVISION);

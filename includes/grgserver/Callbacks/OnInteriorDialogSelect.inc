@@ -7,11 +7,11 @@ OnInteriorDialogSelect(playerID, dialogID, interiorID)
 			if (interiorID)
 			{
 				PVar:playerID[ADDPROPERTY_INTERIORID] = interiorID;
-				ShowDialog:ADDPROPERTY_NAME(playerID);
+				ShowDialog:AddProperty_Name(playerID);
 			}
 			else
 			{
-				ShowDialog:ADDPROPERTY_TYPE(playerID);
+				ShowDialog:AddProperty_Type(playerID);
 			}
 		}
 		case INTERIORDIALOG_SHOWINTERIOR:

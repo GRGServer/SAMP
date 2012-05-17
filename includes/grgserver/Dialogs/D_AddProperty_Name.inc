@@ -1,9 +1,9 @@
-ShowDialog:ADDPROPERTY_NAME(playerID)
+ShowDialog:AddProperty_Name(playerID)
 {
-	CreateDialog(playerID, "ADDPROPERTY_NAME", DIALOG_STYLE_INPUT, LanguageString(playerID, 168), LanguageString(playerID, 169), LanguageString(playerID, 170), LanguageString(playerID, 171));
+	CreateDialog(playerID, "AddProperty_Name", DIALOG_STYLE_INPUT, LanguageString(playerID, 168), LanguageString(playerID, 169), LanguageString(playerID, 170), LanguageString(playerID, 171));
 }
 
-DialogResponse:ADDPROPERTY_NAME(playerID, response, listItem, inputText[])
+DialogResponse:AddProperty_Name(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

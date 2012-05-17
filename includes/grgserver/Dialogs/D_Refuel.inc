@@ -1,13 +1,13 @@
-ShowDialog:REFUEL(playerID)
+ShowDialog:Refuel(playerID)
 {
 	new string[80];
 	GetStringArg(2, string);
 	PVar:playerID[CURRENTGASPRICE] = gasPrice;
 	Format:string(LanguageString(playerID, 238), FormatNumber(PVar:playerID[REFUEL_MAXIMUM], 2, '.', ','), FormatMoney(gasPrice));
-	CreateDialog(playerID, "REFUEL", DIALOG_STYLE_INPUT, LanguageString(playerID, 239), string, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "Refuel", DIALOG_STYLE_INPUT, LanguageString(playerID, 239), string, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:REFUEL(playerID, response, listItem, inputText[])
+DialogResponse:Refuel(playerID, response, listItem, inputText[])
 {
 	if (response && strlen(inputText))
 	{

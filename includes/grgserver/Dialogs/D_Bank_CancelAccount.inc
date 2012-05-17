@@ -1,9 +1,9 @@
-ShowDialog:BANK_CANCELACCOUNT(playerID)
+ShowDialog:Bank_CancelAccount(playerID)
 {
-	ShowMsgBox(playerID, "BANK_CANCELACCOUNT", LanguageString(playerID, 209), LanguageString(playerID, 214), MSGBOXSTYLE_YESNO);
+	ShowMsgBox(playerID, "Bank_CancelAccount", LanguageString(playerID, 209), LanguageString(playerID, 214), MSGBOXSTYLE_YESNO);
 }
 
-DialogResponse:BANK_CANCELACCOUNT(playerID, response, listItem, inputText[])
+DialogResponse:Bank_CancelAccount(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
@@ -12,6 +12,6 @@ DialogResponse:BANK_CANCELACCOUNT(playerID, response, listItem, inputText[])
 	}
 	else
 	{
-		ShowDialog:BANK_HASACCOUNT(playerID);
+		ShowDialog:Bank_HasAccount(playerID);
 	}
 }

@@ -1,10 +1,10 @@
-ShowDialog:BUYHOUSE(playerID, Float:price)
+ShowDialog:BuyHouse(playerID, Float:price)
 {
 	FormatNew:string[100](LanguageString(playerID, 235), FormatMoney(price));
-	CreateDialog(playerID, "BUYHOUSE", DIALOG_STYLE_MSGBOX, LanguageString(playerID, 236), string, LanguageString(playerID, 237), LanguageString(playerID, 165));
+	CreateDialog(playerID, "BuyHouse", DIALOG_STYLE_MSGBOX, LanguageString(playerID, 236), string, LanguageString(playerID, 237), LanguageString(playerID, 165));
 }
 
-DialogResponse:BUYHOUSE(playerID, response, listItem, inputText[])
+DialogResponse:BuyHouse(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

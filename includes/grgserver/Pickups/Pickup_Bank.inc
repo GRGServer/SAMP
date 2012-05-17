@@ -8,11 +8,11 @@ PickupEvent:BANK(playerID, pickupID, eventType)
 			new bankID = strval(GetUserDBValue(playerID, "BankID"));
 			if (bankID)
 			{
-				ShowDialog:BANK_HASACCOUNT(playerID);
+				ShowDialog:Bank_HasAccount(playerID);
 			}
 			else
 			{
-				ShowDialog:BANK_NEWACCOUNT(playerID);
+				ShowDialog:Bank_NewAccount(playerID);
 			}
 			return true;
 		}

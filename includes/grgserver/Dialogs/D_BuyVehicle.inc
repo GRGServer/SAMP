@@ -1,10 +1,10 @@
-ShowDialog:BUYVEHICLE(playerID, Float:price)
+ShowDialog:BuyVehicle(playerID, Float:price)
 {
 	FormatNew:string[100](LanguageString(playerID, 244), FormatMoney(price));
-	ShowMsgBox(playerID, "BUYVEHICLE", LanguageString(playerID, 245), string, MSGBOXSTYLE_YESNO);
+	ShowMsgBox(playerID, "BuyVehicle", LanguageString(playerID, 245), string, MSGBOXSTYLE_YESNO);
 }
 
-DialogResponse:BUYVEHICLE(playerID, response, listItem, inputText[])
+DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

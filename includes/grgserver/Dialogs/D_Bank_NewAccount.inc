@@ -1,16 +1,16 @@
-ShowDialog:BANK_NEWACCOUNT(playerID)
+ShowDialog:Bank_NewAccount(playerID)
 {
-	ShowMsgBox(playerID, "BANK_NEWACCOUNT", LanguageString(playerID, 210), LanguageString(playerID, 211), MSGBOXSTYLE_YESNO);
+	ShowMsgBox(playerID, "Bank_NewAccount", LanguageString(playerID, 210), LanguageString(playerID, 211), MSGBOXSTYLE_YESNO);
 }
 
-DialogResponse:BANK_NEWACCOUNT(playerID, response, listItem, inputText[])
+DialogResponse:Bank_NewAccount(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
 		new bankID = strval(GetMySQLValue("bankbranches", "BankID", "PropertyID", val2str(PVar:playerID[CURRENTPROPERTYID])));
 		SetUserDBValue(playerID, "BankID", val2str(bankID));
 		SendClientMessageEx(playerID, COLOR_INFO, 216, GetMySQLValue("banks", "Name", "ID", val2str(bankID)));
-		ShowDialog:BANK_HASACCOUNT(playerID);
+		ShowDialog:Bank_HasAccount(playerID);
 	}
 	else
 	{

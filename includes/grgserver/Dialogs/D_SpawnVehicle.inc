@@ -1,4 +1,6 @@
-DialogResponse:SPAWNVEHICLE(playerID, response, listItem, inputText[])
+// Dialog is created at another location
+
+DialogResponse:SpawnVehicle(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{

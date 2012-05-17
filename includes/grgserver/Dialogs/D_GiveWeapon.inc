@@ -1,4 +1,4 @@
-ShowDialog:GIVEWEAPON(playerID)
+ShowDialog:GiveWeapon(playerID)
 {
 	new weaponList[1024];
 	Count(weaponID, sizeof(weapons))
@@ -12,10 +12,10 @@ ShowDialog:GIVEWEAPON(playerID)
 			Format:weaponList("%s%d: %s", weaponList, weaponID, weapons[weaponID][WEAPON_NAME]);
 		}
 	}
-	CreateDialog(playerID, "GIVEWEAPON", DIALOG_STYLE_LIST, LanguageString(playerID, 361), weaponList, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "GiveWeapon", DIALOG_STYLE_LIST, LanguageString(playerID, 361), weaponList, "OK", LanguageString(playerID, 165));
 }
 
-DialogResponse:GIVEWEAPON(playerID, response, listItem, inputText[])
+DialogResponse:GiveWeapon(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
