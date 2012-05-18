@@ -97,6 +97,7 @@
 #include <grgserver\Functions\RemovePlayerRaceCheckpoint.inc>
 #include <grgserver\Functions\RemoveVehicleLightObjects.inc>
 #include <grgserver\Functions\ResetPlayerVariables.inc>
+#include <grgserver\Functions\RotatePlayer.inc>
 #include <grgserver\Functions\SavePlayer.inc>
 #include <grgserver\Functions\SaveVehicle.inc>
 #include <grgserver\Functions\SendClientMessageEx.inc>
@@ -339,6 +340,7 @@
 #include <grgserver\Commands\settplink.inc>
 #include <grgserver\Commands\showinterior.inc>
 #include <grgserver\Commands\showpos.inc>
+#include <grgserver\Commands\sit.inc>
 #include <grgserver\Commands\spawnvehicle.inc>
 #include <grgserver\Commands\stats.inc>
 #include <grgserver\Commands\stoprec.inc>

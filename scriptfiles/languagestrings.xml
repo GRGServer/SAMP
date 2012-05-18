@@ -1755,4 +1755,8 @@
 		<en>Vehicle upgrader</en>
 		<de>Fahrzeugaufrüster</de>
 	</string>
+	<string id="438">
+		<en>Sit down or stand up</en>
+		<de>Hinsetzen oder aufstehen</de>
+	</string>
 </languagestrings>
