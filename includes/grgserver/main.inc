@@ -46,6 +46,7 @@
 #include <grgserver\Functions\GetClosestPickup.inc>
 #include <grgserver\Functions\GetClosestVehicleInRange.inc>
 #include <grgserver\Functions\GetColor.inc>
+#include <grgserver\Functions\GetDistanceBetweenPoints.inc>
 #include <grgserver\Functions\GetMySQLField.inc>
 #include <grgserver\Functions\GetMySQLValue.inc>
 #include <grgserver\Functions\GetNavigationLocationTypeByName.inc>

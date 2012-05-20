@@ -1,5 +1,6 @@
 ShowGPSCheckpoint(playerID, id)
 {
+	new nextNodeID;
 	new Float:posX;
 	new Float:posY;
 	new Float:posZ;
@@ -13,14 +14,14 @@ ShowGPSCheckpoint(playerID, id)
 	}
 	PVar:playerID[GPS_ID] = id;
 	GetNodePos(PVar:playerID[GPS_NODES][id], posX, posY, posZ);
-	if (GetPlayerDistanceFromPoint(playerID, posX, posY, posZ) < 30 && id < PVar:playerID[GPS_NODESCOUNT] - 1)// TODO: Goal checkpoint appears twice?
+	if (GetPlayerDistanceFromPoint(playerID, posX, posY, posZ) < 30 && id < PVar:playerID[GPS_NODESCOUNT] - 1)
 	{
 		return ShowGPSCheckpoint(playerID, id + 1);
 	}
-	for (new nextNode = id + 1; nextNode < PVar:playerID[GPS_NODESCOUNT] - 1; nextNode++)
+	for (nextNodeID = id + 1; nextNodeID < PVar:playerID[GPS_NODESCOUNT]; nextNodeID++)
 	{
-		GetNodePos(PVar:playerID[GPS_NODES][nextNode], nextPosX, nextPosY, nextPosZ);
-		if (GetPlayerDistanceFromPoint(playerID, nextPosX, nextPosY, nextPosZ) >= 30)// TODO: Fix arrow direction (Should be set to the real next target)
+		GetNodePos(PVar:playerID[GPS_NODES][nextNodeID], nextPosX, nextPosY, nextPosZ);
+		if (GetDistanceBetweenPoints(posX, posY, posZ, nextPosX, nextPosY, nextPosZ) >= 30)
 		{
 			break;
 		}
