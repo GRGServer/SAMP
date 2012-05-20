@@ -16,16 +16,12 @@ DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 			GivePlayerMoneyEx(playerID, MONEY_CASH, -price);
 			SetMySQLValue("vehicles", "OwnerUserID", val2str(PVar:playerID[USERID]), "ID", val2str(saveID));
 			VehicleProperty:vehicleID[ALLOWDESTROY] = true;
+			VehicleProperty:vehicleID[ALLOWSAVE] = true;
 			SavePlayer(playerID);
 		}
 		else
 		{
 			SendClientMessageEx(playerID, COLOR_ERROR, 27, price, PVar:playerID[BANKMONEY]);
-			RemovePlayerFromVehicle(playerID);
 		}
-	}
-	else
-	{
-		RemovePlayerFromVehicle(playerID);
 	}
 }

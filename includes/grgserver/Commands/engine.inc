@@ -12,7 +12,7 @@ CMD:engine(playerID, params[], 111)
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (!CheckVehiclePermission(playerID, vehicleID))
 	{
-		return COMMAND_ERROR;
+		return COMMAND_OK;
 	}
 	if (GetVehicleEngineState(vehicleID))
 	{

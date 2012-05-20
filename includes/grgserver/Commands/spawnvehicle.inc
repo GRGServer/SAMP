@@ -22,17 +22,44 @@ PCMD:spawnvehicle[MAPPER](playerID, params[], 122)
 				}
 				else
 				{
-					CmdUsageMsg(playerID, "spawnvehicle", "ModelID/Name", "[Color1]", "[Color2]");
+					CmdUsageMsg(playerID, "spawnvehicle", "ModelID/Name/t:Type", "[Color1]", "[Color2]");
 					return COMMAND_USAGE;
 				}
 			}
-			MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `Name` LIKE '%s' LIMIT 50", str_replace("*", "%%", MySQLEscapeString(vehicleName)));
-			mysql_store_result();
-			if (!mysql_num_rows() && strfind(vehicleName, "*") == -1)
+			new type;
+			new parameter[16];
+			if (sscanf(vehicleName, "p:cs", type, parameter))
 			{
-				mysql_free_result();
-				MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `Name` LIKE '%%%s%%' LIMIT 50", MySQLEscapeString(vehicleName));
+				MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `Name` LIKE '%s' LIMIT 100", str_replace("*", "%%", MySQLEscapeString(vehicleName)));
 				mysql_store_result();
+				if (!mysql_num_rows() && strfind(vehicleName, "*") == -1)
+				{
+					mysql_free_result();
+					MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `Name` LIKE '%%%s%%' LIMIT 100", MySQLEscapeString(vehicleName));
+					mysql_store_result();
+				}
+			}
+			else
+			{
+				switch (type)
+				{
+					case 't':
+					{
+						MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `Type` LIKE '%s' LIMIT 100", str_replace("*", "%%", MySQLEscapeString(parameter)));
+						mysql_store_result();
+						if (!mysql_num_rows() && strfind(parameter, "*") == -1)
+						{
+							mysql_free_result();
+							MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `Type` LIKE '%%%s%%' LIMIT 100", MySQLEscapeString(parameter));
+							mysql_store_result();
+						}
+					}
+					default:
+					{
+						SendClientMessageEx(playerID, COLOR_ERROR, 58);
+						return COMMAND_ERROR;
+					}
+				}
 			}
 			if (mysql_num_rows() > 1)
 			{
@@ -47,7 +74,8 @@ PCMD:spawnvehicle[MAPPER](playerID, params[], 122)
 				}
 				PVar:playerID[SPAWNVEHICLE_COLOR1] = color1;
 				PVar:playerID[SPAWNVEHICLE_COLOR2] = color2;
-				CreateDialog(playerID, "SpawnVehicle", DIALOG_STYLE_LIST, LanguageString(playerID, 122), vehicleList, LanguageString(playerID, 205), LanguageString(playerID, 165));
+				FormatNew:title[64](LanguageString(playerID, 122), vehicleName);
+				CreateDialog(playerID, "SpawnVehicle", DIALOG_STYLE_LIST, title, vehicleList, LanguageString(playerID, 205), LanguageString(playerID, 165));
 				modelID = -1;
 			}
 			else

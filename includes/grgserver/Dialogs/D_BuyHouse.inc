@@ -1,7 +1,8 @@
 ShowDialog:BuyHouse(playerID, Float:price)
 {
+	FormatNew:title[64](LanguageString(playerID, 236), GetMySQLValue("properties", "Name", "ID", val2str(PVar:playerID[DIALOGPROPERTYID])));
 	FormatNew:string[100](LanguageString(playerID, 235), FormatMoney(price));
-	CreateDialog(playerID, "BuyHouse", DIALOG_STYLE_MSGBOX, LanguageString(playerID, 236), string, LanguageString(playerID, 237), LanguageString(playerID, 165));
+	CreateDialog(playerID, "BuyHouse", DIALOG_STYLE_MSGBOX, title, string, LanguageString(playerID, 237), LanguageString(playerID, 165));
 }
 
 DialogResponse:BuyHouse(playerID, response, listItem, inputText[])

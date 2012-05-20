@@ -308,6 +308,7 @@
 #include <grgserver\Commands\markobject.inc>
 #include <grgserver\Commands\markobjects.inc>
 #include <grgserver\Commands\me.inc>
+#include <grgserver\Commands\mengine.inc>
 #include <grgserver\Commands\money.inc>
 #include <grgserver\Commands\mysqlstatus.inc>
 #include <grgserver\Commands\navi.inc>

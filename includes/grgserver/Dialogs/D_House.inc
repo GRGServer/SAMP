@@ -1,9 +1,10 @@
 ShowDialog:House(playerID)
 {
+	FormatNew:title[64](LanguageString(playerID, 329), GetMySQLValue("properties", "Name", "ID", val2str(PVar:playerID[DIALOGPROPERTYID])));
 	new options[1024];
 	AddLine(options, LanguageString(playerID, 268));// Item 0
 	AddLine(options, LanguageString(playerID, 328));// Item 1
-	CreateDialog(playerID, "House", DIALOG_STYLE_LIST, LanguageString(playerID, 329), options, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "House", DIALOG_STYLE_LIST, title, options, "OK", LanguageString(playerID, 165));
 }
 
 DialogResponse:House(playerID, response, listItem, inputText[])

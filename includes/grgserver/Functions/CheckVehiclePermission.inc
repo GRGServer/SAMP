@@ -31,7 +31,7 @@ CheckVehiclePermission(playerID, vehicleID)
 	if (!ownerUserID && price)
 	{
 		ShowDialog:BuyVehicle(playerID, price);
-		return true;
+		return false;
 	}
 	if (ownerUserID)
 	{

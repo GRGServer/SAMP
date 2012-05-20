@@ -21,7 +21,8 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 	if (modelID)
 	{
 		pickup = CreatePickup(modelID, 23, posX, posY, posZ, -1);
-		Create3DTextLabel("~k~~CONVERSATION_YES~", COLOR_TEXTLABEL, posX, posY, posZ, TEXTLABEL_DRAWDISTANCE, 0, true);// TODO: Show in all virtual worlds or create per player (Better + Possible to use language strings)
+		FormatNew:text[100]("%s\n\nPress ~k~~CONVERSATION_YES~",type);// TODO: Translate (Per player 3D Text Labels)
+		Create3DTextLabel(text, COLOR_TEXTLABEL, posX, posY, posZ, TEXTLABEL_DRAWDISTANCE, 0, true);// TODO: Show in all virtual worlds
 		pickups[pickup][PICKUP_POSX] = posX;
 		pickups[pickup][PICKUP_POSY] = posY;
 		pickups[pickup][PICKUP_POSZ] = posZ;

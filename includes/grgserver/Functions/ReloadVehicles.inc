@@ -24,7 +24,6 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 		new vehicleID = CreateVehicleEx(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1, isStatic);
 		if (vehicleID)
 		{
-			VehicleProperty:vehicleID[ALLOWSAVE] = true;
 			VehicleProperty:vehicleID[CURRENTFUEL] = floatstr(GetMySQLField("CurrentFuel"));
 			VehicleProperty:vehicleID[FRONTLIGHTID] = strval(GetMySQLField("FrontLightID"));
 			VehicleProperty:vehicleID[HASNAVI] = strval(GetMySQLField("HasNavi"));
@@ -38,7 +37,11 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 			ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
 			SetVehicleHealth(vehicleID, floatstr(GetMySQLField("Health")));
 			SetVehicleNumberPlate(vehicleID, VehicleProperty:vehicleID[NUMBERPLATE]);
-			if (!strval(GetMySQLField("OwnerUserID")))
+			if (strval(GetMySQLField("OwnerUserID")))
+			{
+				VehicleProperty:vehicleID[ALLOWSAVE] = true;
+			}
+			else
 			{
 				VehicleProperty:vehicleID[ALLOWDESTROY] = false;
 			}

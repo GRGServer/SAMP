@@ -36,8 +36,8 @@
 		<de>Die Bank wurde verkauft!</de>
 	</string>
 	<string id="10">
-		<en>The property %s (Price: %m) has been saved with ID %d.</en>
-		<de>Die Immobilie %s (Preis: %m) wurde unter der ID %d gespeichert.</de>
+		<en>The property %s (Price: %m) has been saved with ID %d. Remember to set the camera position using /setpropertycam!</en>
+		<de>Die Immobilie %s (Preis: %m) wurde unter der ID %d gespeichert. Vergesse nicht, die Kameraposition mit /setpropertycam festzulegen!</de>
 	</string>
 	<string id="11">
 		<en>This bank has been already bought!</en>
@@ -484,8 +484,8 @@
 		<de>An einen vordefinierten Ort teleportieren</de>
 	</string>
 	<string id="122">
-		<en>Spawn a vehicle</en>
-		<de>Fahrzeug spawnen</de>
+		<en>Spawn a vehicle [%s]</en>
+		<de>Fahrzeug spawnen [%s]</de>
 	</string>
 	<string id="123">
 		<en>Command sent: %s</en>
@@ -940,8 +940,8 @@
 		<de>Dieses Haus kann noch gekauft werden.\n\nPreis: $%s</de>
 	</string>
 	<string id="236">
-		<en>Buy house</en>
-		<de>Haus kaufen</de>
+		<en>Buy house - %s</en>
+		<de>Haus kaufen - %s</de>
 	</string>
 	<string id="237">
 		<en>Buy</en>
@@ -1256,12 +1256,12 @@
 		<de>Es stehen derzeit keine Zimmer zur Verfügung</de>
 	</string>
 	<string id="315">
-		<en>Select room</en>
-		<de>Zimmer wählen</de>
+		<en>Select room - %s</en>
+		<de>Zimmer wählen - %s</de>
 	</string>
 	<string id="316">
-		<en>Your hotel room</en>
-		<de>Dein Hotelzimmer</de>
+		<en>Your hotel room - %s</en>
+		<de>Dein Hotelzimmer - %s</de>
 	</string>
 	<string id="317">
 		<en>Enter hotel room</en>
@@ -1312,8 +1312,8 @@
 		<de>Verkaufen</de>
 	</string>
 	<string id="329">
-		<en>Your house</en>
-		<de>Dein Haus</de>
+		<en>Your house - %s</en>
+		<de>Dein Haus - %s</de>
 	</string>
 	<string id="330">
 		<en>Your house has been sold!</en>

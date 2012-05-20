@@ -1,5 +1,6 @@
 ShowDialog:Hotel_RoomList(playerID)
 {
+	FormatNew:title[64](LanguageString(playerID, 315), GetMySQLValue("properties", "Name", "ID", val2str(PVar:playerID[CURRENTPROPERTYID])));
 	MySQLQuery("SELECT * FROM `hotelrooms` WHERE `PropertyID` = '%d' AND `OwnerUserID` = '0' ORDER BY `RoomID` ASC", PVar:playerID[CURRENTPROPERTYID]);
 	mysql_store_result();
 	new roomsCount = mysql_num_rows();
@@ -14,7 +15,7 @@ ShowDialog:Hotel_RoomList(playerID)
 			}
 			Format:rooms("%s%s: $%s", rooms, GetMySQLField("RoomID"), FormatMoney(floatstr(GetMySQLField("Price"))));
 		}
-		CreateDialog(playerID, "Hotel_RoomList", DIALOG_STYLE_LIST, LanguageString(playerID, 315), rooms, "OK", LanguageString(playerID, 165));
+		CreateDialog(playerID, "Hotel_RoomList", DIALOG_STYLE_LIST, title, rooms, "OK", LanguageString(playerID, 165));
 	}
 	mysql_free_result();
 	return roomsCount;

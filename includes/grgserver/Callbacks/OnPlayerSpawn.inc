@@ -11,6 +11,7 @@ public OnPlayerSpawn(playerid)
 		new vehicleID = GetVehicleBySaveID(strval(GetMySQLField("VehicleID")));
 		if (vehicleID)
 		{
+			VehicleProperty:vehicleID[ALLOWDESTROY] = false;
 			VehicleProperty:vehicleID[ALLOWSAVE] = false;
 			PutPlayerInVehicle(playerid, vehicleID, 0);
 		}

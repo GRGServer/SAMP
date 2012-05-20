@@ -1,10 +1,11 @@
 ShowDialog:Hotel_HasRoom(playerID)
 {
+	FormatNew:title[64](LanguageString(playerID, 316), GetMySQLValue("properties", "Name", "ID", val2str(PVar:playerID[CURRENTPROPERTYID])));
 	new options[1024];
 	AddLine(options, LanguageString(playerID, 317));// Item 0
 	AddLine(options, LanguageString(playerID, 318));// Item 1
 	AddLine(options, LanguageString(playerID, 319));// Item 2
-	CreateDialog(playerID, "Hotel_HasRoom", DIALOG_STYLE_LIST, LanguageString(playerID, 316), options, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "Hotel_HasRoom", DIALOG_STYLE_LIST, title, options, "OK", LanguageString(playerID, 165));
 }
 
 DialogResponse:Hotel_HasRoom(playerID, response, listItem, inputText[])

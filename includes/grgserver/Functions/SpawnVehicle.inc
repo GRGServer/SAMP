@@ -40,8 +40,6 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 		return false;
 	}
 	VehicleProperty:vehicleID[HASNAVI] = true;
-	VehicleProperty:vehicleID[COLOR1] = color1;
-	VehicleProperty:vehicleID[COLOR2] = color2;
 	LinkVehicleToInterior(vehicleID, GetPlayerInterior(playerID));
 	SetVehicleVirtualWorld(vehicleID, GetPlayerVirtualWorld(playerID));
 	PutPlayerInVehicle(playerID, vehicleID, 0);
