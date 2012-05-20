@@ -1,8 +1,8 @@
 CMD:privatemessage(playerID, params[], 409)
 {
 	new targetPlayerID;
-	new text[128];
-	if (sscanf(params, "us", targetPlayerID, text))
+	new message[128];
+	if (sscanf(params, "us", targetPlayerID, message))
 	{
 		CmdUsageMsg(playerID, "privatemessage", "PlayerID/Name", "Text");
 		return COMMAND_USAGE;
@@ -11,7 +11,11 @@ CMD:privatemessage(playerID, params[], 409)
 	{
 		return COMMAND_PLAYER_NOT_FOUND;
 	}
-	SendClientMessageEx(targetPlayerID, COLOR_PM, 410, playerID, text);
-	SendClientMessageEx(playerID, COLOR_PM, 411, targetPlayerID, text);
+	if (playerID == targetPlayerID)
+	{
+		SendClientMessageEx(playerID, COLOR_ERROR, 454);
+		return COMMAND_ERROR;
+	}
+	SendMessageToChannel(playerID, "PLAYER", message, targetPlayerID);
 	return COMMAND_OK;
 }

@@ -1,15 +1,19 @@
-PCMD:rc[SERVERADMIN](playerid, params[], 51)
+PCMD:rc[SERVERADMIN](playerID, params[], 51)
 {
-	if (strlen(params))
+	if (!StrNotNull(params))
 	{
-		printf("%s sent a RCON command: %s", GetPlayerNameEx(playerid), params);
-		SendRconCommand(params);
-		SendClientMessageEx(playerid, COLOR_INFO, 50);
-		return COMMAND_OK;
-	}
-	else
-	{
-		CmdUsageMsg(playerid, "rc", "Befehl(exit,gmx,...)", "Parameter", "...");
+		CmdUsageMsg(playerID, "rc", "Command(exit,gmx,...)", "Parameter", "...");
 		return COMMAND_USAGE;
 	}
+	printf("%s sent a RCON command: %s", GetPlayerNameEx(playerID), params);
+	PlayerLoop(targetPlayerID)
+	{
+		if (playerID != targetPlayerID && permissions[targetPlayerID][PERMISSION_SERVERADMIN])
+		{
+			SendClientMessageEx(targetPlayerID, COLOR_INFO, 462, playerID, params);
+		}
+	}
+	SendClientMessageEx(playerID, COLOR_INFO, 50, params);
+	SendRconCommand(params);
+	return COMMAND_OK;
 }

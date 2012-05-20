@@ -8,7 +8,7 @@ ResetPlayerVariables(playerID)
 	{
 		playerVariables[playerID][enum_playerVariable:playerVariable] = 0;
 	}
-	PVar:playerID[GPS_ID] = -1;
 	PVar:playerID[RECORDNPCFORPLAYER] = INVALID_PLAYER_ID;
 	PVar:playerID[SHOWINTERIOR_OLDINTERIOR] = -1;
+	PVar:playerID[SPAWNAFTERDEATH] = -1;
 }

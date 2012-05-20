@@ -1,5 +1,5 @@
 PCMD:reloadvehicles[SERVERADMIN](playerID, params[], 153)
 {
-	ReloadVehicles(playerID);
+	ReloadVehicles(false, playerID);
 	return COMMAND_OK;
 }

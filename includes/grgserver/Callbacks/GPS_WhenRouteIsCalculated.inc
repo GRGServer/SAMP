@@ -1,5 +1,9 @@
 public GPS_WhenRouteIsCalculated(routeid, node_id_array[], amount_of_nodes, distance)
 {
+	if (!PVar:routeid[GPS_ENABLED])
+	{
+		return true;
+	}
 	Count(node, MAX_GPS_NODES)
 	{
 		if (node < amount_of_nodes)

@@ -164,12 +164,12 @@
 		<de>Ungültiges Datum!</de>
 	</string>
 	<string id="42">
-		<en>You have restarted the game mode</en>
-		<de>Du hast den Gamemode neugestartet</de>
+		<en>You have restarted the game mode: %s</en>
+		<de>Du hast den Gamemode neugestartet: %s</de>
 	</string>
 	<string id="43">
-		<en>%p has restarted the game mode</en>
-		<de>%p hat den Gamemode neugestartet</de>
+		<en>%p has restarted the game mode: %s</en>
+		<de>%p hat den Gamemode neugestartet: %s</de>
 	</string>
 	<string id="44">
 		<en>You already own this company!</en>
@@ -196,8 +196,8 @@
 		<de>Aktuelle NPC Aufnahme beenden</de>
 	</string>
 	<string id="50">
-		<en>The command has been executed</en>
-		<de>Der Befehl wurde ausgeführt</de>
+		<en>'%s' has been executed via RCON</en>
+		<de>'%s' wurde per RCON ausgeführt</de>
 	</string>
 	<string id="51">
 		<en>Execute RCON command</en>
@@ -996,8 +996,8 @@
 		<de>Gamemode neustarten</de>
 	</string>
 	<string id="250">
-		<en>Are you sure to restart the gamemode?</en>
-		<de>Soll der Gamemode wirklich neugestartet werden?</de>
+		<en>Please give a reason why you want to restart the gamemode.</en>
+		<de>Gebe einen Grund an, warum du den Gamemode neustarten möchtest.</de>
 	</string>
 	<string id="251">
 		<en>Repeat password</en>
@@ -1636,12 +1636,12 @@
 		<de>Sende eine private Nachricht an einen anderen Spieler</de>
 	</string>
 	<string id="410">
-		<en>PM from %p: %s</en>
-		<de>PN von %p: %s</de>
+		<en>You have to give a reason to restart the gamemode!</en>
+		<de>Du musst einen Grund angeben um den gamemode neuzustarten!</de>
 	</string>
 	<string id="411">
-		<en>PM to %p: %s</en>
-		<de>PN an %p: %s</de>
+		<en>Hospital</en>
+		<de>Krankenhaus</de>
 	</string>
 	<string id="412">
 		<en>Show/Hide your current position</en>
@@ -1725,7 +1725,7 @@
 	</string>
 	<string id="430">
 		<en>Move camera: ~k~~GO_FORWARD~, ~k~~GO_BACK~, ~k~~GO_LEFT~, ~k~~GO_RIGHT~</en>
-		<en>Kamera bewegen: ~k~~GO_FORWARD~, ~k~~GO_BACK~, ~k~~GO_LEFT~, ~k~~GO_RIGHT~</en>
+		<de>Kamera bewegen: ~k~~GO_FORWARD~, ~k~~GO_BACK~, ~k~~GO_LEFT~, ~k~~GO_RIGHT~</de>
 	</string>
 	<string id="431">
 		<en>Turn on or off neon lights</en>
@@ -1758,5 +1758,101 @@
 	<string id="438">
 		<en>Sit down or stand up</en>
 		<de>Hinsetzen oder aufstehen</de>
+	</string>
+	<string id="439">
+		<en>Add a player to your friend list</en>
+		<de>Füge einen Spieler zu deiner Freundesliste hinzu</de>
+	</string>
+	<string id="440">
+		<en>%p is already in your friend list!</en>
+		<de>%p ist bereits in deiner Freundesliste!</de>
+	</string>
+	<string id="441">
+		<en>%p has confirmed your friend request</en>
+		<de>%p hat deine Freundschaftsanfrage angenommen</de>
+	</string>
+	<string id="442">
+		<en>%p has been added to your friend list</en>
+		<de>%p wurde zu deiner Freundesliste hinzugefügt</de>
+	</string>
+	<string id="443">
+		<en>%p wants to add you to his/her friend list. Use /addfriend %p to accept.</en>
+		<de>%p möchte dich zu seiner/ihrer Freundesliste hinzufügen. Verwende /addfriend %p zum annehmen.</de>
+	</string>
+	<string id="444">
+		<en>The friend request has been sent to %p</en>
+		<de>Die Freunschaftsanfrage wurde an %p gesendet</de>
+	</string>
+	<string id="445">
+		<en>You can not add yourself as a friend!</en>
+		<de>Du kannst dich nicht selbst als Freund hinzufügen!</de>
+	</string>
+	<string id="446">
+		<en>Remove a player from your friend list</en>
+		<de>Entferne einen Spieler aus deiner Freundesliste</de>
+	</string>
+	<string id="447">
+		<en>%p is not in your freindlist!</en>
+		<de>%p ist nicht in deiner Freundesliste!</de>
+	</string>
+	<string id="448">
+		<en>%p has been removed from your friend list</en>
+		<de>%p wurde von deiner Freundesliste entfernt</de>
+	</string>
+	<string id="449">
+		<en>%p has removed you from his/her friend list</en>
+		<de>%p hat dich von seiner/ihrer Freundesliste entfernt</de>
+	</string>
+	<string id="450">
+		<en>Save information like your current position, skin or vehicle model ID</en>
+		<de>Speichere Informationen wie z.B. deine aktuelle Position, Skin oder Fahrzeug Model ID</de>
+	</string>
+	<string id="451">
+		<en>The information has been saved to the file '%s' on the server</en>
+		<de>Die Informationen wurden in der Datei '%s' auf dem Server gespeichert</de>
+	</string>
+	<string id="452">
+		<en>Error while writing the file!</en>
+		<de>Fehler beim Schreiben der Datei!</de>
+	</string>
+	<string id="453">
+		<en>Friends</en>
+		<de>Freunde</de>
+	</string>
+	<string id="454">
+		<en>What sense does it make to send yourself a private message?</en>
+		<de>Welchen Sinn hat es, dir selbst eine private Nachricht zu senden?</de>
+	</string>
+	<string id="455">
+		<en>Remove the current vehicle from the database</en>
+		<de>Entferne das aktuelle Fahrzeug aus der Datenbank</de>
+	</string>
+	<string id="456">
+		<en>This vehicle is not a saved vehicle!</en>
+		<de>Dieses Fahrzeug ist kein gespeichertes Fahrzeug!</de>
+	</string>
+	<string id="457">
+		<en>The vehicle has been removed</en>
+		<de>Das Fahrzeug wurde entfernt</de>
+	</string>
+	<string id="458">
+		<en>%d objects found</en>
+		<de>%d Objekte gefunden</de>
+	</string>
+	<string id="459">
+		<en>List the objects in your environment</en>
+		<de>Liste die Objekte in deiner Umgebung auf</de>
+	</string>
+	<string id="460">
+		<en>The navigation system has been turned off</en>
+		<de>Das Navigationssystem wurde ausgeschalten</de>
+	</string>
+	<string id="461">
+		<en>The vehicle could not be spawned!</en>
+		<de>Das fahrzeug konnte nicht gespawnt werden!</de>
+	</string>
+	<string id="462">
+		<en>%p executed '%s' via RCON</en>
+		<de>%p hat '%s' per RCOn ausgeführt</de>
 	</string>
 </languagestrings>

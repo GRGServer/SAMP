@@ -1,6 +1,6 @@
 CheckVehiclePermission(playerID, vehicleID)
 {
-	if (!vehicles[vehicleID][VEHICLE_SAVEID])
+	if (!VehicleProperty:vehicleID[SAVEID])
 	{
 		if (!permissions[playerID][PERMISSION_MAPPER])
 		{
@@ -12,9 +12,9 @@ CheckVehiclePermission(playerID, vehicleID)
 			return true;
 		}
 	}
-	if (vehicles[vehicleID][VEHICLE_JOBID])
+	if (VehicleProperty:vehicleID[JOBID])
 	{
-		if (PVar:playerID[JOBID] == vehicles[vehicleID][VEHICLE_JOBID])
+		if (PVar:playerID[JOBID] == VehicleProperty:vehicleID[JOBID])
 		{
 			return true;
 		}

@@ -1,6 +1,6 @@
 public OnPlayerClosestNodeIDChange(playerid, old_NodeID, new_NodeID)
 {
-	if (PVar:playerid[GPS_ID] != -1 && !PVar:playerid[GPS_ISCALCULATING])
+	if (PVar:playerid[GPS_ENABLED] && !PVar:playerid[GPS_ISCALCULATING])
 	{
 		new Float:currentCPPosX;
 		new Float:currentCPPosY;

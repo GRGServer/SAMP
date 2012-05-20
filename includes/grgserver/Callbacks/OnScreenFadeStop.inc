@@ -15,11 +15,14 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 	{
 		switch (extraID)
 		{
-			case FADE_PROPERTYBOUGHT_BLACK:
+			case FADE_DEATH_BACK:
 			{
 				TogglePlayerControllable(playerID, true);
 				SetCameraBehindPlayer(playerID);
-				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_PROPERTYBOUGHT_BACK);
+			}
+			case FADE_DEATH_RED:
+			{
+				StartScreenFader(playerID, 100, 0, 0, -5, 0, FADE_DEATH_BACK);
 			}
 			case FADE_GASSTATION_BACK:
 			{
@@ -40,6 +43,12 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			{
 				LeaveProperty(playerID);
 				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_LEAVEPROPERTY_BACK);
+			}
+			case FADE_PROPERTYBOUGHT_BLACK:
+			{
+				TogglePlayerControllable(playerID, true);
+				SetCameraBehindPlayer(playerID);
+				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_PROPERTYBOUGHT_BACK);
 			}
 			case FADE_RESPAWN_BACK:
 			{

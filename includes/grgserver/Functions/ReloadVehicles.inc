@@ -1,9 +1,16 @@
 ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 {
 	AdminPrint(playerID, COLOR_INFO, "* Destroying vehicles...");
-	for (new vehicleID = 0; vehicleID < MAX_VEHICLES; vehicleID++)
+	Count1(vehicleID, MAX_VEHICLES)
 	{
-		DestroyVehicle(vehicleID);
+		new modelID = GetVehicleModel(vehicleID);
+		if (modelID)
+		{
+			if (isStatic || (modelID != 537 && modelID != 538))// We are unable to respawn Freight and Streak using CreateVehicle... so only remove them if isStatic is true
+			{
+				DestroyVehicle(vehicleID);
+			}
+		}
 		VehicleProperty:vehicleID[CURRENTFUEL] = 0;
 		VehicleProperty:vehicleID[JOBID] = 0;
 		VehicleProperty:vehicleID[SAVEID] = 0;
@@ -15,21 +22,32 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 	while (FetchMySQLRow())
 	{
 		new vehicleID = CreateVehicleEx(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1, isStatic);
-		VehicleProperty:vehicleID[ALLOWSAVE] = true;
-		VehicleProperty:vehicleID[CURRENTFUEL] = floatstr(GetMySQLField("CurrentFuel"));
-		VehicleProperty:vehicleID[FRONTLIGHTID] = strval(GetMySQLField("FrontLightID"));
-		VehicleProperty:vehicleID[HASNAVI] = strval(GetMySQLField("HasNavi"));
-		VehicleProperty:vehicleID[JOBID] = strval(GetMySQLField("JobID"));
-		VehicleProperty:vehicleID[MILEAGE] = floatstr(GetMySQLField("MileAge"));
-		VehicleProperty:vehicleID[NEONLIGHTID] = strval(GetMySQLField("NeonLightID"));
-		format(VehicleProperty:vehicleID[NUMBERPLATE], STRINGLENGTH_NUMBERPLATE, GetMySQLField("Numberplate"));
-		VehicleProperty:vehicleID[RADIOSTATION] = strval(GetMySQLField("LastRadioStation"));
-		VehicleProperty:vehicleID[SAVEID] = strval(GetMySQLField("ID"));
-		LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
-		ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
-		SetVehicleHealth(vehicleID, floatstr(GetMySQLField("Health")));
-		SetVehicleNumberPlate(vehicleID, VehicleProperty:vehicleID[NUMBERPLATE]);
-		count++;
+		if (vehicleID)
+		{
+			VehicleProperty:vehicleID[ALLOWSAVE] = true;
+			VehicleProperty:vehicleID[CURRENTFUEL] = floatstr(GetMySQLField("CurrentFuel"));
+			VehicleProperty:vehicleID[FRONTLIGHTID] = strval(GetMySQLField("FrontLightID"));
+			VehicleProperty:vehicleID[HASNAVI] = strval(GetMySQLField("HasNavi"));
+			VehicleProperty:vehicleID[JOBID] = strval(GetMySQLField("JobID"));
+			VehicleProperty:vehicleID[MILEAGE] = floatstr(GetMySQLField("MileAge"));
+			VehicleProperty:vehicleID[NEONLIGHTID] = strval(GetMySQLField("NeonLightID"));
+			format(VehicleProperty:vehicleID[NUMBERPLATE], STRINGLENGTH_NUMBERPLATE, GetMySQLField("Numberplate"));
+			VehicleProperty:vehicleID[RADIOSTATION] = strval(GetMySQLField("LastRadioStation"));
+			VehicleProperty:vehicleID[SAVEID] = strval(GetMySQLField("ID"));
+			LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
+			ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
+			SetVehicleHealth(vehicleID, floatstr(GetMySQLField("Health")));
+			SetVehicleNumberPlate(vehicleID, VehicleProperty:vehicleID[NUMBERPLATE]);
+			if (!strval(GetMySQLField("OwnerUserID")))
+			{
+				VehicleProperty:vehicleID[ALLOWDESTROY] = false;
+			}
+			count++;
+		}
+		else
+		{
+			AdminPrint(playerID, COLOR_ERROR, "  Can not create vehicle!");
+		}
 	}
 	mysql_free_result();
 	AdminPrint(playerID, COLOR_INFO, "  %d vehicles loaded", count);
@@ -40,9 +58,9 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 	while (FetchMySQLRow())
 	{
 		new foundVehicle;
-		for (new vehicleID = 0; vehicleID < MAX_VEHICLES; vehicleID++)
+		Count1(vehicleID, MAX_VEHICLES)
 		{
-			if (vehicles[vehicleID][VEHICLE_SAVEID] == strval(GetMySQLField("VehicleID")))
+			if (VehicleProperty:vehicleID[SAVEID] == strval(GetMySQLField("VehicleID")))
 			{
 				AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component")));
 				count++;
@@ -64,8 +82,9 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 	while (FetchMySQLRow())
 	{
 		new vehicleID = GetVehicleBySaveID(strval(GetMySQLField("VehicleID")));
-		if (vehicleID != INVALID_VEHICLE_ID)
+		if (vehicleID)
 		{
+			VehicleProperty:vehicleID[ALLOWDESTROY] = false;
 			VehicleProperty:vehicleID[ALLOWSAVE] = false;
 			new npcPlayerID;
 			FormatNew:npcName[MAX_PLAYER_NAME]("NPC_%s", GetMySQLField("Name"));

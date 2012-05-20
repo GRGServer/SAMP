@@ -1,4 +1,7 @@
 public OnVehicleSpawn(vehicleid)
 {
-	DestroyVehicle(vehicleid);
+	if (VehicleProperty:vehicleid[ALLOWDESTROY])
+	{
+		DestroyVehicle(vehicleid);
+	}
 }

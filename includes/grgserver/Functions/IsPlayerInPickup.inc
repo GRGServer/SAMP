@@ -7,5 +7,5 @@ IsPlayerInPickup(playerID)
 			return pickupID;
 		}
 	}
-	return 0;
+	return -1;
 }

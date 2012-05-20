@@ -8,7 +8,7 @@ ShowGPSCheckpoint(playerID, id)
 	new Float:nextPosZ;
 	if (id >= PVar:playerID[GPS_NODESCOUNT])
 	{
-		PVar:playerID[GPS_ID] = -1;
+		PVar:playerID[GPS_ENABLED] = false;
 		return false;
 	}
 	PVar:playerID[GPS_ID] = id;

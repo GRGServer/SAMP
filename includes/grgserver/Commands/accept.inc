@@ -2,7 +2,7 @@ CMD:accept(playerID, params[], 94)
 {
 	switch (PVar:playerID[JOBID])
 	{
-		case JOB_ADAC, JOB_AMBULANCE, JOB_POLICE, JOB_TRUCKER:
+		case JOB_ADAC, JOB_PARAMEDIC, JOB_POLICE, JOB_TRUCKER:
 		{
 			ShowDialog:Accept(playerID);
 		}

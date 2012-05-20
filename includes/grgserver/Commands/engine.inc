@@ -25,9 +25,9 @@ CMD:engine(playerID, params[], 111)
 	if (health >= floatmul(VEHICLE_MINHEALTH, 10))
 	{
 		SetVehicleEngineState(vehicleID, true);
-		if (vehicles[vehicleID][VEHICLE_RADIOSTATION])
+		if (VehicleProperty:vehicleID[RADIOSTATION])
 		{
-			PlayRadioStation(playerID, vehicles[vehicleID][VEHICLE_RADIOSTATION]);
+			PlayRadioStation(playerID, VehicleProperty:vehicleID[RADIOSTATION]);
 		}
 		SendClientMessageEx(playerID, COLOR_INFO, 54);
 		return COMMAND_OK;

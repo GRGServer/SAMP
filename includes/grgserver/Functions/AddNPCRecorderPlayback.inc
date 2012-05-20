@@ -23,7 +23,7 @@ AddNPCRecorderPlayback(playerID, recordingName[], recordingType)
 		if (recordingType == PLAYER_RECORDING_TYPE_DRIVER)
 		{
 			new vehicleID = GetVehicleBySaveID(strval(GetMySQLValue("npcs", "VehicleID", "Recording", recordingName)));
-			if (vehicleID != INVALID_VEHICLE_ID)
+			if (vehicleID)
 			{
 				PutPlayerInVehicle(npcPlayerID, vehicleID, 0);
 			}

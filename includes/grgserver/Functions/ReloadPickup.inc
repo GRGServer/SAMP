@@ -1,6 +1,6 @@
 ReloadPickup(pickupID)
 {
-	for (new internalPickupID = 0; internalPickupID < MAX_PICKUPS; internalPickupID++)
+	Count(internalPickupID, MAX_PICKUPS)
 	{
 		if (pickups[internalPickupID][PICKUP_ID] == pickupID)
 		{

@@ -8,18 +8,12 @@
 #define CHAT_MAXDISTANCE			100
 
 
-// Chat modes
-#define CHATMODE_ADMINS				3
-#define CHATMODE_ALL				1
-#define CHATMODE_INRANGE			0
-#define CHATMODE_JOB				2
-
-
 // Colors
 #define COLOR_CHAT_ADMINS			0x9EAFA0FF
 #define COLOR_CHAT_ALL				0xAAFFAAFF
 #define COLOR_CHAT_INRANGE			0xFFFFFFFF
 #define COLOR_CHAT_JOB				0xAAAAFFFF
+#define COLOR_CHAT_PLAYER			0xFFFA00FF
 #define COLOR_ERROR				0xFF0000FF
 #define COLOR_INFO				0xFF8C55FF
 #define COLOR_IRC				0x33AA33FF
@@ -27,7 +21,6 @@
 #define COLOR_MARKER_OBJECT			0x00FF00FF
 #define COLOR_ME				0x00FF40FF
 #define COLOR_NPCCOMMAND			0x000000FF
-#define COLOR_PM				0xFFFA00FF
 #define COLOR_SYSTEM				0xC0C0C0FF
 #define COLOR_TEXTLABEL				0xFF8C55FF
 #define COLOR_USAGE				0x008000FF
@@ -38,6 +31,7 @@
 #define FILE_LANGUAGESTRINGS			"languagestrings.xml"
 #define FILE_LASTCHANGES			"svn_changes"
 #define FILE_RUNNINGREVISION			"running_revision"
+#define FILE_SAVEINFO				"saved_info.txt"
 #define FILE_STABLEREVISION			"stable_revision"
 #define FILE_UPDATENOTIFICATION			"update_log"
 
@@ -74,7 +68,7 @@
 // Jobs
 #define JOB_ADAC				2
 #define JOB_ARMEE				8
-#define JOB_AMBULANCE				6
+#define JOB_PARAMEDIC				6
 #define JOB_BANK				7
 #define JOB_ESTATEAGENTS			3
 #define JOB_POLICE				5
@@ -152,8 +146,9 @@
 
 
 // String sizes
+#define STRINGLENGTH_CHATMODE			16
 #define STRINGLENGTH_DATETIME			20
-#define STRINGLENGTH_DIALOGNAME			28// MAX_FUNCTION_NAME - "DR_" - 1 (For 0 byte)
+#define STRINGLENGTH_DIALOGNAME			MAX_FUNCTION_NAME - 4// 4 = "DR_" + 1 (For 0 byte)
 #define STRINGLENGTH_LANGUAGESTRING		256
 #define STRINGLENGTH_LOCATION			100
 #define STRINGLENGTH_NUMBERPLATE		8

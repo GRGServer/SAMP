@@ -10,6 +10,7 @@ CalculateRoute(playerID, Float:posX, Float:posY, Float:posZ)
 	{
 		return false;
 	}
+	PVar:playerID[GPS_ENABLED] = true;
 	PVar:playerID[GPS_TARGETNODEID] = targetNodeID;
 	PVar:playerID[GPS_ISCALCULATING] = true;
 	CalculatePath(currentNodeID, targetNodeID, playerID);

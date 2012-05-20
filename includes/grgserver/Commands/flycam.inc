@@ -1,7 +1,15 @@
-PCMD:flycam[MAPPER](playerID, params, 271)
+PCMD:flycam[MAPPER](playerID, params[], 271)
 {
 	if (PVar:playerID[FLYCAM_DUMMYOBJECT])
 	{
+		if (IsStr(params, "goto"))
+		{
+			new Float:posX;
+			new Float:posY;
+			new Float:posZ;
+			GetPlayerCameraPos(playerID, posX, posY, posZ);
+			SetPlayerPos(playerID, posX, posY, posZ);
+		}
 		KillTimer(PVar:playerID[FLYCAM_TIMER]);
 		DestroyDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT]);
 		SetCameraBehindPlayer(playerID);

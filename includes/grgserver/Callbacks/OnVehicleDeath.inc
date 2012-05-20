@@ -8,10 +8,6 @@ public OnVehicleDeath(vehicleid, killerid)
 			MySQLQuery("DELETE FROM `vehiclecomponents` WHERE `VehicleID` = '%d'", VehicleProperty:vehicleid[SAVEID]);
 			VehicleProperty:vehicleid[SAVEID] = 0;
 		}
-		else
-		{
-			// TODO: Reload vehicle
-		}
 	}
 	RemoveVehicleLightObjects(vehicleid);
 }

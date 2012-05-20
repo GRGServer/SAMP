@@ -101,6 +101,7 @@
 #include <grgserver\Functions\SavePlayer.inc>
 #include <grgserver\Functions\SaveVehicle.inc>
 #include <grgserver\Functions\SendClientMessageEx.inc>
+#include <grgserver\Functions\SendMessageToChannel.inc>
 #include <grgserver\Functions\SendNPCCommand.inc>
 #include <grgserver\Functions\SetMySQLValue.inc>
 #include <grgserver\Functions\SetPlayerCameraPosEx.inc>
@@ -121,12 +122,12 @@
 #include <grgserver\Functions\StartNPCPlayback.inc>
 #include <grgserver\Functions\StopRadioStation.inc>
 #include <grgserver\Functions\Str2Val.inc>
+#include <grgserver\Functions\StrNotNull.inc>
 #include <grgserver\Functions\Teleport.inc>
 #include <grgserver\Functions\TeleportTo.inc>
 #include <grgserver\Functions\TeleportToInterior.inc>
 #include <grgserver\Functions\TeleportToProperty.inc>
 #include <grgserver\Functions\UpdateObjectsForAllPlayers.inc>
-#include <grgserver\Functions\WriteChatToDatabase.inc>
 #include <grgserver\Functions\explode.inc>
 #include <grgserver\Functions\str_replace.inc>
 #include <grgserver\Functions\strtoupper.inc>
@@ -182,7 +183,6 @@
 #include <grgserver\Dialogs\D_AddObject.inc>
 #include <grgserver\Dialogs\D_AddProperty_Name.inc>
 #include <grgserver\Dialogs\D_AddProperty_Type.inc>
-#include <grgserver\Dialogs\D_Ambulance.inc>
 #include <grgserver\Dialogs\D_Army.inc>
 #include <grgserver\Dialogs\D_Bank_CancelAccount.inc>
 #include <grgserver\Dialogs\D_Bank_DepositMoney.inc>
@@ -198,6 +198,7 @@
 #include <grgserver\Dialogs\D_EstateAgents.inc>
 #include <grgserver\Dialogs\D_FunAction.inc>
 #include <grgserver\Dialogs\D_GiveWeapon.inc>
+#include <grgserver\Dialogs\D_Hospital.inc>
 #include <grgserver\Dialogs\D_Hotel_HasRoom.inc>
 #include <grgserver\Dialogs\D_Hotel_RoomList.inc>
 #include <grgserver\Dialogs\D_House.inc>
@@ -234,12 +235,12 @@
 
 // Pickups
 #include <grgserver\Pickups\Pickup_ADAC.inc>
-#include <grgserver\Pickups\Pickup_Ambulance.inc>
 #include <grgserver\Pickups\Pickup_Army.inc>
 #include <grgserver\Pickups\Pickup_Bank.inc>
 #include <grgserver\Pickups\Pickup_DrivingInstructor.inc>
 #include <grgserver\Pickups\Pickup_EstateAgents.inc>
 #include <grgserver\Pickups\Pickup_GasStation.inc>
+#include <grgserver\Pickups\Pickup_Hospital.inc>
 #include <grgserver\Pickups\Pickup_Hotel.inc>
 #include <grgserver\Pickups\Pickup_House.inc>
 #include <grgserver\Pickups\Pickup_InteriorExit.inc>
@@ -267,6 +268,7 @@
 // Commands
 #include <grgserver\Commands\about.inc>
 #include <grgserver\Commands\accept.inc>
+#include <grgserver\Commands\addfriend.inc>
 #include <grgserver\Commands\addhotelroom.inc>
 #include <grgserver\Commands\addnavilocation.inc>
 #include <grgserver\Commands\addobject.inc>
@@ -275,6 +277,7 @@
 #include <grgserver\Commands\addspeedcam.inc>
 #include <grgserver\Commands\addstaticnpc.inc>
 #include <grgserver\Commands\addteleport.inc>
+#include <grgserver\Commands\areaobjects.inc>
 #include <grgserver\Commands\attachobject.inc>
 #include <grgserver\Commands\changepw.inc>
 #include <grgserver\Commands\chatmode.inc>
@@ -327,8 +330,11 @@
 #include <grgserver\Commands\reloadplayer.inc>
 #include <grgserver\Commands\reloadvehiclemodels.inc>
 #include <grgserver\Commands\reloadvehicles.inc>
+#include <grgserver\Commands\removefriend.inc>
+#include <grgserver\Commands\removevehicle.inc>
 #include <grgserver\Commands\repair.inc>
 #include <grgserver\Commands\resetcam.inc>
+#include <grgserver\Commands\saveinfo.inc>
 #include <grgserver\Commands\savevehicle.inc>
 #include <grgserver\Commands\selectlastobject.inc>
 #include <grgserver\Commands\selectproperty.inc>

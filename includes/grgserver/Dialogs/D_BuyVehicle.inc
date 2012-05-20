@@ -8,12 +8,14 @@ DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
-		new saveID = vehicles[GetPlayerVehicleID(playerID)][VEHICLE_SAVEID];
+		new vehicleID = GetPlayerVehicleID(playerID);
+		new saveID = VehicleProperty:vehicleID[SAVEID];
 		new Float:price = floatstr(GetMySQLValue("vehicles", "Price", "ID", val2str(saveID)));
 		if (price <= PVar:playerID[BANKMONEY])
 		{
 			GivePlayerMoneyEx(playerID, MONEY_CASH, -price);
 			SetMySQLValue("vehicles", "OwnerUserID", val2str(PVar:playerID[USERID]), "ID", val2str(saveID));
+			VehicleProperty:vehicleID[ALLOWDESTROY] = true;
 			SavePlayer(playerID);
 		}
 		else

@@ -10,7 +10,7 @@ public OnGameModeExit()
 		}
 	}
 	print("* Saving vehicles...");
-	for (new vehicleID = 0; vehicleID < MAX_VEHICLES; vehicleID++)
+	Count1(vehicleID, MAX_VEHICLES)
 	{
 		SaveVehicle(vehicleID, 0);// TODO: Get interior of the vehicle?
 	}

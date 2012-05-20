@@ -16,7 +16,7 @@ DialogResponse:Refuel(playerID, response, listItem, inputText[])
 		new modelID = GetVehicleModel(vehicleID);
 		if (modelID >= 400 && modelID <= 611)
 		{
-			new Float:maximum = floatsub(vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL], vehicles[vehicleID][VEHICLE_CURRENTFUEL]);
+			new Float:maximum = floatsub(vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL], VehicleProperty:vehicleID[CURRENTFUEL]);
 			if (amount > maximum)
 			{
 				amount = maximum;

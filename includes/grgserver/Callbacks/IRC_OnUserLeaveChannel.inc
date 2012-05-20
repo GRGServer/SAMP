@@ -1,6 +1,6 @@
 public IRC_OnUserLeaveChannel(botid, channel[], user[], host[], message[])
 {
-	Count(playerID, maxPlayers)
+	PlayerLoop(playerID)
 	{
 		SendClientMessageEx(playerID, COLOR_JOINLEAVE, 4, user);
 	}

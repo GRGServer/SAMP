@@ -2,7 +2,7 @@ GetVehicleBySaveID(saveID)
 {
 	if (saveID)
 	{
-		Count(vehicleID, MAX_VEHICLES)
+		Count1(vehicleID, MAX_VEHICLES)
 		{
 			if (VehicleProperty:vehicleID[SAVEID] == saveID)
 			{
@@ -10,5 +10,5 @@ GetVehicleBySaveID(saveID)
 			}
 		}
 	}
-	return INVALID_VEHICLE_ID;
+	return 0;
 }

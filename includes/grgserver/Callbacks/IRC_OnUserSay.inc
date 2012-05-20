@@ -43,9 +43,9 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 	else
 	{
 		Format:string("[IRC] %s: %s", userName, text);
+		MySQLQuery("INSERT INTO `chatlog` (`Channel`, `Time`, `Text`) VALUES('ALL', NOW(), '%s')", MySQLEscapeString(string));
 		SendClientMessageToAll(COLOR_IRC, string);
 		print(string);
-		WriteChatToDatabase(INVALID_PLAYER_ID, string);
 	}
 	return true;
 }

@@ -69,7 +69,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		if (permissions[playerid][PERMISSION_MAPPER])
 		{
 			new pickupID = IsPlayerInPickup(playerid);
-			if (pickupID)
+			if (pickupID != -1)
 			{
 				MySQLQuery("SELECT * FROM `properties` WHERE `PickupID` = '%d'", pickups[pickupID][PICKUP_ID]);
 				mysql_store_result();
@@ -90,7 +90,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	if (IsKeyPressed(KEY_YES))
 	{
 		new pickupID = IsPlayerInPickup(playerid);
-		if (pickupID)
+		if (pickupID != -1)
 		{
 			PickupEvent(playerid, pickupID, PICKUPEVENT_KEYPRESS);
 			return true;

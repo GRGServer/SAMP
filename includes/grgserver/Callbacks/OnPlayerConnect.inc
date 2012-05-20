@@ -22,27 +22,31 @@ public OnPlayerConnect(playerid)
 		if (vehicleID)
 		{
 			playbackType = PLAYER_RECORDING_TYPE_DRIVER;
+			VehicleProperty:vehicleID[ALLOWDESTROY] = false;
+			VehicleProperty:vehicleID[ALLOWSAVE] = false;
 			PutPlayerInVehicle(playerid, vehicleID, 0);
 		}
 		else
 		{
 			playbackType = PLAYER_RECORDING_TYPE_ONFOOT;
 		}
-		if (strval(GetMySQLField("StartOnConnect")))
+		if (strlen(GetMySQLField("Recording")))
 		{
-			StartNPCPlayback(playerid, GetMySQLField("Recording"), playbackType, strval(GetMySQLField("AutoRepeat")));
-		}
-		else
-		{
-			FormatNew:command[40]("setrec %s %d %d", GetMySQLField("Recording"), playbackType, strval(GetMySQLField("AutoRepeat")));
-			SendNPCCommand(playerid, command);
+			if (strval(GetMySQLField("StartOnConnect")))
+			{
+				StartNPCPlayback(playerid, GetMySQLField("Recording"), playbackType, strval(GetMySQLField("AutoRepeat")));
+			}
+			else
+			{
+				FormatNew:command[40]("setrec %s %d %d", GetMySQLField("Recording"), playbackType, strval(GetMySQLField("AutoRepeat")));
+				SendNPCCommand(playerid, command);
+			}
 		}
 		mysql_free_result();
 	}
 	else
 	{
 		printf("%s connected from %s", GetPlayerNameEx(playerid), GetPlayerCountryName(playerid));
-		PlaySound(playerid, musicSoundIDs[random(sizeof(musicSoundIDs))]);
 		MySQLQuery("SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
 		mysql_store_result();
 		if (strval(GetMySQLField("ID")))
@@ -64,6 +68,7 @@ public OnPlayerConnect(playerid)
 				PVar:playerid[LANGUAGE] = LANGUAGE_ENGLISH;
 			}
 			PVar:playerid[REGISTERED] = false;
+			PlaySound(playerid, musicSoundIDs[random(sizeof(musicSoundIDs))]);
 		}
 		mysql_free_result();
 		ShowDialog:PreviewInfo(playerid);

@@ -3,6 +3,7 @@ ShowDialog:NaviTarget(playerID)
 	new targets[2048];
 	AddLine(targets, LanguageString(playerID, 173));// Bank
 	AddLine(targets, LanguageString(playerID, 384));// Gas station
+	AddLine(targets, LanguageString(playerID, 411));// Hospital
 	AddLine(targets, LanguageString(playerID, 174));// Hotel
 	AddLine(targets, LanguageString(playerID, 175));// House
 	AddLine(targets, LanguageString(playerID, 437));// Vehicle upgrader
@@ -44,6 +45,13 @@ DialogResponse:NaviTarget(playerID, response, listItem, inputText[])
 		if (IsStr(inputText, LanguageString(playerID, 384)))// Gas station
 		{
 			new pickupID = GetClosestPickup(playerID, "GASSTATION");
+			target[0] = pickups[pickupID][PICKUP_POSX];
+			target[1] = pickups[pickupID][PICKUP_POSY];
+			target[2] = pickups[pickupID][PICKUP_POSZ];
+		}
+		if (IsStr(inputText, LanguageString(playerID, 411)))// Hospital
+		{
+			new pickupID = GetClosestPickup(playerID, "HOSPITAL");
 			target[0] = pickups[pickupID][PICKUP_POSX];
 			target[1] = pickups[pickupID][PICKUP_POSY];
 			target[2] = pickups[pickupID][PICKUP_POSZ];
