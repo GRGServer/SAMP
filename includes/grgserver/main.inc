@@ -30,6 +30,7 @@
 #include <grgserver\Functions\AddVehicleComponentEx.inc>
 #include <grgserver\Functions\CalculateAge.inc>
 #include <grgserver\Functions\CalculateRoute.inc>
+#include <grgserver\Functions\CheckOpenGatePermission.inc>
 #include <grgserver\Functions\CheckVehiclePermission.inc>
 #include <grgserver\Functions\CmdUsageMsg.inc>
 #include <grgserver\Functions\CreateDialog.inc>
@@ -79,6 +80,7 @@
 #include <grgserver\Functions\LoadPlayer.inc>
 #include <grgserver\Functions\LoadPlayerPermissions.inc>
 #include <grgserver\Functions\MoneyTransaction.inc>
+#include <grgserver\Functions\MoveObjectEx.inc>
 #include <grgserver\Functions\MySQLEscapeString.inc>
 #include <grgserver\Functions\PayDay.inc>
 #include <grgserver\Functions\PickupEvent.inc>
@@ -143,6 +145,7 @@
 #include <grgserver\Callbacks\IRC_OnUserLeaveChannel.inc>
 #include <grgserver\Callbacks\IRC_OnUserSay.inc>
 #include <grgserver\Callbacks\OnDialogResponse.inc>
+#include <grgserver\Callbacks\OnDynamicObjectMoved.inc>
 #include <grgserver\Callbacks\OnGameModeExit.inc>
 #include <grgserver\Callbacks\OnGameModeInit.inc>
 #include <grgserver\Callbacks\OnInteriorDialogSelect.inc>
@@ -246,6 +249,7 @@
 #include <grgserver\Pickups\Pickup_House.inc>
 #include <grgserver\Pickups\Pickup_InteriorExit.inc>
 #include <grgserver\Pickups\Pickup_Link.inc>
+#include <grgserver\Pickups\Pickup_MoveGate.inc>
 #include <grgserver\Pickups\Pickup_Place.inc>
 #include <grgserver\Pickups\Pickup_Police.inc>
 #include <grgserver\Pickups\Pickup_Taxi.inc>
@@ -258,6 +262,7 @@
 #include <grgserver\Timers\Timer_Fast.inc>
 #include <grgserver\Timers\Timer_FlyCam.inc>
 #include <grgserver\Timers\Timer_HideRadioDisplay.inc>
+#include <grgserver\Timers\Timer_MoveObject.inc>
 #include <grgserver\Timers\Timer_PickupTimeout.inc>
 #include <grgserver\Timers\Timer_RefuelVehicle.inc>
 #include <grgserver\Timers\Timer_ScreenFader.inc>
@@ -310,6 +315,7 @@
 #include <grgserver\Commands\me.inc>
 #include <grgserver\Commands\mengine.inc>
 #include <grgserver\Commands\money.inc>
+#include <grgserver\Commands\moveobject.inc>
 #include <grgserver\Commands\mysqlstatus.inc>
 #include <grgserver\Commands\navi.inc>
 #include <grgserver\Commands\neon.inc>
@@ -343,6 +349,7 @@
 #include <grgserver\Commands\setcam.inc>
 #include <grgserver\Commands\setinterior.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
+#include <grgserver\Commands\setobjectmovepos.inc>
 #include <grgserver\Commands\setpropertycam.inc>
 #include <grgserver\Commands\setspawn.inc>
 #include <grgserver\Commands\settplink.inc>

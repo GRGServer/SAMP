@@ -39,5 +39,22 @@ public OnMessageShown(playerID, messageID)
 		{
 			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIAL_BANK_END_BLACK);
 		}
+		case 9:
+		{
+			ShowMessage(playerID, 10, 15000);
+		}
+		case 10:
+		{
+			if (CheckOpenGatePermission(playerID, PVar:playerID[GATEOBJECTID]))
+			{
+				ShowMessage(playerID, 11, 0);
+				MoveObjectEx(PVar:playerID[GATEOBJECTID], true);
+			}
+			else
+			{
+				ShowMessage(playerID, 12, 0);
+			}
+			TogglePlayerControllable(playerID, true);
+		}
 	}
 }

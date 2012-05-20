@@ -5,10 +5,7 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 	if (PVar:playerid[LASTPICKUP] != pickupid)
 	{
 		PVar:playerid[LASTPICKUP] = pickupid;
-		if (!PickupEvent(playerid, pickupid, PICKUPEVENT_PICKUP))
-		{
-			SendClientMessageEx(playerid, COLOR_INFO, 7);
-		}
+		PickupEvent(playerid, pickupid, PICKUPEVENT_PICKUP);
 		return true;
 	}
 	return false;
