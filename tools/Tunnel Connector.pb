@@ -34,6 +34,12 @@ EndProcedure
 mainPath$ = GetPathPart(ProgramFilename())
 keyFile$ = "Tunnel.ppk"
 
+timeout = Val(ProgramParameter())
+
+If timeout < 100
+	timeout = 1000
+EndIf
+
 InitNetwork()
 
 SetCurrentDirectory(mainPath$)
@@ -46,7 +52,7 @@ If OpenConsole()
 		Restore KnockPorts
 		For byte = ?KnockPorts To ?EndPorts
 			Read port
-			Knock("selfcoders.com", port, "TCP", 1000)
+			Knock("selfcoders.com", port, "TCP", timeout)
 			byte + 4
 		Next
 		RunProgram(mainPath$ + "plink.exe", "-ssh -v -N -L 3306:127.0.0.1:3306 -l tunnel -i " + keyFile$ + " selfcoders.com", mainPath$, #PB_Program_Wait)
@@ -66,14 +72,14 @@ DataSection
 	EndPorts:
 EndDataSection
 ; IDE Options = PureBasic 4.60 (Windows - x86)
-; CursorPosition = 52
+; CursorPosition = 40
 ; FirstLine = 17
 ; Folding = -
 ; EnableXP
 ; UseIcon = Tunnel Connector.ico
 ; Executable = Tunnel Connector.exe
-; EnableCompileCount = 5
-; EnableBuildCount = 5
+; EnableCompileCount = 6
+; EnableBuildCount = 6
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0
