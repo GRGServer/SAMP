@@ -1,13 +1,14 @@
 ReloadLanguageStrings(playerID = INVALID_PLAYER_ID)
 {
 	AdminPrint(playerID, COLOR_INFO, "* Unloading language strings...");
-	Count(id, LANGUAGE_MAXSTRINGS)
+	Count(stringID, LANGUAGE_MAXSTRINGS)
 	{
-		strdel(languageStrings[id][LANGUAGESTRING_ENGLISH], 0, STRINGLENGTH_LANGUAGESTRING);
-		strdel(languageStrings[id][LANGUAGESTRING_GERMAN], 0, STRINGLENGTH_LANGUAGESTRING);
+		strdel(languageStrings[stringID][LANGUAGESTRING_ENGLISH], 0, STRINGLENGTH_LANGUAGESTRING);
+		strdel(languageStrings[stringID][LANGUAGESTRING_GERMAN], 0, STRINGLENGTH_LANGUAGESTRING);
 	}
 	AdminPrint(playerID, COLOR_INFO, "* Loading language strings...");
 	new count;
+	new highestStringID;
 	new XMLNode:xml = XML_LoadDocument(FILE_LANGUAGESTRINGS);
 	xml = XML_GetFirstChild(xml, "languagestrings");
 	new XMLNode:stringNode = XML_GetFirstChild(xml, "string");
@@ -30,7 +31,7 @@ ReloadLanguageStrings(playerID = INVALID_PLAYER_ID)
 			}
 			else
 			{
-				AdminPrint(playerID, COLOR_INFO, "Missing English language string for string %d", stringID);
+				AdminPrint(playerID, COLOR_ERROR, "  Missing English language string for string %d", stringID);
 			}
 			translationNode = XML_GetFirstChild(stringNode, "de");
 			if (translationNode)
@@ -42,17 +43,28 @@ ReloadLanguageStrings(playerID = INVALID_PLAYER_ID)
 			}
 			else
 			{
-				AdminPrint(playerID, COLOR_INFO, "Missing German language string for string %d", stringID);
+				AdminPrint(playerID, COLOR_ERROR, "  Missing German language string for string %d", stringID);
+			}
+			if (stringID > highestStringID)
+			{
+				highestStringID = stringID;
 			}
 			count++;
 		}
 		else
 		{
-			AdminPrint(playerID, COLOR_INFO, "Language string ID %d is greater than language array size (%d)", stringID, LANGUAGE_MAXSTRINGS);
+			AdminPrint(playerID, COLOR_ERROR, "  Language string ID %d is greater than language array size (%d)", stringID, LANGUAGE_MAXSTRINGS);
 			break;
 		}
 		stringNode = XML_GetNextSibling(stringNode, "string");
 	}
 	XML_UnloadDocument(xml);
+	Count(stringID, highestStringID + 1)
+	{
+		if (!strlen(languageStrings[stringID][LANGUAGESTRING_ENGLISH]) && !strlen(languageStrings[stringID][LANGUAGESTRING_GERMAN]))
+		{
+			AdminPrint(playerID, COLOR_ERROR, "  Unused language string ID %d", stringID);
+		}
+	}
 	AdminPrint(playerID, COLOR_INFO, "  %d language strings loaded", count);
 }

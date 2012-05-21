@@ -1,4 +1,4 @@
-CheckOpenGatePermission(playerID, gateObjectID)
+CheckGatePermission(playerID, gateObjectID)
 {
 	switch (gateObjectID)
 	{

@@ -30,7 +30,7 @@
 #include <grgserver\Functions\AddVehicleComponentEx.inc>
 #include <grgserver\Functions\CalculateAge.inc>
 #include <grgserver\Functions\CalculateRoute.inc>
-#include <grgserver\Functions\CheckOpenGatePermission.inc>
+#include <grgserver\Functions\CheckGatePermission.inc>
 #include <grgserver\Functions\CheckVehiclePermission.inc>
 #include <grgserver\Functions\CmdUsageMsg.inc>
 #include <grgserver\Functions\CreateDialog.inc>
@@ -42,6 +42,7 @@
 #include <grgserver\Functions\FormatDate.inc>
 #include <grgserver\Functions\FormatTime.inc>
 #include <grgserver\Functions\GetChatModeName.inc>
+#include <grgserver\Functions\GetClosestGate.inc>
 #include <grgserver\Functions\GetClosestNavigationLocation.inc>
 #include <grgserver\Functions\GetClosestObjectByModel.inc>
 #include <grgserver\Functions\GetClosestPickup.inc>
@@ -70,6 +71,7 @@
 #include <grgserver\Functions\InterpolateCameraToLookAt.inc>
 #include <grgserver\Functions\InterpolateCameraToPos.inc>
 #include <grgserver\Functions\IsAllowedWeapon.inc>
+#include <grgserver\Functions\IsGateObject.inc>
 #include <grgserver\Functions\IsLoggedIn.inc>
 #include <grgserver\Functions\IsPlayerInPickup.inc>
 #include <grgserver\Functions\IsValidPickupType.inc>
@@ -249,7 +251,6 @@
 #include <grgserver\Pickups\Pickup_House.inc>
 #include <grgserver\Pickups\Pickup_InteriorExit.inc>
 #include <grgserver\Pickups\Pickup_Link.inc>
-#include <grgserver\Pickups\Pickup_MoveGate.inc>
 #include <grgserver\Pickups\Pickup_Place.inc>
 #include <grgserver\Pickups\Pickup_Police.inc>
 #include <grgserver\Pickups\Pickup_Taxi.inc>
@@ -323,6 +324,7 @@
 #include <grgserver\Commands\nextinterior.inc>
 #include <grgserver\Commands\nocamproperty.inc>
 #include <grgserver\Commands\npccmd.inc>
+#include <grgserver\Commands\opengate.inc>
 #include <grgserver\Commands\ordervehicle.inc>
 #include <grgserver\Commands\payday.inc>
 #include <grgserver\Commands\privatemessage.inc>

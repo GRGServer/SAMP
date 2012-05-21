@@ -1,4 +1,8 @@
 <languagestrings>
+	<string id="0">
+		<en>Undefined language string ID!</en>
+		<de>Nicht definierte Sprachstring ID!</de>
+	</string>
 	<string id="1">
 		<en>%p has accepted your job (Order ID: %d)</en>
 		<de>%p hat deinen Auftrag (Auftragsnummer: %d) angenommen</de>
@@ -1869,19 +1873,19 @@
 		<de>Keine Zielposition festgelegt! Verwende /setobjectmovepos um die Position festzulegen.</de>
 	</string>
 	<string id="467">
-		<en>Can you please open the door for me?</en>
-		<de>Können Sie für mich das Tor öffnen?</de>
+		<en>Open a gate or door</en>
+		<de>Öffne ein Tor oder eine Tür</de>
 	</string>
 	<string id="468">
-		<en>Please wait a moment. I will check whether you have the permission to enter this area.</en>
-		<de>Bitte warten Sie einen Moment. Ich muss zuerst nachschauen, ob es Ihnen erlaubt ist, diesen Bereich zu betreten.</de>
+		<en>There is no gate which can be opened!</en>
+		<de>Es befindet sich kein Tor in der Umgebung, welches geöffnet werden kann!</de>
 	</string>
 	<string id="469">
-		<en>OK, I see you are allowed to enter this area.</en>
-		<de>OK, ich sehe, es ist Ihnen erlaubt, diesen Bereich zu betreten.</de>
+		<en>You do not have the permission to open this gate!</en>
+		<de>Du hast nicht das Recht, dieses Tor zu öffnen!</de>
 	</string>
 	<string id="470">
-		<en>I'm sorry, but you are not allowed to enter this area.</en>
-		<de>Es tut mir leid, aber Sie dürfen diesen Bereich nicht betreten.</de>
+		<en>The gate will now open</en>
+		<de>Das Tor wird geöffnet</de>
 	</string>
 </languagestrings>
