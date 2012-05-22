@@ -11,40 +11,31 @@ CMD:saveinfo(playerID, params[], 450)
 	new Float:posX;
 	new Float:posY;
 	new Float:posZ;
+	new Float:angle;
 	getdate(year, month, day);
 	gettime(hour, minute, second);
 	AddLine:lines("Player: %s", GetPlayerNameEx(playerID));
 	AddLine:lines("Date: %d/%02d/%02d %02d:%02d:%02d", year, month, day, hour, minute, second);
-	if (PVar:playerID[FLYCAM_DUMMYOBJECT])
+	GetPlayerCameraPos(playerID, posX, posY, posZ);
+	AddLine:lines("Camera Position: %f x %f x %f", posX, posY, posZ);
+	new vehicleID = GetPlayerVehicleID(playerID);
+	if (vehicleID)
 	{
-		new Float:lookX;
-		new Float:lookY;
-		new Float:lookZ;
-		AddLine(lines, "Mode: Fly Cam");
-		GetPlayerCameraPos(playerID, posX, posY, posZ);
-		AddLine:lines("Position: %f x %f x %f", posX, posY, posZ);
-		AddLine:lines("Look At: %f x %f x %f", lookX, lookY, lookZ);
+		AddLine(lines, "Mode: Vehicle");
+		AddLine:lines("ModelID: %d", GetVehicleModel(vehicleID));
+		GetVehiclePos(vehicleID, posX, posY, posZ);
+		GetVehicleZAngle(vehicleID, angle);
+		AddLine:lines("Vehicle Position: %f x %f x %f", posX, posY, posZ);
+		AddLine:lines("Z Angle: %f", angle);
 	}
 	else
 	{
-		new Float:angle;
-		new vehicleID = GetPlayerVehicleID(playerID);
-		if (vehicleID)
-		{
-			AddLine(lines, "Mode: Vehicle");
-			AddLine:lines("ModelID: %d", GetVehicleModel(vehicleID));
-			GetVehiclePos(vehicleID, posX, posY, posZ);
-			GetVehicleZAngle(vehicleID, angle);
-		}
-		else
-		{
-			AddLine(lines, "Mode: On Foot");
-			AddLine:lines("Skin: %d", GetPlayerSkin(playerID));
-			GetPlayerPos(playerID, posX, posY, posZ);
-			GetPlayerFacingAngle(playerID, angle);
-		}
-		AddLine:lines("Position: %f x %f x %f", posX, posY, posZ);
-		AddLine:lines("Angle: %f", angle);
+		AddLine(lines, "Mode: On Foot");
+		AddLine:lines("Skin: %d", GetPlayerSkin(playerID));
+		GetPlayerPos(playerID, posX, posY, posZ);
+		GetPlayerFacingAngle(playerID, angle);
+		AddLine:lines("Player Position: %f x %f x %f", posX, posY, posZ);
+		AddLine:lines("Facing Angle: %f", angle);
 	}
 	if (StrNotNull(params))
 	{
