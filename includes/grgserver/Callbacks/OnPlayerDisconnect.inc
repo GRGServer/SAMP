@@ -14,13 +14,6 @@ public OnPlayerDisconnect(playerid, reason)
 		{
 			DestroyDynamicObject(PVar:playerid[FLYCAM_DUMMYOBJECT]);
 		}
-		PlayerLoop(playerID)
-		{
-			if (!IsPlayerNPC(playerID) && playerID != playerid)
-			{
-				SendClientMessageEx(playerID, COLOR_JOINLEAVE, 161, playerid);
-			}
-		}
 		new reasonString[16];
 		switch (reason)
 		{
@@ -35,6 +28,13 @@ public OnPlayerDisconnect(playerid, reason)
 			case 2:
 			{
 				strcat(reasonString, "Kicked/Banned");
+			}
+		}
+		PlayerLoop(playerID)
+		{
+			if (!IsPlayerNPC(playerID) && playerID != playerid)
+			{
+				SendClientMessageEx(playerID, COLOR_JOINLEAVE, 161, playerid, reasonString);
 			}
 		}
 		FormatNew:string[MAX_PLAYER_NAME + 30]("%s has left the server (%s)", GetPlayerNameEx(playerid), reasonString);

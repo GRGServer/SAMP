@@ -25,6 +25,13 @@ DialogResponse:Login(playerID, response, listItem, inputText[])
 			{
 				MySQLQuery("UPDATE `users` SET `LoginTime` = NOW(), `ClientVersion` = '%s' WHERE `ID` = '%d'", GetPlayerVersionEx(playerID), PVar:playerID[USERID]);
 				printf("Player logged in: %s (UserID: %d)", GetPlayerNameEx(playerID), PVar:playerID[USERID]);
+				PlayerLoop(currentPlayerID)
+				{
+					if (currentPlayerID != playerID)
+					{
+						SendClientMessageEx(currentPlayerID, COLOR_JOINLEAVE, 7, playerID);
+					}
+				}
 				TogglePlayerSpectating(playerID, false);
 				LoadPlayer(playerID);
 				ReloadTextDraws(playerID);

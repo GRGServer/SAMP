@@ -11,6 +11,13 @@ public OnPlayerRequestSpawn(playerid)
 		SavePlayer(playerid);
 		ReloadTextDraws(playerid);
 		printf("Player registered: %s (UserID: %d)", GetPlayerNameEx(playerid), PVar:playerid[USERID]);
+		PlayerLoop(playerID)
+		{
+			if (playerID != playerid)
+			{
+				SendClientMessageEx(playerID, COLOR_JOINLEAVE, 7, playerid);
+			}
+		}
 		PlayerPlaySound(playerid, 1063, 0.0, 0.0, 0.0);// Stop music
 		SendClientMessageEx(playerid, COLOR_INFO, 139);
 		TogglePlayerControllable(playerid, false);

@@ -27,7 +27,10 @@
 		<en>Error while creating the pickup!</en>
 		<de>Fehler beim Erstellen des Pickups!</de>
 	</string>
-	<string id="7"></string><!-- Unused -->
+	<string id="7">
+		<en>%p logged in</en>
+		<de>%p hast sich eigeloggt</de>
+	</string>
 	<string id="8">
 		<en>Switch language</en>
 		<de>Sprache wechseln</de>
@@ -641,8 +644,8 @@
 		<de>~n~Geschwindigkeit:~n~Zustand:~n~Tank:~n~Verbrauch/100km:~n~KM:</de>
 	</string>
 	<string id="161">
-		<en>%p has left the server</en>
-		<de>%p hat den Server verlassen</de>
+		<en>%p has left the server (%s)</en>
+		<de>%p hat den Server verlassen (%s)</de>
 	</string>
 	<string id="162">
 		<en>Reload all objects</en>
