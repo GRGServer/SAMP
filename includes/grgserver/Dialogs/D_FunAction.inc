@@ -1,11 +1,18 @@
 ShowDialog:FunAction(playerID)
 {
-	FormatNew:string[1024]("Stop\n");
-	Format:string("%s\nDance 1\nDance 2\nDance 3\nDance 4", string);
-	Format:string("%s\nHands Up\nSitting", string);
-	Format:string("%s\nDrink Beer\nSmoke Ciggy\nDrink Wine\nDrink Sprunk", string);
-	Format:string("%s\nPissing", string);
-	CreateDialog(playerID, "FunAction", DIALOG_STYLE_LIST, "Fun Action", string, "OK", LanguageString(playerID, 165));
+	new options[1024];
+	AddLine(options, "Stop");
+	AddLine(options, "Dance 1");
+	AddLine(options, "Dance 2");
+	AddLine(options, "Dance 3");
+	AddLine(options, "Dance 4");
+	AddLine(options, "Hands Up");
+	AddLine(options, "Drink Beer");
+	AddLine(options, "Drink Sprunk");
+	AddLine(options, "Drink Wine");
+	AddLine(options, "Smoke Ciggy");
+	AddLine(options, "Pissing");
+	CreateDialog(playerID, "FunAction", DIALOG_STYLE_LIST, "Fun Action", options, "OK", LanguageString(playerID, 165));
 }
 
 DialogResponse:FunAction(playerID, response, listItem, inputText[])
@@ -27,17 +34,15 @@ DialogResponse:FunAction(playerID, response, listItem, inputText[])
 				action = SPECIAL_ACTION_DANCE4;
 			case 5:// Hands Up
 				action = SPECIAL_ACTION_HANDSUP;
-			case 6:// Setting
-				action = SPECIAL_ACTION_SITTING;
-			case 7:// Drink Beer
+			case 6:// Drink Beer
 				action = SPECIAL_ACTION_DRINK_BEER;
-			case 8:// Smoke Ciggy
-				action = SPECIAL_ACTION_SMOKE_CIGGY;
-			case 9:// Drink Wine
-				action = SPECIAL_ACTION_DRINK_WINE;
-			case 10:// Drink Sprunk
+			case 7:// Drink Sprunk
 				action = SPECIAL_ACTION_DRINK_SPRUNK;
-			case 11:// Pissing
+			case 8:// Drink Wine
+				action = SPECIAL_ACTION_DRINK_WINE;
+			case 9:// Smoke Ciggy
+				action = SPECIAL_ACTION_SMOKE_CIGGY;
+			case 10:// Pissing
 				action = SPECIAL_ACTION_PISSING;
 		}
 		SetPlayerSpecialAction(playerID, action);

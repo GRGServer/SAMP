@@ -71,6 +71,7 @@
 #include <grgserver\Functions\InterpolateCameraToLookAt.inc>
 #include <grgserver\Functions\InterpolateCameraToPos.inc>
 #include <grgserver\Functions\IsAllowedWeapon.inc>
+#include <grgserver\Functions\IsBanned.inc>
 #include <grgserver\Functions\IsGateObject.inc>
 #include <grgserver\Functions\IsLoggedIn.inc>
 #include <grgserver\Functions\IsPlayerInPickup.inc>
@@ -83,6 +84,7 @@
 #include <grgserver\Functions\LoadPlayerPermissions.inc>
 #include <grgserver\Functions\MoneyTransaction.inc>
 #include <grgserver\Functions\MoveObjectEx.inc>
+#include <grgserver\Functions\MySQLBan.inc>
 #include <grgserver\Functions\MySQLEscapeString.inc>
 #include <grgserver\Functions\PayDay.inc>
 #include <grgserver\Functions\PickupEvent.inc>
@@ -285,14 +287,13 @@
 #include <grgserver\Commands\addstaticnpc.inc>
 #include <grgserver\Commands\addteleport.inc>
 #include <grgserver\Commands\areaobjects.inc>
-#include <grgserver\Commands\attachobject.inc>
+#include <grgserver\Commands\ban.inc>
 #include <grgserver\Commands\changepw.inc>
 #include <grgserver\Commands\chatmode.inc>
 #include <grgserver\Commands\checkpermissions.inc>
 #include <grgserver\Commands\cmds.inc>
 #include <grgserver\Commands\controlnpc.inc>
 #include <grgserver\Commands\coordtp.inc>
-#include <grgserver\Commands\dettachobject.inc>
 #include <grgserver\Commands\editobject.inc>
 #include <grgserver\Commands\engine.inc>
 #include <grgserver\Commands\exit.inc>
@@ -304,7 +305,6 @@
 #include <grgserver\Commands\god.inc>
 #include <grgserver\Commands\goto.inc>
 #include <grgserver\Commands\help.inc>
-#include <grgserver\Commands\interpolatecam.inc>
 #include <grgserver\Commands\jetpack.inc>
 #include <grgserver\Commands\kick.inc>
 #include <grgserver\Commands\kill.inc>
@@ -348,7 +348,6 @@
 #include <grgserver\Commands\savevehicle.inc>
 #include <grgserver\Commands\selectlastobject.inc>
 #include <grgserver\Commands\selectproperty.inc>
-#include <grgserver\Commands\setcam.inc>
 #include <grgserver\Commands\setinterior.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
 #include <grgserver\Commands\setobjectmovepos.inc>
@@ -362,10 +361,7 @@
 #include <grgserver\Commands\stats.inc>
 #include <grgserver\Commands\stoprec.inc>
 #include <grgserver\Commands\teleport.inc>
-#include <grgserver\Commands\testbank.inc>
-#include <grgserver\Commands\testpickup.inc>
 #include <grgserver\Commands\teststart.inc>
-#include <grgserver\Commands\testunfreeze.inc>
 #include <grgserver\Commands\toggleclock.inc>
 #include <grgserver\Commands\tow.inc>
 

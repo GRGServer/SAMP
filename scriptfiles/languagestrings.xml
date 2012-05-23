@@ -1891,4 +1891,24 @@
 		<en>The gate will now open</en>
 		<de>Das Tor wird geöffnet</de>
 	</string>
+	<string id="471">
+		<en>Ban a player</en>
+		<de>Banne einen Spieler</de>
+	</string>
+	<string id="472">
+		<en>%p has been banned by %p, Reason: %s</en>
+		<de>%p wurde von %p gebannt, Grund: %s</de>
+	</string>
+	<string id="473">
+		<en>Sorry, but you got banned from this server!</en>
+		<de>Entschuldigung, aber du wurdest von diesem Server gebannt!</de>
+	</string>
+	<string id="474">
+		<en>Reason for the ban: %s</en>
+		<de>Grund des Bans: %s</de>
+	</string>
+	<string id="475">
+		<en>You got banned by mistake? In this case, please contact us on http://www.grgserver.net.</en>
+		<de>Du wurdest irrtümlich gebannt? Dann kontaktiere uns bitte auf http://www.grgserver.net.</de>
+	</string>
 </languagestrings>

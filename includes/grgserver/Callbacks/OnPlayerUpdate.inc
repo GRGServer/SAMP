@@ -11,7 +11,7 @@ public OnPlayerUpdate(playerid)
 	}
 	if (!IsAllowedWeapon(GetPlayerWeapon(playerid)))
 	{
-		BanEx(playerid, "Use not allowed weapon");
+		MySQLBan(INVALID_PLAYER_ID, playerid, "Use not allowed weapon", true);
 	}
 	return true;
 }

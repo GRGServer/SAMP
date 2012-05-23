@@ -1,14 +1,18 @@
 public OnPlayerConnect(playerid)
 {
 	ResetPlayerVariables(playerid);
+	if (IsBanned(playerid, true))
+	{
+		Kick(playerid);
+		return false;
+	}
 	if (IsPlayerNPC(playerid))
 	{
 		new ip[16];
 		GetPlayerIp(playerid, ip, sizeof(ip));
 		if (strcmp(ip, "127.0.0.1", true))
 		{
-			printf("External NPC connection from %s -> Banned", ip);
-			BanEx(playerid, "External NPC connection");
+			MySQLBan(INVALID_PLAYER_ID, playerid, "External NPC connection", true);
 			return false;
 		}
 		new npcName[MAX_PLAYER_NAME];
