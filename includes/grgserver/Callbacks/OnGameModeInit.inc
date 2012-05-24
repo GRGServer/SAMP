@@ -56,16 +56,92 @@ public OnGameModeInit()
 	}
 	print("* Connecting to IRC server...");
 	ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_USERNAME, IRC_USERNAME, IRC_USERNAME, IRC_SSL);
-	print("* Adding dummy player classes...");
-	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
-	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
-	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
+	print("* Loading weapons...");
+	if (fexist(FILE_WEAPONS))
+	{
+		new File:weaponFile = fopen(FILE_WEAPONS, io_read);
+		if (weaponFile)
+		{
+			new weaponCount;
+			new line[256];
+			while (fread(weaponFile, line))
+			{
+				new weaponID;
+				new ammo;
+				new name[STRINGLENGTH_WEAPONNAME];
+				if (sscanf(line, "p\tdsd", weaponID, name, ammo))
+				{
+					print("  File format error!");
+				}
+				else
+				{
+					if (weaponID >= 0 && weaponID <= 46)
+					{
+						format(weapons[weaponID][WEAPON_NAME], STRINGLENGTH_WEAPONNAME, name);
+						weapons[weaponID][WEAPON_AMMO] = ammo;
+						weaponCount++;
+					}
+				}
+			}
+			fclose(weaponFile);
+			printf("  %d weapons loaded", weaponCount);
+		}
+	}
+	else
+	{
+		print("  Weapon file does not exist!");
+	}
+	print("* Loading zones...");
+	if (fexist(FILE_ZONES))
+	{
+		new File:zoneFile = fopen(FILE_ZONES, io_read);
+		if (zoneFile)
+		{
+			new zone;
+			new line[256];
+			while (fread(zoneFile, line))
+			{
+				new name[STRINGLENGTH_ZONENAME];
+				new Float:startX;
+				new Float:startY;
+				new Float:startZ;
+				new Float:endX;
+				new Float:endY;
+				new Float:endZ;
+				if (sscanf(line, "p\tsffffff", name, startX, startY, startZ, endX, endY, endZ))
+				{
+					print("  File format error!");
+				}
+				else
+				{
+					format(zones[zone][ZONE_NAME], STRINGLENGTH_ZONENAME, name);
+					zones[zone][ZONE_STARTX] = startX;
+					zones[zone][ZONE_STARTY] = startY;
+					zones[zone][ZONE_STARTZ] = startZ;
+					zones[zone][ZONE_ENDX] = endX;
+					zones[zone][ZONE_ENDY] = endY;
+					zones[zone][ZONE_ENDZ] = endZ;
+					zone++;
+				}
+			}
+			fclose(zoneFile);
+			printf("  %d zones loaded", zone);
+		}
+	}
+	else
+	{
+		print("  Zone file does not exist!");
+	}
 	ReloadLanguageStrings();
 	ReloadObjects();
 	ReloadVehicleModels();
 	ReloadVehicles(true);
 	ReloadPickups();
 	CreateGlobalTextDraws();
+	print("* Adding dummy player classes...");
+	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
+	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
+	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	print("* Doing misc stuff...");
 	FormatNew:gameModeTextString[30]("GRG Server r%d", COMPILER_SVN_REVISION);
 	SetGameModeText(gameModeTextString);

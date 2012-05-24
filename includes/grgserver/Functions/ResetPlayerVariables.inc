@@ -11,4 +11,5 @@ ResetPlayerVariables(playerID)
 	PVar:playerID[RECORDNPCFORPLAYER] = INVALID_PLAYER_ID;
 	PVar:playerID[SHOWINTERIOR_OLDINTERIOR] = -1;
 	PVar:playerID[SPAWNAFTERDEATH] = -1;
+	PVar:playerID[ZONE] = -1;
 }

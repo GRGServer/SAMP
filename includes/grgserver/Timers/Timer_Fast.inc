@@ -9,6 +9,15 @@ Timer:Fast()
 			PVar:playerID[LASTPAYDAY] = onlineTime;
 			PayDay(playerID);
 		}
+		new zone = GetPlayerZone(playerID, true);
+		if (zone != -1)
+		{
+			if (PVar:playerID[ZONE] == -1 || (PVar:playerID[ZONE] != zone && !IsStr(zones[PVar:playerID[ZONE]][ZONE_NAME], zones[zone][ZONE_NAME])))
+			{
+				PVar:playerID[ZONE] = zone;
+				OnPlayerZoneChange(playerID, zone);
+			}
+		}
 		if (IsPlayerInAnyVehicle(playerID) && GetPlayerVehicleSeat(playerID) == 0)
 		{
 			new Float:velocityX;

@@ -1,0 +1,10 @@
+enum enum_zone
+{
+	Float:ZONE_ENDX,
+	Float:ZONE_ENDY,
+	Float:ZONE_ENDZ,
+	ZONE_NAME[STRINGLENGTH_ZONENAME],
+	Float:ZONE_STARTX,
+	Float:ZONE_STARTY,
+	Float:ZONE_STARTZ
+}

@@ -34,6 +34,8 @@
 #define FILE_SAVEINFO				"saved_info.txt"
 #define FILE_STABLEREVISION			"stable_revision"
 #define FILE_UPDATENOTIFICATION			"update_log"
+#define FILE_WEAPONS				"weapons.dat"
+#define FILE_ZONES				"zones.dat"
 
 
 // FlyCam configuration
@@ -158,6 +160,7 @@
 #define STRINGLENGTH_VEHICLENAME		20
 #define STRINGLENGTH_VEHICLETYPE		16
 #define STRINGLENGTH_WEAPONNAME			20
+#define STRINGLENGTH_ZONENAME			30
 
 
 // 3D text labels

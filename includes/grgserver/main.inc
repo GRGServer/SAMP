@@ -16,6 +16,7 @@
 #include <grgserver\Structures\enum_vehicle.inc>
 #include <grgserver\Structures\enum_vehicleModel.inc>
 #include <grgserver\Structures\enum_weapon.inc>
+#include <grgserver\Structures\enum_zone.inc>
 
 // Global variables
 #include <grgserver\globals.inc>
@@ -60,6 +61,7 @@
 #include <grgserver\Functions\GetPlayerID.inc>
 #include <grgserver\Functions\GetPlayerNameEx.inc>
 #include <grgserver\Functions\GetPlayerVersionEx.inc>
+#include <grgserver\Functions\GetPlayerZone.inc>
 #include <grgserver\Functions\GetVehicleBySaveID.inc>
 #include <grgserver\Functions\GetVehicleEngineState.inc>
 #include <grgserver\Functions\GetVehicleLightsState.inc>
@@ -175,6 +177,7 @@
 #include <grgserver\Callbacks\OnPlayerStateChange.inc>
 #include <grgserver\Callbacks\OnPlayerText.inc>
 #include <grgserver\Callbacks\OnPlayerUpdate.inc>
+#include <grgserver\Callbacks\OnPlayerZoneChange.inc>
 #include <grgserver\Callbacks\OnScreenFadeStop.inc>
 #include <grgserver\Callbacks\OnServerTimeChange.inc>
 #include <grgserver\Callbacks\OnVehicleDeath.inc>
