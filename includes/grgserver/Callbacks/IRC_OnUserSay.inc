@@ -1,3 +1,29 @@
+/**
+ * <summary>
+ *	Called when a user sends a message to a common channel or a private message to a bot.
+ * </summary>
+ *
+ * <param name="botid">
+ *	The ID of the bot which received the message.
+ * </param>
+ *
+ * <param name="recipient">
+ *	The bot name or the channel name which received the message.
+ * </param>
+ *
+ * <param name="user">
+ *	Name of the user which sent the message.
+ * </param>
+ *
+ * <param name="host">
+ *	Host of the user which sent the message.
+ * </param>
+ *
+ * <param name="message">
+ *	The message which was sent by the user.
+ * </param>
+ */
+
 public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 {
 	new string[256];

@@ -1,3 +1,17 @@
+/**
+ * <summary>
+ *	Called once a dynamic object stops moving.
+ * </summary>
+ *
+ * <param name="objectid">
+ *	The ID of the object which stopped moving.
+ * </param>
+ *
+ * <remarks>
+ *	The timer MoveObject gets called if there is an entry for the object in the <b>movedobjects</b> table and a timeout is defined.
+ * </remarks>
+ */
+
 public OnDynamicObjectMoved(objectid)
 {
 	new dbObjectID = Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectid, E_STREAMER_EXTRA_ID);

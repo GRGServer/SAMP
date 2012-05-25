@@ -1,3 +1,17 @@
+/**
+ * <summary>
+ *	This callback gets called once the message was shown to the player and the time specified in ShowMessage has elapsed.
+ * </summary>
+ *
+ * <param name="playerID">
+ *	The ID of the player for which the message was shown.
+ * </param>
+ *
+ * <param name="messageID">
+ *	The ID of the shown message.
+ * </param>
+ */
+
 forward OnMessageShown(playerID, messageID);
 public OnMessageShown(playerID, messageID)
 {

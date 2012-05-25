@@ -1,3 +1,13 @@
+/**
+ * <summary>
+ *	This callback gets called once the gamemode starts.
+ * </summary>
+ *
+ * <remarks>
+ *	All initialization stuff is done in this callback.
+ * </remarks>
+ */
+
 public OnGameModeInit()
 {
 	print("* Loading Gamemode...");

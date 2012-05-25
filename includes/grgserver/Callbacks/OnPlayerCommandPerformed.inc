@@ -1,3 +1,21 @@
+/**
+ * <summary>
+ *	This callback gets called once a player sent a command it got performed.
+ * </summary>
+ *
+ * <param name="playerid">
+ *	The ID of the player which sent the command.
+ * </param>
+ *
+ * <param name="cmdtext">
+ *	The full command including the name of the command and all parameters.
+ * </param>
+ *
+ * <param name="success">
+ *	The return code of the command.
+ * </param>
+ */
+
 public OnPlayerCommandPerformed(playerid, cmdtext[], success)
 {
 	switch (success)
