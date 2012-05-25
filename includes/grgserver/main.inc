@@ -219,7 +219,6 @@
 #include <grgserver\Dialogs\D_NaviTarget_HouseName.inc>
 #include <grgserver\Dialogs\D_OrderVehicle.inc>
 #include <grgserver\Dialogs\D_PaydayInfo.inc>
-#include <grgserver\Dialogs\D_Police.inc>
 #include <grgserver\Dialogs\D_PreviewInfo.inc>
 #include <grgserver\Dialogs\D_Refuel.inc>
 #include <grgserver\Dialogs\D_Register_Birthdate.inc>

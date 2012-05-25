@@ -10,7 +10,7 @@ PickupEvent:POLICE(playerID, pickupID, eventType)
 			}
 			else
 			{
-				ShowDialog:Police(playerID);
+				//ShowDialog:Police(playerID);// TODO: Recreate dialogs
 			}
 			return true;
 		}
