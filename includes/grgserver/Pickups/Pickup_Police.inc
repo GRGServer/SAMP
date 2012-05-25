@@ -6,11 +6,11 @@ PickupEvent:POLICE(playerID, pickupID, eventType)
 		{
 			if (PVar:playerID[JOBID] == JOB_POLICE)
 			{
-				ShowDialog:Police_Options(playerID);
+				//ShowDialog:Police_Options(playerID);// TODO: Recreate dialogs
 			}
 			else
 			{
-				ShowDialog:Police_Job(playerID);
+				ShowDialog:Police(playerID);
 			}
 			return true;
 		}

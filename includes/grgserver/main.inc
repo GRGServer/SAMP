@@ -220,8 +220,6 @@
 #include <grgserver\Dialogs\D_OrderVehicle.inc>
 #include <grgserver\Dialogs\D_PaydayInfo.inc>
 #include <grgserver\Dialogs\D_Police.inc>
-#include <grgserver\Dialogs\D_Police_Job.inc>
-#include <grgserver\Dialogs\D_Police_Options.inc>
 #include <grgserver\Dialogs\D_PreviewInfo.inc>
 #include <grgserver\Dialogs\D_Refuel.inc>
 #include <grgserver\Dialogs\D_Register_Birthdate.inc>
@@ -237,8 +235,6 @@
 #include <grgserver\Dialogs\D_Stats.inc>
 #include <grgserver\Dialogs\D_Taxi.inc>
 #include <grgserver\Dialogs\D_TeleportLocations.inc>
-#include <grgserver\Dialogs\D_Trucker_Job.inc>
-#include <grgserver\Dialogs\D_Trucker_Options.inc>
 #include <grgserver\Dialogs\D_UpgradeVehicle.inc>
 #include <grgserver\Dialogs\D_UpgradeVehicle_Light.inc>
 #include <grgserver\Dialogs\D_VehicleDealer_Job.inc>
