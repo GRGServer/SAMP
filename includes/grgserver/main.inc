@@ -63,6 +63,7 @@
 #include <grgserver\Functions\GetPlayerVersionEx.inc>
 #include <grgserver\Functions\GetPlayerZone.inc>
 #include <grgserver\Functions\GetVehicleBySaveID.inc>
+#include <grgserver\Functions\GetVehicleColor.inc>
 #include <grgserver\Functions\GetVehicleEngineState.inc>
 #include <grgserver\Functions\GetVehicleLightsState.inc>
 #include <grgserver\Functions\GetVehicleNeonLightsState.inc>

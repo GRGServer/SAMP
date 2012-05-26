@@ -12,7 +12,7 @@ stock explode(string[], dest[][], token = ' ', max = sizeof (dest), ml = sizeof 
 			cur++;
 			if (cur == max)
 			{
-					return;
+				return cur;
 			}
 			i = 0;
 			while (idx < len && string[idx] == token)
@@ -34,4 +34,5 @@ stock explode(string[], dest[][], token = ' ', max = sizeof (dest), ml = sizeof 
 		}
 	}
 	dest[cur][i] = '\0';
+	return cur + 1;
 }

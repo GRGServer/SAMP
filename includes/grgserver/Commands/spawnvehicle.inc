@@ -8,8 +8,8 @@ PCMD:spawnvehicle[MAPPER](playerID, params[], 122)
 	{
 		if (!sscanf(params, "d", modelID))
 		{
-			color1 = random(127);
-			color2 = random(127);
+			color1 = -1;
+			color2 = -1;
 		}
 		else
 		{
@@ -17,8 +17,8 @@ PCMD:spawnvehicle[MAPPER](playerID, params[], 122)
 			{
 				if (!sscanf(params, "s", vehicleName))
 				{
-					color1 = random(127);
-					color2 = random(127);
+					color1 = -1;
+					color2 = -1;
 				}
 				else
 				{

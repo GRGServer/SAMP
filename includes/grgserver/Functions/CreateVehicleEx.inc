@@ -3,9 +3,15 @@ CreateVehicleEx(modelID, Float:posX, Float:posY, Float:posZ, Float:angle, color1
 	if (modelID >= 400 && modelID <= 611)
 	{
 		new vehicleID;
+		new newColor1 = color1;
+		new newColor2 = color2;
+		if (color1 == -1 || color2 == -1)
+		{
+			GetVehicleColor(modelID, newColor1, newColor2);
+		}
 		if (isStatic)
 		{
-			vehicleID = AddStaticVehicleEx(modelID, posX, posY, posZ, angle, color1, color2, respawnDelay);
+			vehicleID = AddStaticVehicleEx(modelID, posX, posY, posZ, angle, newColor1, newColor2, respawnDelay);
 		}
 		else
 		{
@@ -13,7 +19,7 @@ CreateVehicleEx(modelID, Float:posX, Float:posY, Float:posZ, Float:angle, color1
 			{
 				return false;
 			}
-			vehicleID = CreateVehicle(modelID, posX, posY, posZ, angle, color1, color2, respawnDelay);
+			vehicleID = CreateVehicle(modelID, posX, posY, posZ, angle, newColor1, newColor2, respawnDelay);
 		}
 		if (!vehicleID)
 		{

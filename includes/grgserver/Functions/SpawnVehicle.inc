@@ -16,7 +16,7 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 		}
 		return false;
 	}
-	if (color1 < 0 || color1 > 127 || color2 < 0 || color2 > 127)
+	if (color1 < -1 || color1 > 127 || color2 < -1 || color2 > 127)
 	{
 		if (showMessage)
 		{
