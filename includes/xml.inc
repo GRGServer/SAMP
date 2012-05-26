@@ -69,7 +69,6 @@ native XMLNode:XML_LoadDocument(const filename[]);
  * </param>
  *
  * <returns>
- *	<title>Returns one of the following values:</title>
  *	<item>true on success</item>
  *	<item>false if failed</item>
  * </returns>
@@ -108,22 +107,21 @@ native XML_UnloadDocument(XMLNode:doc);
  *
  * <param name="value">
  *	<title>The value of the node.</title>
- *	<type name="Document">Filename of the xml file</type>
- *	<type name="Element">Name of the element</type>
- *	<type name="Comment">The comment text</type>
- *	<type name="Unknown">The tag contents</type>
- *	<type name="Text">The text string</type>
+ *	<item name="Document">Filename of the xml file</item>
+ *	<item name="Element">Name of the element</item>
+ *	<item name="Comment">The comment text</item>
+ *	<item name="Unknown">The tag contents</item>
+ *	<item name="Text">The text string</item>
  * </param>
  *
  * <param name="type">
  *	<title>The type of the node.</title>
- *	<type name="e_XML_NODE_ELEMENT"></type>
- *	<type name="e_XML_NODE_COMMENT"></type>
- *	<type name="e_XML_NODE_TEXT"></type>
+ *	<item name="e_XML_NODE_ELEMENT"></item>
+ *	<item name="e_XML_NODE_COMMENT"></item>
+ *	<item name="e_XML_NODE_TEXT"></item>
  * </param>
  *
  * <returns>
- *	<title>Returns one of the following values:</title>
  *	<item>The handle of the created node</item>
  *	<item>0 if failed</item>
  * </returns>
@@ -152,7 +150,6 @@ native XMLNode:XML_CreateNode(XMLNode:parent, const value[], e_XML_NODE_TYPE:typ
  * </param>
  *
  * <returns>
- *	<title>Returns one of the following values:</title>
  *	<item>true on success</item>
  *	<item>false if failed</item>
  * </returns>
@@ -175,7 +172,6 @@ native XMLNode:XML_CreateNode(XMLNode:parent, const value[], e_XML_NODE_TYPE:typ
  * </param>
  *
  * <returns>
- *	<title>Returns one of the following values:</title>
  *	<item>true on success</item>
  *	<item>false if failed</item>
  * </returns>
@@ -213,7 +209,6 @@ native XML_DestroyNode(XMLNode:node);
  * </param>
  *
  * <returns>
- *	<title>Returns one of the following values:</title>
  *	<item>true on success</item>
  *	<item>false if failed</item>
  * </returns>
@@ -238,7 +233,6 @@ native XMLNode:XML_GetFirstChild(XMLNode:node, const value[] = "");
  * </param>
  *
  * <returns>
- *	<title>Returns one of the following values:</title>
  *	<item>The handle of the first child</item>
  *	<item>0 if failed</item>
  * </returns>
@@ -263,7 +257,6 @@ native XMLNode:XML_GetLastChild(XMLNode:node, const value[] = "");
  * </param>
  *
  * <returns>
- *	<title>Returns one of the following values:</title>
  *	<item>The handle of the last child</item>
  *	<item>0 if failed</item>
  * </returns>
@@ -288,7 +281,6 @@ native XMLNode:XML_GetNextSibling(XMLNode:node, const value[] = "");
  * </param>
  *
  * <returns>
- *	<title>Returns one of the following values:</title>
  *	<item>The handle of the next sibling</item>
  *	<item>0 if failed</item>
  * </returns>
@@ -306,7 +298,6 @@ native XMLNode:XML_GetPreviousSibling(XMLNode:node, const value[] = "");
  * </param>
  *
  * <returns>
- *	<title>Returns one of the following values:</title>
  *	<item>The handle of the previous sibling</item>
  *	<item>0 if failed</item>
  * </returns>
@@ -349,11 +340,11 @@ native XML_GetValue(XMLNode:node, value[], maxlen = sizeof(value));
  *
  * <param name="value">
  *	<title>The value to be set.</title>
- *	<type name="e_XML_NODE_DOCUMENT">Filename of the xml file</type>
- *	<type name="e_XML_NODE_ELEMENT">Name of the element</type>
- *	<type name="e_XML_NODE_COMMENT">The comment text</type>
- *	<type name="e_XML_NODE_UNKNOWN">The tag contents</type>
- *	<type name="e_XML_NODE_TEXT">The text string</type>
+ *	<item name="e_XML_NODE_DOCUMENT">Filename of the xml file</item>
+ *	<item name="e_XML_NODE_ELEMENT">Name of the element</item>
+ *	<item name="e_XML_NODE_COMMENT">The comment text</item>
+ *	<item name="e_XML_NODE_UNKNOWN">The tag contents</item>
+ *	<item name="e_XML_NODE_TEXT">The text string</item>
  * </param>
  *
  * <see>XML_GetValue</see>
