@@ -1,3 +1,26 @@
+/**
+ * <summary>
+ *	Add the specified player as a friend or accept a friend request from the specified player.
+ * </summary>
+ *
+ * <param name="playerID">
+ *	The ID of the player which called the command.
+ * </param>
+ *
+ * <param name="params">
+ *	The parameters passed to this command.
+ *	<item>ID or name of the player which should be added or accepted</item>
+ * </param>
+ *
+ * <returns>
+ *	Returns one of the following values:
+ *	<item>COMMAND_ERROR</item>
+ *	<item>COMMAND_OK</item>
+ *	<item>COMMAND_PLAYER_NOT_FOUND</item>
+ *	<item>COMMAND_USAGE</item>
+ * </returns>
+ */
+
 CMD:addfriend(playerID, params[], 439)
 {
 	new targetPlayerID;

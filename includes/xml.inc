@@ -69,8 +69,8 @@ native XMLNode:XML_LoadDocument(const filename[]);
  * </param>
  *
  * <returns>
- *	<type name="true">success</type>
- *	<type name="false">failed</type>
+ *	<return name="true">success</return>
+ *	<return name="false">failed</return>
  * </returns>
  *
  * <see>XML_LoadDocument</see>
@@ -122,8 +122,8 @@ native XML_UnloadDocument(XMLNode:doc);
  * </param>
  *
  * <returns>
- *	<type name="handle">success</type>
- *	<type name="0">failed</type>
+ *	<return name="handle">success</return>
+ *	<return name="0">failed</return>
  * </returns>
  *
  * <see>XML_DestroyNode</see>
@@ -150,8 +150,8 @@ native XMLNode:XML_CreateNode(XMLNode:parent, const value[], e_XML_NODE_TYPE:typ
  * </param>
  *
  * <returns>
- *	<type name="true">success</type>
- *	<type name="false">failed</type>
+ *	<return name="true">success</return>
+ *	<return name="false">failed</return>
  * </returns>
  */
 
@@ -172,8 +172,8 @@ native XMLNode:XML_CreateNode(XMLNode:parent, const value[], e_XML_NODE_TYPE:typ
  * </param>
  *
  * <returns>
- *	<type name="true">success</type>
- *	<type name="false">failed</type>
+ *	<return name="true">success</return>
+ *	<return name="false">failed</return>
  * </returns>
  */
 
@@ -209,8 +209,8 @@ native XML_DestroyNode(XMLNode:node);
  * </param>
  *
  * <returns>
- *	<type name="handle">success</type>
- *	<type name="0">failed or not found</type>
+ *	<return name="handle">success</return>
+ *	<return name="0">failed or not found</return>
  * </returns>
  *
  * <see>XML_GetLastChild</see>
@@ -233,8 +233,8 @@ native XMLNode:XML_GetFirstChild(XMLNode:node, const value[] = "");
  * </param>
  *
  * <returns>
- *	<type name="handle">success</type>
- *	<type name="0">failed or not found</type>
+ *	<return name="handle">success</return>
+ *	<return name="0">failed or not found</return>
  * </returns>
  *
  * <see>XML_GetFirstChild</see>
@@ -257,8 +257,8 @@ native XMLNode:XML_GetLastChild(XMLNode:node, const value[] = "");
  * </param>
  *
  * <returns>
- *	<type name="siblingHandle">success</type>
- *	<type name="0">failed or not found</type>
+ *	<return name="siblingHandle">success</return>
+ *	<return name="0">failed or not found</return>
  * </returns>
  *
  * <see>XML_GetPreviousSibling</see>
@@ -281,8 +281,8 @@ native XMLNode:XML_GetNextSibling(XMLNode:node, const value[] = "");
  * </param>
  *
  * <returns>
- *	<type name="siblingHandle">success</type>
- *	<type name="0">failed or not found</type>
+ *	<return name="siblingHandle">success</return>
+ *	<return name="0">failed or not found</return>
  * </returns>
  *
  * <see>XML_GetNextSibling</see>
@@ -298,8 +298,8 @@ native XMLNode:XML_GetPreviousSibling(XMLNode:node, const value[] = "");
  * </param>
  *
  * <returns>
- *	<type name="parentHandle">success</type>
- *	<type name="0">failed or not found</type>
+ *	<return name="parentHandle">success</return>
+ *	<return name="0">failed or not found</return>
  * </returns>
  */
 

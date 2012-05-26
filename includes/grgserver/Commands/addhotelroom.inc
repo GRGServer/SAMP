@@ -1,3 +1,25 @@
+/**
+ * <summary>
+ *	Add a room to the current property.
+ * </summary>
+ *
+ * <param name="playerID">
+ *	The ID of the player which called the command.
+ * </param>
+ *
+ * <param name="params">
+ *	The parameters passed to this command.
+ *	<item>The price for the room</item>
+ * </param>
+ *
+ * <returns>
+ *	Returns one of the following values:
+ *	<item>COMMAND_ERROR</item>
+ *	<item>COMMAND_OK</item>
+ *	<item>COMMAND_USAGE</item>
+ * </returns>
+ */
+
 PCMD:addhotelroom[MAPPER](playerID, params[], 323)
 {
 	new validHotel;
