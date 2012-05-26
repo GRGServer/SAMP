@@ -13,7 +13,7 @@
  * </param>
  *
  * <returns>
- *	Returns one of the following values:
+ *	<title>Returns one of the following values:</title>
  *	<item>COMMAND_ERROR</item>
  *	<item>COMMAND_OK</item>
  *	<item>COMMAND_USAGE</item>

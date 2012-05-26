@@ -69,8 +69,9 @@ native XMLNode:XML_LoadDocument(const filename[]);
  * </param>
  *
  * <returns>
- *	<return name="true">success</return>
- *	<return name="false">failed</return>
+ *	<title>Returns one of the following values:</title>
+ *	<item>true on success</item>
+ *	<item>false if failed</item>
  * </returns>
  *
  * <see>XML_LoadDocument</see>
@@ -106,7 +107,7 @@ native XML_UnloadDocument(XMLNode:doc);
  * </param>
  *
  * <param name="value">
- *	The value of the node.
+ *	<title>The value of the node.</title>
  *	<type name="Document">Filename of the xml file</type>
  *	<type name="Element">Name of the element</type>
  *	<type name="Comment">The comment text</type>
@@ -115,15 +116,16 @@ native XML_UnloadDocument(XMLNode:doc);
  * </param>
  *
  * <param name="type">
- *	The type of the node.
+ *	<title>The type of the node.</title>
  *	<type name="e_XML_NODE_ELEMENT"></type>
  *	<type name="e_XML_NODE_COMMENT"></type>
  *	<type name="e_XML_NODE_TEXT"></type>
  * </param>
  *
  * <returns>
- *	<return name="handle">success</return>
- *	<return name="0">failed</return>
+ *	<title>Returns one of the following values:</title>
+ *	<item>The handle of the created node</item>
+ *	<item>0 if failed</item>
  * </returns>
  *
  * <see>XML_DestroyNode</see>
@@ -150,8 +152,9 @@ native XMLNode:XML_CreateNode(XMLNode:parent, const value[], e_XML_NODE_TYPE:typ
  * </param>
  *
  * <returns>
- *	<return name="true">success</return>
- *	<return name="false">failed</return>
+ *	<title>Returns one of the following values:</title>
+ *	<item>true on success</item>
+ *	<item>false if failed</item>
  * </returns>
  */
 
@@ -172,8 +175,9 @@ native XMLNode:XML_CreateNode(XMLNode:parent, const value[], e_XML_NODE_TYPE:typ
  * </param>
  *
  * <returns>
- *	<return name="true">success</return>
- *	<return name="false">failed</return>
+ *	<title>Returns one of the following values:</title>
+ *	<item>true on success</item>
+ *	<item>false if failed</item>
  * </returns>
  */
 
@@ -209,8 +213,9 @@ native XML_DestroyNode(XMLNode:node);
  * </param>
  *
  * <returns>
- *	<return name="handle">success</return>
- *	<return name="0">failed or not found</return>
+ *	<title>Returns one of the following values:</title>
+ *	<item>true on success</item>
+ *	<item>false if failed</item>
  * </returns>
  *
  * <see>XML_GetLastChild</see>
@@ -233,8 +238,9 @@ native XMLNode:XML_GetFirstChild(XMLNode:node, const value[] = "");
  * </param>
  *
  * <returns>
- *	<return name="handle">success</return>
- *	<return name="0">failed or not found</return>
+ *	<title>Returns one of the following values:</title>
+ *	<item>The handle of the first child</item>
+ *	<item>0 if failed</item>
  * </returns>
  *
  * <see>XML_GetFirstChild</see>
@@ -257,8 +263,9 @@ native XMLNode:XML_GetLastChild(XMLNode:node, const value[] = "");
  * </param>
  *
  * <returns>
- *	<return name="siblingHandle">success</return>
- *	<return name="0">failed or not found</return>
+ *	<title>Returns one of the following values:</title>
+ *	<item>The handle of the last child</item>
+ *	<item>0 if failed</item>
  * </returns>
  *
  * <see>XML_GetPreviousSibling</see>
@@ -273,7 +280,7 @@ native XMLNode:XML_GetNextSibling(XMLNode:node, const value[] = "");
  * </summary>
  *
  * <param name="node">
- *	 The node to find sibling of.
+ *	The node to find sibling of.
  * </param>
  *
  * <param name="value">
@@ -281,8 +288,9 @@ native XMLNode:XML_GetNextSibling(XMLNode:node, const value[] = "");
  * </param>
  *
  * <returns>
- *	<return name="siblingHandle">success</return>
- *	<return name="0">failed or not found</return>
+ *	<title>Returns one of the following values:</title>
+ *	<item>The handle of the next sibling</item>
+ *	<item>0 if failed</item>
  * </returns>
  *
  * <see>XML_GetNextSibling</see>
@@ -298,8 +306,9 @@ native XMLNode:XML_GetPreviousSibling(XMLNode:node, const value[] = "");
  * </param>
  *
  * <returns>
- *	<return name="parentHandle">success</return>
- *	<return name="0">failed or not found</return>
+ *	<title>Returns one of the following values:</title>
+ *	<item>The handle of the previous sibling</item>
+ *	<item>0 if failed</item>
  * </returns>
  */
 
@@ -339,7 +348,7 @@ native XML_GetValue(XMLNode:node, value[], maxlen = sizeof(value));
  * </param>
  *
  * <param name="value">
- *	The value to be set.
+ *	<title>The value to be set.</title>
  *	<type name="e_XML_NODE_DOCUMENT">Filename of the xml file</type>
  *	<type name="e_XML_NODE_ELEMENT">Name of the element</type>
  *	<type name="e_XML_NODE_COMMENT">The comment text</type>
@@ -361,15 +370,17 @@ native XML_SetValue(XMLNode:node, const value[]);
  * <param name="element">
  *	The node to get attribute of (it should be an element node).
  * </param>
+ *
  * <param name="name">
- *	   Attribute name.
+ *	Attribute name.
  * </param>
+ *
  * <param name="value">
- *	  Attribute value will be copied here.
+ *	Attribute value will be copied here.
  * </param>
  *
  * <param name="maxlen">
- *	 Maximum value length.
+ *	Maximum value length.
  * </param>
  *
  * <see>XML_SetAttribute</see>
@@ -387,12 +398,13 @@ native XML_GetAttribute(XMLNode:element, const name[], value[], maxlen = sizeof(
  * <param name="element">
  *	The node to set attribute of (it should be an element node).
  * </param>
+ *
  * <param name="name">
- *	   Attribute name.
+ *	Attribute name.
  * </param>
  *
  * <param name="value">
- *	  Attribute value.
+ *	Attribute value.
  * </param>
  *
  * <see>XML_GetAttribute</see>
@@ -412,7 +424,7 @@ native XML_SetAttribute(XMLNode:element, const name[], const value[]);
  * </param>
  *
  * <param name="name">
- *	   Attribute name.
+ *	Attribute name.
  * </param>
  *
  * <see>XML_GetAttribute</see>
