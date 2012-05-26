@@ -22,6 +22,7 @@ enum e_XML_NODE_TYPE
  * <param name="version">
  *	The XML version (optional, defaults to "1.0").
  * </param>
+ *
  * <param name="encoding">
  *	Character encoding which appears in XML declaration.
  * </param>
@@ -47,10 +48,8 @@ native XMLNode:XML_CreateDocument(const filename[], const version[] = "1.0", con
  *	Handle to the document tree root node.
  * </returns>
  *
- * <remarks>
- *	<see>XML_SaveDocument</see>
- *	<see>XML_UnloadDocument</see>
- * </remarks>
+ * <see>XML_SaveDocument</see>
+ * <see>XML_UnloadDocument</see>
  */
 
 native XMLNode:XML_LoadDocument(const filename[]);
@@ -74,10 +73,8 @@ native XMLNode:XML_LoadDocument(const filename[]);
  *	<type name="false">failed</type>
  * </returns>
  *
- * <remarks>
- *	<see>XML_LoadDocument</see>
- *	<see>XML_UnloadDocument</see>
- * </remarks>
+ * <see>XML_LoadDocument</see>
+ * <see>XML_UnloadDocument</see>
  */
 
 native bool:XML_SaveDocument(XMLNode:doc, const filename[] = "");
@@ -92,10 +89,8 @@ native bool:XML_SaveDocument(XMLNode:doc, const filename[] = "");
  *	The document to be unloaded.
  * </param>
  *
- * <remarks>
- *	<see>XML_LoadDocument</see>
- *	<see>XML_SaveDocument</see>
- * </remarks>
+ * <see>XML_LoadDocument</see>
+ * <see>XML_SaveDocument</see>
  */
 
 native XML_UnloadDocument(XMLNode:doc);
@@ -131,9 +126,7 @@ native XML_UnloadDocument(XMLNode:doc);
  *	<type name="0">failed</type>
  * </returns>
  *
- * <remarks>
- *	<see>XML_DestroyNode</see>
- * </remarks>
+ * <see>XML_DestroyNode</see>
  */
 
 native XMLNode:XML_CreateNode(XMLNode:parent, const value[], e_XML_NODE_TYPE:type = e_XML_NODE_ELEMENT);
@@ -196,9 +189,7 @@ native bool:XML_RemoveChild(XMLNode:parent, XMLNode:child);
  *	The node to be destroyed.
  * </param>
  *
- * <remarks>
- *	<see>XML_CreateNode</see>
- * </remarks>
+ * <see>XML_CreateNode</see>
  */
 
 native XML_DestroyNode(XMLNode:node);
@@ -222,9 +213,7 @@ native XML_DestroyNode(XMLNode:node);
  *	<type name="0">failed or not found</type>
  * </returns>
  *
- * <remarks>
- *	<see>XML_GetLastChild</see>
- * </remarks>
+ * <see>XML_GetLastChild</see>
  */
 
 native XMLNode:XML_GetFirstChild(XMLNode:node, const value[] = "");
@@ -248,9 +237,7 @@ native XMLNode:XML_GetFirstChild(XMLNode:node, const value[] = "");
  *	<type name="0">failed or not found</type>
  * </returns>
  *
- * <remarks>
- *	<see>XML_GetFirstChild</see>
- * </remarks>
+ * <see>XML_GetFirstChild</see>
  */
 
 native XMLNode:XML_GetLastChild(XMLNode:node, const value[] = "");
@@ -274,9 +261,7 @@ native XMLNode:XML_GetLastChild(XMLNode:node, const value[] = "");
  *	<type name="0">failed or not found</type>
  * </returns>
  *
- * <remarks>
- *	<see>XML_GetPreviousSibling</see>
- * </remarks>
+ * <see>XML_GetPreviousSibling</see>
  */
 
 native XMLNode:XML_GetNextSibling(XMLNode:node, const value[] = "");
@@ -300,9 +285,7 @@ native XMLNode:XML_GetNextSibling(XMLNode:node, const value[] = "");
  *	<type name="0">failed or not found</type>
  * </returns>
  *
- * <remarks>
- *	<see>XML_GetNextSibling</see>
- * </remarks>
+ * <see>XML_GetNextSibling</see>
  */
 
 native XMLNode:XML_GetPreviousSibling(XMLNode:node, const value[] = "");
@@ -340,9 +323,7 @@ native XMLNode:XML_GetParent(XMLNode:node);
  *	Maximum value length.
  * </param>
  *
- * <remarks>
- *	<see>XML_SetValue</see>
- * </remarks>
+ * <see>XML_SetValue</see>
  */
 
 native XML_GetValue(XMLNode:node, value[], maxlen = sizeof(value));
@@ -366,9 +347,7 @@ native XML_GetValue(XMLNode:node, value[], maxlen = sizeof(value));
  *	<type name="e_XML_NODE_TEXT">The text string</type>
  * </param>
  *
- * <remarks>
- *	<see>XML_GetValue</see>
- * </remarks>
+ * <see>XML_GetValue</see>
  */
 
 native XML_SetValue(XMLNode:node, const value[]);
@@ -393,10 +372,8 @@ native XML_SetValue(XMLNode:node, const value[]);
  *	 Maximum value length.
  * </param>
  *
- * <remarks>
- *	<see>XML_SetAttribute</see>
- *	<see>XML_RemoveAttribute</see>
- * </remarks>
+ * <see>XML_SetAttribute</see>
+ * <see>XML_RemoveAttribute</see>
  */
 
 native XML_GetAttribute(XMLNode:element, const name[], value[], maxlen = sizeof(value));
@@ -418,10 +395,8 @@ native XML_GetAttribute(XMLNode:element, const name[], value[], maxlen = sizeof(
  *	  Attribute value.
  * </param>
  *
- * <remarks>
- *	<see>XML_GetAttribute</see>
- *	<see>XML_RemoveAttribute</see>
- * </remarks>
+ * <see>XML_GetAttribute</see>
+ * <see>XML_RemoveAttribute</see>
  */
 
 native XML_SetAttribute(XMLNode:element, const name[], const value[]);
@@ -440,10 +415,8 @@ native XML_SetAttribute(XMLNode:element, const name[], const value[]);
  *	   Attribute name.
  * </param>
  *
- * <remarks>
- *	<see>XML_GetAttribute</see>
- *	<see>XML_SetAttribute</see>
- * </remarks>
+ * <see>XML_GetAttribute</see>
+ * <see>XML_SetAttribute</see>
  */
 
 native XML_RemoveAttribute(XMLNode:element, const name[]);
