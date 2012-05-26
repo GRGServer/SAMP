@@ -8,7 +8,7 @@
  * </param>
  *
  * <param name="params">
- *	The parameters passed to this command.
+ *	<title>The parameters passed to this command.</title>
  *	<item>ID or name of the player which should be added or accepted</item>
  * </param>
  *

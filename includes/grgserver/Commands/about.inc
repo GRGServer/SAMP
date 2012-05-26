@@ -16,8 +16,8 @@
  * </returns>
  */
 
-CMD:about(playerid, params[], 86)
+CMD:about(playerID, params[], 86)
 {
-	SendClientMessageEx(playerid, COLOR_INFO, 85);
+	SendClientMessageEx(playerID, COLOR_INFO, 85);
 	return COMMAND_OK;
 }

@@ -8,7 +8,7 @@
  * </param>
  *
  * <param name="params">
- *	The parameters passed to this command.
+ *	<title>The parameters passed to this command.</title>
  *	<item>The price for the room</item>
  * </param>
  *
