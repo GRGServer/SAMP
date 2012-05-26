@@ -1,312 +1,590 @@
-/**
- * The contents of this file are subject to the Mozilla Public License
- * Version 1.1 (the "License"); you may not use this file except in compliance
- * with the License. You may obtain a copy of the License at
- *
- * http://www.mozilla.org/MPL/
- *
- * Software distributed under the License is distributed on an "AS IS"
- * basis, WITHOUT WARRANTY OF ANY KIND, either express or implied.
- * See the License for the specific language governing rights and
- * limitations under the License.
- *
- * The Original Code is SA:MP XML plugin.
- * The Initial Developer of the Original Code is Sergey "Zeex" Zolotaryov.
- *
- * All Rights Reserved.
- */
-
-enum e_XML_NODE_TYPE {
+enum e_XML_NODE_TYPE
+{
 	e_XML_NODE_DOCUMENT,
 	e_XML_NODE_ELEMENT,
 	e_XML_NODE_COMMENT,
 	e_XML_NODE_UNKNOWN,
 	e_XML_NODE_TEXT,
 	e_XML_NODE_DECLARATION,
-    e_XML_NODE_TYPECOUNT
-};
+	e_XML_NODE_TYPECOUNT
+}
+
 
 /**
- * Creates a new document.
+ * <summary>
+ *	Creates a new document.
+ * </summary>
  *
- * @param filename The file name that will be used on saving.
- * @param version  The XML version (optional, defaults to "1.0").
- * @param encoding Character encoding which appears in XML declaration.
+ * <param name="filename">
+ *	The file name that will be used on saving.
+ * </param>
  *
- * @returns Handle to document tree root node.
+ * <param name="version">
+ *	The XML version (optional, defaults to "1.0").
+ * </param>
+ * <param name="encoding">
+ *	Character encoding which appears in XML declaration.
+ * </param>
+ *
+ * <returns>
+ *	Handle to document tree root node.
+ * </returns>
  */
+
 native XMLNode:XML_CreateDocument(const filename[], const version[] = "1.0", const encoding[] = "ISO-8859-1");
 
+
 /**
- * Loads a document from a file.
+ * <summary>
+ *	Loads a document from a file.
+ * </summary>
  *
- * @param filename Path to the file
+ * <param name="filename">
+ *	Path to the file.
+ * </param>
  *
- * @returns Handle to the document tree root node.
+ * <returns>
+ *	Handle to the document tree root node.
+ * </returns>
  *
- * @see XML_SaveDocument
- * @see XML_UnloadDocument
+ * <remarks>
+ *	<see>XML_SaveDocument</see>
+ *	<see>XML_UnloadDocument</see>
+ * </remarks>
  */
+
 native XMLNode:XML_LoadDocument(const filename[]);
 
+
 /**
- * Saves a document to a file.
+ * <summary>
+ *	Saves a document to a file.
+ * </summary>
  *
- * @param doc      Handle to document root.
- * @param filename The file name (optional).
+ * <param name="doc">
+ *	Handle to the document root.
+ * </param>
  *
- * @returns True on success, or false if failed.
+ * <param name="filename">
+ *	The file name (optional).
+ * </param>
  *
- * @see XML_LoadDocument
- * @see XML_UnloadDocument
+ * <returns>
+ *	<type name="true">success</type>
+ *	<type name="false">failed</type>
+ * </returns>
+ *
+ * <remarks>
+ *	<see>XML_LoadDocument</see>
+ *	<see>XML_UnloadDocument</see>
+ * </remarks>
  */
+
 native bool:XML_SaveDocument(XMLNode:doc, const filename[] = "");
 
+
 /**
- * Fully destroys a document (i.e. including all of its nodes) and frees memory.
+ * <summary>
+ *	Fully destroys a document (i.e. including all of its nodes) and frees memory.
+ * </summary>
  *
- * @param doc The document to be unloaded.
+ * <param name="doc">
+ *	The document to be unloaded.
+ * </param>
  *
- * @see XML_LoadDocument
- * @see XML_SaveDocument
+ * <remarks>
+ *	<see>XML_LoadDocument</see>
+ *	<see>XML_SaveDocument</see>
+ * </remarks>
  */
+
 native XML_UnloadDocument(XMLNode:doc);
 
+
 /**
- * Creates a new node and optionally makes it to be a child of another one.
+ * <summary>
+ *	Creates a new node and optionally makes it to be a child of another one.
+ * </summary>
  *
- * @param parent Parent node, use 0 to specify no parent.
- * @param value  Node value. Defined as:
- *                 Document: filename of the xml file
- *                 Element:  name of the element
- *                 Comment:  the comment text
- *                 Unknown:  the tag contents
- *                 Text:     the text string
- * @param type   Node type, can be either ELEMENT, COMMENT or TEXT.
+ * <param name="parent">
+ *	Parent node, use 0 to specify no parent.
+ * </param>
  *
- * @returns Handle to the newely created node or 0 if failed.
+ * <param name="value">
+ *	The value of the node.
+ *	<type name="Document">Filename of the xml file</type>
+ *	<type name="Element">Name of the element</type>
+ *	<type name="Comment">The comment text</type>
+ *	<type name="Unknown">The tag contents</type>
+ *	<type name="Text">The text string</type>
+ * </param>
  *
- * @see XML_DestroyNode
+ * <param name="type">
+ *	The type of the node.
+ *	<type name="e_XML_NODE_ELEMENT"></type>
+ *	<type name="e_XML_NODE_COMMENT"></type>
+ *	<type name="e_XML_NODE_TEXT"></type>
+ * </param>
+ *
+ * <returns>
+ *	<type name="handle">success</type>
+ *	<type name="0">failed</type>
+ * </returns>
+ *
+ * <remarks>
+ *	<see>XML_DestroyNode</see>
+ * </remarks>
  */
+
 native XMLNode:XML_CreateNode(XMLNode:parent, const value[], e_XML_NODE_TYPE:type = e_XML_NODE_ELEMENT);
 
+
 /**
- * Deletes a specific child of a node and replaces it with a new one.
+ * <summary>
+ *	Deletes a specific child of a node and replaces it with a new one.
+ * </summary>
  *
- * @param parent   The parent node.
- * @param oldChild The child to be replaced.
- * @param newChild The new child.
+ * <param name="parent">
+ *	The parent node.
+ * </param>
  *
- * @returns True on success, or false if failed.
+ * <param name="oldChild">
+ *	The child to be replaced.
+ * </param>
  *
- * @see XML_ReplaceChild
+ * <param name="newChild">
+ *	The new child.
+ * </param>
+ *
+ * <returns>
+ *	<type name="true">success</type>
+ *	<type name="false">failed</type>
+ * </returns>
  */
+
 //native bool:XML_ReplaceChild(XMLNode:parent, XMLNode:oldChild, XMLNode:newChild);
 
+
 /**
- * Removes a specific child of a node and deletes it from memory.
+ * <summary>
+ *	Removes a specific child of a node and deletes it from memory.
+ * </summary>
  *
- * @param parent The parent node.
- * @param child  The child to be removed.
+ * <param name="parent">
+ *	The parent node.
+ * </param>
  *
- * @returns True on success, or false if failed.
+ * <param name="child">
+ *	The child to be removed.
+ * </param>
  *
- * @see XML_ReplaceChild
+ * <returns>
+ *	<type name="true">success</type>
+ *	<type name="false">failed</type>
+ * </returns>
  */
+
 native bool:XML_RemoveChild(XMLNode:parent, XMLNode:child);
 
+
 /**
- * Deletes selected node from memory.
+ * <summary>
+ *	Deletes selected node from memory.
+ * </summary>
  *
- * @param node The node to be destroyed.
+ * <param name="node">
+ *	The node to be destroyed.
+ * </param>
  *
- * @see XML_CreateNode
+ * <remarks>
+ *	<see>XML_CreateNode</see>
+ * </remarks>
  */
+
 native XML_DestroyNode(XMLNode:node);
 
+
 /**
- * Finds first child of a selected node by its value.
+ * <summary>
+ *	Finds first child of a selected node by its value.
+ * </summary>
  *
- * @param node  The node to get the child of.
- * @param value The value to be searched for (optional).
+ * <param name="node">
+ *	The node to get the child of.
+ * </param>
  *
- * @returns Child node hanle or 0 if not found.
+ * <param name="value">
+ *	The value to be searched for (optional).
+ * </param>
  *
- * @see XML_GetLastChild
+ * <returns>
+ *	<type name="handle">success</type>
+ *	<type name="0">failed or not found</type>
+ * </returns>
+ *
+ * <remarks>
+ *	<see>XML_GetLastChild</see>
+ * </remarks>
  */
+
 native XMLNode:XML_GetFirstChild(XMLNode:node, const value[] = "");
 
+
 /**
- * Finds first child of a selected node by its value.
+ * <summary>
+ *	Finds first child of a selected node by its value.
+ * </summary>
  *
- * @param node  The node to get the child of.
- * @param value The value to be searched for (optional).
+ * <param name="node">
+ *	The node to get the child of.
+ * </param>
  *
- * @returns Child node hanle or 0 if not found.
+ * <param name="value">
+ *	The value to be searched for (optional).
+ * </param>
  *
- * @see XML_GetFirstChild
+ * <returns>
+ *	<type name="handle">success</type>
+ *	<type name="0">failed or not found</type>
+ * </returns>
+ *
+ * <remarks>
+ *	<see>XML_GetFirstChild</see>
+ * </remarks>
  */
+
 native XMLNode:XML_GetLastChild(XMLNode:node, const value[] = "");
 
-/**
- * Finds next sibling of a selected node by its value.
- *
- * @param node  The node to find sibling of.
- * @param value The value to be searched for (optional).
- *
- * @returns Sibling handle of 0 if not found.
- *
- * @see XML_GetPreviousSibling
- */
-native XMLNode:XML_GetNextSibling(XMLNode:node, const value[] = "");
 
 /**
- * Finds previous sibling of a selected node by its value.
+ * <summary>
+ *	Finds next sibling of a selected node by its value.
+ * </summary>
  *
- * @param node  The node to find sibling of.
- * @param value The value to be searched for (optional).
+ * <param name="node">
+ *	The node to find sibling of.
+ * </param>
  *
- * @returns Sibling handle of 0 if not found.
+ * <param name="value">
+ *	The value to be searched for (optional).
+ * </param>
  *
- * @see XML_GetNextSibling
+ * <returns>
+ *	<type name="siblingHandle">success</type>
+ *	<type name="0">failed or not found</type>
+ * </returns>
+ *
+ * <remarks>
+ *	<see>XML_GetPreviousSibling</see>
+ * </remarks>
  */
+
+native XMLNode:XML_GetNextSibling(XMLNode:node, const value[] = "");
+
+
+/**
+ * <summary>
+ *	Finds previous sibling of a selected node by its value.
+ * </summary>
+ *
+ * <param name="node">
+ *	 The node to find sibling of.
+ * </param>
+ *
+ * <param name="value">
+ *	The value to be searched for (optional).
+ * </param>
+ *
+ * <returns>
+ *	<type name="siblingHandle">success</type>
+ *	<type name="0">failed or not found</type>
+ * </returns>
+ *
+ * <remarks>
+ *	<see>XML_GetNextSibling</see>
+ * </remarks>
+ */
+
 native XMLNode:XML_GetPreviousSibling(XMLNode:node, const value[] = "");
+
 
 /** Returns node parent.
  *
- * @param node The node.
+ * <param name="node">
+ *	The node.
+ * </param>
  *
- * @returns Handle to the parent node or 0 if it has no parent.
+ * <returns>
+ *	<type name="parentHandle">success</type>
+ *	<type name="0">failed or not found</type>
+ * </returns>
  */
+
 native XMLNode:XML_GetParent(XMLNode:node);
 
+
 /**
- * Gets node value.
+ * <summary>
+ *	Gets node value.
+ * </summary>
  *
- * @param node   The node to get value of.
- * @param value  An array which will hold the value.
- * @param maxlen Maximum value length.
+ * <param name="node">
+ *	The node to get value of.
+ * </param>
  *
- * @see XML_SetValue
+ * <param name="value">
+ *	An array which will hold the value.
+ * </param>
+ *
+ * <param name="maxlen">
+ *	Maximum value length.
+ * </param>
+ *
+ * <remarks>
+ *	<see>XML_SetValue</see>
+ * </remarks>
  */
+
 native XML_GetValue(XMLNode:node, value[], maxlen = sizeof(value));
 
+
 /**
- * Sets node value.
+ * <summary>
+ *	Sets node value.
+ * </summary>
  *
- * @param node The node to set value of.
- * @param value The value to be set. Defined as:
- *                Document: filename of the xml file
- *                Element:  name of the element
- *                Comment:  the comment text
- *                Unknown:  the tag contents
- *                Text:     the text string
+ * <param name="node">
+ *	The node to set value of.
+ * </param>
  *
- * @see XML_GetValue
+ * <param name="value">
+ *	The value to be set.
+ *	<type name="e_XML_NODE_DOCUMENT">Filename of the xml file</type>
+ *	<type name="e_XML_NODE_ELEMENT">Name of the element</type>
+ *	<type name="e_XML_NODE_COMMENT">The comment text</type>
+ *	<type name="e_XML_NODE_UNKNOWN">The tag contents</type>
+ *	<type name="e_XML_NODE_TEXT">The text string</type>
+ * </param>
+ *
+ * <remarks>
+ *	<see>XML_GetValue</see>
+ * </remarks>
  */
+
 native XML_SetValue(XMLNode:node, const value[]);
 
+
 /**
- * Gets element attribute value.
+ * <summary>
+ *	Gets element attribute value.
+ * </summary>
  *
- * @param element The node to get attribute of (it should be an element node).
- * @param name    Attribute name.
- * @param value   Attribute value will be copied here.
- * @param maxlen  Maximum value length.
+ * <param name="element">
+ *	The node to get attribute of (it should be an element node).
+ * </param>
+ * <param name="name">
+ *	   Attribute name.
+ * </param>
+ * <param name="value">
+ *	  Attribute value will be copied here.
+ * </param>
  *
- * @see XML_SetAttribute
- * @see XML_RemoveAttribute
+ * <param name="maxlen">
+ *	 Maximum value length.
+ * </param>
+ *
+ * <remarks>
+ *	<see>XML_SetAttribute</see>
+ *	<see>XML_RemoveAttribute</see>
+ * </remarks>
  */
+
 native XML_GetAttribute(XMLNode:element, const name[], value[], maxlen = sizeof(value));
 
+
 /**
- * Sets element attribute value.
+ * <summary>
+ *	Sets element attribute value.
+ * </summary>
  *
- * @param element The node to set attribute of (it should be an element node).
- * @param name    Attribute name.
- * @param value   Attribute value.
+ * <param name="element">
+ *	The node to set attribute of (it should be an element node).
+ * </param>
+ * <param name="name">
+ *	   Attribute name.
+ * </param>
  *
- * @see XML_GetAttribute
- * @see XML_RemoveAttribute
+ * <param name="value">
+ *	  Attribute value.
+ * </param>
+ *
+ * <remarks>
+ *	<see>XML_GetAttribute</see>
+ *	<see>XML_RemoveAttribute</see>
+ * </remarks>
  */
+
 native XML_SetAttribute(XMLNode:element, const name[], const value[]);
 
+
 /**
- * Removes selected attribute of an element.
+ * <summary>
+ *	Removes selected attribute of an element.
+ * </summary>
  *
- * @param element The node (should be an element node).
- * @param name    Attribute name.
+ * <param name="element">
+ *	The node (should be an element node).
+ * </param>
  *
- * @see XML_GetAttribute
- * @see XML_SetAttribute
+ * <param name="name">
+ *	   Attribute name.
+ * </param>
+ *
+ * <remarks>
+ *	<see>XML_GetAttribute</see>
+ *	<see>XML_SetAttribute</see>
+ * </remarks>
  */
+
 native XML_RemoveAttribute(XMLNode:element, const name[]);
 
-/**
- * Gets node type.
- *
- * @param node The node.
- *
- * @returns The type of the specified node.
- */
-native e_XML_NODE_TYPE:XML_GetNodeType(XMLNode:node);
 
 /**
- * Computes an integer XPath expression.
+ * <summary>
+ *	Gets node type.
+ * </summary>
  *
- * @param root Handle to a source tree root.
- * @param xpath The XPath expression.
+ * <param name="node">
+ *	The node.
+ * </param>
  *
- * @returns Expression value.
+ * <returns>
+ *	The type of the specified node.
+ * </returns>
  */
+
+native e_XML_NODE_TYPE:XML_GetNodeType(XMLNode:node);
+
+
+/**
+ * <summary>
+ *	Computes an integer XPath expression.
+ * </summary>
+ *
+ * <param name="root">
+ *	Handle to a source tree root.
+ * </param>
+ *
+ * <param name="xpath">
+ *	The XPath expression.
+ * </param>
+ *
+ * <returns>
+ *	Expression value.
+ * </returns>
+ */
+
 native XML_GetXPathInt(XMLNode:root, const xpath[]);
 
 /**
- * Computes a boolean XPath expression.
+ * <summary>
+ *	Computes a boolean XPath expression.
+ * </summary>
  *
- * @param root Handle to a source tree root.
- * @param xpath The XPath expression.
+ * <param name="root">
+ *	Handle to a source tree root.
+ * </param>
  *
- * @returns Expression value.
+ * <param name="xpath">
+ *	The XPath expression.
+ * </param>
+ *
+ * <returns>
+ *	Expression value.
+ * </returns>
  */
+
 native bool:XML_GetXPathBool(XMLNode:root, const xpath[]);
 
-/**
- * Computes a float XPath expression.
- *
- * @param root Handle to a source tree root.
- * @param xpath The XPath expression.
- *
- * @returns Expression value.
- */
-native Float:XML_GetXPathFloat(XMLNode:root, const xpath[]);
 
 /**
- * Computes a string XPath expression.
+ * <summary>
+ *	Computes a float XPath expression.
+ * </summary>
  *
- * @param root Handle to a source tree root.
- * @param xpath The XPath expression.
+ * <param name="root">
+ *	Handle to a source tree root.
+ * </param>
  *
- * @returns Expression value.
+ * <param name="xpath">
+ *	The XPath expression.
+ * </param>
+ *
+ * <returns>
+ *	Expression value.
+ * </returns>
  */
+
+native Float:XML_GetXPathFloat(XMLNode:root, const xpath[]);
+
+
+/**
+ * <summary>
+ *	Computes a string XPath expression.
+ * </summary>
+ *
+ * <param name="root">
+ *	Handle to a source tree root.
+ * </param>
+ *
+ * <param name="xpath">
+ *	The XPath expression.
+ * </param>
+ *
+ * <returns>
+ *	Expression value.
+ * </returns>
+ */
+
 native XML_GetXPathString(XMLNode:root, const xpath[], result[], maxlen = sizeof(result));
 
 /**
- * Computes a node XPath expression.
+ * <summary>
+ *	Computes a node XPath expression.
+ * </summary>
  *
- * @param root Handle to a source tree root.
- * @param xpath The XPath expression.
+ * <param name="root">
+ *	Handle to a source tree root.
+ * </param>
  *
- * @returns Expression value.
+ * <param name="xpath">
+ *	The XPath expression.
+ * </param>
+ *
+ * <returns>
+ *	Expression value.
+ * </returns>
  */
+
 native XMLNode:XML_GetXPathNode(XMLNode:root, const xpath[]);
 
+
 /**
- * Computes an attribute XPath expression.
+ * <summary>
+ *	Computes an attribute XPath expression.
+ * </summary>
  *
- * @param root Handle to a source tree root.
- * @param xpath The XPath expression.
+ * <param name="root">
+ *	Handle to a source tree root.
+ * </param>
  *
- * @returns Expression value.
+ * <param name="xpath">
+ *	The XPath expression.
+ * </param>
+ *
+ * <returns>
+ *	Expression value.
+ * </returns>
  */
+
 native XMLAttr:XML_GetXPathAttribute(XMLNode:root, const xpath[]);
