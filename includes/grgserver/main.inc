@@ -49,6 +49,7 @@
 #include <grgserver\Functions\GetClosestPickup.inc>
 #include <grgserver\Functions\GetClosestVehicleInRange.inc>
 #include <grgserver\Functions\GetColor.inc>
+#include <grgserver\Functions\GetConnectedPlayers.inc>
 #include <grgserver\Functions\GetDistanceBetweenPoints.inc>
 #include <grgserver\Functions\GetMySQLField.inc>
 #include <grgserver\Functions\GetMySQLValue.inc>
@@ -91,6 +92,7 @@
 #include <grgserver\Functions\MySQLEscapeString.inc>
 #include <grgserver\Functions\PayDay.inc>
 #include <grgserver\Functions\PickupEvent.inc>
+#include <grgserver\Functions\PlayNextNPCRecording.inc>
 #include <grgserver\Functions\PlayRadioStation.inc>
 #include <grgserver\Functions\PlaySound.inc>
 #include <grgserver\Functions\ReconnectNPCs.inc>
@@ -293,6 +295,7 @@
 #include <grgserver\Commands\cmds.inc>
 #include <grgserver\Commands\controlnpc.inc>
 #include <grgserver\Commands\coordtp.inc>
+#include <grgserver\Commands\drivingcam.inc>
 #include <grgserver\Commands\editobject.inc>
 #include <grgserver\Commands\engine.inc>
 #include <grgserver\Commands\exit.inc>
@@ -326,6 +329,7 @@
 #include <grgserver\Commands\opengate.inc>
 #include <grgserver\Commands\ordervehicle.inc>
 #include <grgserver\Commands\payday.inc>
+#include <grgserver\Commands\players.inc>
 #include <grgserver\Commands\privatemessage.inc>
 #include <grgserver\Commands\radio.inc>
 #include <grgserver\Commands\rc.inc>

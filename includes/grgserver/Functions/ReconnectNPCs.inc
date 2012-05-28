@@ -1,3 +1,13 @@
+/**
+ * <summary>
+ *	Kick all currently connected NPCs and reconect NPCs which are tagged with AutoConnect in the npcs database table.
+ * </summary>
+ *
+ * <param name="playerID">
+ *	The ID of the player which executes a command which reconnects the NPCs (Optional).
+ * </param>
+ */
+
 ReconnectNPCs(playerID = INVALID_PLAYER_ID)
 {
 	AdminPrint(playerID, COLOR_INFO, "* Kicking NPCs...");
@@ -14,8 +24,7 @@ ReconnectNPCs(playerID = INVALID_PLAYER_ID)
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		FormatNew:npcName[MAX_PLAYER_NAME]("NPC_%s", GetMySQLField("Name"));
-		ConnectNPC(npcName, NPC_SCRIPTNAME);
+		ConnectNPC(GetMySQLField("Name"), NPC_SCRIPTNAME);
 		count++;
 	}
 	mysql_free_result();

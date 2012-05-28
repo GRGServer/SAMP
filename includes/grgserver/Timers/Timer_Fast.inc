@@ -1,3 +1,18 @@
+/**
+ * <summary>
+ *	<title>This timer executes the following tasks every 250ms:</title>
+ *	<item>Check payday</item>
+ *	<item>Call OnPlayerZoneChange if the zone changed</item>
+ *	<item>Update vehicle information in the top right corner</item>
+ *	<item>Check speed cameras</item>
+ *	<item>Update position in ShowPos TextDraw</item>
+ * </summary>
+ *
+ * <remarks>
+ *	Only really fast stuff should be called in this timer!
+ * </remarks>
+ */
+
 Timer:Fast()
 {
 	LoggedInPlayers(playerID)
@@ -18,28 +33,29 @@ Timer:Fast()
 				OnPlayerZoneChange(playerID, zone);
 			}
 		}
-		if (IsPlayerInAnyVehicle(playerID) && GetPlayerVehicleSeat(playerID) == 0)
+		if (IsPlayerInAnyVehicle(playerID))
 		{
-			new Float:velocityX;
-			new Float:velocityY;
-			new Float:velocityZ;
-			new Float:health;
-			new healthColor;
-			new fuelColor;
-			new speed;
-			new Float:distance;
-			new Float:healthPercentage;
-			new Float:fuelPercentage;
 			new vehicleID = GetPlayerVehicleID(playerID);
 			new modelID = GetVehicleModel(vehicleID);
 			if (modelID >= 400 && modelID <= 611)
 			{
+				new Float:velocityX;
+				new Float:velocityY;
+				new Float:velocityZ;
+				new Float:health;
+				new healthColor;
+				new fuelColor;
 				GetVehicleVelocity(vehicleID, velocityX, velocityY, velocityZ);
 				GetVehicleHealth(vehicleID, health);
-				speed = floatround(floatsqroot(floatpower(velocityX, 2) + floatpower(velocityY, 2) + floatpower(velocityZ, 2)) * 100 * 1.61);
-				distance = floatdiv(speed, floatdiv(1000 * 60 * 60, TIMER_FAST));
+				new seatID = GetPlayerVehicleSeat(playerID);
+				new speed = floatround(floatsqroot(floatpower(velocityX, 2) + floatpower(velocityY, 2) + floatpower(velocityZ, 2)) * 100 * 1.61);
+				new Float:distance = floatdiv(speed, floatdiv(1000 * 60 * 60, TIMER_FAST));
 				VehicleProperty:vehicleID[MILEAGE] = floatadd(VehicleProperty:vehicleID[MILEAGE], distance);
-				healthPercentage = floatdiv(health, 10);
+				new Float:healthPercentage = floatdiv(health, 10);
+				if (health < 1000 && seatID == 0 && IsPlayerNPC(playerID))
+				{
+					SetVehicleHealth(vehicleID, 1000);
+				}
 				if (VehicleProperty:vehicleID[CURRENTFUEL] <= 0)
 				{
 					SetVehicleEngineState(vehicleID, false);
@@ -49,7 +65,7 @@ Timer:Fast()
 				{
 					VehicleProperty:vehicleID[CURRENTFUEL] = floatsub(VehicleProperty:vehicleID[CURRENTFUEL], distance * floatdiv(vehicleModels[modelID - 400][VEHICLEMODEL_FUELUSAGE], 100));
 				}
-				fuelPercentage = floatmul(floatdiv(VehicleProperty:vehicleID[CURRENTFUEL], vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]), 100);
+				new Float:fuelPercentage = floatmul(floatdiv(VehicleProperty:vehicleID[CURRENTFUEL], vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]), 100);
 				if (healthPercentage > 65)
 				{
 					healthColor = 'g';
@@ -96,7 +112,7 @@ Timer:Fast()
 				PlayerTextDrawShow(playerID, PTextDraw:playerID[SPEEDO_COLUMN2]);
 				PlayerTextDrawShow(playerID, PTextDraw:playerID[VEHICLENAME]);
 				inVehicle = true;
-				if (speed)
+				if (speed && seatID == 0)
 				{
 					distance = 0;
 					new objectID = GetClosestObjectByModel(playerID, 18880, distance);// Search closest speed camera

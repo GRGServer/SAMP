@@ -1,3 +1,17 @@
+/**
+ * <summary>
+ *	Destroyes all vehicles, creates the vehicles saved in the database, adds vehicle components and puts the NPCs in the vehicles if the ID of the vehicle is linked to a NPC.
+ * </summary>
+ *
+ * <param name="playerID">
+ *	The ID of the player which executes a command which reloads the vehicles (Optional).
+ * </param>
+ *
+ * <remarks>
+ *	Vehicles with model ID 537 (Freight) and 538 (Streak) are only destroyed if isStatic is set to true!
+ * </remarks>
+ */
+
 ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 {
 	AdminPrint(playerID, COLOR_INFO, "* Destroying vehicles...");
@@ -89,9 +103,7 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 		{
 			VehicleProperty:vehicleID[ALLOWDESTROY] = false;
 			VehicleProperty:vehicleID[ALLOWSAVE] = false;
-			new npcPlayerID;
-			FormatNew:npcName[MAX_PLAYER_NAME]("NPC_%s", GetMySQLField("Name"));
-			sscanf(npcName, "u", npcPlayerID);
+			new npcPlayerID = GetPlayerID(GetMySQLField("Name"));
 			if (npcPlayerID != INVALID_PLAYER_ID)
 			{
 				PutPlayerInVehicle(npcPlayerID, vehicleID, 0);

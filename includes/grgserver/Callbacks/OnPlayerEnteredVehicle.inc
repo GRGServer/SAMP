@@ -1,3 +1,28 @@
+/**
+ * <summary>
+ *	This callback gets called every time a player entered a vehicle.
+ * </summary>
+ *
+ * <param name="playerID">
+ *	The ID of the player which entered the vehicle.
+ * </param>
+ *
+ * <param name="vehicleID">
+ *	The ID of the vehicle which was entered by the player.
+ * </param>
+ *
+ * <param name="isPassenger">
+ *	<item name="true">The player entered the vehicle as a passenger</item>
+ *	<item name="false">The player entered the vehicle as the driver</item>
+ * </param>
+ *
+ * <remarks>
+ *	<title>Difference between OnPlayerEnterVehicle and OnPlayerEnteredVehicle:</title>
+ *	<item name="OnPlayerEnterVehicle">The player is while entering the vehicle (Not already in the vehicle)</item>
+ *	<item name="OnPlayerEnteredVehicle">The player is already in the vehicle</item>
+ * </remarks>
+ */
+
 OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 {
 	if (IsPlayerNPC(playerID))
@@ -12,8 +37,7 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 		mysql_store_result();
 		if (mysql_num_rows())
 		{
-			FormatNew:npcName[MAX_PLAYER_NAME]("NPC_%s", GetMySQLField("Name"));
-			sscanf(npcName, "u", npcPlayerID);
+			npcPlayerID = GetPlayerID(GetMySQLField("Name"));
 		}
 		mysql_free_result();
 		if (npcPlayerID != INVALID_PLAYER_ID)

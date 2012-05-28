@@ -12,7 +12,7 @@ public OnClientMessage(color, text[])
 	Accepted content for "text":
 	pause
 	resume
-	setrec <recordingName> <playbackType> <autoRepeat>
+	setrec <recordingName> <playbackType> <autoRepeat> <startNow>
 	start (<recordingName> <playbackType> <autoRepeat>)
 	stop
 	teleport <posX> <posY> <posZ> <angle>
@@ -44,7 +44,16 @@ public OnClientMessage(color, text[])
 	}
 	if (!strcmp(command, "setrec", true))
 	{
-		sscanf(parameters, "sdd", recordingName, playbackType, autoRepeat);
+		new startNow;
+		if (sscanf(parameters, "sddd", recordingName, playbackType, autoRepeat, startNow))
+		{
+			sscanf(parameters, "sdd", recordingName, playbackType, autoRepeat);
+		}
+		StartRecordingPlayback(playbackType, recordingName);
+		if (!startNow)
+		{
+			SetTimer("StopRecordingPlaybackTimer", 2000, false);// TODO: Sometimes the NPC is still not in the vehicle
+		}
 		return true;
 	}
 	if (!strcmp(command, "start", true))
@@ -77,7 +86,7 @@ public OnClientMessage(color, text[])
 		{
 			sscanf(parameters, "fff", posX, posY, posZ);
 		}
-		if (posX && posY && posZ)
+		if (posX || posY || posZ)
 		{
 			SetMyPos(posX, posY, posZ);
 			SetMyFacingAngle(angle);
@@ -97,4 +106,10 @@ public OnRecordingPlaybackEnd()
 	{
 		SendCommand("/npccmd stopped");
 	}
+}
+
+forward StopRecordingPlaybackTimer();
+public StopRecordingPlaybackTimer()
+{
+	StopRecordingPlayback();
 }

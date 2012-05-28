@@ -1,33 +1,83 @@
+/**
+ * <summary>
+ *	This callback is called when a player spawns.
+ * </summary>
+ *
+ * <param name="playerid">
+ *	The ID of the player which was spawned.
+ * </param>
+ *
+ * <returns>
+ *	Returning false will force the player to enter class selection at the next respawn.
+ * </returns>
+ *
+ * <remarks>
+ *	<title>The following task are done in this callback:</title>
+ *	<item>If the player is a NPC: Set all required information like recording, teleporting place, etc.</item>
+ *	<item>If the player spawns after login: Spawn the player at the save position and show the latest news</item>
+ *	<item>If the player spawns after death: Spawn the player at the next hospital</item>
+ *	<item>If nothing applies: Spawn the player at the default spawn</item>
+ * </remarks>
+ */
+
 public OnPlayerSpawn(playerid)
 {
 	if (IsPlayerNPC(playerid))
 	{
-		new npcName[MAX_PLAYER_NAME];
-		GetPlayerName(playerid, npcName, sizeof(npcName));
-		strdel(npcName, 0, 4);
-		MySQLQuery("SELECT * FROM `npcs` WHERE `Name` = '%s'", MySQLEscapeString(npcName));
+		MySQLQuery("SELECT * FROM `npcs` WHERE `Name` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
 		mysql_store_result();
 		SetPlayerSkin(playerid, strval(GetMySQLField("Skin")));
 		new vehicleID = GetVehicleBySaveID(strval(GetMySQLField("VehicleID")));
 		if (vehicleID)
 		{
+			PVar:playerid[NPC_RECORDINGTYPE] = PLAYER_RECORDING_TYPE_DRIVER;
 			VehicleProperty:vehicleID[ALLOWDESTROY] = false;
 			VehicleProperty:vehicleID[ALLOWSAVE] = false;
 			PutPlayerInVehicle(playerid, vehicleID, 0);
+			SetVehicleEngineState(vehicleID, true);
 		}
 		else
 		{
-			if (floatstr(GetMySQLField("SpawnPosX")) || floatstr(GetMySQLField("SpawnPosY")) || floatstr(GetMySQLField("SpawnPosZ")))
-			{
-				FormatNew:command[100]("teleport %s %s %s %s", GetMySQLField("SpawnPosX"), GetMySQLField("SpawnPosY"), GetMySQLField("SpawnPosZ"), GetMySQLField("SpawnAngle"));
-				SendNPCCommand(playerid, command);
-			}
-			else
-			{
-				printf("WARNING: %s spawned without vehicle and no spawn position information!", npcName);
-			}
+			PVar:playerid[NPC_RECORDINGTYPE] = PLAYER_RECORDING_TYPE_ONFOOT;
+		}
+		new tryMultiRecForID;
+		new startOnConnect = strval(GetMySQLField("StartOnConnect"));
+		PVar:playerid[NPC_AUTOREPEAT] = strval(GetMySQLField("AutoRepeat"));
+		if (floatstr(GetMySQLField("SpawnPosX")) || floatstr(GetMySQLField("SpawnPosY")) || floatstr(GetMySQLField("SpawnPosZ")))
+		{
+			FormatNew:command[100]("teleport %s %s %s %s", GetMySQLField("SpawnPosX"), GetMySQLField("SpawnPosY"), GetMySQLField("SpawnPosZ"), GetMySQLField("SpawnAngle"));
+			SendNPCCommand(playerid, command);
+			tryMultiRecForID = 0;
+		}
+		if (strlen(GetMySQLField("Recording")))
+		{
+			FormatNew:command[40]("setrec %s %d %d %d", GetMySQLField("Recording"), PVar:playerid[NPC_RECORDINGTYPE], PVar:playerid[NPC_AUTOREPEAT], startOnConnect);
+			SendNPCCommand(playerid, command);
+		}
+		else
+		{
+			tryMultiRecForID = strval(GetMySQLField("ID"));
 		}
 		mysql_free_result();
+		if (tryMultiRecForID)
+		{
+			new slot;
+			MySQLQuery("SELECT * FROM `npcmultirecs` WHERE `NPCID` = '%d'", tryMultiRecForID);
+			mysql_store_result();
+			while (FetchMySQLRow())
+			{
+				PVar:playerid[NPC_RECORDINGS][slot] = strval(GetMySQLField("ID"));
+				slot++;
+			}
+			mysql_free_result();
+			if (slot)
+			{
+				if (startOnConnect)
+				{
+					PlayNextNPCRecording(playerid);
+				}
+			}
+		}
 		return true;
 	}
 	SetPlayerSkin(playerid, PVar:playerid[SKIN]);
@@ -37,7 +87,6 @@ public OnPlayerSpawn(playerid)
 		SetPlayerPosEx(playerid, floatstr(GetUserDBValue(playerid, "PosX")), floatstr(GetUserDBValue(playerid, "PosY")), floatstr(GetUserDBValue(playerid, "PosZ")), strval(GetUserDBValue(playerid, "Interior")));
 		SetPlayerFacingAngle(playerid, floatstr(GetUserDBValue(playerid, "Angle")));
 		ShowNews(playerid, PVar:playerid[LASTNEWSID]);
-		PlayerPlaySound(playerid, 1063, 0.0, 0.0, 0.0);// Stop music
 		if (PVar:playerid[SHOWCLOCK])
 		{
 			TextDrawShowForPlayer(playerid, textDrawClock);
