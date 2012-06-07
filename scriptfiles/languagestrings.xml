@@ -1913,7 +1913,7 @@
 	</string>
 	<string id="476">
 		<en>Locked your House</en>
-		<de>Haus Abschliessen</de>
+		<de>Haus Auf/Zu Schliessen</de>
 	</string>
 	<string id="477">
 		<en>You unlocked your house!</en>
@@ -1934,5 +1934,21 @@
 	<string id="481">
 		<en>House Locked!</en>
 		<de>Haus Abgesperrt!</de>
+	</string>
+	<string id="482">
+		<en>Vehicle Locked!</en>
+		<de>Auto Abgesperrt</de>
+	</string>
+	<string id="483">
+		<en>Lock Vehicle</en>
+		<de>Auto Absperren</de>
+	</string>
+	<string id="484">
+		<en>Vehicle was Locked!</en>
+		<de>Auto wurde Abgesperrt</de>
+	</string>
+	<string id="485">
+		<en>Vehicle was unlocked!</en>
+		<de>Auto wurde Aufgesperrt</de>
 	</string>
 </languagestrings>
