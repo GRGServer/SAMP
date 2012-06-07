@@ -1,62 +1,49 @@
-/**
- * <summary>
- *	This callback gets called every time a player entered a vehicle.
- * </summary>
- *
- * <param name="playerID">
- *	The ID of the player which entered the vehicle.
- * </param>
- *
- * <param name="vehicleID">
- *	The ID of the vehicle which was entered by the player.
- * </param>
- *
- * <param name="isPassenger">
- *	<item name="true">The player entered the vehicle as a passenger</item>
- *	<item name="false">The player entered the vehicle as the driver</item>
- * </param>
- *
- * <remarks>
- *	<title>Difference between OnPlayerEnterVehicle and OnPlayerEnteredVehicle:</title>
- *	<item name="OnPlayerEnterVehicle">The player is while entering the vehicle (Not already in the vehicle)</item>
- *	<item name="OnPlayerEnteredVehicle">The player is already in the vehicle</item>
- * </remarks>
- */
-
 OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 {
-	if (IsPlayerNPC(playerID))
+	MySQLQuery("SELECT `ID` FROM `vehicles` WHERE `ID` = '%d' AND `Locked`", VehicleProperty:vehicleID[SAVEID]);
+	mysql_store_result();
+	new isLocked = mysql_num_rows();
+	mysql_free_result();
+	if (isLocked)
 	{
-		return true;
+		SendClientMessageEx(playerID, COLOR_ERROR, 482);
 	}
-	new modelID = GetVehicleModel(vehicleID);
-	if (modelID == 420)
+	else
 	{
-		new npcPlayerID;
-		MySQLQuery("SELECT * FROM `npcs` WHERE `VehicleID` = '%d'", VehicleProperty:vehicleID[SAVEID]);
-		mysql_store_result();
-		if (mysql_num_rows())
+		if (IsPlayerNPC(playerID))
 		{
-			npcPlayerID = GetPlayerID(GetMySQLField("Name"));
+			return true;
 		}
-		mysql_free_result();
-		if (npcPlayerID != INVALID_PLAYER_ID)
+		new modelID = GetVehicleModel(vehicleID);
+		if (modelID == 420)
 		{
-			if (isPassenger)
+			new npcPlayerID;
+			MySQLQuery("SELECT * FROM `npcs` WHERE `VehicleID` = '%d'", VehicleProperty:vehicleID[SAVEID]);
+			mysql_store_result();
+			if (mysql_num_rows())
 			{
-				SendNPCCommand(npcPlayerID, "start");
-				return true;
+				FormatNew:npcName[MAX_PLAYER_NAME]("NPC_%s", GetMySQLField("Name"));
+				sscanf(npcName, "u", npcPlayerID);
 			}
-			else
+			mysql_free_result();
+			if (npcPlayerID != INVALID_PLAYER_ID)
 			{
-				RemovePlayerFromVehicle(playerID);
-				return false;
+				if (isPassenger)
+				{
+					SendNPCCommand(npcPlayerID, "start");
+					return true;
+				}
+				else
+				{
+					RemovePlayerFromVehicle(playerID);
+					return false;
+				}
 			}
 		}
-	}
-	if (!isPassenger && !GetVehicleEngineState(vehicleID))
-	{
-		SendClientMessageEx(playerID, COLOR_INFO, 424);
+		if (!isPassenger && !GetVehicleEngineState(vehicleID))
+		{
+			SendClientMessageEx(playerID, COLOR_INFO, 424);
+		}
 	}
 	return true;
 }
