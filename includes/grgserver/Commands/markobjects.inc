@@ -1,4 +1,4 @@
-PCMD:markobjects[MAPPER](playerID, params[], 426)
+PCMD:markobjects[MAPPER](playerID, params[], 482)
 {
 	new modelID;
 	if (sscanf(params, "d", modelID))

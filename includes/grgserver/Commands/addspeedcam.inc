@@ -1,4 +1,4 @@
-PCMD:addspeedcam[MAPPER](playerID, params[], 427)
+PCMD:addspeedcam[MAPPER](playerID, params[], 486)
 {
 	new speedLimit;
 	if (sscanf(params, "d", speedLimit))

@@ -1712,14 +1712,6 @@
 		<en>Object not found!</en>
 		<de>Objekt nicht gefunden!</de>
 	</string>
-	<string id="426">
-		<en>Mark up to 100 objects on your map</en>
-		<de>Markiere bis zu 100 Objekte auf deiner Karte</de>
-	</string>
-	<string id="427">
-		<en>Add a speed camera</en>
-		<de>Füge einen Blitzer hinzu</de>
-	</string>
 	<string id="428">
 		<en>Speed: ~k~~PED_JUMPING~, ~k~~SNEAK_ABOUT~</en>
 		<de>Geschwindigkeit: ~k~~PED_JUMPING~, ~k~~SNEAK_ABOUT~</de>
@@ -1862,7 +1854,7 @@
 	</string>
 	<string id="463">
 		<en>Set the position and rotation for the current selected object to move to</en>
-		<de>Lege die Position und Rotation des aktuell ausgewählten Objekts fest, an welche es verschoben werden soll </de>
+		<de>Lege die Position und Rotation des aktuell ausgewählten Objekts fest, an welche es verschoben werden soll</de>
 	</string>
 	<string id="464">
 		<en>No object selected! Select the object using /editobject and move it to the position you want.</en>
@@ -1936,7 +1928,10 @@
 		<en>House Locked!</en>
 		<de>Haus Abgesperrt!</de>
 	</string>
-	<string id="482"></string>
+	<string id="482">
+		<en>Mark up to 100 objects on your map</en>
+		<de>Markiere bis zu 100 Objekte auf deiner Karte</de>
+	</string>
 	<string id="483">
 		<en>Lock or unlock a vehicle</en>
 		<de>Ein Fahrzeug auf- oder abschließen</de>
@@ -1950,6 +1945,8 @@
 		<de>Das Fahrzeug wurde aufgeschlossen</de>
 	</string>
 	<string id="486">
+		<en>Add a speed camera</en>
+		<de>Füge einen Blitzer hinzu</de>
 	</string>
 	<string id="487">
 		<en>You are not the owner of this vehicle!</en>
