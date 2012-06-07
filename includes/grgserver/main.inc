@@ -82,10 +82,12 @@
 #include <grgserver\Functions\IsValidPickupType.inc>
 #include <grgserver\Functions\IsValidSkin.inc>
 #include <grgserver\Functions\IsValidWeapon.inc>
+#include <grgserver\Functions\IsVehicleLocked.inc>
 #include <grgserver\Functions\LanguageString.inc>
 #include <grgserver\Functions\LeaveProperty.inc>
 #include <grgserver\Functions\LoadPlayer.inc>
 #include <grgserver\Functions\LoadPlayerPermissions.inc>
+#include <grgserver\Functions\LockVehicle.inc>
 #include <grgserver\Functions\MoneyTransaction.inc>
 #include <grgserver\Functions\MoveObjectEx.inc>
 #include <grgserver\Functions\MySQLBan.inc>

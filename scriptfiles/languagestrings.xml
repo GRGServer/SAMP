@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <languagestrings>
 	<string id="0">
 		<en>Undefined language string ID!</en>
@@ -1935,20 +1936,23 @@
 		<en>House Locked!</en>
 		<de>Haus Abgesperrt!</de>
 	</string>
-	<string id="482">
-		<en>Vehicle Locked!</en>
-		<de>Auto Abgesperrt</de>
-	</string>
+	<string id="482"></string>
 	<string id="483">
-		<en>Lock Vehicle</en>
-		<de>Auto Absperren</de>
+		<en>Lock or unlock a vehicle</en>
+		<de>Ein Fahrzeug auf- oder abschließen</de>
 	</string>
 	<string id="484">
-		<en>Vehicle was Locked!</en>
-		<de>Auto wurde Abgesperrt</de>
+		<en>The vehicle has been locked!</en>
+		<de>Das Fahrzeug wurde abgeschlossen</de>
 	</string>
 	<string id="485">
-		<en>Vehicle was unlocked!</en>
-		<de>Auto wurde Aufgesperrt</de>
+		<en>The vehicle has been unlocked!</en>
+		<de>Das Fahrzeug wurde aufgeschlossen</de>
+	</string>
+	<string id="486">
+	</string>
+	<string id="487">
+		<en>You are not the owner of this vehicle!</en>
+		<de>Du bist nicht der Besitzer dieses Fahrzeugs!</de>
 	</string>
 </languagestrings>

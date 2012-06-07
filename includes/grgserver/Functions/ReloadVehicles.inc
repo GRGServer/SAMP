@@ -47,6 +47,7 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 			format(VehicleProperty:vehicleID[NUMBERPLATE], STRINGLENGTH_NUMBERPLATE, GetMySQLField("Numberplate"));
 			VehicleProperty:vehicleID[RADIOSTATION] = strval(GetMySQLField("LastRadioStation"));
 			VehicleProperty:vehicleID[SAVEID] = strval(GetMySQLField("ID"));
+			LockVehicle(vehicleID, strval(GetMySQLField("Locked")));
 			LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
 			ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
 			SetVehicleHealth(vehicleID, floatstr(GetMySQLField("Health")));
