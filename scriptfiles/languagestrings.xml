@@ -495,12 +495,18 @@
 		<en>Command sent: %s</en>
 		<de>Befehl gesendet: %s</de>
 	</string>
-	<string id="124"></string><!-- Unused -->
+	<string id="124">
+		<en>recordingName, playbackType and autoRepeat  is only required for the command 'start'.</en>
+		<de>recordingName, playbackType und autoRepeat wird nur für den Befehl 'start' benötigt.</de>
+	</string>
 	<string id="125">
 		<en>NPC connected</en>
 		<de>NPC verbunden</de>
 	</string>
-	<string id="126"></string><!-- Unused -->
+	<string id="126">
+		<en>Playback started</en>
+		<de>Wiedergabe gestartet</de>
+	</string>
 	<string id="127">
 		<en>An update to revision %d is available!</en>
 		<de>Es steht ein Update auf Revision %d zur Verfügung!</de>
@@ -1906,15 +1912,27 @@
 		<de>Du wurdest irrtümlich gebannt? Dann kontaktiere uns bitte auf http://www.grgserver.net.</de>
 	</string>
 	<string id="476">
-		<en>Show the number of connected players and NPCs</en>
-		<de>Zeige die Anzahl der verbundenen Spieler und NPCs an</de>
+		<en>Locked your House</en>
+		<de>Haus Abschliessen</de>
 	</string>
 	<string id="477">
-		<en>There are %d players and %d NPCs connected.</en>
-		<de>Es sind %d Spieler und %d NPCs verbunden.</de>
+		<en>You unlocked your house!</en>
+		<de>Du hast dein Haus aufgeschlossen!</de>
 	</string>
 	<string id="478">
-		<en>%d of these players are logged in.</en>
-		<de>%d der Spieler sind eingeloggt.</de>
+		<en>You locked your house!</en>
+		<de>Du hast dein Haus Abgeschlossen!</de>
+	</string>
+	<string id="479">
+		<en>Coming Soon!</en>
+		<de>Kommt bald!</de>
+	</string>
+	<string id="480">
+		<en>House Info</en>
+		<de>Haus Informationen</de>
+	</string>
+	<string id="481">
+		<en>House Locked!</en>
+		<de>Haus Abgesperrt!</de>
 	</string>
 </languagestrings>
