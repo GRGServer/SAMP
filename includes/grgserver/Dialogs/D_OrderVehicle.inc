@@ -28,7 +28,7 @@ DialogResponse:OrderVehicle(playerID, response, listItem, inputText[])
 				AddJobData(missionID, "Type", "GetOrderedVehicle");
 				AddJobData(missionID, "VehicleModelID", val2str(modelID));
 				SendClientMessageEx(playerID, COLOR_INFO, 38, missionID);
-				CreateVehicleEx(modelID, -1557.4092, 114.7485, 3.0939, 136.5509, 12, 41, -1, false);
+				CreateVehicleEx(modelID, -1557.4092, 114.7485, 3.0939, 136.5509, 12, 41, -1, false);// TODO: Multiple vehicles at the same position
 			}
 		}
 	}

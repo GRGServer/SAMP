@@ -1,6 +1,6 @@
 ShowDialog:SetSell(playerID)
 {
-	CreateDialog(playerID, "SetSell", DIALOG_STYLE_INPUT, LanguageString(playerID, 488), LanguageString(playerID, 489), "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "SetSell", DIALOG_STYLE_INPUT, LanguageString(playerID, 495), LanguageString(playerID, 489), "OK", LanguageString(playerID, 165));
 }
 
 DialogResponse:SetSell(playerID, response, listItem, inputText[])
@@ -17,9 +17,10 @@ DialogResponse:SetSell(playerID, response, listItem, inputText[])
 	{
 		return false;
 	}
-	if (!StrNotNull(inputText))
+	new Float:price = floatstr(inputText);
+	if (price <= 0)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 488);
+		SendClientMessageEx(playerID, COLOR_ERROR, 490);
 		return false;
 	}
 	if (modelID >= 400 && modelID <= 611)
@@ -38,10 +39,10 @@ DialogResponse:SetSell(playerID, response, listItem, inputText[])
 			}
 		}
 		Format:sqlQuery("REPLACE INTO `vehicles` (`ID`, `Numberplate`, `PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `Health`, `ModelID`, `Color1`, `Color2`, `Price`, `CurrentFuel`)");
-		MySQLQuery("%s VALUES('%d', '%s', '%f', '%f', '%f', '%f', '%d', '%f', '%d', '%d', '%d', '%f', '%f')", sqlQuery, VehicleProperty:vehicleID[SAVEID], numberplateString, posX, posY, posZ, angle, GetPlayerInterior(playerID), health, modelID, VehicleProperty:vehicleID[COLOR1], VehicleProperty:vehicleID[COLOR2], floatstr(inputText), vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
+		MySQLQuery("%s VALUES('%d', '%s', '%f', '%f', '%f', '%f', '%d', '%f', '%d', '%d', '%d', '%f', '%f')", sqlQuery, VehicleProperty:vehicleID[SAVEID], numberplateString, posX, posY, posZ, angle, GetPlayerInterior(playerID), health, modelID, VehicleProperty:vehicleID[COLOR1], VehicleProperty:vehicleID[COLOR2], price, vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
 		return COMMAND_OK;
 	}
-	SendClientMessageEx(playerID, COLOR_INFO, 491, floatstr(inputText));
+	SendClientMessageEx(playerID, COLOR_INFO, 491);
 	RemovePlayerFromVehicle(playerID);
 	return true;
 }

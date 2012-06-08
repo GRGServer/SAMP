@@ -10,13 +10,14 @@ DialogResponse:SellVehicle(playerID, response, listItem, inputText[])
 	{
 		return false;
 	}
-	if (!StrNotNull(inputText))
+	new Float:price = floatstr(inputText);
+	if (price <= 0)
 	{
 		SendClientMessageEx(playerID, COLOR_ERROR, 490);
 		return false;
 	}
 	SendClientMessageEx(playerID, COLOR_INFO, 491, inputText);
-	MySQLQuery("UPDATE `vehicles` SET `Price` = '%f', `OwnerUserID` = '0', `OwnerSellerID` = '%d' WHERE `ID` = '%d'", floatstr(inputText), PVar:playerID[USERID], VehicleProperty:vehicleID[SAVEID]);
+	MySQLQuery("UPDATE `vehicles` SET `Price` = '%f', `OwnerUserID` = '0', `OwnerSellerID` = '%d' WHERE `ID` = '%d'", price, PVar:playerID[USERID], VehicleProperty:vehicleID[SAVEID]);
 	RemovePlayerFromVehicle(playerID);
 	return true;
 }

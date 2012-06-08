@@ -14,7 +14,7 @@ DialogResponse:Bank_WithdrawMoney(playerID, response, listItem, inputText[])
 		}
 		else
 		{
-			new Float:money = inputText;
+			new Float:money = floatstr(inputText);
 			if(money > PVar:playerID[BANKMONEY])
 			{
 				SendClientMessageEx(playerID, COLOR_ERROR, 25);
@@ -22,7 +22,7 @@ DialogResponse:Bank_WithdrawMoney(playerID, response, listItem, inputText[])
 			}
 			else
 			{
-				SetPlayerMoney(playerID, MONEY_BANK, PVar:playerID[BANKMONEY], -money);
+				SetPlayerMoney(playerID, MONEY_BANK, floatsub(PVar:playerID[BANKMONEY], money));
 				SetPlayerMoney(playerID, MONEY_CASH, floatadd(PVar:playerID[MONEY], money));
 				SendClientMessageEx(playerID, COLOR_INFO, 26, money);
 				ShowDialog:Bank_HasAccount(playerID);

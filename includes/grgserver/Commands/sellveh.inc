@@ -5,13 +5,11 @@ CMD:sellveh(playerID, params[], 488)
 	{
 		return COMMAND_NOT_IN_VEHICLE;
 	}
-	if (CheckVehiclePermission(playerID, vehicleID))
+	if (!CheckVehiclePermission(playerID, vehicleID))
 	{
-		ShowDialog:SellVehicle(playerID);
+		SendClientMessageEx(playerID, COLOR_ERROR, 487);
+		return COMMAND_ERROR;
 	}
-	else
-	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 492);
-	}
+	ShowDialog:SellVehicle(playerID);
 	return COMMAND_OK;
 }
