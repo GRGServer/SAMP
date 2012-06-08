@@ -111,6 +111,7 @@
 #include <grgserver\Functions\RemovePlayerRaceCheckpoint.inc>
 #include <grgserver\Functions\RemoveVehicleLightObjects.inc>
 #include <grgserver\Functions\ResetPlayerVariables.inc>
+#include <grgserver\Functions\RestartGameMode.inc>
 #include <grgserver\Functions\RotatePlayer.inc>
 #include <grgserver\Functions\SavePlayer.inc>
 #include <grgserver\Functions\SaveVehicle.inc>

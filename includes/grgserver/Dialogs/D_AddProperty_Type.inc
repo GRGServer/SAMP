@@ -35,7 +35,7 @@ DialogResponse:AddProperty_Type(playerID, response, listItem, inputText[])
 			type = "POLICE";
 		}
 		SetPVarStr:playerID[ADDPROPERTY_TYPE][STRINGLENGTH_PROPERTYTYPE](type);
-		if (IsStr(type, "HOTEL") || IsStr(type, "PLACE"))
+		if (IsStr(type, "BANK") || IsStr(type, "HOTEL") || IsStr(type, "PLACE"))
 		{
 			PVar:playerID[ADDPROPERTY_INTERIORID] = 0;
 			ShowDialog:AddProperty_Name(playerID);

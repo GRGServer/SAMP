@@ -94,7 +94,7 @@
 // Limits
 #define MAX_FUNCTION_NAME			32
 #define MAX_GPS_NODES				500
-#define MAX_MONEY				999999.99// Display on screen
+#define MAX_MONEY				100000.00
 #define MAX_NPC_MULTIRECS			10// Number of recordings asigned to a MultiRec NPC
 
 

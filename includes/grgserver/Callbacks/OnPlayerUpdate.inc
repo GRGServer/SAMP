@@ -9,6 +9,11 @@ public OnPlayerUpdate(playerid)
 			SetVehicleHealth(vehicleID, 1000);
 		}
 	}
+	new Float:money = floatdiv(GetPlayerMoney(playerid), 100);
+	if (money < PVar:playerid[MONEY])
+	{
+		PVar:playerid[MONEY] = money;
+	}
 	if (!IsAllowedWeapon(GetPlayerWeapon(playerid)))
 	{
 		MySQLBan(INVALID_PLAYER_ID, playerid, "Use not allowed weapon", true);

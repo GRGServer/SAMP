@@ -24,8 +24,7 @@ PCMD:gmx[SERVERADMIN](playerID, params[], 105)
 	}
 	else
 	{
-		printf("%s has restarted the gamemode", GetPlayerNameEx(playerID));
-		SendRconCommand("gmx");
+		RestartGameMode(playerID, "No more players, no reason");
 	}
 	return COMMAND_OK;
 }

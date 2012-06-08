@@ -14,11 +14,6 @@ SetPlayerMoney(playerID, type, Float:amount, add = false)
 				{
 					PVar:playerID[BANKMONEY] = amount;
 				}
-				if (PVar:playerID[BANKMONEY] > MAX_MONEY)
-				{
-					PVar:playerID[BANKMONEY] = MAX_MONEY;
-					printf("%s reached MAX_MONEY (%f)", GetPlayerNameEx(playerID), MAX_MONEY);
-				}
 				return true;
 			}
 			else
@@ -36,10 +31,11 @@ SetPlayerMoney(playerID, type, Float:amount, add = false)
 			{
 				PVar:playerID[MONEY] = amount;
 			}
-			if (PVar:playerID[BANKMONEY] > MAX_MONEY)
+			if (PVar:playerID[MONEY] > MAX_MONEY)
 			{
-				PVar:playerID[BANKMONEY] = MAX_MONEY;
-				printf("%s reached MAX_MONEY (%f)", GetPlayerNameEx(playerID), MAX_MONEY);
+				PVar:playerID[MONEY] = MAX_MONEY;
+				SendClientMessageEx(playerID, COLOR_ERROR, 492, MAX_MONEY);
+				printf("%s reached MAX_MONEY (%2f)", GetPlayerNameEx(playerID), MAX_MONEY);
 			}
 			ResetPlayerMoney(playerID);
 			GivePlayerMoney(playerID, floatround(PVar:playerID[MONEY] * 100, floatround_tozero));

@@ -1968,6 +1968,10 @@
 		<en>You have released your vehicle for sale</en>
 		<de>Du hast dein Fahrzeug zum Verkauf freigegeben</de>
 	</string>
+	<string id="492">
+		<en>You have exceeded the cash limit of %m!</en>
+		<de>Du hast das Bargeldlimit von %m überschritten!</de>
+	</string>
 	<string id="493">
 		<en>You have bought a vehicle</en>
 		<de>Du hast ein Fahrzeug gekauft</de>

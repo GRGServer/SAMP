@@ -4,7 +4,9 @@ PickupEvent:BANK(playerID, pickupID, eventType)
 	{
 		case PICKUPEVENT_KEYPRESS:
 		{
-			TeleportToProperty(playerID, strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID]))));
+			TeleportToInterior(playerID, 85);
+			PVar:playerID[CURRENTPROPERTYID] = strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
+			SetPlayerVirtualWorld(playerID, PVar:playerID[CURRENTPROPERTYID]);
 			new bankID = strval(GetUserDBValue(playerID, "BankID"));
 			if (bankID)
 			{
