@@ -27,11 +27,13 @@ DialogResponse:VehicleDealer_Options(playerID, response, listItem, inputText[])
 		{
 			PVar:playerID[ATWORK] = true;
 			PVar:playerID[WORKSTARTTIME] = gettime();
+			SetPlayerSkin(playerID, 187);
 		}
 		if (!strcmp(inputText, LanguageString(playerID, 358)))// Cancel job
 		{
 			PVar:playerID[JOBID] = JOB_UNEMPLOYED;
 			SendClientMessageEx(playerID, COLOR_INFO, 359);
+			SetPlayerSkin(playerID, PVar:playerID[SKIN]);
 		}
 	}
 }

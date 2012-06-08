@@ -40,9 +40,7 @@ DialogResponse:Accept(playerID, response, listItem, inputText[])
 			SendClientMessageEx(GetPlayerByUserID(strval(GetMySQLValue("missions", "CreatorUserID", "ID", val2str(missionID)))), COLOR_INFO, 1, playerID, missionID);
 			MySQLQuery("SELECT * FROM `missiondata` WHERE `MissionID` = '%d' AND `Name` = 'VehicleModelID'", missionID);
 			mysql_store_result();
-			new modelID = strval(GetMySQLField("Value"));
 			mysql_free_result();
-			CreateVehicleEx(modelID, -1557.4092, 114.7485, 3.0939, 136.5509, 12, 41, -1, false);
 		}
 	}
 }

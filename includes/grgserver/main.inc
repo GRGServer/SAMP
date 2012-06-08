@@ -235,6 +235,8 @@
 #include <grgserver\Dialogs\D_RestartGamemode.inc>
 #include <grgserver\Dialogs\D_SchoolDriver.inc>
 #include <grgserver\Dialogs\D_SelectInterior.inc>
+#include <grgserver\Dialogs\D_SellVehicle.inc>
+#include <grgserver\Dialogs\D_SetSell.inc>
 #include <grgserver\Dialogs\D_SpawnVehicle.inc>
 #include <grgserver\Dialogs\D_Stats.inc>
 #include <grgserver\Dialogs\D_Taxi.inc>
@@ -353,10 +355,12 @@
 #include <grgserver\Commands\savevehicle.inc>
 #include <grgserver\Commands\selectlastobject.inc>
 #include <grgserver\Commands\selectproperty.inc>
+#include <grgserver\Commands\sellveh.inc>
 #include <grgserver\Commands\setinterior.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
 #include <grgserver\Commands\setobjectmovepos.inc>
 #include <grgserver\Commands\setpropertycam.inc>
+#include <grgserver\Commands\setsell.inc>
 #include <grgserver\Commands\setspawn.inc>
 #include <grgserver\Commands\settplink.inc>
 #include <grgserver\Commands\showinterior.inc>

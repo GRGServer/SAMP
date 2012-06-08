@@ -11,17 +11,43 @@ DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 		new vehicleID = GetPlayerVehicleID(playerID);
 		new saveID = VehicleProperty:vehicleID[SAVEID];
 		new Float:price = floatstr(GetMySQLValue("vehicles", "Price", "ID", val2str(saveID)));
-		if (price <= PVar:playerID[BANKMONEY])
+		MySQLQuery("SELECT `ID` FROM `vehicles` WHERE `ID` = '%d' AND `OwnerSellerID`", VehicleProperty:vehicleID[SAVEID]);
+		mysql_store_result();
+		new sellerID = mysql_num_rows();
+		mysql_free_result();
+		if(sellerID)
 		{
-			GivePlayerMoneyEx(playerID, MONEY_CASH, -price);
-			SetMySQLValue("vehicles", "OwnerUserID", val2str(PVar:playerID[USERID]), "ID", val2str(saveID));
-			VehicleProperty:vehicleID[ALLOWDESTROY] = true;
-			VehicleProperty:vehicleID[ALLOWSAVE] = true;
-			SavePlayer(playerID);
+			if (price <= PVar:playerID[BANKMONEY])
+			{
+				GivePlayerMoneyEx(playerID, MONEY_CASH, -price);
+				GivePlayerMoneyEx(sellerID, MONEY_CASH, price);
+				SetMySQLValue("vehicles", "OwnerUserID", val2str(PVar:playerID[USERID]), "ID", val2str(saveID));
+				MySQLQuery("UPDATE `vehicles` SET `OwnerSellerID` = '0' WHERE `ID` = '%d'", PVar:playerID[USERID], saveID);
+				SendClientMessageEx(playerID, COLOR_INFO, 491);
+				SendClientMessageEx(playerID, COLOR_INFO, 492);
+				VehicleProperty:vehicleID[ALLOWDESTROY] = true;
+				VehicleProperty:vehicleID[ALLOWSAVE] = true;
+				SavePlayer(playerID);
+			}
+			else
+			{
+				SendClientMessageEx(playerID, COLOR_ERROR, 27, price, PVar:playerID[BANKMONEY]);
+			}
 		}
-		else
+		else 
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 27, price, PVar:playerID[BANKMONEY]);
+			if (price <= PVar:playerID[BANKMONEY])
+			{
+				GivePlayerMoneyEx(playerID, MONEY_CASH, -price);
+				SetMySQLValue("vehicles", "OwnerUserID", val2str(PVar:playerID[USERID]), "ID", val2str(saveID));
+				VehicleProperty:vehicleID[ALLOWDESTROY] = true;
+				VehicleProperty:vehicleID[ALLOWSAVE] = true;
+				SavePlayer(playerID);
+			}
+			else
+			{
+				SendClientMessageEx(playerID, COLOR_ERROR, 27, price, PVar:playerID[BANKMONEY]);
+			}
 		}
 	}
 }
