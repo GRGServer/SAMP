@@ -144,16 +144,12 @@ Procedure LoadLanguageStrings()
 						If *languageNode
 							englishString$ = TrimEx(GetXMLNodeText(*languageNode))
 						EndIf
-						If englishString$ Or germanString$
-							AddGadgetItem(#List, -1, Str(stringID) + Chr(10) + englishString$ + Chr(10) + germanString$)
-							If Not englishString$
-								AddGadgetItem(#InfoList, -1, "Missing English language string for string ID " + Str(stringID))
-							EndIf
-							If Not germanString$
-								AddGadgetItem(#InfoList, -1, "Missing German language string for string ID " + Str(stringID))
-							EndIf
-						Else
-							AddGadgetItem(#InfoList, -1, "Unused string ID " + Str(stringID))
+						AddGadgetItem(#List, -1, Str(stringID) + Chr(10) + englishString$ + Chr(10) + germanString$)
+						If Not englishString$
+							AddGadgetItem(#InfoList, -1, "Missing English language string for string ID " + Str(stringID))
+						EndIf
+						If Not germanString$
+							AddGadgetItem(#InfoList, -1, "Missing German language string for string ID " + Str(stringID))
 						EndIf
 					EndIf
 					*stringNode = NextXMLNode(*stringNode)
@@ -350,14 +346,14 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 	ForEver
 EndIf
 ; IDE Options = PureBasic 4.60 (Windows - x86)
-; CursorPosition = 313
-; FirstLine = 297
+; CursorPosition = 149
+; FirstLine = 126
 ; Folding = --
 ; EnableXP
 ; UseIcon = Language String Editor.ico
 ; Executable = Language String Editor.exe
-; EnableCompileCount = 100
-; EnableBuildCount = 1
+; EnableCompileCount = 101
+; EnableBuildCount = 2
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0
