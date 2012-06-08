@@ -1,6 +1,6 @@
 ShowDialog:SellVehicle(playerID)
 {
-	CreateDialog(playerID, "SellVehicle", DIALOG_STYLE_INPUT, LanguageString(playerID, 486), LanguageString(playerID, 487), "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "SellVehicle", DIALOG_STYLE_INPUT, LanguageString(playerID, 488), LanguageString(playerID, 489), "OK", LanguageString(playerID, 165));
 }
 
 DialogResponse:SellVehicle(playerID, response, listItem, inputText[])
@@ -12,10 +12,10 @@ DialogResponse:SellVehicle(playerID, response, listItem, inputText[])
 	}
 	if (!StrNotNull(inputText))
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 488);
+		SendClientMessageEx(playerID, COLOR_ERROR, 490);
 		return false;
 	}
-	SendClientMessageEx(playerID, COLOR_INFO, 489, inputText);
+	SendClientMessageEx(playerID, COLOR_INFO, 491, inputText);
 	MySQLQuery("UPDATE `vehicles` SET `Price` = '%f', `OwnerUserID` = '0', `OwnerSellerID` = '%d' WHERE `ID` = '%d'", floatstr(inputText), PVar:playerID[USERID], VehicleProperty:vehicleID[SAVEID]);
 	RemovePlayerFromVehicle(playerID);
 	return true;

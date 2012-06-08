@@ -23,8 +23,8 @@ DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 				GivePlayerMoneyEx(sellerID, MONEY_CASH, price);
 				SetMySQLValue("vehicles", "OwnerUserID", val2str(PVar:playerID[USERID]), "ID", val2str(saveID));
 				MySQLQuery("UPDATE `vehicles` SET `OwnerSellerID` = '0' WHERE `ID` = '%d'", PVar:playerID[USERID], saveID);
-				SendClientMessageEx(playerID, COLOR_INFO, 491);
-				SendClientMessageEx(playerID, COLOR_INFO, 492);
+				SendClientMessageEx(playerID, COLOR_INFO, 493);
+				SendClientMessageEx(playerID, COLOR_INFO, 494);
 				VehicleProperty:vehicleID[ALLOWDESTROY] = true;
 				VehicleProperty:vehicleID[ALLOWSAVE] = true;
 				SavePlayer(playerID);

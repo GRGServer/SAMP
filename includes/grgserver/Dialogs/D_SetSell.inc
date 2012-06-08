@@ -1,6 +1,6 @@
 ShowDialog:SetSell(playerID)
 {
-	CreateDialog(playerID, "SetSell", DIALOG_STYLE_INPUT, LanguageString(playerID, 486), LanguageString(playerID, 487), "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "SetSell", DIALOG_STYLE_INPUT, LanguageString(playerID, 488), LanguageString(playerID, 489), "OK", LanguageString(playerID, 165));
 }
 
 DialogResponse:SetSell(playerID, response, listItem, inputText[])
@@ -41,7 +41,7 @@ DialogResponse:SetSell(playerID, response, listItem, inputText[])
 		MySQLQuery("%s VALUES('%d', '%s', '%f', '%f', '%f', '%f', '%d', '%f', '%d', '%d', '%d', '%f', '%f')", sqlQuery, VehicleProperty:vehicleID[SAVEID], numberplateString, posX, posY, posZ, angle, GetPlayerInterior(playerID), health, modelID, VehicleProperty:vehicleID[COLOR1], VehicleProperty:vehicleID[COLOR2], floatstr(inputText), vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
 		return COMMAND_OK;
 	}
-	SendClientMessageEx(playerID, COLOR_INFO, 489, floatstr(inputText));
+	SendClientMessageEx(playerID, COLOR_INFO, 491, floatstr(inputText));
 	RemovePlayerFromVehicle(playerID);
 	return true;
 }

@@ -1,4 +1,4 @@
-CMD:sellveh(playerID, params[], 486)
+CMD:sellveh(playerID, params[], 488)
 {
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (!vehicleID)
@@ -11,7 +11,7 @@ CMD:sellveh(playerID, params[], 486)
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 490);
+		SendClientMessageEx(playerID, COLOR_ERROR, 492);
 	}
 	return COMMAND_OK;
 }

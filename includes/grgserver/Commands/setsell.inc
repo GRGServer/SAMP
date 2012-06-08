@@ -1,4 +1,4 @@
-CMD:setsell(playerID, params[], 493)
+CMD:setsell(playerID, params[], 495)
 {
 	if (PVar:playerID[JOBID] == JOB_VEHICLEDEALER)
 	{

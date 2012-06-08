@@ -1952,35 +1952,35 @@
 		<en>You are not the owner of this vehicle!</en>
 		<de>Du bist nicht der Besitzer dieses Fahrzeugs!</de>
 	</string>
-	<string id="486">
+	<string id="488">
 		<en>Vehicle Sell</en>
 		<de>Auto Verkaufen</de>
 	</string>
-	<string id="487">
+	<string id="489">
 		<en>Give your Price to sell!</en>
 		<de>Gebe den Preis den du für dein Fahrzeug möchtest ein.</de>
 	</string>
-	<string id="488">
+	<string id="490">
 		<en>You must be set Price!</en>
 		<de>Du musst einen Preis setzen!</de>
 	</string>
-	<string id="489">
+	<string id="491">
 		<en>You have set your Car to Sell</en>
 		<de>Du hast dein Auto zum Verkauf gestellt</de>
 	</string>
-	<string id="490">
+	<string id="492">
 		<en>Thats dont your Vehicle</en>
 		<de>Das ist nicht dein Fahrzeug</de>
 	</string>
-	<string id="491">
+	<string id="493">
 		<en>You have a Vehicle buy</en>
 		<de>Du hast ein Fahrzeug gekauft</de>
 	</string>
-	<string id="492">
+	<string id="494">
 		<en>Your Vehicle was buy</en>
 		<de>Dein Fahrzeug wurde gekauft</de>
 	</string>
-	<string id="493">
+	<string id="495">
 		<en>SetSell for VehicleDealer</en>
 		<de>Fahrzeug zum verkauf Setzten für Autohändler</de>
 	</string>
