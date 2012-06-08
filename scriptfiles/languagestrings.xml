@@ -1905,28 +1905,28 @@
 		<de>Du wurdest irrtümlich gebannt? Dann kontaktiere uns bitte auf http://www.grgserver.net.</de>
 	</string>
 	<string id="476">
-		<en>Locked your House</en>
-		<de>Haus Auf/Zu Schliessen</de>
+		<en>Lock/Unlock</en>
+		<de>Auf-/Zuschließen</de>
 	</string>
 	<string id="477">
-		<en>You unlocked your house!</en>
-		<de>Du hast dein Haus aufgeschlossen!</de>
+		<en>You have unlocked your house</en>
+		<de>Du hast dein Haus aufgeschlossen</de>
 	</string>
 	<string id="478">
-		<en>You locked your house!</en>
-		<de>Du hast dein Haus Abgeschlossen!</de>
+		<en>You have locked your house</en>
+		<de>Du hast dein Haus abgeschlossen</de>
 	</string>
 	<string id="479">
 		<en>Coming Soon!</en>
 		<de>Kommt bald!</de>
 	</string>
 	<string id="480">
-		<en>House Info</en>
-		<de>Haus Informationen</de>
+		<en>House information</en>
+		<de>Hausinformationen</de>
 	</string>
 	<string id="481">
-		<en>House Locked!</en>
-		<de>Haus Abgesperrt!</de>
+		<en>This house is locked!</en>
+		<de>Das Haus ist abgeschlossen!</de>
 	</string>
 	<string id="482">
 		<en>Mark up to 100 objects on your map</en>

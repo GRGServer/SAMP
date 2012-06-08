@@ -17,12 +17,12 @@ DialogResponse:House(playerID, response, listItem, inputText[])
 		{
 			case 0:// Enter
 			{
-				MySQLQuery("SELECT `ID` FROM `properties` WHERE `ID` = '%d' AND `Locked`", PVar:playerID[DIALOGPROPERTYID]);
+				MySQLQuery("SELECT `Locked` FROM `properties` WHERE `ID` = '%d' AND `Locked`", PVar:playerID[DIALOGPROPERTYID]);
 				mysql_store_result();
 				new isLocked = mysql_num_rows();
 				mysql_free_result();
-				if(isLocked)
-				{	
+				if (isLocked)
+				{
 					SendClientMessage(playerID, COLOR_ERROR, LanguageString(playerID, 481));
 				}
 				else
@@ -39,11 +39,11 @@ DialogResponse:House(playerID, response, listItem, inputText[])
 			}
 			case 2:// Lock
 			{
-				MySQLQuery("SELECT `ID` FROM `properties` WHERE `ID` = '%d' AND `Locked`", PVar:playerID[DIALOGPROPERTYID]);
+				MySQLQuery("SELECT `Locked` FROM `properties` WHERE `ID` = '%d' AND `Locked`", PVar:playerID[DIALOGPROPERTYID]);
 				mysql_store_result();
 				new isLocked = mysql_num_rows();
 				mysql_free_result();
-				if(isLocked)
+				if (isLocked)
 				{
 					SendClientMessage(playerID, COLOR_INFO, LanguageString(playerID, 477));
 					MySQLQuery("UPDATE `properties` SET `Locked`= '0' WHERE `ID` = '%d'", PVar:playerID[DIALOGPROPERTYID]);
@@ -54,10 +54,10 @@ DialogResponse:House(playerID, response, listItem, inputText[])
 					SendClientMessage(playerID, COLOR_INFO, LanguageString(playerID, 478));
 				}
 			}
-			case 3://News
+			case 3:// Info
 			{
 				SendClientMessage(playerID, COLOR_INFO, LanguageString(playerID, 479));
-			}				
+			}
 		}
 	}
 }
