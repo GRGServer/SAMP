@@ -5,7 +5,6 @@ ShowDialog:House(playerID)
 	AddLine(options, LanguageString(playerID, 268));// Item 0
 	AddLine(options, LanguageString(playerID, 328));// Item 1
 	AddLine(options, LanguageString(playerID, 476));// Item 2
-	AddLine(options, LanguageString(playerID, 480));// Item 3
 	CreateDialog(playerID, "House", DIALOG_STYLE_LIST, title, options, "OK", LanguageString(playerID, 165));
 }
 
@@ -53,10 +52,6 @@ DialogResponse:House(playerID, response, listItem, inputText[])
 					MySQLQuery("UPDATE `properties` SET `Locked` = '1' WHERE `ID`= '%d'", PVar:playerID[DIALOGPROPERTYID]);
 					SendClientMessage(playerID, COLOR_INFO, LanguageString(playerID, 478));
 				}
-			}
-			case 3:// Info
-			{
-				SendClientMessage(playerID, COLOR_INFO, LanguageString(playerID, 479));
 			}
 		}
 	}
