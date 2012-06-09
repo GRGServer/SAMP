@@ -1789,7 +1789,7 @@
 		<de>Entferne einen Spieler aus deiner Freundesliste</de>
 	</string>
 	<string id="447">
-		<en>%p is not in your freindlist!</en>
+		<en>%p is not in your friendlist!</en>
 		<de>%p ist nicht in deiner Freundesliste!</de>
 	</string>
 	<string id="448">
@@ -1811,10 +1811,6 @@
 	<string id="452">
 		<en>Error while writing the file!</en>
 		<de>Fehler beim Schreiben der Datei!</de>
-	</string>
-	<string id="453">
-		<en>Friends</en>
-		<de>Freunde</de>
 	</string>
 	<string id="454">
 		<en>What sense does it make to send yourself a private message?</en>
@@ -2005,7 +2001,23 @@
 		<de>%p hat deine Freundschaftsanfrage abgelehnt!</de>
 	</string>
 	<string id="501">
-		<en>You have declined the freind request of %s!</en>
+		<en>You have declined the friend request of %s!</en>
 		<de>Du hast die Freundschaftsanfrage von %s abgelehnt!</de>
+	</string>
+	<string id="502">
+		<en>Select friend</en>
+		<de>Freund auswählen</de>
+	</string>
+	<string id="503">
+		<en>You have no players in your friend list! You can add players using /addfriend.</en>
+		<de>Du hast keine Spieler in deiner Freundesliste! Du kannst Spieler mit /addfriend hinzufügen.</de>
+	</string>
+	<string id="504">
+		<en>Friend</en>
+		<de>Freund</de>
+	</string>
+	<string id="505">
+		<en>%s is currently offline!</en>
+		<de>%s ist derzeit offline!</de>
 	</string>
 </languagestrings>

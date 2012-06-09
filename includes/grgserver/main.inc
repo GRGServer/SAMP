@@ -212,6 +212,7 @@
 #include <grgserver\Dialogs\D_ChangePassword_Step2.inc>
 #include <grgserver\Dialogs\D_ChangePassword_Step3.inc>
 #include <grgserver\Dialogs\D_ChatMode.inc>
+#include <grgserver\Dialogs\D_ChatMode_FriendList.inc>
 #include <grgserver\Dialogs\D_EstateAgents.inc>
 #include <grgserver\Dialogs\D_FriendRequests.inc>
 #include <grgserver\Dialogs\D_FriendRequests_Options.inc>

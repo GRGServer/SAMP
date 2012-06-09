@@ -30,11 +30,6 @@ SendMessageToChannel(playerID, channel[], message[], targetPlayerID = INVALID_PL
 		IRC_Say(ircBot, IRC_CHANNEL, string);
 		return true;
 	}
-	if (IsStr(channel, "FRIENDS"))
-	{
-		// TODO: Send to all players in friend list
-		return true;
-	}
 	if (IsStr(channel, "INRANGE"))
 	{
 		new Float:posX;
@@ -66,9 +61,14 @@ SendMessageToChannel(playerID, channel[], message[], targetPlayerID = INVALID_PL
 	}
 	if (IsStr(channel, "PLAYER"))
 	{
-		if (targetPlayerID == INVALID_PLAYER_ID)
+		if (targetPlayerID == INVALID_PLAYER_ID && PVar:playerID[CHATMODE_USERID])
 		{
-			return false;
+			targetPlayerID = GetPlayerByUserID(PVar:playerID[CHATMODE_USERID]);
+			if (targetPlayerID == INVALID_PLAYER_ID)
+			{
+				SendClientMessageEx(playerID, COLOR_ERROR, 505, GetMySQLValue("users", "Username", "ID", val2str(PVar:playerID[CHATMODE_USERID])));
+				return false;
+			}
 		}
 		Format:string("[%s -> %s] %s", GetPlayerNameEx(playerID), GetPlayerNameEx(targetPlayerID), message);
 		SendClientMessage(targetPlayerID, COLOR_CHAT_PLAYER, string);

@@ -5,6 +5,7 @@ LoadPlayer(playerID)
 	new Float:bankMoney = floatstr(GetMySQLField("BankMoney"));
 	new Float:cashMoney = floatstr(GetMySQLField("Money"));
 	SetPVarStr:playerID[CHATMODE][STRINGLENGTH_CHATMODE](GetMySQLField("ChatMode"));
+	PVar:playerID[CHATMODE_USERID] = strval(GetMySQLField("ChatModeUserID"));
 	PVar:playerID[CURRENTPROPERTYID] = strval(GetMySQLField("CurrentPropertyID"));
 	PVar:playerID[DEATHS] = strval(GetMySQLField("Deaths"));
 	PVar:playerID[GODMODE] = strval(GetMySQLField("GodMode"));
