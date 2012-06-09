@@ -1,6 +1,18 @@
 ShowNews(playerID, lastID)
 {
-	MySQLQuery("SELECT `id`, `date`, LEFT(`text`, 255) AS `text` FROM `news` WHERE `id` > '%d' ORDER BY `date` DESC LIMIT %d", lastID, NEWS_MAXIMUM);// TODO: Use player language
+	new language[3];
+	switch (PVar:playerID[LANGUAGE])
+	{
+		case LANGUAGE_ENGLISH:
+		{
+			language = "en";
+		}
+		case LANGUAGE_GERMAN:
+		{
+			language = "de";
+		}
+	}
+	MySQLQuery("SELECT `id`, `date`, LEFT(`text_%s`, 255) AS `text` FROM `news` WHERE `id` > '%d' ORDER BY `date` DESC LIMIT %d", language, lastID, NEWS_MAXIMUM);
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
