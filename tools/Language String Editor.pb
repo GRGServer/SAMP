@@ -12,6 +12,9 @@
 	#Menu_Add
 	#Menu_Edit
 	#Menu_Delete
+	#Menu_Goto
+	#Menu_Search
+	#Menu_SearchNext
 	#Edit_Window
 	#Edit_Text1
 	#Edit_Text2
@@ -58,6 +61,23 @@ Procedure UpdateWindowSize(window)
 	EndSelect
 EndProcedure
 
+Procedure SetFileChangedState(state)
+	fileChanged = state
+	If fileChanged
+		SetWindowTitle(#Window, #Title + " [Changed]")
+	Else
+		SetWindowTitle(#Window, #Title)
+	EndIf
+EndProcedure
+
+Procedure IsDuplicateStringID(stringID, ignoreItemID)
+	For item = 0 To CountGadgetItems(#List) - 1
+		If item <> ignoreItemID And Val(GetGadgetItemText(#List, item, 0)) = stringID
+			ProcedureReturn #True
+		EndIf
+	Next
+EndProcedure
+
 Procedure EditItem(item)
 	editItemID = item
 	items = CountGadgetItems(#List)
@@ -91,6 +111,8 @@ Procedure EditItem(item)
 		DisableWindow(#Window, #True)
 		WindowBounds(#Edit_Window, 230, WindowHeight(#Edit_Window), #PB_Ignore, WindowHeight(#Edit_Window))
 		UpdateWindowSize(#Edit_Window)
+		AddKeyboardShortcut(#Edit_Window, #PB_Shortcut_Return, #Edit_OK)
+		AddKeyboardShortcut(#Edit_Window, #PB_Shortcut_Escape, #Edit_Cancel)
 	EndIf
 EndProcedure
 
@@ -99,27 +121,35 @@ Procedure CloseEditWindow()
 	CloseWindow(#Edit_Window)
 EndProcedure
 
-Procedure SetFileChangedState(state)
-	fileChanged = state
-	If fileChanged
-		SetWindowTitle(#Window, #Title + " [Changed]")
+Procedure EditOK()
+	stringID = Val(GetGadgetText(#Edit_ID))
+	If stringID < 0
+		MessageRequester("Invalid string ID", Str(stringID) + " is not a valid string ID!" + Chr(13) + Chr(13) + "Only use non-negative numbers!", #MB_ICONERROR)
 	Else
-		SetWindowTitle(#Window, #Title)
-	EndIf
-EndProcedure
-
-Procedure IsDuplicateStringID(stringID, ignoreItemID)
-	For item = 0 To CountGadgetItems(#List) - 1
-		If item <> ignoreItemID And Val(GetGadgetItemText(#List, item, 0)) = stringID
-			ProcedureReturn #True
+		If IsDuplicateStringID(stringID, editItemID)
+			MessageRequester("Duplicate string ID", "The string ID " + Str(stringID) + " already exists in the list!", #MB_ICONERROR)
+		Else
+			If editItemID = -1
+				AddGadgetItem(#List, -1, Str(stringID) + Chr(10) + GetGadgetText(#Edit_English) + Chr(10) + GetGadgetText(#Edit_German))
+			Else
+				SetGadgetItemText(#List, editItemID, Str(stringID), 0)
+				SetGadgetItemText(#List, editItemID, GetGadgetText(#Edit_English), 1)
+				SetGadgetItemText(#List, editItemID, GetGadgetText(#Edit_German), 2)
+			EndIf
+			CloseEditWindow()
+			SetFileChangedState(#True)
 		EndIf
-	Next
+	EndIf
 EndProcedure
 
 Procedure.s EscapeXMLCharacters(string$)
 	string$ = ReplaceString(string$, "<", "&lt;")
 	string$ = ReplaceString(string$, ">", "&gt;")
 	ProcedureReturn string$
+EndProcedure
+
+Procedure FindListItem(gadget, item, column, searchString$) 
+	ProcedureReturn FindString(LCase(GetGadgetItemText(gadget, item, column)), LCase(searchString$))
 EndProcedure
 
 Procedure LoadLanguageStrings()
@@ -224,6 +254,33 @@ Procedure CheckQuit()
 	EndIf
 EndProcedure
 
+Procedure SearchStringInList(string$)
+	startingItem = GetGadgetState(#List) + 1
+	If startingItem >= CountGadgetItems(#List)
+		startingItem = 0
+	EndIf
+	foundItem = -1
+	For item = startingItem To CountGadgetItems(#List) - 1
+		If FindListItem(#List, item, 1, string$) Or FindListItem(#List, item, 2, string$)
+			foundItem = item
+			Break
+		EndIf
+	Next
+	If foundItem = -1 And startingItem > 0
+		For item = 0 To startingItem -1
+			If FindListItem(#List, item, 1, string$) Or FindListItem(#List, item, 2, string$)
+				foundItem = item
+				Break
+			EndIf
+		Next
+	EndIf
+	If foundItem = -1
+		MessageRequester("Search string", "The entered string '" + string$ + "' was not found!", #MB_ICONERROR)
+	Else
+		SetGadgetState(#List, foundItem)
+	EndIf
+EndProcedure
+
 mainPath$ = GetPathPart(ProgramFilename())
 mainPath$ = "X:\Projects\SAMP-Server\tools\"
 serverRoot$ = GetPathPart(Left(mainPath$, Len(mainPath$) - 1))
@@ -241,6 +298,10 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 		MenuItem(#Menu_Edit, "Edit")
 		MenuBar()
 		MenuItem(#Menu_Delete, "Delete" + Chr(9) + "Del")
+		MenuBar()
+		MenuItem(#Menu_Goto, "Goto ID" + Chr(9) + "Ctrl+G")
+		MenuItem(#Menu_Search, "Search" + Chr(9) + "Ctrl+F")
+		MenuItem(#Menu_SearchNext, "Search next" + Chr(9) + "F3")
 		DisableMenuItem(#Menu, #Menu_Edit, #True)
 		DisableMenuItem(#Menu, #Menu_Delete, #True)
 	EndIf
@@ -253,6 +314,9 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 	AddKeyboardShortcut(#Window, #PB_Shortcut_Control | #PB_Shortcut_S, #Menu_Save)
 	AddKeyboardShortcut(#Window, #PB_Shortcut_Insert, #Menu_Add)
 	AddKeyboardShortcut(#Window, #PB_Shortcut_Delete, #Menu_Delete)
+	AddKeyboardShortcut(#Window, #PB_Shortcut_Control | #PB_Shortcut_G, #Menu_Goto)
+	AddKeyboardShortcut(#Window, #PB_Shortcut_Control | #PB_Shortcut_F, #Menu_Search)
+	AddKeyboardShortcut(#Window, #PB_Shortcut_F3, #Menu_SearchNext)
 	If Not LoadLanguageStrings()
 		End
 	EndIf
@@ -279,24 +343,7 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 								EndIf
 						EndSelect
 					Case #Edit_OK
-						stringID = Val(GetGadgetText(#Edit_ID))
-						If stringID < 0
-							MessageRequester("Invalid string ID", Str(stringID) + " is not a valid string ID!" + Chr(13) + Chr(13) + "Only use non-negative numbers!", #MB_ICONERROR)
-						Else
-							If IsDuplicateStringID(stringID, editItemID)
-								MessageRequester("Duplicate string ID", "The string ID " + Str(stringID) + " already exists in the list!", #MB_ICONERROR)
-							Else
-								If editItemID = -1
-									AddGadgetItem(#List, -1, Str(stringID) + Chr(10) + GetGadgetText(#Edit_English) + Chr(10) + GetGadgetText(#Edit_German))
-								Else
-									SetGadgetItemText(#List, editItemID, Str(stringID), 0)
-									SetGadgetItemText(#List, editItemID, GetGadgetText(#Edit_English), 1)
-									SetGadgetItemText(#List, editItemID, GetGadgetText(#Edit_German), 2)
-								EndIf
-								CloseEditWindow()
-								SetFileChangedState(#True)
-							EndIf
-						EndIf
+						EditOK()
 					Case #Edit_Cancel
 						CloseEditWindow()
 				EndSelect
@@ -332,6 +379,59 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 								SetFileChangedState(#True)
 							EndIf
 						EndIf
+					Case #Menu_Goto
+						string$ = Trim(InputRequester("Goto string ID", "Enter the string ID you want to go to.", ""))
+						If string$
+							stringID = Val(string$)
+							If Str(stringID) = string$
+								startingItem = GetGadgetState(#List) + 1
+								If startingItem >= CountGadgetItems(#List)
+									startingItem = 0
+								EndIf
+								foundItem = -1
+								For item = startingItem To CountGadgetItems(#List) - 1
+									If FindListItem(#List, item, 0, string$)
+										foundItem = item
+										Break
+									EndIf
+								Next
+								If foundItem = -1 And startingItem > 0
+									For item = 0 To startingItem -1
+										If FindListItem(#List, item, 0, string$)
+											foundItem = item
+											Break
+										EndIf
+									Next
+								EndIf
+								If foundItem = -1
+									MessageRequester("Goto string ID", "The entered string ID '" + string$ + "' was not found!", #MB_ICONERROR)
+								Else
+									SetGadgetState(#List, foundItem)
+								EndIf
+							Else
+								MessageRequester("Not a number", "The entered text is not a number!", #MB_ICONERROR)
+							EndIf
+						EndIf
+					Case #Menu_Search
+						string$ = Trim(InputRequester("Search string", "Enter the string you want to search for.", searchedString$))
+						If string$
+							searchedString$ = string$
+							SearchStringInList(string$)
+						EndIf
+					Case #Menu_SearchNext
+						If searchedString$
+							SearchStringInList(searchedString$)
+						Else
+							string$ = Trim(InputRequester("Search string", "Enter the string you want to search for.", searchedString$))
+							If string$
+								searchedString$ = string$
+								SearchStringInList(string$)
+							EndIf
+						EndIf
+					Case #Edit_OK
+						EditOK()
+					Case #Edit_Cancel
+						CloseEditWindow()
 				EndSelect
 			Case #PB_Event_SizeWindow
 				UpdateWindowSize(EventWindow())
@@ -346,14 +446,14 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 	ForEver
 EndIf
 ; IDE Options = PureBasic 4.60 (Windows - x86)
-; CursorPosition = 149
-; FirstLine = 126
-; Folding = --
+; CursorPosition = 63
+; FirstLine = 47
+; Folding = ---
 ; EnableXP
 ; UseIcon = Language String Editor.ico
 ; Executable = Language String Editor.exe
-; EnableCompileCount = 101
-; EnableBuildCount = 2
+; EnableCompileCount = 109
+; EnableBuildCount = 4
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0
