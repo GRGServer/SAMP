@@ -34,16 +34,6 @@ public OnGameModeInit()
 	}
 	print("* Defining variables...");
 	maxPlayers = GetServerVarAsInt("maxplayers");
-	if (GetServerVarAsInt("port") == 7777)
-	{
-		serverType = SERVER_PUBLIC;
-		strcat(ircChannel, IRC_PUBLIC_CHANNEL);
-	}
-	else
-	{
-		serverType = SERVER_DEV;
-		strcat(ircChannel, IRC_DEV_CHANNEL);
-	}
 	print("* Checking SVN stuff...");
 	new File:svnRevisionFile;
 	new oldSvnRevision[16];
@@ -58,7 +48,6 @@ public OnGameModeInit()
 	}
 	if (strval(oldSvnRevision) != COMPILER_SVN_REVISION)
 	{
-		svnRevisionChanged = true;
 		svnRevisionFile = fopen(FILE_RUNNINGREVISION, io_write);
 		if (svnRevisionFile)
 		{
@@ -73,15 +62,6 @@ public OnGameModeInit()
 	{
 		print("MySQL connection failed!");
 		return false;
-	}
-	print("* Connecting to IRC server...");
-	if (serverType == SERVER_PUBLIC)
-	{
-		ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_PUBLIC_USERNAME, IRC_PUBLIC_USERNAME, IRC_PUBLIC_USERNAME, IRC_SSL);
-	}
-	else
-	{
-		ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_DEV_USERNAME, IRC_DEV_USERNAME, IRC_DEV_USERNAME, IRC_SSL);
 	}
 	print("* Loading weapons...");
 	if (fexist(FILE_WEAPONS))

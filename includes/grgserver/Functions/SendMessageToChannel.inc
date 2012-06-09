@@ -27,7 +27,6 @@ SendMessageToChannel(playerID, channel[], message[], targetPlayerID = INVALID_PL
 			SendClientMessage(loopPlayerID, COLOR_CHAT_ALL, string);
 		}
 		Format:string("[%s] %s", GetPlayerNameEx(playerID), message);
-		IRC_Say(ircBot, ircChannel, string);
 		return true;
 	}
 	if (IsStr(channel, "INRANGE"))

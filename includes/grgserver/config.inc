@@ -16,7 +16,6 @@
 #define COLOR_CHAT_PLAYER			0xFFFA00FF
 #define COLOR_ERROR				0xFF0000FF
 #define COLOR_INFO				0xFF8C55FF
-#define COLOR_IRC				0x33AA33FF
 #define COLOR_JOINLEAVE				0x74E800FF
 #define COLOR_MARKER_OBJECT			0x00FF00FF
 #define COLOR_ME				0x00FF40FF
@@ -57,16 +56,6 @@
 #define HOTEL_RECEPTION_POSY			-1150.53
 #define HOTEL_RECEPTION_POSZ			1025.8
 #define HOTEL_ROOM_INTERIOR			70
-
-
-// IRC credentials
-#define IRC_DEV_CHANNEL				"#grgserver-dev"
-#define IRC_PUBLIC_CHANNEL			"#grgserver"
-#define IRC_HOST				"127.0.0.1"
-#define IRC_PORT				6667
-#define IRC_SSL					false
-#define IRC_DEV_USERNAME			"grgserver_dev"
-#define IRC_PUBLIC_USERNAME			"grgserver"
 
 
 // Jobs

@@ -149,12 +149,6 @@
 
 // Callbacks
 #include <grgserver\Callbacks\GPS_WhenRouteIsCalculated.inc>
-#include <grgserver\Callbacks\IRC_OnConnect.inc>
-#include <grgserver\Callbacks\IRC_OnDisconnect.inc>
-#include <grgserver\Callbacks\IRC_OnJoinChannel.inc>
-#include <grgserver\Callbacks\IRC_OnUserJoinChannel.inc>
-#include <grgserver\Callbacks\IRC_OnUserLeaveChannel.inc>
-#include <grgserver\Callbacks\IRC_OnUserSay.inc>
 #include <grgserver\Callbacks\OnDialogResponse.inc>
 #include <grgserver\Callbacks\OnDynamicObjectMoved.inc>
 #include <grgserver\Callbacks\OnGameModeExit.inc>

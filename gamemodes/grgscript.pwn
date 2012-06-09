@@ -9,7 +9,6 @@
 // Custom includes
 #include <formatnumber>
 #include <geoip>
-#include <irc>
 #include <MD5>
 #include <mysql>
 #include <regex>

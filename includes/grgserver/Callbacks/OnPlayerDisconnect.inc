@@ -37,8 +37,6 @@ public OnPlayerDisconnect(playerid, reason)
 				SendClientMessageEx(playerID, COLOR_JOINLEAVE, 161, playerid, reasonString);
 			}
 		}
-		FormatNew:string[MAX_PLAYER_NAME + 30]("%s has left the server (%s)", GetPlayerNameEx(playerid), reasonString);
-		IRC_Say(ircBot, ircChannel, string);
 		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[RADIOSTATION]);
 		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[SPEEDO_COLUMN1]);
 		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[SPEEDO_COLUMN2]);

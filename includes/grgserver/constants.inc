@@ -116,14 +116,6 @@ enum
 }
 
 
-// Server types
-enum
-{
-	SERVER_DEV,
-	SERVER_PUBLIC
-}
-
-
 // Time change events (OnServerTimeChange gets called when the hour or time changed and the event gets passed to the callback)
 enum
 {

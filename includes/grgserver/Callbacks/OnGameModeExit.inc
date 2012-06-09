@@ -6,7 +6,7 @@
  * <remarks>
  *	In this callback players and vehicles are forced to get saved.
  *	Every NPC gets kicked so no more NPCs are connected at the end of the gamemode.
- *	The MySQL and IRC connection gets disconnected if this callback gets called!
+ *	The MySQL connection gets disconnected if this callback gets called!
  * </remarks>
  */
 
@@ -28,8 +28,6 @@ public OnGameModeExit()
 	}
 	print("* Disconnecting from MySQL server...");
 	mysql_close();
-	print("* Disconnecting from IRC server...");
-	IRC_Quit(ircBot, "SAMP-Server IRC chat relay");
 	print("* Gamemode will now end");
 	return true;
 }
