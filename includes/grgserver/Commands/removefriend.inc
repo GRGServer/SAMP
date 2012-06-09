@@ -10,18 +10,16 @@ CMD:removefriend(playerID, params[], 446)
 	{
 		return COMMAND_PLAYER_NOT_FOUND;
 	}
-	new isInList;
-	MySQLQuery("SELECT * FROM `friends` WHERE `UserID` = '%d' AND `FriendUserID` = '%d'", PVar:playerID[USERID], PVar:targetPlayerID[USERID]);
+	MySQLQuery("SELECT * FROM `friends` WHERE (`UserID1` = '%d' AND `UserID2` = '%d') OR (`UserID2` = '%d' AND `UserID1` = '%d')", PVar:playerID[USERID], PVar:targetPlayerID[USERID], PVar:playerID[USERID], PVar:targetPlayerID[USERID]);
 	mysql_store_result();
-	isInList = mysql_num_rows();
+	new isInList = mysql_num_rows();
 	mysql_free_result();
 	if (!isInList)
 	{
 		SendClientMessageEx(playerID, COLOR_ERROR, 447, targetPlayerID);
 		return COMMAND_ERROR;
 	}
-	MySQLQuery("DELETE FROM `friends` WHERE `UserID` = '%d' AND `FriendUserID` = '%d'", PVar:playerID[USERID], PVar:targetPlayerID[USERID]);
-	MySQLQuery("DELETE FROM `friends` WHERE `UserID` = '%d' AND `FriendUserID` = '%d'", PVar:targetPlayerID[USERID], PVar:playerID[USERID]);
+	MySQLQuery("DELETE FROM `friends` WHERE (`UserID1` = '%d' AND `UserID2` = '%d') OR (`UserID2` = '%d' AND `UserID1` = '%d')", PVar:playerID[USERID], PVar:targetPlayerID[USERID], PVar:playerID[USERID], PVar:targetPlayerID[USERID]);
 	SendClientMessageEx(playerID, COLOR_INFO, 448, targetPlayerID);
 	SendClientMessageEx(targetPlayerID, COLOR_INFO, 449, playerID);
 	return COMMAND_OK;

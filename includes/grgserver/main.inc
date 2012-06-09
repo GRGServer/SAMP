@@ -213,6 +213,8 @@
 #include <grgserver\Dialogs\D_ChangePassword_Step3.inc>
 #include <grgserver\Dialogs\D_ChatMode.inc>
 #include <grgserver\Dialogs\D_EstateAgents.inc>
+#include <grgserver\Dialogs\D_FriendRequests.inc>
+#include <grgserver\Dialogs\D_FriendRequests_Options.inc>
 #include <grgserver\Dialogs\D_FunAction.inc>
 #include <grgserver\Dialogs\D_GiveWeapon.inc>
 #include <grgserver\Dialogs\D_Hospital.inc>
@@ -305,6 +307,7 @@
 #include <grgserver\Commands\engine.inc>
 #include <grgserver\Commands\exit.inc>
 #include <grgserver\Commands\flycam.inc>
+#include <grgserver\Commands\friendrequests.inc>
 #include <grgserver\Commands\funaction.inc>
 #include <grgserver\Commands\givepermission.inc>
 #include <grgserver\Commands\giveweapon.inc>

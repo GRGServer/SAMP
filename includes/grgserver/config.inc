@@ -84,7 +84,7 @@
 // Language configuration
 #define LANGUAGE_ENGLISH			0
 #define LANGUAGE_GERMAN				1
-#define LANGUAGE_MAXSTRINGS			500
+#define LANGUAGE_MAXSTRINGS			600
 
 
 // Light objects

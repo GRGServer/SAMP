@@ -1769,12 +1769,12 @@
 		<de>%p hat deine Freundschaftsanfrage angenommen</de>
 	</string>
 	<string id="442">
-		<en>%p has been added to your friend list</en>
-		<de>%p wurde zu deiner Freundesliste hinzugefügt</de>
+		<en>%s has been added to your friend list</en>
+		<de>%s wurde zu deiner Freundesliste hinzugefügt</de>
 	</string>
 	<string id="443">
-		<en>%p wants to add you to his/her friend list. Use /addfriend %p to accept.</en>
-		<de>%p möchte dich zu seiner/ihrer Freundesliste hinzufügen. Verwende /addfriend %p zum annehmen.</de>
+		<en>%p wants to add you to his/her friend list. Use /friendrequests to accept or decline.</en>
+		<de>%p möchte dich zu seiner/ihrer Freundesliste hinzufügen. Verwende /friendrequests zum annehmen or ablehnen.</de>
 	</string>
 	<string id="444">
 		<en>The friend request has been sent to %p</en>
@@ -1916,6 +1916,14 @@
 		<en>You have locked your house</en>
 		<de>Du hast dein Haus abgeschlossen</de>
 	</string>
+	<string id="479">
+		<en>See your current friendship requests</en>
+		<de>Sehe dir deine aktuellen Freundschaftsanfragen</de>
+	</string>
+	<string id="480">
+		<en>Your friend requests (%d)</en>
+		<de>Deine Freundschaftsanfragen (%d)</de>
+	</string>
 	<string id="481">
 		<en>This house is locked!</en>
 		<de>Das Haus ist abgeschlossen!</de>
@@ -1975,5 +1983,29 @@
 	<string id="495">
 		<en>Allow your vehicle to get bought by a vehicle dealer</en>
 		<de>Gebe dein Fahrzeug zum Verkauf durch einen Autohändler frei</de>
+	</string>
+	<string id="496">
+		<en>Options</en>
+		<de>Optionen</de>
+	</string>
+	<string id="497">
+		<en>There are currently no friendship requests!</en>
+		<de>Es bestehen derzeit keine Freundschaftsanfragen!</de>
+	</string>
+	<string id="498">
+		<en>There are %d friendship requests. Use /friendrequests to see them.</en>
+		<de>Du hast %d Freundschaftsanfragen. Verwende /friendrequests um diese zu sehen.</de>
+	</string>
+	<string id="499">
+		<en>Decline</en>
+		<de>Ablehnen</de>
+	</string>
+	<string id="500">
+		<en>%p has declined your friend request!</en>
+		<de>%p hat deine Freundschaftsanfrage abgelehnt!</de>
+	</string>
+	<string id="501">
+		<en>You have declined the freind request of %s!</en>
+		<de>Du hast die Freundschaftsanfrage von %s abgelehnt!</de>
 	</string>
 </languagestrings>

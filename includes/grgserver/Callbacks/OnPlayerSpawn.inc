@@ -87,6 +87,14 @@ public OnPlayerSpawn(playerid)
 		SetPlayerPosEx(playerid, floatstr(GetUserDBValue(playerid, "PosX")), floatstr(GetUserDBValue(playerid, "PosY")), floatstr(GetUserDBValue(playerid, "PosZ")), strval(GetUserDBValue(playerid, "Interior")));
 		SetPlayerFacingAngle(playerid, floatstr(GetUserDBValue(playerid, "Angle")));
 		ShowNews(playerid, PVar:playerid[LASTNEWSID]);
+		MySQLQuery("SELECT * FROM `friends` WHERE `UserID2` = '%d' AND `Accepted` = '0'", PVar:playerid[USERID]);
+		mysql_store_result();
+		new rows = mysql_num_rows();
+		mysql_free_result();
+		if (rows)
+		{
+			SendClientMessageEx(playerid, COLOR_INFO, 498, rows);
+		}
 		if (PVar:playerid[SHOWCLOCK])
 		{
 			TextDrawShowForPlayer(playerid, textDrawClock);
