@@ -1812,6 +1812,10 @@
 		<en>Error while writing the file!</en>
 		<de>Fehler beim Schreiben der Datei!</de>
 	</string>
+	<string id="453">
+		<en>You are driving too fast! (%d km/h; Max: %d km/h)</en>
+		<de>Du fährst zu schnell! (%d km/h; Max: %d km/h)</de>
+	</string>
 	<string id="454">
 		<en>What sense does it make to send yourself a private message?</en>
 		<de>Welchen Sinn hat es, dir selbst eine private Nachricht zu senden?</de>

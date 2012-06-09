@@ -92,7 +92,7 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			case FADE_START_PLANEEXIT_BLACK:
 			{
 				SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_SPEAKER1, 1715.0739, 1616.4, 10.0717, 1.0);
-				SetPlayerPosEx(playerID, 1674.8492, 1582.8899, 13.9236, 0);
+				SetPlayerPosEx(playerID, 1671.562744, 1582.741577, 14.715581, 0);
 				SetPlayerFacingAngle(playerID, 0.0);
 				SetCameraBehindPlayer(playerID);
 				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_START_PLANEEXIT_BACK);

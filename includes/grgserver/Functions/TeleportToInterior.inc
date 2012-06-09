@@ -8,6 +8,7 @@ TeleportToInterior(playerID, interiorID)
 		SetPlayerPosEx(playerID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")));
 		SetPlayerFacingAngle(playerID, floatstr(GetMySQLField("angle")));
 		SetPlayerInterior(playerID, strval(GetMySQLField("interior")));
+		SetCameraBehindPlayer(playerID);
 		PVar:playerID[CURRENTINTERIOR] = interiorID;
 		result = true;
 	}

@@ -133,8 +133,7 @@ Timer:Fast()
 						if (!PVar:playerID[SPEEDCAM_LIMITREACHED] && PVar:playerID[SPEEDCAM_SPEEDLIMIT] && speed > PVar:playerID[SPEEDCAM_SPEEDLIMIT])
 						{
 							PVar:playerID[SPEEDCAM_LIMITREACHED] = true;
-							FormatNew:string[100]("You are driving too fast (%d km/h; Max: %d km/h", speed, PVar:playerID[SPEEDCAM_SPEEDLIMIT]);// TODO: Should be translated
-							SendClientMessage(playerID, COLOR_ERROR, string);
+							SendClientMessageEx(playerID, COLOR_ERROR, 453, speed, PVar:playerID[SPEEDCAM_SPEEDLIMIT]);
 						}
 					}
 					else

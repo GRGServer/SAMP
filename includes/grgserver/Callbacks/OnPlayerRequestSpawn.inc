@@ -7,6 +7,7 @@ public OnPlayerRequestSpawn(playerid)
 		PVar:playerid[USERID] = mysql_insert_id();
 		PVar:playerid[ONLINESINCE] = gettime();
 		PVar:playerid[SHOWCLOCK] = true;
+		SetPVarStr:playerid[CHATMODE][STRINGLENGTH_CHATMODE]("INRANGE");
 		MySQLQuery("UPDATE `users` SET `registerTime` = NOW(), `loginTime` = NOW(), `clientVersion` = '%s' WHERE `id` = '%d'", MySQLEscapeString(GetPlayerVersionEx(playerid)), PVar:playerid[USERID]);
 		SavePlayer(playerid);
 		ReloadTextDraws(playerid);
@@ -20,12 +21,10 @@ public OnPlayerRequestSpawn(playerid)
 		}
 		PlayerPlaySound(playerid, 1063, 0.0, 0.0, 0.0);// Stop music
 		SendClientMessageEx(playerid, COLOR_INFO, 139);
-		TogglePlayerControllable(playerid, false);
 		if (PVar:playerid[SHOWCLOCK])
 		{
 			TextDrawShowForPlayer(playerid, textDrawClock);
 		}
-		StartScreenFader(playerid, 0, 0, 0, 2, 500, FADE_START_INPLANE1_BLACK);
 	}
 	return true;
 }

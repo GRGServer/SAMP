@@ -16,7 +16,12 @@ DialogResponse:AddProperty_Name(playerID, response, listItem, inputText[])
 		if (pickupID > 0)
 		{
 			MySQLQuery("INSERT INTO `properties` (`pickupId`, `interiorId`, `name`, `price`) VALUES ('%d', '%d', '%s', '%f')", pickupID, PVar:playerID[ADDPROPERTY_INTERIORID], MySQLEscapeString(inputText), PVar:playerID[ADDPROPERTY_PRICE]);
-			SendClientMessageEx(playerID, COLOR_INFO, 10, inputText, PVar:playerID[ADDPROPERTY_PRICE], mysql_insert_id());
+			new propertyID = mysql_insert_id();
+			if (IsStr(PVar:playerID[ADDPROPERTY_TYPE], "BANK"))
+			{
+				MySQLQuery("INSERT INTO `bankbranches` (`propertyId`, `bankId`) SELECT '%d', `id` FROM `banks` ORDER BY RAND() LIMIT 1", propertyID);
+			}
+			SendClientMessageEx(playerID, COLOR_INFO, 10, inputText, PVar:playerID[ADDPROPERTY_PRICE], propertyID);
 		}
 		else
 		{
@@ -25,6 +30,13 @@ DialogResponse:AddProperty_Name(playerID, response, listItem, inputText[])
 	}
 	else
 	{
-		ShowInteriorDialog(playerID, INTERIORDIALOG_ADDPROPERTY);
+		if (IsStr(PVar:playerID[ADDPROPERTY_TYPE], "BANK") || IsStr(PVar:playerID[ADDPROPERTY_TYPE], "HOTEL") || IsStr(PVar:playerID[ADDPROPERTY_TYPE], "PLACE"))
+		{
+			ShowDialog:AddProperty_Type(playerID);
+		}
+		else
+		{
+			ShowInteriorDialog(playerID, INTERIORDIALOG_ADDPROPERTY);
+		}
 	}
 }
