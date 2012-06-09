@@ -60,11 +60,13 @@
 
 
 // IRC credentials
-#define IRC_CHANNEL				"#grgserver"
+#define IRC_DEV_CHANNEL				"#grgserver-dev"
+#define IRC_PUBLIC_CHANNEL			"#grgserver"
 #define IRC_HOST				"127.0.0.1"
 #define IRC_PORT				6667
 #define IRC_SSL					false
-#define IRC_USERNAME				"grgserver"
+#define IRC_DEV_USERNAME			"grgserver_dev"
+#define IRC_PUBLIC_USERNAME			"grgserver"
 
 
 // Jobs

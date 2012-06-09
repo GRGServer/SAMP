@@ -35,13 +35,13 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 	{
 		if (!strcmp(text, "!help", true))
 		{
-			IRC_Say(botid, IRC_CHANNEL, "Commands: !help, !info, !list");
+			IRC_Say(botid, ircChannel, "Commands: !help, !info, !list");
 			return true;
 		}
 		if (!strcmp(text, "!info", true))
 		{
 			Format:string("Current script revision: %d (%s %s)", COMPILER_SVN_REVISION, COMPILER_DATE, COMPILER_TIME);
-			IRC_Say(botid, IRC_CHANNEL, string);
+			IRC_Say(botid, ircChannel, string);
 			return true;
 		}
 		if (!strcmp(text, "!list", true))
@@ -60,11 +60,11 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 				}
 			}
 			Format:string("%d players and %d NPCs are online", playersOnline, npcsOnline);
-			IRC_Say(botid, IRC_CHANNEL, string);
+			IRC_Say(botid, ircChannel, string);
 			return true;
 		}
-		IRC_Say(botid, IRC_CHANNEL, "Unknown command!");
-		IRC_Say(botid, IRC_CHANNEL, "Use !help to see a list of commands.");
+		IRC_Say(botid, ircChannel, "Unknown command!");
+		IRC_Say(botid, ircChannel, "Use !help to see a list of commands.");
 	}
 	else
 	{

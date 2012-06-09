@@ -22,7 +22,7 @@ public IRC_OnJoinChannel(botid, channel[])
 	{
 		new string[256];
 		Format:string("GRG Server has been updated to r%d by %s", COMPILER_SVN_REVISION, COMPILER_SVN_LASTCOMMITTER);
-		IRC_Say(botid, IRC_CHANNEL, string);
+		IRC_Say(botid, ircChannel, string);
 	}
 	print("IRC channel joined");
 }

@@ -27,5 +27,12 @@
 public IRC_OnDisconnect(botid, ip[], port, reason[])
 {
 	printf("Disconnected from IRC server: %s", reason);
-	ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_USERNAME, IRC_USERNAME, IRC_USERNAME, IRC_SSL);
+	if (serverType == SERVER_PUBLIC)
+	{
+		ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_PUBLIC_USERNAME, IRC_PUBLIC_USERNAME, IRC_PUBLIC_USERNAME, IRC_SSL);
+	}
+	else
+	{
+		ircBot = IRC_Connect(IRC_HOST, IRC_PORT, IRC_DEV_USERNAME, IRC_DEV_USERNAME, IRC_DEV_USERNAME, IRC_SSL);
+	}
 }
