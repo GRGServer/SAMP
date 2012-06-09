@@ -2016,8 +2016,4 @@
 		<en>Friend</en>
 		<de>Freund</de>
 	</string>
-	<string id="505">
-		<en>%s is currently offline!</en>
-		<de>%s ist derzeit offline!</de>
-	</string>
 </languagestrings>

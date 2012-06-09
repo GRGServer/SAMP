@@ -61,14 +61,10 @@ SendMessageToChannel(playerID, channel[], message[], targetPlayerID = INVALID_PL
 	}
 	if (IsStr(channel, "PLAYER"))
 	{
-		if (targetPlayerID == INVALID_PLAYER_ID && PVar:playerID[CHATMODE_USERID])
+		if (targetPlayerID == INVALID_PLAYER_ID)
 		{
-			targetPlayerID = GetPlayerByUserID(PVar:playerID[CHATMODE_USERID]);
-			if (targetPlayerID == INVALID_PLAYER_ID)
-			{
-				SendClientMessageEx(playerID, COLOR_ERROR, 505, GetMySQLValue("users", "Username", "ID", val2str(PVar:playerID[CHATMODE_USERID])));
-				return false;
-			}
+			SendClientMessageEx(playerID, COLOR_ERROR, 147);
+			return false;
 		}
 		Format:string("[%s -> %s] %s", GetPlayerNameEx(playerID), GetPlayerNameEx(targetPlayerID), message);
 		SendClientMessage(targetPlayerID, COLOR_CHAT_PLAYER, string);
