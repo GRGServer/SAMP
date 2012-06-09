@@ -1,30 +1,30 @@
 LoadPlayer(playerID)
 {
-	MySQLQuery("SELECT * FROM `users` WHERE `ID` = '%d'", PVar:playerID[USERID]);
+	MySQLQuery("SELECT * FROM `users` WHERE `id` = '%d'", PVar:playerID[USERID]);
 	mysql_store_result();
-	new Float:bankMoney = floatstr(GetMySQLField("BankMoney"));
-	new Float:cashMoney = floatstr(GetMySQLField("Money"));
-	SetPVarStr:playerID[CHATMODE][STRINGLENGTH_CHATMODE](GetMySQLField("ChatMode"));
-	PVar:playerID[CHATMODE_USERID] = strval(GetMySQLField("ChatModeUserID"));
-	PVar:playerID[CURRENTPROPERTYID] = strval(GetMySQLField("CurrentPropertyID"));
-	PVar:playerID[DEATHS] = strval(GetMySQLField("Deaths"));
-	PVar:playerID[GODMODE] = strval(GetMySQLField("GodMode"));
-	PVar:playerID[JOBID] = strval(GetMySQLField("JobID"));
-	PVar:playerID[LANGUAGE] = strval(GetMySQLField("Language"));
-	PVar:playerID[LASTNEWSID] = strval(GetMySQLField("LastNewsID"));
-	PVar:playerID[LASTPAYDAY] = strval(GetMySQLField("LastPayDay"));
+	new Float:bankMoney = floatstr(GetMySQLField("bankMoney"));
+	new Float:cashMoney = floatstr(GetMySQLField("money"));
+	SetPVarStr:playerID[CHATMODE][STRINGLENGTH_CHATMODE](GetMySQLField("chatMode"));
+	PVar:playerID[CHATMODE_USERID] = strval(GetMySQLField("chatModeUserId"));
+	PVar:playerID[CURRENTPROPERTYID] = strval(GetMySQLField("currentPropertyId"));
+	PVar:playerID[DEATHS] = strval(GetMySQLField("deaths"));
+	PVar:playerID[GODMODE] = strval(GetMySQLField("godMode"));
+	PVar:playerID[JOBID] = strval(GetMySQLField("jobId"));
+	PVar:playerID[LANGUAGE] = strval(GetMySQLField("language"));
+	PVar:playerID[LASTNEWSID] = strval(GetMySQLField("lastNewsId"));
+	PVar:playerID[LASTPAYDAY] = strval(GetMySQLField("lastPayDay"));
 	PVar:playerID[ONLINESINCE] = gettime();
-	PVar:playerID[ONLINETIME] = strval(GetMySQLField("OnlineTime"));
-	PVar:playerID[SKIN] = strval(GetMySQLField("Skin"));
-	PVar:playerID[SHOWCLOCK] = strval(GetMySQLField("ShowClock"));
-	SetPlayerHealth(playerID, floatstr(GetMySQLField("Health")));
+	PVar:playerID[ONLINETIME] = strval(GetMySQLField("onlineTime"));
+	PVar:playerID[SKIN] = strval(GetMySQLField("skin"));
+	PVar:playerID[SHOWCLOCK] = strval(GetMySQLField("showClock"));
+	SetPlayerHealth(playerID, floatstr(GetMySQLField("health")));
 	SetPlayerSkin(playerID, PVar:playerID[SKIN]);
 	mysql_free_result();
 	SetPlayerMoney(playerID, MONEY_BANK, bankMoney);
 	SetPlayerMoney(playerID, MONEY_CASH, cashMoney);
-	MySQLQuery("SELECT * FROM `permissions` WHERE `UserID` = '%d'", PVar:playerID[USERID]);
+	MySQLQuery("SELECT * FROM `permissions` WHERE `userId` = '%d'", PVar:playerID[USERID]);
 	mysql_store_result();
-	if (strval(GetMySQLField("UserID")))
+	if (mysql_num_rows())
 	{
 		LoadPlayerPermissions(playerID);
 	}

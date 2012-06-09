@@ -6,7 +6,7 @@ SendMessageToChannel(playerID, channel[], message[], targetPlayerID = INVALID_PL
 	{
 		targetUserID = PVar:targetPlayerID[USERID];
 	}
-	MySQLQuery("INSERT INTO `chatlog` (`UserID`, `TargetUserID`, `Channel`, `Time`, `Text`) VALUES('%d', '%d', '%s', NOW(), '%s')", PVar:playerID[USERID], targetUserID, channel, MySQLEscapeString(message));
+	MySQLQuery("INSERT INTO `chatlog` (`userId`, `targetUserId`, `channel`, `time`, `text`) VALUES('%d', '%d', '%s', NOW(), '%s')", PVar:playerID[USERID], targetUserID, channel, MySQLEscapeString(message));
 	if (IsStr(channel, "ADMINS"))
 	{
 		Format:string("[%s@Admins] %s", GetPlayerNameEx(playerID), message);

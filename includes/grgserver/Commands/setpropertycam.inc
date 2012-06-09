@@ -6,7 +6,7 @@ PCMD:setpropertycam[MAPPER](playerID, params[], 336)
 	if (PVar:playerID[SELECTEDPROPERTYID])
 	{
 		GetPlayerCameraPos(playerID, posX, posY, posZ);
-		MySQLQuery("UPDATE `properties` SET `CameraPosX` = '%f', `CameraPosY` = '%f', `CameraPosZ` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, PVar:playerID[SELECTEDPROPERTYID]);
+		MySQLQuery("UPDATE `properties` SET `cameraPosX` = '%f', `cameraPosY` = '%f', `cameraPosZ` = '%f' WHERE `id` = '%d'", posX, posY, posZ, PVar:playerID[SELECTEDPROPERTYID]);
 		SendClientMessageEx(playerID, COLOR_INFO, 29);
 		return COMMAND_OK;
 	}

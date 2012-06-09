@@ -5,15 +5,15 @@ PCMD:selectlastobject[MAPPER](playerID, params[], 398)
 	new Float:posX;
 	new Float:posY;
 	new Float:posZ;
-	MySQLQuery("SELECT * FROM `objects` WHERE `Source` = 'INGAME:%d' ORDER BY `ID` DESC LIMIT 1", PVar:playerID[USERID]);
+	MySQLQuery("SELECT * FROM `objects` WHERE `source` = 'INGAME:%d' ORDER BY `id` DESC LIMIT 1", PVar:playerID[USERID]);
 	mysql_store_result();
 	if (mysql_num_rows())
 	{
-		id = strval(GetMySQLField("ID"));
-		modelID = strval(GetMySQLField("ModelID"));
-		posX = floatstr(GetMySQLField("PosX"));
-		posY = floatstr(GetMySQLField("PosY"));
-		posZ = floatstr(GetMySQLField("PosZ"));
+		id = strval(GetMySQLField("id"));
+		modelID = strval(GetMySQLField("modelId"));
+		posX = floatstr(GetMySQLField("posX"));
+		posY = floatstr(GetMySQLField("posY"));
+		posZ = floatstr(GetMySQLField("posZ"));
 	}
 	mysql_free_result();
 	if (!id)

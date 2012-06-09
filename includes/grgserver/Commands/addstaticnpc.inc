@@ -12,11 +12,10 @@ PCMD:addstaticnpc[NPCADMIN](playerid, params[], 97)
 	new Float:angle;
 	GetPlayerPos(playerid, posX, posY, posZ);
 	GetPlayerFacingAngle(playerid, angle);
-	MySQLQuery("INSERT INTO `npcs` (`Name`, `SpawnPosX`, `SpawnPosY`, `SpawnPosZ`, `SpawnAngle`, `AutoConnect`) VALUES('%s', '%f', '%f', '%f', '%f', '1')", MySQLEscapeString(playerName), posX, posY, posZ, angle);
+	MySQLQuery("INSERT INTO `npcs` (`name`, `spawnPosX`, `spawnPosY`, `spawnPosZ`, `spawnAngle`, `autoConnect`) VALUES('%s', '%f', '%f', '%f', '%f', '1')", MySQLEscapeString(playerName), posX, posY, posZ, angle);
 	new id = mysql_insert_id();
 	if (id > 0)
 	{
-		Format:playerName("NPC_%s", playerName);
 		ConnectNPC(playerName, NPC_SCRIPTNAME);
 		SendClientMessageEx(playerid, COLOR_INFO, 83, id);
 		return COMMAND_OK;

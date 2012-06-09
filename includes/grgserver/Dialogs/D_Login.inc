@@ -9,11 +9,11 @@ DialogResponse:Login(playerID, response, listItem, inputText[])
 	{
 		if (strlen(inputText))
 		{
-			MySQLQuery("SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerID)));
+			MySQLQuery("SELECT `id` FROM `users` WHERE `username` = '%s' AND `password` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerID)), MD5(inputText));
 			mysql_store_result();
-			if (!strcmp(MD5(inputText), GetMySQLField("Password"), true))
+			if (mysql_num_rows())
 			{
-				PVar:playerID[USERID] = strval(GetMySQLField("ID"));
+				PVar:playerID[USERID] = strval(GetMySQLField("id"));
 			}
 			else
 			{
@@ -23,7 +23,7 @@ DialogResponse:Login(playerID, response, listItem, inputText[])
 			mysql_free_result();
 			if (PVar:playerID[USERID])
 			{
-				MySQLQuery("UPDATE `users` SET `LoginTime` = NOW(), `ClientVersion` = '%s' WHERE `ID` = '%d'", GetPlayerVersionEx(playerID), PVar:playerID[USERID]);
+				MySQLQuery("UPDATE `users` SET `loginTime` = NOW(), `clientVersion` = '%s' WHERE `id` = '%d'", GetPlayerVersionEx(playerID), PVar:playerID[USERID]);
 				printf("Player logged in: %s (UserID: %d)", GetPlayerNameEx(playerID), PVar:playerID[USERID]);
 				PlayerLoop(currentPlayerID)
 				{

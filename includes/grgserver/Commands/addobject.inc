@@ -9,12 +9,12 @@ PCMD:addobject[MAPPER](playerID, params[], 202)
 			CmdUsageMsg(playerID, "addobject", "modelID/ModelName");
 			return COMMAND_USAGE;
 		}
-		MySQLQuery("SELECT * FROM `objectmodels` WHERE `Name` LIKE '%s' LIMIT 50", str_replace("*", "%%", MySQLEscapeString(modelName)));
+		MySQLQuery("SELECT * FROM `objectmodels` WHERE `name` LIKE '%s' LIMIT 50", str_replace("*", "%%", MySQLEscapeString(modelName)));
 		mysql_store_result();
 		if (!mysql_num_rows() && strfind(modelName, "*") == -1)
 		{
 			mysql_free_result();
-			MySQLQuery("SELECT * FROM `objectmodels` WHERE `Name` LIKE '%%%s%%' LIMIT 50", MySQLEscapeString(modelName));
+			MySQLQuery("SELECT * FROM `objectmodels` WHERE `name` LIKE '%%%s%%' LIMIT 50", MySQLEscapeString(modelName));
 			mysql_store_result();
 		}
 		if (mysql_num_rows() > 1)
@@ -26,14 +26,14 @@ PCMD:addobject[MAPPER](playerID, params[], 202)
 				{
 					strcat(objectList, "\n");
 				}
-				Format:objectList("%s%s:%s", objectList, GetMySQLField("ID"), GetMySQLField("Name"));
+				Format:objectList("%s%s:%s", objectList, GetMySQLField("id"), GetMySQLField("name"));
 			}
 			CreateDialog(playerID, "AddObject", DIALOG_STYLE_LIST, LanguageString(playerID, 202), objectList, LanguageString(playerID, 170), LanguageString(playerID, 165));
 			modelID = -1;
 		}
 		else
 		{
-			modelID = strval(GetMySQLField("ID"));
+			modelID = strval(GetMySQLField("id"));
 		}
 		mysql_free_result();
 	}

@@ -6,7 +6,7 @@ PCMD:markobjects[MAPPER](playerID, params[], 482)
 		CmdUsageMsg(playerID, "markobjects", "ModelID");
 		return COMMAND_USAGE;
 	}
-	MySQLQuery("SELECT * FROM `objects` WHERE `ModelID` = '%d'", modelID);
+	MySQLQuery("SELECT * FROM `objects` WHERE `modelId` = '%d'", modelID);
 	mysql_store_result();
 	new rows = mysql_num_rows();
 	if (rows)
@@ -22,7 +22,7 @@ PCMD:markobjects[MAPPER](playerID, params[], 482)
 		Count(iconID, rows)
 		{
 			FetchMySQLRow();
-			SetPlayerMapIcon(playerID, iconID, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), 0, COLOR_MARKER_OBJECT, MAPICON_GLOBAL);
+			SetPlayerMapIcon(playerID, iconID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), 0, COLOR_MARKER_OBJECT, MAPICON_GLOBAL);
 		}
 	}
 	mysql_free_result();

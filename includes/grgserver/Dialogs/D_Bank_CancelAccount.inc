@@ -7,7 +7,7 @@ DialogResponse:Bank_CancelAccount(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
-		SetUserDBValue(playerID, "BankID", "0");
+		MySQLQuery("UPDATE `users` SET `bankId` = '0' WHERE `id` = '%d'", PVar:playerID[USERID]);
 		LeaveProperty(playerID);
 	}
 	else

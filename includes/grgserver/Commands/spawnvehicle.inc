@@ -30,12 +30,12 @@ PCMD:spawnvehicle[MAPPER](playerID, params[], 122)
 			new parameter[16];
 			if (sscanf(vehicleName, "p:cs", type, parameter))
 			{
-				MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `Name` LIKE '%s' LIMIT 100", str_replace("*", "%%", MySQLEscapeString(vehicleName)));
+				MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `name` LIKE '%s' LIMIT 100", str_replace("*", "%%", MySQLEscapeString(vehicleName)));
 				mysql_store_result();
 				if (!mysql_num_rows() && strfind(vehicleName, "*") == -1)
 				{
 					mysql_free_result();
-					MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `Name` LIKE '%%%s%%' LIMIT 100", MySQLEscapeString(vehicleName));
+					MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `name` LIKE '%%%s%%' LIMIT 100", MySQLEscapeString(vehicleName));
 					mysql_store_result();
 				}
 			}
@@ -45,12 +45,12 @@ PCMD:spawnvehicle[MAPPER](playerID, params[], 122)
 				{
 					case 't':
 					{
-						MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `Type` LIKE '%s' LIMIT 100", str_replace("*", "%%", MySQLEscapeString(parameter)));
+						MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `type` LIKE '%s' LIMIT 100", str_replace("*", "%%", MySQLEscapeString(parameter)));
 						mysql_store_result();
 						if (!mysql_num_rows() && strfind(parameter, "*") == -1)
 						{
 							mysql_free_result();
-							MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `Type` LIKE '%%%s%%' LIMIT 100", MySQLEscapeString(parameter));
+							MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `type` LIKE '%%%s%%' LIMIT 100", MySQLEscapeString(parameter));
 							mysql_store_result();
 						}
 					}
@@ -70,7 +70,7 @@ PCMD:spawnvehicle[MAPPER](playerID, params[], 122)
 					{
 						strcat(vehicleList, "\n");
 					}
-					Format:vehicleList("%s%s:%s", vehicleList, GetMySQLField("ID"), GetMySQLField("Name"));
+					Format:vehicleList("%s%s:%s", vehicleList, GetMySQLField("id"), GetMySQLField("name"));
 				}
 				PVar:playerID[SPAWNVEHICLE_COLOR1] = color1;
 				PVar:playerID[SPAWNVEHICLE_COLOR2] = color2;
@@ -80,7 +80,7 @@ PCMD:spawnvehicle[MAPPER](playerID, params[], 122)
 			}
 			else
 			{
-				modelID = strval(GetMySQLField("ID"));
+				modelID = strval(GetMySQLField("id"));
 			}
 			mysql_free_result();
 		}

@@ -11,7 +11,7 @@ PCMD:setspawn[MAPPER](playerID, params[], 401)
 	new Float:angle;
 	GetPlayerPos(playerID, posX, posY, posZ);
 	GetPlayerFacingAngle(playerID, angle);
-	MySQLQuery("UPDATE `interiors` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Angle` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, angle, PVar:playerID[CURRENTINTERIOR]);
+	MySQLQuery("UPDATE `interiors` SET `posX` = '%f', `posY` = '%f', `posZ` = '%f', `angle` = '%f' WHERE `id` = '%d'", posX, posY, posZ, angle, PVar:playerID[CURRENTINTERIOR]);
 	SendClientMessageEx(playerID, COLOR_INFO, 403);
 	return COMMAND_OK;
 }

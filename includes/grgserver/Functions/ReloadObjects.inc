@@ -8,8 +8,8 @@ ReloadObjects(playerID = INVALID_PLAYER_ID)
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new objectID = CreateDynamicObject(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("RotX")), floatstr(GetMySQLField("RotY")), floatstr(GetMySQLField("RotZ")), -1, strval(GetMySQLField("Interior")), -1, STREAMER_OBJECTDISTANCE);
-		Streamer_SetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID, strval(GetMySQLField("ID")));
+		new objectID = CreateDynamicObject(strval(GetMySQLField("modelId")), floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), floatstr(GetMySQLField("rotX")), floatstr(GetMySQLField("rotY")), floatstr(GetMySQLField("rotZ")), -1, strval(GetMySQLField("interior")), -1, STREAMER_OBJECTDISTANCE);
+		Streamer_SetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID, strval(GetMySQLField("id")));
 		count++;
 	}
 	mysql_free_result();

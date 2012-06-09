@@ -10,7 +10,7 @@ ShowDialog:SelectInterior(playerID, dialogID, startID)
 	{
 		page = 1;
 	}
-	MySQLQuery("SELECT * FROM `interiors` ORDER BY `Name` ASC LIMIT %d,75", startID);
+	MySQLQuery("SELECT `name` FROM `interiors` ORDER BY `name` ASC LIMIT %d,75", startID);
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
@@ -18,7 +18,7 @@ ShowDialog:SelectInterior(playerID, dialogID, startID)
 		{
 			Format:interiors("%s\n", interiors);
 		}
-		Format:interiors("%s%s", interiors, GetMySQLField("Name"));
+		Format:interiors("%s%s", interiors, GetMySQLField("name"));
 	}
 	mysql_free_result();
 	switch (page)
@@ -54,7 +54,7 @@ DialogResponse:SelectInterior(playerID, response, listItem, inputText[])
 		ShowDialog:SelectInterior(playerID,  PVar:playerID[SELECTINTERIOR_ID], 75);
 		return true;
 	}
-	new interiorID = strval(GetMySQLValue("interiors", "ID", "Name", inputText));
+	new interiorID = strval(GetMySQLValue("interiors", "id", "name", inputText));
 	OnInteriorDialogSelect(playerID,  PVar:playerID[SELECTINTERIOR_ID], interiorID);
 	return true;
 }

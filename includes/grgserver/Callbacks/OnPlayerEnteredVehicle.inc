@@ -33,11 +33,11 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 	if (modelID == 420)
 	{
 		new npcPlayerID;
-		MySQLQuery("SELECT * FROM `npcs` WHERE `VehicleID` = '%d'", VehicleProperty:vehicleID[SAVEID]);
+		MySQLQuery("SELECT * FROM `npcs` WHERE `vehicleId` = '%d'", VehicleProperty:vehicleID[SAVEID]);
 		mysql_store_result();
 		if (mysql_num_rows())
 		{
-			npcPlayerID = GetPlayerID(GetMySQLField("Name"));
+			npcPlayerID = GetPlayerID(GetMySQLField("name"));
 		}
 		mysql_free_result();
 		if (npcPlayerID != INVALID_PLAYER_ID)

@@ -51,10 +51,10 @@ CheckVehiclePermission(playerID, vehicleID)
 			return false;
 		}
 	}
-	MySQLQuery("SELECT * FROM `vehicles` WHERE `ID` = '%d'", VehicleProperty:vehicleID[SAVEID]);
+	MySQLQuery("SELECT * FROM `vehicles` WHERE `id` = '%d'", VehicleProperty:vehicleID[SAVEID]);
 	mysql_store_result();
-	new ownerUserID = strval(GetMySQLField("OwnerUserID"));
-	new Float:price = floatstr(GetMySQLField("Price"));
+	new ownerUserID = strval(GetMySQLField("ownerUserId"));
+	new Float:price = floatstr(GetMySQLField("price"));
 	mysql_free_result();
 	if (!ownerUserID && price)
 	{

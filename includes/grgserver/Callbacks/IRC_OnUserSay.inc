@@ -69,7 +69,7 @@ public IRC_OnUserSay(botid, recipient[], user[], host[], message[])
 	else
 	{
 		Format:string("[IRC] %s: %s", userName, text);
-		MySQLQuery("INSERT INTO `chatlog` (`Channel`, `Time`, `Text`) VALUES('ALL', NOW(), '%s')", MySQLEscapeString(string));
+		MySQLQuery("INSERT INTO `chatlog` (`channel`, `time`, `text`) VALUES('ALL', NOW(), '%s')", MySQLEscapeString(string));
 		SendClientMessageToAll(COLOR_IRC, string);
 		print(string);
 	}

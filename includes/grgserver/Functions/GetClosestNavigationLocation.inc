@@ -2,17 +2,17 @@ GetClosestNavigationLocation(playerID, typeID, &Float:posX, &Float:posY, &Float:
 {
 	new found;
 	new Float:oldDistance = 6000.0;
-	MySQLQuery("SELECT * FROM `navigationlocations` WHERE `Type` = '%d'", typeID);
+	MySQLQuery("SELECT * FROM `navigationlocations` WHERE `type` = '%d'", typeID);
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new Float:distance = GetPlayerDistanceFromPoint(playerID, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")));
+		new Float:distance = GetPlayerDistanceFromPoint(playerID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")));
 		if (distance < oldDistance)
 		{
 			oldDistance = distance;
-			posX = floatstr(GetMySQLField("PosX"));
-			posY = floatstr(GetMySQLField("PosY"));
-			posZ = floatstr(GetMySQLField("PosZ"));
+			posX = floatstr(GetMySQLField("posX"));
+			posY = floatstr(GetMySQLField("posY"));
+			posZ = floatstr(GetMySQLField("posZ"));
 			found = true;
 		}
 	}

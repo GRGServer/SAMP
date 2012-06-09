@@ -8,7 +8,7 @@ PCMD:settplink[MAPPER](playerID, params[], 406)
 		new Float:angle;
 		GetPlayerPos(playerID, posX, posY, posZ);
 		GetPlayerFacingAngle(playerID, angle);
-		MySQLQuery("UPDATE `tplinks` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Angle` = '%f', `Interior` = '%d' WHERE `ID` = '%d'", posX, posY, posZ, angle, GetPlayerInterior(playerID), PVar:playerID[TELEPORT_LINKID]);
+		MySQLQuery("UPDATE `tplinks` SET `posX` = '%f', `posY` = '%f', `posZ` = '%f', `angle` = '%f', `interior` = '%d' WHERE `id` = '%d'", posX, posY, posZ, angle, GetPlayerInterior(playerID), PVar:playerID[TELEPORT_LINKID]);
 		SendClientMessageEx(playerID, COLOR_INFO, 408, PVar:playerID[TELEPORT_LINKID]);
 		return COMMAND_OK;
 	}

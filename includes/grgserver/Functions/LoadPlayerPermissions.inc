@@ -1,10 +1,10 @@
 LoadPlayerPermissions(playerID)
 {
-	LoadPermission:ADMIN(playerID, "Admin");
-	LoadPermission:MAPPER(playerID, "Mapper");
-	LoadPermission:MODERATOR(playerID, "Moderator");
-	LoadPermission:NAVI(playerID, "Navi");
-	LoadPermission:NPCADMIN(playerID, "NPCAdmin");
-	LoadPermission:SERVERADMIN(playerID, "ServerAdmin");
-	LoadPermission:TELEPORT(playerID, "Teleport");
+	LoadPermission:ADMIN(playerID, "admin");
+	LoadPermission:MAPPER(playerID, "mapper");
+	LoadPermission:MODERATOR(playerID, "moderator");
+	LoadPermission:NAVI(playerID, "navi");
+	LoadPermission:NPCADMIN(playerID, "npcAdmin");
+	LoadPermission:SERVERADMIN(playerID, "serverAdmin");
+	LoadPermission:TELEPORT(playerID, "teleport");
 }

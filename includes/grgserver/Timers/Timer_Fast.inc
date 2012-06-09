@@ -121,9 +121,9 @@ Timer:Fast()
 						if (objectID != PVar:playerID[SPEEDCAM_INRANGE])
 						{
 							PVar:playerID[SPEEDCAM_INRANGE] = objectID;
-							MySQLQuery("SELECT * FROM `speedcameras` WHERE `ObjectID` = '%d'", Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID));
+							MySQLQuery("SELECT * FROM `speedcameras` WHERE `objectId` = '%d'", Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID));
 							mysql_store_result();
-							PVar:playerID[SPEEDCAM_SPEEDLIMIT] = strval(GetMySQLField("SpeedLimit"));
+							PVar:playerID[SPEEDCAM_SPEEDLIMIT] = strval(GetMySQLField("speedLimit"));
 							mysql_free_result();
 							if (!PVar:playerID[SPEEDCAM_SPEEDLIMIT])
 							{

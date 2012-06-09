@@ -38,7 +38,7 @@ DialogResponse:SetSell(playerID, response, listItem, inputText[])
 				return COMMAND_ERROR;
 			}
 		}
-		Format:sqlQuery("REPLACE INTO `vehicles` (`ID`, `Numberplate`, `PosX`, `PosY`, `PosZ`, `Angle`, `Interior`, `Health`, `ModelID`, `Color1`, `Color2`, `Price`, `CurrentFuel`)");
+		Format:sqlQuery("REPLACE INTO `vehicles` (`id`, `numberplate`, `posX`, `posY`, `posZ`, `angle`, `interior`, `health`, `modelId`, `color1`, `color2`, `price`, `currentFuel`)");
 		MySQLQuery("%s VALUES('%d', '%s', '%f', '%f', '%f', '%f', '%d', '%f', '%d', '%d', '%d', '%f', '%f')", sqlQuery, VehicleProperty:vehicleID[SAVEID], numberplateString, posX, posY, posZ, angle, GetPlayerInterior(playerID), health, modelID, VehicleProperty:vehicleID[COLOR1], VehicleProperty:vehicleID[COLOR2], price, vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]);
 		return COMMAND_OK;
 	}

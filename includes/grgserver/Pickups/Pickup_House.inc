@@ -4,25 +4,25 @@ PickupEvent:HOUSE(playerID, pickupID, eventType)
 	{
 		case PICKUPEVENT_KEYPRESS:
 		{
-			new ownerUserID = strval(GetMySQLValue("properties", "OwnerUserID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
+			new ownerUserID = strval(GetMySQLValue("properties", "ownerUserId", "pickupId", val2str(pickups[pickupID][PICKUP_ID])));
 			if (ownerUserID)
 			{
 				if (ownerUserID == PVar:playerID[USERID])
 				{
-					PVar:playerID[DIALOGPROPERTYID] = strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
+					PVar:playerID[DIALOGPROPERTYID] = strval(GetMySQLValue("properties", "id", "pickupId", val2str(pickups[pickupID][PICKUP_ID])));
 					ShowDialog:House(playerID);
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, 141, GetMySQLValue("users", "Username", "ID", val2str(ownerUserID)));
+					SendClientMessageEx(playerID, COLOR_ERROR, 141, GetMySQLValue("users", "username", "id", val2str(ownerUserID)));
 				}
 			}
 			else
 			{
-				new Float:price = floatstr(GetMySQLValue("properties", "Price", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
+				new Float:price = floatstr(GetMySQLValue("properties", "price", "pickupId", val2str(pickups[pickupID][PICKUP_ID])));
 				if (price <= PVar:playerID[BANKMONEY])
 				{
-					PVar:playerID[DIALOGPROPERTYID] = strval(GetMySQLValue("properties", "ID", "PickupID", val2str(pickups[pickupID][PICKUP_ID])));
+					PVar:playerID[DIALOGPROPERTYID] = strval(GetMySQLValue("properties", "id", "pickupId", val2str(pickups[pickupID][PICKUP_ID])));
 					ShowDialog:BuyHouse(playerID, price);
 				}
 				else
@@ -46,7 +46,7 @@ PickupEvent:HOUSE(playerID, pickupID, eventType)
 
 PickupModelID:HOUSE(pickupID)
 {
-	if (strval(GetMySQLValue("properties", "OwnerUserID", "PickupID", val2str(pickupID))))
+	if (strval(GetMySQLValue("properties", "ownerUserId", "pickupId", val2str(pickupID))))
 	{
 		return 1272;// Bought
 	}

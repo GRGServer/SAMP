@@ -38,7 +38,7 @@ CMD:addfriend(playerID, params[], 439)
 		return COMMAND_ERROR;
 	}
 	new alreadyInList;
-	MySQLQuery("SELECT * FROM `friends` WHERE (`UserID1` = '%d' AND `UserID2` = '%d') OR (`UserID2` = '%d' AND `UserID1` = '%d')", PVar:playerID[USERID], PVar:targetPlayerID[USERID], PVar:playerID[USERID], PVar:targetPlayerID[USERID]);
+	MySQLQuery("SELECT * FROM `friends` WHERE (`userId1` = '%d' AND `userId2` = '%d') OR (`userId2` = '%d' AND `userId1` = '%d')", PVar:playerID[USERID], PVar:targetPlayerID[USERID], PVar:playerID[USERID], PVar:targetPlayerID[USERID]);
 	mysql_store_result();
 	alreadyInList = mysql_num_rows();
 	mysql_free_result();
@@ -47,7 +47,7 @@ CMD:addfriend(playerID, params[], 439)
 		SendClientMessageEx(playerID, COLOR_ERROR, 440, targetPlayerID);
 		return COMMAND_ERROR;
 	}
-	MySQLQuery("INSERT INTO `friends` (`UserID1`, `UserID2`) VALUES('%d', '%d')", PVar:playerID[USERID], PVar:targetPlayerID[USERID]);
+	MySQLQuery("INSERT INTO `friends` (`userId1`, `userId2`) VALUES('%d', '%d')", PVar:playerID[USERID], PVar:targetPlayerID[USERID]);
 	SendClientMessageEx(targetPlayerID, COLOR_INFO, 443, playerID, playerID);
 	SendClientMessageEx(playerID, COLOR_INFO, 444, targetPlayerID);
 	return COMMAND_OK;

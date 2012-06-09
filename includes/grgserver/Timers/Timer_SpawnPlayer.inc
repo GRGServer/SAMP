@@ -1,5 +1,9 @@
 Timer:SpawnPlayer(playerID)
 {
 	SpawnPlayer(playerID);
-	SetPlayerPosEx(playerID, floatstr(GetUserDBValue(playerID, "PosX")), floatstr(GetUserDBValue(playerID, "PosY")), floatstr(GetUserDBValue(playerID, "PosZ")));
+	MySQLQuery("SELECT * FROM `users` WHERE `id` = '%d'", PVar:playerID[USERID]);
+	mysql_store_result();
+	SetPlayerPosEx(playerID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), strval(GetMySQLField("interior")));
+	SetPlayerFacingAngle(playerID, floatstr(GetMySQLField("angle")));
+	mysql_free_result();
 }

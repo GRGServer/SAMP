@@ -9,7 +9,7 @@ DialogResponse:ChangePassword_Step3(playerID, response, listItem, inputText[])
 	{
 		if (!strcmp(PVar:playerID[CHANGEPASSWORD], inputText))
 		{
-			SetUserDBValue(playerID, "Password", MD5(inputText));
+			MySQLQuery("UPDATE `users` SET `password` = '%s' WHERE `id` = '%d'", MD5(inputText), PVar:playerID[USERID]);
 			SendClientMessageEx(playerID, COLOR_INFO, 20);
 		}
 		else

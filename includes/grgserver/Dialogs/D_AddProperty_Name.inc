@@ -15,7 +15,7 @@ DialogResponse:AddProperty_Name(playerID, response, listItem, inputText[])
 		pickupID = AddPickup(-1, PVar:playerID[ADDPROPERTY_TYPE], posX, posY, posZ, true);
 		if (pickupID > 0)
 		{
-			MySQLQuery("INSERT INTO `properties` (`PickupID`, `InteriorID`, `Name`, `Price`) VALUES ('%d', '%d', '%s', '%f')", pickupID, PVar:playerID[ADDPROPERTY_INTERIORID], MySQLEscapeString(inputText), PVar:playerID[ADDPROPERTY_PRICE]);
+			MySQLQuery("INSERT INTO `properties` (`pickupId`, `interiorId`, `name`, `price`) VALUES ('%d', '%d', '%s', '%f')", pickupID, PVar:playerID[ADDPROPERTY_INTERIORID], MySQLEscapeString(inputText), PVar:playerID[ADDPROPERTY_PRICE]);
 			SendClientMessageEx(playerID, COLOR_INFO, 10, inputText, PVar:playerID[ADDPROPERTY_PRICE], mysql_insert_id());
 		}
 		else

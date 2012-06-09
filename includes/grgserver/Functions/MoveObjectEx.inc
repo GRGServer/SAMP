@@ -1,30 +1,30 @@
 MoveObjectEx(dbObjectID, newState)
 {
 	new rows;
-	MySQLQuery("SELECT * FROM `objects` WHERE `ID` = '%d'", dbObjectID);
+	MySQLQuery("SELECT * FROM `objects` WHERE `id` = '%d'", dbObjectID);
 	mysql_store_result();
 	rows = mysql_num_rows();
-	new Float:normalPosX = floatstr(GetMySQLField("PosX"));
-	new Float:normalPosY = floatstr(GetMySQLField("PosY"));
-	new Float:normalPosZ = floatstr(GetMySQLField("PosZ"));
-	new Float:normalRotX = floatstr(GetMySQLField("RotX"));
-	new Float:normalRotY = floatstr(GetMySQLField("RotY"));
-	new Float:normalRotZ = floatstr(GetMySQLField("RotZ"));
+	new Float:normalPosX = floatstr(GetMySQLField("posX"));
+	new Float:normalPosY = floatstr(GetMySQLField("posY"));
+	new Float:normalPosZ = floatstr(GetMySQLField("posZ"));
+	new Float:normalRotX = floatstr(GetMySQLField("rotX"));
+	new Float:normalRotY = floatstr(GetMySQLField("rotY"));
+	new Float:normalRotZ = floatstr(GetMySQLField("rotZ"));
 	mysql_free_result();
 	if (!rows)
 	{
 		return -1;
 	}
-	MySQLQuery("SELECT * FROM `moveobjects` WHERE `ObjectID` = '%d'", dbObjectID);
+	MySQLQuery("SELECT * FROM `moveobjects` WHERE `objectId` = '%d'", dbObjectID);
 	mysql_store_result();
 	rows = mysql_num_rows();
-	new Float:movedPosX = floatstr(GetMySQLField("PosX"));
-	new Float:movedPosY = floatstr(GetMySQLField("PosY"));
-	new Float:movedPosZ = floatstr(GetMySQLField("PosZ"));
-	new Float:movedRotX = floatstr(GetMySQLField("RotX"));
-	new Float:movedRotY = floatstr(GetMySQLField("RotY"));
-	new Float:movedRotZ = floatstr(GetMySQLField("RotZ"));
-	new Float:speed = floatstr(GetMySQLField("Speed"));
+	new Float:movedPosX = floatstr(GetMySQLField("posX"));
+	new Float:movedPosY = floatstr(GetMySQLField("posY"));
+	new Float:movedPosZ = floatstr(GetMySQLField("posZ"));
+	new Float:movedRotX = floatstr(GetMySQLField("rotX"));
+	new Float:movedRotY = floatstr(GetMySQLField("rotY"));
+	new Float:movedRotZ = floatstr(GetMySQLField("rotZ"));
+	new Float:speed = floatstr(GetMySQLField("speed"));
 	mysql_free_result();
 	if (!rows)
 	{

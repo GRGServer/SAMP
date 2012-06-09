@@ -7,12 +7,12 @@ ShowDialog:NaviTarget(playerID)
 	AddLine(targets, LanguageString(playerID, 174));// Hotel
 	AddLine(targets, LanguageString(playerID, 175));// House
 	AddLine(targets, LanguageString(playerID, 437));// Vehicle upgrader
-	MySQLQuery("SELECT * FROM `navigationlocationtypes` ORDER BY `Name` ASC");
+	MySQLQuery("SELECT `name` FROM `navigationlocationtypes` ORDER BY `name` ASC");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
 		new string[256];
-		strcat(string, GetMySQLField("Name"));
+		strcat(string, GetMySQLField("name"));
 		new checkCharacter;
 		new languageStringID;
 		if (!sscanf(string, "p:cd", checkCharacter, languageStringID))

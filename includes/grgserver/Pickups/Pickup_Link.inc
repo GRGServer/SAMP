@@ -4,14 +4,14 @@ PickupEvent:LINK(playerID, pickupID, eventType)
 	{
 		case PICKUPEVENT_PICKUP:
 		{
-			MySQLQuery("SELECT * FROM `tplinks` WHERE `PickupID` = '%d'", pickups[pickupID][PICKUP_ID]);
+			MySQLQuery("SELECT * FROM `tplinks` WHERE `pickupId` = '%d'", pickups[pickupID][PICKUP_ID]);
 			mysql_store_result();
-			PVar:playerID[TELEPORT_LINKID] = strval(GetMySQLField("ID"));
-			new Float:posX = floatstr(GetMySQLField("PosX"));
-			new Float:posY = floatstr(GetMySQLField("PosY"));
-			new Float:posZ = floatstr(GetMySQLField("PosZ"));
-			new Float:angle = floatstr(GetMySQLField("Angle"));
-			new interior = strval(GetMySQLField("Interior"));
+			PVar:playerID[TELEPORT_LINKID] = strval(GetMySQLField("id"));
+			new Float:posX = floatstr(GetMySQLField("posX"));
+			new Float:posY = floatstr(GetMySQLField("posY"));
+			new Float:posZ = floatstr(GetMySQLField("posZ"));
+			new Float:angle = floatstr(GetMySQLField("angle"));
+			new interior = strval(GetMySQLField("interior"));
 			mysql_free_result();
 			if (PVar:playerID[TELEPORT_LINKID])
 			{
@@ -22,7 +22,7 @@ PickupEvent:LINK(playerID, pickupID, eventType)
 			}
 			else
 			{
-				MySQLQuery("INSERT INTO `tplinks` (`PickupID`) VALUES('%d')", pickups[pickupID][PICKUP_ID]);
+				MySQLQuery("INSERT INTO `tplinks` (`pickupId`) VALUES('%d')", pickups[pickupID][PICKUP_ID]);
 				PVar:playerID[TELEPORT_LINKID] = mysql_insert_id();
 			}
 			if (permissions[playerID][PERMISSION_MAPPER])

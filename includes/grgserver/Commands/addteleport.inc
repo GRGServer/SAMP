@@ -12,7 +12,7 @@ PCMD:addteleport[TELEPORT](playerID, params[], 333)
 	new Float:angle;
 	GetPlayerPos(playerID, posX, posY, posZ);
 	GetPlayerFacingAngle(playerID, angle);
-	MySQLQuery("INSERT INTO `teleports` (`Name`, `PosX`, `PosY`, `PosZ`, `Angle`, `Interior`) VALUES('%s', '%f', '%f', '%f', '%f', '%d')", name, posX, posY, posZ, angle, GetPlayerInterior(playerID));
+	MySQLQuery("INSERT INTO `teleports` (`name`, `posX`, `posY`, `posZ`, `angle`, `interior`) VALUES('%s', '%f', '%f', '%f', '%f', '%d')", name, posX, posY, posZ, angle, GetPlayerInterior(playerID));
 	SendClientMessageEx(playerID, COLOR_INFO, 334);
 	return COMMAND_OK;
 }

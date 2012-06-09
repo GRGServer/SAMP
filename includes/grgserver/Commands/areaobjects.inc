@@ -7,13 +7,13 @@ PCMD:areaobjects[MAPPER](playerID, params[], 459)
 		return COMMAND_USAGE;
 	}
 	new objectsFound;
-	MySQLQuery("SELECT `objects`.`ID`, `objects`.`PosX`, `objects`.`PosY`, `objects`.`PosZ`, `objectmodels`.`Name` FROM `objects` LEFT JOIN `objectmodels` ON `objectmodels`.`ID` = `objects`.`ModelID`");
+	MySQLQuery("SELECT `objects`.`id`, `objects`.`posX`, `objects`.`posY`, `objects`.`posZ`, `objectmodels`.`name` FROM `objects` LEFT JOIN `objectmodels` ON `objectmodels`.`id` = `objects`.`modelId`");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		if (GetPlayerDistanceFromPoint(playerID, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ"))) <= distance)
+		if (GetPlayerDistanceFromPoint(playerID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ"))) <= distance)
 		{
-			Format:clientMessageString("%s: %s", GetMySQLField("ID"), GetMySQLField("Name"));
+			Format:clientMessageString("%s: %s", GetMySQLField("id"), GetMySQLField("name"));
 			SendClientMessage(playerID, COLOR_INFO, clientMessageString);
 			objectsFound++;
 		}

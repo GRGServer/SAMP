@@ -1,14 +1,14 @@
 ShowDialog:ChatMode_FriendList(playerID)
 {
 	new list[2048];
-	MySQLQuery("SELECT `users`.`Username` FROM `friends` LEFT JOIN `users` ON (`users`.`ID` = `friends`.`UserID1` OR `users`.`ID` = `friends`.`UserID2`) WHERE (`friends`.`UserID1` = '%d' OR `friends`.`UserID2` = '%d') AND `friends`.`accepted` AND `users`.`ID` != '%d'", PVar:playerID[USERID], PVar:playerID[USERID], PVar:playerID[USERID]);
+	MySQLQuery("SELECT `users`.`username` FROM `friends` LEFT JOIN `users` ON (`users`.`id` = `friends`.`userId1` OR `users`.`id` = `friends`.`userId2`) WHERE (`friends`.`userId1` = '%d' OR `friends`.`userId2` = '%d') AND `friends`.`accepted` AND `users`.`id` != '%d'", PVar:playerID[USERID], PVar:playerID[USERID], PVar:playerID[USERID]);
 	mysql_store_result();
 	new rows = mysql_num_rows();
 	if (rows)
 	{
 		while (FetchMySQLRow())
 		{
-			AddLine(list, GetMySQLField("Username"));
+			AddLine(list, GetMySQLField("username"));
 		}
 		CreateDialog(playerID, "ChatMode_FriendList", DIALOG_STYLE_LIST, LanguageString(playerID, 502), list, "OK", LanguageString(playerID, 171));
 	}
@@ -24,7 +24,7 @@ DialogResponse:ChatMode_FriendList(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
-		new friendUserID = strval(GetMySQLValue("users", "ID", "Username", inputText));
+		new friendUserID = strval(GetMySQLValue("users", "id", "username", inputText));
 		if (friendUserID)
 		{
 			SetPVarStr:playerID[CHATMODE][STRINGLENGTH_CHATMODE]("PLAYER");

@@ -10,7 +10,7 @@ SaveVehicle(vehicleID, interior)
 		GetVehicleHealth(vehicleID, health);
 		GetVehiclePos(vehicleID, posX, posY, posZ);
 		GetVehicleZAngle(vehicleID, angle);
-		Format:sqlQuery("UPDATE `vehicles` SET `Health` = '%f', `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Angle` = '%f', `Interior` = '%d', `Locked` = '%d'", health, posX, posY, posZ, angle, interior, IsVehicleLocked(vehicleID));
-		MySQLQuery("%s, `MileAge` = '%f', `CurrentFuel` = '%f', `FrontLightID` = '%d', `NeonLightID` = '%d', `HasNavi` = '%d' WHERE `ID` = '%d'", sqlQuery, VehicleProperty:vehicleID[MILEAGE], VehicleProperty:vehicleID[CURRENTFUEL], VehicleProperty:vehicleID[FRONTLIGHTID], VehicleProperty:vehicleID[NEONLIGHTID], VehicleProperty:vehicleID[HASNAVI], VehicleProperty:vehicleID[SAVEID]);
+		Format:sqlQuery("UPDATE `vehicles` SET `health` = '%f', `posX` = '%f', `posY` = '%f', `posZ` = '%f', `angle` = '%f', `interior` = '%d', `locked` = '%d'", health, posX, posY, posZ, angle, interior, IsVehicleLocked(vehicleID));
+		MySQLQuery("%s, `mileAge` = '%f', `currentFuel` = '%f', `frontLightId` = '%d', `neonLightId` = '%d', `hasNavi` = '%d' WHERE `id` = '%d'", sqlQuery, VehicleProperty:vehicleID[MILEAGE], VehicleProperty:vehicleID[CURRENTFUEL], VehicleProperty:vehicleID[FRONTLIGHTID], VehicleProperty:vehicleID[NEONLIGHTID], VehicleProperty:vehicleID[HASNAVI], VehicleProperty:vehicleID[SAVEID]);
 	}
 }

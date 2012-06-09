@@ -10,11 +10,11 @@ ReloadPickup(pickupID)
 			break;
 		}
 	}
-	MySQLQuery("SELECT * FROM `pickups` WHERE `ID` = '%d'", pickupID);
+	MySQLQuery("SELECT * FROM `pickups` WHERE `id` = '%d'", pickupID);
 	mysql_store_result();
-	if (AddPickup(strval(GetMySQLField("ID")), GetMySQLField("Type"), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), false) == -1)
+	if (AddPickup(strval(GetMySQLField("id")), GetMySQLField("type"), floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), false) == -1)
 	{
-		printf("Invalid pickup type: %s", GetMySQLField("Type"));
+		printf("Invalid pickup type: %s", GetMySQLField("type"));
 	}
 	mysql_free_result();
 }

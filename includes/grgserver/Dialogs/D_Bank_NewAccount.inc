@@ -7,9 +7,9 @@ DialogResponse:Bank_NewAccount(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
-		new bankID = strval(GetMySQLValue("bankbranches", "BankID", "PropertyID", val2str(PVar:playerID[CURRENTPROPERTYID])));
-		SetUserDBValue(playerID, "BankID", val2str(bankID));
-		SendClientMessageEx(playerID, COLOR_INFO, 216, GetMySQLValue("banks", "Name", "ID", val2str(bankID)));
+		new bankID = strval(GetMySQLValue("bankbranches", "bankId", "propertyId", val2str(PVar:playerID[CURRENTPROPERTYID])));
+		MySQLQuery("UPDATE `users` SET `bankId` = '%d' WHERE `id` = '%d'", bankID, PVar:playerID[USERID]);
+		SendClientMessageEx(playerID, COLOR_INFO, 216, GetMySQLValue("banks", "name", "id", val2str(bankID)));
 		ShowDialog:Bank_HasAccount(playerID);
 	}
 	else

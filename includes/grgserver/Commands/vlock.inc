@@ -16,9 +16,9 @@ CMD:vlock(playerID, params[], 483)
 	}
 	if (VehicleProperty:vehicleID[SAVEID])
 	{
-		MySQLQuery("SELECT `OwnerUserID` FROM `vehicles` WHERE `ID` = '%d'", VehicleProperty:vehicleID[SAVEID]);
+		MySQLQuery("SELECT `ownerUserId` FROM `vehicles` WHERE `id` = '%d'", VehicleProperty:vehicleID[SAVEID]);
 		mysql_store_result();
-		new ownerUserID = strval(GetMySQLField("OwnerUserID"));
+		new ownerUserID = strval(GetMySQLField("ownerUserId"));
 		mysql_free_result();
 		if (ownerUserID != PVar:playerID[USERID])
 		{

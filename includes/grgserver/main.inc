@@ -118,7 +118,6 @@
 #include <grgserver\Functions\SendClientMessageEx.inc>
 #include <grgserver\Functions\SendMessageToChannel.inc>
 #include <grgserver\Functions\SendNPCCommand.inc>
-#include <grgserver\Functions\SetMySQLValue.inc>
 #include <grgserver\Functions\SetPlayerCameraPosEx.inc>
 #include <grgserver\Functions\SetPlayerCheckpointEx.inc>
 #include <grgserver\Functions\SetPlayerMoney.inc>

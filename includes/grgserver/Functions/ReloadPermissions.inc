@@ -5,15 +5,13 @@ ReloadPermissions(playerID = INVALID_PLAYER_ID)
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new userID = strval(GetMySQLField("UserID"));
+		new userID = strval(GetMySQLField("userId"));
 		if (userID)
 		{
-			LoggedInPlayers(currentPlayerID)
+			new currentPlayerID = GetPlayerByUserID(userID);
+			if (currentPlayerID != INVALID_PLAYER_ID)
 			{
-				if (PVar:currentPlayerID[USERID] == userID)
-				{
-					LoadPlayerPermissions(currentPlayerID);
-				}
+				LoadPlayerPermissions(currentPlayerID);
 			}
 		}
 	}

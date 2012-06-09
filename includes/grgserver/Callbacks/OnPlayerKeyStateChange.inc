@@ -8,9 +8,9 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			new id = VehicleProperty:vehicleID[RADIOSTATION];
 			if (id <= 1)
 			{
-				MySQLQuery("SELECT COUNT(*) AS `Count` FROM `radiostations`");
+				MySQLQuery("SELECT COUNT(*) AS `count` FROM `radiostations`");
 				mysql_store_result();
-				id = strval(GetMySQLField("Count"));
+				id = strval(GetMySQLField("count"));
 				mysql_free_result();
 			}
 			else
@@ -26,9 +26,9 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		new vehicleID = GetPlayerVehicleID(playerid);
 		if (vehicleID)
 		{
-			MySQLQuery("SELECT COUNT(*) AS `Count` FROM `radiostations`");
+			MySQLQuery("SELECT COUNT(*) AS `count` FROM `radiostations`");
 			mysql_store_result();
-			new count = strval(GetMySQLField("Count"));
+			new count = strval(GetMySQLField("count"));
 			mysql_free_result();
 			new id = VehicleProperty:vehicleID[RADIOSTATION];
 			if (id >= count)
@@ -47,7 +47,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	{
 		if (PVar:playerid[OBJEDITOR_CURRENTOBJECTID])
 		{
-			MySQLQuery("DELETE FROM `objects` WHERE `ID` = '%d'", Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_EXTRA_ID));
+			MySQLQuery("DELETE FROM `objects` WHERE `id` = '%d'", Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_EXTRA_ID));
 			new extraID = Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_EXTRA_ID);
 			new modelID = Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_MODEL_ID);
 			DestroyDynamicObject(PVar:playerid[OBJEDITOR_CURRENTOBJECTID]);
@@ -55,7 +55,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			UpdateObjectsForAllPlayers();
 			CancelEdit(playerid);
 			SelectObject(playerid);
-			SendClientMessageEx(playerid, COLOR_INFO, 203, extraID, GetMySQLValue("objectmodels", "Name", "ID", val2str(modelID)));
+			SendClientMessageEx(playerid, COLOR_INFO, 203, extraID, GetMySQLValue("objectmodels", "name", "id", val2str(modelID)));
 			return true;
 		}
 	}
@@ -71,12 +71,12 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			new pickupID = IsPlayerInPickup(playerid);
 			if (pickupID != -1)
 			{
-				MySQLQuery("SELECT * FROM `properties` WHERE `PickupID` = '%d'", pickups[pickupID][PICKUP_ID]);
+				MySQLQuery("SELECT * FROM `properties` WHERE `pickupId` = '%d'", pickups[pickupID][PICKUP_ID]);
 				mysql_store_result();
 				if (mysql_num_rows())
 				{
-					PVar:playerid[SELECTEDPROPERTYID] = strval(GetMySQLField("ID"));
-					SendClientMessageEx(playerid, COLOR_INFO, 142, GetMySQLField("Name"));
+					PVar:playerid[SELECTEDPROPERTYID] = strval(GetMySQLField("id"));
+					SendClientMessageEx(playerid, COLOR_INFO, 142, GetMySQLField("name"));
 				}
 				else
 				{

@@ -6,7 +6,7 @@ ShowDialog:AddNaviLocation_Type(playerID)
 	while (FetchMySQLRow())
 	{
 		new string[256];
-		strcat(string, GetMySQLField("Name"));
+		strcat(string, GetMySQLField("name"));
 		new checkCharacter;
 		new languageStringID;
 		if (!sscanf(string, "p:cd", checkCharacter, languageStringID))
@@ -40,7 +40,7 @@ DialogResponse:AddNaviLocation_Type(playerID, response, listItem, inputText[])
 				new Float:posY;
 				new Float:posZ;
 				GetPlayerPos(playerID, posX, posY, posZ);
-				MySQLQuery("INSERT INTO `navigationlocations` (`Type`, `PosX`, `PosY`, `PosZ`) VALUES('%d', '%f', '%f', '%f')", typeID, posX, posY, posZ);
+				MySQLQuery("INSERT INTO `navigationlocations` (`type`, `posX`, `posY`, `posZ`) VALUES('%d', '%f', '%f', '%f')", typeID, posX, posY, posZ);
 				SendClientMessageEx(playerID, COLOR_INFO, 383);
 			}
 			else

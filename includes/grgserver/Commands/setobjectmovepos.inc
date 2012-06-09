@@ -25,7 +25,7 @@ PCMD:setobjectmovepos[MAPPER](playerID, params[], 463)
 	new Float:rotZ;
 	GetDynamicObjectPos(PVar:playerID[OBJEDITOR_CURRENTOBJECTID], posX, posY, posZ);
 	GetDynamicObjectRot(PVar:playerID[OBJEDITOR_CURRENTOBJECTID], rotX, rotY, rotZ);
-	MySQLQuery("REPLACE INTO `moveobjects` (`ObjectID`, `PosX`, `PosY`, `PosZ`, `RotX`, `RotY`, `RotZ`, `Speed`) VALUES('%d', '%f', '%f', '%f', '%f', '%f', '%f', '%f')", dbObjectID, posX, posY, posZ, rotX, rotY, rotZ, speed);
+	MySQLQuery("REPLACE INTO `moveobjects` (`objectId`, `posX`, `posY`, `posZ`, `rotX`, `rotY`, `rotZ`, `speed`) VALUES('%d', '%f', '%f', '%f', '%f', '%f', '%f', '%f')", dbObjectID, posX, posY, posZ, rotX, rotY, rotZ, speed);
 	SendClientMessageEx(playerID, COLOR_INFO, 465, dbObjectID);
 	return COMMAND_OK;
 }

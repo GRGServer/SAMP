@@ -7,7 +7,11 @@ DialogResponse:ChangePassword_Step1(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
-		if (!strcmp(GetUserDBValue(playerID, "Password"), MD5(inputText), true))
+		MySQLQuery("SELECT `id` FROM `users` WHERE `id` = '%d' AND `password` = '%s'", PVar:playerID[USERID], MD5(inputText));
+		mysql_store_result();
+		new rows = mysql_num_rows();
+		mysql_free_result();
+		if (rows)
 		{
 			ShowDialog:ChangePassword_Step2(playerID);
 		}

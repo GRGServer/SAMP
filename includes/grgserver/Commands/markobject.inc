@@ -6,12 +6,12 @@ PCMD:markobject[MAPPER](playerID, params[], 426)
 		CmdUsageMsg(playerID, "markobject", "ObjectID");
 		return COMMAND_USAGE;
 	}
-	MySQLQuery("SELECT * FROM `objects` WHERE `ID` = '%d'", objectID);
+	MySQLQuery("SELECT * FROM `objects` WHERE `id` = '%d'", objectID);
 	mysql_store_result();
 	new rows = mysql_num_rows();
 	if (rows)
 	{
-		SetPlayerMapIcon(playerID, 0, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), 0, COLOR_MARKER_OBJECT, MAPICON_GLOBAL);
+		SetPlayerMapIcon(playerID, 0, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), 0, COLOR_MARKER_OBJECT, MAPICON_GLOBAL);
 	}
 	mysql_free_result();
 	if (!rows)

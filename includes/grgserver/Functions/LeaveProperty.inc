@@ -1,11 +1,10 @@
 LeaveProperty(playerID)
 {
-	new CurrentPropertyID = PVar:playerID[CURRENTPROPERTYID];
-	if (CurrentPropertyID)
+	if (PVar:playerID[CURRENTPROPERTYID])
 	{
-		MySQLQuery("SELECT `PosX`, `PosY`, `PosZ` FROM `pickups` WHERE `ID` = '%d'", strval(GetMySQLValue("properties", "PickupID", "ID", val2str(CurrentPropertyID))));
+		MySQLQuery("SELECT `posX`, `posY`, `posZ` FROM `properties` LEFT JOIN `pickups` ON `pickups`.`id` = `properties`.`pickupId` WHERE `properties`.`id` = '%d'", PVar:playerID[CURRENTPROPERTYID]);
 		mysql_store_result();
-		SetPlayerPosEx(playerID, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")));
+		SetPlayerPosEx(playerID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")));
 		SetPlayerInterior(playerID, 0);
 		SetPlayerVirtualWorld(playerID, 0);
 		PVar:playerID[CURRENTPROPERTYID] = 0;

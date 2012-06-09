@@ -1,6 +1,6 @@
 TeleportToProperty(playerID, propertyID)
 {
-	new interiorID = strval(GetMySQLValue("properties", "InteriorID", "ID", val2str(propertyID)));
+	new interiorID = strval(GetMySQLValue("properties", "interiorId", "id", val2str(propertyID)));
 	if (interiorID)
 	{
 		if (TeleportToInterior(playerID, interiorID))

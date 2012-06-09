@@ -29,7 +29,7 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 		format(pickups[pickup][PICKUP_TYPE], STRINGLENGTH_PICKUPTYPE, type);
 		if (saveToDB)
 		{
-			MySQLQuery("INSERT INTO `pickups` (`PosX`, `PosY`, `PosZ`, `Type`) VALUES('%f', '%f', '%f', '%s')", posX, posY, posZ, type);
+			MySQLQuery("INSERT INTO `pickups` (`posX`, `posY`, `posZ`, `type`) VALUES('%f', '%f', '%f', '%s')", posX, posY, posZ, type);
 			pickups[pickup][PICKUP_ID] = mysql_insert_id();
 			return pickups[pickup][PICKUP_ID];
 		}

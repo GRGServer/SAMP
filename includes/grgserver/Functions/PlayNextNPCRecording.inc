@@ -22,9 +22,9 @@ PlayNextNPCRecording(playerID)
 		new id = PVar:playerID[NPC_RECORDINGS][slot - 1];
 		if (id)
 		{
-			MySQLQuery("SELECT * FROM `npcmultirecs` WHERE `ID` = '%d'", id);
+			MySQLQuery("SELECT * FROM `npcmultirecs` WHERE `id` = '%d'", id);
 			mysql_store_result();
-			FormatNew:command[40]("setrec %s %d 0 1", GetMySQLField("Recording"), PVar:playerID[NPC_RECORDINGTYPE]);
+			FormatNew:command[40]("setrec %s %d 0 1", GetMySQLField("recording"), PVar:playerID[NPC_RECORDINGTYPE]);
 			mysql_free_result();
 			SendNPCCommand(playerID, command);
 			return true;

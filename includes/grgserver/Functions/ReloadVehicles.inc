@@ -35,24 +35,24 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new vehicleID = CreateVehicleEx(strval(GetMySQLField("ModelID")), floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ")), floatstr(GetMySQLField("Angle")), strval(GetMySQLField("Color1")), strval(GetMySQLField("Color2")), -1, isStatic);
+		new vehicleID = CreateVehicleEx(strval(GetMySQLField("modelId")), floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), floatstr(GetMySQLField("angle")), strval(GetMySQLField("color1")), strval(GetMySQLField("color2")), -1, isStatic);
 		if (vehicleID)
 		{
-			VehicleProperty:vehicleID[CURRENTFUEL] = floatstr(GetMySQLField("CurrentFuel"));
-			VehicleProperty:vehicleID[FRONTLIGHTID] = strval(GetMySQLField("FrontLightID"));
-			VehicleProperty:vehicleID[HASNAVI] = strval(GetMySQLField("HasNavi"));
-			VehicleProperty:vehicleID[JOBID] = strval(GetMySQLField("JobID"));
-			VehicleProperty:vehicleID[MILEAGE] = floatstr(GetMySQLField("MileAge"));
-			VehicleProperty:vehicleID[NEONLIGHTID] = strval(GetMySQLField("NeonLightID"));
-			format(VehicleProperty:vehicleID[NUMBERPLATE], STRINGLENGTH_NUMBERPLATE, GetMySQLField("Numberplate"));
-			VehicleProperty:vehicleID[RADIOSTATION] = strval(GetMySQLField("LastRadioStation"));
-			VehicleProperty:vehicleID[SAVEID] = strval(GetMySQLField("ID"));
-			LockVehicle(vehicleID, strval(GetMySQLField("Locked")));
-			LinkVehicleToInterior(vehicleID, strval(GetMySQLField("Interior")));
-			ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("PaintjobID")));
-			SetVehicleHealth(vehicleID, floatstr(GetMySQLField("Health")));
+			VehicleProperty:vehicleID[CURRENTFUEL] = floatstr(GetMySQLField("currentFuel"));
+			VehicleProperty:vehicleID[FRONTLIGHTID] = strval(GetMySQLField("frontLightId"));
+			VehicleProperty:vehicleID[HASNAVI] = strval(GetMySQLField("hasNavi"));
+			VehicleProperty:vehicleID[JOBID] = strval(GetMySQLField("jobId"));
+			VehicleProperty:vehicleID[MILEAGE] = floatstr(GetMySQLField("mileAge"));
+			VehicleProperty:vehicleID[NEONLIGHTID] = strval(GetMySQLField("neonLightId"));
+			format(VehicleProperty:vehicleID[NUMBERPLATE], STRINGLENGTH_NUMBERPLATE, GetMySQLField("numberplate"));
+			VehicleProperty:vehicleID[RADIOSTATION] = strval(GetMySQLField("lastRadioStation"));
+			VehicleProperty:vehicleID[SAVEID] = strval(GetMySQLField("id"));
+			LockVehicle(vehicleID, strval(GetMySQLField("locked")));
+			LinkVehicleToInterior(vehicleID, strval(GetMySQLField("interior")));
+			ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("paintjobId")));
+			SetVehicleHealth(vehicleID, floatstr(GetMySQLField("health")));
 			SetVehicleNumberPlate(vehicleID, VehicleProperty:vehicleID[NUMBERPLATE]);
-			if (strval(GetMySQLField("OwnerUserID")))
+			if (strval(GetMySQLField("ownerUserId")))
 			{
 				VehicleProperty:vehicleID[ALLOWSAVE] = true;
 			}
@@ -78,9 +78,9 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 		new foundVehicle;
 		Count1(vehicleID, MAX_VEHICLES)
 		{
-			if (VehicleProperty:vehicleID[SAVEID] == strval(GetMySQLField("VehicleID")))
+			if (VehicleProperty:vehicleID[SAVEID] == strval(GetMySQLField("vehicleId")))
 			{
-				AddVehicleComponentEx(vehicleID, strval(GetMySQLField("Component")));
+				AddVehicleComponentEx(vehicleID, strval(GetMySQLField("component")));
 				count++;
 				foundVehicle = true;
 				break;
@@ -88,23 +88,23 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 		}
 		if (!foundVehicle)
 		{
-			AdminPrint(playerID, COLOR_ERROR, "  Vehicle not found: %d", strval(GetMySQLField("VehicleID")));
+			AdminPrint(playerID, COLOR_ERROR, "  Vehicle not found: %d", strval(GetMySQLField("vehicleId")));
 		}
 	}
 	mysql_free_result();
 	AdminPrint(playerID, COLOR_INFO, "  %d vehicle components added", count);
 	count = 0;
 	AdminPrint(playerID, COLOR_INFO, "* Put NPCs in vehicles...");
-	mysql_query("SELECT * FROM `npcs` WHERE `VehicleID` != '0'");
+	mysql_query("SELECT * FROM `npcs` WHERE `vehicleId`");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new vehicleID = GetVehicleBySaveID(strval(GetMySQLField("VehicleID")));
+		new vehicleID = GetVehicleBySaveID(strval(GetMySQLField("vehicleId")));
 		if (vehicleID)
 		{
 			VehicleProperty:vehicleID[ALLOWDESTROY] = false;
 			VehicleProperty:vehicleID[ALLOWSAVE] = false;
-			new npcPlayerID = GetPlayerID(GetMySQLField("Name"));
+			new npcPlayerID = GetPlayerID(GetMySQLField("name"));
 			if (npcPlayerID != INVALID_PLAYER_ID)
 			{
 				PutPlayerInVehicle(npcPlayerID, vehicleID, 0);

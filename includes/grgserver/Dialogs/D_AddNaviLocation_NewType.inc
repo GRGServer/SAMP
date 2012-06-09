@@ -10,7 +10,7 @@ DialogResponse:AddNaviLocation_NewType(playerID, response, listItem, inputText[]
 	{
 		if (strlen(inputText))
 		{
-			MySQLQuery("INSERT INTO `navigationlocationtypes` (`Name`) VALUES('%s')", MySQLEscapeString(inputText));
+			MySQLQuery("INSERT INTO `navigationlocationtypes` (`name`) VALUES('%s')", MySQLEscapeString(inputText));
 			new typeID = mysql_insert_id();
 			if (typeID)
 			{
@@ -18,7 +18,7 @@ DialogResponse:AddNaviLocation_NewType(playerID, response, listItem, inputText[]
 				new Float:posY;
 				new Float:posZ;
 				GetPlayerPos(playerID, posX, posY, posZ);
-				MySQLQuery("INSERT INTO `navigationlocations` (`Type`, `PosX`, `PosY`, `PosZ`) VALUES('%d', '%f', '%f', '%f')", typeID, posX, posY, posZ);
+				MySQLQuery("INSERT INTO `navigationlocations` (`type`, `posX`, `posY`, `posZ`) VALUES('%d', '%f', '%f', '%f')", typeID, posX, posY, posZ);
 				SendClientMessageEx(playerID, COLOR_INFO, 383);
 			}
 			else

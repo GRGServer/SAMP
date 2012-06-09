@@ -22,7 +22,7 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 			new id = Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectid, E_STREAMER_EXTRA_ID);
 			if (id)
 			{
-				MySQLQuery("UPDATE `objects` SET `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `RotX` = '%f', `RotY` = '%f', `RotZ` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, rotX, rotY, rotZ, id);
+				MySQLQuery("UPDATE `objects` SET `posX` = '%f', `posY` = '%f', `posZ` = '%f', `rotX` = '%f', `rotY` = '%f', `rotZ` = '%f' WHERE `id` = '%d'", posX, posY, posZ, rotX, rotY, rotZ, id);
 				SendClientMessageEx(playerid, COLOR_INFO, 199);
 			}
 			else

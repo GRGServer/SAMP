@@ -49,9 +49,6 @@ for (new i_%0 = 0; ; ++i_%0) \
 		break; \
 }
 
-// GetUserDBValue(playerID, field)
-#define GetUserDBValue(%0,%1) GetMySQLValue("users", %1, "ID", val2str(PVar:%0[USERID]))
-
 // IsKeyPressed(keys)
 #define IsKeyPressed(%0) (((newkeys & (%0)) == (%0)) && ((oldkeys & (%0)) != (%0)))
 
@@ -88,9 +85,6 @@ for (new i_%0 = 0; ; ++i_%0) \
 // SetPVarStr:playerID[field][size](string)
 #define SetPVarStr:%0[%1][%2](%3) format(PVar:%0[%1], %2, %3)
 
-// SetUserDBValue(playerID, field, value)
-#define SetUserDBValue(%0,%1,%2) SetMySQLValue("users", %1, %2, "ID", val2str(PVar:%0[USERID]))
-
 // ShowDialog:DIALOGNAME(playerID [,parameters...])
 #define ShowDialog:%0(%1) SD_%0(%1)
 
@@ -102,9 +96,6 @@ for (new i_%0 = 0; ; ++i_%0) \
 
 // Timer:name(parameters)
 #define Timer:%0(%1) forward Timer_%0(%1); public Timer_%0(%1)
-
-// UpdateUserDB(playerID, formattedQuery, parameters)
-#define UpdateUserDB(%0,%1) Format:sqlQuery(%1); Format:sqlQuery("UPDATE `users` SET %s WHERE `ID` = '%d'", sqlQuery, PVar:%0[USERID]); if (mysql_query(sqlQuery)) printf("SQL: %s", sqlQuery)
 
 // VehicleProperty:vehicleID[property]
 #define VehicleProperty:%0[%1] vehicles[%0 - 1][VEHICLE_%1]

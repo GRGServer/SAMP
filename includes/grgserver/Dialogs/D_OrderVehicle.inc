@@ -1,7 +1,7 @@
 ShowDialog:OrderVehicle(playerID)
 {
 	new vehicleList[2048];
-	mysql_query("SELECT * FROM `vehiclemodels` ORDER BY `Name` ASC");
+	mysql_query("SELECT `name` FROM `vehiclemodels` ORDER BY `name` ASC");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
@@ -9,7 +9,7 @@ ShowDialog:OrderVehicle(playerID)
 		{
 			Format:vehicleList("%s\n", vehicleList);
 		}
-		Format:vehicleList("%s%s", vehicleList, GetMySQLField("Name"));
+		Format:vehicleList("%s%s", vehicleList, GetMySQLField("name"));
 	}
 	mysql_free_result();
 	CreateDialog(playerID, "OrderVehicle", DIALOG_STYLE_LIST, LanguageString(playerID, 113), vehicleList, LanguageString(playerID, 413), LanguageString(playerID, 165));
@@ -19,7 +19,7 @@ DialogResponse:OrderVehicle(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
-		new modelID = strval(GetMySQLValue("vehiclemodels", "ID", "Name", inputText));
+		new modelID = strval(GetMySQLValue("vehiclemodels", "id", "name", inputText));
 		if (modelID)
 		{
 			new missionID = CreateJob(playerID, JOB_VEHICLEDEALER);

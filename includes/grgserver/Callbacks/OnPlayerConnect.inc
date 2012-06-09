@@ -37,11 +37,11 @@ public OnPlayerConnect(playerid)
 		return true;
 	}
 	printf("%s connected from %s", GetPlayerNameEx(playerid), GetPlayerCountryName(playerid));
-	MySQLQuery("SELECT * FROM `users` WHERE `Username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
+	MySQLQuery("SELECT * FROM `users` WHERE `username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
 	mysql_store_result();
-	if (strval(GetMySQLField("ID")))
+	if (strval(GetMySQLField("id")))
 	{
-		PVar:playerid[LANGUAGE] = strval(GetMySQLField("Language"));
+		PVar:playerid[LANGUAGE] = strval(GetMySQLField("language"));
 		TogglePlayerSpectating(playerid, true);
 		PVar:playerid[REGISTERED] = true;
 	}

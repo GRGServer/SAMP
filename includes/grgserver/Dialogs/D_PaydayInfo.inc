@@ -1,9 +1,9 @@
 ShowDialog:PaydayInfo(playerID)
 {
 	new difference = GetOnlineTime(playerID) - PVar:playerID[LASTPAYDAY];
-	MySQLQuery("SELECT * FROM `moneytransactions` WHERE `UserID` = '%d' AND `Type` = '%s'", PVar:playerID[USERID], CASHTRANS_PAYDAY);
+	MySQLQuery("SELECT `amount` FROM `moneytransactions` WHERE `userId` = '%d' AND `type` = '%s'", PVar:playerID[USERID], CASHTRANS_PAYDAY);
 	mysql_store_result();
-	new Float:amount = floatstr(GetMySQLField("Amount"));
+	new Float:amount = floatstr(GetMySQLField("amount"));
 	mysql_free_result();
 	new string[256];
 	AddLine:string(LanguageString(playerID, 420), FormatMoney(amount));

@@ -20,11 +20,11 @@ ReconnectNPCs(playerID = INVALID_PLAYER_ID)
 	}
 	AdminPrint(playerID, COLOR_INFO, "* Connecting NPCs...");
 	new count;
-	mysql_query("SELECT * FROM `npcs` WHERE `AutoConnect` = '1'");
+	mysql_query("SELECT * FROM `npcs` WHERE `autoConnect`");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		ConnectNPC(GetMySQLField("Name"), NPC_SCRIPTNAME);
+		ConnectNPC(GetMySQLField("name"), NPC_SCRIPTNAME);
 		count++;
 	}
 	mysql_free_result();

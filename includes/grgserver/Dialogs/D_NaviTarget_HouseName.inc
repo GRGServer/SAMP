@@ -7,14 +7,14 @@ DialogResponse:NaviTarget_HouseName(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
-		MySQLQuery("SELECT * FROM `properties` LEFT JOIN `pickups` ON `properties`.`PickupID` = `pickups`.`ID` WHERE `Name` LIKE '%%%s%%'", MySQLEscapeString(inputText));
+		MySQLQuery("SELECT * FROM `properties` LEFT JOIN `pickups` ON `properties`.`pickupId` = `pickups`.`id` WHERE `name` LIKE '%%%s%%'", MySQLEscapeString(inputText));
 		mysql_store_result();
 		new rows = mysql_num_rows();
 		if (rows)
 		{
 			if (rows == 1)
 			{
-				if (CalculateRoute(playerID, floatstr(GetMySQLField("PosX")), floatstr(GetMySQLField("PosY")), floatstr(GetMySQLField("PosZ"))))
+				if (CalculateRoute(playerID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ"))))
 				{
 					SendClientMessageEx(playerID, COLOR_INFO, 414);
 				}

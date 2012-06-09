@@ -6,9 +6,9 @@ PCMD:setnpcspawn[NPCADMIN](playerID, params[], 282)
 		CmdUsageMsg(playerID, "setnpcspawn", "Name");
 		return COMMAND_USAGE;
 	}
-	MySQLQuery("SELECT * FROM `npcs` WHERE `Name` = '%s'", MySQLEscapeString(npcName));
+	MySQLQuery("SELECT * FROM `npcs` WHERE `name` = '%s'", MySQLEscapeString(npcName));
 	mysql_store_result();
-	new id = strval(GetMySQLField("ID"));
+	new id = strval(GetMySQLField("id"));
 	if (id)
 	{
 		new Float:posX;
@@ -24,7 +24,7 @@ PCMD:setnpcspawn[NPCADMIN](playerID, params[], 282)
 		{
 			GetPlayerFacingAngle(playerID, angle);
 		}
-		MySQLQuery("UPDATE `npcs` SET `SpawnPosX` = '%f', `SpawnPosY` = '%f', `SpawnPosZ` = '%f', `SpawnAngle` = '%f' WHERE `ID` = '%d'", posX, posY, posZ, angle, id);
+		MySQLQuery("UPDATE `npcs` SET `spawnPosX` = '%f', `spawnPosY` = '%f', `spawnPosZ` = '%f', `spawnAngle` = '%f' WHERE `id` = '%d'", posX, posY, posZ, angle, id);
 	}
 	mysql_free_result();
 	if (id)

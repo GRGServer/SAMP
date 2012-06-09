@@ -2,9 +2,9 @@ SavePlayer(playerID)
 {
 	if (IsLoggedIn(playerID))
 	{
-		Format:sqlQuery("`BankMoney` = '%f', `Money` = '%f', `JobID` = '%d', `LastNewsID` = '%d', `ChatMode` = '%s', `ChatModeUserID` = '%d', `GodMode` = '%d'", PVar:playerID[BANKMONEY], PVar:playerID[MONEY], PVar:playerID[JOBID], PVar:playerID[LASTNEWSID], PVar:playerID[CHATMODE], PVar:playerID[CHATMODE_USERID], PVar:playerID[GODMODE]);
-		Format:sqlQuery("%s, `CurrentPropertyID` = '%d', `OnlineTime` = '%d', `LastPayDay` = '%d', `Skin` = '%d', `ShowClock` = '%d', `Deaths` = '%d'", sqlQuery, PVar:playerID[CURRENTPROPERTYID], GetOnlineTime(playerID), PVar:playerID[LASTPAYDAY], PVar:playerID[SKIN], PVar:playerID[SHOWCLOCK], PVar:playerID[DEATHS]);
-		UpdateUserDB(playerID, "%s, `Language` = '%d'", sqlQuery, PVar:playerID[LANGUAGE]);
+		Format:sqlQuery("`bankMoney` = '%f', `money` = '%f', `jobId` = '%d', `lastNewsId` = '%d', `chatMode` = '%s', `chatModeUserId` = '%d', `godMode` = '%d'", PVar:playerID[BANKMONEY], PVar:playerID[MONEY], PVar:playerID[JOBID], PVar:playerID[LASTNEWSID], PVar:playerID[CHATMODE], PVar:playerID[CHATMODE_USERID], PVar:playerID[GODMODE]);
+		Format:sqlQuery("%s, `currentPropertyId` = '%d', `onlineTime` = '%d', `lastPayDay` = '%d', `skin` = '%d', `showClock` = '%d', `deaths` = '%d'", sqlQuery, PVar:playerID[CURRENTPROPERTYID], GetOnlineTime(playerID), PVar:playerID[LASTPAYDAY], PVar:playerID[SKIN], PVar:playerID[SHOWCLOCK], PVar:playerID[DEATHS]);
+		MySQLQuery("UPDATE `users` SET %s, `language` = '%d' WHERE `id` = '%d'", sqlQuery, PVar:playerID[LANGUAGE], PVar:playerID[USERID]);
 		new Float:health;
 		new Float:posX;
 		new Float:posY;
@@ -15,7 +15,7 @@ SavePlayer(playerID)
 		GetPlayerFacingAngle(playerID, angle);
 		if (posX != 0 && posY != 0 && posZ != 0)
 		{
-			UpdateUserDB(playerID, "`Health` = '%f', `PosX` = '%f', `PosY` = '%f', `PosZ` = '%f', `Angle` = '%f', `Interior` = '%d'", health, posX, posY, posZ, angle, GetPlayerInterior(playerID));
+			MySQLQuery("UPDATE `users` SET `health` = '%f', `posX` = '%f', `posY` = '%f', `posZ` = '%f', `angle` = '%f', `interior` = '%d' WHERE `id` = '%d'", health, posX, posY, posZ, angle, GetPlayerInterior(playerID), PVar:playerID[USERID]);
 		}
 	}
 }

@@ -1,7 +1,7 @@
 ShowDialog:Hotel_RoomList(playerID)
 {
-	FormatNew:title[64](LanguageString(playerID, 315), GetMySQLValue("properties", "Name", "ID", val2str(PVar:playerID[CURRENTPROPERTYID])));
-	MySQLQuery("SELECT * FROM `hotelrooms` WHERE `PropertyID` = '%d' AND `OwnerUserID` = '0' ORDER BY `RoomID` ASC", PVar:playerID[CURRENTPROPERTYID]);
+	FormatNew:title[64](LanguageString(playerID, 315), GetMySQLValue("properties", "name", "id", val2str(PVar:playerID[CURRENTPROPERTYID])));
+	MySQLQuery("SELECT * FROM `hotelrooms` WHERE `propertyId` = '%d' AND `ownerUserId` = '0' ORDER BY `roomId` ASC", PVar:playerID[CURRENTPROPERTYID]);
 	mysql_store_result();
 	new roomsCount = mysql_num_rows();
 	if (roomsCount)
@@ -13,7 +13,7 @@ ShowDialog:Hotel_RoomList(playerID)
 			{
 				strcat(rooms, "\n");
 			}
-			Format:rooms("%s%s: $%s", rooms, GetMySQLField("RoomID"), FormatMoney(floatstr(GetMySQLField("Price"))));
+			Format:rooms("%s%s: $%s", rooms, GetMySQLField("roomId"), FormatMoney(floatstr(GetMySQLField("price"))));
 		}
 		CreateDialog(playerID, "Hotel_RoomList", DIALOG_STYLE_LIST, title, rooms, "OK", LanguageString(playerID, 165));
 	}
@@ -27,7 +27,7 @@ DialogResponse:Hotel_RoomList(playerID, response, listItem, inputText[])
 	{
 		new string[256];
 		sscanf(inputText, "p:ds", PVar:playerID[HOTEL_ROOMID], string);
-		MySQLQuery("UPDATE `hotelrooms` SET `OwnerUserID` = '%d' WHERE `PropertyID` = '%d' AND `RoomID` = '%d'", PVar:playerID[USERID], PVar:playerID[CURRENTPROPERTYID], PVar:playerID[HOTEL_ROOMID]);
+		MySQLQuery("UPDATE `hotelrooms` SET `ownerUserId` = '%d' WHERE `propertyId` = '%d' AND `roomId` = '%d'", PVar:playerID[USERID], PVar:playerID[CURRENTPROPERTYID], PVar:playerID[HOTEL_ROOMID]);
 		TeleportToInterior(playerID, HOTEL_ROOM_INTERIOR);
 		SetPlayerVirtualWorld(playerID, playerID);
 	}

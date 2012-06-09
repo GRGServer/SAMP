@@ -17,11 +17,11 @@ ReloadPickups(playerID = INVALID_PLAYER_ID)
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new pickupID = strval(GetMySQLField("ID"));
-		format(pickupLoader[pickupID][PICKUPLOADER_TYPE], STRINGLENGTH_PICKUPTYPE, GetMySQLField("Type"));
-		pickupLoader[pickupID][PICKUPLOADER_POSX] = floatstr(GetMySQLField("PosX"));
-		pickupLoader[pickupID][PICKUPLOADER_POSY] = floatstr(GetMySQLField("PosY"));
-		pickupLoader[pickupID][PICKUPLOADER_POSZ] = floatstr(GetMySQLField("PosZ"));
+		new pickupID = strval(GetMySQLField("id"));
+		format(pickupLoader[pickupID][PICKUPLOADER_TYPE], STRINGLENGTH_PICKUPTYPE, GetMySQLField("type"));
+		pickupLoader[pickupID][PICKUPLOADER_POSX] = floatstr(GetMySQLField("posX"));
+		pickupLoader[pickupID][PICKUPLOADER_POSY] = floatstr(GetMySQLField("posY"));
+		pickupLoader[pickupID][PICKUPLOADER_POSZ] = floatstr(GetMySQLField("posZ"));
 	}
 	mysql_free_result();
 	AdminPrint(playerID, COLOR_INFO, "* Creating pickups...");

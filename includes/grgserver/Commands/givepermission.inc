@@ -15,7 +15,7 @@ PCMD:givepermission[SERVERADMIN](playerID, params[], 103)
 		for (new permissionIndex = 0; permissionIndex < sizeof(permissionsArray); permissionIndex++)
 		{
 			permission = permissionsArray[permissionIndex];
-			if (strcmp(permission, "UserID", true))
+			if (strcmp(permission, "userId", true))
 			{
 				new newState = true;
 				if (permission[0] == '-')
@@ -42,17 +42,17 @@ PCMD:givepermission[SERVERADMIN](playerID, params[], 103)
 						}
 						return COMMAND_ERROR;
 					}
-					MySQLQuery("SELECT `UserID` FROM `permissions` WHERE `UserID` = '%d'", PVar:targetPlayerID[USERID]);
+					MySQLQuery("SELECT `userId` FROM `permissions` WHERE `userId` = '%d'", PVar:targetPlayerID[USERID]);
 					mysql_store_result();
 					new rows = mysql_num_rows();
 					mysql_free_result();
 					if (rows)
 					{
-						MySQLQuery("UPDATE `permissions` SET `%s` = '%d' WHERE `UserID` = '%d'", MySQLEscapeString(permission), newState, PVar:targetPlayerID[USERID]);
+						MySQLQuery("UPDATE `permissions` SET `%s` = '%d' WHERE `userId` = '%d'", MySQLEscapeString(permission), newState, PVar:targetPlayerID[USERID]);
 					}
 					else
 					{
-						MySQLQuery("INSERT INTO `permissions` (`UserID`, `%s`) VALUES('%d', '%d')", MySQLEscapeString(permission), PVar:targetPlayerID[USERID], newState);
+						MySQLQuery("INSERT INTO `permissions` (`userId`, `%s`) VALUES('%d', '%d')", MySQLEscapeString(permission), PVar:targetPlayerID[USERID], newState);
 					}
 					permissions[targetPlayerID][enum_permission:permissionID] = newState;
 					if (newState)
