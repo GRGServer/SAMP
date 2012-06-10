@@ -2020,4 +2020,8 @@
 		<en>Friend</en>
 		<de>Freund</de>
 	</string>
+	<string id="505">
+		<en>Spawn a vehicle</en>
+		<de>Fahrzeug spawnen</de>
+	</string>
 </languagestrings>
