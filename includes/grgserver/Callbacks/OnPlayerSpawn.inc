@@ -111,7 +111,12 @@ public OnPlayerSpawn(playerid)
 		PVar:playerid[CURRENTPROPERTYID] = 0;
 		return true;
 	}
-	TogglePlayerControllable(playerid, false);
-	StartScreenFader(playerid, 0, 0, 0, 2, 500, FADE_START_INPLANE1_BLACK);
+	if (PVar:playerid[SPAWNAFTERREGISTER])
+	{
+		PVar:playerid[SPAWNAFTERREGISTER] = false;
+		TogglePlayerControllable(playerid, false);
+		StartScreenFader(playerid, 0, 0, 0, 2, 500, FADE_START_INPLANE1_BLACK);
+		return true;
+	}
 	return true;
 }

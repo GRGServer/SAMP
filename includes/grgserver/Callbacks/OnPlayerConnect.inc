@@ -44,6 +44,7 @@ public OnPlayerConnect(playerid)
 		PVar:playerid[LANGUAGE] = strval(GetMySQLField("language"));
 		TogglePlayerSpectating(playerid, true);
 		PVar:playerid[REGISTERED] = true;
+		ShowDialog:PreviewInfo(playerid);
 	}
 	else
 	{
@@ -59,9 +60,9 @@ public OnPlayerConnect(playerid)
 		}
 		PVar:playerid[REGISTERED] = false;
 		PlaySound(playerid, musicSoundIDs[random(sizeof(musicSoundIDs))]);
+		ShowDialog:Register_Language(playerid);
 	}
 	mysql_free_result();
-	ShowDialog:PreviewInfo(playerid);
 	SendDeathMessage(INVALID_PLAYER_ID, playerid, 200);
 	SendClientMessageEx(playerid, COLOR_SYSTEM, 138);
 	SendClientMessageEx(playerid, COLOR_SYSTEM, 5, COMPILER_SVN_REVISION);

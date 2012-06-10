@@ -1,6 +1,6 @@
 ShowDialog:PreviewInfo(playerID)
 {
-	ShowMsgBox(playerID, "PreviewInfo", LanguageString(playerID, 269), LanguageString(playerID, 270));
+	CreateDialog(playerID, "PreviewInfo", DIALOG_STYLE_MSGBOX, LanguageString(playerID, 269), LanguageString(playerID, 270), "OK", "");
 }
 
 DialogResponse:PreviewInfo(playerID, response, listItem, inputText[])

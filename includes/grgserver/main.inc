@@ -129,7 +129,6 @@
 #include <grgserver\Functions\ShowGPSCheckpoint.inc>
 #include <grgserver\Functions\ShowInteriorDialog.inc>
 #include <grgserver\Functions\ShowMessage.inc>
-#include <grgserver\Functions\ShowMsgBox.inc>
 #include <grgserver\Functions\ShowNews.inc>
 #include <grgserver\Functions\ShowSubtitle.inc>
 #include <grgserver\Functions\SpawnVehicle.inc>
@@ -225,6 +224,7 @@
 #include <grgserver\Dialogs\D_Refuel.inc>
 #include <grgserver\Dialogs\D_Register_Birthdate.inc>
 #include <grgserver\Dialogs\D_Register_Gender.inc>
+#include <grgserver\Dialogs\D_Register_Language.inc>
 #include <grgserver\Dialogs\D_Register_Location.inc>
 #include <grgserver\Dialogs\D_Register_Password1.inc>
 #include <grgserver\Dialogs\D_Register_Password2.inc>
@@ -293,6 +293,7 @@
 #include <grgserver\Commands\changepw.inc>
 #include <grgserver\Commands\chatmode.inc>
 #include <grgserver\Commands\checkpermissions.inc>
+#include <grgserver\Commands\clear.inc>
 #include <grgserver\Commands\cmds.inc>
 #include <grgserver\Commands\controlnpc.inc>
 #include <grgserver\Commands\coordtp.inc>
@@ -345,6 +346,7 @@
 #include <grgserver\Commands\reloadplayer.inc>
 #include <grgserver\Commands\reloadvehiclemodels.inc>
 #include <grgserver\Commands\reloadvehicles.inc>
+#include <grgserver\Commands\relogin.inc>
 #include <grgserver\Commands\removefriend.inc>
 #include <grgserver\Commands\removevehicle.inc>
 #include <grgserver\Commands\repair.inc>

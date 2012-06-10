@@ -29,6 +29,10 @@ public OnPlayerDisconnect(playerid, reason)
 			{
 				strcat(reasonString, "Kicked/Banned");
 			}
+			case 3:
+			{
+				strcat(reasonString, "Relogin");
+			}
 		}
 		PlayerLoop(playerID)
 		{

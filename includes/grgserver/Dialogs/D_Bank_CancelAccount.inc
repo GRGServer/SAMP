@@ -1,6 +1,6 @@
 ShowDialog:Bank_CancelAccount(playerID)
 {
-	ShowMsgBox(playerID, "Bank_CancelAccount", LanguageString(playerID, 209), LanguageString(playerID, 214), MSGBOXSTYLE_YESNO);
+	CreateDialog(playerID, "Bank_CancelAccount", DIALOG_STYLE_MSGBOX, LanguageString(playerID, 209), LanguageString(playerID, 214), LanguageString(playerID, 166), LanguageString(playerID, 167));
 }
 
 DialogResponse:Bank_CancelAccount(playerID, response, listItem, inputText[])

@@ -1,6 +1,6 @@
 ShowDialog:VehicleDealer_Job(playerID)
 {
-	ShowMsgBox(playerID, "VehicleDealer_Job", LanguageString(playerID, 353), LanguageString(playerID, 354), MSGBOXSTYLE_YESNO);
+	CreateDialog(playerID, "VehicleDealer_Job", DIALOG_STYLE_MSGBOX, LanguageString(playerID, 353), LanguageString(playerID, 354), LanguageString(playerID, 166), LanguageString(playerID, 167));
 }
 
 DialogResponse:VehicleDealer_Job(playerID, response, listItem, inputText[])

@@ -24,7 +24,7 @@ ShowDialog:Stats(playerID)
 	Format:string("%s\n%s: %s", string, LanguageString(playerID, 232), FormatDate(GetMySQLField("registerTime")));
 	Format:string("%s\n%s: %s", string, LanguageString(playerID, 233), FormatDate(GetMySQLField("loginTime")));
 	mysql_free_result();
-	ShowMsgBox(playerID, "Stats", LanguageString(playerID, 234), string);
+	CreateDialog(playerID, "Stats", DIALOG_STYLE_MSGBOX, LanguageString(playerID, 234), string, LanguageString(playerID, 506), "");
 }
 
 DialogResponse:Stats(playerID, response, listItem, inputText[])

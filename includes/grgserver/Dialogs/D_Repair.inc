@@ -1,7 +1,7 @@
 ShowDialog:Repair(playerID)
 {
 	FormatNew:string[100](LanguageString(playerID, 302), GetPlayerNameEx(PVar:playerID[REPAIR_EXECUTOR]), FormatMoney(PVar:playerID[REPAIR_PRICE]));
-	ShowMsgBox(playerID, "Repair", LanguageString(playerID, 301), string, MSGBOXSTYLE_YESNO);
+	CreateDialog(playerID, "Repair", DIALOG_STYLE_MSGBOX, LanguageString(playerID, 301), string, LanguageString(playerID, 166), LanguageString(playerID, 167));
 }
 
 DialogResponse:Repair(playerID, response, listItem, inputText[])

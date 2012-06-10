@@ -1,6 +1,6 @@
 ShowDialog:Bank_NewAccount(playerID)
 {
-	ShowMsgBox(playerID, "Bank_NewAccount", LanguageString(playerID, 210), LanguageString(playerID, 211), MSGBOXSTYLE_YESNO);
+	CreateDialog(playerID, "Bank_NewAccount", DIALOG_STYLE_MSGBOX, LanguageString(playerID, 210), LanguageString(playerID, 211), LanguageString(playerID, 166), LanguageString(playerID, 167));
 }
 
 DialogResponse:Bank_NewAccount(playerID, response, listItem, inputText[])

@@ -2024,4 +2024,24 @@
 		<en>Spawn a vehicle</en>
 		<de>Fahrzeug spawnen</de>
 	</string>
+	<string id="506">
+		<en>Close</en>
+		<de>Schließen</de>
+	</string>
+	<string id="507">
+		<en>Relogin with your current name or a new name</en>
+		<de>Logge dich erneut mit deinem aktuellen oder neuen Namen ein</de>
+	</string>
+	<string id="508">
+		<en>Another player with this name is already connected!</en>
+		<de>Ein anderer Spieler mit diesem Namen ist bereits verbunden!</de>
+	</string>
+	<string id="509">
+		<en>Your name could not be changed! Your old name will be used.</en>
+		<de>Dein Name konnte nicht geändert werden! Dein alter Name wird verwendet.</de>
+	</string>
+	<string id="510">
+		<en>Clear the chat window</en>
+		<de>Inhalt des Chatfensters löschen</de>
+	</string>
 </languagestrings>
