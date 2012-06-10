@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <languagestrings>
+	<languages>
+		<en name="English">English</en>
+		<de name="German">Deutsch</de>
+	</languages>
 	<string id="0">
 		<en>Undefined language string ID!</en>
 		<de>Nicht definierte Sprachstring ID!</de>
