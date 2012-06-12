@@ -304,6 +304,7 @@
 #include <grgserver\Commands\flycam.inc>
 #include <grgserver\Commands\friendrequests.inc>
 #include <grgserver\Commands\funaction.inc>
+#include <grgserver\Commands\givelicense.inc>
 #include <grgserver\Commands\givepermission.inc>
 #include <grgserver\Commands\giveweapon.inc>
 #include <grgserver\Commands\gmx.inc>

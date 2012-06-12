@@ -45,7 +45,7 @@
 
 // Gas station configuration
 #define GASSTATION_MAXDIFFERENCE		15// Maximum difference between minimum and maximum gas price
-#define GASSTATION_MINPRICE			155// Minimum gas price
+#define GASSTATION_MINPRICE				155// Minimum gas price
 #define GASSTATION_REFUELSPEED			500// Time per liter
 
 
@@ -55,19 +55,19 @@
 #define HOTEL_RECEPTION_POSX			2217.28
 #define HOTEL_RECEPTION_POSY			-1150.53
 #define HOTEL_RECEPTION_POSZ			1025.8
-#define HOTEL_ROOM_INTERIOR			70
+#define HOTEL_ROOM_INTERIOR				70
 
 
 // Jobs
-#define JOB_ADAC				2
-#define JOB_ARMEE				8
+#define JOB_ADAC					2
+#define JOB_ARMEE					8
 #define JOB_PARAMEDIC				6
-#define JOB_BANK				7
+#define JOB_BANK					7
 #define JOB_ESTATEAGENTS			3
-#define JOB_POLICE				5
+#define JOB_POLICE					5
 #define JOB_SCHOOLDRIVER			9
-#define JOB_TAXI				10
-#define JOB_TRUCKER				4
+#define JOB_TAXI				   	10
+#define JOB_TRUCKER					4
 #define JOB_UNEMPLOYED				0
 #define JOB_VEHICLEDEALER			1
 
@@ -77,9 +77,12 @@
 #define LANGUAGE_GERMAN				1
 #define LANGUAGE_MAXSTRINGS			600
 
+// Licenses
+#define LICENSE_VEHICLE				1
+
 
 // Light objects
-#define LIGHTOBJECT_MAXCOLORS			2
+#define LIGHTOBJECT_MAXCOLORS		2
 
 
 // Limits

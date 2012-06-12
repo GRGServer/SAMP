@@ -34,7 +34,7 @@
 	</string>
 	<string id="7">
 		<en>%p logged in</en>
-		<de>%p hast sich eigeloggt</de>
+		<de>%p hast sich eingeloggt</de>
 	</string>
 	<string id="8">
 		<en>Switch language</en>
@@ -2047,5 +2047,21 @@
 	<string id="510">
 		<en>Clear the chat window</en>
 		<de>Inhalt des Chatfensters löschen</de>
+	</string>
+	<string id="511">
+		<en>Give License Player</en>
+		<de>Spieler einen Führerschein geben.</de>
+	</string>
+	<string id="512">
+		<en>This Player Have the License!</en>
+		<de>Dieser Spieler hat bereits diese License!</de>
+	</string>
+	<string id="513">
+		<en>You have become Vehicle License!</en>
+		<de>Du hast einen Fahrzeugschein bekommen!</de>
+	</string>
+	<string id="514">
+		<en>You have not a License</en>
+		<de>Du besitzt keinen Fahrzeugschein</de>
 	</string>
 </languagestrings>
