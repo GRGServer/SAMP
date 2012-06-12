@@ -116,7 +116,9 @@
 #define REGISTER_PASSWORD_MAX			20// Also used for password changing
 #define REGISTER_PASSWORD_MIN			3 // Also used for password changing
 #define REGISTER_SKIN_FEMALE			12
-#define REGISTER_SKIN_MALE			15
+#define REGISTER_SKIN_MALE				15
+#define REGISTER_ISNEW					0
+#define REGISTER_ISNOTNEW				1
 
 
 // Sounds

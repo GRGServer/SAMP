@@ -25,17 +25,43 @@ DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 		if (price <= PVar:playerID[BANKMONEY])
 		{
 			GivePlayerMoneyEx(playerID, MONEY_BANK, -price);
-			if (sellerUserID)
+			if(PVar:playerID[ISNEW] == REGISTER_ISNEW)
 			{
-				new sellerID = GetPlayerByUserID(sellerUserID);
-				if (sellerID == INVALID_PLAYER_ID)
+				if (sellerUserID)
 				{
-					MySQLQuery("UPDATE `users` SET `bankMoney` = `bankMoney` + '%f' WHERE `id` = '%d'", price, sellerUserID);
+					new sellerID = GetPlayerByUserID(sellerUserID);
+					if (sellerID == INVALID_PLAYER_ID)
+					{
+						MySQLQuery("UPDATE `users` SET `bankMoney` = `bankMoney` + '%f' WHERE `id` = '%d'", price, sellerUserID);
+					}
+					else
+					{
+						GivePlayerMoneyEx(sellerID, MONEY_BANK, price);
+						SendClientMessageEx(sellerID, COLOR_INFO, 494, playerID);
+					}
 				}
-				else
+				SendClientMessageEx(playerID, COLOR_INFO, 523);
+				SendClientMessageEx(playerID, COLOR_INFO, 524);
+				SendClientMessageEx(playerID, COLOR_INFO, 525);
+				SendClientMessageEx(playerID, COLOR_INFO, 526);
+				SendClientMessageEx(playerID, COLOR_INFO, 527);
+				SendClientMessageEx(playerID, COLOR_INFO, 528);
+				SendClientMessageEx(playerID, COLOR_INFO, 529);
+			}
+			else if(PVar:playerID[ISNEW] == REGISTER_ISNOTNEW)
+			{
+				if (sellerUserID)
 				{
-					GivePlayerMoneyEx(sellerID, MONEY_BANK, price);
-					SendClientMessageEx(sellerID, COLOR_INFO, 494, playerID);
+					new sellerID = GetPlayerByUserID(sellerUserID);
+					if (sellerID == INVALID_PLAYER_ID)
+					{
+						MySQLQuery("UPDATE `users` SET `bankMoney` = `bankMoney` + '%f' WHERE `id` = '%d'", price, sellerUserID);
+					}
+					else
+					{
+						GivePlayerMoneyEx(sellerID, MONEY_BANK, price);
+						SendClientMessageEx(sellerID, COLOR_INFO, 494, playerID);
+					}
 				}
 			}
 			MySQLQuery("UPDATE `vehicles` SET `ownerUserId` = '%d', `ownerSellerId` = '0' WHERE `id` = '%d'", PVar:playerID[USERID], VehicleProperty:vehicleID[SAVEID]);

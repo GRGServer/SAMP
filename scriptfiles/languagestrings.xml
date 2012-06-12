@@ -2096,4 +2096,32 @@
 		<en>Tip: Use /alias to create an alias of a command</en>
 		<de>Tipp: Verwende /alias um einen Alias von einem Befehl zu erstellen</de>
 	</string>
+	<string id="523">
+		<en>Gratulation you have Buy your First Vehicle</en>
+		<de>Gratulation du hast dein erstes Fahrzeug gekauft!</de>
+	</string>
+	<string id="524">
+		<en>Search now a Hotel to live in this.</en>
+		<de>Suche nun ein Hotel in dem du Wohnen kannst.</de>
+	</string>
+	<string id="525">
+		<en>Than you Search a Job.</en>
+		<de>Dann suchst du dir einen Beruf.</de>
+	</string>
+	<string id="526">
+		<en>Go in the case pickup and Accept the Job!</en>
+		<de>Gehe in das Koffer Pickup und Aktzeptiere den Beruf</de>
+	</string>
+	<string id="527">
+		<en>Pick your Job :) It give a great many Jobs in all San Andreas</en>
+		<de>Wähle deinen Beruf :) Es gibt sehr viele Berufe in ganz San Andreas</de>
+	</string>
+	<string id="528">
+		<en>Need you Help? Than Write a Admin (Aerox_Tobi, Programie, Need, Dani_Prima)</en>
+		<de>Du benötigst Hilfe? Dann Schreibe einem Admin (Aerox_Tobi, Programie, Need, Dani_Prim)</de>
+	</string>
+	<string id="529">
+		<en>Have Fun, to Search your First Job ;)</en>
+		<de>Viel Spass, beim suchen deines ersten Berufes ;)</de>
+	</string>
 </languagestrings>
