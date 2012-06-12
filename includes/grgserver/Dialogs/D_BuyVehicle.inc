@@ -25,47 +25,29 @@ DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 		if (price <= PVar:playerID[BANKMONEY])
 		{
 			GivePlayerMoneyEx(playerID, MONEY_BANK, -price);
-			if(PVar:playerID[ISNEW] == REGISTER_ISNEW)
+			if (sellerUserID)
 			{
-				if (sellerUserID)
+				new sellerID = GetPlayerByUserID(sellerUserID);
+				if (sellerID == INVALID_PLAYER_ID)
 				{
-					new sellerID = GetPlayerByUserID(sellerUserID);
-					if (sellerID == INVALID_PLAYER_ID)
-					{
-						MySQLQuery("UPDATE `users` SET `bankMoney` = `bankMoney` + '%f' WHERE `id` = '%d'", price, sellerUserID);
-					}
-					else
-					{
-						GivePlayerMoneyEx(sellerID, MONEY_BANK, price);
-						SendClientMessageEx(sellerID, COLOR_INFO, 494, playerID);
-					}
+					MySQLQuery("UPDATE `users` SET `bankMoney` = `bankMoney` + '%f' WHERE `id` = '%d'", price, sellerUserID);
 				}
-				SendClientMessageEx(playerID, COLOR_INFO, 523);
-				SendClientMessageEx(playerID, COLOR_INFO, 524);
-				SendClientMessageEx(playerID, COLOR_INFO, 525);
-				SendClientMessageEx(playerID, COLOR_INFO, 526);
-				SendClientMessageEx(playerID, COLOR_INFO, 527);
-				SendClientMessageEx(playerID, COLOR_INFO, 528);
-				SendClientMessageEx(playerID, COLOR_INFO, 529);
-			}
-			else if(PVar:playerID[ISNEW] == REGISTER_ISNOTNEW)
-			{
-				if (sellerUserID)
+				else
 				{
-					new sellerID = GetPlayerByUserID(sellerUserID);
-					if (sellerID == INVALID_PLAYER_ID)
-					{
-						MySQLQuery("UPDATE `users` SET `bankMoney` = `bankMoney` + '%f' WHERE `id` = '%d'", price, sellerUserID);
-					}
-					else
-					{
-						GivePlayerMoneyEx(sellerID, MONEY_BANK, price);
-						SendClientMessageEx(sellerID, COLOR_INFO, 494, playerID);
-					}
+					GivePlayerMoneyEx(sellerID, MONEY_BANK, price);
+					SendClientMessageEx(sellerID, COLOR_INFO, 494, playerID);
 				}
 			}
 			MySQLQuery("UPDATE `vehicles` SET `ownerUserId` = '%d', `ownerSellerId` = '0' WHERE `id` = '%d'", PVar:playerID[USERID], VehicleProperty:vehicleID[SAVEID]);
 			SendClientMessageEx(playerID, COLOR_INFO, 493);
+			if (!PVar:playerID[VEHICLEBOUGHT])
+			{
+				for (new stringID = 523; stringID <= 529; stringID++)
+				{
+					SendClientMessageEx(playerID, COLOR_INFO, stringID);
+				}
+				PVar:playerID[VEHICLEBOUGHT] = true;
+			}
 		}
 		else
 		{

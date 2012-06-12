@@ -12,7 +12,7 @@ enum
 // Command returns
 enum
 {
-	COMMAND_NOT_FOUND,// Must be the first (0)!
+	COMMAND_NOT_FOUND,
 	COMMAND_ERROR,
 	COMMAND_OK,
 	COMMAND_OK_NOSOUND,
@@ -70,15 +70,6 @@ enum
 {
 	MONEY_BANK,
 	MONEY_CASH,
-}
-
-
-// Message box styles
-enum
-{
-	MSGBOXSTYLE_OK,// Must be the first to be the default (0)
-	MSGBOXSTYLE_OKCANCEL,
-	MSGBOXSTYLE_YESNO
 }
 
 

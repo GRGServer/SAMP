@@ -25,18 +25,21 @@
 
 OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 {
-	MySQLQuery("SELECT `licenseID` FROM `users` WHERE `id` = '%d'", PVar:playerID[USERID]);
-	mysql_store_result();
-	new licenseID = strval(GetMySQLField("licenseId"));
-	mysql_free_result();
-	if (!licenseID)
-	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 514);
-		RemovePlayerFromVehicle(playerID);
-	}
 	if (IsPlayerNPC(playerID))
 	{
 		return true;
+	}
+	if (!isPassenger)
+	{
+		MySQLQuery("SELECT `licenseId` FROM `users` WHERE `id` = '%d'", PVar:playerID[USERID]);
+		mysql_store_result();
+		new licenseID = strval(GetMySQLField("licenseId"));
+		mysql_free_result();
+		if (!licenseID)
+		{
+			SendClientMessageEx(playerID, COLOR_ERROR, 514);
+			return false;
+		}
 	}
 	new modelID = GetVehicleModel(vehicleID);
 	if (modelID == 420)
@@ -58,7 +61,6 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 			}
 			else
 			{
-				RemovePlayerFromVehicle(playerID);
 				return false;
 			}
 		}
