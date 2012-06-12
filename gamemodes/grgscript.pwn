@@ -17,7 +17,6 @@
 #include <streamer>
 //#include <timerfix>
 #include <xml>
-#include <zcmd>
 
 // GRG Server main include
 #if defined COMPILE_SERVER

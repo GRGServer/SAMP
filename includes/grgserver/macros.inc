@@ -3,6 +3,9 @@
 // CMD:name(playerID, params, languageStringID)
 #define CMD:%0(%1,%2,%3) COMMAND:%0(%1, %2)
 
+// COMMAND:name(playerID, params)
+#define COMMAND:%0(%1) forward cmd_%0(%1); public cmd_%0(%1)
+
 // NCMD:name(playerID, params, languageStringID)
 #define NCMD:%0(%1,%2,%3) COMMAND:%0(%1, %2) if (!IsPlayerNPC(%1)) return COMMAND_NPC_ONLY; else
 

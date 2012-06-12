@@ -3,70 +3,118 @@
  *	This callback gets called once a player sent a command it got performed.
  * </summary>
  *
- * <param name="playerid">
+ * <param name="playerID">
  *	The ID of the player which sent the command.
  * </param>
  *
- * <param name="cmdtext">
- *	The full command including the name of the command and all parameters.
+ * <param name="command">
+ *	The name of the command without the slash.
  * </param>
  *
- * <param name="success">
+ * <param name="parameters">
+ *	The parameters passed to the command.
+ * </param>
+ *
+ * <param name="returnCode">
  *	The return code of the command.
+ * </param>
+ *
+ * <param name="isAlias">
+ *	<item>true if the command has been executed using an alias</item>
+ *	<item>false if this command has been typed directly by the player</item>
  * </param>
  */
 
-public OnPlayerCommandPerformed(playerid, cmdtext[], success)
+OnPlayerCommandPerformed(playerID, command[], parameters[], returnCode, isAlias)
 {
-	switch (success)
+	switch (returnCode)
 	{
 		case COMMAND_ERROR:
 		{
-			PlaySound(playerid, SOUND_COMMAND_ERROR);
-			SendClientMessageEx(playerid, COLOR_ERROR, 143);
+			PlaySound(playerID, SOUND_COMMAND_ERROR);
+			SendClientMessageEx(playerID, COLOR_ERROR, 143);
 		}
 		case COMMAND_NOT_FOUND:
 		{
-			return false;
+			if (isAlias)
+			{
+				PlaySound(playerID, SOUND_COMMAND_ERROR);
+				SendClientMessageEx(playerID, COLOR_ERROR, 520, command);
+				SendClientMessageEx(playerID, COLOR_ERROR, 82);
+			}
+			else
+			{
+				new aliasCommandText[MAX_FUNCTION_NAME];
+				MySQLQuery("SELECT * FROM `cmdaliases` WHERE `name` = '%s'", MySQLEscapeString(command));
+				mysql_store_result();
+				if (mysql_num_rows())
+				{
+					strcat(aliasCommandText, GetMySQLField("command"));
+				}
+				mysql_free_result();
+				if (strlen(aliasCommandText))
+				{
+					new aliasParameters[256];
+					new aliasCommand[MAX_FUNCTION_NAME];
+					if (!sscanf(aliasCommandText, "ss", aliasCommand, aliasParameters))
+					{
+						if (StrNotNull(parameters))
+						{
+							strcat(aliasParameters, " ");
+							strcat(aliasParameters, parameters);
+						}
+					}
+					else
+					{
+						strcat(aliasParameters, parameters);
+					}
+					ExecuteCommand(playerID, aliasCommand, aliasParameters, true);
+				}
+				else
+				{
+					PlaySound(playerID, SOUND_COMMAND_ERROR);
+					SendClientMessageEx(playerID, COLOR_ERROR, 521);
+					SendClientMessageEx(playerID, COLOR_ERROR, 82);
+				}
+			}
 		}
 		case COMMAND_NOT_IN_VEHICLE:
 		{
-			SendClientMessageEx(playerid, COLOR_ERROR, 146);
+			SendClientMessageEx(playerID, COLOR_ERROR, 146);
 		}
 		case COMMAND_NPC_ONLY:
 		{
-			SendClientMessageEx(playerid, COLOR_ERROR, 145);
+			SendClientMessageEx(playerID, COLOR_ERROR, 145);
 		}
 		case COMMAND_OK:
 		{
-			PlaySound(playerid, SOUND_COMMAND_OK);
-			return true;// Command executed successfully -> Do nothing
+			PlaySound(playerID, SOUND_COMMAND_OK);
 		}
 		case COMMAND_OK_NOSOUND:
 		{
-			return true;// Command executed successfully -> Do nothing
+			// Command executed successfully -> Do nothing
 		}
 		case COMMAND_PERMISSION_DENIED:
 		{
-			PlaySound(playerid, SOUND_COMMAND_DENIED);
-			SendClientMessageEx(playerid, COLOR_ERROR, 148);
-			printf("%s tried to execute %s but has not the required permission!", GetPlayerNameEx(playerid), cmdtext);
+			PlaySound(playerID, SOUND_COMMAND_DENIED);
+			SendClientMessageEx(playerID, COLOR_ERROR, 148);
+			printf("%s tried to execute /%s but has not the required permission!", GetPlayerNameEx(playerID), command);
 		}
 		case COMMAND_PLAYER_NOT_FOUND:
 		{
-			SendClientMessageEx(playerid, COLOR_ERROR, 147);
+			SendClientMessageEx(playerID, COLOR_ERROR, 147);
 		}
 		case COMMAND_TELEPORTED:
 		{
-			SendClientMessageEx(playerid, COLOR_INFO, 144);
+			SendClientMessageEx(playerID, COLOR_INFO, 144);
 		}
 		case COMMAND_USAGE:
 		{
-			return true;// Command usage message displayed -> Nothing to do yet
+			// Command usage message displayed -> Nothing to do yet
 		}
 		default:
 		{
-			printf("Unknown command return code from %s", cmdtext);
+			printf("Unknown command return code from /%s: %d", command, returnCode);
 			return false;
 		}
 	}

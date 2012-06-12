@@ -44,7 +44,6 @@ If OpenConsole()
 			AddInclude("config.inc")
 			AddInclude("constants.inc")
 			AddInclude("macros.inc")
-			AddInclude("cmdalias.inc")
 			WriteStringN(mainInclude, "")
 			AddDir("Structures")
 			AddIncludeGroup("Global variables")
@@ -69,14 +68,14 @@ If OpenConsole()
 EndIf
 ; IDE Options = PureBasic 4.60 (Windows - x86)
 ; ExecutableFormat = Console
-; CursorPosition = 53
+; CursorPosition = 45
 ; FirstLine = 18
 ; Folding = -
 ; EnableXP
 ; UseIcon = Includes Updater.ico
 ; Executable = Includes Updater.exe
-; EnableCompileCount = 12
-; EnableBuildCount = 12
+; EnableCompileCount = 13
+; EnableBuildCount = 13
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0

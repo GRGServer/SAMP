@@ -1,4 +1,4 @@
-CMD:cmds(playerid, params[] , 93)
+CMD:cmds(playerID, params[] , 93)
 {
 	if (fexist(FILE_COMMANDS))
 	{
@@ -7,7 +7,7 @@ CMD:cmds(playerid, params[] , 93)
 		while (fread(file, string))
 		{
 			new type;
-			new command[MAX_FUNC_NAME];
+			new command[MAX_FUNCTION_NAME];
 			new infoTextID;
 			new permission[30];
 			RemoveNewLine(string);
@@ -28,7 +28,7 @@ CMD:cmds(playerid, params[] , 93)
 					new permissionID = GetPermissionByName(permission);
 					if (permissionID != -1)
 					{
-						if (permissions[playerid][enum_permission:permissionID])
+						if (permissions[playerID][enum_permission:permissionID])
 						{
 							showCommand = true;
 							Format:command("{A00000}/%s", command);
@@ -46,11 +46,12 @@ CMD:cmds(playerid, params[] , 93)
 							command[character] = ' ';
 						}
 					}*/
-					Format:string("%s{FF8C55} - %s", command, LanguageString(playerid, infoTextID));
-					SendClientMessage(playerid, COLOR_INFO, string);
+					Format:string("%s{FF8C55} - %s", command, LanguageString(playerID, infoTextID));
+					SendClientMessage(playerID, COLOR_INFO, string);
 				}
 			}
 		}
+		SendClientMessageEx(playerID, COLOR_INFO, 522);
 		return COMMAND_OK;
 	}
 	else

@@ -3,7 +3,6 @@
 #include <grgserver\config.inc>
 #include <grgserver\constants.inc>
 #include <grgserver\macros.inc>
-#include <grgserver\cmdalias.inc>
 
 // Structures
 #include <grgserver\Structures\enum_languageString.inc>
@@ -39,6 +38,7 @@
 #include <grgserver\Functions\CreateJob.inc>
 #include <grgserver\Functions\CreateUniqueNumberplateText.inc>
 #include <grgserver\Functions\CreateVehicleEx.inc>
+#include <grgserver\Functions\ExecuteCommand.inc>
 #include <grgserver\Functions\FetchMySQLRow.inc>
 #include <grgserver\Functions\FormatDate.inc>
 #include <grgserver\Functions\FormatTime.inc>
@@ -157,6 +157,7 @@
 #include <grgserver\Callbacks\OnPlayerClickMap.inc>
 #include <grgserver\Callbacks\OnPlayerClosestNodeIDChange.inc>
 #include <grgserver\Callbacks\OnPlayerCommandPerformed.inc>
+#include <grgserver\Callbacks\OnPlayerCommandText.inc>
 #include <grgserver\Callbacks\OnPlayerConnect.inc>
 #include <grgserver\Callbacks\OnPlayerDeath.inc>
 #include <grgserver\Callbacks\OnPlayerDisconnect.inc>
@@ -288,6 +289,7 @@
 #include <grgserver\Commands\addspeedcam.inc>
 #include <grgserver\Commands\addstaticnpc.inc>
 #include <grgserver\Commands\addteleport.inc>
+#include <grgserver\Commands\alias.inc>
 #include <grgserver\Commands\areaobjects.inc>
 #include <grgserver\Commands\ban.inc>
 #include <grgserver\Commands\changepw.inc>
