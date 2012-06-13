@@ -78,7 +78,11 @@
 #define LANGUAGE_MAXSTRINGS			600
 
 // Licenses
-#define LICENSE_VEHICLE				1
+#define LICENSECAR					1
+#define LICENSEBIKE					2
+#define LICENSETRUCK				3
+#define LICENSESAILING				4
+#define LICENSEFLY					5
 
 
 // Light objects

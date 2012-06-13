@@ -2061,8 +2061,8 @@
 		<de>Du hast einen Fahrzeugschein bekommen!</de>
 	</string>
 	<string id="514">
-		<en>You don't have a driving license!</en>
-		<de>Du besitzt keinen Führerschein!</de>
+		<en>You don't have the necessary license!</en>
+		<de>Du besitzt nicht den nötigen Führerschein!</de>
 	</string>
 	<string id="515">
 		<en>Create or remove a command alias</en>
@@ -2123,5 +2123,37 @@
 	<string id="529">
 		<en>Have fun while searching your first job.</en>
 		<de>Viel Spaß beim Suchen deines ersten Berufs.</de>
+	</string>
+	<string id="530">
+		<en>You have become a Bike License!</en>
+		<de>Du hast einen Motorad Schein bekommen!</de>
+	</string>
+	<string id="531">
+		<en>You have become a Truck License!</en>
+		<de>Du hast einen LKW Schein bekommen!</de>
+	</string>
+	<string id="532">
+		<en>You have become a Sailing license!</en>
+		<de>Du hast einen Segel Schein bekommen!</de>
+	</string>
+	<string id="533">
+		<en>You have become a Fly License!</en>
+		<de>Du hast einen Flug Schein bekommen!</de>
+	</string>
+	<string id="534">
+		<en>You don't have a Bike license!</en>
+		<de>Du hast keinen Motorad Schein!</de>
+	</string>
+	<string id="535">
+		<en>You don't have a Trucker License!</en>
+		<de>Du hast keinen LKW Schein</de>
+	</string>
+	<string id="536">
+		<en>You don't have a Sailing License!</en>
+		<de>Du hast kein Segel Schein!</de>
+	</string>
+	<string id="537">
+		<en>You don't have a Fly License!</en>
+		<de>Du hast keinen Flug Schein!</de>
 	</string>
 </languagestrings>
