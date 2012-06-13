@@ -2049,20 +2049,20 @@
 		<de>Inhalt des Chatfensters löschen</de>
 	</string>
 	<string id="511">
-		<en>Give driving license to a player</en>
+		<en>Give license to a player</en>
 		<de>Einem Spieler einen Führerschein geben</de>
 	</string>
 	<string id="512">
-		<en>This player already owns that license!</en>
-		<de>Dieser Spieler hat bereits diese Lizens!</de>
+		<en>%p already owns that license (%l)!</en>
+		<de>%p hat bereits diese Lizens (%l)!</de>
 	</string>
 	<string id="513">
-		<en>You got a driving license!</en>
-		<de>Du hast einen Fahrzeugschein bekommen!</de>
+		<en>You got a %l!</en>
+		<de>Du hast einen %l bekommen!</de>
 	</string>
 	<string id="514">
-		<en>You don't have the necessary license!</en>
-		<de>Du besitzt nicht den nötigen Führerschein!</de>
+		<en>You do not have a %l!</en>
+		<de>Du hast keinen %l!</de>
 	</string>
 	<string id="515">
 		<en>Create or remove a command alias</en>
@@ -2125,35 +2125,67 @@
 		<de>Viel Spaß beim Suchen deines ersten Berufs.</de>
 	</string>
 	<string id="530">
-		<en>You have become a Bike License!</en>
-		<de>Du hast einen Motorad Schein bekommen!</de>
+		<en>Car driving license</en>
+		<de>Autoführerschein</de>
 	</string>
 	<string id="531">
-		<en>You have become a Truck License!</en>
-		<de>Du hast einen LKW Schein bekommen!</de>
+		<en>Plane fly license</en>
+		<de>Pilotenschein</de>
 	</string>
 	<string id="532">
-		<en>You have become a Sailing license!</en>
-		<de>Du hast einen Segel Schein bekommen!</de>
+		<en>Truck driving license</en>
+		<de>LKW Führerschein</de>
 	</string>
 	<string id="533">
-		<en>You have become a Fly License!</en>
-		<de>Du hast einen Flug Schein bekommen!</de>
+		<en>Bike driving license</en>
+		<de>Motorradführerschein</de>
 	</string>
 	<string id="534">
-		<en>You don't have a Bike license!</en>
-		<de>Du hast keinen Motorad Schein!</de>
+		<en>Sailing license</en>
+		<de>Segelschein</de>
 	</string>
 	<string id="535">
-		<en>You don't have a Trucker License!</en>
-		<de>Du hast keinen LKW Schein</de>
+		<en>You gave a %l to %p</en>
+		<de>Du hast einen %l an %p gegeben</de>
 	</string>
 	<string id="536">
-		<en>You don't have a Sailing License!</en>
-		<de>Du hast kein Segel Schein!</de>
+		<en>You revoked the %l from %p!</en>
+		<de>Du hast den %l von %p weggenommen!</de>
 	</string>
 	<string id="537">
-		<en>You don't have a Fly License!</en>
-		<de>Du hast keinen Flug Schein!</de>
+		<en>Your %l has been revoked!</en>
+		<de>Dein %l wurde weggenommen!</de>
+	</string>
+	<string id="538">
+		<en>%p does not own a %l!</en>
+		<de>%p hat noch keinen %l!</de>
+	</string>
+	<string id="539">
+		<en>Invalid license type: %s</en>
+		<de>Ungültiger Lizenstyp: %s</de>
+	</string>
+	<string id="540">
+		<en>Command is the command without the slash ( / )!</en>
+		<de>Command ist der Befehl ohne Slash ( / )!</de>
+	</string>
+	<string id="541">
+		<en>Example usage: %s</en>
+		<de>Beispielanwendung: %s</de>
+	</string>
+	<string id="542">
+		<en>Helicopter flying license</en>
+		<de>Helikopterflugschein</de>
+	</string>
+	<string id="543">
+		<en>Train driving license</en>
+		<de>Zugführerschein</de>
+	</string>
+	<string id="544">
+		<en>Do not get caught by the police!</en>
+		<de>Lass dich nicht von der Polizei erwischen!</de>
+	</string>
+	<string id="545">
+		<en>Remember: Monster trucks are prohibited on the street!</en>
+		<de>Denke daran: Monster Trucks sind auf der Strasse verboten!</de>
 	</string>
 </languagestrings>

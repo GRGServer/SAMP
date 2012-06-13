@@ -23,6 +23,7 @@
 #define COLOR_SYSTEM				0xC0C0C0FF
 #define COLOR_TEXTLABEL				0xFF8C55FF
 #define COLOR_USAGE				0x008000FF
+#define COLOR_WARNING				0xFF6000FF
 
 
 // Files
@@ -76,13 +77,6 @@
 #define LANGUAGE_ENGLISH			0
 #define LANGUAGE_GERMAN				1
 #define LANGUAGE_MAXSTRINGS			600
-
-// Licenses
-#define LICENSECAR					1
-#define LICENSEBIKE					2
-#define LICENSETRUCK				3
-#define LICENSESAILING				4
-#define LICENSEFLY					5
 
 
 // Light objects

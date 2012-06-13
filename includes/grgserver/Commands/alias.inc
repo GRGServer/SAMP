@@ -26,7 +26,9 @@ CMD:alias(playerID, params[], 515)
 	{
 		if (sscanf(params, "s", name))
 		{
-			CmdUsageMsg(playerID, "alias", "Name", "[Command]");
+			CmdUsageMsg(playerID, "alias", "Name", "Command");
+			SendClientMessageEx(playerID, COLOR_INFO, 540);
+			SendClientMessageEx(playerID, COLOR_INFO, 541, "/alias inf spawnvehicle infernus");
 			SendClientMessageEx(playerID, COLOR_INFO, 516);
 			return COMMAND_USAGE;
 		}

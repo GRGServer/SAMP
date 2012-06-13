@@ -4,7 +4,7 @@ CMD:givelicense(playerID, params[], 511)
 	new licenseString[256];
 	if (sscanf(params, "us", targetPlayerID, licenseString))
 	{
-		CmdUsageMsg(playerID, "givelicense", "PlayerID/Name", "Car|Bike|Truck|Sailing|Fly");
+		CmdUsageMsg(playerID, "givelicense", "PlayerID/Name", "Bike|Boat|Car|Plane|Truck");
 		return COMMAND_USAGE;
 	}
 	new licenseArray[30][30];
@@ -13,52 +13,45 @@ CMD:givelicense(playerID, params[], 511)
 	for (new licenseIndex = 0; licenseIndex < sizeof(licenseArray); licenseIndex++)
 	{
 		license = licenseArray[licenseIndex];
-		if(PVar:playerID[JOBID] == JOB_SCHOOLDRIVER)
+		new newState = true;
+		if (license[0] == '-')
 		{
-			if(PVar:playerID[LICENSECAR] == license[3])
+			strdel(license, 0, 1);
+			newState = false;
+		}
+		if (strlen(license))
+		{
+			new languageStringID = LicenseLanguageStringID(license);
+			if (languageStringID)
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, 512);
+				if (GiveLicense(targetPlayerID, license, newState))
+				{
+					if (newState)
+					{
+						SendClientMessageEx(targetPlayerID, COLOR_INFO, 513, languageStringID);
+						SendClientMessageEx(playerID, COLOR_INFO, 535, languageStringID, targetPlayerID);
+					}
+					else
+					{
+						SendClientMessageEx(targetPlayerID, COLOR_INFO, 537, languageStringID);
+						SendClientMessageEx(playerID, COLOR_INFO, 536, languageStringID, targetPlayerID);
+					}
+				}
+				else
+				{
+					if (newState)
+					{
+						SendClientMessageEx(playerID, COLOR_ERROR, 512, targetPlayerID, languageStringID);
+					}
+					else
+					{
+						SendClientMessageEx(playerID, COLOR_ERROR, 538, targetPlayerID, languageStringID);
+					}
+				}
 			}
 			else
 			{
-				MySQLQuery("UPDATE `users` SET `CarLicense` = '1' WHERE `id` = '%d'",PVar:targetPlayerID[USERID]);
-				SendClientMessageEx(playerID, COLOR_INFO, 513);
-			}
-			if(PVar:playerID[LICENSEBIKE] == license[4])
-			{
-				SendClientMessageEx(playerID, COLOR_ERROR, 512);
-			}
-			else
-			{
-				MySQLQuery("UPDATE `users` SET `BikeLicense` = '1' WHERE `id` = '%d'", PVar:targetPlayerID[USERID]);
-				SendClientMessageEx(playerID, COLOR_INFO, 530);
-			}
-			if(PVar:playerID[LICENSETRUCK] == license[5])
-			{
-				SendClientMessageEx(playerID, COLOR_ERROR, 512);
-			}
-			else
-			{
-				MySQLQuery("UPDATE `users` SET `TruckLicense` = '1' WHERE `id` = '%d'", PVar:targetPlayerID[USERID]);
-				SendClientMessageEx(playerID, COLOR_INFO, 531);
-			}
-			if(PVar:playerID[LICENSESAILING] == license[7])
-			{
-				SendClientMessageEx(playerID, COLOR_ERROR, 512);
-			}
-			else
-			{
-				MySQLQuery("UPDATE `users` SET `SailingLicense` = '1' WHERE `id` = '%d'", PVar:targetPlayerID[USERID]);
-				SendClientMessageEx(playerID, COLOR_INFO, 532);
-			}
-			if(PVar:playerID[LICENSEFLY] == license[3])
-			{
-				SendClientMessageEx(playerID, COLOR_ERROR, 512);
-			}
-			else
-			{
-				MySQLQuery("UPDATE `users` SET `FlyLicense` = '1' WHERE `id` = '%d'", PVar:targetPlayerID[USERID]);
-				SendClientMessageEx(playerID, COLOR_INFO, 533);
+				SendClientMessageEx(playerID, COLOR_ERROR, 539, license);
 			}
 		}
 	}

@@ -70,8 +70,10 @@
 #include <grgserver\Functions\GetVehicleNeonLightsState.inc>
 #include <grgserver\Functions\GetXYFromAngle.inc>
 #include <grgserver\Functions\GetXYZFromAngle.inc>
+#include <grgserver\Functions\GiveLicense.inc>
 #include <grgserver\Functions\GivePlayerMoneyEx.inc>
 #include <grgserver\Functions\GivePlayerWeaponEx.inc>
+#include <grgserver\Functions\HasLicense.inc>
 #include <grgserver\Functions\InterpolateCameraToLookAt.inc>
 #include <grgserver\Functions\InterpolateCameraToPos.inc>
 #include <grgserver\Functions\IsAllowedWeapon.inc>
@@ -85,6 +87,7 @@
 #include <grgserver\Functions\IsVehicleLocked.inc>
 #include <grgserver\Functions\LanguageString.inc>
 #include <grgserver\Functions\LeaveProperty.inc>
+#include <grgserver\Functions\LicenseLanguageStringID.inc>
 #include <grgserver\Functions\LoadPlayer.inc>
 #include <grgserver\Functions\LoadPlayerPermissions.inc>
 #include <grgserver\Functions\LockVehicle.inc>

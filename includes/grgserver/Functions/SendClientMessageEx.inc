@@ -41,6 +41,12 @@ SendClientMessageEx(playerID, color, languageStringID, { _, Float, Text3D, Menu,
 						Format:targetString("%s%f", targetString, getarg(argumentIndex));
 						isFormatChar = true;
 					}
+					case 'l':
+					{
+						argumentIndex++;
+						strcat(targetString, LanguageString(playerID, getarg(argumentIndex)));
+						isFormatChar = true;
+					}
 					case 'm':
 					{
 						argumentIndex++;

@@ -37,6 +37,13 @@ public OnPlayerConnect(playerid)
 		return true;
 	}
 	printf("%s connected from %s", GetPlayerNameEx(playerid), GetPlayerCountryName(playerid));
+	MySQLQuery("SELECT * FROM `removedstdobjects`");
+	mysql_store_result();
+	while (FetchMySQLRow())
+	{
+		RemoveBuildingForPlayer(playerid, strval(GetMySQLField("modelId")), floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), floatstr(GetMySQLField("radius")));
+	}
+	mysql_free_result();
 	MySQLQuery("SELECT * FROM `users` WHERE `username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
 	mysql_store_result();
 	if (strval(GetMySQLField("id")))
