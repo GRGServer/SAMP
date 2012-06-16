@@ -238,6 +238,7 @@
 #include <grgserver\Dialogs\D_SelectInterior.inc>
 #include <grgserver\Dialogs\D_SellVehicle.inc>
 #include <grgserver\Dialogs\D_SetSell.inc>
+#include <grgserver\Dialogs\D_ShowOrder.inc>
 #include <grgserver\Dialogs\D_SpawnVehicle.inc>
 #include <grgserver\Dialogs\D_Stats.inc>
 #include <grgserver\Dialogs\D_Taxi.inc>
@@ -370,6 +371,7 @@
 #include <grgserver\Commands\setspawn.inc>
 #include <grgserver\Commands\settplink.inc>
 #include <grgserver\Commands\showinterior.inc>
+#include <grgserver\Commands\showorder.inc>
 #include <grgserver\Commands\showpos.inc>
 #include <grgserver\Commands\sit.inc>
 #include <grgserver\Commands\spawnvehicle.inc>
