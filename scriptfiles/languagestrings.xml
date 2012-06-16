@@ -2228,4 +2228,28 @@
 		<en>Taz Player</en>
 		<de>Spieler Festhalten</de>
 	</string>
+	<string id="556">
+		<en>Untaz Player</en>
+		<de>Spieler Los Lassen</de>
+	</string>
+	<string id="557">
+		<en>Give Player Wanted Level</en>
+		<de>Spieler Verfolgungs Level geben</de>
+	</string>
+	<string id="558">
+		<en>Wanted Level</en>
+		<de>Wanted Level</de>
+	</string>
+	<string id="559">
+		<en>Give Player Wanted Level</en>
+		<de>Trage die Anzahl an Wanted Level ein</de>
+	</string>
+	<string id="560">
+		<en>You don't have Input a Wanted Level!</en>
+		<de>Du hast kein Wanted Level eingegeben</de>
+	</string>
+	<string id="561">
+		<en>Player have now Wanted Level %d<en>
+		<de>Spieler hat nun das Wanted Level %d</de>
+	</string>
 </languagestrings>

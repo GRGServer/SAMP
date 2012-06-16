@@ -20,6 +20,7 @@ LoadPlayer(playerID)
 	PVar:playerID[VEHICLEBOUGHT] = strval(GetMySQLField("vehicleBought"));
 	SetPlayerHealth(playerID, floatstr(GetMySQLField("health")));
 	SetPlayerSkin(playerID, PVar:playerID[SKIN]);
+	SetPlayerWantedLevel(playerID, strval(GetMySQLField("wantedLevel")));
 	mysql_free_result();
 	SetPlayerMoney(playerID, MONEY_BANK, bankMoney);
 	SetPlayerMoney(playerID, MONEY_CASH, cashMoney);

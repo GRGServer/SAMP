@@ -213,6 +213,7 @@
 #include <grgserver\Dialogs\D_FriendRequests.inc>
 #include <grgserver\Dialogs\D_FriendRequests_Options.inc>
 #include <grgserver\Dialogs\D_FunAction.inc>
+#include <grgserver\Dialogs\D_GiveWanted.inc>
 #include <grgserver\Dialogs\D_GiveWeapon.inc>
 #include <grgserver\Dialogs\D_Hospital.inc>
 #include <grgserver\Dialogs\D_Hotel_HasRoom.inc>
@@ -313,6 +314,7 @@
 #include <grgserver\Commands\funaction.inc>
 #include <grgserver\Commands\givelicense.inc>
 #include <grgserver\Commands\givepermission.inc>
+#include <grgserver\Commands\givewanted.inc>
 #include <grgserver\Commands\giveweapon.inc>
 #include <grgserver\Commands\gmx.inc>
 #include <grgserver\Commands\god.inc>
@@ -383,5 +385,6 @@
 #include <grgserver\Commands\teststart.inc>
 #include <grgserver\Commands\toggleclock.inc>
 #include <grgserver\Commands\tow.inc>
+#include <grgserver\Commands\untaz.inc>
 #include <grgserver\Commands\vlock.inc>
 

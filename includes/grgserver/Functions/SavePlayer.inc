@@ -13,6 +13,7 @@ SavePlayer(playerID)
 		GetPlayerHealth(playerID, health);
 		GetPlayerPos(playerID, posX, posY, posZ);
 		GetPlayerFacingAngle(playerID, angle);
+		GetPlayerWantedLevel(playerID);
 		if (posX != 0 && posY != 0 && posZ != 0)
 		{
 			MySQLQuery("UPDATE `users` SET `health` = '%f', `posX` = '%f', `posY` = '%f', `posZ` = '%f', `angle` = '%f', `interior` = '%d' WHERE `id` = '%d'", health, posX, posY, posZ, angle, GetPlayerInterior(playerID), PVar:playerID[USERID]);
