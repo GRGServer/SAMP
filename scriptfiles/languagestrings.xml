@@ -2189,67 +2189,63 @@
 		<de>Denke daran: Monster Trucks sind auf der Strasse verboten!</de>
 	</string>
 	<string id="546">
-		<en>Hampf Plantage Transport</en>
-		<de>Hampf Plantagen Transport</de>
+		<en>Cannabis plantations transportation</en>
+		<de>Hanfplantagentransport</de>
 	</string>
-	<string id= "547">
-		<en>Cole Transport</en>
-		<de>Kohle Transport</de>
+	<string id="547">
+		<en>Cole transport</en>
+		<de>Kohletransport</de>
 	</string>
-		<string id="548">
+	<string id="548">
 		<en>Tank Transport</en>
 		<de>Benzin Transport</de>
 	</string>
-	<string id= "549">
-		<en>Cople your Trailer and drive to the Checkpoint</en>
-		<de>Kople deinen Hänger und fahre zu dem Checkpoint</de>
+	<string id="549">
+		<en>Attach your trailer and drive to the checkpoint</en>
+		<de>Hänge deinen Hänger an und fahre zu dem Checkpoint</de>
 	</string>
 	<string id="550">
-		<en>Getreide Transport</en>
-		<de>Getreide Transport</de>
+		<en>grain transport</en>
+		<de>Getreidetransport</de>
 	</string>
-	<string id= "551">
-		<en>You have make your Order and become %d of your Bank</en>
-		<de>Du hast deinen Auftrag gemeistert und bekommst %d auf deine Bank</de>
+	<string id="551">
+		<en>You have finished your mission and get %m transferred to your bank account.</en>
+		<de>Du hast deinen Auftrag gemeistert und bekommst %m auf dein Bankkonto überwiesen.</de>
 	</string>
 	<string id="552">
-		<en>Drivingin back to become new Route</en>
-		<de>Fahre zurück um eine neue Route zu Wählen</de>
+		<en>Drive back to select a new route</en>
+		<de>Fahre zurück um eine neue Route zu wählen</de>
 	</string>
 	<string id="553">
-		<en>Trucker Order</en>
-		<de>LKW Fahrer Aufträge</de>
+		<en>Trucker missions</en>
+		<de>LKW-Fahreraufträge</de>
 	</string>
 	<string id="554">
-		<en>Arrest a Player</en>
-		<de>Spieler Verhaften</de>
+		<en>Cuff a player</en>
+		<de>Einen Spieler fesseln</de>
 	</string>
 	<string id="555">
-		<en>Taz Player</en>
-		<de>Spieler Festhalten</de>
+		<en>%p has been cuffed</en>
+		<de>%p wurde gefesselt</de>
 	</string>
 	<string id="556">
-		<en>Untaz Player</en>
-		<de>Spieler Los Lassen</de>
+		<en>%p is not in range!</en>
+		<de>%p ist nicht in der Nähe!</de>
 	</string>
 	<string id="557">
-		<en>Give Player Wanted Level</en>
-		<de>Spieler Verfolgungs Level geben</de>
+		<en>%p has been released</en>
+		<de>%p wurde freigelassen</de>
 	</string>
 	<string id="558">
-		<en>Wanted Level</en>
-		<de>Wanted Level</de>
+		<en>Level must be between 0 and 6!</en>
+		<de>Level muss zwischen 0 und 6 sein!</de>
 	</string>
 	<string id="559">
-		<en>Give Player Wanted Level</en>
-		<de>Trage die Anzahl an Wanted Level ein</de>
+		<en>The wanted level of %p has been set to %d</en>
+		<de>Der Gesucht-Level von %p wurde auf %d gesetzt</de>
 	</string>
 	<string id="560">
-		<en>You don't have Input a Wanted Level!</en>
-		<de>Du hast kein Wanted Level eingegeben</de>
-	</string>
-	<string id="561">
-		<en>Player have now Wanted Level %d<en>
-		<de>Spieler hat nun das Wanted Level %d</de>
+		<en>Set the wanted level of a player</en>
+		<de>Setze den Gesucht-Level von einem Spieler</de>
 	</string>
 </languagestrings>

@@ -1,5 +1,9 @@
 public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 {
+	if (IsKeyPressed(KEY_JUMP) && GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_CUFFED)
+	{
+		ApplyAnimation(playerid, "GYMNASIUM", "gym_jog_falloff", 4.1, 0, 1, 1, 0, 0);// Prevent player from jumping while cuffed
+	}
 	if (IsKeyPressed(KEY_ANALOG_DOWN))
 	{
 		new vehicleID = GetPlayerVehicleID(playerid);

@@ -213,7 +213,6 @@
 #include <grgserver\Dialogs\D_FriendRequests.inc>
 #include <grgserver\Dialogs\D_FriendRequests_Options.inc>
 #include <grgserver\Dialogs\D_FunAction.inc>
-#include <grgserver\Dialogs\D_GiveWanted.inc>
 #include <grgserver\Dialogs\D_GiveWeapon.inc>
 #include <grgserver\Dialogs\D_Hospital.inc>
 #include <grgserver\Dialogs\D_Hotel_HasRoom.inc>
@@ -296,7 +295,6 @@
 #include <grgserver\Commands\addteleport.inc>
 #include <grgserver\Commands\alias.inc>
 #include <grgserver\Commands\areaobjects.inc>
-#include <grgserver\Commands\arrest.inc>
 #include <grgserver\Commands\ban.inc>
 #include <grgserver\Commands\changepw.inc>
 #include <grgserver\Commands\chatmode.inc>
@@ -305,6 +303,7 @@
 #include <grgserver\Commands\cmds.inc>
 #include <grgserver\Commands\controlnpc.inc>
 #include <grgserver\Commands\coordtp.inc>
+#include <grgserver\Commands\cuff.inc>
 #include <grgserver\Commands\drivingcam.inc>
 #include <grgserver\Commands\editobject.inc>
 #include <grgserver\Commands\engine.inc>
@@ -380,11 +379,9 @@
 #include <grgserver\Commands\spawnvehicle.inc>
 #include <grgserver\Commands\stats.inc>
 #include <grgserver\Commands\stoprec.inc>
-#include <grgserver\Commands\taz.inc>
 #include <grgserver\Commands\teleport.inc>
 #include <grgserver\Commands\teststart.inc>
 #include <grgserver\Commands\toggleclock.inc>
 #include <grgserver\Commands\tow.inc>
-#include <grgserver\Commands\untaz.inc>
 #include <grgserver\Commands\vlock.inc>
 

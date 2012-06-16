@@ -1,17 +1,40 @@
-/*
-	Description:
-		Spawn a pickup and add a 3D text label
-		Adds the pickup to the database if saveToDB is true
-	Parameters:
-		pickupID: ID from pickups table in database (Only required if saveToDB is false)
-		type: Type of the pickup as string (See GetPickupInfoByType for details)
-		posX/Y/Z: Position as float
-		saveToDB: Adds the pickup to the database if true (Used to create new pickup)
-	Return:
-		-1: Invalid pickup type
-		-2: Spawned without adding to pickups table
-		ID: The ID of the new pickup in the pickups table
-*/
+/**
+ * <summary>
+ *	Spawn a pickup
+ *	Adds the pickup to the database if saveToDB is true
+ * </summary>
+ *
+ * <param name="pickupID">
+ *	ID from pickups table in database (Only required if saveToDB is false)
+ * </param>
+ *
+ * <param name="type">
+ *	Type of the pickup as string (See  for details)
+ * </param>
+ *
+ * <param name="posX">
+ *	The X position as float
+ * </param>
+ *
+ * <param name="posY">
+ *	The Y position as float
+ * </param>
+ *
+ * <param name="posZ">
+ *	The Z position as float
+ * </param>
+ *
+ * <param name="saveToDB">
+ *	Adds the pickup to the database if true (Used to create new pickup)
+ * </param>
+ *
+ * <returns>
+ *	<item name="-1">Invalid pickup type</item>
+ *	<item name="-2">Spawned without adding to pickups table</item>
+ *	<item name="ID">The ID of the new pickup in the pickups table</item>
+ * </returns>
+ */
+
 AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 {
 	new modelID;
@@ -21,8 +44,6 @@ AddPickup(pickupID, type[], Float:posX, Float:posY, Float:posZ, saveToDB)
 	if (modelID)
 	{
 		pickup = CreatePickup(modelID, 23, posX, posY, posZ, -1);
-		FormatNew:text[100]("%s\n\nPress ~k~~CONVERSATION_YES~",type);// TODO: Translate (Per player 3D Text Labels)
-		Create3DTextLabel(text, COLOR_TEXTLABEL, posX, posY, posZ, TEXTLABEL_DRAWDISTANCE, 0, true);// TODO: Show in all virtual worlds
 		pickups[pickup][PICKUP_POSX] = posX;
 		pickups[pickup][PICKUP_POSY] = posY;
 		pickups[pickup][PICKUP_POSZ] = posZ;

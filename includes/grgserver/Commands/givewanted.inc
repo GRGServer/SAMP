@@ -1,12 +1,26 @@
-CMD:givewanted(playerID, params[], 557)
+CMD:givewanted(playerID, params[], 560)
 {
 	if(PVar:playerID[JOBID] == JOB_POLICE)
 	{
 		new targetPlayerID;
-		if (sscanf(params, "u", targetPlayerID))
+		new level;
+		if (sscanf(params, "ud", targetPlayerID, level))
 		{
-			ShowDialog:GiveWanted(playerID);
+			CmdUsageMsg(playerID, "givewanted", "PlayerID/Name", "Level");
+			return COMMAND_USAGE;
 		}
+		if (targetPlayerID == INVALID_PLAYER_ID)
+		{
+			return COMMAND_PLAYER_NOT_FOUND;
+		}
+		if (level < 0 || level > 6)
+		{
+			SendClientMessageEx(playerID, COLOR_ERROR, 558);
+			return COMMAND_ERROR;
+		}
+		SetPlayerWantedLevel(targetPlayerID, level);
+		SendClientMessageEx(playerID, COLOR_INFO, 559, targetPlayerID, level);
+		return COMMAND_OK;
 	}
 	return COMMAND_PERMISSION_DENIED;
 }
