@@ -295,6 +295,7 @@
 #include <grgserver\Commands\addteleport.inc>
 #include <grgserver\Commands\alias.inc>
 #include <grgserver\Commands\areaobjects.inc>
+#include <grgserver\Commands\arrest.inc>
 #include <grgserver\Commands\ban.inc>
 #include <grgserver\Commands\changepw.inc>
 #include <grgserver\Commands\chatmode.inc>
@@ -377,6 +378,7 @@
 #include <grgserver\Commands\spawnvehicle.inc>
 #include <grgserver\Commands\stats.inc>
 #include <grgserver\Commands\stoprec.inc>
+#include <grgserver\Commands\taz.inc>
 #include <grgserver\Commands\teleport.inc>
 #include <grgserver\Commands\teststart.inc>
 #include <grgserver\Commands\toggleclock.inc>

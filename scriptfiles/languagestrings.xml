@@ -2220,4 +2220,12 @@
 		<en>Trucker Order</en>
 		<de>LKW Fahrer Aufträge</de>
 	</string>
+	<string id="554">
+		<en>Arrest a Player</en>
+		<de>Spieler Verhaften</de>
+	</string>
+	<string id="555">
+		<en>Taz Player</en>
+		<de>Spieler Festhalten</de>
+	</string>
 </languagestrings>
