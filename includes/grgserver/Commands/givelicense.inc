@@ -24,7 +24,7 @@ CMD:givelicense(playerID, params[], 511)
 			new languageStringID = LicenseLanguageStringID(license);
 			if (languageStringID)
 			{
-				if (GiveLicense(targetPlayerID, license, newState))
+				if (GiveLicense(playerID, targetPlayerID, license, newState))
 				{
 					if (newState)
 					{

@@ -3,6 +3,10 @@
  *	Give or revoke a license
  * </summary>
  *
+ * <param name="giverPlayerID">
+ *	The ID of the player wich gives the license
+ * </param>
+ *
  * <param name="playerID">
  *	The ID of the player you want to give or revoke the license
  * </param>
@@ -29,12 +33,12 @@
  * </remarks>
  */
 
-GiveLicense(playerID, type[], newState)
+GiveLicense(giverPlayerID, playerID, type[], newState)
 {
 	new currentState = HasLicense(playerID, type);
 	if (newState && !currentState)
 	{
-		MySQLQuery("INSERT INTO `licenses` (`userId`, `type`, `date`) VALUES('%d', '%s', NOW())", PVar:playerID[USERID], MySQLEscapeString(type));
+		MySQLQuery("INSERT INTO `licenses` (`giverUserId`, `userId`, `type`, `date`) VALUES('%d', '%d', '%s', NOW())", PVar:giverPlayerID[USERID], PVar:playerID[USERID], MySQLEscapeString(type));
 		return true;
 	}
 	if (!newState && currentState)
