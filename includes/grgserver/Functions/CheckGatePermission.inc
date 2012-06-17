@@ -30,6 +30,10 @@ CheckGatePermission(playerID, gateObjectID)
 				return false;
 			}
 		}
+		case 1766:// Los Santos Airport gate
+		{
+			return true;// TODO: Currently allowed for all players (Need job?)
+		}
 	}
 	return true;// Set default to let the player enter this area
 }

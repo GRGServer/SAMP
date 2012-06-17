@@ -73,7 +73,7 @@ for (new i_%0 = 0; ; ++i_%0) \
 // PickupEvent:pickupType(parameters)
 #define PickupEvent:%0(%1) forward PUE_%0(%1); public PUE_%0(%1)
 
-// PickupModelID:pickupType(parameters)
+// PickupModelID:pickupType(pickupID)
 #define PickupModelID:%0(%1) forward PUMID_%0(%1); public PUMID_%0(%1)
 
 // PlayerLoop(returningPlayerID)

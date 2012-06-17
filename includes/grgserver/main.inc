@@ -262,6 +262,7 @@
 #include <grgserver\Pickups\Pickup_House.inc>
 #include <grgserver\Pickups\Pickup_InteriorExit.inc>
 #include <grgserver\Pickups\Pickup_Link.inc>
+#include <grgserver\Pickups\Pickup_PayNSpray.inc>
 #include <grgserver\Pickups\Pickup_Place.inc>
 #include <grgserver\Pickups\Pickup_Police.inc>
 #include <grgserver\Pickups\Pickup_Taxi.inc>

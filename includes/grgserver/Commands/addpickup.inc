@@ -13,11 +13,23 @@ PCMD:addpickup[MAPPER](playerID, params[], 96)
 	if (IsValidPickupType(type))
 	{
 		GetPlayerPos(playerID, posX, posY, posZ);
-		new id = AddPickup(-1, type, posX, posY, posZ, true);
-		if (id > 0)
+		MySQLQuery("INSERT INTO `pickups` (`posX`, `posY`, `posZ`, `type`) VALUES('%f', '%f', '%f', '%s')", posX, posY, posZ, type);
+		new pickupID = mysql_insert_id();
+		if (pickupID)
 		{
-			SendClientMessageEx(playerID, COLOR_INFO, 57, type, id);
-			return COMMAND_OK;
+			if (AddPickup(pickupID, type, posX, posY, posZ))
+			{
+				SendClientMessageEx(playerID, COLOR_INFO, 57, type, pickupID);
+				return COMMAND_OK;
+			}
+			else
+			{
+				SendClientMessageEx(playerID, COLOR_ERROR, 6);
+			}
+		}
+		else
+		{
+			SendClientMessageEx(playerID, COLOR_ERROR, 6);
 		}
 	}
 	else

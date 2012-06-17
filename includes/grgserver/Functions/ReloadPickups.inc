@@ -4,14 +4,13 @@ ReloadPickups(playerID = INVALID_PLAYER_ID)
 	for (new pickupID = 0; pickupID < MAX_PICKUPS; pickupID++)
 	{
 		DestroyPickup(pickupID);
+		pickups[pickupID][PICKUP_ID] = 0;
+		pickups[pickupID][PICKUP_TYPE] = 0;
 	}
 	AdminPrint(playerID, COLOR_INFO, "* Loading pickups...");
 	for (new pickupID = 0; pickupID < MAX_PICKUPS; pickupID++)
 	{
-		if (strlen(pickupLoader[pickupID][PICKUPLOADER_TYPE]))
-		{
-			strdel(pickupLoader[pickupID][PICKUPLOADER_TYPE], 0, strlen(pickupLoader[pickupID][PICKUPLOADER_TYPE]));
-		}
+		pickupLoader[pickupID][PICKUPLOADER_TYPE] = 0;
 	}
 	mysql_query("SELECT * FROM `pickups`");
 	mysql_store_result();
@@ -30,7 +29,7 @@ ReloadPickups(playerID = INVALID_PLAYER_ID)
 	{
 		if (strlen(pickupLoader[pickupID][PICKUPLOADER_TYPE]))
 		{
-			if (AddPickup(pickupID, pickupLoader[pickupID][PICKUPLOADER_TYPE], pickupLoader[pickupID][PICKUPLOADER_POSX], pickupLoader[pickupID][PICKUPLOADER_POSY], pickupLoader[pickupID][PICKUPLOADER_POSZ], false) == -1)
+			if (!AddPickup(pickupID, pickupLoader[pickupID][PICKUPLOADER_TYPE], pickupLoader[pickupID][PICKUPLOADER_POSX], pickupLoader[pickupID][PICKUPLOADER_POSY], pickupLoader[pickupID][PICKUPLOADER_POSZ]))
 			{
 				AdminPrint(playerID, COLOR_ERROR, "Invalid pickup type: %s", pickupLoader[pickupID][PICKUPLOADER_TYPE]);
 			}
