@@ -1,9 +1,9 @@
-ShowDialog:NaviTarget_HouseName(playerID)
+ShowDialog:NaviTarget_PropertyName(playerID)
 {
-	CreateDialog(playerID, "NaviTarget_HouseName", DIALOG_STYLE_INPUT, LanguageString(playerID, 417), LanguageString(playerID, 418), "OK", LanguageString(playerID, 171));
+	CreateDialog(playerID, "NaviTarget_PropertyName", DIALOG_STYLE_INPUT, LanguageString(playerID, 417), LanguageString(playerID, 418), "OK", LanguageString(playerID, 171));
 }
 
-DialogResponse:NaviTarget_HouseName(playerID, response, listItem, inputText[])
+DialogResponse:NaviTarget_PropertyName(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
@@ -25,7 +25,7 @@ DialogResponse:NaviTarget_HouseName(playerID, response, listItem, inputText[])
 			}
 			else
 			{
-				ShowDialog:NaviTarget_HouseList(playerID, inputText);
+				ShowDialog:NaviTarget_PropertyList(playerID, inputText);
 			}
 		}
 		mysql_free_result();

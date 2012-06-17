@@ -1,4 +1,4 @@
-ShowDialog:NaviTarget_HouseList(playerID, searchString[])
+ShowDialog:NaviTarget_PropertyList(playerID, searchString[])
 {
 	new list[2048];
 	MySQLQuery("SELECT `name` FROM `properties` WHERE `name` LIKE '%%%s%%'", MySQLEscapeString(searchString));
@@ -8,10 +8,10 @@ ShowDialog:NaviTarget_HouseList(playerID, searchString[])
 		AddLine(list, GetMySQLField("name"));
 	}
 	mysql_free_result();
-	CreateDialog(playerID, "NaviTarget_HouseList", DIALOG_STYLE_LIST, LanguageString(playerID, 419), list, "OK", LanguageString(playerID, 171));
+	CreateDialog(playerID, "NaviTarget_PropertyList", DIALOG_STYLE_LIST, LanguageString(playerID, 419), list, "OK", LanguageString(playerID, 171));
 }
 
-DialogResponse:NaviTarget_HouseList(playerID, response, listItem, inputText[])
+DialogResponse:NaviTarget_PropertyList(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
@@ -36,6 +36,6 @@ DialogResponse:NaviTarget_HouseList(playerID, response, listItem, inputText[])
 	}
 	else
 	{
-		ShowDialog:NaviTarget_HouseName(playerID);
+		ShowDialog:NaviTarget_PropertyName(playerID);
 	}
 }

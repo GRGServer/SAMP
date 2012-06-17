@@ -1673,8 +1673,8 @@
 		<de>Schalte das Lich von deinem Fahrzeug an oder aus</de>
 	</string>
 	<string id="417">
-		<en>Name of a house</en>
-		<de>Name eines Hauses</de>
+		<en>Name of a property</en>
+		<de>Name einer Immobilie</de>
 	</string>
 	<string id="418">
 		<en>Enter the name of the target house.</en>

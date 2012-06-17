@@ -5,8 +5,10 @@
 #include <grgserver\macros.inc>
 
 // Structures
+#include <grgserver\Structures\enum_distanceCalc.inc>
 #include <grgserver\Structures\enum_languageString.inc>
 #include <grgserver\Structures\enum_naviLocation.inc>
+#include <grgserver\Structures\enum_naviTarget.inc>
 #include <grgserver\Structures\enum_neonType.inc>
 #include <grgserver\Structures\enum_permission.inc>
 #include <grgserver\Structures\enum_pickup.inc>
@@ -44,7 +46,6 @@
 #include <grgserver\Functions\FormatTime.inc>
 #include <grgserver\Functions\GetChatModeName.inc>
 #include <grgserver\Functions\GetClosestGate.inc>
-#include <grgserver\Functions\GetClosestNavigationLocation.inc>
 #include <grgserver\Functions\GetClosestObjectByModel.inc>
 #include <grgserver\Functions\GetClosestPickup.inc>
 #include <grgserver\Functions\GetClosestVehicleInRange.inc>
@@ -220,8 +221,9 @@
 #include <grgserver\Dialogs\D_House.inc>
 #include <grgserver\Dialogs\D_Login.inc>
 #include <grgserver\Dialogs\D_NaviTarget.inc>
-#include <grgserver\Dialogs\D_NaviTarget_HouseList.inc>
-#include <grgserver\Dialogs\D_NaviTarget_HouseName.inc>
+#include <grgserver\Dialogs\D_NaviTarget_PropertyList.inc>
+#include <grgserver\Dialogs\D_NaviTarget_PropertyName.inc>
+#include <grgserver\Dialogs\D_NaviTarget_TargetList.inc>
 #include <grgserver\Dialogs\D_OrderVehicle.inc>
 #include <grgserver\Dialogs\D_PaydayInfo.inc>
 #include <grgserver\Dialogs\D_PreviewInfo.inc>

@@ -1,0 +1,7 @@
+enum enum_naviTarget
+{
+	Float:NAVITARGET_DISTANCE,
+	Float:NAVITARGET_POSX,
+	Float:NAVITARGET_POSY,
+	Float:NAVITARGET_POSZ
+}

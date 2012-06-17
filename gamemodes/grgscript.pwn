@@ -10,6 +10,7 @@
 #include <formatnumber>
 #include <geoip>
 #include <MD5>
+#include <md-sort>
 #include <mysql>
 #include <regex>
 #include <routeconnector>
