@@ -1,6 +1,6 @@
 CMD:givewanted(playerID, params[], 560)
 {
-	if(PVar:playerID[JOBID] == JOB_POLICE)
+	if(PVar:playerID[JOBID] == JOB_POLICE || PVar:playerID[JOBID] == JOB_GOVERMENT || PVar:playerID[JOBID] == JOB_ARMEE)
 	{
 		new targetPlayerID;
 		new level;
