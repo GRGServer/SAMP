@@ -2249,27 +2249,15 @@
 		<de>Setze den Gesucht-Level von einem Spieler</de>
 	</string>
 	<string id="561">
-		<en>Change Busline</en>
-		<de>Bus Linie Wählen</de>
+		<en>Change bus line</en>
+		<de>Buslinie wählen</de>
 	</string>
 	<string id="562">
-		<en>Line 1</en>
-		<de>Linie 1</de>
+		<en>Line %d</en>
+		<de>Linie %d</de>
 	</string>
 	<string id="563">
-		<en>Line 2</en>
-		<de>Linie 2</de>
-	</string>
-	<string id="564">
-		<en>Line 3</en>
-		<de>Linie 3</de>
-	</string>
-	<string id="565">
-		<en>Line 4</en>
-		<de>Linie 4</de>
-	</string>
-	<string id="566">
-		<en>Comming Soon</en>
-		<de>Kommt Bald</de>
+		<en>You are not driving a bus!</en>
+		<de>Du fährst keinen Bus!</de>
 	</string>
 </languagestrings>

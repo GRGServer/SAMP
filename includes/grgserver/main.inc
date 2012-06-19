@@ -203,6 +203,7 @@
 #include <grgserver\Dialogs\D_Bank_HasAccount.inc>
 #include <grgserver\Dialogs\D_Bank_NewAccount.inc>
 #include <grgserver\Dialogs\D_Bank_WithdrawMoney.inc>
+#include <grgserver\Dialogs\D_BusLine.inc>
 #include <grgserver\Dialogs\D_BuyHouse.inc>
 #include <grgserver\Dialogs\D_BuyVehicle.inc>
 #include <grgserver\Dialogs\D_ChangePassword_Step1.inc>
@@ -327,6 +328,7 @@
 #include <grgserver\Commands\kill.inc>
 #include <grgserver\Commands\language.inc>
 #include <grgserver\Commands\lights.inc>
+#include <grgserver\Commands\linie.inc>
 #include <grgserver\Commands\maptp.inc>
 #include <grgserver\Commands\markobject.inc>
 #include <grgserver\Commands\markobjects.inc>
