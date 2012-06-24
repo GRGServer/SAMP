@@ -5,6 +5,7 @@
 new recordingName[256];
 new playbackType;
 new autoRepeat;
+new startTime;
 
 public OnClientMessage(color, text[])
 {
@@ -12,7 +13,7 @@ public OnClientMessage(color, text[])
 	Accepted content for "text":
 	pause
 	resume
-	setrec <recordingName> <playbackType> <autoRepeat> <startNow>
+	setrec <recordingName> <playbackType> <autoRepeat> <startNow> <startDelay>
 	start (<recordingName> <playbackType> <autoRepeat>)
 	stop
 	teleport <posX> <posY> <posZ> <angle>
@@ -45,14 +46,17 @@ public OnClientMessage(color, text[])
 	if (!strcmp(command, "setrec", true))
 	{
 		new startNow;
-		if (sscanf(parameters, "sddd", recordingName, playbackType, autoRepeat, startNow))
+		new startDelay;
+		if (sscanf(parameters, "sdddd", recordingName, playbackType, autoRepeat, startNow, startDelay))
 		{
-			sscanf(parameters, "sdd", recordingName, playbackType, autoRepeat);
+			if (sscanf(parameters, "sddd", recordingName, playbackType, autoRepeat, startNow))
+			{
+				sscanf(parameters, "sdd", recordingName, playbackType, autoRepeat);
+			}
 		}
-		StartRecordingPlayback(playbackType, recordingName);
-		if (!startNow)
+		if (startNow)
 		{
-			SetTimer("StopRecordingPlaybackTimer", 2000, false);// TODO: Sometimes the NPC is still not in the vehicle
+			SetTimer("StartRecordingPlaybackTimer", startDelay, false);
 		}
 		return true;
 	}
@@ -69,11 +73,14 @@ public OnClientMessage(color, text[])
 			autoRepeat = autoRepeat2;
 		}
 		StartRecordingPlayback(playbackType, recordingName);
+		startTime = gettime();
 		return true;
 	}
 	if (!strcmp(command, "stop", true))
 	{
 		StopRecordingPlayback();
+		format(command, sizeof(command), "/npccmd reclength %d", gettime() - startTime);
+		SendCommand(command);
 		return true;
 	}
 	if (!strcmp(command, "teleport", true))
@@ -98,9 +105,13 @@ public OnClientMessage(color, text[])
 
 public OnRecordingPlaybackEnd()
 {
+	new command[50];
+	format(command, sizeof(command), "/npccmd reclength %d", gettime() - startTime);
+	SendCommand(command);
 	if (autoRepeat)
 	{
 		StartRecordingPlayback(playbackType, recordingName);
+		startTime = gettime();
 	}
 	else
 	{
@@ -108,8 +119,9 @@ public OnRecordingPlaybackEnd()
 	}
 }
 
-forward StopRecordingPlaybackTimer();
-public StopRecordingPlaybackTimer()
+forward StartRecordingPlaybackTimer();
+public StartRecordingPlaybackTimer()
 {
-	StopRecordingPlayback();
+	StartRecordingPlayback(playbackType, recordingName);
+	startTime = gettime();
 }

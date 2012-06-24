@@ -9,6 +9,7 @@ LoadPlayer(playerID)
 	PVar:playerID[CURRENTPROPERTYID] = strval(GetMySQLField("currentPropertyId"));
 	PVar:playerID[DEATHS] = strval(GetMySQLField("deaths"));
 	PVar:playerID[GODMODE] = strval(GetMySQLField("godMode"));
+	PVar:playerID[INTUTORIAL] = strval(GetMySQLField("inTutorial"));
 	PVar:playerID[JOBID] = strval(GetMySQLField("jobId"));
 	PVar:playerID[LANGUAGE] = strval(GetMySQLField("language"));
 	PVar:playerID[LASTNEWSID] = strval(GetMySQLField("lastNewsId"));

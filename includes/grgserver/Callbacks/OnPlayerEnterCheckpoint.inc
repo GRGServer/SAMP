@@ -1,6 +1,6 @@
 public OnPlayerEnterCheckpoint(playerid)
 {
-	new validCheckpoint = true;
+	DisablePlayerCheckpoint(playerid);
 	switch (PVar:playerid[CURRENTCHECKPOINT])
 	{
 		case CHECKPOINT_INPLANE_EXIT:
@@ -18,15 +18,58 @@ public OnPlayerEnterCheckpoint(playerid)
 			StartScreenFader(playerid, 0, 0, 0, 5, 0, FADE_TUTORIAL_BANK_START_BLACK);
 			TogglePlayerControllable(playerid, false);
 		}
+		case CHECKPOINT_TUTORIAL_BUS1:
+		{
+			ShowMessage(playerid, 15, 3000);
+			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_BUS1_EXIT, 1077.860839, 1199.208374, 10.820312, 1.5);
+		}
+		case CHECKPOINT_TUTORIAL_BUS1_EXIT:
+		{
+			ShowMessage(playerid, 16, 3000);
+			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_BANK, 1047.7939, 1025.5156, 11.0, 1.5);
+		}
+		case CHECKPOINT_TUTORIAL_BUS2:
+		{
+			ShowMessage(playerid, 10, 3000);
+		}
+		case CHECKPOINT_TUTORIAL_BUS3:
+		{
+			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_TRAIN1, 2859.574218, 1290.556030, 11.390625, 1.5);
+			ShowMessage(playerid, 12, 3000);
+		}
+		case CHECKPOINT_TUTORIAL_BUS4:
+		{
+			ShowMessage(playerid, 18, 3000);
+			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_BUS4_EXIT, -2100.987548, -76.809806, 35.320312, 1.5);
+		}
+		case CHECKPOINT_TUTORIAL_BUS4_EXIT:
+		{
+			ShowMessage(playerid, 19, 3000);
+			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_DRVSCHOOL, -2026.562744, -101.782325, 35.164062, 1.5);
+		}
+		case CHECKPOINT_TUTORIAL_DRVSCHOOL:
+		{
+			PVar:playerid[INTUTORIAL] = false;
+			SendClientMessage(playerid, COLOR_SYSTEM, "Coming soon...");
+		}
 		case CHECKPOINT_TUTORIAL_SPEAKER1:
 		{
 			StartScreenFader(playerid, 0, 0, 0, 5, 0, FADE_TUTORIAL_S1_START_BLACK);
 			TogglePlayerControllable(playerid, false);
 		}
+		case CHECKPOINT_TUTORIAL_TRAIN1:
+		{
+			ShowMessage(playerid, 13, 3000);
+			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_TRAIN1_EXIT, -1952.286376, 137.548049, 26.281250, 1.5);
+		}
+		case CHECKPOINT_TUTORIAL_TRAIN1_EXIT:
+		{
+			ShowMessage(playerid, 17, 3000);
+			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_BUS4, -1986.010742, 149.384109, 27.687500, 1.5);
+		}
 		case CHECKPOINT_TRAILER1:
 		{
 			SetPlayerCheckpointEx(playerid, CHECKPOINT_ORDEREND1, -1106.5825, -1620.9615, 75.9425, 10.0);
-
 		}
 		case CHECKPOINT_TRAILER2:
 		{
@@ -68,13 +111,5 @@ public OnPlayerEnterCheckpoint(playerid)
 			SendClientMessageEx(playerid, COLOR_INFO, 552);
 			GivePlayerMoneyEx(playerid, MONEY_BANK, bank4);
 		}
-		default:
-		{
-			validCheckpoint = false;
-		}
-	}
-	if (validCheckpoint)
-	{
-		RemovePlayerCheckpoint(playerid);
 	}
 }

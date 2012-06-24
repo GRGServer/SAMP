@@ -1129,8 +1129,8 @@
 		<de>Du fragst, was du machen sollst??? Hau ab bevor ich mir das mit der Stadtrundfahrt doch noch anders überlege!</de>
 	</string>
 	<string id="281">
-		<en>Catch a taxi and drive to the bank</en>
-		<de>Steig in ein Taxi und fahre zur Bank</de>
+		<en>Go to the bus stop and wait for the next bus</en>
+		<de>Gehe zur Bushaltestelle und warte auf den nächsten Bus</de>
 	</string>
 	<string id="282">
 		<en>Set the spawn position of a NPC</en>
@@ -2259,5 +2259,57 @@
 	<string id="563">
 		<en>You are not driving a bus!</en>
 		<de>Du fährst keinen Bus!</de>
+	</string>
+	<string id="564">
+		<en>Now take the next bus and drive to the train station</en>
+		<de>Steige nun in den nächsten Bus und fahre zum Bahnhof</de>
+	</string>
+	<string id="565">
+		<en>Wait for the bus and drive back to the Las Venturas Airport</en>
+		<de>Warte auf den Bus und fahre zurück zum Las Venturas Flughafen</de>
+	</string>
+	<string id="566">
+		<en>Then take bus line 2 and drive to the train station</en>
+		<de>Steige dann in Bus Linie 2 und fahre zum Bahnhof</de>
+	</string>
+	<string id="567">
+		<en>Wait for the bus and drive to the train station</en>
+		<de>Warte auf den Bus und fahre zum Bahnhof</de>
+	</string>
+	<string id="568">
+		<en>Wait for the train and drive to San Fierro</en>
+		<de>Warte auf den Zug und fahre nach San Fierro</de>
+	</string>
+	<string id="569">
+		<en>Wait for the bus and drive to the bank</en>
+		<de>Warte auf den Bus und fahre zur Bank</de>
+	</string>
+	<string id="570">
+		<en>Now go to the bank</en>
+		<de>Gehe nun zur Bank</de>
+	</string>
+	<string id="571">
+		<en>%p is not a NPC!</en>
+		<de>%p ist kein NPC!</de>
+	</string>
+	<string id="572">
+		<en>Last recording length: %s seconds</en>
+		<de>Letzte Aufnahmelänge: %s Sekunden</de>
+	</string>
+	<string id="573">
+		<en>Show information about a NPC</en>
+		<de>Zeige Informationen über einen NPC</de>
+	</string>
+	<string id="574">
+		<en>Go to the bus stop</en>
+		<de>Gehe zur Bushaltestelle</de>
+	</string>
+	<string id="575">
+		<en>Wait for the next bus and drive to the driving school</en>
+		<de>Warte auf den nächsten Bus und fahre zur Fahrschule</de>
+	</string>
+	<string id="576">
+		<en>Go to the driving school</en>
+		<de>Gehe zur Fahrschule</de>
 	</string>
 </languagestrings>

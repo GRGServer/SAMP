@@ -111,12 +111,23 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			{
 				ShowSubtitle(playerID, LanguageString(playerID, 295));
 				TogglePlayerControllable(playerID, true);
-				SetCameraBehindPlayer(playerID);
 			}
 			case FADE_TUTORIAL_BANK_END_BLACK:
 			{
 				SetCameraBehindPlayer(playerID);
 				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIAL_BANK_END_BACK);
+			}
+			case FADE_TUTORIAL_BANK_LEAVE_BACK:
+			{
+				ShowMessage(playerID, 9, 3000);
+				TogglePlayerControllable(playerID, true);
+			}
+			case FADE_TUTORIAL_BANK_LEAVE_BLACK:
+			{
+				LeaveProperty(playerID);
+				SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_BUS2, 1084.606201, 1198.649169, 10.820312, 1.5);
+				SetCameraBehindPlayer(playerID);
+				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIAL_BANK_LEAVE_BACK);
 			}
 			case FADE_TUTORIAL_BANK_START_BACK:
 			{
@@ -131,15 +142,14 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			case FADE_TUTORIAL_S1_END_BACK:
 			{
 				TogglePlayerControllable(playerID, true);
-				SetCameraBehindPlayer(playerID);
-				SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_BANK, 1047.7939, 1025.5156, 11.0, 1.5);
-				ShowSubtitle(playerID, LanguageString(playerID, 281));
+				ShowMessage(playerID, 14, 3000);
 			}
 			case FADE_TUTORIAL_S1_END_BLACK:
 			{
 				SetPlayerPos(playerID, 1715.0995, 1615.1752, 10.0156);
 				SetPlayerFacingAngle(playerID, 180.0);
 				SetCameraBehindPlayer(playerID);
+				SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_BUS1, 1724.885986, 1529.497802, 10.820312, 1.5);
 				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIAL_S1_END_BACK);
 			}
 			case FADE_TUTORIAL_S1_START_BACK:

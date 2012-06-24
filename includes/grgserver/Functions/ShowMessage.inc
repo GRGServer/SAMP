@@ -35,6 +35,50 @@ ShowMessage(playerID, messageID, waitTime = 3000)
 		{
 			stringID = 294;
 		}
+		case 9:
+		{
+			stringID = 564;
+		}
+		case 10:
+		{
+			stringID = 565;
+		}
+		case 11:
+		{
+			stringID = 566;
+		}
+		case 12:
+		{
+			stringID = 567;
+		}
+		case 13:
+		{
+			stringID = 568;
+		}
+		case 14:
+		{
+			stringID = 281;
+		}
+		case 15:
+		{
+			stringID = 569;
+		}
+		case 16:
+		{
+			stringID = 570;
+		}
+		case 17:
+		{
+			stringID = 574;
+		}
+		case 18:
+		{
+			stringID = 575;
+		}
+		case 19:
+		{
+			stringID = 576;
+		}
 	}
 	if (stringID)
 	{

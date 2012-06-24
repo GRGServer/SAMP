@@ -111,8 +111,6 @@
 #include <grgserver\Functions\ReloadVehicleModels.inc>
 #include <grgserver\Functions\ReloadVehicles.inc>
 #include <grgserver\Functions\RemoveNewLine.inc>
-#include <grgserver\Functions\RemovePlayerCheckpoint.inc>
-#include <grgserver\Functions\RemovePlayerRaceCheckpoint.inc>
 #include <grgserver\Functions\RemoveVehicleLightObjects.inc>
 #include <grgserver\Functions\ResetPlayerVariables.inc>
 #include <grgserver\Functions\RestartGameMode.inc>
@@ -343,6 +341,7 @@
 #include <grgserver\Commands\nextinterior.inc>
 #include <grgserver\Commands\nocamproperty.inc>
 #include <grgserver\Commands\npccmd.inc>
+#include <grgserver\Commands\npcinfo.inc>
 #include <grgserver\Commands\opengate.inc>
 #include <grgserver\Commands\ordervehicle.inc>
 #include <grgserver\Commands\payday.inc>

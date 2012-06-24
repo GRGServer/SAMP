@@ -3,7 +3,7 @@ CMD:navi(playerID, params[], 339)
 	if (PVar:playerID[GPS_ENABLED])
 	{
 		PVar:playerID[GPS_ENABLED] = false;
-		RemovePlayerRaceCheckpoint(playerID);
+		DisablePlayerRaceCheckpoint(playerID);
 		SendClientMessageEx(playerID, COLOR_INFO, 460);
 		return COMMAND_OK;
 	}

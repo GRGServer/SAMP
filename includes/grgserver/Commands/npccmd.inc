@@ -8,11 +8,12 @@
  * </param>
  *
  * <param name="params">
- *	The parameters passed to this command (Currently only "stopped" is valid).
+ *	The parameters passed to this command.
  * </param>
  *
  * <returns>
- *	Always returns COMMAND_OK.
+ *	<item>COMMAND_OK if the command is valid</item>
+ *	<item>COMMAND_ERROR if the command is invalid</item>
  * </returns>
  *
  * <remarks>
@@ -22,7 +23,15 @@
 
 NCMD:npccmd(playerID, params[], 0)
 {
-	if (IsStr(params, "stopped"))
+	new command[256];
+	new parameters[256];
+	sscanf(params, "ss", command, parameters);
+	if (IsStr(command, "reclength"))
+	{
+		PVar:playerID[NPC_RECORDINGLENGTH] = strval(parameters);
+		return COMMAND_OK;
+	}
+	if (IsStr(command, "stopped"))
 	{
 		if (PVar:playerID[NPC_RECORDINGSLOT] && PlayNextNPCRecording(playerID))
 		{
@@ -52,6 +61,7 @@ NCMD:npccmd(playerID, params[], 0)
 				SendClientMessageEx(realPlayerID, COLOR_INFO, 78);
 			}
 		}
+		return COMMAND_OK;
 	}
-	return COMMAND_OK;
+	return COMMAND_ERROR;
 }

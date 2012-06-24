@@ -51,7 +51,7 @@ public OnPlayerSpawn(playerid)
 		}
 		if (strlen(GetMySQLField("recording")))
 		{
-			FormatNew:command[40]("setrec %s %d %d %d", GetMySQLField("recording"), PVar:playerid[NPC_RECORDINGTYPE], PVar:playerid[NPC_AUTOREPEAT], startOnConnect);
+			FormatNew:command[40]("setrec %s %d %d %d %d", GetMySQLField("recording"), PVar:playerid[NPC_RECORDINGTYPE], PVar:playerid[NPC_AUTOREPEAT], startOnConnect, strval(GetMySQLField("startDelay")));
 			SendNPCCommand(playerid, command);
 		}
 		else
@@ -81,7 +81,11 @@ public OnPlayerSpawn(playerid)
 		return true;
 	}
 	SetPlayerSkin(playerid, PVar:playerid[SKIN]);
-	if (PVar:playerid[SPAWNAFTERLOGIN])
+	if (PVar:playerid[SHOWCLOCK])
+	{
+		TextDrawShowForPlayer(playerid, textDrawClock);
+	}
+	if (PVar:playerid[SPAWNAFTERLOGIN] && !PVar:playerid[INTUTORIAL])
 	{
 		PVar:playerid[SPAWNAFTERLOGIN] = false;
 		MySQLQuery("SELECT * FROM `users` WHERE `id` = '%d'", PVar:playerid[USERID]);
@@ -98,10 +102,6 @@ public OnPlayerSpawn(playerid)
 		{
 			SendClientMessageEx(playerid, COLOR_INFO, 498, rows);
 		}
-		if (PVar:playerid[SHOWCLOCK])
-		{
-			TextDrawShowForPlayer(playerid, textDrawClock);
-		}
 		return true;
 	}
 	if (PVar:playerid[SPAWNAFTERDEATH] != -1)
@@ -111,9 +111,8 @@ public OnPlayerSpawn(playerid)
 		PVar:playerid[CURRENTPROPERTYID] = 0;
 		return true;
 	}
-	if (PVar:playerid[SPAWNAFTERREGISTER])
+	if (PVar:playerid[INTUTORIAL])
 	{
-		PVar:playerid[SPAWNAFTERREGISTER] = false;
 		TogglePlayerControllable(playerid, false);
 		StartScreenFader(playerid, 0, 0, 0, 2, 500, FADE_START_INPLANE1_BLACK);
 		return true;
