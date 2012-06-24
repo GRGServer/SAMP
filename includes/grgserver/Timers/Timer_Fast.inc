@@ -56,14 +56,17 @@ Timer:Fast()
 				{
 					SetVehicleHealth(vehicleID, 1000);
 				}
-				if (VehicleProperty:vehicleID[CURRENTFUEL] <= 0)
+				if (!seatID)
 				{
-					SetVehicleEngineState(vehicleID, false);
-					GameTextForPlayer(playerID, LanguageString(playerID, 159), 3000, 5);
-				}
-				else
-				{
-					VehicleProperty:vehicleID[CURRENTFUEL] = floatsub(VehicleProperty:vehicleID[CURRENTFUEL], distance * floatdiv(vehicleModels[modelID - 400][VEHICLEMODEL_FUELUSAGE], 100));
+					if (VehicleProperty:vehicleID[CURRENTFUEL] <= 0)
+					{
+						SetVehicleEngineState(vehicleID, false);
+						GameTextForPlayer(playerID, LanguageString(playerID, 159), 3000, 5);
+					}
+					else
+					{
+						VehicleProperty:vehicleID[CURRENTFUEL] = floatsub(VehicleProperty:vehicleID[CURRENTFUEL], distance * floatdiv(vehicleModels[modelID - 400][VEHICLEMODEL_FUELUSAGE], 100));
+					}
 				}
 				new Float:fuelPercentage = floatmul(floatdiv(VehicleProperty:vehicleID[CURRENTFUEL], vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]), 100);
 				if (healthPercentage > 65)
@@ -81,14 +84,11 @@ Timer:Fast()
 						healthColor = 'r';
 					}
 				}
-				if (healthPercentage <= VEHICLE_MINHEALTH)
+				if (!seatID && healthPercentage <= VEHICLE_MINHEALTH && GetVehicleEngineState(vehicleID))
 				{
-					if (GetVehicleEngineState(vehicleID))
-					{
-						SetVehicleHealth(vehicleID, float(VEHICLE_MINHEALTH * 10));
-						SetVehicleEngineState(vehicleID, false);
-						GameTextForPlayer(playerID, LanguageString(playerID, 158), 3000, 5);
-					}
+					SetVehicleHealth(vehicleID, float(VEHICLE_MINHEALTH * 10));
+					SetVehicleEngineState(vehicleID, false);
+					GameTextForPlayer(playerID, LanguageString(playerID, 158), 3000, 5);
 				}
 				if (fuelPercentage > 70)
 				{
@@ -112,7 +112,7 @@ Timer:Fast()
 				PlayerTextDrawShow(playerID, PTextDraw:playerID[SPEEDO_COLUMN2]);
 				PlayerTextDrawShow(playerID, PTextDraw:playerID[VEHICLENAME]);
 				inVehicle = true;
-				if (speed && seatID == 0)
+				if (speed && !seatID)
 				{
 					distance = 0;
 					new objectID = GetClosestObjectByModel(playerID, 18880, distance);// Search closest speed camera
