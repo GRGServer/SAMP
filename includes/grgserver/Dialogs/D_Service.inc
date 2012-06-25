@@ -1,12 +1,11 @@
 ShowDialog:Service(playerID)
 {
-	FormatNew:title[20](LanguageString(playerID, 577));
 	new options[1024];
-	AddLine(options, LanguageString(playerID, 578));// Item 1
-	AddLine(options, LanguageString(playerID, 579));// Item 2
-	AddLine(options, LanguageString(playerID, 580));// Item 3
-	AddLine(options, LanguageString(playerID, 581));// Item 4
-	CreateDialog(playerID, "Service", DIALOG_STYLE_LIST, title, options, LanguageString(playerID, 164), LanguageString(playerID, 165));
+	AddLine(options, LanguageString(playerID, 176));// Item 1
+	AddLine(options, "ADAC");// Item 2
+	AddLine(options, "Taxi");// Item 3
+	AddLine(options, LanguageString(playerID, 221));// Item 4
+	CreateDialog(playerID, "Service", DIALOG_STYLE_LIST, LanguageString(playerID, 577), options, LanguageString(playerID, 164), LanguageString(playerID, 165));
 }
 
 DialogResponse:Service(playerID, response, listItem, inputText[])
@@ -17,19 +16,19 @@ DialogResponse:Service(playerID, response, listItem, inputText[])
 		{
 			case 0:
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, 582);
+				SendClientMessage(playerID, COLOR_SYSTEM, "Coming soon...");
 			}
 			case 1:
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, 582);
+				SendClientMessage(playerID, COLOR_SYSTEM, "Coming soon...");
 			}
 			case 2:
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, 582);
+				SendClientMessage(playerID, COLOR_SYSTEM, "Coming soon...");
 			}
 			case 3: 
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, 582);
+				SendClientMessage(playerID, COLOR_SYSTEM, "Coming soon...");
 			}
 		}
 	}
