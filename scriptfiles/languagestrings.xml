@@ -2312,4 +2312,28 @@
 		<en>Go to the driving school</en>
 		<de>Gehe zur Fahrschule</de>
 	</string>
+	<string id="577">
+		<en>Serivce</en>
+		<de>Service</de>
+	</string>
+	<string id="578">
+		<en>Police</en>
+		<de>Polizei</de>
+	</string>
+	<string id="579">
+		<en>Mechanic</en>
+		<de>ADAC</de>
+	</string>
+	<string id="580">
+		<en>Taxi</en>
+		<de>Taxi</de>
+	</string>
+	<string id="581">
+		<en>Ambulance</en>
+		<de>Sanitäter</de>
+	</string>
+	<string id="582">
+		<en>Comming Soon</en>
+		<de>Comming Soon</de>
+	</string>
 </languagestrings>
