@@ -238,6 +238,7 @@
 #include <grgserver\Dialogs\D_SchoolDriver.inc>
 #include <grgserver\Dialogs\D_SelectInterior.inc>
 #include <grgserver\Dialogs\D_SellVehicle.inc>
+#include <grgserver\Dialogs\D_Service.inc>
 #include <grgserver\Dialogs\D_SetSell.inc>
 #include <grgserver\Dialogs\D_ShowOrder.inc>
 #include <grgserver\Dialogs\D_SpawnVehicle.inc>
@@ -369,6 +370,7 @@
 #include <grgserver\Commands\selectlastobject.inc>
 #include <grgserver\Commands\selectproperty.inc>
 #include <grgserver\Commands\sellveh.inc>
+#include <grgserver\Commands\service.inc>
 #include <grgserver\Commands\setinterior.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
 #include <grgserver\Commands\setobjectmovepos.inc>
