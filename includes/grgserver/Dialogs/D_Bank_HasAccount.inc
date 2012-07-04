@@ -1,11 +1,17 @@
 ShowDialog:Bank_HasAccount(playerID)
 {
-	new options[1024];
-	AddLine(options, LanguageString(playerID, 206));// Bank balance
-	AddLine(options, LanguageString(playerID, 207));// Withdraw money
-	AddLine(options, LanguageString(playerID, 208));// Deposit money
-	AddLine(options, LanguageString(playerID, 209));// Cancel account
-	CreateDialog(playerID, "Bank_HasAccount", DIALOG_STYLE_LIST, "Bank", options, "OK", LanguageString(playerID, 165));
+	new query[256];
+	format(query,sizeof(query),"SELECT `accountPIN` FROM `bankaccounts` WHERE id = '%d'", PVar:playerID[USERID]);
+	new BANK_PIN = mysql_query(query);
+	if(PVar:playerID[BANKPIN] == BANK_PIN)
+	{
+		new options[1024];
+		AddLine(options, LanguageString(playerID, 206));// Bank balance
+		AddLine(options, LanguageString(playerID, 207));// Withdraw money
+		AddLine(options, LanguageString(playerID, 208));// Deposit money
+		AddLine(options, LanguageString(playerID, 209));// Cancel account
+		CreateDialog(playerID, "Bank_HasAccount", DIALOG_STYLE_LIST, "Bank", options, "OK", LanguageString(playerID, 165));
+	}
 }
 
 DialogResponse:Bank_HasAccount(playerID, response, listItem, inputText[])

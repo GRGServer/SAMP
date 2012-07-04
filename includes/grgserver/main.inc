@@ -200,6 +200,7 @@
 #include <grgserver\Dialogs\D_Bank_DepositMoney.inc>
 #include <grgserver\Dialogs\D_Bank_HasAccount.inc>
 #include <grgserver\Dialogs\D_Bank_NewAccount.inc>
+#include <grgserver\Dialogs\D_Bank_PIN.inc>
 #include <grgserver\Dialogs\D_Bank_WithdrawMoney.inc>
 #include <grgserver\Dialogs\D_BusLine.inc>
 #include <grgserver\Dialogs\D_BuyHouse.inc>

@@ -4,7 +4,7 @@ SetPlayerMoney(playerID, type, Float:amount, add = false)
 	{
 		case MONEY_BANK:// Money on bank account
 		{
-			if (strval(GetMySQLValue("users", "bankId", "id", val2str(PVar:playerID[USERID]))))
+			if (strval(GetMySQLValue("users", "bankAccountId", "id", val2str(PVar:playerID[USERID]))))
 			{
 				if (add)
 				{

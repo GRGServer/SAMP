@@ -7,9 +7,13 @@ DialogResponse:Bank_NewAccount(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
+		MySQLQuery("SELECT `id` FROM `bankaccounts` WHERE '%d'");
+		new bankAccountID = mysql_insert_id();
 		new bankID = strval(GetMySQLValue("bankbranches", "bankId", "propertyId", val2str(PVar:playerID[CURRENTPROPERTYID])));
 		MySQLQuery("UPDATE `users` SET `bankId` = '%d' WHERE `id` = '%d'", bankID, PVar:playerID[USERID]);
+		MySQLQuery("UPDATE `users` SET `bankAccountId` = '%d' WHERE `id` = '%d'", bankAccountID, PVar:playerID[USERID]);
 		SendClientMessageEx(playerID, COLOR_INFO, 216, GetMySQLValue("banks", "name", "id", val2str(bankID)));
+		ShowDialog:Bank_PIN(playerID);
 		if (PVar:playerID[INTUTORIAL])
 		{
 			TogglePlayerControllable(playerID, false);
