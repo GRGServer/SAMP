@@ -16,19 +16,43 @@ DialogResponse:Service(playerID, response, listItem, inputText[])
 		{
 			case 0:
 			{
-				SendClientMessage(playerID, COLOR_SYSTEM, "Coming soon...");
+				SendClientMessageEx(playerID, COLOR_INFO, 578);
+				new missionID = CreateJob(playerID, JOB_POLICE);
+				if (missionID)
+				{
+					AddJobData(missionID, "Type", "GetOrderPolice");
+					AddJobData(missionID, "PlayerID", val2str(playerID));
+				}
 			}
 			case 1:
 			{
-				SendClientMessage(playerID, COLOR_SYSTEM, "Coming soon...");
+				SendClientMessageEx(playerID, COLOR_INFO, 578);
+				new missionID = CreateJob(playerID, JOB_ADAC);
+				if (missionID)
+				{
+					AddJobData(missionID, "Type", "GetOrderADAC");
+					AddJobData(missionID, "PlayerID", val2str(playerID));
+				}
 			}
 			case 2:
 			{
-				SendClientMessage(playerID, COLOR_SYSTEM, "Coming soon...");
+				SendClientMessageEx(playerID, COLOR_INFO, 578);
+				new missionID = CreateJob(playerID, JOB_TAXI);
+				if (missionID)
+				{
+					AddJobData(missionID, "Type", "GetOrderTaxi");
+					AddJobData(missionID, "PlayerID", val2str(playerID));
+				}
 			}
 			case 3: 
 			{
-				SendClientMessage(playerID, COLOR_SYSTEM, "Coming soon...");
+				SendClientMessageEx(playerID, COLOR_INFO, 578);
+				new missionID = CreateJob(playerID, JOB_PARAMEDIC);
+				if (missionID)
+				{
+					AddJobData(missionID, "Type", "GetOrderPolice");
+					AddJobData(missionID, "PlayerID", val2str(playerID));
+				}
 			}
 		}
 	}

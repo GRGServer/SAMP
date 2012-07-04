@@ -2316,4 +2316,8 @@
 		<en>Service</en>
 		<de>Dienstleistung</de>
 	</string>
+	<string id="578">
+		<en>You Quest was send!</en>
+		<de>Deine Anfrage wurde Versendet!</de>
+	</string>
 </languagestrings>
