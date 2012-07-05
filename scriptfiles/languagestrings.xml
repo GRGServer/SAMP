@@ -2317,15 +2317,15 @@
 		<de>Dienstleistung</de>
 	</string>
 	<string id="578">
-		<en>You Quest was send!</en>
-		<de>Deine Anfrage wurde Versendet!</de>
+		<en>Your request has been sent</en>
+		<de>Deine Anfrage wurde gesendet</de>
 	</string>
 	<string id="579">
 		<en>Bank PIN</en>
 		<de>Bank PIN</de>
 	</string>
 	<string id="580">
-		<en>You have created your Bank password</en>
-		<de>Du hast erfolgreich dein Bank PIN erstellt.</de>
+		<en>You have created your bank PIN</en>
+		<de>Du hast erfolgreich deinen Bank PIN erstellt</de>
 	</string>
 </languagestrings>
