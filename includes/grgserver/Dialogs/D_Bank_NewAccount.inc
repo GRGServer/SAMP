@@ -7,14 +7,15 @@ DialogResponse:Bank_NewAccount(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
-		new pin = RandomEx(BANK_PIN_MIN, BANK_PIN_MAX);
-		MySQLQuery("INSERT INTO `bankaccounts` (`pin`) VALUES('%d')", pin);
-		new bankAccountId = mysql_insert_id();
 		new bankName[100];
-		MySQLQuery("SELECT `name` FROM `banks` LEFT JOIN `bankbranches` ON `bankbranches`.`bankId` = `banks`.`id` WHERE `bankbranches`.`propertyId` = '%d'", PVar:playerID[CURRENTPROPERTYID]);
+		new pin = RandomEx(BANK_PIN_MIN, BANK_PIN_MAX);
+		MySQLQuery("SELECT `id`, `name` FROM `banks` LEFT JOIN `bankbranches` ON `bankbranches`.`bankId` = `banks`.`id` WHERE `bankbranches`.`propertyId` = '%d'", PVar:playerID[CURRENTPROPERTYID]);
 		mysql_store_result();
 		strcat(bankName, GetMySQLField("name"));
+		new bankId = strval(GetMySQLField("id"));
 		mysql_free_result();
+		MySQLQuery("INSERT INTO `bankaccounts` (`bankId`, `pin`) VALUES('%d', '%d')", bankId, pin);
+		new bankAccountId = mysql_insert_id();
 		MySQLQuery("UPDATE `users` SET `bankAccountId` = '%d' WHERE `id` = '%d'", bankAccountId, PVar:playerID[USERID]);
 		SendClientMessageEx(playerID, COLOR_INFO, 216, bankName);
 		SendClientMessageEx(playerID, COLOR_INFO, 579, pin);

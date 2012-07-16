@@ -1,6 +1,6 @@
 PayDay(playerID)
 {
-	if (strval(GetMySQLValue("users", "bankId", "id", val2str(PVar:playerID[USERID]))))
+	if (strval(GetMySQLValue("users", "bankAccountId", "id", val2str(PVar:playerID[USERID]))))
 	{
 		new Float:salaryWithTax;
 		new Float:salaryWithoutTax;

@@ -2,7 +2,7 @@ LoadPlayer(playerID)
 {
 	MySQLQuery("SELECT * FROM `users` WHERE `id` = '%d'", PVar:playerID[USERID]);
 	mysql_store_result();
-	new Float:bankMoney = floatstr(GetMySQLField("bankMoney"));
+	new bankAccountId = strval(GetMySQLField("bankAccountId"));
 	new Float:cashMoney = floatstr(GetMySQLField("money"));
 	SetPVarStr:playerID[CHATMODE][STRINGLENGTH_CHATMODE](GetMySQLField("chatMode"));
 	PVar:playerID[CHATMODE_USERID] = strval(GetMySQLField("chatModeUserId"));
@@ -22,6 +22,10 @@ LoadPlayer(playerID)
 	SetPlayerHealth(playerID, floatstr(GetMySQLField("health")));
 	SetPlayerSkin(playerID, PVar:playerID[SKIN]);
 	SetPlayerWantedLevel(playerID, strval(GetMySQLField("wantedLevel")));
+	mysql_free_result();
+	MySQLQuery("SELECT `money` FROM `bankaccounts` WHERE `id` = '%d'", bankAccountId);
+	mysql_store_result();
+	new Float:bankMoney = floatstr(GetMySQLField("money"));
 	mysql_free_result();
 	SetPlayerMoney(playerID, MONEY_BANK, bankMoney);
 	SetPlayerMoney(playerID, MONEY_CASH, cashMoney);

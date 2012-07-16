@@ -2,9 +2,14 @@ SavePlayer(playerID)
 {
 	if (IsLoggedIn(playerID))
 	{
-		Format:sqlQuery("`bankMoney` = '%f', `money` = '%f', `jobId` = '%d', `lastNewsId` = '%d', `chatMode` = '%s', `chatModeUserId` = '%d', `godMode` = '%d'", PVar:playerID[BANKMONEY], PVar:playerID[MONEY], PVar:playerID[JOBID], PVar:playerID[LASTNEWSID], PVar:playerID[CHATMODE], PVar:playerID[CHATMODE_USERID], PVar:playerID[GODMODE]);
+		Format:sqlQuery("`money` = '%f', `jobId` = '%d', `lastNewsId` = '%d', `chatMode` = '%s', `chatModeUserId` = '%d', `godMode` = '%d'", PVar:playerID[MONEY], PVar:playerID[JOBID], PVar:playerID[LASTNEWSID], PVar:playerID[CHATMODE], PVar:playerID[CHATMODE_USERID], PVar:playerID[GODMODE]);
 		Format:sqlQuery("%s, `currentPropertyId` = '%d', `onlineTime` = '%d', `lastPayDay` = '%d', `skin` = '%d', `showClock` = '%d', `inTutorial` = '%d', `deaths` = '%d'", sqlQuery, PVar:playerID[CURRENTPROPERTYID], GetOnlineTime(playerID), PVar:playerID[LASTPAYDAY], PVar:playerID[SKIN], PVar:playerID[SHOWCLOCK], PVar:playerID[INTUTORIAL], PVar:playerID[DEATHS]);
 		MySQLQuery("UPDATE `users` SET %s, `language` = '%d', `wantedLevel` = '%d', `vehicleBought` = '%d' WHERE `id` = '%d'", sqlQuery, PVar:playerID[LANGUAGE], GetPlayerWantedLevel(playerID), PVar:playerID[VEHICLEBOUGHT], PVar:playerID[USERID]);
+		MySQLQuery("SELECT `bankAccountId` FROM `users` WHERE `id` = '%d'", PVar:playerID[USERID]);
+		mysql_store_result();
+		new bankAccountId = strval(GetMySQLField("bankAccountId"));
+		mysql_free_result();
+		MySQLQuery("UPDATE `bankaccounts` SET `money` = '%f' WHERE `id` = '%d'", PVar:playerID[BANKMONEY], bankAccountId);
 		new Float:health;
 		new Float:posX;
 		new Float:posY;
