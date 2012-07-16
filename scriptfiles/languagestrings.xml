@@ -2321,11 +2321,31 @@
 		<de>Deine Anfrage wurde gesendet</de>
 	</string>
 	<string id="579">
-		<en>Bank PIN</en>
-		<de>Bank PIN</de>
+		<en>Your new PIN for your bank account is %d</en>
+		<de>Dein neuer PIN für dein Bankkonto ist %d</de>
 	</string>
 	<string id="580">
-		<en>You have created your bank PIN</en>
-		<de>Du hast erfolgreich deinen Bank PIN erstellt</de>
+		<en>Enter PIN</en>
+		<de>PIN eingeben</de>
+	</string>
+	<string id="581">
+		<en>Enter the PIN of your bank account.</en>
+		<de>Gebe die PIN von deinem Bankkonto ein.</de>
+	</string>
+	<string id="582">
+		<en>The PIN must be between %d and %d!</en>
+		<de>Die PIN muss zwischen %d und %d sein!</de>
+	</string>
+	<string id="583">
+		<en>The entered PIN is not correct!</en>
+		<de>Die eingegebene PIN ist falsch!</de>
+	</string>
+	<string id="584">
+		<en>You have %d more tries</en>
+		<de>Du hast noch %d Versuche</de>
+	</string>
+	<string id="585">
+		<en>You have reached the maximum number of wrong tries! Your bank account has been blocked!</en>
+		<de>Du hast die Anzahl der maximalen falschen Versuche erreicht! Dein Bankkonto wurde gesperrt!</de>
 	</string>
 </languagestrings>

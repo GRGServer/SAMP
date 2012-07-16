@@ -1,3 +1,9 @@
+// Bank configuration
+#define BANK_PIN_MIN					1000
+#define BANK_PIN_MAX					9999
+#define BANK_PIN_MAXATTEMPTS			5
+
+
 // Money/Cash transaction types
 #define CASHTRANS_PAYDAY				"PAYDAY"
 #define CASHTRANS_POWERTAX				"POWERTAX"

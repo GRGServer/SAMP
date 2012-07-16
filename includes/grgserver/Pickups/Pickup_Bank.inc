@@ -10,7 +10,7 @@ PickupEvent:BANK(playerID, pickupID, eventType)
 			new bankID = strval(GetMySQLValue("users", "bankId", "id", val2str(PVar:playerID[USERID])));
 			if (bankID)
 			{
-				ShowDialog:Bank_HasAccount(playerID);
+				ShowDialog:Bank_PIN(playerID);
 			}
 			else
 			{

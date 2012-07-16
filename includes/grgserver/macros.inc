@@ -85,6 +85,9 @@ for (new i_%0 = 0; ; ++i_%0) \
 // PVar:playerID[field]
 #define PVar:%0[%1] playerVariables[%0][PVAR_%1]
 
+// RandomEx(min, max)
+#define RandomEx(%0,%1) (random(%1 - %0 + 1) + %0)
+
 // SetPVarStr:playerID[field][size](string)
 #define SetPVarStr:%0[%1][%2](%3) format(PVar:%0[%1], %2, %3)
 

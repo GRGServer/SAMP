@@ -7,13 +7,17 @@ DialogResponse:Bank_NewAccount(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
-		MySQLQuery("SELECT `id` FROM `bankaccounts` WHERE '%d'");
-		new bankAccountID = mysql_insert_id();
-		new bankID = strval(GetMySQLValue("bankbranches", "bankId", "propertyId", val2str(PVar:playerID[CURRENTPROPERTYID])));
-		MySQLQuery("UPDATE `users` SET `bankId` = '%d' WHERE `id` = '%d'", bankID, PVar:playerID[USERID]);
-		MySQLQuery("UPDATE `users` SET `bankAccountId` = '%d' WHERE `id` = '%d'", bankAccountID, PVar:playerID[USERID]);
-		SendClientMessageEx(playerID, COLOR_INFO, 216, GetMySQLValue("banks", "name", "id", val2str(bankID)));
-		ShowDialog:Bank_PIN(playerID);
+		new pin = RandomEx(BANK_PIN_MIN, BANK_PIN_MAX);
+		MySQLQuery("INSERT INTO `bankaccounts` (`pin`) VALUES('%d')", pin);
+		new bankAccountId = mysql_insert_id();
+		new bankName[100];
+		MySQLQuery("SELECT `name` FROM `banks` LEFT JOIN `bankbranches` ON `bankbranches`.`bankId` = `banks`.`id` WHERE `bankbranches`.`propertyId` = '%d'", PVar:playerID[CURRENTPROPERTYID]);
+		mysql_store_result();
+		strcat(bankName, GetMySQLField("name"));
+		mysql_free_result();
+		MySQLQuery("UPDATE `users` SET `bankAccountId` = '%d' WHERE `id` = '%d'", bankAccountId, PVar:playerID[USERID]);
+		SendClientMessageEx(playerID, COLOR_INFO, 216, bankName);
+		SendClientMessageEx(playerID, COLOR_INFO, 579, pin);
 		if (PVar:playerID[INTUTORIAL])
 		{
 			TogglePlayerControllable(playerID, false);
