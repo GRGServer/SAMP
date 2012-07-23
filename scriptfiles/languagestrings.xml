@@ -2348,4 +2348,20 @@
 		<en>You have reached the maximum number of wrong tries! Your bank account has been blocked!</en>
 		<de>Du hast die Anzahl der maximalen falschen Versuche erreicht! Dein Bankkonto wurde gesperrt!</de>
 	</string>
+	<string id="586">
+		<en>Pickup an ordered vehicle</en>
+		<de>Hole ein bestelltes Fahrzeug ab</de>
+	</string>
+	<string id="587">
+		<en>The ID must be positive!</en>
+		<de>Die ID muss positiv sein!</de>
+	</string>
+	<string id="588">
+		<en>Add an info pickup</en>
+		<de>Erstelle ein Info Pickup</de>
+	</string>
+	<string id="589">
+		<en>This is a junk yard. You will also find old useable vehicles at this place.</en>
+		<de>Das ist ein Schrottplatz. Du kannst hier auch alte fahrbare Fahrzeuge finden.</de>
+	</string>
 </languagestrings>

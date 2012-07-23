@@ -52,6 +52,7 @@
 #include <grgserver\Functions\GetColor.inc>
 #include <grgserver\Functions\GetConnectedPlayers.inc>
 #include <grgserver\Functions\GetDistanceBetweenPoints.inc>
+#include <grgserver\Functions\GetMissionName.inc>
 #include <grgserver\Functions\GetMySQLField.inc>
 #include <grgserver\Functions\GetMySQLValue.inc>
 #include <grgserver\Functions\GetNavigationLocationTypeByName.inc>
@@ -262,6 +263,7 @@
 #include <grgserver\Pickups\Pickup_Hospital.inc>
 #include <grgserver\Pickups\Pickup_Hotel.inc>
 #include <grgserver\Pickups\Pickup_House.inc>
+#include <grgserver\Pickups\Pickup_Info.inc>
 #include <grgserver\Pickups\Pickup_InteriorExit.inc>
 #include <grgserver\Pickups\Pickup_Link.inc>
 #include <grgserver\Pickups\Pickup_PayNSpray.inc>
@@ -291,6 +293,7 @@
 #include <grgserver\Commands\accept.inc>
 #include <grgserver\Commands\addfriend.inc>
 #include <grgserver\Commands\addhotelroom.inc>
+#include <grgserver\Commands\addinfopickup.inc>
 #include <grgserver\Commands\addnavilocation.inc>
 #include <grgserver\Commands\addobject.inc>
 #include <grgserver\Commands\addpickup.inc>
