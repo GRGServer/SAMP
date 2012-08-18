@@ -77,7 +77,6 @@ stock GetPlayerCountryName(playerid)
 	return country;
 }
 
-// TODO:
 stock GetPlayerLocationInfos(playerid, country[], city[], &gmt, &Float:latitude = 0.0, &Float:longitude = 0.0)
 {
 	/*new ip[16];

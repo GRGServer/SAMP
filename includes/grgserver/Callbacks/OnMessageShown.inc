@@ -58,5 +58,13 @@ public OnMessageShown(playerID, messageID)
 			SetPlayerCheckpointEx(playerID, CHECKPOINT_TUTORIAL_BUS3, 1730.177734, 1481.119628, 10.812820, 1.5);
 			ShowMessage(playerID, 11, 3000);
 		}
+		case 19:
+		{
+			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIALEND2_BLACK);
+		}
+		case 20:
+		{
+			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIALEND3_BLACK);
+		}
 	}
 }

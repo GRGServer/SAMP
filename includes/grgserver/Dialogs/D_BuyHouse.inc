@@ -14,7 +14,7 @@ DialogResponse:BuyHouse(playerID, response, listItem, inputText[])
 		if (price <= PVar:playerID[BANKMONEY])
 		{
 			TogglePlayerControllable(playerID, false);
-			PlayAudioStreamForPlayer(playerID, "http://audio.grgserver.net/mission_complete2.ogg");
+			PlayAudio(playerID, "mission_complete2.ogg");
 			MySQLQuery("SELECT * FROM `properties` LEFT JOIN `pickups` ON `properties`.`pickupId` = `pickups`.`id` WHERE `properties`.`id` = '%d'", buildingID);
 			mysql_store_result();
 			SetPlayerCameraPos(playerID, floatstr(GetMySQLField("cameraPosX")), floatstr(GetMySQLField("cameraPosY")), floatstr(GetMySQLField("cameraPosZ")));

@@ -99,6 +99,7 @@
 #include <grgserver\Functions\MySQLEscapeString.inc>
 #include <grgserver\Functions\PayDay.inc>
 #include <grgserver\Functions\PickupEvent.inc>
+#include <grgserver\Functions\PlayAudio.inc>
 #include <grgserver\Functions\PlayNextNPCRecording.inc>
 #include <grgserver\Functions\PlayRadioStation.inc>
 #include <grgserver\Functions\PlaySound.inc>
@@ -212,6 +213,7 @@
 #include <grgserver\Dialogs\D_ChangePassword_Step3.inc>
 #include <grgserver\Dialogs\D_ChatMode.inc>
 #include <grgserver\Dialogs\D_ChatMode_FriendList.inc>
+#include <grgserver\Dialogs\D_DrivingSchool.inc>
 #include <grgserver\Dialogs\D_EstateAgents.inc>
 #include <grgserver\Dialogs\D_FriendRequests.inc>
 #include <grgserver\Dialogs\D_FriendRequests_Options.inc>
@@ -238,7 +240,6 @@
 #include <grgserver\Dialogs\D_Register_Password2.inc>
 #include <grgserver\Dialogs\D_Repair.inc>
 #include <grgserver\Dialogs\D_RestartGamemode.inc>
-#include <grgserver\Dialogs\D_SchoolDriver.inc>
 #include <grgserver\Dialogs\D_SelectInterior.inc>
 #include <grgserver\Dialogs\D_SellVehicle.inc>
 #include <grgserver\Dialogs\D_Service.inc>
@@ -257,7 +258,7 @@
 #include <grgserver\Pickups\Pickup_ADAC.inc>
 #include <grgserver\Pickups\Pickup_Army.inc>
 #include <grgserver\Pickups\Pickup_Bank.inc>
-#include <grgserver\Pickups\Pickup_DrivingInstructor.inc>
+#include <grgserver\Pickups\Pickup_DrivingSchool.inc>
 #include <grgserver\Pickups\Pickup_EstateAgents.inc>
 #include <grgserver\Pickups\Pickup_GasStation.inc>
 #include <grgserver\Pickups\Pickup_Hospital.inc>
@@ -376,6 +377,7 @@
 #include <grgserver\Commands\selectproperty.inc>
 #include <grgserver\Commands\sellveh.inc>
 #include <grgserver\Commands\service.inc>
+#include <grgserver\Commands\setcp.inc>
 #include <grgserver\Commands\setinterior.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
 #include <grgserver\Commands\setobjectmovepos.inc>

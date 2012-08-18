@@ -44,13 +44,12 @@ public OnPlayerEnterCheckpoint(playerid)
 		}
 		case CHECKPOINT_TUTORIAL_BUS4_EXIT:
 		{
-			ShowMessage(playerid, 19, 3000);
-			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_DRVSCHOOL, -2026.562744, -101.782325, 35.164062, 1.5);
-		}
-		case CHECKPOINT_TUTORIAL_DRVSCHOOL:
-		{
-			PVar:playerid[INTUTORIAL] = false;
-			SendClientMessage(playerid, COLOR_SYSTEM, "Coming soon...");
+			PlayAudio(playerid, "mission_complete2.ogg");
+			GameTextForPlayer(playerid, LanguageString(playerid, 576), 5000, 3);
+			SetPlayerCameraPos(playerid, -2084.015136, -70.748046, 34.384109);
+			SetPlayerCameraLookAt(playerid, -2092.510986, -77.142700, 36.228786);
+			TogglePlayerControllable(playerid, false);
+			SetTimerEx("Timer_ScreenFader", 5000, false, "ddddddd", playerid, 0, 0, 0, 5, 0, FADE_TUTORIALEND1_BLACK);
 		}
 		case CHECKPOINT_TUTORIAL_SPEAKER1:
 		{

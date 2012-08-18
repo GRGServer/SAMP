@@ -2309,8 +2309,8 @@
 		<de>Warte auf den nächsten Bus und fahre zur Fahrschule</de>
 	</string>
 	<string id="576">
-		<en>Go to the driving school</en>
-		<de>Gehe zur Fahrschule</de>
+		<en>Congratulation!~n~~n~You have finished the tutorial</en>
+		<de>Glückwunsch!~n~~n~Du hast das Tutorial abgeschlossen</de>
 	</string>
 	<string id="577">
 		<en>Service</en>
@@ -2363,5 +2363,21 @@
 	<string id="589">
 		<en>This is a junk yard. You will also find old useable vehicles at this place.</en>
 		<de>Das ist ein Schrottplatz. Du kannst hier auch alte fahrbare Fahrzeuge finden.</de>
+	</string>
+	<string id="590">
+		<en>You should now get a driving license. But you can also get it later.</en>
+		<de>Du solltest nun den Führerschein machen. Aber du kannst ihn auch später machen.</de>
+	</string>
+	<string id="591">
+		<en>After that you can buy a car at the junk yard</en>
+		<de>Danach kannst du zum Beispiel auf dem Schrottplatz ein Auto kaufen</de>
+	</string>
+	<string id="592">
+		<en>Select driving license</en>
+		<de>Führerschein auswählen</de>
+	</string>
+	<string id="593">
+		<en>You already have all driving licenses you can earn at this driving school!</en>
+		<de>Du hast bereits alle Führerscheine welche du in dieser Fahrschule bekommen kannst!</de>
 	</string>
 </languagestrings>

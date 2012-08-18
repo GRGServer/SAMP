@@ -24,6 +24,20 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 			{
 				StartScreenFader(playerID, 100, 0, 0, -5, 0, FADE_DEATH_BACK);
 			}
+			case FADE_DRVSCHOOL_ENTER_BACK:
+			{
+				TogglePlayerControllable(playerID, true);// TODO: Remove after debugging
+				SendClientMessage(playerID, COLOR_INFO, "Use /resetcam to reset your camera");// Just for debugging
+				// TODO: Continue driving school stuff (Text, etc...)
+			}
+			case FADE_DRVSCHOOL_ENTER_BLACK:
+			{
+				SetPlayerPosEx(playerID, -2033.434570, -118.057067, 1035.171875, 3);
+				SetPlayerFacingAngle(playerID, 91.393058);
+				SetPlayerCameraPos(playerID, -2033.146972, -115.889007, 1035.516235);
+				SetPlayerCameraLookAt(playerID, -2034.402221, -119.476028, 1035.278808);
+				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_DRVSCHOOL_ENTER_BACK);
+			}
 			case FADE_GASSTATION_BACK:
 			{
 				TogglePlayerControllable(playerID, true);
@@ -163,6 +177,36 @@ public OnScreenFadeStop(playerID, extraID, isTimer)
 				SetPlayerCameraPos(playerID, 1716.6685, 1620.3689, 11.1172);
 				SetPlayerCameraLookAt(playerID, 1712.6682, 1619.2202, 10.1172);
 				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIAL_S1_START_BACK);
+			}
+			case FADE_TUTORIALEND1_BACK:
+			{
+				ShowMessage(playerID, 19, 5000);
+			}
+			case FADE_TUTORIALEND1_BLACK:
+			{
+				SetPlayerCameraPos(playerID, -2011.800415, -75.216079, 43.945693);
+				SetPlayerCameraLookAt(playerID, -2063.461914, -118.374504, 35.326580);
+				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIALEND1_BACK);
+			}
+			case FADE_TUTORIALEND2_BACK:
+			{
+				ShowMessage(playerID, 20, 5000);
+			}
+			case FADE_TUTORIALEND2_BLACK:
+			{
+				SetPlayerCameraPos(playerID, -2149.253906, -221.977584, 38.965263);
+				SetPlayerCameraLookAt(playerID, -2179.841552, -205.179870, 36.522132);
+				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIALEND2_BACK);
+			}
+			case FADE_TUTORIALEND3_BACK:
+			{
+				TogglePlayerControllable(playerID, true);
+			}
+			case FADE_TUTORIALEND3_BLACK:
+			{
+				SetCameraBehindPlayer(playerID);
+				StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIALEND3_BACK);
+				PVar:playerID[INTUTORIAL] = false;
 			}
 		}
 	}

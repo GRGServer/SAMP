@@ -77,7 +77,11 @@ ShowMessage(playerID, messageID, waitTime = 3000)
 		}
 		case 19:
 		{
-			stringID = 576;
+			stringID = 590;
+		}
+		case 20:
+		{
+			stringID = 591;
 		}
 	}
 	if (stringID)
