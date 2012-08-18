@@ -377,7 +377,6 @@
 #include <grgserver\Commands\selectproperty.inc>
 #include <grgserver\Commands\sellveh.inc>
 #include <grgserver\Commands\service.inc>
-#include <grgserver\Commands\setcp.inc>
 #include <grgserver\Commands\setinterior.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
 #include <grgserver\Commands\setobjectmovepos.inc>
