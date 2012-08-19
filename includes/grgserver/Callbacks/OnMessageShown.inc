@@ -35,7 +35,7 @@ public OnMessageShown(playerID, messageID)
 		}
 		case 5:
 		{
-			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIAL_S1_END_BLACK);
+			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIAL_S1_END, 0);
 		}
 		case 6:
 		{
@@ -51,7 +51,7 @@ public OnMessageShown(playerID, messageID)
 		}
 		case 8:
 		{
-			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIAL_BANK_END_BLACK);
+			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIAL_BANK_END, 0);
 		}
 		case 10:
 		{
@@ -60,11 +60,39 @@ public OnMessageShown(playerID, messageID)
 		}
 		case 19:
 		{
-			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIALEND2_BLACK);
+			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIALEND2, 0);
 		}
 		case 20:
 		{
-			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIALEND3_BLACK);
+			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIALEND3, 0);
+		}
+		case 21:
+		{
+			ShowMessage(playerID, 22, 3000);
+		}
+		case 22:
+		{
+			ShowMessage(playerID, 23, 3000);
+		}
+		case 23:
+		{
+			ShowMessage(playerID, 24, 3000);
+		}
+		case 24:
+		{
+			ShowMessage(playerID, 25, 3000);
+		}
+		case 25:
+		{
+			ShowDialog:DrivingSchool_StartDriving(playerID);
+		}
+		case 26:
+		{
+			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_DRVSCHOOL_STARTDRIVING, 0);
+		}
+		case 27:
+		{
+			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_DRVSCHOOL_EXIT, 0);
 		}
 	}
 }

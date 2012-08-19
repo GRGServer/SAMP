@@ -114,7 +114,7 @@ public OnPlayerSpawn(playerid)
 	if (PVar:playerid[INTUTORIAL])
 	{
 		TogglePlayerControllable(playerid, false);
-		StartScreenFader(playerid, 0, 0, 0, 2, 500, FADE_START_INPLANE1_BLACK);
+		StartScreenFader(playerid, 0, 0, 0, 2, 500, FADE_START_INPLANE1, 0);
 		return true;
 	}
 	return true;

@@ -2380,4 +2380,56 @@
 		<en>You already have all driving licenses you can earn at this driving school!</en>
 		<de>Du hast bereits alle Führerscheine welche du in dieser Fahrschule bekommen kannst!</de>
 	</string>
+	<string id="594">
+		<en>So you want to get a driving license?</en>
+		<de>So, du möchtest also einen Führerschein machen?</de>
+	</string>
+	<string id="595">
+		<en>First I will explain you the rules.</en>
+		<de>Zuerst werde ich dir die Regeln erklären.</de>
+	</string>
+	<string id="596">
+		<en>In the city you can drive up to 50 km/h.</en>
+		<de>In der Stadt darfst du bis zu 50 km/h fahren.</de>
+	</string>
+	<string id="597">
+		<en>Outside of the city there is a speed limit of 100 km/h.</en>
+		<de>Außerhalb der Stadt gilt ein Geschwindigkeitslimit von 100 km/h.</de>
+	</string>
+	<string id="598">
+		<en>On the highways there are no speed limits.</en>
+		<de>Auf der Autobahn gibt es keine Geschwindigkeitsbegrenzung.</de>
+	</string>
+	<string id="599">
+		<en>Driving school</en>
+		<de>Fahrschule</de>
+	</string>
+	<string id="600">
+		<en>Are you ready to start to drive?</en>
+		<de>Bist du bereit um mit dem Fahren anzufangen?</de>
+	</string>
+	<string id="601">
+		<en>OK, then we will start with your first driving lesson.</en>
+		<de>OK, dann fangen wir mal an mit deiner ersten Fahrstunde.</de>
+	</string>
+	<string id="602">
+		<en>Come back later if you are ready to drive.</en>
+		<de>Komme später wieder wenn du bereit bist zum Fahren.</de>
+	</string>
+	<string id="603">
+		<en>Enter a car</en>
+		<de>Steig in ein Auto</de>
+	</string>
+	<string id="604">
+		<en>Get on a bike</en>
+		<de>Steig auf ein Motorrad</de>
+	</string>
+	<string id="605">
+		<en>Enter a truck</en>
+		<de>Steig in einen LKW</de>
+	</string>
+	<string id="606">
+		<en>Recording length: %d sec</en>
+		<de>Aufnahmelänge: %d sek</de>
+	</string>
 </languagestrings>

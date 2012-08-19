@@ -5,7 +5,7 @@ public OnPlayerEnterCheckpoint(playerid)
 	{
 		case CHECKPOINT_INPLANE_EXIT:
 		{
-			StartScreenFader(playerid, 0, 0, 0, 2, 0, FADE_START_PLANEEXIT_BLACK);
+			StartScreenFader(playerid, 0, 0, 0, 2, 0, FADE_START_PLANEEXIT, 0);
 			TogglePlayerControllable(playerid, false);
 		}
 		case CHECKPOINT_NAVITARGET:
@@ -15,7 +15,7 @@ public OnPlayerEnterCheckpoint(playerid)
 		}
 		case CHECKPOINT_TUTORIAL_BANK:
 		{
-			StartScreenFader(playerid, 0, 0, 0, 5, 0, FADE_TUTORIAL_BANK_START_BLACK);
+			StartScreenFader(playerid, 0, 0, 0, 5, 0, FADE_TUTORIAL_BANK_START, 0);
 			TogglePlayerControllable(playerid, false);
 		}
 		case CHECKPOINT_TUTORIAL_BUS1:
@@ -40,7 +40,7 @@ public OnPlayerEnterCheckpoint(playerid)
 		case CHECKPOINT_TUTORIAL_BUS4:
 		{
 			ShowMessage(playerid, 18, 3000);
-			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_BUS4_EXIT, -2100.987548, -76.809806, 35.320312, 1.5);
+			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_BUS4_EXIT, -2090.970947, -77.046791, 35.320312, 1.5);
 		}
 		case CHECKPOINT_TUTORIAL_BUS4_EXIT:
 		{
@@ -49,11 +49,11 @@ public OnPlayerEnterCheckpoint(playerid)
 			SetPlayerCameraPos(playerid, -2084.015136, -70.748046, 34.384109);
 			SetPlayerCameraLookAt(playerid, -2092.510986, -77.142700, 36.228786);
 			TogglePlayerControllable(playerid, false);
-			SetTimerEx("Timer_ScreenFader", 5000, false, "ddddddd", playerid, 0, 0, 0, 5, 0, FADE_TUTORIALEND1_BLACK);
+			SetTimerEx("Timer_ScreenFader", 5000, false, "ddddddd", playerid, 0, 0, 0, 5, 0, FADE_TUTORIALEND1, 0);
 		}
 		case CHECKPOINT_TUTORIAL_SPEAKER1:
 		{
-			StartScreenFader(playerid, 0, 0, 0, 5, 0, FADE_TUTORIAL_S1_START_BLACK);
+			StartScreenFader(playerid, 0, 0, 0, 5, 0, FADE_TUTORIAL_S1_START, 0);
 			TogglePlayerControllable(playerid, false);
 		}
 		case CHECKPOINT_TUTORIAL_TRAIN1:

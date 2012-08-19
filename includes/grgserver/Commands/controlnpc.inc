@@ -39,8 +39,14 @@ PCMD:controlnpc[NPCADMIN](playerID, params[], 100)
 	}
 	if (GetPlayerID(targetPlayerName) != INVALID_PLAYER_ID)
 	{
+		new npcPlayerID = GetPlayerID(targetPlayerName);
+		if (IsStr(command, "status"))
+		{
+			SendClientMessageEx(playerID, COLOR_INFO, 606, PVar:npcPlayerID[NPC_RECORDINGLENGTH]);
+			return COMMAND_OK;
+		}
 		SendClientMessageEx(playerID, COLOR_INFO, 123, command);
-		SendNPCCommand(GetPlayerID(targetPlayerName), command);
+		SendNPCCommand(npcPlayerID, command);
 		return COMMAND_OK;
 	}
 	else

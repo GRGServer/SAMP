@@ -22,7 +22,7 @@ DialogResponse:Bank_NewAccount(playerID, response, listItem, inputText[])
 		if (PVar:playerID[INTUTORIAL])
 		{
 			TogglePlayerControllable(playerID, false);
-			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIAL_BANK_LEAVE_BLACK);
+			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIAL_BANK_LEAVE, 0);
 		}
 		else
 		{

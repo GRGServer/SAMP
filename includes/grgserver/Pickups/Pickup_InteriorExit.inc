@@ -7,7 +7,7 @@ PickupEvent:INTERIOREXIT(playerID, pickupID, eventType)
 			if (PVar:playerID[CURRENTPROPERTYID])
 			{
 				TogglePlayerControllable(playerID, false);
-				StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_LEAVEPROPERTY_BLACK);
+				StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_LEAVEPROPERTY, 0);
 			}
 			return true;
 		}

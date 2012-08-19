@@ -214,6 +214,7 @@
 #include <grgserver\Dialogs\D_ChatMode.inc>
 #include <grgserver\Dialogs\D_ChatMode_FriendList.inc>
 #include <grgserver\Dialogs\D_DrivingSchool.inc>
+#include <grgserver\Dialogs\D_DrivingSchool_StartDriving.inc>
 #include <grgserver\Dialogs\D_EstateAgents.inc>
 #include <grgserver\Dialogs\D_FriendRequests.inc>
 #include <grgserver\Dialogs\D_FriendRequests_Options.inc>

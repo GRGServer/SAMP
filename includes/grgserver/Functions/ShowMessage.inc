@@ -83,6 +83,52 @@ ShowMessage(playerID, messageID, waitTime = 3000)
 		{
 			stringID = 591;
 		}
+		case 21:
+		{
+			stringID = 594;
+		}
+		case 22:
+		{
+			stringID = 595;
+		}
+		case 23:
+		{
+			stringID = 596;
+		}
+		case 24:
+		{
+			stringID = 597;
+		}
+		case 25:
+		{
+			stringID = 598;
+		}
+		case 26:
+		{
+			stringID = 601;
+		}
+		case 27:
+		{
+			stringID = 602;
+		}
+		case 28:
+		{
+			switch (PVar:playerID[DRIVINGSCHOOL_TYPE])
+			{
+				case DRIVINGSCHOOL_BIKE:
+				{
+					stringID = 604;
+				}
+				case DRIVINGSCHOOL_CAR:
+				{
+					stringID = 603;
+				}
+				case DRIVINGSCHOOL_TRUCK:
+				{
+					stringID = 605;
+				}
+			}
+		}
 	}
 	if (stringID)
 	{

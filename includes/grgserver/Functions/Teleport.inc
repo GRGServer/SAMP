@@ -7,5 +7,5 @@ Teleport(playerID, Float:posX, Float:posY, Float:posZ, Float:angle, interior, vi
 	PVar:playerID[TELEPORT_INTERIOR] = interior;
 	PVar:playerID[TELEPORT_VIRTUALWORLD] = virtualWorld;
 	TogglePlayerControllable(playerID, false);
-	StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TELEPORT_BLACK);
+	StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TELEPORT, 0);
 }

@@ -24,7 +24,7 @@ DialogResponse:BuyHouse(playerID, response, listItem, inputText[])
 			MySQLQuery("UPDATE `properties` SET `ownerUserId` = '%d' WHERE `id` = '%d'", PVar:playerID[USERID], buildingID);
 			GivePlayerMoneyEx(playerID, MONEY_BANK, -price);
 			ReloadPickup(strval(GetMySQLValue("properties", "pickupId", "id", val2str(buildingID))));
-			SetTimerEx("Timer_ScreenFader", 8000, false, "ddddddd", playerID, 0, 0, 0, 5, 0, FADE_PROPERTYBOUGHT_BLACK);
+			SetTimerEx("Timer_ScreenFader", 8000, false, "ddddddd", playerID, 0, 0, 0, 5, 0, FADE_PROPERTYBOUGHT, 0);
 		}
 		else
 		{
