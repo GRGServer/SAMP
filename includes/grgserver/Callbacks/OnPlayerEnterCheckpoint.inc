@@ -3,6 +3,39 @@ public OnPlayerEnterCheckpoint(playerid)
 	DisablePlayerCheckpoint(playerid);
 	switch (PVar:playerid[CURRENTCHECKPOINT])
 	{
+		case CHECKPOINT_DRVSCHOOL_VEHICLE:
+		{
+			new Float:posX;
+			new Float:posY;
+			new Float:posZ;
+			new type[STRINGLENGTH_VEHICLETYPE];
+			GetPlayerPos(playerid, posX, posY, posZ);
+			switch (PVar:playerid[DRIVINGSCHOOL_TYPE])
+			{
+				case DRIVINGSCHOOL_BIKE:
+				{
+					strcat(type, "Bike");
+				}
+				case DRIVINGSCHOOL_CAR:
+				{
+					strcat(type, "Car");
+				}
+				case DRIVINGSCHOOL_TRUCK:
+				{
+					strcat(type, "Truck");
+				}
+			}
+			new vehicleID = GetClosestVehicleInRange(posX, posY, posZ, 50, 0, true, JOB_SCHOOLDRIVER, type);
+			if (vehicleID)
+			{
+				MySQLQuery("UPDATE `vehicles` SET `allowDriveUserId` = '%d' WHERE `id` = '%d'", PVar:playerid[USERID], VehicleProperty:vehicleID[SAVEID]);
+				PutPlayerInVehicle(playerid, vehicleID, 0);
+			}
+			else
+			{
+				ShowMessage(playerid, 30, 3000);
+			}
+		}
 		case CHECKPOINT_INPLANE_EXIT:
 		{
 			StartScreenFader(playerid, 0, 0, 0, 2, 0, FADE_START_PLANEEXIT, 0);

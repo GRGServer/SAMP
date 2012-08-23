@@ -1,7 +1,6 @@
 forward OnScreenFadeStop(playerID, extraID, subID, isTimer);
 public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 {
-	printf("OnScreenFadeStop(%d, %d, %d, %d)", playerID, extraID, subID, isTimer);
 	if (isTimer)
 	{
 		switch (extraID)

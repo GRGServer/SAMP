@@ -7,4 +7,8 @@ OnPlayerLeftVehicle(playerID, vehicleID, isPassenger)
 	{
 		SetCameraBehindPlayer(playerID);// Fixes not setting camera behind player after leaving a tram
 	}
+	if (PVar:playerID[DRIVINGSCHOOL_INMISSION])
+	{
+		ShowMessage(playerID, 29, 3000);
+	}
 }

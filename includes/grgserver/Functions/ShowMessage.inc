@@ -129,6 +129,14 @@ ShowMessage(playerID, messageID, waitTime = 3000)
 				}
 			}
 		}
+		case 29:
+		{
+			stringID = 607;
+		}
+		case 30:
+		{
+			stringID = 608;
+		}
 	}
 	if (stringID)
 	{

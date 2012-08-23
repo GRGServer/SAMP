@@ -39,6 +39,16 @@ CheckVehiclePermission(playerID, vehicleID)
 			return true;
 		}
 	}
+	MySQLQuery("SELECT * FROM `vehicles` WHERE `id` = '%d'", VehicleProperty:vehicleID[SAVEID]);
+	mysql_store_result();
+	new ownerUserID = strval(GetMySQLField("ownerUserId"));
+	new allowDriveUserID = strval(GetMySQLField("allowDriveUserId"));
+	new Float:price = floatstr(GetMySQLField("price"));
+	mysql_free_result();
+	if (PVar:playerID[USERID] == allowDriveUserID)
+	{
+		return true;
+	}
 	if (VehicleProperty:vehicleID[JOBID])
 	{
 		if (PVar:playerID[JOBID] == VehicleProperty:vehicleID[JOBID])
@@ -51,11 +61,6 @@ CheckVehiclePermission(playerID, vehicleID)
 			return false;
 		}
 	}
-	MySQLQuery("SELECT * FROM `vehicles` WHERE `id` = '%d'", VehicleProperty:vehicleID[SAVEID]);
-	mysql_store_result();
-	new ownerUserID = strval(GetMySQLField("ownerUserId"));
-	new Float:price = floatstr(GetMySQLField("price"));
-	mysql_free_result();
 	if (!ownerUserID && price)
 	{
 		ShowDialog:BuyVehicle(playerID, price);
