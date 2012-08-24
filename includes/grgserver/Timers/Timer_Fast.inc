@@ -15,7 +15,7 @@
 
 Timer:Fast()
 {
-	LoggedInPlayers(playerID)
+	Count(playerID, maxPlayers)
 	{
 		new inVehicle;
 		new onlineTime = GetOnlineTime(playerID);
@@ -50,7 +50,10 @@ Timer:Fast()
 				new seatID = GetPlayerVehicleSeat(playerID);
 				new speed = floatround(floatsqroot(floatpower(velocityX, 2) + floatpower(velocityY, 2) + floatpower(velocityZ, 2)) * 100 * 1.61);
 				new Float:distance = floatdiv(speed, floatdiv(1000 * 60 * 60, TIMER_FAST));
-				VehicleProperty:vehicleID[MILEAGE] = floatadd(VehicleProperty:vehicleID[MILEAGE], distance);
+				if (!seatID)
+				{
+					VehicleProperty:vehicleID[MILEAGE] = floatadd(VehicleProperty:vehicleID[MILEAGE], distance);
+				}
 				new Float:healthPercentage = floatdiv(health, 10);
 				if (health < 1000 && seatID == 0 && IsPlayerNPC(playerID))
 				{

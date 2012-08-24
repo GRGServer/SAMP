@@ -2440,4 +2440,16 @@
 		<en>There are currently no free vehicles to drive! Please come back later.</en>
 		<de>Leider stehen derzeit keine Fahrzeuge zum Fahren zur Verfügung! Komme später wieder.</de>
 	</string>
+	<string id="609">
+		<en>Link the current vehicle to a job</en>
+		<de>Verknüpfe das aktuelle Fahrzeug mit einem Beruf</de>
+	</string>
+	<string id="610">
+		<en>Select job</en>
+		<de>Beruf auswählen</de>
+	</string>
+	<string id="611">
+		<en>The vehicle with ID %d has been linked to the job '%s'</en>
+		<de>Das Fahrzeug mit der ID %d wurde mit dem Beruf '%s' verknüpft</de>
+	</string>
 </languagestrings>

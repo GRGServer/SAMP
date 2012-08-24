@@ -51,8 +51,8 @@
 
 
 // Gas station configuration
-#define GASSTATION_MAXDIFFERENCE			15// Maximum difference between minimum and maximum gas price
-#define GASSTATION_MINPRICE				155// Minimum gas price
+#define GASSTATION_MAXDIFFERENCE			10// Maximum difference between minimum and maximum gas price
+#define GASSTATION_MINPRICE				167// Minimum gas price
 #define GASSTATION_REFUELSPEED				500// Time per liter
 
 
@@ -155,6 +155,7 @@
 #define STRINGLENGTH_CHATMODE				16
 #define STRINGLENGTH_DATETIME				20
 #define STRINGLENGTH_DIALOGNAME				MAX_FUNCTION_NAME - 4// 4 = "DR_" + 1 (For 0 byte)
+#define STRINGLENGTH_JOBNAME				100
 #define STRINGLENGTH_LANGUAGESTRING			256
 #define STRINGLENGTH_LOCATION				100
 #define STRINGLENGTH_NUMBERPLATE			8

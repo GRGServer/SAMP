@@ -245,6 +245,7 @@
 #include <grgserver\Dialogs\D_SellVehicle.inc>
 #include <grgserver\Dialogs\D_Service.inc>
 #include <grgserver\Dialogs\D_SetSell.inc>
+#include <grgserver\Dialogs\D_SetVehicleJob.inc>
 #include <grgserver\Dialogs\D_ShowOrder.inc>
 #include <grgserver\Dialogs\D_SpawnVehicle.inc>
 #include <grgserver\Dialogs\D_Stats.inc>
@@ -379,6 +380,7 @@
 #include <grgserver\Commands\sellveh.inc>
 #include <grgserver\Commands\service.inc>
 #include <grgserver\Commands\setinterior.inc>
+#include <grgserver\Commands\setjob.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
 #include <grgserver\Commands\setobjectmovepos.inc>
 #include <grgserver\Commands\setpropertycam.inc>

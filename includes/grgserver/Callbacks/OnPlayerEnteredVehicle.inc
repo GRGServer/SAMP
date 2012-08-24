@@ -43,7 +43,7 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 				new languageStringID = LicenseLanguageStringID(vehicleModels[modelID - 400][VEHICLEMODEL_TYPE]);
 				if (languageStringID)
 				{
-					if (!HasLicense(playerID, vehicleModels[modelID - 400][VEHICLEMODEL_TYPE]))
+					if (!PVar:playerID[DRIVINGSCHOOL_INMISSION] && !HasLicense(playerID, vehicleModels[modelID - 400][VEHICLEMODEL_TYPE]))
 					{
 						SendClientMessageEx(playerID, COLOR_WARNING, 514, languageStringID);
 						SendClientMessageEx(playerID, COLOR_WARNING, 544);

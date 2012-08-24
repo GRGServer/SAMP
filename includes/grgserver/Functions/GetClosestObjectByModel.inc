@@ -4,7 +4,7 @@ GetClosestObjectByModel(playerID, modelID, &Float:closestObjectDistance)
 	new objects = CountDynamicObjects();
 	Count1(objectID, objects)
 	{
-		if (Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_MODEL_ID) == modelID)
+		if (IsValidDynamicObject(objectID) && Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_MODEL_ID) == modelID)
 		{
 			new Float:posX;
 			new Float:posY;

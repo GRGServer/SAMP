@@ -4,7 +4,7 @@ GetClosestGate(playerID, &Float:closestObjectDistance)
 	new objects = CountDynamicObjects();
 	Count1(objectID, objects)
 	{
-		if (IsGateObject(Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_MODEL_ID)))
+		if (IsValidDynamicObject(objectID) && IsGateObject(Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_MODEL_ID)))
 		{
 			new Float:posX;
 			new Float:posY;
@@ -15,8 +15,14 @@ GetClosestGate(playerID, &Float:closestObjectDistance)
 			new Float:distance = GetPlayerDistanceFromPoint(playerID, posX, posY, posZ);
 			if (distance < closestObjectDistance || !closestObjectID)
 			{
-				closestObjectID = objectID;
-				closestObjectDistance = distance;
+				MySQLQuery("SELECT `objectId` FROM `moveobjects` WHERE `objectId` = '%d'", Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID));
+				mysql_store_result();
+				if (mysql_num_rows())
+				{
+					closestObjectID = objectID;
+					closestObjectDistance = distance;
+				}
+				mysql_free_result();
 			}
 		}
 	}
