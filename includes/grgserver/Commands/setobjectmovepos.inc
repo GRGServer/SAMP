@@ -12,10 +12,14 @@ PCMD:setobjectmovepos[MAPPER](playerID, params[], 463)
 		return COMMAND_ERROR;
 	}
 	new Float:speed;
-	if (sscanf(params, "f", speed))
+	new timeout;
+	if (sscanf(params, "fd", speed, timeout))
 	{
-		CmdUsageMsg(playerID, "setobjectmovepos", "Speed");
-		return COMMAND_USAGE;
+		if (sscanf(params, "f", speed))
+		{
+			CmdUsageMsg(playerID, "setobjectmovepos", "Speed", "[Timeout]");
+			return COMMAND_USAGE;
+		}
 	}
 	new Float:posX;
 	new Float:posY;
@@ -25,7 +29,7 @@ PCMD:setobjectmovepos[MAPPER](playerID, params[], 463)
 	new Float:rotZ;
 	GetDynamicObjectPos(PVar:playerID[OBJEDITOR_CURRENTOBJECTID], posX, posY, posZ);
 	GetDynamicObjectRot(PVar:playerID[OBJEDITOR_CURRENTOBJECTID], rotX, rotY, rotZ);
-	MySQLQuery("REPLACE INTO `moveobjects` (`objectId`, `posX`, `posY`, `posZ`, `rotX`, `rotY`, `rotZ`, `speed`) VALUES('%d', '%f', '%f', '%f', '%f', '%f', '%f', '%f')", dbObjectID, posX, posY, posZ, rotX, rotY, rotZ, speed);
+	MySQLQuery("REPLACE INTO `moveobjects` (`objectId`, `posX`, `posY`, `posZ`, `rotX`, `rotY`, `rotZ`, `speed`, `timeout`) VALUES('%d', '%f', '%f', '%f', '%f', '%f', '%f', '%f', '%d')", dbObjectID, posX, posY, posZ, rotX, rotY, rotZ, speed, timeout);
 	SendClientMessageEx(playerID, COLOR_INFO, 465, dbObjectID);
 	return COMMAND_OK;
 }

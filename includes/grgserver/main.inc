@@ -45,6 +45,8 @@
 #include <grgserver\Functions\FormatDate.inc>
 #include <grgserver\Functions\FormatTime.inc>
 #include <grgserver\Functions\GetChatModeName.inc>
+#include <grgserver\Functions\GetCheckpointMissionByName.inc>
+#include <grgserver\Functions\GetCheckpointMissionNameByID.inc>
 #include <grgserver\Functions\GetClosestGate.inc>
 #include <grgserver\Functions\GetClosestObjectByModel.inc>
 #include <grgserver\Functions\GetClosestPickup.inc>
@@ -97,6 +99,7 @@
 #include <grgserver\Functions\MoveObjectEx.inc>
 #include <grgserver\Functions\MySQLBan.inc>
 #include <grgserver\Functions\MySQLEscapeString.inc>
+#include <grgserver\Functions\NextMissionCheckpoint.inc>
 #include <grgserver\Functions\PayDay.inc>
 #include <grgserver\Functions\PickupEvent.inc>
 #include <grgserver\Functions\PlayAudio.inc>
@@ -136,6 +139,7 @@
 #include <grgserver\Functions\ShowNews.inc>
 #include <grgserver\Functions\ShowSubtitle.inc>
 #include <grgserver\Functions\SpawnVehicle.inc>
+#include <grgserver\Functions\StartCheckpointMission.inc>
 #include <grgserver\Functions\StartNPCPlayback.inc>
 #include <grgserver\Functions\StopRadioStation.inc>
 #include <grgserver\Functions\Str2Val.inc>
@@ -152,6 +156,7 @@
 
 // Callbacks
 #include <grgserver\Callbacks\GPS_WhenRouteIsCalculated.inc>
+#include <grgserver\Callbacks\OnCheckpointMissionFinished.inc>
 #include <grgserver\Callbacks\OnDialogResponse.inc>
 #include <grgserver\Callbacks\OnDynamicObjectMoved.inc>
 #include <grgserver\Callbacks\OnGameModeExit.inc>
@@ -297,6 +302,7 @@
 #include <grgserver\Commands\addfriend.inc>
 #include <grgserver\Commands\addhotelroom.inc>
 #include <grgserver\Commands\addinfopickup.inc>
+#include <grgserver\Commands\addmissioncheckpoint.inc>
 #include <grgserver\Commands\addnavilocation.inc>
 #include <grgserver\Commands\addobject.inc>
 #include <grgserver\Commands\addpickup.inc>

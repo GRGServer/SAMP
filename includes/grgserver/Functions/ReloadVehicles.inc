@@ -54,7 +54,7 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 			SetVehicleNumberPlate(vehicleID, VehicleProperty:vehicleID[NUMBERPLATE]);
 			if (strval(GetMySQLField("ownerUserId")))
 			{
-				VehicleProperty:vehicleID[ALLOWSAVE] = true;
+				VehicleProperty:vehicleID[ALLOWPOSSAVE] = true;
 			}
 			else
 			{
@@ -103,7 +103,7 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 		if (vehicleID)
 		{
 			VehicleProperty:vehicleID[ALLOWDESTROY] = false;
-			VehicleProperty:vehicleID[ALLOWSAVE] = false;
+			VehicleProperty:vehicleID[ALLOWPOSSAVE] = false;
 			new npcPlayerID = GetPlayerID(GetMySQLField("name"));
 			if (npcPlayerID != INVALID_PLAYER_ID)
 			{

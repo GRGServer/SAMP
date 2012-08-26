@@ -39,6 +39,16 @@ DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 				}
 			}
 			MySQLQuery("UPDATE `vehicles` SET `ownerUserId` = '%d', `ownerSellerId` = '0' WHERE `id` = '%d'", PVar:playerID[USERID], VehicleProperty:vehicleID[SAVEID]);
+			VehicleProperty:vehicleID[ALLOWDESTROY] = true;
+			VehicleProperty:vehicleID[ALLOWPOSSAVE] = true;
+			if (VehicleProperty:vehicleID[COLOR1] == -1)
+			{
+				VehicleProperty:vehicleID[COLOR1] = VehicleProperty:vehicleID[CURRENTCOLOR1];
+			}
+			if (VehicleProperty:vehicleID[COLOR2] == -1)
+			{
+				VehicleProperty:vehicleID[COLOR2] = VehicleProperty:vehicleID[CURRENTCOLOR2];
+			}
 			SendClientMessageEx(playerID, COLOR_INFO, 493);
 			if (!PVar:playerID[VEHICLEBOUGHT])
 			{

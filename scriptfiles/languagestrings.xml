@@ -2452,4 +2452,32 @@
 		<en>The vehicle with ID %d has been linked to the job '%s'</en>
 		<de>Das Fahrzeug mit der ID %d wurde mit dem Beruf '%s' verknüpft</de>
 	</string>
+	<string id="612">
+		<en>You have to be in a vehicle to use this checkpoint!</en>
+		<de>Du musst in einem Fahrzeug sein um diesen Checkpoint zu verwenden!</de>
+	</string>
+	<string id="613">
+		<en>You are not in the required vehicle!</en>
+		<de>Du bist nicht in dem erforderlichen Fahrzeug!</de>
+	</string>
+	<string id="614">
+		<en>Add a new mission checkpoint to a mission group</en>
+		<de>Füge einen neuen Missionscheckpoint zu einer Missionsgruppe hinzu</de>
+	</string>
+	<string id="615">
+		<en>Checkpoint %d has been added to the mission group '%s'</en>
+		<de>Checkpoint %d wurde zur Missionsgruppe '%s' hinzugefügt</de>
+	</string>
+	<string id="616">
+		<en>There is currently no driving mission available for your selected driving license type! Please come back later.</en>
+		<de>Es steht zurzeit keine Fahrmission zu deinem gewählten Führerscheintyp zur Verfügung! Komme später wieder.</de>
+	</string>
+	<string id="617">
+		<en>~y~Congratulation!~n~~n~You have finished the ~g~practical driving test~y~</en>
+		<de>~y~Glückwunsch!~n~~n~Du hast die ~g~praktische Fahrprüfung~y~ abgeschlossen</de>
+	</string>
+	<string id="618">
+		<en>You already have a driving license, so I will skip the common basics.</en>
+		<de>Du hast bereits einen Führerschein, daher werde ich die Gmeinsamkeiten überspringen.</de>
+	</string>
 </languagestrings>

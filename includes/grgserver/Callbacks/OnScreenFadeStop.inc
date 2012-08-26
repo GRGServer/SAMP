@@ -30,6 +30,36 @@ public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 					StartScreenFader(playerID, 100, 0, 0, -5, 0, FADE_DEATH, 1);
 				}
 			}
+			case FADE_DRVSCHOOL_END1:
+			{
+				if (subID)
+				{
+					GameTextForPlayer(playerID, LanguageString(playerID, 617), 5000, 3);
+					SetTimerEx("Timer_ScreenFader", 3000, false, "dddddddd", playerID, 0, 0, 0, 5, 0, FADE_DRVSCHOOL_END2, 0);
+				}
+				else
+				{
+					RemovePlayerFromVehicle(playerID);
+					TogglePlayerControllable(playerID, false);
+					SetPlayerCameraPos(playerID, -2011.800415, -75.216079, 43.945693);
+					SetPlayerCameraLookAt(playerID, -2063.461914, -118.374504, 35.326580);
+					SetVehicleToRespawn(PVar:playerID[CPMISSION_VEHICLEID]);
+					PVar:playerID[CPMISSION_ID] = 0;
+					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_DRVSCHOOL_END1, 1);
+				}
+			}
+			case FADE_DRVSCHOOL_END2:
+			{
+				if (subID)
+				{
+					TogglePlayerControllable(playerID, true);
+				}
+				else
+				{
+					SetCameraBehindPlayer(playerID);
+					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_DRVSCHOOL_END2, 1);
+				}
+			}
 			case FADE_DRVSCHOOL_ENTER:
 			{
 				if (subID)
@@ -240,6 +270,45 @@ public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIAL_BANK_START, 1);
 				}
 			}
+			case FADE_TUTORIAL_END1:
+			{
+				if (subID)
+				{
+					ShowMessage(playerID, 19, 5000);
+				}
+				else
+				{
+					SetPlayerCameraPos(playerID, -2011.800415, -75.216079, 43.945693);
+					SetPlayerCameraLookAt(playerID, -2063.461914, -118.374504, 35.326580);
+					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIAL_END1, 1);
+				}
+			}
+			case FADE_TUTORIAL_END2:
+			{
+				if (subID)
+				{
+					ShowMessage(playerID, 20, 5000);
+				}
+				else
+				{
+					SetPlayerCameraPos(playerID, -2149.253906, -221.977584, 38.965263);
+					SetPlayerCameraLookAt(playerID, -2179.841552, -205.179870, 36.522132);
+					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIAL_END2, 1);
+				}
+			}
+			case FADE_TUTORIAL_END3:
+			{
+				if (subID)
+				{
+					TogglePlayerControllable(playerID, true);
+				}
+				else
+				{
+					SetCameraBehindPlayer(playerID);
+					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIAL_END3, 1);
+					PVar:playerID[INTUTORIAL] = false;
+				}
+			}
 			case FADE_TUTORIAL_S1_END:
 			{
 				if (subID)
@@ -269,45 +338,6 @@ public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 					SetPlayerCameraPos(playerID, 1716.6685, 1620.3689, 11.1172);
 					SetPlayerCameraLookAt(playerID, 1712.6682, 1619.2202, 10.1172);
 					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIAL_S1_START, 1);
-				}
-			}
-			case FADE_TUTORIALEND1:
-			{
-				if (subID)
-				{
-					ShowMessage(playerID, 19, 5000);
-				}
-				else
-				{
-					SetPlayerCameraPos(playerID, -2011.800415, -75.216079, 43.945693);
-					SetPlayerCameraLookAt(playerID, -2063.461914, -118.374504, 35.326580);
-					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIALEND1, 1);
-				}
-			}
-			case FADE_TUTORIALEND2:
-			{
-				if (subID)
-				{
-					ShowMessage(playerID, 20, 5000);
-				}
-				else
-				{
-					SetPlayerCameraPos(playerID, -2149.253906, -221.977584, 38.965263);
-					SetPlayerCameraLookAt(playerID, -2179.841552, -205.179870, 36.522132);
-					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIALEND2, 1);
-				}
-			}
-			case FADE_TUTORIALEND3:
-			{
-				if (subID)
-				{
-					TogglePlayerControllable(playerID, true);
-				}
-				else
-				{
-					SetCameraBehindPlayer(playerID);
-					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIALEND3, 1);
-					PVar:playerID[INTUTORIAL] = false;
 				}
 			}
 		}

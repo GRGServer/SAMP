@@ -17,6 +17,8 @@ IsGateObject(modelID)
 {
 	switch (modelID)
 	{
+		case 971:
+			return true;
 		case 968:
 			return true;
 		case 969:

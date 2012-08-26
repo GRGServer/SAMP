@@ -43,13 +43,18 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 				new languageStringID = LicenseLanguageStringID(vehicleModels[modelID - 400][VEHICLEMODEL_TYPE]);
 				if (languageStringID)
 				{
-					if (!PVar:playerID[DRIVINGSCHOOL_INMISSION] && !HasLicense(playerID, vehicleModels[modelID - 400][VEHICLEMODEL_TYPE]))
+					if (!HasLicense(playerID, vehicleModels[modelID - 400][VEHICLEMODEL_TYPE]) && !(PVar:playerID[CPMISSION_ID] && strfind(GetCheckpointMissionNameByID(PVar:playerID[CPMISSION_ID]), "DrivingSchool", true, 0) == 0))
 					{
 						SendClientMessageEx(playerID, COLOR_WARNING, 514, languageStringID);
 						SendClientMessageEx(playerID, COLOR_WARNING, 544);
 					}
 				}
 			}
+		}
+		if (PVar:playerID[CPMISSION_ID] && (!PVar:playerID[CPMISSION_VEHICLEID] || PVar:playerID[CPMISSION_VEHICLEID] == vehicleID))
+		{
+			DisablePlayerCheckpoint(playerID);
+			NextMissionCheckpoint(playerID, true);
 		}
 	}
 	if (modelID == 420)

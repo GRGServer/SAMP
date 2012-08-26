@@ -60,15 +60,26 @@ public OnMessageShown(playerID, messageID)
 		}
 		case 19:
 		{
-			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIALEND2, 0);
+			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIAL_END2, 0);
 		}
 		case 20:
 		{
-			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIALEND3, 0);
+			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIAL_END3, 0);
 		}
 		case 21:
 		{
-			ShowMessage(playerID, 22, 3000);
+			MySQLQuery("SELECT `type` FROM `licenses` WHERE `userId` = '%d'", PVar:playerID[USERID]);
+			mysql_store_result();
+			new rows = mysql_num_rows();
+			mysql_free_result();
+			if (rows)
+			{
+				ShowMessage(playerID, 32, 3000);
+			}
+			else
+			{
+				ShowMessage(playerID, 22, 3000);
+			}
 		}
 		case 22:
 		{
@@ -93,6 +104,10 @@ public OnMessageShown(playerID, messageID)
 		case 27:
 		{
 			StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_DRVSCHOOL_EXIT, 0);
+		}
+		case 32:
+		{
+			ShowDialog:DrivingSchool_StartDriving(playerID);
 		}
 	}
 }
