@@ -85,7 +85,13 @@ public OnPlayerSpawn(playerid)
 	{
 		TextDrawShowForPlayer(playerid, textDrawClock);
 	}
-	if (PVar:playerid[SPAWNAFTERLOGIN] && !PVar:playerid[INTUTORIAL])
+	if (PVar:playerid[INTUTORIAL])
+	{
+		TogglePlayerControllable(playerid, false);
+		StartScreenFader(playerid, 0, 0, 0, 2, 500, FADE_START_INPLANE1, 0);
+		return true;
+	}
+	if (PVar:playerid[SPAWNAFTERLOGIN])
 	{
 		PVar:playerid[SPAWNAFTERLOGIN] = false;
 		MySQLQuery("SELECT * FROM `users` WHERE `id` = '%d'", PVar:playerid[USERID]);
@@ -109,12 +115,6 @@ public OnPlayerSpawn(playerid)
 		SetPlayerPosEx(playerid, pickups[PVar:playerid[SPAWNAFTERDEATH]][PICKUP_POSX], pickups[PVar:playerid[SPAWNAFTERDEATH]][PICKUP_POSY], pickups[PVar:playerid[SPAWNAFTERDEATH]][PICKUP_POSZ]);
 		PVar:playerid[SPAWNAFTERDEATH] = -1;
 		PVar:playerid[CURRENTPROPERTYID] = 0;
-		return true;
-	}
-	if (PVar:playerid[INTUTORIAL])
-	{
-		TogglePlayerControllable(playerid, false);
-		StartScreenFader(playerid, 0, 0, 0, 2, 500, FADE_START_INPLANE1, 0);
 		return true;
 	}
 	return true;

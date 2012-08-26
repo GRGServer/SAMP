@@ -3,10 +3,12 @@ public OnPlayerRequestSpawn(playerid)
 	if (PVar:playerid[REGISTER_SELECTSKIN])
 	{
 		PVar:playerid[REGISTER_SELECTSKIN] = false;
-		MySQLQuery("INSERT INTO `users` (`username`, `password`, `gender`, `birthDate`, `location`) VALUES('%s', '%s', '%c', '%s', '%s')", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(PVar:playerid[REGISTERPASSWORD]), PVar:playerid[GENDER], PVar:playerid[BIRTHDATE], MySQLEscapeString(PVar:playerid[REGISTERLOCATION]));
+		MySQLQuery("INSERT INTO `users` (`username`, `password`, `gender`, `birthDate`, `location`, `health`) VALUES('%s', '%s', '%c', '%s', '%s', '100')", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(PVar:playerid[REGISTERPASSWORD]), PVar:playerid[GENDER], PVar:playerid[BIRTHDATE], MySQLEscapeString(PVar:playerid[REGISTERLOCATION]));
 		PVar:playerid[USERID] = mysql_insert_id();
 		SetPVarStr:playerid[CHATMODE][STRINGLENGTH_CHATMODE]("INRANGE");
-		MySQLQuery("UPDATE `users` SET `registerTime` = NOW(), `loginTime` = NOW(), `inTutorial` = '1', `clientVersion` = '%s' WHERE `id` = '%d'", MySQLEscapeString(GetPlayerVersionEx(playerid)), PVar:playerid[USERID]);
+		PVar:playerid[INTUTORIAL] = true;
+		PVar:playerid[SHOWCLOCK] = true;
+		MySQLQuery("UPDATE `users` SET `registerTime` = NOW(), `loginTime` = NOW(), `clientVersion` = '%s' WHERE `id` = '%d'", MySQLEscapeString(GetPlayerVersionEx(playerid)), PVar:playerid[USERID]);
 		SavePlayer(playerid);
 		LoadPlayer(playerid);
 		ReloadTextDraws(playerid);
