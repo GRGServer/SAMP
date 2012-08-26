@@ -101,11 +101,18 @@
 #define MAX_NPC_MULTIRECS				10// Number of recordings asigned to a MultiRec NPC
 
 
-// MySQL database credentials
-#define MYSQL_DATABASE					"grg_server"
-#define MYSQL_HOST					"127.0.0.1"
-#define MYSQL_PASSWORD					"9wLjVfZLJPHbnS5A"
-#define MYSQL_USERNAME					"grg_server"
+// MySQL database credentials for public server
+#define MYSQL_PUBLIC_DATABASE				"grg_server"
+#define MYSQL_PUBLIC_HOST				"127.0.0.1"
+#define MYSQL_PUBLIC_PASSWORD				"9wLjVfZLJPHbnS5A"
+#define MYSQL_PUBLIC_USERNAME				"grg_server"
+
+
+// MySQL database credentials for development server
+#define MYSQL_DEV_DATABASE				"grg_server_dev"
+#define MYSQL_DEV_HOST					"127.0.0.1"
+#define MYSQL_DEV_PASSWORD				"5jEwD2n2DFxW7u6x"
+#define MYSQL_DEV_USERNAME				"grg_server_dev"
 
 
 // News configuration

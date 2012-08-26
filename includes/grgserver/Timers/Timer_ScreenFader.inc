@@ -1,3 +1,42 @@
+/**
+ * <summary>
+ *	Fade the screen to a specific color (Or back to normal)
+ * </summary>
+ *
+ * <param name="playerID">
+ *	The ID of the player
+ * </param>
+ *
+ * <param name="red">
+ *	The amount of red color (0 - 255)
+ * </param>
+ *
+ * <param name="green">
+ *	The amount of green color (0 - 255)
+ * </param>
+ *
+ * <param name="blue">
+ *	The amount of blue color (0 - 255)
+ * </param>
+ *
+ * <param name="steps">
+ *	The number of color steps in the time defined in TIMER_SCREENFADER
+ * </param>
+ *
+ * <param name="waitOnEnd">
+ *	Time in milliseconds to wait after the screen fading has finished
+ *	OnScreenFadeStop will be triggered twice (Directly after the screen fading and after the timer has expired)
+ * </param>
+ *
+ * <param name="extraID">
+ *	An ID to identify the screen fade
+ * </param>
+ *
+ * <param name="subID">
+ *	A second ID to identify a screen fade in a group (e.g. to use Normal -> Black and Black -> Normal in the same extraID but different subIDs)
+ * </param>
+ */
+
 Timer:ScreenFader(playerID, red, green, blue, steps, waitOnEnd, extraID, subID)
 {
 	new alpha;

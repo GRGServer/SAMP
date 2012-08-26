@@ -1,3 +1,9 @@
+/**
+ * <summary>
+ *	Mark the current SVN revision as stable after 10 minutes
+ * </summary>
+ */
+
 Timer:StableCheck()
 {
 	new File:file = fopen(FILE_STABLEREVISION, io_write);

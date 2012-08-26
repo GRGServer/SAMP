@@ -1,3 +1,13 @@
+/**
+ * <summary>
+ *	Spawn a player at the saved position
+ * </summary>
+ *
+ * <param name="playerID">
+ *	The ID of the player
+ * </param>
+ */
+
 Timer:SpawnPlayer(playerID)
 {
 	SpawnPlayer(playerID);

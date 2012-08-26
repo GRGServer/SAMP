@@ -1,3 +1,13 @@
+/**
+ * <summary>
+ *	This timer runs while a player has enabled the fly cam.
+ * </summary>
+ *
+ * <param name="playerID">
+ *	The ID of the player
+ * </param>
+ */
+
 Timer:FlyCam(playerID)
 {
 	new keys;

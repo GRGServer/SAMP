@@ -12,6 +12,7 @@ new permissions[MAX_PLAYERS][enum_permission];
 new pickupLoader[MAX_PICKUPS][enum_pickupLoader];
 new pickups[MAX_PICKUPS][enum_pickup];
 new playerVariables[MAX_PLAYERS][enum_playerVariable];
+new serverMode;
 new sqlQuery[1024];
 new vehicles[MAX_VEHICLES][enum_vehicle];
 new vehicleLightObjects[MAX_VEHICLES][enum_neonType][LIGHTOBJECT_MAXCOLORS];

@@ -1,3 +1,21 @@
+/**
+ * <summary>
+ *	Refuel the current vehicle of the player up to the specific amount.
+ * </summary>
+ *
+ * <param name="playerID">
+ *	The ID of the player
+ * </param>
+ *
+ * <param name="totalAmount">
+ *	The amount in liters
+ * </param>
+ *
+ * <remarks>
+ *	The vehicle gets refuelled till the given amount or maximum of the vehicle has been reached.
+ * </remarks>
+ */
+
 Timer:RefuelVehicle(playerID, Float:totalAmount)
 {
 	new vehicleID = GetPlayerVehicleID(playerID);

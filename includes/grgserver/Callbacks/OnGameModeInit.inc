@@ -34,6 +34,16 @@ public OnGameModeInit()
 	}
 	print("* Defining variables...");
 	maxPlayers = GetServerVarAsInt("maxplayers");
+	if (GetServerVarAsInt("port") == 7777)
+	{
+		serverMode = SERVERMODE_PUBLIC;
+		print("In public mode");
+	}
+	else
+	{
+		serverMode = SERVERMODE_DEV;
+		print("In development mode");
+	}
 	print("* Checking SVN stuff...");
 	new File:svnRevisionFile;
 	new oldSvnRevision[16];
@@ -57,11 +67,23 @@ public OnGameModeInit()
 	}
 	print("* Initializing MySQL connection...");
 	new MySQL:mysqlConnection = mysql_init(LOG_ONLY_ERRORS, true);
-	printf("Connecting to MySQL database (%s@%s/%s)...", MYSQL_USERNAME, MYSQL_HOST, MYSQL_DATABASE);
-	if (!mysql_connect(MYSQL_HOST, MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_DATABASE, mysqlConnection, true))
+	if (serverMode == SERVERMODE_PUBLIC)
 	{
-		print("MySQL connection failed!");
-		return false;
+		printf("Connecting to MySQL database (%s@%s/%s)...", MYSQL_PUBLIC_USERNAME, MYSQL_PUBLIC_HOST, MYSQL_PUBLIC_DATABASE);
+		if (!mysql_connect(MYSQL_PUBLIC_HOST, MYSQL_PUBLIC_USERNAME, MYSQL_PUBLIC_PASSWORD, MYSQL_PUBLIC_DATABASE, mysqlConnection, true))
+		{
+			print("MySQL connection failed!");
+			return false;
+		}
+	}
+	else
+	{
+		printf("Connecting to MySQL database (%s@%s/%s)...", MYSQL_DEV_USERNAME, MYSQL_DEV_HOST, MYSQL_DEV_DATABASE);
+		if (!mysql_connect(MYSQL_DEV_HOST, MYSQL_DEV_USERNAME, MYSQL_DEV_PASSWORD, MYSQL_DEV_DATABASE, mysqlConnection, true))
+		{
+			print("MySQL connection failed!");
+			return false;
+		}
 	}
 	print("* Loading weapons...");
 	if (fexist(FILE_WEAPONS))

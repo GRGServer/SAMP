@@ -2,14 +2,17 @@
  * <summary>
  *	<title>This timer executes the following tasks every 250ms:</title>
  *	<item>Check payday</item>
- *	<item>Call OnPlayerZoneChange if the zone changed</item>
- *	<item>Update vehicle information in the top right corner</item>
+ *	<item>Call OnPlayerZoneChange if the zone has changed</item>
+ *	<item>Update vehicle information</item>
+ *	<item>Update vehicle information TextDraw in the bottom right corner</item>
  *	<item>Check speed cameras</item>
  *	<item>Update position in ShowPos TextDraw</item>
  * </summary>
  *
  * <remarks>
  *	Only really fast stuff should be called in this timer!
+ *	This means no file operations or database queries should be called directly (If required do a check whether the file operation or database query is really necessary).
+ *	See the speed camera check for such a check (Database query in this timer).
  * </remarks>
  */
 

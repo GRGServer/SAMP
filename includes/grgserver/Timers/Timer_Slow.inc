@@ -1,3 +1,11 @@
+/**
+ * <summary>
+ *	<title>This timer executes the following tasks every 5 seconds:</title>
+ *	<item>Trigger OnServerTimeChange if the hour or minute changes</item>
+ *	<item>Check for update notification file and notify players with the ServerAdmin permission</item>
+ * </summary>
+ */
+
 Timer:Slow()
 {
 	new hour;
