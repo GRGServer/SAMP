@@ -2480,4 +2480,24 @@
 		<en>You already have a driving license, so I will skip the common basics.</en>
 		<de>Du hast bereits einen Führerschein, daher werde ich die Gmeinsamkeiten überspringen.</de>
 	</string>
+	<string id="619">
+		<en>Show the number of connected players and NPCs</en>
+		<de>Zeige die Anzahl der verbundenen Spieler und NPCs</de>
+	</string>
+	<string id="620">
+		<en>There are currently %d players and %d NPCs online</en>
+		<de>Es sind zurzeit %d Spieler und %d NPCs online</de>
+	</string>
+	<string id="621">
+		<en>Logged in players: %d</en>
+		<de>Eingeloggte Spieler: %d</de>
+	</string>
+	<string id="622">
+		<en>Show current orders</en>
+		<de>Zeige aktuelle Bestellungen</de>
+	</string>
+	<string id="623">
+		<en>Kill yourself</en>
+		<de>Töte dich selbst</de>
+	</string>
 </languagestrings>

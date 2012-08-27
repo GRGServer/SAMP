@@ -1,6 +1,6 @@
 public OnPlayerRequestSpawn(playerid)
 {
-	if (PVar:playerid[REGISTER_SELECTSKIN])
+	if (PVar:playerid[REGISTER_SELECTSKIN])// Player comes from register skin selection -> Player is in register process
 	{
 		PVar:playerid[REGISTER_SELECTSKIN] = false;
 		MySQLQuery("INSERT INTO `users` (`username`, `password`, `gender`, `birthDate`, `location`, `health`) VALUES('%s', '%s', '%c', '%s', '%s', '100')", MySQLEscapeString(GetPlayerNameEx(playerid)), MD5(PVar:playerid[REGISTERPASSWORD]), PVar:playerid[GENDER], PVar:playerid[BIRTHDATE], MySQLEscapeString(PVar:playerid[REGISTERLOCATION]));
@@ -20,7 +20,10 @@ public OnPlayerRequestSpawn(playerid)
 				SendClientMessageEx(playerID, COLOR_JOINLEAVE, 7, playerid);
 			}
 		}
+		PVar:playerid[SPAWNAFTERTUTORIALSTART] = false;
 		PlayerPlaySound(playerid, 1063, 0.0, 0.0, 0.0);
+		TogglePlayerSpectating(playerid, true);
+		StartScreenFader(playerid, 0, 0, 0, 10, 0, FADE_TUTORIAL_START, 0);
 		SendClientMessageEx(playerid, COLOR_INFO, 139);
 	}
 	return true;

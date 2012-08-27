@@ -23,11 +23,14 @@ public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 				if (subID)
 				{
 					TogglePlayerControllable(playerID, true);
-					SetCameraBehindPlayer(playerID);
 				}
 				else
 				{
-					StartScreenFader(playerID, 100, 0, 0, -5, 0, FADE_DEATH, 1);
+					if (PVar:playerID[INTUTORIAL])
+					{
+						PVar:playerID[SPAWNAFTERTUTORIALSTART] = true;
+					}
+					TogglePlayerSpectating(playerID, false);// Triggers OnPlayerSpawn
 				}
 			}
 			case FADE_DRVSCHOOL_END1:
@@ -167,17 +170,6 @@ public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 				{
 					SetCameraBehindPlayer(playerID);
 					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_RESPAWN, 1);
-				}
-			}
-			case FADE_START_INPLANE1:
-			{
-				if (!subID)
-				{
-					TeleportToInterior(playerID, 138);
-					InterpolateCameraPos(playerID, 315.8, 825.206, 1981.83, 315.075, 1035.86, 1939.33, 5000, CAMERA_CUT);
-					InterpolateCameraLookAt(playerID, 313.852, 976.442, 1959.13, 316.852, 1082.44, 1925.13, 5000, CAMERA_CUT);
-					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_START_INPLANE1, 1);
-					SetTimerEx("Timer_ScreenFader", 5000, false, "dddddddd", playerID, 0, 0, 0, 5, 0, FADE_START_INPLANE2, 0);
 				}
 			}
 			case FADE_START_INPLANE2:
@@ -339,6 +331,11 @@ public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 					SetPlayerCameraLookAt(playerID, 1712.6682, 1619.2202, 10.1172);
 					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_TUTORIAL_S1_START, 1);
 				}
+			}
+			case FADE_TUTORIAL_START:
+			{
+				TogglePlayerSpectating(playerID, false);// Triggers OnPlayerSpawn
+				PVar:playerID[SPAWNAFTERTUTORIALSTART] = true;
 			}
 		}
 	}

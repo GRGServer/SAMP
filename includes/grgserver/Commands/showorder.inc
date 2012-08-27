@@ -1,4 +1,4 @@
-CMD:showorder(playerID, params[],)
+CMD:showorder(playerID, params[], 622)
 {
 	if (PVar:playerID[JOBID] == JOB_TRUCKER)
 	{

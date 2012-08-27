@@ -53,7 +53,7 @@ public OnPlayerEnterCheckpoint(playerid)
 		case CHECKPOINT_INPLANE_EXIT:
 		{
 			DisablePlayerCheckpoint(playerid);
-			StartScreenFader(playerid, 0, 0, 0, 2, 0, FADE_START_PLANEEXIT, 0);
+			StartScreenFader(playerid, 0, 0, 0, 5, 0, FADE_START_PLANEEXIT, 0);
 			TogglePlayerControllable(playerid, false);
 		}
 		case CHECKPOINT_NAVITARGET:

@@ -16,14 +16,14 @@
  * </returns>
  */
 
-PCMD:players[SERVERADMIN](playerID, params[], 476)
+PCMD:players[SERVERADMIN](playerID, params[], 619)
 {
 	new loggedIn;
 	LoggedInPlayers(currentPlayerID)
 	{
 		loggedIn++;
 	}
-	SendClientMessageEx(playerID, COLOR_INFO, 477, GetConnectedPlayers(true, false), GetConnectedPlayers(false, true));
-	SendClientMessageEx(playerID, COLOR_INFO, 478, loggedIn);
+	SendClientMessageEx(playerID, COLOR_INFO, 620, GetConnectedPlayers(true, false), GetConnectedPlayers(false, true));
+	SendClientMessageEx(playerID, COLOR_INFO, 621, loggedIn);
 	return COMMAND_OK;
 }

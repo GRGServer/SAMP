@@ -321,7 +321,6 @@
 #include <grgserver\Commands\controlnpc.inc>
 #include <grgserver\Commands\coordtp.inc>
 #include <grgserver\Commands\cuff.inc>
-#include <grgserver\Commands\drivingcam.inc>
 #include <grgserver\Commands\editobject.inc>
 #include <grgserver\Commands\engine.inc>
 #include <grgserver\Commands\exit.inc>
@@ -339,9 +338,10 @@
 #include <grgserver\Commands\jetpack.inc>
 #include <grgserver\Commands\kick.inc>
 #include <grgserver\Commands\kill.inc>
+#include <grgserver\Commands\killme.inc>
 #include <grgserver\Commands\language.inc>
 #include <grgserver\Commands\lights.inc>
-#include <grgserver\Commands\linie.inc>
+#include <grgserver\Commands\line.inc>
 #include <grgserver\Commands\maptp.inc>
 #include <grgserver\Commands\markobject.inc>
 #include <grgserver\Commands\markobjects.inc>
@@ -401,7 +401,6 @@
 #include <grgserver\Commands\stats.inc>
 #include <grgserver\Commands\stoprec.inc>
 #include <grgserver\Commands\teleport.inc>
-#include <grgserver\Commands\teststart.inc>
 #include <grgserver\Commands\toggleclock.inc>
 #include <grgserver\Commands\tow.inc>
 #include <grgserver\Commands\vlock.inc>
