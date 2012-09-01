@@ -17,51 +17,59 @@ DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 		{
 			return false;
 		}
-		MySQLQuery("SELECT * FROM `vehicles` WHERE `id` = '%d'", VehicleProperty:vehicleID[SAVEID]);
+		MySQLQuery("SELECT `id` FROM `vehicles` WHERE `id` = '%d'", VehicleProperty:vehicleID[SAVEID]);
 		mysql_store_result();
-		new Float:price = floatstr(GetMySQLField("price"));
-		new sellerUserID = strval(GetMySQLField("ownerSellerId"));
+		new isSavedVehicle = mysql_num_rows();
 		mysql_free_result();
-		if (price <= PVar:playerID[BANKMONEY])
+		new Float:bankMoney = GetBankMoney(playerID);
+		if (VehicleProperty:vehicleID[PRICE] <= bankMoney)
 		{
-			GivePlayerMoneyEx(playerID, MONEY_BANK, -price);
-			if (sellerUserID)
+			GivePlayerMoneyEx(playerID, MONEY_BANK, -VehicleProperty:vehicleID[PRICE]);
+			if (VehicleProperty:vehicleID[SELLERUSERID])
 			{
-				new sellerID = GetPlayerByUserID(sellerUserID);
+				new sellerID = GetPlayerByUserID(VehicleProperty:vehicleID[SELLERUSERID]);
 				if (sellerID == INVALID_PLAYER_ID)
 				{
-					MySQLQuery("UPDATE `users` SET `bankMoney` = `bankMoney` + '%f' WHERE `id` = '%d'", price, sellerUserID);
+					MySQLQuery("SELECT `bankAccountId` FROM `users` WHERE `id` = '%d'", VehicleProperty:vehicleID[SELLERUSERID]);
+					mysql_store_result();
+					new bankAccountID = strval(GetMySQLField("bankAccountId"));
+					mysql_free_result();
+					if (bankAccountID)
+					{
+						MySQLQuery("UPDATE `bankaccounts` SET `money` = `money` + '%f' WHERE `id` = '%d'", VehicleProperty:vehicleID[PRICE], bankAccountID);
+					}
 				}
 				else
 				{
-					GivePlayerMoneyEx(sellerID, MONEY_BANK, price);
+					GivePlayerMoneyEx(sellerID, MONEY_BANK, VehicleProperty:vehicleID[PRICE]);
 					SendClientMessageEx(sellerID, COLOR_INFO, 494, playerID);
 				}
 			}
-			MySQLQuery("UPDATE `vehicles` SET `ownerUserId` = '%d', `ownerSellerId` = '0' WHERE `id` = '%d'", PVar:playerID[USERID], VehicleProperty:vehicleID[SAVEID]);
-			VehicleProperty:vehicleID[ALLOWDESTROY] = true;
-			VehicleProperty:vehicleID[ALLOWPOSSAVE] = true;
-			if (VehicleProperty:vehicleID[COLOR1] == -1)
+			if (!isSavedVehicle)
 			{
-				VehicleProperty:vehicleID[COLOR1] = VehicleProperty:vehicleID[CURRENTCOLOR1];
+				MySQLQuery("INSERT INTO `vehicles` (`id`, `numberplate`) VALUES('%d', '%s')", VehicleProperty:vehicleID[SAVEID], CreateUniqueNumberplateText());
 			}
-			if (VehicleProperty:vehicleID[COLOR2] == -1)
-			{
-				VehicleProperty:vehicleID[COLOR2] = VehicleProperty:vehicleID[CURRENTCOLOR2];
-			}
+			VehicleProperty:vehicleID[OWNERUSERID] = PVar:playerID[USERID];
+			VehicleProperty:vehicleID[SELLERUSERID] = 0;
+			VehicleProperty:vehicleID[COLOR1] = VehicleProperty:vehicleID[CURRENTCOLOR1];
+			VehicleProperty:vehicleID[COLOR2] = VehicleProperty:vehicleID[CURRENTCOLOR2];
 			SendClientMessageEx(playerID, COLOR_INFO, 493);
-			if (!PVar:playerID[VEHICLEBOUGHT])
+			MySQLQuery("SELECT `vehicleBought` FROM `users` WHERE `id` = '%d'", PVar:playerID[USERID]);
+			mysql_store_result();
+			new vehicleBought = strval(GetMySQLField("vehicleBought"));
+			mysql_free_result();
+			if (!vehicleBought)
 			{
 				for (new stringID = 523; stringID <= 529; stringID++)
 				{
 					SendClientMessageEx(playerID, COLOR_INFO, stringID);
 				}
-				PVar:playerID[VEHICLEBOUGHT] = true;
+				MySQLQuery("UPDATE `users` SET `vehicleBought` = '1' WHERE `id` = '%d'", PVar:playerID[USERID]);
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 27, price, PVar:playerID[BANKMONEY]);
+			SendClientMessageEx(playerID, COLOR_ERROR, 27, VehicleProperty:vehicleID[PRICE], bankMoney);
 		}
 	}
 	return true;

@@ -47,6 +47,7 @@ If OpenConsole()
 			WriteStringN(mainInclude, "")
 			AddDir("Structures")
 			AddIncludeGroup("Global variables")
+			AddInclude("arrays.inc")
 			AddInclude("globals.inc")
 			WriteStringN(mainInclude, "")
 			AddDir("Functions")
@@ -66,16 +67,16 @@ If OpenConsole()
 		PrintN("The includes path '" +grgIncludesPath$ + "' does not exist!")
 	EndIf
 EndIf
-; IDE Options = PureBasic 4.60 (Windows - x86)
+; IDE Options = PureBasic 4.61 (Windows - x86)
 ; ExecutableFormat = Console
-; CursorPosition = 45
+; CursorPosition = 49
 ; FirstLine = 18
 ; Folding = -
 ; EnableXP
 ; UseIcon = Includes Updater.ico
 ; Executable = Includes Updater.exe
-; EnableCompileCount = 13
-; EnableBuildCount = 13
+; EnableCompileCount = 14
+; EnableBuildCount = 14
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0

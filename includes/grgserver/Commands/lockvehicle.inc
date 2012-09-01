@@ -1,4 +1,4 @@
-CMD:vlock(playerID, params[], 483)
+CMD:lockvehicle(playerID, params[], 483)
 {
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (!vehicleID)
@@ -16,11 +16,7 @@ CMD:vlock(playerID, params[], 483)
 	}
 	if (VehicleProperty:vehicleID[SAVEID])
 	{
-		MySQLQuery("SELECT `ownerUserId` FROM `vehicles` WHERE `id` = '%d'", VehicleProperty:vehicleID[SAVEID]);
-		mysql_store_result();
-		new ownerUserID = strval(GetMySQLField("ownerUserId"));
-		mysql_free_result();
-		if (ownerUserID != PVar:playerID[USERID])
+		if (VehicleProperty:vehicleID[OWNERUSERID] != PVar:playerID[USERID])
 		{
 			SendClientMessageEx(playerID, COLOR_ERROR, 487);
 			return COMMAND_ERROR;

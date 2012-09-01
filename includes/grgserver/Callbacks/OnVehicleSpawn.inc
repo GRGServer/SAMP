@@ -1,6 +1,6 @@
 public OnVehicleSpawn(vehicleid)
 {
-	if (VehicleProperty:vehicleid[ALLOWDESTROY])
+	if (!VehicleProperty:vehicleid[SAVEID])
 	{
 		RemoveVehicleLightObjects(vehicleid);
 		DestroyVehicle(vehicleid);

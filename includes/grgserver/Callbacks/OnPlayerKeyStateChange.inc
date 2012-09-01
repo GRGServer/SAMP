@@ -9,19 +9,15 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		new vehicleID = GetPlayerVehicleID(playerid);
 		if (vehicleID)
 		{
-			new id = VehicleProperty:vehicleID[RADIOSTATION];
-			if (id <= 1)
+			if (VehicleProperty:vehicleID[RADIOSTATIONID] <= 1)
 			{
-				MySQLQuery("SELECT COUNT(*) AS `count` FROM `radiostations`");
-				mysql_store_result();
-				id = strval(GetMySQLField("count"));
-				mysql_free_result();
+				VehicleProperty:vehicleID[RADIOSTATIONID] = sizeof(radioStations) - 1;
 			}
 			else
 			{
-				id--;
+				VehicleProperty:vehicleID[RADIOSTATIONID]--;
 			}
-			PlayRadioStation(playerid, id);
+			PlayRadioStation(playerid, VehicleProperty:vehicleID[RADIOSTATIONID]);
 			return true;
 		}
 	}
@@ -30,20 +26,15 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		new vehicleID = GetPlayerVehicleID(playerid);
 		if (vehicleID)
 		{
-			MySQLQuery("SELECT COUNT(*) AS `count` FROM `radiostations`");
-			mysql_store_result();
-			new count = strval(GetMySQLField("count"));
-			mysql_free_result();
-			new id = VehicleProperty:vehicleID[RADIOSTATION];
-			if (id >= count)
+			if (VehicleProperty:vehicleID[RADIOSTATIONID] >= sizeof(radioStations) - 1)
 			{
-				id = 1;
+				VehicleProperty:vehicleID[RADIOSTATIONID] = 1;
 			}
 			else
 			{
-				id++;
+				VehicleProperty:vehicleID[RADIOSTATIONID]++;
 			}
-			PlayRadioStation(playerid, id);
+			PlayRadioStation(playerid, VehicleProperty:vehicleID[RADIOSTATIONID]);
 			return true;
 		}
 	}

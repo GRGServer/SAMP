@@ -22,8 +22,8 @@ DialogResponse:Bank_DepositMoney(playerID, response, listItem, inputText[])
 			}
 			else
 			{
-				SetPlayerMoney(playerID, MONEY_BANK, floatadd(PVar:playerID[BANKMONEY], money));
-				SetPlayerMoney(playerID, MONEY_CASH, floatsub(PVar:playerID[MONEY], money));
+				SetPlayerMoney(playerID, MONEY_BANK, money, true);
+				SetPlayerMoney(playerID, MONEY_CASH, -money, true);
 				SendClientMessageEx(playerID, COLOR_INFO, 21, money);
 				ShowDialog:Bank_HasAccount(playerID);
 			}

@@ -11,7 +11,8 @@ DialogResponse:BuyHouse(playerID, response, listItem, inputText[])
 	{
 		new buildingID = PVar:playerID[DIALOGPROPERTYID];
 		new Float:price = floatstr(GetMySQLValue("properties", "price", "id", val2str(buildingID)));
-		if (price <= PVar:playerID[BANKMONEY])
+		new Float:bankMoney = GetBankMoney(playerID);
+		if (price <= bankMoney)
 		{
 			TogglePlayerControllable(playerID, false);
 			PlayAudio(playerID, "mission_complete2.ogg");
@@ -22,13 +23,13 @@ DialogResponse:BuyHouse(playerID, response, listItem, inputText[])
 			mysql_free_result();
 			GameTextForPlayer(playerID, LanguageString(playerID, 28), 8000, 1);
 			MySQLQuery("UPDATE `properties` SET `ownerUserId` = '%d' WHERE `id` = '%d'", PVar:playerID[USERID], buildingID);
-			GivePlayerMoneyEx(playerID, MONEY_BANK, -price);
+			SetPlayerMoney(playerID, MONEY_BANK, -price, true);
 			ReloadPickup(strval(GetMySQLValue("properties", "pickupId", "id", val2str(buildingID))));
 			SetTimerEx("Timer_ScreenFader", 8000, false, "ddddddd", playerID, 0, 0, 0, 5, 0, FADE_PROPERTYBOUGHT, 0);
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 29, price, PVar:playerID[BANKMONEY]);
+			SendClientMessageEx(playerID, COLOR_ERROR, 29, price, bankMoney);
 		}
 	}
 }

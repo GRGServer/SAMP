@@ -4,7 +4,6 @@ new clientMessageString[256];
 new distanceCalcArray[MAX_DISTANCECALCELEMENTS][enum_distanceCalc];
 new languageStrings[LANGUAGE_MAXSTRINGS][enum_languageString];
 new maxPlayers;
-new musicSoundIDs[] = {1062, 1068, 1076, 1097, 1183, 1185, 1187};
 new naviTargets[MAX_PLAYERS][MAX_NAVITARGETS][enum_naviTarget];
 new oldHour = -1;
 new oldMinute = -1;

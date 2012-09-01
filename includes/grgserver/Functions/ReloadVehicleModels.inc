@@ -6,13 +6,14 @@ ReloadVehicleModels(playerID = INVALID_PLAYER_ID)
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new index = strval(GetMySQLField("id")) - 400;
-		if (index >= 0 && index <= sizeof(vehicleModels))
+		new modelIndex = strval(GetMySQLField("id")) - 400;
+		if (modelIndex >= 0 && modelIndex < sizeof(vehicleModels))
 		{
-			vehicleModels[index][VEHICLEMODEL_FUELUSAGE] = floatstr(GetMySQLField("fuelUsage"));
-			vehicleModels[index][VEHICLEMODEL_MAXFUEL] = floatstr(GetMySQLField("maxFuel"));
-			format(vehicleModels[index][VEHICLEMODEL_NAME], STRINGLENGTH_VEHICLENAME, GetMySQLField("name"));
-			format(vehicleModels[index][VEHICLEMODEL_TYPE], STRINGLENGTH_VEHICLETYPE, GetMySQLField("type"));
+			vehicleModels[modelIndex][VEHICLEMODEL_FUELUSAGE] = floatstr(GetMySQLField("fuelUsage"));
+			vehicleModels[modelIndex][VEHICLEMODEL_MAXFUEL] = floatstr(GetMySQLField("maxFuel"));
+			format(vehicleModels[modelIndex][VEHICLEMODEL_NAME], STRINGLENGTH_VEHICLENAME, GetMySQLField("name"));
+			vehicleModels[modelIndex][VEHICLEMODEL_TAX] = floatstr(GetMySQLField("tax"));
+			format(vehicleModels[modelIndex][VEHICLEMODEL_TYPE], STRINGLENGTH_VEHICLETYPE, GetMySQLField("type"));
 			count++;
 		}
 		else

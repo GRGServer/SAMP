@@ -1,6 +1,6 @@
 /**
  * <summary>
- *	Destroyes all vehicles, creates the vehicles saved in the database, adds vehicle components and puts the NPCs in the vehicles if the ID of the vehicle is linked to a NPC.
+ *	Create a new vehicle at the specified position and with the specified properties.
  * </summary>
  *
  * <param name="modelID">
@@ -31,10 +31,6 @@
  *	The secondary color ID.
  * </param>
  *
- * <param name="respawnDelay">
- *	The delay in seconds until the vehicle gets respawned if there is no driver.
- * </param>
- *
  * <param name="isStatic">
  *	<item name="true">Use AddStaticVehicleEx for creating the vehicle (Only possible in OnGameModeInit and OnFilterScriptInit)</item>
  *	<item name="false">Use CreateVehicle for creating the vehicle (Can not spawn some trains)</item>
@@ -45,7 +41,7 @@
  * </remarks>
  */
 
-CreateVehicleEx(modelID, Float:posX, Float:posY, Float:posZ, Float:angle, color1, color2, respawnDelay, isStatic)
+CreateVehicleEx(modelID, Float:posX, Float:posY, Float:posZ, Float:angle, color1, color2, isStatic)
 {
 	if (modelID >= 400 && modelID <= 611)
 	{
@@ -58,7 +54,7 @@ CreateVehicleEx(modelID, Float:posX, Float:posY, Float:posZ, Float:angle, color1
 		}
 		if (isStatic)
 		{
-			vehicleID = AddStaticVehicleEx(modelID, posX, posY, posZ, angle, newColor1, newColor2, respawnDelay);
+			vehicleID = AddStaticVehicle(modelID, posX, posY, posZ, angle, newColor1, newColor2);
 		}
 		else
 		{
@@ -66,7 +62,7 @@ CreateVehicleEx(modelID, Float:posX, Float:posY, Float:posZ, Float:angle, color1
 			{
 				return 0;
 			}
-			vehicleID = CreateVehicle(modelID, posX, posY, posZ, angle, newColor1, newColor2, respawnDelay);
+			vehicleID = CreateVehicle(modelID, posX, posY, posZ, angle, newColor1, newColor2, -1);
 		}
 		if (!vehicleID)
 		{
@@ -77,7 +73,6 @@ CreateVehicleEx(modelID, Float:posX, Float:posY, Float:posZ, Float:angle, color1
 		{
 			vehicles[vehicleID][enum_vehicle:vehiclePropertyID] = 0;
 		}
-		VehicleProperty:vehicleID[ALLOWDESTROY] = true;
 		VehicleProperty:vehicleID[COLOR1] = color1;
 		VehicleProperty:vehicleID[COLOR2] = color2;
 		VehicleProperty:vehicleID[CURRENTCOLOR1] = newColor1;

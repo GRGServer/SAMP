@@ -3,15 +3,15 @@ CMD:radio(playerID, params[], 115)
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (vehicleID)
 	{
-		if (VehicleProperty:vehicleID[RADIOSTATION])
+		if (VehicleProperty:vehicleID[RADIOSTATIONID])
 		{
 			StopAudioStreamForPlayer(playerID);
-			VehicleProperty:vehicleID[RADIOSTATION] = 0;
+			VehicleProperty:vehicleID[RADIOSTATIONID] = 0;
 		}
 		else
 		{
-			VehicleProperty:vehicleID[RADIOSTATION] = 1;
-			PlayRadioStation(playerID, VehicleProperty:vehicleID[RADIOSTATION]);
+			VehicleProperty:vehicleID[RADIOSTATIONID] = 1;
+			PlayRadioStation(playerID, VehicleProperty:vehicleID[RADIOSTATIONID]);
 		}
 		return COMMAND_OK;
 	}

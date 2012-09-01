@@ -8,16 +8,27 @@ DialogResponse:SellVehicle(playerID, response, listItem, inputText[])
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (!response)
 	{
-		return false;
+		return true;
+	}
+	if (!vehicleID)
+	{
+		SendClientMessageEx(playerID, COLOR_ERROR, 146);
+	}
+	if (VehicleProperty:vehicleID[OWNERUSERID] != PVar:playerID[USERID])
+	{
+		SendClientMessageEx(playerID, COLOR_ERROR, 487);
+		return true;
 	}
 	new Float:price = floatstr(inputText);
 	if (price <= 0)
 	{
 		SendClientMessageEx(playerID, COLOR_ERROR, 490);
-		return false;
+		return true;
 	}
+	VehicleProperty:vehicleID[OWNERUSERID] = 0;
+	VehicleProperty:vehicleID[PRICE] = price;
+	VehicleProperty:vehicleID[SELLERUSERID] = PVar:playerID[USERID];
 	SendClientMessageEx(playerID, COLOR_INFO, 491, inputText);
-	MySQLQuery("UPDATE `vehicles` SET `price` = '%f', `ownerUserId` = '0', `ownerSellerId` = '%d' WHERE `id` = '%d'", price, PVar:playerID[USERID], VehicleProperty:vehicleID[SAVEID]);
 	RemovePlayerFromVehicle(playerID);
 	return true;
 }

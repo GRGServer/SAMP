@@ -1,0 +1,8 @@
+enum enum_stdObj
+{
+	STDOBJ_MODELID,
+	Float:STDOBJ_POSX,
+	Float:STDOBJ_POSY,
+	Float:STDOBJ_POSZ,
+	Float:STDOBJ_RADIUS
+}

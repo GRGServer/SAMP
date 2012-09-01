@@ -16,17 +16,13 @@ DialogResponse:Bank_HasAccount(playerID, response, listItem, inputText[])
 		{
 			case 0:// Bank balance
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, 23, PVar:playerID[BANKMONEY]);
+				SendClientMessageEx(playerID, COLOR_INFO, 23, GetBankMoney(playerID));
 				ShowDialog:Bank_HasAccount(playerID);
 			}
 			case 1:// Withdraw money
 			{
 				ShowDialog:Bank_PINWRITE(playerID);
-				new BANK_PIN;
-				if(BANK_PIN == PVar:playerID[BANKPIN])
-				{
-					ShowDialog:Bank_WithdrawMoney(playerID);
-				}
+				ShowDialog:Bank_WithdrawMoney(playerID);
 			}
 			case 2:// Deposit money
 			{
@@ -35,18 +31,14 @@ DialogResponse:Bank_HasAccount(playerID, response, listItem, inputText[])
 			case 3:// Cancel account
 			{
 				ShowDialog:Bank_PINWRITE(playerID);
-				new BANK_PIN;
-				if(BANK_PIN == PVar:playerID[BANKPIN])
+				if (GetBankMoney(playerID) > 0)
 				{
-					if (PVar:playerID[BANKMONEY] > 0)
-					{
-						SendClientMessageEx(playerID, COLOR_ERROR, 215);
-						ShowDialog:Bank_HasAccount(playerID);
-					}
-					else
-					{
-						ShowDialog:Bank_CancelAccount(playerID);
-					}
+					SendClientMessageEx(playerID, COLOR_ERROR, 215);
+					ShowDialog:Bank_HasAccount(playerID);
+				}
+				else
+				{
+					ShowDialog:Bank_CancelAccount(playerID);
 				}
 			}
 		}

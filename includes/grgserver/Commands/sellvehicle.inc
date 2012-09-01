@@ -1,11 +1,11 @@
-CMD:sellveh(playerID, params[], 488)
+CMD:sellvehicle(playerID, params[], 488)
 {
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (!vehicleID)
 	{
 		return COMMAND_NOT_IN_VEHICLE;
 	}
-	if (!CheckVehiclePermission(playerID, vehicleID))
+	if (!CheckVehiclePermission(playerID, vehicleID, false))
 	{
 		SendClientMessageEx(playerID, COLOR_ERROR, 487);
 		return COMMAND_ERROR;

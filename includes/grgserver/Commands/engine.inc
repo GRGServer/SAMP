@@ -30,7 +30,7 @@ CMD:engine(playerID, params[], 111)
 		return COMMAND_ERROR;
 	}
 	new vehicleID = GetPlayerVehicleID(playerID);
-	if (!CheckVehiclePermission(playerID, vehicleID))
+	if (VehicleProperty:vehicleID[ALLOWDRIVEPLAYERID] != playerID && !CheckVehiclePermission(playerID, vehicleID, true))
 	{
 		return COMMAND_OK;
 	}
@@ -45,9 +45,9 @@ CMD:engine(playerID, params[], 111)
 	if (health >= floatmul(VEHICLE_MINHEALTH, 10))
 	{
 		SetVehicleEngineState(vehicleID, true);
-		if (VehicleProperty:vehicleID[RADIOSTATION])
+		if (VehicleProperty:vehicleID[RADIOSTATIONID])
 		{
-			PlayRadioStation(playerID, VehicleProperty:vehicleID[RADIOSTATION]);
+			PlayRadioStation(playerID, VehicleProperty:vehicleID[RADIOSTATIONID]);
 		}
 		SendClientMessageEx(playerID, COLOR_INFO, 54);
 		return COMMAND_OK;

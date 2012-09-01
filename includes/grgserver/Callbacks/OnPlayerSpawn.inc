@@ -31,8 +31,6 @@ public OnPlayerSpawn(playerid)
 		if (vehicleID)
 		{
 			PVar:playerid[NPC_RECORDINGTYPE] = PLAYER_RECORDING_TYPE_DRIVER;
-			VehicleProperty:vehicleID[ALLOWDESTROY] = false;
-			VehicleProperty:vehicleID[ALLOWPOSSAVE] = false;
 			PutPlayerInVehicle(playerid, vehicleID, 0);
 			SetVehicleEngineState(vehicleID, true);
 		}

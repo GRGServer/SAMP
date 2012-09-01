@@ -39,7 +39,7 @@ Timer:RefuelVehicle(playerID, Float:totalAmount)
 						amount = 1.0;
 					}
 					VehicleProperty:vehicleID[CURRENTFUEL] = floatadd(VehicleProperty:vehicleID[CURRENTFUEL], amount);
-					GivePlayerMoneyEx(playerID, MONEY_CASH, -floatmul(PVar:playerID[CURRENTGASPRICE], amount));
+					GivePlayerMoneyEx(playerID, MONEY_CASH, -floatmul(PVar:playerID[CURRENTGASPRICE], amount));// TODO: Do not get money at this point, instead use real life stuff (Pay after refuelling)
 					SetTimerEx("Timer_RefuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, floatsub(totalAmount, amount));
 					return true;
 				}

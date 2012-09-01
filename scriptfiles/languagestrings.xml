@@ -521,8 +521,8 @@
 		<de>Committet von: %s</de>
 	</string>
 	<string id="129">
-		<en>This vehicle can only be used by the group '%s'!</en>
-		<de>Dieses Fahrzeug kann nur von der Gruppe '%s' verwendet werden!</de>
+		<en>You have not the permission to use this vehicle!</en>
+		<de>Du hast nicht das Recht dieses Fahrzeug zu verwenden!</de>
 	</string>
 	<string id="130">
 		<en>This vehicle is already owned by another player!</en>
@@ -602,7 +602,7 @@
 	</string>
 	<string id="149">
 		<en>List available RCON commands</en>
-		<de>Verfügbare RCOn Befehle auflisten</de>
+		<de>Verfügbare RCON Befehle auflisten</de>
 	</string>
 	<string id="150">
 		<en>Reconnect all NPCs</en>
@@ -2499,5 +2499,9 @@
 	<string id="623">
 		<en>Kill yourself</en>
 		<de>Töte dich selbst</de>
+	</string>
+	<string id="625">
+		<en>See /payday for more details</en>
+		<de>Siehe /payday für mehr Details</de>
 	</string>
 </languagestrings>

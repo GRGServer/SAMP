@@ -1,18 +1,16 @@
-PlayRadioStation(playerID, id)
+PlayRadioStation(playerID, radioStationID)
 {
-	if (id)
+	if (radioStationID > 0 && radioStationID < sizeof(radioStations))
 	{
-		PlayAudioStreamForPlayer(playerID, GetMySQLValue("radiostations", "url", "id", val2str(id)));
 		new vehicleID = GetPlayerVehicleID(playerID);
-		VehicleProperty:vehicleID[RADIOSTATION] = id;
-		if (VehicleProperty:vehicleID[SAVEID])
+		if (vehicleID)
 		{
-			MySQLQuery("UPDATE `vehicles` SET `lastRadioStation` = '%d' WHERE `id` = '%d'", id, VehicleProperty:vehicleID[SAVEID]);
+			PlayAudioStreamForPlayer(playerID, radioStations[radioStationID][RADIOSTATION_URL]);
+			PlayerTextDrawSetString(playerID, PTextDraw:playerID[RADIOSTATION], radioStations[radioStationID][RADIOSTATION_NAME]);
+			PlayerTextDrawShow(playerID, PTextDraw:playerID[RADIOSTATION]);
+			KillTimer(PVar:playerID[RADIODISPLAYTIMER]);
+			PVar:playerID[RADIODISPLAYTIMER] = SetTimerEx("Timer_HideRadioDisplay", TIMER_HIDERADIODISPLAY, false, "d", playerID);
 		}
-		PlayerTextDrawSetString(playerID, PTextDraw:playerID[RADIOSTATION], GetMySQLValue("radiostations", "name", "id", val2str(id)));
-		PlayerTextDrawShow(playerID, PTextDraw:playerID[RADIOSTATION]);
-		KillTimer(PVar:playerID[RADIODISPLAYTIMER]);
-		PVar:playerID[RADIODISPLAYTIMER] = SetTimerEx("Timer_HideRadioDisplay", TIMER_HIDERADIODISPLAY, false, "i", playerID);
 	}
 	else
 	{

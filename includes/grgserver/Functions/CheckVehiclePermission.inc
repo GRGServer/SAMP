@@ -11,6 +11,11 @@
  *	The ID of the vehicle.
  * </param>
  *
+ * <param name="showBuyDialog">
+ *	<item name="true">Show the buy dialog if the player has not bought the vehicle yet and can buy it</item>
+ *	<item name="false">Do not show the buy dialog</item>
+ * </param>
+ *
  * <returns>
  *	<item name="true">The player has the permission to use the vehicle</item>
  *	<item name="false">The player has not the permission to use the vehicle</item>
@@ -25,29 +30,19 @@
  * </remarks>
  */
 
-CheckVehiclePermission(playerID, vehicleID)
+CheckVehiclePermission(playerID, vehicleID, showBuyDialog)
 {
 	if (!VehicleProperty:vehicleID[SAVEID])
 	{
-		if (!permissions[playerID][PERMISSION_MAPPER])
+		if (permissions[playerID][PERMISSION_MAPPER])
+		{
+			return true;
+		}
+		else
 		{
 			SendClientMessageEx(playerID, COLOR_ERROR, 129, GetPermissionName(PERMISSION_MAPPER));
 			return false;
 		}
-		else
-		{
-			return true;
-		}
-	}
-	MySQLQuery("SELECT * FROM `vehicles` WHERE `id` = '%d'", VehicleProperty:vehicleID[SAVEID]);
-	mysql_store_result();
-	new ownerUserID = strval(GetMySQLField("ownerUserId"));
-	new allowDriveUserID = strval(GetMySQLField("allowDriveUserId"));
-	new Float:price = floatstr(GetMySQLField("price"));
-	mysql_free_result();
-	if (PVar:playerID[USERID] == allowDriveUserID)
-	{
-		return true;
 	}
 	if (VehicleProperty:vehicleID[JOBID])
 	{
@@ -61,14 +56,9 @@ CheckVehiclePermission(playerID, vehicleID)
 			return false;
 		}
 	}
-	if (!ownerUserID && price)
+	if (VehicleProperty:vehicleID[OWNERUSERID])
 	{
-		ShowDialog:BuyVehicle(playerID, price);
-		return false;
-	}
-	if (ownerUserID)
-	{
-		if (ownerUserID == PVar:playerID[USERID])
+		if (VehicleProperty:vehicleID[OWNERUSERID] == PVar:playerID[USERID])
 		{
 			return true;
 		}
@@ -78,10 +68,18 @@ CheckVehiclePermission(playerID, vehicleID)
 			return false;
 		}
 	}
-	if (!price && !permissions[playerID][PERMISSION_MAPPER])
+	if (VehicleProperty:vehicleID[PRICE])
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 129, GetPermissionName(PERMISSION_MAPPER));
+		if (showBuyDialog)
+		{
+			ShowDialog:BuyVehicle(playerID, VehicleProperty:vehicleID[PRICE]);
+		}
 		return false;
 	}
-	return true;
+	if (permissions[playerID][PERMISSION_MAPPER])
+	{
+		return true;
+	}
+	SendClientMessageEx(playerID, COLOR_ERROR, 129, GetPermissionName(PERMISSION_MAPPER));
+	return false;
 }

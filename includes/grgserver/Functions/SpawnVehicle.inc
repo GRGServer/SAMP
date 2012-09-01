@@ -30,7 +30,7 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 	new Float:angle;
 	GetPlayerPos(playerID, posX, posY, posZ);
 	GetPlayerFacingAngle(playerID, angle);
-	new vehicleID = CreateVehicleEx(modelID, posX, posY, posZ, angle, color1, color2, -1, false);
+	new vehicleID = CreateVehicleEx(modelID, posX, posY, posZ, angle, color1, color2, false);
 	if (!vehicleID)
 	{
 		if (showMessage)

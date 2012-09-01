@@ -18,6 +18,44 @@
 
 Timer:Fast()
 {
+	Count1(vehicleID, MAX_VEHICLES)
+	{
+		new modelID = GetVehicleModel(vehicleID);
+		if (modelID >= 400 && modelID <= 611)
+		{
+			new Float:velocityX;
+			new Float:velocityY;
+			new Float:velocityZ;
+			new Float:health;
+			GetVehicleVelocity(vehicleID, velocityX, velocityY, velocityZ);
+			GetVehicleHealth(vehicleID, health);
+			VehicleProperty:vehicleID[SPEED] = floatround(floatsqroot(floatpower(velocityX, 2) + floatpower(velocityY, 2) + floatpower(velocityZ, 2)) * 100 * 1.61);
+			new Float:distance = floatdiv(VehicleProperty:vehicleID[SPEED], floatdiv(1000 * 60 * 60, TIMER_FAST));
+			VehicleProperty:vehicleID[MILEAGE] = floatadd(VehicleProperty:vehicleID[MILEAGE], distance);
+			if (GetVehicleEngineState(vehicleID))
+			{
+				if (VehicleProperty:vehicleID[CURRENTFUEL] <= 0)
+				{
+					VehicleProperty:vehicleID[CURRENTFUEL] = 0;
+					SetVehicleEngineState(vehicleID, false);
+				}
+				else
+				{
+					new Float:fuelUsage = distance * floatdiv(vehicleModels[modelID - 400][VEHICLEMODEL_FUELUSAGE], 100);
+					if (!VehicleProperty:vehicleID[SPEED])
+					{
+						fuelUsage = 0.0001;// Fuel usage while engine is idle (Speed is 0 but engine is turned on)
+					}
+					VehicleProperty:vehicleID[CURRENTFUEL] = floatsub(VehicleProperty:vehicleID[CURRENTFUEL], fuelUsage);
+				}
+				if (floatdiv(health, 10) <= VEHICLE_MINHEALTH)
+				{
+					SetVehicleHealth(vehicleID, float(VEHICLE_MINHEALTH * 10));
+					SetVehicleEngineState(vehicleID, false);
+				}
+			}
+		}
+	}
 	Count(playerID, maxPlayers)
 	{
 		new inVehicle;
@@ -42,37 +80,24 @@ Timer:Fast()
 			new modelID = GetVehicleModel(vehicleID);
 			if (modelID >= 400 && modelID <= 611)
 			{
-				new Float:velocityX;
-				new Float:velocityY;
-				new Float:velocityZ;
 				new Float:health;
 				new healthColor;
 				new fuelColor;
-				GetVehicleVelocity(vehicleID, velocityX, velocityY, velocityZ);
 				GetVehicleHealth(vehicleID, health);
 				new seatID = GetPlayerVehicleSeat(playerID);
-				new speed = floatround(floatsqroot(floatpower(velocityX, 2) + floatpower(velocityY, 2) + floatpower(velocityZ, 2)) * 100 * 1.61);
-				new Float:distance = floatdiv(speed, floatdiv(1000 * 60 * 60, TIMER_FAST));
+				new Float:distance = floatdiv(VehicleProperty:vehicleID[SPEED], floatdiv(1000 * 60 * 60, TIMER_FAST));
 				if (!seatID)
 				{
 					VehicleProperty:vehicleID[MILEAGE] = floatadd(VehicleProperty:vehicleID[MILEAGE], distance);
 				}
 				new Float:healthPercentage = floatdiv(health, 10);
-				if (health < 1000 && seatID == 0 && IsPlayerNPC(playerID))
+				if (health < 1000 && !seatID && IsPlayerNPC(playerID))
 				{
 					SetVehicleHealth(vehicleID, 1000);
 				}
-				if (!seatID)
+				if (!seatID && VehicleProperty:vehicleID[CURRENTFUEL] <= 0)
 				{
-					if (VehicleProperty:vehicleID[CURRENTFUEL] <= 0)
-					{
-						SetVehicleEngineState(vehicleID, false);
-						GameTextForPlayer(playerID, LanguageString(playerID, 159), 3000, 5);
-					}
-					else
-					{
-						VehicleProperty:vehicleID[CURRENTFUEL] = floatsub(VehicleProperty:vehicleID[CURRENTFUEL], distance * floatdiv(vehicleModels[modelID - 400][VEHICLEMODEL_FUELUSAGE], 100));
-					}
+					GameTextForPlayer(playerID, LanguageString(playerID, 159), 3000, 5);
 				}
 				new Float:fuelPercentage = floatmul(floatdiv(VehicleProperty:vehicleID[CURRENTFUEL], vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]), 100);
 				if (healthPercentage > 65)
@@ -92,8 +117,6 @@ Timer:Fast()
 				}
 				if (!seatID && healthPercentage <= VEHICLE_MINHEALTH && GetVehicleEngineState(vehicleID))
 				{
-					SetVehicleHealth(vehicleID, float(VEHICLE_MINHEALTH * 10));
-					SetVehicleEngineState(vehicleID, false);
 					GameTextForPlayer(playerID, LanguageString(playerID, 158), 3000, 5);
 				}
 				if (fuelPercentage > 70)
@@ -111,14 +134,14 @@ Timer:Fast()
 						fuelColor = 'r';
 					}
 				}
-				FormatNew:textDrawString[60]("~n~%d Km/h~n~~%c~%s%%~w~~n~~%c~%s%%~w~~n~%sl~n~%s", speed, healthColor, FormatNumber(healthPercentage, 2, '.', ','), fuelColor, FormatNumber(fuelPercentage, 2, '.', ','), FormatNumber(vehicleModels[modelID - 400][VEHICLEMODEL_FUELUSAGE], 1, '.', ','), FormatNumber(VehicleProperty:vehicleID[MILEAGE], 2, '.', ','));
+				FormatNew:textDrawString[60]("~n~%d Km/h~n~~%c~%s%%~w~~n~~%c~%s%%~w~~n~%sl~n~%s", VehicleProperty:vehicleID[SPEED], healthColor, FormatNumber(healthPercentage, 2, '.', ','), fuelColor, FormatNumber(fuelPercentage, 2, '.', ','), FormatNumber(vehicleModels[modelID - 400][VEHICLEMODEL_FUELUSAGE], 1, '.', ','), FormatNumber(VehicleProperty:vehicleID[MILEAGE], 2, '.', ','));
 				PlayerTextDrawSetString(playerID, PTextDraw:playerID[SPEEDO_COLUMN2], textDrawString);
 				PlayerTextDrawSetString(playerID, PTextDraw:playerID[VEHICLENAME], vehicleModels[modelID - 400][VEHICLEMODEL_NAME]);
 				PlayerTextDrawShow(playerID, PTextDraw:playerID[SPEEDO_COLUMN1]);
 				PlayerTextDrawShow(playerID, PTextDraw:playerID[SPEEDO_COLUMN2]);
 				PlayerTextDrawShow(playerID, PTextDraw:playerID[VEHICLENAME]);
 				inVehicle = true;
-				if (speed && !seatID)
+				if (VehicleProperty:vehicleID[SPEED] && !seatID)
 				{
 					distance = 0;
 					new objectID = GetClosestObjectByModel(playerID, 18880, distance);// Search closest speed camera
@@ -136,10 +159,10 @@ Timer:Fast()
 								printf("Speed camera object without speed camera data found or speed limit is zero (Object %d)", Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID));
 							}
 						}
-						if (!PVar:playerID[SPEEDCAM_LIMITREACHED] && PVar:playerID[SPEEDCAM_SPEEDLIMIT] && speed > PVar:playerID[SPEEDCAM_SPEEDLIMIT])
+						if (!PVar:playerID[SPEEDCAM_LIMITREACHED] && PVar:playerID[SPEEDCAM_SPEEDLIMIT] && VehicleProperty:vehicleID[SPEED] > PVar:playerID[SPEEDCAM_SPEEDLIMIT])
 						{
 							PVar:playerID[SPEEDCAM_LIMITREACHED] = true;
-							SendClientMessageEx(playerID, COLOR_ERROR, 453, speed, PVar:playerID[SPEEDCAM_SPEEDLIMIT]);
+							SendClientMessageEx(playerID, COLOR_ERROR, 453, VehicleProperty:vehicleID[SPEED], PVar:playerID[SPEEDCAM_SPEEDLIMIT]);
 						}
 					}
 					else

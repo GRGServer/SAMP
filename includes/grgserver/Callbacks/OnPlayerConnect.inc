@@ -37,13 +37,10 @@ public OnPlayerConnect(playerid)
 		return true;
 	}
 	printf("%s connected from %s", GetPlayerNameEx(playerid), GetPlayerCountryName(playerid));
-	MySQLQuery("SELECT * FROM `removedstdobjects`");
-	mysql_store_result();
-	while (FetchMySQLRow())
+	Count(index, sizeof(removedStandardObjects))
 	{
-		RemoveBuildingForPlayer(playerid, strval(GetMySQLField("modelId")), floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), floatstr(GetMySQLField("radius")));
+		RemoveBuildingForPlayer(playerid, removedStandardObjects[index][STDOBJ_MODELID], removedStandardObjects[index][STDOBJ_POSX], removedStandardObjects[index][STDOBJ_POSY], removedStandardObjects[index][STDOBJ_POSZ], removedStandardObjects[index][STDOBJ_RADIUS]);
 	}
-	mysql_free_result();
 	MySQLQuery("SELECT * FROM `users` WHERE `username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
 	mysql_store_result();
 	if (strval(GetMySQLField("id")))

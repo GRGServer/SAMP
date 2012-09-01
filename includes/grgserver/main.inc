@@ -14,12 +14,15 @@
 #include <grgserver\Structures\enum_pickup.inc>
 #include <grgserver\Structures\enum_pickupLoader.inc>
 #include <grgserver\Structures\enum_playerVariable.inc>
+#include <grgserver\Structures\enum_radioStation.inc>
+#include <grgserver\Structures\enum_stdObj.inc>
 #include <grgserver\Structures\enum_vehicle.inc>
 #include <grgserver\Structures\enum_vehicleModel.inc>
 #include <grgserver\Structures\enum_weapon.inc>
 #include <grgserver\Structures\enum_zone.inc>
 
 // Global variables
+#include <grgserver\arrays.inc>
 #include <grgserver\globals.inc>
 
 // Functions
@@ -44,6 +47,7 @@
 #include <grgserver\Functions\FetchMySQLRow.inc>
 #include <grgserver\Functions\FormatDate.inc>
 #include <grgserver\Functions\FormatTime.inc>
+#include <grgserver\Functions\GetBankMoney.inc>
 #include <grgserver\Functions\GetChatModeName.inc>
 #include <grgserver\Functions\GetCheckpointMissionByName.inc>
 #include <grgserver\Functions\GetCheckpointMissionNameByID.inc>
@@ -92,6 +96,7 @@
 #include <grgserver\Functions\LanguageString.inc>
 #include <grgserver\Functions\LeaveProperty.inc>
 #include <grgserver\Functions\LicenseLanguageStringID.inc>
+#include <grgserver\Functions\LoadMySQLVehicle.inc>
 #include <grgserver\Functions\LoadPlayer.inc>
 #include <grgserver\Functions\LoadPlayerPermissions.inc>
 #include <grgserver\Functions\LockVehicle.inc>
@@ -342,6 +347,7 @@
 #include <grgserver\Commands\language.inc>
 #include <grgserver\Commands\lights.inc>
 #include <grgserver\Commands\line.inc>
+#include <grgserver\Commands\lockvehicle.inc>
 #include <grgserver\Commands\maptp.inc>
 #include <grgserver\Commands\markobject.inc>
 #include <grgserver\Commands\markobjects.inc>
@@ -383,7 +389,7 @@
 #include <grgserver\Commands\savevehicle.inc>
 #include <grgserver\Commands\selectlastobject.inc>
 #include <grgserver\Commands\selectproperty.inc>
-#include <grgserver\Commands\sellveh.inc>
+#include <grgserver\Commands\sellvehicle.inc>
 #include <grgserver\Commands\service.inc>
 #include <grgserver\Commands\setinterior.inc>
 #include <grgserver\Commands\setjob.inc>
@@ -403,5 +409,4 @@
 #include <grgserver\Commands\teleport.inc>
 #include <grgserver\Commands\toggleclock.inc>
 #include <grgserver\Commands\tow.inc>
-#include <grgserver\Commands\vlock.inc>
 

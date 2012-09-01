@@ -34,7 +34,7 @@ public OnPlayerEnterCheckpoint(playerid)
 				new vehicleID = GetClosestVehicleInRange(posX, posY, posZ, 50, 0, true, JOB_SCHOOLDRIVER, type);
 				if (vehicleID)
 				{
-					MySQLQuery("UPDATE `vehicles` SET `allowDriveUserId` = '%d' WHERE `id` = '%d'", PVar:playerid[USERID], VehicleProperty:vehicleID[SAVEID]);
+					VehicleProperty:vehicleID[ALLOWDRIVEPLAYERID] = playerid;
 					RepairVehicle(vehicleID);
 					VehicleProperty:vehicleID[CURRENTFUEL] = vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_MAXFUEL];
 					PutPlayerInVehicle(playerid, vehicleID, 0);

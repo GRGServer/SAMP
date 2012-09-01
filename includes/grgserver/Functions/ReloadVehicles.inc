@@ -3,6 +3,11 @@
  *	Destroyes all vehicles, creates the vehicles saved in the database, adds vehicle components and puts the NPCs in the vehicles if the ID of the vehicle is linked to a NPC.
  * </summary>
  *
+ * <param name="isStatic">
+ *	<item name="true">Use AddStaticVehicleEx for creating the vehicle (Only possible in OnGameModeInit and OnFilterScriptInit)</item>
+ *	<item name="false">Use CreateVehicle for creating the vehicle (Can not spawn some trains)</item>
+ * </param>
+ *
  * <param name="playerID">
  *	The ID of the player which executes a command which reloads the vehicles (Optional).
  * </param>
@@ -29,42 +34,28 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 		VehicleProperty:vehicleID[JOBID] = 0;
 		VehicleProperty:vehicleID[SAVEID] = 0;
 	}
-	AdminPrint(playerID, COLOR_INFO, "* Loading vehicles...");
+	AdminPrint(playerID, COLOR_INFO, "* Loading saved vehicles...");
 	new count;
 	mysql_query("SELECT * FROM `vehicles`");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		new vehicleID = CreateVehicleEx(strval(GetMySQLField("modelId")), floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), floatstr(GetMySQLField("angle")), strval(GetMySQLField("color1")), strval(GetMySQLField("color2")), -1, isStatic);
-		if (vehicleID)
+		if (LoadMySQLVehicle(isStatic, true, playerID))
 		{
-			VehicleProperty:vehicleID[CURRENTFUEL] = floatstr(GetMySQLField("currentFuel"));
-			VehicleProperty:vehicleID[FRONTLIGHTID] = strval(GetMySQLField("frontLightId"));
-			VehicleProperty:vehicleID[HASNAVI] = strval(GetMySQLField("hasNavi"));
-			VehicleProperty:vehicleID[JOBID] = strval(GetMySQLField("jobId"));
-			VehicleProperty:vehicleID[MILEAGE] = floatstr(GetMySQLField("mileAge"));
-			VehicleProperty:vehicleID[NEONLIGHTID] = strval(GetMySQLField("neonLightId"));
-			format(VehicleProperty:vehicleID[NUMBERPLATE], STRINGLENGTH_NUMBERPLATE, GetMySQLField("numberplate"));
-			VehicleProperty:vehicleID[RADIOSTATION] = strval(GetMySQLField("lastRadioStation"));
-			VehicleProperty:vehicleID[SAVEID] = strval(GetMySQLField("id"));
-			LockVehicle(vehicleID, strval(GetMySQLField("locked")));
-			LinkVehicleToInterior(vehicleID, strval(GetMySQLField("interior")));
-			ChangeVehiclePaintjob(vehicleID, strval(GetMySQLField("paintjobId")));
-			SetVehicleHealth(vehicleID, floatstr(GetMySQLField("health")));
-			SetVehicleNumberPlate(vehicleID, VehicleProperty:vehicleID[NUMBERPLATE]);
-			if (strval(GetMySQLField("ownerUserId")))
-			{
-				VehicleProperty:vehicleID[ALLOWPOSSAVE] = true;
-			}
-			else
-			{
-				VehicleProperty:vehicleID[ALLOWDESTROY] = false;
-			}
 			count++;
 		}
-		else
+	}
+	mysql_free_result();
+	AdminPrint(playerID, COLOR_INFO, "  %d vehicles loaded", count);
+	count = 0;
+	AdminPrint(playerID, COLOR_INFO, "* Loading original vehicles...");
+	mysql_query("SELECT `originalvehicles`.* FROM `originalvehicles` LEFT JOIN `vehicles` ON `vehicles`.`id` = `originalvehicles`.`id` WHERE `vehicles`.`id` IS NULL");
+	mysql_store_result();
+	while (FetchMySQLRow())
+	{
+		if (LoadMySQLVehicle(isStatic, false, playerID))
 		{
-			AdminPrint(playerID, COLOR_ERROR, "  Can not create vehicle!");
+			count++;
 		}
 	}
 	mysql_free_result();
@@ -102,8 +93,6 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 		new vehicleID = GetVehicleBySaveID(strval(GetMySQLField("vehicleId")));
 		if (vehicleID)
 		{
-			VehicleProperty:vehicleID[ALLOWDESTROY] = false;
-			VehicleProperty:vehicleID[ALLOWPOSSAVE] = false;
 			new npcPlayerID = GetPlayerID(GetMySQLField("name"));
 			if (npcPlayerID != INVALID_PLAYER_ID)
 			{

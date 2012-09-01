@@ -4,15 +4,19 @@ SetPlayerMoney(playerID, type, Float:amount, add = false)
 	{
 		case MONEY_BANK:// Money on bank account
 		{
-			if (strval(GetMySQLValue("users", "bankAccountId", "id", val2str(PVar:playerID[USERID]))))
+			MySQLQuery("SELECT `bankAccountId` FROM `users` WHERE `id` = '%d'", PVar:playerID[USERID]);
+			mysql_store_result();
+			new bankAccountID = strval(GetMySQLField("bankAccountId"));
+			mysql_free_result();
+			if (bankAccountID)
 			{
 				if (add)
 				{
-					PVar:playerID[BANKMONEY] = floatadd(PVar:playerID[BANKMONEY], amount);
+					MySQLQuery("UPDATE `bankaccounts` SET `money` = `money` + '%f' WHERE `id` = '%d'", amount, bankAccountID);
 				}
 				else
 				{
-					PVar:playerID[BANKMONEY] = amount;
+					MySQLQuery("UPDATE `bankaccounts` SET `money` = '%f' WHERE `id` = '%d'", amount, bankAccountID);
 				}
 				return true;
 			}

@@ -23,15 +23,9 @@ DialogResponse:SetVehicleJob(playerID, response, listItem, inputText[])
 		SendClientMessageEx(playerID, COLOR_ERROR, 146);
 		return true;
 	}
-	if (!VehicleProperty:vehicleID[SAVEID])
-	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 456);
-		return true;
-	}
 	new jobID;
 	new jobName[STRINGLENGTH_JOBNAME];
 	sscanf(inputText, "%d\t%s", jobID, jobName);
-	MySQLQuery("UPDATE `vehicles` SET `jobId` = '%d' WHERE `id` = '%d'", jobID, VehicleProperty:vehicleID[SAVEID]);
-	SendClientMessageEx(playerID, COLOR_INFO, 611, VehicleProperty:vehicleID[SAVEID], jobName);
+	VehicleProperty:vehicleID[JOBID] = jobID;
 	return true;
 }
