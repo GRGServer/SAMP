@@ -179,6 +179,7 @@ public OnGameModeInit()
 	LimitPlayerMarkerRadius(6000);
 	ManualVehicleEngineAndLights();
 	DisableInteriorEnterExits();
+	UsePlayerPedAnims();
 	Streamer_VisibleItems(STREAMER_TYPE_OBJECT, MAX_OBJECTS);
 	print("* Starting timers...");
 	StartTimer:EVERYMINUTE("Timer_EveryMinute", true);
