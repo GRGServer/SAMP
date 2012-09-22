@@ -11,12 +11,12 @@ DialogResponse:Register_Gender(playerID, response, listItem, inputText[])
 		if (listItem)
 		{
 			PVar:playerID[GENDER] = 'F';// Female
-			PVar:playerID[SKIN] = REGISTER_SKIN_FEMALE;
+			PVar:playerID[SKIN] = femaleSkins[random(sizeof(femaleSkins))];
 		}
 		else
 		{
 			PVar:playerID[GENDER] = 'M';// Male
-			PVar:playerID[SKIN] = REGISTER_SKIN_MALE;
+			PVar:playerID[SKIN] = maleSkins[random(sizeof(maleSkins))];
 		}
 		SetPlayerSkin(playerID, PVar:playerID[SKIN]);
 		ShowDialog:Register_Birthdate(playerID);

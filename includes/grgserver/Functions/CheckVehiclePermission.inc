@@ -34,13 +34,13 @@ CheckVehiclePermission(playerID, vehicleID, showBuyDialog)
 {
 	if (!VehicleProperty:vehicleID[SAVEID])
 	{
-		if (permissions[playerID][PERMISSION_MAPPER])
+		if (permissions[playerID][PERMISSION_SPAWNVEHICLE])
 		{
 			return true;
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 129, GetPermissionName(PERMISSION_MAPPER));
+			SendClientMessageEx(playerID, COLOR_ERROR, 129, GetPermissionName(PERMISSION_SPAWNVEHICLE));
 			return false;
 		}
 	}
@@ -76,10 +76,10 @@ CheckVehiclePermission(playerID, vehicleID, showBuyDialog)
 		}
 		return false;
 	}
-	if (permissions[playerID][PERMISSION_MAPPER])
+	if (permissions[playerID][PERMISSION_SPAWNVEHICLE])
 	{
 		return true;
 	}
-	SendClientMessageEx(playerID, COLOR_ERROR, 129, GetPermissionName(PERMISSION_MAPPER));
+	SendClientMessageEx(playerID, COLOR_ERROR, 129, GetPermissionName(PERMISSION_SPAWNVEHICLE));
 	return false;
 }

@@ -24,6 +24,10 @@ GetPermissionByName(permissionName[])
 	{
 		return PERMISSION_SERVERADMIN;
 	}
+	if (!strcmp(permissionName, "SpawnVehicle", true))
+	{
+		return PERMISSION_SPAWNVEHICLE;
+	}
 	if (!strcmp(permissionName, "Teleport", true))
 	{
 		return PERMISSION_TELEPORT;

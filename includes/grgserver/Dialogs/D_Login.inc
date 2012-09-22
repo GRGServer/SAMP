@@ -32,11 +32,23 @@ DialogResponse:Login(playerID, response, listItem, inputText[])
 						SendClientMessageEx(currentPlayerID, COLOR_JOINLEAVE, 7, playerID);
 					}
 				}
-				TogglePlayerSpectating(playerID, false);
 				LoadPlayer(playerID);
 				ReloadTextDraws(playerID);
-				PVar:playerID[SPAWNAFTERLOGIN] = true;
 				SendClientMessageEx(playerID, COLOR_INFO, 35);
+				PVar:playerID[PLAYRANDOMCAMERACUTS] = false;
+				if (PVar:playerID[INTUTORIAL])// The player is still in the tutorial (e.g. Quit game while in tutorial)
+				{
+					StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_TUTORIAL_START, 0);
+				}
+				else
+				{
+					StartScreenFader(playerID, 0, 0, 0, 5, 0, FADE_LOGIN, 0);
+				}
+			}
+			else
+			{
+				SendClientMessageEx(playerID, COLOR_ERROR, 36);
+				ShowDialog:Login(playerID);
 			}
 		}
 		else

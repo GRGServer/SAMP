@@ -1,6 +1,6 @@
 /**
  * <summary>
- *	Spawn a player at the saved position
+ *	Spawn a player
  * </summary>
  *
  * <param name="playerID">
@@ -11,9 +11,48 @@
 Timer:SpawnPlayer(playerID)
 {
 	SpawnPlayer(playerID);
-	MySQLQuery("SELECT * FROM `users` WHERE `id` = '%d'", PVar:playerID[USERID]);
+	if (IsPlayerNPC(playerID))
+	{
+		return true;
+	}
+	TogglePlayerSpectating(playerID, true);
+	PVar:playerID[PLAYRANDOMCAMERACUTS] = true;
+	PlayRandomCameraCuts(playerID);
+	MySQLQuery("SELECT * FROM `users` WHERE `username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerID)));
 	mysql_store_result();
-	SetPlayerPosEx(playerID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), strval(GetMySQLField("interior")));
-	SetPlayerFacingAngle(playerID, floatstr(GetMySQLField("angle")));
+	if (strval(GetMySQLField("id")))
+	{
+		PVar:playerID[LANGUAGE] = strval(GetMySQLField("language"));
+		PVar:playerID[REGISTERED] = true;
+		ShowDialog:PreviewInfo(playerID);
+	}
+	else
+	{
+		new countryCode[2];
+		strcat(countryCode, GetPlayerCountryCode(playerID));
+		if (strlen(countryCode) && (!strcmp(countryCode, "AT", true) || !strcmp(countryCode, "CH", true) || !strcmp(countryCode, "DE", true)))
+		{
+			PVar:playerID[LANGUAGE] = LANGUAGE_GERMAN;
+		}
+		else
+		{
+			PVar:playerID[LANGUAGE] = LANGUAGE_ENGLISH;
+		}
+		PVar:playerID[REGISTERED] = false;
+		PlaySound(playerID, musicSoundIDs[random(sizeof(musicSoundIDs))]);
+		ShowDialog:Register_Language(playerID);
+	}
 	mysql_free_result();
+	SendDeathMessage(INVALID_PLAYER_ID, playerID, 200);
+	SendClientMessageEx(playerID, COLOR_SYSTEM, 138);
+	SendClientMessageEx(playerID, COLOR_SYSTEM, 5, COMPILER_SVN_REVISION);
+	PlayerLoop(currentPlayerID)
+	{
+		if (!IsPlayerNPC(currentPlayerID) && currentPlayerID != playerID)
+		{
+			SendClientMessageEx(currentPlayerID, COLOR_JOINLEAVE, 3, playerID);
+		}
+	}
+	ReloadTextDraws(playerID);
+	return true;
 }

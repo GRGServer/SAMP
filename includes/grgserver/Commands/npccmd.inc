@@ -31,6 +31,11 @@ NCMD:npccmd(playerID, params[], 0)
 		PVar:playerID[NPC_RECORDINGLENGTH] = strval(parameters);
 		return COMMAND_OK;
 	}
+	if (IsStr(command, "recpos"))
+	{
+		PVar:playerID[NPC_RECORDINGPOSITION] = strval(parameters);
+		return COMMAND_OK;
+	}
 	if (IsStr(command, "stopped"))
 	{
 		if (PVar:playerID[NPC_RECORDINGSLOT] && PlayNextNPCRecording(playerID))

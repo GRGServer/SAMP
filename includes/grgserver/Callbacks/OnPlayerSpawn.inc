@@ -86,29 +86,21 @@ public OnPlayerSpawn(playerid)
 	if (PVar:playerid[SPAWNAFTERLOGIN])// The player spawns after login
 	{
 		PVar:playerid[SPAWNAFTERLOGIN] = false;
-		if (PVar:playerid[INTUTORIAL])// The player is still in the tutorial (e.g. Quit game while in tutorial)
+		MySQLQuery("SELECT * FROM `users` WHERE `id` = '%d'", PVar:playerid[USERID]);
+		mysql_store_result();
+		SetPlayerPosEx(playerid, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), strval(GetMySQLField("interior")));
+		SetPlayerFacingAngle(playerid, floatstr(GetMySQLField("angle")));
+		mysql_free_result();
+		ShowNews(playerid, PVar:playerid[LASTNEWSID]);
+		MySQLQuery("SELECT * FROM `friends` WHERE `userId2` = '%d' AND `accepted` = '0'", PVar:playerid[USERID]);
+		mysql_store_result();
+		new rows = mysql_num_rows();
+		mysql_free_result();
+		if (rows)
 		{
-			PVar:playerid[SPAWNAFTERTUTORIALSTART] = false;
-			TogglePlayerSpectating(playerid, true);
-			StartScreenFader(playerid, 0, 0, 0, 10, 0, FADE_TUTORIAL_START, 0);
+			SendClientMessageEx(playerid, COLOR_INFO, 498, rows);
 		}
-		else
-		{
-			MySQLQuery("SELECT * FROM `users` WHERE `id` = '%d'", PVar:playerid[USERID]);
-			mysql_store_result();
-			SetPlayerPosEx(playerid, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), strval(GetMySQLField("interior")));
-			SetPlayerFacingAngle(playerid, floatstr(GetMySQLField("angle")));
-			mysql_free_result();
-			ShowNews(playerid, PVar:playerid[LASTNEWSID]);
-			MySQLQuery("SELECT * FROM `friends` WHERE `userId2` = '%d' AND `accepted` = '0'", PVar:playerid[USERID]);
-			mysql_store_result();
-			new rows = mysql_num_rows();
-			mysql_free_result();
-			if (rows)
-			{
-				SendClientMessageEx(playerid, COLOR_INFO, 498, rows);
-			}
-		}
+		StartScreenFader(playerid, 0, 0, 0, -5, 0, FADE_LOGIN, 1);
 		return true;
 	}
 	if (PVar:playerid[INTUTORIAL])// The player is currently in the tutorial

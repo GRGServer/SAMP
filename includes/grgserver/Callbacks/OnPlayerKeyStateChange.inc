@@ -3,6 +3,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 	if (IsKeyPressed(KEY_JUMP) && GetPlayerSpecialAction(playerid) == SPECIAL_ACTION_CUFFED)
 	{
 		ApplyAnimation(playerid, "GYMNASIUM", "gym_jog_falloff", 4.1, 0, 1, 1, 0, 0);// Prevent player from jumping while cuffed
+		return true;
 	}
 	if (IsKeyPressed(KEY_ANALOG_DOWN))
 	{
@@ -35,6 +36,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				VehicleProperty:vehicleID[RADIOSTATIONID]++;
 			}
 			PlayRadioStation(playerid, VehicleProperty:vehicleID[RADIOSTATIONID]);
+			return true;
+		}
+	}
+	if (IsKeyPressed(KEY_ACTION))
+	{
+		if (IsPlayerInAnyVehicle(playerid))
+		{
+			TogglePlayerVehicleEngine(playerid);
 			return true;
 		}
 	}

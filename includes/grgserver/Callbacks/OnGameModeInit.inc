@@ -169,8 +169,6 @@ public OnGameModeInit()
 	CreateGlobalTextDraws();
 	print("* Adding dummy player classes...");
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
-	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
-	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
 	print("* Doing misc stuff...");
 	FormatNew:gameModeTextString[30]("GRG Server r%d", COMPILER_SVN_REVISION);
 	SetGameModeText(gameModeTextString);

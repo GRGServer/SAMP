@@ -34,3 +34,21 @@ new removedStandardObjects[][enum_stdObj] =
 	{961, 2580.0, 2830.0, 10.0, 70.0},
 	{16094, 191.141, 1870.04, 21.4766, 1.0}
 };
+
+// Skins
+new maleSkins[] =
+{
+	2,
+	6,
+	7,
+	21,
+	98
+};
+new femaleSkins[] =
+{
+	131,
+	150,
+	169,
+	190,
+	193
+};

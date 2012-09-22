@@ -2500,6 +2500,10 @@
 		<en>Kill yourself</en>
 		<de>Töte dich selbst</de>
 	</string>
+	<string id="624">
+		<en>Current recording position: %d sec</en>
+		<de>Aktuelle Aufnahmeposition: %d sek</de>
+	</string>
 	<string id="625">
 		<en>See /payday for more details</en>
 		<de>Siehe /payday für mehr Details</de>

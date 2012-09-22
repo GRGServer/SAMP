@@ -7,6 +7,12 @@ new playbackType;
 new autoRepeat;
 new startTime;
 
+public OnNPCModeInit()
+{
+	SetTimer("ReportRecordingPosition", 10000, true);
+	return true;
+}
+
 public OnClientMessage(color, text[])
 {
 	/*
@@ -124,4 +130,15 @@ public StartRecordingPlaybackTimer()
 {
 	StartRecordingPlayback(playbackType, recordingName);
 	startTime = gettime();
+}
+
+forward ReportRecordingPosition();
+public ReportRecordingPosition()
+{
+	if (startTime)
+	{
+		new command[50];
+		format(command, sizeof(command), "/npccmd recpos %d", gettime() - startTime);
+		SendCommand(command);
+	}
 }

@@ -6,5 +6,6 @@ LoadPlayerPermissions(playerID)
 	LoadPermission:NAVI(playerID, "navi");
 	LoadPermission:NPCADMIN(playerID, "npcAdmin");
 	LoadPermission:SERVERADMIN(playerID, "serverAdmin");
+	LoadPermission:SPAWNVEHICLE(playerID, "spawnVehicle");
 	LoadPermission:TELEPORT(playerID, "teleport");
 }

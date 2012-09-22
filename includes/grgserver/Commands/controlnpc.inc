@@ -42,6 +42,7 @@ PCMD:controlnpc[NPCADMIN](playerID, params[], 100)
 		new npcPlayerID = GetPlayerID(targetPlayerName);
 		if (IsStr(command, "status"))
 		{
+			SendClientMessageEx(playerID, COLOR_INFO, 624, PVar:npcPlayerID[NPC_RECORDINGPOSITION]);
 			SendClientMessageEx(playerID, COLOR_INFO, 606, PVar:npcPlayerID[NPC_RECORDINGLENGTH]);
 			return COMMAND_OK;
 		}

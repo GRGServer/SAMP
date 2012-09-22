@@ -34,6 +34,7 @@ public OnPlayerConnect(playerid)
 			MySQLBan(INVALID_PLAYER_ID, playerid, "External NPC connection", true);
 			return false;
 		}
+		SetSpawnInfo(playerid, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);// Always spawn NPCs in a not visible area (At position 0 x 0 x 0)
 		return true;
 	}
 	printf("%s connected from %s", GetPlayerNameEx(playerid), GetPlayerCountryName(playerid));
@@ -41,42 +42,5 @@ public OnPlayerConnect(playerid)
 	{
 		RemoveBuildingForPlayer(playerid, removedStandardObjects[index][STDOBJ_MODELID], removedStandardObjects[index][STDOBJ_POSX], removedStandardObjects[index][STDOBJ_POSY], removedStandardObjects[index][STDOBJ_POSZ], removedStandardObjects[index][STDOBJ_RADIUS]);
 	}
-	MySQLQuery("SELECT * FROM `users` WHERE `username` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
-	mysql_store_result();
-	if (strval(GetMySQLField("id")))
-	{
-		PVar:playerid[LANGUAGE] = strval(GetMySQLField("language"));
-		TogglePlayerSpectating(playerid, true);
-		PVar:playerid[REGISTERED] = true;
-		ShowDialog:PreviewInfo(playerid);
-	}
-	else
-	{
-		new countryCode[2];
-		strcat(countryCode, GetPlayerCountryCode(playerid));
-		if (strlen(countryCode) && (!strcmp(countryCode, "AT", true) || !strcmp(countryCode, "CH", true) || !strcmp(countryCode, "DE", true)))
-		{
-			PVar:playerid[LANGUAGE] = LANGUAGE_GERMAN;
-		}
-		else
-		{
-			PVar:playerid[LANGUAGE] = LANGUAGE_ENGLISH;
-		}
-		PVar:playerid[REGISTERED] = false;
-		PlaySound(playerid, musicSoundIDs[random(sizeof(musicSoundIDs))]);
-		ShowDialog:Register_Language(playerid);
-	}
-	mysql_free_result();
-	SendDeathMessage(INVALID_PLAYER_ID, playerid, 200);
-	SendClientMessageEx(playerid, COLOR_SYSTEM, 138);
-	SendClientMessageEx(playerid, COLOR_SYSTEM, 5, COMPILER_SVN_REVISION);
-	PlayerLoop(playerID)
-	{
-		if (!IsPlayerNPC(playerID) && playerID != playerid)
-		{
-			SendClientMessageEx(playerID, COLOR_JOINLEAVE, 3, playerid);
-		}
-	}
-	ReloadTextDraws(playerid);
 	return true;
 }

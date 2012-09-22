@@ -15,6 +15,8 @@ GetPermissionName(permission)
 			string = "NPCAdmin";
 		case PERMISSION_SERVERADMIN:
 			string = "ServerAdmin";
+		case PERMISSION_SPAWNVEHICLE:
+			string = "SpawnVehicle";
 		case PERMISSION_TELEPORT:
 			string = "Teleport";
 	}

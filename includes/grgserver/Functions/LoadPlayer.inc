@@ -19,9 +19,14 @@ LoadPlayer(playerID)
 	PVar:playerID[SKIN] = strval(GetMySQLField("skin"));
 	PVar:playerID[SHOWCLOCK] = strval(GetMySQLField("showClock"));
 	PVar:playerID[VEHICLEBOUGHT] = strval(GetMySQLField("vehicleBought"));
-	SetPlayerHealth(playerID, floatstr(GetMySQLField("health")));
 	SetPlayerSkin(playerID, PVar:playerID[SKIN]);
 	SetPlayerWantedLevel(playerID, strval(GetMySQLField("wantedLevel")));
+	new Float:health = floatstr(GetMySQLField("health"));
+	if (!health)
+	{
+		health = 100;
+	}
+	SetPlayerHealth(playerID, health);
 	mysql_free_result();
 	MySQLQuery("SELECT `money` FROM `bankaccounts` WHERE `id` = '%d'", bankAccountId);
 	mysql_store_result();

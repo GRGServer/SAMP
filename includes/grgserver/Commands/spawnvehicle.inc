@@ -1,4 +1,4 @@
-PCMD:spawnvehicle[MAPPER](playerID, params[], 505)
+PCMD:spawnvehicle[SPAWNVEHICLE](playerID, params[], 505)
 {
 	new vehicleName[20];
 	new modelID;

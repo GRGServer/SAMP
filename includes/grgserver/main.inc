@@ -5,6 +5,7 @@
 #include <grgserver\macros.inc>
 
 // Structures
+#include <grgserver\Structures\enum_cameraCut.inc>
 #include <grgserver\Structures\enum_distanceCalc.inc>
 #include <grgserver\Structures\enum_languageString.inc>
 #include <grgserver\Structures\enum_naviLocation.inc>
@@ -110,6 +111,7 @@
 #include <grgserver\Functions\PlayAudio.inc>
 #include <grgserver\Functions\PlayNextNPCRecording.inc>
 #include <grgserver\Functions\PlayRadioStation.inc>
+#include <grgserver\Functions\PlayRandomCameraCuts.inc>
 #include <grgserver\Functions\PlaySound.inc>
 #include <grgserver\Functions\ReconnectNPCs.inc>
 #include <grgserver\Functions\ReloadLanguageStrings.inc>
@@ -153,6 +155,7 @@
 #include <grgserver\Functions\TeleportTo.inc>
 #include <grgserver\Functions\TeleportToInterior.inc>
 #include <grgserver\Functions\TeleportToProperty.inc>
+#include <grgserver\Functions\TogglePlayerVehicleEngine.inc>
 #include <grgserver\Functions\UpdateObjectsForAllPlayers.inc>
 #include <grgserver\Functions\explode.inc>
 #include <grgserver\Functions\str_replace.inc>
@@ -184,7 +187,6 @@
 #include <grgserver\Callbacks\OnPlayerLeftVehicle.inc>
 #include <grgserver\Callbacks\OnPlayerPickUpPickup.inc>
 #include <grgserver\Callbacks\OnPlayerRequestClass.inc>
-#include <grgserver\Callbacks\OnPlayerRequestSpawn.inc>
 #include <grgserver\Callbacks\OnPlayerSelectDynamicObject.inc>
 #include <grgserver\Callbacks\OnPlayerSpawn.inc>
 #include <grgserver\Callbacks\OnPlayerStateChange.inc>
@@ -294,6 +296,7 @@
 #include <grgserver\Timers\Timer_HideRadioDisplay.inc>
 #include <grgserver\Timers\Timer_MoveObject.inc>
 #include <grgserver\Timers\Timer_PickupTimeout.inc>
+#include <grgserver\Timers\Timer_RandomCameraCutsFader.inc>
 #include <grgserver\Timers\Timer_RefuelVehicle.inc>
 #include <grgserver\Timers\Timer_ScreenFader.inc>
 #include <grgserver\Timers\Timer_SetPlayerPosFindZ.inc>
@@ -366,6 +369,7 @@
 #include <grgserver\Commands\opengate.inc>
 #include <grgserver\Commands\ordervehicle.inc>
 #include <grgserver\Commands\payday.inc>
+#include <grgserver\Commands\playcam.inc>
 #include <grgserver\Commands\players.inc>
 #include <grgserver\Commands\privatemessage.inc>
 #include <grgserver\Commands\radio.inc>

@@ -1,7 +1,7 @@
 CMD:saveinfo(playerID, params[], 450)
 {
 	new File:file;
-	new lines[256];
+	new lines[2048];
 	new year;
 	new month;
 	new day;
@@ -12,12 +12,20 @@ CMD:saveinfo(playerID, params[], 450)
 	new Float:posY;
 	new Float:posZ;
 	new Float:angle;
+	new Float:frontVectorX;
+	new Float:frontVectorY;
+	new Float:frontVectorZ;
 	getdate(year, month, day);
 	gettime(hour, minute, second);
 	AddLine:lines("Player: %s", GetPlayerNameEx(playerID));
 	AddLine:lines("Date: %d/%02d/%02d %02d:%02d:%02d", year, month, day, hour, minute, second);
 	GetPlayerCameraPos(playerID, posX, posY, posZ);
+	GetPlayerCameraFrontVector(playerID, frontVectorX, frontVectorY, frontVectorZ);
+	new Float:lookX = floatadd(posX, frontVectorX);
+	new Float:lookY = floatadd(posY, frontVectorY);
+	new Float:lookZ = floatadd(posZ, frontVectorZ);
 	AddLine:lines("Camera Position: %f x %f x %f", posX, posY, posZ);
+	AddLine:lines("Camera Look: %f x %f x %f", lookX, lookY, lookZ);
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (vehicleID)
 	{

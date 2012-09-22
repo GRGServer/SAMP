@@ -148,6 +148,19 @@ public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_LEAVEPROPERTY, 1);
 				}
 			}
+			case FADE_LOGIN:
+			{
+				if (subID)
+				{
+					TogglePlayerControllable(playerID, true);
+				}
+				else
+				{
+					TogglePlayerSpectating(playerID, false);// Triggers OnPlayerSpawn
+					TogglePlayerControllable(playerID, false);
+					PVar:playerID[SPAWNAFTERLOGIN] = true;
+				}
+			}
 			case FADE_PROPERTYBOUGHT:
 			{
 				if (subID)
@@ -158,6 +171,17 @@ public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 				{
 					SetCameraBehindPlayer(playerID);
 					StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_PROPERTYBOUGHT, 1);
+				}
+			}
+			case FADE_RANDOMCAMERACUTS:
+			{
+				if (!subID)
+				{
+					if (PVar:playerID[PLAYRANDOMCAMERACUTS])
+					{
+						StartScreenFader(playerID, 0, 0, 0, -5, 0, FADE_RANDOMCAMERACUTS, 1);
+						PlayRandomCameraCuts(playerID);
+					}
 				}
 			}
 			case FADE_RESPAWN:

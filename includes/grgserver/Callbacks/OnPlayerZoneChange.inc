@@ -1,4 +1,7 @@
 OnPlayerZoneChange(playerID, zone)
 {
-	GameTextForPlayer(playerID, zones[zone][ZONE_NAME], 2000, 3);
+	if (IsLoggedIn(playerID))
+	{
+		GameTextForPlayer(playerID, zones[zone][ZONE_NAME], 2000, 3);
+	}
 }
