@@ -12,6 +12,7 @@ DialogResponse:Register_Location(playerID, response, listItem, inputText[])
 		SetPVarStr:playerID[CHATMODE][STRINGLENGTH_CHATMODE]("INRANGE");
 		PVar:playerID[INTUTORIAL] = true;
 		PVar:playerID[SHOWCLOCK] = true;
+		PVar:playerID[ONLINESINCE] = gettime();
 		MySQLQuery("UPDATE `users` SET `registerTime` = NOW(), `loginTime` = NOW(), `clientVersion` = '%s' WHERE `id` = '%d'", MySQLEscapeString(GetPlayerVersionEx(playerID)), PVar:playerID[USERID]);
 		SavePlayer(playerID);
 		LoadPlayer(playerID);
