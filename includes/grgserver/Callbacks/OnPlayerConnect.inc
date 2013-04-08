@@ -42,5 +42,16 @@ public OnPlayerConnect(playerid)
 	{
 		RemoveBuildingForPlayer(playerid, removedStandardObjects[index][STDOBJ_MODELID], removedStandardObjects[index][STDOBJ_POSX], removedStandardObjects[index][STDOBJ_POSY], removedStandardObjects[index][STDOBJ_POSZ], removedStandardObjects[index][STDOBJ_RADIUS]);
 	}
+	printf("* Textdraw loading....");
+	TextDrawShowForPlayer(playerid, Komma);
+    TextDrawShowForPlayer(playerid, Food[playerid]);
+    TextDrawShowForPlayer(playerid, Drink[playerid]);
+	TextDrawShowForPlayer(playerid, Pee[playerid]);
+	printf("* Texdraw was loading");
+	printf("* Timers PlayerConnect loading...");
+	StartTimer:EAT("Timer_Eat", true);
+	StartTimer:DRINK("Timer_Drink", true);
+	StartTimer:PEE("Timer_Handrang", true);
+	printf("* Timer was PlayerConnect loading");
 	return true;
 }

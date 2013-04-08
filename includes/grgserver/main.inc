@@ -172,6 +172,7 @@
 #include <grgserver\Callbacks\OnInteriorDialogSelect.inc>
 #include <grgserver\Callbacks\OnMessageShown.inc>
 #include <grgserver\Callbacks\OnPlayerClickMap.inc>
+#include <grgserver\Callbacks\OnPlayerClickTextDraw.inc>
 #include <grgserver\Callbacks\OnPlayerClosestNodeIDChange.inc>
 #include <grgserver\Callbacks\OnPlayerCommandPerformed.inc>
 #include <grgserver\Callbacks\OnPlayerCommandText.inc>
@@ -243,6 +244,8 @@
 #include <grgserver\Dialogs\D_NaviTarget_TargetList.inc>
 #include <grgserver\Dialogs\D_OrderVehicle.inc>
 #include <grgserver\Dialogs\D_PaydayInfo.inc>
+#include <grgserver\Dialogs\D_Police.inc>
+#include <grgserver\Dialogs\D_Police_Options.inc>
 #include <grgserver\Dialogs\D_PreviewInfo.inc>
 #include <grgserver\Dialogs\D_Refuel.inc>
 #include <grgserver\Dialogs\D_Register_Birthdate.inc>
@@ -290,9 +293,12 @@
 #include <grgserver\Pickups\Pickup_VehicleDealer.inc>
 
 // Timers
+#include <grgserver\Timers\Timer_Drink.inc>
+#include <grgserver\Timers\Timer_Eat.inc>
 #include <grgserver\Timers\Timer_EveryMinute.inc>
 #include <grgserver\Timers\Timer_Fast.inc>
 #include <grgserver\Timers\Timer_FlyCam.inc>
+#include <grgserver\Timers\Timer_Handrang.inc>
 #include <grgserver\Timers\Timer_HideRadioDisplay.inc>
 #include <grgserver\Timers\Timer_MoveObject.inc>
 #include <grgserver\Timers\Timer_PickupTimeout.inc>
@@ -393,12 +399,14 @@
 #include <grgserver\Commands\savevehicle.inc>
 #include <grgserver\Commands\selectlastobject.inc>
 #include <grgserver\Commands\selectproperty.inc>
+#include <grgserver\Commands\selecttext.inc>
 #include <grgserver\Commands\sellvehicle.inc>
 #include <grgserver\Commands\service.inc>
 #include <grgserver\Commands\setinterior.inc>
 #include <grgserver\Commands\setjob.inc>
 #include <grgserver\Commands\setnpcspawn.inc>
 #include <grgserver\Commands\setobjectmovepos.inc>
+#include <grgserver\Commands\setpos.inc>
 #include <grgserver\Commands\setpropertycam.inc>
 #include <grgserver\Commands\setsell.inc>
 #include <grgserver\Commands\setspawn.inc>

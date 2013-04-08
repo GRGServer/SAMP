@@ -26,3 +26,12 @@ new Float:gasPrice;
 
 // TextDraws
 new Text:textDrawClock;
+new Text:Komma;
+new Text:Pee[MAX_PLAYERS];
+new Text:Food[MAX_PLAYERS];
+new Text:Drink[MAX_PLAYERS];
+
+//Timer Definatet
+new IsFoodFull[MAX_PLAYERS];
+new IsDrinkFull[MAX_PLAYERS];
+new IsPeeFull[MAX_PLAYERS];

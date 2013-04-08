@@ -2508,4 +2508,24 @@
 		<en>See /payday for more details</en>
 		<de>Siehe /payday für mehr Details</de>
 	</string>
+	<string id="626">
+		<en>When you need Eat</en>
+		<de>Wann brauchst du Essen</de>
+	</string>
+	<string id="627">
+		<en>Last Eat</en>
+		<de>Zuletzt Gegessen</de>
+	</string>
+	<string id="628">
+		<en>Eat</en>
+		<de>Essen</de>
+	</string>
+	<string id="629">
+		<en>Select Text</en>
+		<de>Text Auswählen</de>
+	</string>
+	<string id="630">
+		<en>Select your Text</en>
+		<de>Wähle deinen Text aus.</de>
+	</string>
 </languagestrings>

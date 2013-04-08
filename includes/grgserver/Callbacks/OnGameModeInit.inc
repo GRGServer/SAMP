@@ -163,6 +163,7 @@ public OnGameModeInit()
 	}
 	ReloadLanguageStrings();
 	ReloadObjects();
+	ReconnectNPCs();
 	ReloadVehicleModels();
 	ReloadVehicles(true);
 	ReloadPickups();
@@ -184,6 +185,5 @@ public OnGameModeInit()
 	StartTimer:FAST("Timer_Fast", true);
 	StartTimer:SLOW("Timer_Slow", true);
 	StartTimer:STABLECHECK("Timer_StableCheck", false);
-	ReconnectNPCs();
 	return true;
 }

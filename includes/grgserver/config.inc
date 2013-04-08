@@ -121,7 +121,7 @@
 
 
 // NPC configuration
-#define NPC_SCRIPTNAME					"npcplayer"
+#define NPC_SCRIPTNAME					"recording"
 
 
 // Pay Day configuration
@@ -190,7 +190,9 @@
 #define TIMER_SLOW					5000// 5 seconds
 #define TIMER_STABLECHECK				600000// Mark server as stable after 10 minutes
 #define TIMER_SCREENFADER				10// Ultra fast to have a smooth screen fader (Only runs while fading)
-
+#define TIMER_EAT					1200000 //Timer for eat in 20minuts
+#define TIMER_DRINK				 600000 //Timer for Drink in 10 Minuts
+#define TIMER_PEE				2600000 //Timer for Pee in 35 Minuts
 
 // Vehicle configuration
 #define VEHICLE_MINHEALTH				30

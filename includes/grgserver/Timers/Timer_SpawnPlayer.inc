@@ -43,7 +43,6 @@ Timer:SpawnPlayer(playerID)
 		ShowDialog:Register_Language(playerID);
 	}
 	mysql_free_result();
-	SendDeathMessage(INVALID_PLAYER_ID, playerID, 200);
 	SendClientMessageEx(playerID, COLOR_SYSTEM, 138);
 	SendClientMessageEx(playerID, COLOR_SYSTEM, 5, COMPILER_SVN_REVISION);
 	PlayerLoop(currentPlayerID)

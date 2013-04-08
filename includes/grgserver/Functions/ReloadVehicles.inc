@@ -17,7 +17,7 @@
  * </remarks>
  */
 
-ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
+ReloadVehicles(isStatic, playerID = !INVALID_PLAYER_ID)
 {
 	AdminPrint(playerID, COLOR_INFO, "* Destroying vehicles...");
 	Count1(vehicleID, MAX_VEHICLES)
@@ -93,10 +93,11 @@ ReloadVehicles(isStatic, playerID = INVALID_PLAYER_ID)
 		new vehicleID = GetVehicleBySaveID(strval(GetMySQLField("vehicleId")));
 		if (vehicleID)
 		{
-			new npcPlayerID = GetPlayerID(GetMySQLField("name"));
-			if (npcPlayerID != INVALID_PLAYER_ID)
+			new npcPlayerID = GetPlayerID(GetMySQLField("id"));
+			if (npcPlayerID)
 			{
 				PutPlayerInVehicle(npcPlayerID, vehicleID, 0);
+				printf("NPC %s with the is in car %d",GetMySQLField("name"), vehicleID);
 				count++;
 			}
 		}

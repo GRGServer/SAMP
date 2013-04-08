@@ -100,5 +100,9 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			return true;
 		}
 	}
+	if(newkeys == KEY_SUBMISSION)
+    {
+        SelectTextDraw(playerid, 0xFF4040AA);
+    }
 	return false;
 }
