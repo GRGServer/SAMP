@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -e
+
 ARGS=`getopt -o "a:e:v" -l "action:,environment:,rev:,svn-baseurl:,svn-password:,svn-username:,tag:,verbose" -n "sampmgr" -- "$@"`
 
 if [ $? -ne 0 ]; then
@@ -83,6 +85,31 @@ function printVerbose
 	fi
 }
 
+function showEnvironments
+{
+	echo "  Available environments:"
+	echo "    dev                  The development SAMP-Server at port 7776"
+	echo "    live                 The live SAMP-Server at port 7777"
+}
+
+function showActions
+{
+	echo "  Available actions:"
+	echo "    build                Run actions 'update', 'compile' and 'generatecmdlist' and write update_log file"
+	echo "    compile              Compile all filterscripts, gamemodes and npcmodes"
+	echo "    generatecmdlist      Parse command script files and generate command list used by in-game command /cmds"
+	echo "    livelog              Show log using tail -f"
+	echo "    log                  Output complete server log file"
+	echo "    restart              Stop and restart the SAMP-Server"
+	echo "    start                Start the SAMP-Server"
+	echo "    status               Show the current running status of the SAMP-Server"
+	echo "    stop                 Stop the SAMP-Server"
+	echo "    update               Checkout SAMP-Server from SVN"
+	echo "                         In environment 'dev' you can optionally use the --rev option to specify the SVN revision"
+	echo "                         In environment 'live' you have to use the --tag option to specify the tag in SVN"
+	echo "    wipe                 Delete all SAMP-Server files"
+}
+
 function showUsage
 {
 	echo ""
@@ -100,30 +127,23 @@ function showUsage
 	echo "         --svn-password  Change the SVN password from '********' to another one"
 	echo "         --svn-username  Change the SVN username from '$SVNUSERNAME' to another one"
 	echo ""
-	echo "  Available environments:"
-	echo "    dev                  The development SAMP-Server at port 7776"
-	echo "    live                 The live SAMP-Server at port 7777"
+	showEnvironments
 	echo ""
-	echo "  Available actions:"
-	echo "    livelog              Show log using tail -f"
-	echo "    log                  Output complete server log file"
-	echo "    restart              Stop and restart the SAMP-Server"
-	echo "    start                Start the SAMP-Server"
-	echo "    status               Show the current running status of the SAMP-Server"
-	echo "    stop                 Stop the SAMP-Server"
-	echo "    update               Checkout SAMP-Server from SVN and compile PWN files using pawncc"
-	echo "                         In environment 'dev' you can optionally use the -rev option to specify the SVN revision"
-	echo "                         In environment 'live' you have to use the -tag option to specify the tag in SVN"
-	echo "    wipe                 Delete all SAMP-Server files"
+	showActions
 	echo ""
 	echo "  Examples:"
 	echo "    sampmgr --environment dev --action start"
-	echo "    sampmgr -e dev --action update -rev 800"
-	echo "    sampmgr -e live -a update -tag public-beta-1.0"
+	echo "    sampmgr -e dev --action update --rev 800"
+	echo "    sampmgr -e live -a update --tag public-beta-1.0"
 	echo ""
 }
 
 if [ "$ENVIRONMENT" = "" ]; then
+	showUsage
+	exit
+fi
+
+if [ "$ACTION" = "" ]; then
 	showUsage
 	exit
 fi
@@ -138,9 +158,7 @@ case "$ENVIRONMENT" in
 	*)
 		echo "Invalid environment: $ENVIRONMENT"
 		echo ""
-		echo "Available environments:"
-		echo "  dev   The development SAMP-Server at port 7776"
-		echo "  live  The live SAMP-Server at port 7777"
+		showEnvironments
 		echo ""
 		exit
 	;;
@@ -171,6 +189,59 @@ DAEMONCMD_TESTRUNNING="$DAEMONCMD_START --test"
 export LD_LIBRARY_PATH
 
 case "$ACTION" in
+	build)
+		case "$ENVIRONMENT" in
+			dev)
+				$0 --environment $ENVIRONMENT --action update --rev $REVISION
+			;;
+
+			live)
+				if [ "$TAG" = "" ]; then
+					$0 --environment $ENVIRONMENT --action update
+				else
+					$0 --environment $ENVIRONMENT --action update --tag $TAG
+				fi
+			;;
+		esac
+
+		$0 --environment $ENVIRONMENT --action compile
+		$0 --environment $ENVIRONMENT --action generatecmdlist
+
+		svn log -l 1 $SAMPPATH  --non-interactive --username $SVNUSERNAME --password $SVNPASSWORD > $SAMPPATH/scriptfiles/update_log
+
+		chown -R samp:samp $SAMPPATH
+	;;
+
+	compile)
+		REVISION=`svn info $SAMPPATH --non-interactive --username $SVNUSERNAME --password $SVNPASSWORD | sed -nr 's/Last Changed Rev: ([0-9]+)/\1/p'`
+		COMMITTER=`svn info $SAMPPATH --non-interactive --username $SVNUSERNAME --password $SVNPASSWORD | sed -nr 's/Last Changed Author: (.*)/\1/p'`
+
+		CUSTOMINC="$SAMPPATH/includes/grgserver/main_server.inc"
+		echo "// Generated using sampmgr" > $CUSTOMINC
+		echo "" >> $CUSTOMINC
+		echo "#define COMPILER_DATE \"`date +%Y-%m-%d`\"" >> $CUSTOMINC
+		echo "#define COMPILER_TIME \"`date +%H:%M:%S`\"" >> $CUSTOMINC
+		echo "#define COMPILER_SVN_REVISION $REVISION" >> $CUSTOMINC
+		echo "#define COMPILER_SVN_LASTCOMMITTER \"$COMMITTER\"" >> $CUSTOMINC
+		echo "" >> $CUSTOMINC
+		echo "#include <grgserver\\main.inc>" >> $CUSTOMINC
+
+		compilePawn filterscripts
+		compilePawn gamemodes
+		compilePawn npcmodes
+	;;
+
+	generatecmdlist)
+		echo "Generating command list..."
+		COMMANDLIST="$SAMPPATH/scriptfiles/commands.txt"
+		rm -f $COMMANDLIST
+		cd $SAMPPATH/includes/grgserver/Commands
+		for FILE in *.inc; do
+			sed -nr 's/^CMD:([a-zA-Z0-9]+)\(([^,]+),([^,]+),([ 0-9]+)\)/- \1  \4/p' $FILE >> $COMMANDLIST
+			sed -nr 's/^PCMD:([a-zA-Z0-9]+)\[([A-Z]+)\]\(([^,]+),([^,]+),([ 0-9]+)\)/P \1 \2 \5/p' $FILE >> $COMMANDLIST
+		done
+	;;
+
 	livelog)
 		tail -f $SAMPPATH/server_log.txt
 	;;
@@ -281,34 +352,6 @@ case "$ACTION" in
 			;;
 		esac
 
-		REVISION=`svn info $SAMPPATH --non-interactive --username $SVNUSERNAME --password $SVNPASSWORD | sed -nr 's/Last Changed Rev: ([0-9]+)/\1/p'`
-		COMMITTER=`svn info $SAMPPATH --non-interactive --username $SVNUSERNAME --password $SVNPASSWORD | sed -nr 's/Last Changed Author: (.*)/\1/p'`
-
-		CUSTOMINC="$SAMPPATH/includes/grgserver/main_server.inc"
-		echo "// Generated using sampmgr" > $CUSTOMINC
-		echo "" >> $CUSTOMINC
-		echo "#define COMPILER_DATE \"`date +%Y-%m-%d`\"" >> $CUSTOMINC
-		echo "#define COMPILER_TIME \"`date +%H:%M:%S`\"" >> $CUSTOMINC
-		echo "#define COMPILER_SVN_REVISION $REVISION" >> $CUSTOMINC
-		echo "#define COMPILER_SVN_LASTCOMMITTER \"$COMMITTER\"" >> $CUSTOMINC
-		echo "" >> $CUSTOMINC
-		echo "#include <grgserver\\main.inc>" >> $CUSTOMINC
-
-		compilePawn filterscripts
-		compilePawn gamemodes
-		compilePawn npcmodes
-
-		# Generate commands.txt
-		COMMANDLIST="$SAMPPATH/scriptfiles/commands.txt"
-		rm -f $COMMANDLIST
-		cd $SAMPPATH/includes/grgserver/Commands
-		for FILE in *.inc; do
-			sed -nr 's/^CMD:([a-zA-Z0-9]+)\(([^,]+),([^,]+),([ 0-9]+)\)/- \1  \4/p' $FILE >> $COMMANDLIST
-			sed -nr 's/^PCMD:([a-zA-Z0-9]+)\[([A-Z]+)\]\(([^,]+),([^,]+),([ 0-9]+)\)/P \1 \2 \5/p' $FILE >> $COMMANDLIST
-		done
-
-		svn log -l 1 $SAMPPATH  --non-interactive --username $SVNUSERNAME --password $SVNPASSWORD > $SAMPPATH/scriptfiles/update_log
-
 		chown -R samp:samp $SAMPPATH
 		chmod +x $ANNOUNCEEXECUTABLE
 		chmod +x $NPCEXECUTABLE
@@ -322,7 +365,10 @@ case "$ACTION" in
 	;;
 
 	*)
-		showUsage
+		echo "Invalid action: $ACTION"
+		echo ""
+		showActions
+		echo ""
 		exit 1
 	;;
 esac
