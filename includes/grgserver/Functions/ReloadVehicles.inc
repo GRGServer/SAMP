@@ -97,7 +97,6 @@ ReloadVehicles(isStatic, playerID = !INVALID_PLAYER_ID)
 			if (npcPlayerID)
 			{
 				PutPlayerInVehicle(npcPlayerID, vehicleID, 0);
-				printf("NPC %s with the is in car %d",GetMySQLField("name"), vehicleID);
 				count++;
 			}
 		}

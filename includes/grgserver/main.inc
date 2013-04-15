@@ -91,7 +91,6 @@
 #include <grgserver\Functions\IsLoggedIn.inc>
 #include <grgserver\Functions\IsPlayerInPickup.inc>
 #include <grgserver\Functions\IsValidPickupType.inc>
-#include <grgserver\Functions\IsValidSkin.inc>
 #include <grgserver\Functions\IsValidWeapon.inc>
 #include <grgserver\Functions\IsVehicleLocked.inc>
 #include <grgserver\Functions\LanguageString.inc>
@@ -124,6 +123,7 @@
 #include <grgserver\Functions\ReloadVehicles.inc>
 #include <grgserver\Functions\RemoveNewLine.inc>
 #include <grgserver\Functions\RemoveVehicleLightObjects.inc>
+#include <grgserver\Functions\RepeatCharacter.inc>
 #include <grgserver\Functions\ResetPlayerVariables.inc>
 #include <grgserver\Functions\RestartGameMode.inc>
 #include <grgserver\Functions\RotatePlayer.inc>
@@ -157,6 +157,7 @@
 #include <grgserver\Functions\TeleportToProperty.inc>
 #include <grgserver\Functions\TogglePlayerVehicleEngine.inc>
 #include <grgserver\Functions\UpdateObjectsForAllPlayers.inc>
+#include <grgserver\Functions\UpdatePlayerNeeds.inc>
 #include <grgserver\Functions\explode.inc>
 #include <grgserver\Functions\str_replace.inc>
 #include <grgserver\Functions\strtoupper.inc>
@@ -293,12 +294,9 @@
 #include <grgserver\Pickups\Pickup_VehicleDealer.inc>
 
 // Timers
-#include <grgserver\Timers\Timer_Drink.inc>
-#include <grgserver\Timers\Timer_Eat.inc>
 #include <grgserver\Timers\Timer_EveryMinute.inc>
 #include <grgserver\Timers\Timer_Fast.inc>
 #include <grgserver\Timers\Timer_FlyCam.inc>
-#include <grgserver\Timers\Timer_Handrang.inc>
 #include <grgserver\Timers\Timer_HideRadioDisplay.inc>
 #include <grgserver\Timers\Timer_MoveObject.inc>
 #include <grgserver\Timers\Timer_PickupTimeout.inc>

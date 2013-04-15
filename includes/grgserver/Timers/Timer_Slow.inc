@@ -66,4 +66,8 @@ Timer:Slow()
 		fclose(file);
 		fremove(FILE_UPDATENOTIFICATION);
 	}
+	LoggedInPlayers(playerID)
+	{
+		UpdatePlayerNeeds(playerID);
+	}
 }

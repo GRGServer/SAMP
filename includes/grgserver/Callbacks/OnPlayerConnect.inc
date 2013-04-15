@@ -20,11 +20,14 @@
 public OnPlayerConnect(playerid)
 {
 	ResetPlayerVariables(playerid);
+
 	if (IsBanned(playerid, true))
 	{
 		Kick(playerid);
 		return false;
 	}
+
+	// Handle NPC stuff
 	if (IsPlayerNPC(playerid))
 	{
 		new ip[16];
@@ -37,21 +40,14 @@ public OnPlayerConnect(playerid)
 		SetSpawnInfo(playerid, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);// Always spawn NPCs in a not visible area (At position 0 x 0 x 0)
 		return true;
 	}
+
 	printf("%s connected from %s", GetPlayerNameEx(playerid), GetPlayerCountryName(playerid));
+
+	// Remove defined standard objects
 	Count(index, sizeof(removedStandardObjects))
 	{
 		RemoveBuildingForPlayer(playerid, removedStandardObjects[index][STDOBJ_MODELID], removedStandardObjects[index][STDOBJ_POSX], removedStandardObjects[index][STDOBJ_POSY], removedStandardObjects[index][STDOBJ_POSZ], removedStandardObjects[index][STDOBJ_RADIUS]);
 	}
-	printf("* Textdraw loading....");
-	TextDrawShowForPlayer(playerid, Komma);
-    TextDrawShowForPlayer(playerid, Food[playerid]);
-    TextDrawShowForPlayer(playerid, Drink[playerid]);
-	TextDrawShowForPlayer(playerid, Pee[playerid]);
-	printf("* Texdraw was loading");
-	printf("* Timers PlayerConnect loading...");
-	StartTimer:EAT("Timer_Eat", true);
-	StartTimer:DRINK("Timer_Drink", true);
-	StartTimer:PEE("Timer_Handrang", true);
-	printf("* Timer was PlayerConnect loading");
+
 	return true;
 }

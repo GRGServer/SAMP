@@ -2528,4 +2528,8 @@
 		<en>Select your Text</en>
 		<de>Wähle deinen Text aus.</de>
 	</string>
+	<string id="631">
+		<en>Hunger:~n~Thirst:~n~Bladder:~n~Energy:</en>
+		<de>Hunger:~n~Durst:~n~Harndrang:~n~Energie:</de>
+	</string>
 </languagestrings>

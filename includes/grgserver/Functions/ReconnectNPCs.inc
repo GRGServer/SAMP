@@ -28,6 +28,5 @@ ReconnectNPCs(playerID = INVALID_PLAYER_ID)
 		count++;
 	}
 	mysql_free_result();
-	AdminPrint(playerID, COLOR_INFO, "* NPC %s was connected ID: %d on position %f,%f,%f", GetMySQLField("name"), GetMySQLField("id"), GetMySQLField("spawnPosX"), GetMySQLField("spawnPosY"), GetMySQLField("spawnPosZ"));
 	AdminPrint(playerID, COLOR_INFO, "* %d NPCs connected", count);
 }

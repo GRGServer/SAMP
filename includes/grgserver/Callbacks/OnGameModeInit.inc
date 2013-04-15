@@ -11,9 +11,11 @@
 public OnGameModeInit()
 {
 	print("* Loading Gamemode...");
+
 	printf("    SVN Revision: %d", COMPILER_SVN_REVISION);
 	printf("    Compile date: %s %s", COMPILER_DATE, COMPILER_TIME);
 	printf("    Last committer: %s", COMPILER_SVN_LASTCOMMITTER);
+
 	if (fexist(FILE_LASTCHANGES))
 	{
 		new logLine[256];
@@ -32,6 +34,7 @@ public OnGameModeInit()
 		}
 		fclose(changesFile);
 	}
+
 	print("* Defining variables...");
 	maxPlayers = GetServerVarAsInt("maxplayers");
 	if (GetServerVarAsInt("port") == 7777)
@@ -44,6 +47,7 @@ public OnGameModeInit()
 		serverMode = SERVERMODE_DEV;
 		print("In development mode");
 	}
+
 	print("* Checking SVN stuff...");
 	new File:svnRevisionFile;
 	new oldSvnRevision[16];
@@ -65,6 +69,7 @@ public OnGameModeInit()
 			fclose(svnRevisionFile);
 		}
 	}
+
 	print("* Initializing MySQL connection...");
 	new MySQL:mysqlConnection = mysql_init(LOG_ONLY_ERRORS, true);
 	if (serverMode == SERVERMODE_PUBLIC)
@@ -85,6 +90,7 @@ public OnGameModeInit()
 			return false;
 		}
 	}
+
 	print("* Loading weapons...");
 	if (fexist(FILE_WEAPONS))
 	{
@@ -120,6 +126,7 @@ public OnGameModeInit()
 	{
 		print("  Weapon file does not exist!");
 	}
+
 	print("* Loading zones...");
 	if (fexist(FILE_ZONES))
 	{
@@ -161,6 +168,7 @@ public OnGameModeInit()
 	{
 		print("  Zone file does not exist!");
 	}
+
 	ReloadLanguageStrings();
 	ReloadObjects();
 	ReconnectNPCs();
@@ -168,8 +176,10 @@ public OnGameModeInit()
 	ReloadVehicles(true);
 	ReloadPickups();
 	CreateGlobalTextDraws();
+
 	print("* Adding dummy player classes...");
 	AddPlayerClass(0, SPAWN_POSX, SPAWN_POSY, SPAWN_POSZ, SPAWN_ANGLE, 0, 0, 0, 0, 0, 0);
+
 	print("* Doing misc stuff...");
 	FormatNew:gameModeTextString[30]("GRG Server r%d", COMPILER_SVN_REVISION);
 	SetGameModeText(gameModeTextString);
@@ -180,10 +190,12 @@ public OnGameModeInit()
 	DisableInteriorEnterExits();
 	UsePlayerPedAnims();
 	Streamer_VisibleItems(STREAMER_TYPE_OBJECT, MAX_OBJECTS);
+
 	print("* Starting timers...");
 	StartTimer:EVERYMINUTE("Timer_EveryMinute", true);
 	StartTimer:FAST("Timer_Fast", true);
 	StartTimer:SLOW("Timer_Slow", true);
 	StartTimer:STABLECHECK("Timer_StableCheck", false);
+
 	return true;
 }
