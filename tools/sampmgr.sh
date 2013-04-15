@@ -2,7 +2,7 @@
 
 set -e
 
-ARGS=`getopt -o "a:e:v" -l "action:,environment:,rev:,svn-baseurl:,svn-password:,svn-username:,tag:,verbose" -n "sampmgr" -- "$@"`
+ARGS=`getopt -o "a:e:v" -l "action:,command:,environment:,player:,rev:,svn-baseurl:,svn-password:,svn-username:,tag:,verbose" -n "sampmgr" -- "$@"`
 
 if [ $? -ne 0 ]; then
 	exit 1
@@ -25,8 +25,18 @@ while true; do
 			shift 2
 		;;
 
+		--command)
+			COMMAND="$2"
+			shift 2
+		;;
+
 		-e | --environment)
 			ENVIRONMENT="$2"
+			shift 2
+		;;
+
+		--player)
+			PLAYER="$2"
 			shift 2
 		;;
 
@@ -78,6 +88,21 @@ function compilePawn
 	done
 }
 
+function executeRconCommand
+{
+	case "$ENVIRONMENT" in
+		dev)
+			PORT=7776
+		;;
+
+		live)
+			PORT=7777
+		;;
+	esac
+
+	php `dirname $0`/rcon.php 127.0.0.1 $PORT `sed -nr 's/^rcon_password (.*)/\1/p' $SAMPPATH/server.cfg` $@
+}
+
 function printVerbose
 {
 	if [ "$VERBOSE" ]; then
@@ -95,11 +120,17 @@ function showEnvironments
 function showActions
 {
 	echo "  Available actions:"
+	echo "    ban                  Ban a player (Use --player to specify the player ID)"
 	echo "    build                Run actions 'update', 'compile' and 'generatecmdlist' and write update_log file"
 	echo "    compile              Compile all filterscripts, gamemodes and npcmodes"
 	echo "    generatecmdlist      Parse command script files and generate command list used by in-game command /cmds"
+	echo "    gmx                  Restart currently running gamemode"
 	echo "    livelog              Show log using tail -f"
+	echo "    kick                 Kick a player (Use --player to specify the player ID)"
 	echo "    log                  Output complete server log file"
+	echo "    players              List currently connected players"
+	echo "    rcon                 Execute any rcon command"
+	echo "                         Use --command to specify the command (Use quotes if arguments should be passed to the command)"
 	echo "    restart              Stop and restart the SAMP-Server"
 	echo "    start                Start the SAMP-Server"
 	echo "    status               Show the current running status of the SAMP-Server"
@@ -135,6 +166,8 @@ function showUsage
 	echo "    sampmgr --environment dev --action start"
 	echo "    sampmgr -e dev --action update --rev 800"
 	echo "    sampmgr -e live -a update --tag public-beta-1.0"
+	echo "    sampmgr -e dev -a gmx"
+	echo "    sampmgr -e dev -a rcon --command \"reloadfs myfilterscript\""
 	echo ""
 }
 
@@ -189,6 +222,15 @@ DAEMONCMD_TESTRUNNING="$DAEMONCMD_START --test"
 export LD_LIBRARY_PATH
 
 case "$ACTION" in
+	ban)
+		if [ "$PLAYER" = "" ]; then
+			echo "A player ID is required!"
+			exit 1
+		fi
+
+		executeRconCommand ban $PLAYER
+	;;
+
 	build)
 		case "$ENVIRONMENT" in
 			dev)
@@ -242,12 +284,33 @@ case "$ACTION" in
 		done
 	;;
 
+	gmx)
+		executeRconCommand gmx
+	;;
+
+	kick)
+		if [ "$PLAYER" = "" ]; then
+			echo "A player ID is required!"
+			exit 1
+		fi
+
+		executeRconCommand kick $PLAYER
+	;;
+
 	livelog)
 		tail -f $SAMPPATH/server_log.txt
 	;;
 
 	log)
 		cat $SAMPPATH/server_log.txt
+	;;
+
+	players)
+		executeRconCommand players
+	;;
+
+	rcon)
+		executeRconCommand "$COMMAND"
 	;;
 
 	restart)
