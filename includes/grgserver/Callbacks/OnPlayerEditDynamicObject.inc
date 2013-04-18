@@ -11,24 +11,18 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 		}
 		case EDIT_RESPONSE_FINAL:
 		{
-			new Float:posX;
-			new Float:posY;
-			new Float:posZ;
-			new Float:rotX;
-			new Float:rotY;
-			new Float:rotZ;
-			GetDynamicObjectPos(objectid, posX, posY, posZ);
-			GetDynamicObjectRot(objectid, rotX, rotY, rotZ);
-			new id = Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectid, E_STREAMER_EXTRA_ID);
-			if (id)
+			if (Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectid, E_STREAMER_EXTRA_ID) == OBJECTTYPE_NORMAL)
 			{
-				MySQLQuery("UPDATE `objects` SET `posX` = '%f', `posY` = '%f', `posZ` = '%f', `rotX` = '%f', `rotY` = '%f', `rotZ` = '%f' WHERE `id` = '%d'", posX, posY, posZ, rotX, rotY, rotZ, id);
+				GetDynamicObjectPos(objectid, dynamicObjects[objectid - 1][OBJECT_POS][0], dynamicObjects[objectid - 1][OBJECT_POS][1], dynamicObjects[objectid - 1][OBJECT_POS][2]);
+				GetDynamicObjectRot(objectid, dynamicObjects[objectid - 1][OBJECT_ROT][0], dynamicObjects[objectid - 1][OBJECT_ROT][1], dynamicObjects[objectid - 1][OBJECT_ROT][2]);
+				SaveObjects(dynamicObjects[objectid - 1][OBJECT_FILENAME]);
 				SendClientMessageEx(playerid, COLOR_INFO, 199);
 			}
 			else
 			{
 				SendClientMessageEx(playerid, COLOR_ERROR, 200);
 			}
+
 			PVar:playerid[OBJEDITOR_CURRENTOBJECTID] = 0;
 			PlaySound(playerid, SOUND_OBJECTPLACED);
 			SelectObject(playerid);

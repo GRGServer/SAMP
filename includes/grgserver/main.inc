@@ -11,6 +11,7 @@
 #include <grgserver\Structures\enum_naviLocation.inc>
 #include <grgserver\Structures\enum_naviTarget.inc>
 #include <grgserver\Structures\enum_neonType.inc>
+#include <grgserver\Structures\enum_object.inc>
 #include <grgserver\Structures\enum_permission.inc>
 #include <grgserver\Structures\enum_pickup.inc>
 #include <grgserver\Structures\enum_pickupLoader.inc>
@@ -63,7 +64,6 @@
 #include <grgserver\Functions\GetMySQLField.inc>
 #include <grgserver\Functions\GetMySQLValue.inc>
 #include <grgserver\Functions\GetNavigationLocationTypeByName.inc>
-#include <grgserver\Functions\GetObjectByID.inc>
 #include <grgserver\Functions\GetOnlineTime.inc>
 #include <grgserver\Functions\GetPermissionByName.inc>
 #include <grgserver\Functions\GetPermissionName.inc>
@@ -97,6 +97,7 @@
 #include <grgserver\Functions\LeaveProperty.inc>
 #include <grgserver\Functions\LicenseLanguageStringID.inc>
 #include <grgserver\Functions\LoadMySQLVehicle.inc>
+#include <grgserver\Functions\LoadObjectsFromFile.inc>
 #include <grgserver\Functions\LoadPlayer.inc>
 #include <grgserver\Functions\LoadPlayerPermissions.inc>
 #include <grgserver\Functions\LockVehicle.inc>
@@ -127,6 +128,7 @@
 #include <grgserver\Functions\ResetPlayerVariables.inc>
 #include <grgserver\Functions\RestartGameMode.inc>
 #include <grgserver\Functions\RotatePlayer.inc>
+#include <grgserver\Functions\SaveObjects.inc>
 #include <grgserver\Functions\SavePlayer.inc>
 #include <grgserver\Functions\SaveVehicle.inc>
 #include <grgserver\Functions\SendClientMessageEx.inc>
@@ -323,7 +325,6 @@
 #include <grgserver\Commands\addstaticnpc.inc>
 #include <grgserver\Commands\addteleport.inc>
 #include <grgserver\Commands\alias.inc>
-#include <grgserver\Commands\areaobjects.inc>
 #include <grgserver\Commands\ban.inc>
 #include <grgserver\Commands\changepw.inc>
 #include <grgserver\Commands\chatmode.inc>

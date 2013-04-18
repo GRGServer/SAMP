@@ -7,13 +7,15 @@ CMD:opengate(playerID, params[], 467)
 		SendClientMessageEx(playerID, COLOR_ERROR, 468);
 		return COMMAND_ERROR;
 	}
-	new dbObjectID = Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID);
-	if (!CheckGatePermission(playerID, dbObjectID))
+
+	if (!CheckGatePermission(playerID, objectID))
 	{
 		SendClientMessageEx(playerID, COLOR_ERROR, 469);
 		return COMMAND_ERROR;
 	}
-	MoveObjectEx(dbObjectID, true);
+
+	MoveObjectEx(objectID, true);
+
 	SendClientMessageEx(playerID, COLOR_INFO, 470);
 	return COMMAND_OK;
 }

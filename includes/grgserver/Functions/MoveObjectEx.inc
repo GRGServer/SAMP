@@ -1,48 +1,33 @@
-MoveObjectEx(dbObjectID, newState)
+/**
+ * <summary>
+ *	Move an object
+ * </summary>
+ *
+ * <param name="objectID">
+ *	The ID of the object
+ * </param>
+ *
+ * <param name="newState">
+ *	<title>The new state</title>
+ *	<item name="true">Move the object to the move target</item>
+ *	<item name="false">Move the object back to the original position</item>
+ * </param>
+ */
+
+MoveObjectEx(objectID, newState)
 {
-	new rows;
-	MySQLQuery("SELECT * FROM `objects` WHERE `id` = '%d'", dbObjectID);
-	mysql_store_result();
-	rows = mysql_num_rows();
-	new Float:normalPosX = floatstr(GetMySQLField("posX"));
-	new Float:normalPosY = floatstr(GetMySQLField("posY"));
-	new Float:normalPosZ = floatstr(GetMySQLField("posZ"));
-	new Float:normalRotX = floatstr(GetMySQLField("rotX"));
-	new Float:normalRotY = floatstr(GetMySQLField("rotY"));
-	new Float:normalRotZ = floatstr(GetMySQLField("rotZ"));
-	mysql_free_result();
-	if (!rows)
-	{
-		return -1;
-	}
-	MySQLQuery("SELECT * FROM `moveobjects` WHERE `objectId` = '%d'", dbObjectID);
-	mysql_store_result();
-	rows = mysql_num_rows();
-	new Float:movedPosX = floatstr(GetMySQLField("posX"));
-	new Float:movedPosY = floatstr(GetMySQLField("posY"));
-	new Float:movedPosZ = floatstr(GetMySQLField("posZ"));
-	new Float:movedRotX = floatstr(GetMySQLField("rotX"));
-	new Float:movedRotY = floatstr(GetMySQLField("rotY"));
-	new Float:movedRotZ = floatstr(GetMySQLField("rotZ"));
-	new Float:speed = floatstr(GetMySQLField("speed"));
-	mysql_free_result();
-	if (!rows)
-	{
-		return -2;
-	}
-	new objectID = GetObjectByID(dbObjectID);
-	if (!objectID)
-	{
-		return false;
-	}
 	StopDynamicObject(objectID);
+
+	new arrayIndex = objectID - 1;
+
 	if (newState)
 	{
-		MoveDynamicObject(objectID, movedPosX, movedPosY, movedPosZ, speed, movedRotX, movedRotY, movedRotZ);
+		MoveDynamicObject(objectID, dynamicObjects[arrayIndex][OBJECT_MOVEPOS][0], dynamicObjects[arrayIndex][OBJECT_MOVEPOS][1], dynamicObjects[arrayIndex][OBJECT_MOVEPOS][2], dynamicObjects[arrayIndex][OBJECT_MOVESPEED], dynamicObjects[arrayIndex][OBJECT_MOVEROT][0], dynamicObjects[arrayIndex][OBJECT_MOVEROT][1], dynamicObjects[arrayIndex][OBJECT_MOVEROT][2]);
 	}
 	else
 	{
-		MoveDynamicObject(objectID, normalPosX, normalPosY, normalPosZ, speed, normalRotX, normalRotY, normalRotZ);
+		MoveDynamicObject(objectID, dynamicObjects[arrayIndex][OBJECT_POS][0], dynamicObjects[arrayIndex][OBJECT_POS][1], dynamicObjects[arrayIndex][OBJECT_POS][2], dynamicObjects[arrayIndex][OBJECT_MOVESPEED], dynamicObjects[arrayIndex][OBJECT_ROT][0], dynamicObjects[arrayIndex][OBJECT_ROT][1], dynamicObjects[arrayIndex][OBJECT_ROT][2]);
 	}
+
 	return true;
 }

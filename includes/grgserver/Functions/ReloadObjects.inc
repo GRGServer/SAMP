@@ -2,17 +2,29 @@ ReloadObjects(playerID = INVALID_PLAYER_ID)
 {
 	AdminPrint(playerID, COLOR_INFO, "* Destroying objects...");
 	DestroyAllDynamicObjects();
-	AdminPrint(playerID, COLOR_INFO, "* Loading objects...");
-	new count;
-	MySQLQuery("SELECT * FROM `objects`");
-	mysql_store_result();
-	while (FetchMySQLRow())
+
+	// Unset all objects
+	Count(objectID, sizeof(dynamicObjects))
 	{
-		new objectID = CreateDynamicObject(strval(GetMySQLField("modelId")), floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), floatstr(GetMySQLField("rotX")), floatstr(GetMySQLField("rotY")), floatstr(GetMySQLField("rotZ")), -1, strval(GetMySQLField("interior")), -1, STREAMER_OBJECTDISTANCE);
-		Streamer_SetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID, strval(GetMySQLField("id")));
-		count++;
+		Count(enumField, sizeof(dynamicObjects[]))
+		{
+			dynamicObjects[objectID][enum_object:enumField] = 0;
+		}
 	}
-	mysql_free_result();
+
+	AdminPrint(playerID, COLOR_INFO, "* Loading objects...");
+	new item[100];
+	new type;
+	new dir:dirHandle = dir_open("scriptfiles/objects");
+	while (dir_list(dirHandle, item, type))
+	{
+		if (type == FM_FILE)
+		{
+			AdminPrint(playerID, COLOR_INFO, "  Loading objects from '%s'...", item);
+			new count = LoadObjectsFromFile(item);
+			AdminPrint(playerID, COLOR_INFO, "  %d objects loaded", count);
+		}
+	}
+
 	UpdateObjectsForAllPlayers();
-	AdminPrint(playerID, COLOR_INFO, "  %d objects loaded", count);
 }

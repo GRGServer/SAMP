@@ -5,12 +5,12 @@ DialogResponse:AddObject(playerID, response, listItem, inputText[])
 	if (response)
 	{
 		new modelID;
-		new name[STRINGLENGTH_OBJECTNAME];
+		new name[STRINGLENGTH_OBJECTMODELNAME];
 		if (!sscanf(inputText, "p:ds", modelID, name))
 		{
 			if (modelID)
 			{
-				AddObject(playerID, modelID);
+				AddObject(playerID, modelID, PVar:playerID[OBJEDITOR_FILENAME]);
 			}
 		}
 	}

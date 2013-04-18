@@ -5,6 +5,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		ApplyAnimation(playerid, "GYMNASIUM", "gym_jog_falloff", 4.1, 0, 1, 1, 0, 0);// Prevent player from jumping while cuffed
 		return true;
 	}
+
 	if (IsKeyPressed(KEY_ANALOG_DOWN))
 	{
 		new vehicleID = GetPlayerVehicleID(playerid);
@@ -22,6 +23,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			return true;
 		}
 	}
+
 	if (IsKeyPressed(KEY_ANALOG_UP))
 	{
 		new vehicleID = GetPlayerVehicleID(playerid);
@@ -39,6 +41,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			return true;
 		}
 	}
+
 	if (IsKeyPressed(KEY_ACTION))
 	{
 		if (IsPlayerInAnyVehicle(playerid))
@@ -47,29 +50,41 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			return true;
 		}
 	}
+
 	if (IsKeyPressed(KEY_NO))
 	{
 		if (PVar:playerid[OBJEDITOR_CURRENTOBJECTID])
 		{
-			MySQLQuery("DELETE FROM `objects` WHERE `id` = '%d'", Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_EXTRA_ID));
-			new extraID = Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_EXTRA_ID);
+			CancelEdit(playerid);
+
 			new modelID = Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_MODEL_ID);
 			DestroyDynamicObject(PVar:playerid[OBJEDITOR_CURRENTOBJECTID]);
-			PVar:playerid[OBJEDITOR_CURRENTOBJECTID] = 0;
+
+			// Unset all enum variables in the object element
+			Count(enumField, sizeof(dynamicObjects[]))
+			{
+				dynamicObjects[PVar:playerid[OBJEDITOR_CURRENTOBJECTID] - 1][enum_object:enumField] = 0;
+			}
+
 			UpdateObjectsForAllPlayers();
-			CancelEdit(playerid);
 			SelectObject(playerid);
-			SendClientMessageEx(playerid, COLOR_INFO, 203, extraID, GetMySQLValue("objectmodels", "name", "id", val2str(modelID)));
+
+			SendClientMessageEx(playerid, COLOR_INFO, 203, dynamicObjects[PVar:playerid[OBJEDITOR_CURRENTOBJECTID] - 1][OBJECT_ID], objectModels[modelID]);
+
+			PVar:playerid[OBJEDITOR_CURRENTOBJECTID] = 0;
+
 			return true;
 		}
 	}
+
 	if (IsKeyPressed(KEY_WALK))
 	{
 		if (PVar:playerid[OBJEDITOR_CURRENTOBJECTID])
 		{
-			AddObject(playerid, Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_MODEL_ID), true);
+			AddObject(playerid, Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_MODEL_ID), dynamicObjects[PVar:playerid[OBJEDITOR_CURRENTOBJECTID] - 1][OBJECT_FILENAME], true);
 			return true;
 		}
+
 		if (permissions[playerid][PERMISSION_MAPPER])
 		{
 			new pickupID = IsPlayerInPickup(playerid);
@@ -87,10 +102,12 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					SendClientMessageEx(playerid, COLOR_INFO, 337);
 				}
 				mysql_free_result();
+
 				return true;
 			}
 		}
 	}
+
 	if (IsKeyPressed(KEY_YES))
 	{
 		new pickupID = IsPlayerInPickup(playerid);
@@ -100,9 +117,6 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			return true;
 		}
 	}
-	if(newkeys == KEY_SUBMISSION)
-    {
-        SelectTextDraw(playerid, 0xFF4040AA);
-    }
+
 	return false;
 }

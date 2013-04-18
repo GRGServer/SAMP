@@ -3,18 +3,18 @@
  *	Move an object using a timer.
  * </summary>
  *
- * <param name="dbObjectID">
- *	The ID of the object (From objects table in database)
+ * <param name="objectID">
+ *	The ID of the object
  * </param>
  *
  * <param name="newState">
  *	<title>The new state</title>
- *	<item name="true">Move the object to the position defined in the moveobject table</item>
- *	<item name="false">Move the object back to the normal position (As defined in the objects table)</item>
+ *	<item name="true">Move the object to the move target</item>
+ *	<item name="false">Move the object back to the original position</item>
  * </param>
  */
 
-Timer:MoveObject(dbObjectID, newState)
+Timer:MoveObject(objectID, newState)
 {
-	MoveObjectEx(dbObjectID, newState);
+	MoveObjectEx(objectID, newState);
 }

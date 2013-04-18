@@ -33,6 +33,9 @@
 // DialogResponse:DIALOGNAME(playerID, response, listItem, inputText[])
 #define DialogResponse:%0(%1) forward DR_%0(%1); public DR_%0(%1)
 
+// Foreach(countingVariable, array)
+#define Foreach(%0,%1) for (new %0 = 0; %0 < sizeof(%1); %0++)
+
 // Format:string(formatString, parameters)
 #define Format:%0(%1) format(%0, sizeof(%0), %1)
 

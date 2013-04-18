@@ -1,53 +1,64 @@
 PCMD:addobject[MAPPER](playerID, params[], 202)
 {
 	new modelID;
-	if (sscanf(params, "d", modelID))
+	new filename[STRINGLENGTH_OBJECTFILENAME];
+	if (!sscanf(params, "ds", modelID, filename))
 	{
-		new modelName[100];
-		if (sscanf(params, "s", modelName))
+		if (modelID >= 0 && modelID < sizeof(objectModels) && StrNotNull(objectModels[modelID]))
 		{
-			CmdUsageMsg(playerID, "addobject", "modelID/ModelName");
-			return COMMAND_USAGE;
-		}
-		MySQLQuery("SELECT * FROM `objectmodels` WHERE `name` LIKE '%s' LIMIT 50", str_replace("*", "%%", MySQLEscapeString(modelName)));
-		mysql_store_result();
-		if (!mysql_num_rows() && strfind(modelName, "*") == -1)
-		{
-			mysql_free_result();
-			MySQLQuery("SELECT * FROM `objectmodels` WHERE `name` LIKE '%%%s%%' LIMIT 50", MySQLEscapeString(modelName));
-			mysql_store_result();
-		}
-		if (mysql_num_rows() > 1)
-		{
-			new objectList[2048];
-			while (FetchMySQLRow())
-			{
-				if (strlen(objectList))
-				{
-					strcat(objectList, "\n");
-				}
-				Format:objectList("%s%s:%s", objectList, GetMySQLField("id"), GetMySQLField("name"));
-			}
-			CreateDialog(playerID, "AddObject", DIALOG_STYLE_LIST, LanguageString(playerID, 202), objectList, LanguageString(playerID, 170), LanguageString(playerID, 165));
-			modelID = -1;
+			AddObject(playerID, modelID, filename);
+			return COMMAND_OK;
 		}
 		else
 		{
-			modelID = strval(GetMySQLField("id"));
+			SendClientMessageEx(playerID, COLOR_ERROR, 427);
+			return COMMAND_ERROR;
 		}
-		mysql_free_result();
 	}
-	if (modelID)
+
+	new modelName[100];
+	if (sscanf(params, "ss", modelName, filename))
 	{
-		if (modelID == -1)
+		CmdUsageMsg(playerID, "addobject", "modelID/ModelName", "Filename");
+		return COMMAND_USAGE;
+	}
+
+	new count;
+	new objectList[2048];
+	Foreach(currentModelID, objectModels)
+	{
+		if (strfind(objectModels[currentModelID], modelName, false) != -1)
 		{
-			return COMMAND_OK;
+			if (strlen(objectList))
+			{
+				strcat(objectList, "\n");
+			}
+			Format:objectList("%s%s:%s", objectList, currentModelID, objectModels[currentModelID]);
+			modelID = currentModelID;
+
+			count++;
+			if (count >= 50)// Only show max 50 objects
+			{
+				break;
+			}
 		}
-		AddObject(playerID, modelID);
-		return COMMAND_OK;
+	}
+
+	if (!count)
+	{
+		SendClientMessageEx(playerID, COLOR_ERROR, 427);
+		return COMMAND_ERROR;
+	}
+
+	if (count > 1)
+	{
+		format(PVar:playerID[OBJEDITOR_FILENAME], PVAR_OBJEDITOR_FILENAME, "%s", filename);
+		CreateDialog(playerID, "AddObject", DIALOG_STYLE_LIST, LanguageString(playerID, 202), objectList, LanguageString(playerID, 170), LanguageString(playerID, 165));
 	}
 	else
 	{
-		return COMMAND_ERROR;
+		AddObject(playerID, modelID, filename);
 	}
+
+	return COMMAND_OK;
 }

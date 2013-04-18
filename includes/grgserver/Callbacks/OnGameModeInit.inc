@@ -91,6 +91,37 @@ public OnGameModeInit()
 		}
 	}
 
+	print("* Loading object models...");
+	if (fexist(FILE_OBJECTMODELS))
+	{
+		new File:objectModelsFile = fopen(FILE_OBJECTMODELS, io_read);
+		if (objectModelsFile)
+		{
+			new objectModelsCount;
+			new line[256];
+			while (fread(objectModelsFile, line))
+			{
+				new modelID;
+				new name[STRINGLENGTH_OBJECTMODELNAME];
+				if (sscanf(line, "p\tds", modelID, name))
+				{
+					print("  File format error!");
+				}
+				else
+				{
+					format(objectModels[modelID], STRINGLENGTH_OBJECTMODELNAME, name);
+					objectModelsCount++;
+				}
+			}
+			fclose(objectModelsFile);
+			printf("  %d object models loaded", objectModelsCount);
+		}
+	}
+	else
+	{
+		print("  Object models file does not exist!");
+	}
+
 	print("* Loading weapons...");
 	if (fexist(FILE_WEAPONS))
 	{

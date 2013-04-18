@@ -7,6 +7,7 @@
 #define TIMER_FIX_PERFORMANCE_CHECKS false
 
 // Custom includes
+#include <filemanager>
 #include <formatnumber>
 #include <geoip>
 #include <MD5>

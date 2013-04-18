@@ -1,6 +1,6 @@
-CheckGatePermission(playerID, gateObjectID)
+CheckGatePermission(playerID, objectID)
 {
-	switch (gateObjectID)
+	switch (objectID)
 	{
 		case 310:// Los Santos Police Department area
 		{

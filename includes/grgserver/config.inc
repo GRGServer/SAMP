@@ -36,6 +36,7 @@
 #define FILE_COMMANDS					"commands.txt"
 #define FILE_LANGUAGESTRINGS				"languagestrings.xml"
 #define FILE_LASTCHANGES				"svn_changes"
+#define FILE_OBJECTMODELS				"objectmodels.dat"
 #define FILE_RUNNINGREVISION				"running_revision"
 #define FILE_SAVEINFO					"saved_info.txt"
 #define FILE_STABLEREVISION				"stable_revision"
@@ -94,11 +95,13 @@
 
 // Limits
 #define MAX_DISTANCECALCELEMENTS			4096
+#define MAX_DYNAMIC_OBJECTS				2000
 #define MAX_FUNCTION_NAME				32
 #define MAX_GPS_NODES					500
 #define MAX_MONEY					100000.00
 #define MAX_NAVITARGETS					10// Number of selectable navi targets
 #define MAX_NPC_MULTIRECS				10// Number of recordings asigned to a MultiRec NPC
+#define MAX_OBJECTMODELID				20000// Highest object model ID = Size of objectModels array because the array index is the modelID
 
 
 // MySQL database credentials for public server
@@ -175,7 +178,8 @@
 #define STRINGLENGTH_LANGUAGESTRING			256
 #define STRINGLENGTH_LOCATION				100
 #define STRINGLENGTH_NUMBERPLATE			8
-#define STRINGLENGTH_OBJECTNAME				20
+#define STRINGLENGTH_OBJECTFILENAME			50
+#define STRINGLENGTH_OBJECTMODELNAME			20
 #define STRINGLENGTH_PICKUPTYPE				20
 #define STRINGLENGTH_PROPERTYTYPE			10
 #define STRINGLENGTH_RADIOSTATIONNAME			30

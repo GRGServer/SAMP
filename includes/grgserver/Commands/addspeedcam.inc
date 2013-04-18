@@ -6,11 +6,10 @@ PCMD:addspeedcam[MAPPER](playerID, params[], 486)
 		CmdUsageMsg(playerID, "addspeedcam", "SpeedLimit");
 		return COMMAND_USAGE;
 	}
-	new objectID = AddObject(playerID, 18880);
+	new objectID = AddObject(playerID, 18880, "speedcameras");
 	if (objectID)
 	{
-		new id = Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID);
-		MySQLQuery("INSERT INTO `speedcameras` (`objectId`, `speedLimit`) VALUES('%d', '%d')", id, speedLimit);
+		MySQLQuery("INSERT INTO `speedcameras` (`objectId`, `speedLimit`) VALUES('%d', '%d')", dynamicObjects[objectID - 1][OBJECT_ID], speedLimit);
 		return COMMAND_OK;
 	}
 	return COMMAND_ERROR;

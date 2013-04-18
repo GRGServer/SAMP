@@ -119,11 +119,12 @@ enum
 }
 
 
-// Object types (If object is not read from database like neon lights) -> Must be negative because ID from database is positive!
+// Object types
 enum
 {
-	OBJECTTYPE_FLYCAMDUMMY = -1,
-	OBJECTTYPE_NEONLIGHT = -2
+	OBJECTTYPE_FLYCAMDUMMY,
+	OBJECTTYPE_NEONLIGHT,
+	OBJECTTYPE_NORMAL
 }
 
 

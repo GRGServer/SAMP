@@ -6,30 +6,38 @@ PCMD:markobjects[MAPPER](playerID, params[], 482)
 		CmdUsageMsg(playerID, "markobjects", "ModelID");
 		return COMMAND_USAGE;
 	}
-	MySQLQuery("SELECT * FROM `objects` WHERE `modelId` = '%d'", modelID);
-	mysql_store_result();
-	new rows = mysql_num_rows();
-	if (rows)
+
+	new count;
+	new dynamicObjectsCount = CountDynamicObjects();
+	new Float:foundObjects[100][3];
+	Count(arrayIndex, dynamicObjectsCount)
 	{
-		if (rows > 100)
+		if (Streamer_GetIntData(STREAMER_TYPE_OBJECT, arrayIndex + 1, E_STREAMER_MODEL_ID) == modelID)
 		{
-			rows = 100;
+			foundObjects[count] = dynamicObjects[arrayIndex][OBJECT_POS];
+			count++;
+			if (count >= 100)
+			{
+				break;
+			}
 		}
+	}
+
+	if (count)
+	{
 		Count(iconID, 100)
 		{
 			RemovePlayerMapIcon(playerID, iconID);
 		}
-		Count(iconID, rows)
+
+		Count(iconID, count)
 		{
-			FetchMySQLRow();
-			SetPlayerMapIcon(playerID, iconID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), 0, COLOR_MARKER_OBJECT, MAPICON_GLOBAL);
+			SetPlayerMapIcon(playerID, iconID, foundObjects[iconID][0], foundObjects[iconID][1], foundObjects[iconID][2], 0, COLOR_MARKER_OBJECT, MAPICON_GLOBAL);
 		}
+
+		return COMMAND_OK;
 	}
-	mysql_free_result();
-	if (!rows)
-	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 425);
-		return COMMAND_ERROR;
-	}
-	return COMMAND_OK;
+
+	SendClientMessageEx(playerID, COLOR_ERROR, 425);
+	return COMMAND_ERROR;
 }
