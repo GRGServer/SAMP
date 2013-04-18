@@ -77,6 +77,7 @@ LoadObjectsFromFile(filename[])
 		new XMLNode:moveNode = XML_GetFirstChild(objectNode, "move");
 
 		new Float:moveSpeed;
+		new moveTimeout;
 
 		if (moveNode)
 		{
@@ -99,6 +100,10 @@ LoadObjectsFromFile(filename[])
 			// Read move speed
 			XML_GetAttribute(moveNode, "speed", value);
 			moveSpeed = floatstr(value);
+
+			// Read move timeout
+			XML_GetAttribute(moveNode, "timeout", value);
+			moveTimeout = strval(value);
 		}
 
 		new objectID = CreateDynamicObject(modelId, position[0], position[1], position[2], rotation[0], rotation[1], rotation[2], -1, interior, -1, STREAMER_OBJECTDISTANCE);
@@ -116,6 +121,7 @@ LoadObjectsFromFile(filename[])
 		dynamicObjects[arrayIndex][OBJECT_MOVEPOS] = movePosition;
 		dynamicObjects[arrayIndex][OBJECT_MOVEROT] = moveRotation;
 		dynamicObjects[arrayIndex][OBJECT_MOVESPEED] = moveSpeed;
+		dynamicObjects[arrayIndex][OBJECT_MOVETIMEOUT] = moveTimeout;
 
 		if (id >= nextDynamicObjectID)
 		{

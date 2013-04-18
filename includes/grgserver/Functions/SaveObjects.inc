@@ -75,6 +75,9 @@ SaveObjects(filename[])
 
 				Format:value("%f", dynamicObjects[arrayIndex][OBJECT_MOVESPEED]);
 				XML_SetAttribute(moveNode, "speed", value);
+
+				Format:value("%d", dynamicObjects[arrayIndex][OBJECT_MOVETIMEOUT]);
+				XML_SetAttribute(moveNode, "timeout", value);
 			}
 		}
 	}

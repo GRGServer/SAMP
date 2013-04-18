@@ -1866,7 +1866,7 @@
 	</string>
 	<string id="465">
 		<en>The target position has been saved. You can test the movement using /moveobject %d 1.</en>
-		<de>Die Zielposition wurde gespeichert. Du kannst die Bewegug mit /moveobject %d 1 testen.</de>
+		<de>Die Zielposition wurde gespeichert. Du kannst die Bewegung mit /moveobject %d 1 testen.</de>
 	</string>
 	<string id="466">
 		<en>No target position set! Use /setobjectmovepos to set the position.</en>

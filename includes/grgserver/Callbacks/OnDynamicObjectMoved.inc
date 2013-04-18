@@ -8,38 +8,30 @@
  * </param>
  *
  * <remarks>
- *	The timer MoveObject gets called if there is an entry for the object in the <b>movedobjects</b> table and a timeout is defined.
+ *	The timer MoveObject gets called if a timeout is defined for the object and the current position is the move target position
  * </remarks>
  */
 
 public OnDynamicObjectMoved(objectid)
 {
-	new dbObjectID = Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectid, E_STREAMER_EXTRA_ID);
-	if (dbObjectID <= 0)
+	new arrayIndex = objectid - 1;
+
+	new Float:position[3];
+	new Float:rotation[3];
+
+	GetDynamicObjectPos(objectid, position[0], position[1], position[2]);
+	GetDynamicObjectRot(objectid, rotation[0], rotation[1], rotation[2]);
+
+	if (dynamicObjects[arrayIndex][OBJECT_MOVETIMEOUT])
 	{
-		return true;
+		if (dynamicObjects[arrayIndex][OBJECT_MOVEPOS][0] == position[0] && dynamicObjects[arrayIndex][OBJECT_MOVEPOS][1] == position[1] && dynamicObjects[arrayIndex][OBJECT_MOVEPOS][2] == position[2])
+		{
+			if (dynamicObjects[arrayIndex][OBJECT_MOVEROT][0] == rotation[0] && dynamicObjects[arrayIndex][OBJECT_MOVEROT][1] == rotation[1] && dynamicObjects[arrayIndex][OBJECT_MOVEROT][2] == rotation[2])
+			{
+				SetTimerEx("Timer_MoveObject", dynamicObjects[arrayIndex][OBJECT_MOVETIMEOUT], false, "dd", objectid, false);
+			}
+		}
 	}
-	new Float:posX;
-	new Float:posY;
-	new Float:posZ;
-	new Float:rotX;
-	new Float:rotY;
-	new Float:rotZ;
-	GetDynamicObjectPos(objectid, posX, posY, posZ);
-	GetDynamicObjectRot(objectid, rotX, rotY, rotZ);
-	MySQLQuery("SELECT * FROM `moveobjects` WHERE `objectId` = '%d'", dbObjectID);
-	mysql_store_result();
-	new Float:movedPosX = floatstr(GetMySQLField("posX"));
-	new Float:movedPosY = floatstr(GetMySQLField("posY"));
-	new Float:movedPosZ = floatstr(GetMySQLField("posZ"));
-	new Float:movedRotX = floatstr(GetMySQLField("rotX"));
-	new Float:movedRotY = floatstr(GetMySQLField("rotY"));
-	new Float:movedRotZ = floatstr(GetMySQLField("rotZ"));
-	new timeout = strval(GetMySQLField("timeout"));
-	mysql_free_result();
-	if (timeout && movedPosX == posX && movedPosY == posY && movedPosZ == posZ && movedRotX == rotX && movedRotY == rotY && movedRotZ == rotZ)
-	{
-		SetTimerEx("Timer_MoveObject", timeout, false, "dd", dbObjectID, false);
-	}
+
 	return true;
 }
