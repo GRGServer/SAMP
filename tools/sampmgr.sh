@@ -122,6 +122,7 @@ function showActions
 	echo "  Available actions:"
 	echo "    ban                  Ban a player (Use --player to specify the player ID)"
 	echo "    build                Run actions 'update', 'compile' and 'generatecmdlist' and write update_log file"
+	echo "    commit               Commit scriptfiles changes to SVN (Only works in environment 'dev')"
 	echo "    compile              Compile all filterscripts, gamemodes and npcmodes"
 	echo "    generatecmdlist      Parse command script files and generate command list used by in-game command /cmds"
 	echo "    gmx                  Restart currently running gamemode"
@@ -249,9 +250,44 @@ case "$ACTION" in
 		$0 --environment $ENVIRONMENT --action compile
 		$0 --environment $ENVIRONMENT --action generatecmdlist
 
-		svn log -l 1 $SAMPPATH  --non-interactive --username $SVNUSERNAME --password $SVNPASSWORD > $SAMPPATH/scriptfiles/update_log
+		svn log -l 1 $SAMPPATH --non-interactive --username $SVNUSERNAME --password $SVNPASSWORD > $SAMPPATH/scriptfiles/update_log
 
 		chown -R samp:samp $SAMPPATH
+	;;
+
+	commit)
+		if [ "$ENVIRONMENT" != "dev" ]; then
+			echo "Commit is only available in environment 'dev'!"
+			exit 1
+		fi
+
+		svn add $SAMPPATH/scriptfiles/objects/* 2> /dev/null
+
+		if [ "`svn status $SAMPPATH/scriptfiles --non-interactive --username $SVNUSERNAME --password $SVNPASSWORD`" = "" ]; then
+			echo "No changes"
+			exit 1
+		fi
+
+		echo "Changes:"
+		svn status $SAMPPATH/scriptfiles --non-interactive --username $SVNUSERNAME --password $SVNPASSWORD
+		echo ""
+
+		read -p "Enter your SVN username: " USERNAME
+
+		if [ "$USERNAME" = "" ]; then
+			echo "No username entered!"
+			exit 1
+		fi
+
+		read -p "Enter your SVN password: " -s PASSWORD
+		echo ""
+
+		if [ "$PASSWORD" = "" ]; then
+			echo "No password entered!"
+			exit 1
+		fi
+
+		svn commit $SAMPPATH/scriptfiles --username $USERNAME --password $PASSWORD
 	;;
 
 	compile)
