@@ -25,52 +25,56 @@ SaveObjects(filename[])
 			new XMLNode:objectNode = XML_CreateNode(rootNode, "object");
 
 			Format:value("%d", dynamicObjects[arrayIndex][OBJECT_ID]);
-			XML_CreateNode(XML_CreateNode(objectNode, "id"), value, e_XML_NODE_TEXT);
+			XML_SetAttribute(objectNode, "id", value);
 
 			Format:value("%d", Streamer_GetIntData(STREAMER_TYPE_OBJECT, arrayIndex + 1, E_STREAMER_MODEL_ID));
-			XML_CreateNode(XML_CreateNode(objectNode, "modelId"), value, e_XML_NODE_TEXT);
+			XML_SetAttribute(objectNode, "model", value);
 
 			Format:value("%d", Streamer_GetIntData(STREAMER_TYPE_OBJECT, arrayIndex + 1, E_STREAMER_INTERIOR_ID));
-			XML_CreateNode(XML_CreateNode(objectNode, "interior"), value, e_XML_NODE_TEXT);
+			XML_SetAttribute(objectNode, "interior", value);
 
-			new XMLNode:positionNode = XML_CreateNode(objectNode, "position");
 			Format:value("%f", dynamicObjects[arrayIndex][OBJECT_POS][0]);
-			XML_CreateNode(XML_CreateNode(positionNode, "x"), value, e_XML_NODE_TEXT);
-			Format:value("%f", dynamicObjects[arrayIndex][OBJECT_POS][1]);
-			XML_CreateNode(XML_CreateNode(positionNode, "y"), value, e_XML_NODE_TEXT);
-			Format:value("%f", dynamicObjects[arrayIndex][OBJECT_POS][2]);
-			XML_CreateNode(XML_CreateNode(positionNode, "z"), value, e_XML_NODE_TEXT);
+			XML_SetAttribute(objectNode, "posX", value);
 
-			new XMLNode:rotationNode = XML_CreateNode(objectNode, "rotation");
+			Format:value("%f", dynamicObjects[arrayIndex][OBJECT_POS][1]);
+			XML_SetAttribute(objectNode, "posY", value);
+
+			Format:value("%f", dynamicObjects[arrayIndex][OBJECT_POS][2]);
+			XML_SetAttribute(objectNode, "posZ", value);
+
 			Format:value("%f", dynamicObjects[arrayIndex][OBJECT_ROT][0]);
-			XML_CreateNode(XML_CreateNode(rotationNode, "x"), value, e_XML_NODE_TEXT);
+			XML_SetAttribute(objectNode, "rotX", value);
+
 			Format:value("%f", dynamicObjects[arrayIndex][OBJECT_ROT][1]);
-			XML_CreateNode(XML_CreateNode(rotationNode, "y"), value, e_XML_NODE_TEXT);
+			XML_SetAttribute(objectNode, "rotY", value);
+
 			Format:value("%f", dynamicObjects[arrayIndex][OBJECT_ROT][2]);
-			XML_CreateNode(XML_CreateNode(rotationNode, "z"), value, e_XML_NODE_TEXT);
+			XML_SetAttribute(objectNode, "rotZ", value);
 
 			if (dynamicObjects[arrayIndex][OBJECT_MOVESPEED])
 			{
 				new XMLNode:moveNode = XML_CreateNode(objectNode, "move");
 
-				positionNode = XML_CreateNode(moveNode, "position");
 				Format:value("%f", dynamicObjects[arrayIndex][OBJECT_MOVEPOS][0]);
-				XML_CreateNode(XML_CreateNode(positionNode, "x"), value, e_XML_NODE_TEXT);
-				Format:value("%f", dynamicObjects[arrayIndex][OBJECT_MOVEPOS][1]);
-				XML_CreateNode(XML_CreateNode(positionNode, "y"), value, e_XML_NODE_TEXT);
-				Format:value("%f", dynamicObjects[arrayIndex][OBJECT_MOVEPOS][2]);
-				XML_CreateNode(XML_CreateNode(positionNode, "z"), value, e_XML_NODE_TEXT);
+				XML_SetAttribute(moveNode, "posX", value);
 
-				rotationNode = XML_CreateNode(moveNode, "rotation");
+				Format:value("%f", dynamicObjects[arrayIndex][OBJECT_MOVEPOS][1]);
+				XML_SetAttribute(moveNode, "posY", value);
+
+				Format:value("%f", dynamicObjects[arrayIndex][OBJECT_MOVEPOS][2]);
+				XML_SetAttribute(moveNode, "posZ", value);
+
 				Format:value("%f", dynamicObjects[arrayIndex][OBJECT_MOVEROT][0]);
-				XML_CreateNode(XML_CreateNode(rotationNode, "x"), value, e_XML_NODE_TEXT);
+				XML_SetAttribute(moveNode, "rotX", value);
+
 				Format:value("%f", dynamicObjects[arrayIndex][OBJECT_MOVEROT][1]);
-				XML_CreateNode(XML_CreateNode(rotationNode, "y"), value, e_XML_NODE_TEXT);
+				XML_SetAttribute(moveNode, "rotY", value);
+
 				Format:value("%f", dynamicObjects[arrayIndex][OBJECT_MOVEROT][2]);
-				XML_CreateNode(XML_CreateNode(rotationNode, "z"), value, e_XML_NODE_TEXT);
+				XML_SetAttribute(moveNode, "rotZ", value);
 
 				Format:value("%f", dynamicObjects[arrayIndex][OBJECT_MOVESPEED]);
-				XML_CreateNode(XML_CreateNode(moveNode, "speed"), value, e_XML_NODE_TEXT);
+				XML_SetAttribute(moveNode, "speed", value);
 			}
 		}
 	}

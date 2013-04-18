@@ -49,31 +49,29 @@ LoadObjectsFromFile(filename[])
 		new Float:movePosition[3];
 		new Float:moveRotation[3];
 
-		XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(objectNode, "id")), value);
+		XML_GetAttribute(objectNode, "id", value);
 		new id = strval(value);
 
-		XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(objectNode, "modelId")), value);
+		XML_GetAttribute(objectNode, "model", value);
 		new modelId = strval(value);
 
-		XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(objectNode, "interior")), value);
+		XML_GetAttribute(objectNode, "interior", value);
 		new interior = strval(value);
 
 		// Read position
-		new XMLNode:positionNode = XML_GetFirstChild(objectNode, "position");
-		XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(positionNode, "x")), value);
+		XML_GetAttribute(objectNode, "posX", value);
 		position[0] = floatstr(value);
-		XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(positionNode, "y")), value);
+		XML_GetAttribute(objectNode, "posY", value);
 		position[1] = floatstr(value);
-		XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(positionNode, "z")), value);
+		XML_GetAttribute(objectNode, "posZ", value);
 		position[2] = floatstr(value);
 
 		// Read rotation
-		new XMLNode:rotationNode = XML_GetFirstChild(objectNode, "rotation");
-		XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(rotationNode, "x")), value);
+		XML_GetAttribute(objectNode, "rotX", value);
 		rotation[0] = floatstr(value);
-		XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(rotationNode, "y")), value);
+		XML_GetAttribute(objectNode, "rotY", value);
 		rotation[1] = floatstr(value);
-		XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(rotationNode, "z")), value);
+		XML_GetAttribute(objectNode, "rotZ", value);
 		rotation[2] = floatstr(value);
 
 		new XMLNode:moveNode = XML_GetFirstChild(objectNode, "move");
@@ -83,25 +81,23 @@ LoadObjectsFromFile(filename[])
 		if (moveNode)
 		{
 			// Read move target position
-			positionNode = XML_GetFirstChild(moveNode, "position");
-			XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(positionNode, "x")), value);
+			XML_GetAttribute(moveNode, "posX", value);
 			movePosition[0] = floatstr(value);
-			XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(positionNode, "y")), value);
+			XML_GetAttribute(moveNode, "posY", value);
 			movePosition[1] = floatstr(value);
-			XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(positionNode, "z")), value);
+			XML_GetAttribute(moveNode, "posZ", value);
 			movePosition[2] = floatstr(value);
 
 			// Read move target rotation
-			rotationNode = XML_GetFirstChild(moveNode, "rotation");
-			XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(rotationNode, "x")), value);
+			XML_GetAttribute(moveNode, "rotX", value);
 			moveRotation[0] = floatstr(value);
-			XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(rotationNode, "y")), value);
+			XML_GetAttribute(moveNode, "rotY", value);
 			moveRotation[1] = floatstr(value);
-			XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(rotationNode, "z")), value);
+			XML_GetAttribute(moveNode, "rotZ", value);
 			moveRotation[2] = floatstr(value);
 
 			// Read move speed
-			XML_GetValue(XML_GetFirstChild(XML_GetFirstChild(moveNode, "speed")), value);
+			XML_GetAttribute(moveNode, "speed", value);
 			moveSpeed = floatstr(value);
 		}
 
