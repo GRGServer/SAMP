@@ -3,7 +3,7 @@ ShowDialog:UpgradeVehicle(playerID)
 	new options[1024];
 	AddLine(options, LanguageString(playerID, "395"));
 	AddLine(options, LanguageString(playerID, "375"));
-	CreateDialog(playerID, "UpgradeVehicle", DIALOG_STYLE_LIST, LanguageString(playerID, "374"), options, LanguageString(playerID, "177"), LanguageString(playerID, "165"));
+	CreateDialog(playerID, "UpgradeVehicle", DIALOG_STYLE_LIST, LanguageString(playerID, "374"), options, LanguageString(playerID, "NEXT"), LanguageString(playerID, "165"));
 }
 
 DialogResponse:UpgradeVehicle(playerID, response, listItem, inputText[])

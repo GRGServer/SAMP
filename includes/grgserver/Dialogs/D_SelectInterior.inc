@@ -1,40 +1,41 @@
-ShowDialog:SelectInterior(playerID, dialogID, startID)
+ShowDialog:SelectInterior(playerID, dialogID, firstPage = true)
 {
-	new interiors[2048];
-	new page;
-	if (startID)
+	new interiorList[2048];
+	new firstItem;
+	new lastItem;
+
+	if (firstPage)
 	{
-		page = 2;
+		firstItem = 1;// The first (0) item is the world which is not a real interior
+		lastItem = sizeof(interiors) / 2 - 1;
 	}
 	else
 	{
-		page = 1;
+		firstItem = sizeof(interiors) / 2;
+		lastItem = sizeof(interiors) - 1;
 	}
-	MySQLQuery("SELECT `name` FROM `interiors` ORDER BY `name` ASC LIMIT %d,75", startID);
-	mysql_store_result();
-	while (FetchMySQLRow())
+
+	for (new interiorID = firstItem; interiorID <= lastItem; interiorID++)
 	{
-		if (strlen(interiors))
+		if (strlen(interiorList))
 		{
-			Format:interiors("%s\n", interiors);
+			Format:interiorList("%s\n", interiorList);
 		}
-		Format:interiors("%s%s", interiors, GetMySQLField("name"));
+		Format:interiorList("%s%s", interiorList, interiors[interiorID][INTERIOR_NAME]);
 	}
-	mysql_free_result();
-	switch (page)
+
+	if (firstPage)
 	{
-		case 1:
-		{
-			Format:interiors("%s\n%s", interiors, LanguageString(playerID, "177"));
-		}
-		case 2:
-		{
-			Format:interiors("%s\n%s", interiors, LanguageString(playerID, "177"));
-		}
+		Format:interiorList("%s\n%s", interiorList, LanguageString(playerID, "NEXT"));
 	}
-	FormatNew:string[30]("%s (%s %d)", LanguageString(playerID, "247"), LanguageString(playerID, "248"), page);
+	else
+	{
+		Format:interiorList("%s\n%s", interiorList, LanguageString(playerID, "BACK"));
+	}
+
+	FormatNew:string[30]("%s", LanguageString(playerID, "247"));
 	PVar:playerID[SELECTINTERIOR_ID] = dialogID;
-	CreateDialog(playerID, "SelectInterior", DIALOG_STYLE_LIST, string, interiors, "OK", LanguageString(playerID, "165"));
+	CreateDialog(playerID, "SelectInterior", DIALOG_STYLE_LIST, string, interiorList, "OK", LanguageString(playerID, "165"));
 }
 
 DialogResponse:SelectInterior(playerID, response, listItem, inputText[])
@@ -44,17 +45,25 @@ DialogResponse:SelectInterior(playerID, response, listItem, inputText[])
 		OnInteriorDialogSelect(playerID,  PVar:playerID[SELECTINTERIOR_ID], 0);
 		return true;
 	}
-	if (IsStr(inputText, LanguageString(playerID, "171")))
+	if (IsStr(inputText, LanguageString(playerID, "BACK")))
 	{
-		ShowDialog:SelectInterior(playerID,  PVar:playerID[SELECTINTERIOR_ID], 0);
+		ShowDialog:SelectInterior(playerID,  PVar:playerID[SELECTINTERIOR_ID], true);
 		return true;
 	}
-	if (IsStr(inputText, LanguageString(playerID, "177")))
+	if (IsStr(inputText, LanguageString(playerID, "NEXT")))
 	{
-		ShowDialog:SelectInterior(playerID,  PVar:playerID[SELECTINTERIOR_ID], 75);
+		ShowDialog:SelectInterior(playerID,  PVar:playerID[SELECTINTERIOR_ID], false);
 		return true;
 	}
-	new interiorID = strval(GetMySQLValue("interiors", "id", "name", inputText));
-	OnInteriorDialogSelect(playerID,  PVar:playerID[SELECTINTERIOR_ID], interiorID);
-	return true;
+
+	Foreach(interiorID, interiors)
+	{
+		if (!strcmp(interiors[interiorID][INTERIOR_NAME], inputText))
+		{
+			OnInteriorDialogSelect(playerID,  PVar:playerID[SELECTINTERIOR_ID], interiorID);
+			return true;
+		}
+	}
+
+	return false;
 }

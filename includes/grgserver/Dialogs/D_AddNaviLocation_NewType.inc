@@ -1,7 +1,7 @@
 ShowDialog:AddNaviLocation_NewType(playerID)
 {
 	FormatNew:string[256](LanguageString(playerID, "382"), FILE_LANGUAGESTRINGS);
-	CreateDialog(playerID, "AddNaviLocation_NewType", DIALOG_STYLE_INPUT, LanguageString(playerID, "378"), string, "OK", LanguageString(playerID, "171"));
+	CreateDialog(playerID, "AddNaviLocation_NewType", DIALOG_STYLE_INPUT, LanguageString(playerID, "378"), string, "OK", LanguageString(playerID, "BACK"));
 }
 
 DialogResponse:AddNaviLocation_NewType(playerID, response, listItem, inputText[])

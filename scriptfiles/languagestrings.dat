@@ -679,7 +679,7 @@ de {Gebe den Name für die Immobilie ein.};
 en {Create};
 de {Erstellen};
 
-[171]
+[BACK]
 en {Back};
 de {Zurück};
 
@@ -703,7 +703,7 @@ de {Haus};
 en {Police};
 de {Polizei};
 
-[177]
+[NEXT]
 en {Next};
 de {Weiter};
 

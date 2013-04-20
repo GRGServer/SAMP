@@ -4,7 +4,7 @@ ShowDialog:FriendRequests_Options(playerID, friendUserID)
 	AddLine(list, LanguageString(playerID, "164"));// Accept
 	AddLine(list, LanguageString(playerID, "499"));// Decline
 	PVar:playerID[FRIENDUSERID] = friendUserID;
-	CreateDialog(playerID, "FriendRequests_Options", DIALOG_STYLE_LIST, LanguageString(playerID, "496"), list, "OK", LanguageString(playerID, "171"));
+	CreateDialog(playerID, "FriendRequests_Options", DIALOG_STYLE_LIST, LanguageString(playerID, "496"), list, "OK", LanguageString(playerID, "BACK"));
 }
 
 DialogResponse:FriendRequests_Options(playerID, response, listItem, inputText[])

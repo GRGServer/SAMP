@@ -10,7 +10,7 @@ ShowDialog:ChatMode_FriendList(playerID)
 		{
 			AddLine(list, GetMySQLField("username"));
 		}
-		CreateDialog(playerID, "ChatMode_FriendList", DIALOG_STYLE_LIST, LanguageString(playerID, "502"), list, "OK", LanguageString(playerID, "171"));
+		CreateDialog(playerID, "ChatMode_FriendList", DIALOG_STYLE_LIST, LanguageString(playerID, "502"), list, "OK", LanguageString(playerID, "BACK"));
 	}
 	mysql_free_result();
 	if (!rows)

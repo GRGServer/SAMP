@@ -6,7 +6,7 @@ ShowDialog:AddProperty_Type(playerID)
 	AddLine(options, LanguageString(playerID, "175"));
 	AddLine(options, LanguageString(playerID, "397"));
 	AddLine(options, LanguageString(playerID, "176"));
-	CreateDialog(playerID, "AddProperty_Type", DIALOG_STYLE_LIST, LanguageString(playerID, "172"), options, LanguageString(playerID, "177"), LanguageString(playerID, "165"));
+	CreateDialog(playerID, "AddProperty_Type", DIALOG_STYLE_LIST, LanguageString(playerID, "172"), options, LanguageString(playerID, "NEXT"), LanguageString(playerID, "165"));
 }
 
 DialogResponse:AddProperty_Type(playerID, response, listItem, inputText[])

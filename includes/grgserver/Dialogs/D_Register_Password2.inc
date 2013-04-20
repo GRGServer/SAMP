@@ -1,6 +1,6 @@
 ShowDialog:Register_Password2(playerID)
 {
-	CreateDialog(playerID, "Register_Password2", DIALOG_STYLE_PASSWORD, LanguageString(playerID, "251"), LanguageString(playerID, "243"), LanguageString(playerID, "177"), LanguageString(playerID, "171"));
+	CreateDialog(playerID, "Register_Password2", DIALOG_STYLE_PASSWORD, LanguageString(playerID, "251"), LanguageString(playerID, "243"), LanguageString(playerID, "NEXT"), LanguageString(playerID, "BACK"));
 }
 
 DialogResponse:Register_Password2(playerID, response, listItem, inputText[])

@@ -8,6 +8,7 @@
 // Structures
 #include <grgserver\Structures\enum_cameraCut.inc>
 #include <grgserver\Structures\enum_distanceCalc.inc>
+#include <grgserver\Structures\enum_interior.inc>
 #include <grgserver\Structures\enum_naviLocation.inc>
 #include <grgserver\Structures\enum_naviTarget.inc>
 #include <grgserver\Structures\enum_neonType.inc>
@@ -405,7 +406,6 @@
 #include <grgserver\Commands\setpos.inc>
 #include <grgserver\Commands\setpropertycam.inc>
 #include <grgserver\Commands\setsell.inc>
-#include <grgserver\Commands\setspawn.inc>
 #include <grgserver\Commands\settplink.inc>
 #include <grgserver\Commands\showinterior.inc>
 #include <grgserver\Commands\showorder.inc>

@@ -13,7 +13,7 @@ ShowDialog:UpgradeVehicle_Light(playerID)
 	AddLine(options, LanguageString(playerID, "371"));
 	AddLine(options, LanguageString(playerID, "372"));
 	AddLine(options, LanguageString(playerID, "373"));
-	CreateDialog(playerID, "UpgradeVehicle_Light", DIALOG_STYLE_LIST, LanguageString(playerID, "376"), options, "OK", LanguageString(playerID, "171"));
+	CreateDialog(playerID, "UpgradeVehicle_Light", DIALOG_STYLE_LIST, LanguageString(playerID, "376"), options, "OK", LanguageString(playerID, "BACK"));
 }
 
 DialogResponse:UpgradeVehicle_Light(playerID, response, listItem, inputText[])

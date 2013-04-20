@@ -1,17 +1,14 @@
 TeleportToInterior(playerID, interiorID)
 {
 	new result;
-	MySQLQuery("SELECT * FROM `interiors` WHERE `id` = '%d'", interiorID);
-	mysql_store_result();
-	if (strval(GetMySQLField("id")))
+	if (interiorID > 0 && interiorID < sizeof(interiors))
 	{
-		SetPlayerPosEx(playerID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")));
-		SetPlayerFacingAngle(playerID, floatstr(GetMySQLField("angle")));
-		SetPlayerInterior(playerID, strval(GetMySQLField("interior")));
+		SetPlayerPosEx(playerID, interiors[interiorID][INTERIOR_POS][0], interiors[interiorID][INTERIOR_POS][1], interiors[interiorID][INTERIOR_POS][2]);
+		SetPlayerFacingAngle(playerID, interiors[interiorID][INTERIOR_ANGLE]);
+		SetPlayerInterior(playerID, interiors[interiorID][INTERIOR_ID]);
 		SetCameraBehindPlayer(playerID);
 		PVar:playerID[CURRENTINTERIOR] = interiorID;
 		result = true;
 	}
-	mysql_free_result();
 	return result;
 }

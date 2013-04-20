@@ -1,6 +1,6 @@
 ShowDialog:ChangePassword_Step2(playerID)
 {
-	CreateDialog(playerID, "ChangePassword_Step2", DIALOG_STYLE_PASSWORD, LanguageString(playerID, "240"), LanguageString(playerID, "242"), LanguageString(playerID, "177"), LanguageString(playerID, "171"));
+	CreateDialog(playerID, "ChangePassword_Step2", DIALOG_STYLE_PASSWORD, LanguageString(playerID, "240"), LanguageString(playerID, "242"), LanguageString(playerID, "NEXT"), LanguageString(playerID, "BACK"));
 }
 
 DialogResponse:ChangePassword_Step2(playerID, response, listItem, inputText[])

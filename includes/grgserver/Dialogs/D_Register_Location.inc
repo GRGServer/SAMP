@@ -1,6 +1,6 @@
 ShowDialog:Register_Location(playerID)
 {
-	CreateDialog(playerID, "Register_Location", DIALOG_STYLE_INPUT, LanguageString(playerID, "258"), LanguageString(playerID, "259"), "OK", LanguageString(playerID, "171"));
+	CreateDialog(playerID, "Register_Location", DIALOG_STYLE_INPUT, LanguageString(playerID, "258"), LanguageString(playerID, "259"), "OK", LanguageString(playerID, "BACK"));
 }
 
 DialogResponse:Register_Location(playerID, response, listItem, inputText[])

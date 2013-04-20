@@ -9,7 +9,7 @@ ShowDialog:NaviTarget_TargetList(playerID)
 		}
 		AddLine:list("%d:\t%.2fm", listIndex + 1, naviTargets[playerID][listIndex][NAVITARGET_DISTANCE]);
 	}
-	CreateDialog(playerID, "NaviTarget_TargetList", DIALOG_STYLE_LIST, LanguageString(playerID, "247"), list, "OK", LanguageString(playerID, "171"));
+	CreateDialog(playerID, "NaviTarget_TargetList", DIALOG_STYLE_LIST, LanguageString(playerID, "247"), list, "OK", LanguageString(playerID, "BACK"));
 }
 
 DialogResponse:NaviTarget_TargetList(playerID, response, listItem, inputText[])

@@ -1,6 +1,6 @@
 ShowDialog:Register_Birthdate(playerID)
 {
-	CreateDialog(playerID, "Register_Birthdate", DIALOG_STYLE_INPUT, LanguageString(playerID, "253"), LanguageString(playerID, "254"), LanguageString(playerID, "177"), LanguageString(playerID, "171"));
+	CreateDialog(playerID, "Register_Birthdate", DIALOG_STYLE_INPUT, LanguageString(playerID, "253"), LanguageString(playerID, "254"), LanguageString(playerID, "NEXT"), LanguageString(playerID, "BACK"));
 }
 
 DialogResponse:Register_Birthdate(playerID, response, listItem, inputText[])

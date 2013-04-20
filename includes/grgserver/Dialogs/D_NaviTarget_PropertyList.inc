@@ -8,7 +8,7 @@ ShowDialog:NaviTarget_PropertyList(playerID, searchString[])
 		AddLine(list, GetMySQLField("name"));
 	}
 	mysql_free_result();
-	CreateDialog(playerID, "NaviTarget_PropertyList", DIALOG_STYLE_LIST, LanguageString(playerID, "419"), list, "OK", LanguageString(playerID, "171"));
+	CreateDialog(playerID, "NaviTarget_PropertyList", DIALOG_STYLE_LIST, LanguageString(playerID, "419"), list, "OK", LanguageString(playerID, "BACK"));
 }
 
 DialogResponse:NaviTarget_PropertyList(playerID, response, listItem, inputText[])
