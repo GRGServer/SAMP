@@ -363,7 +363,7 @@ CREATE TABLE `users` (
   `username` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
   `sessionId` varchar(32) NOT NULL,
-  `language` int(11) NOT NULL,
+  `language` varchar(2) NOT NULL,
   `gender` varchar(1) NOT NULL,
   `birthDate` date NOT NULL,
   `location` varchar(100) NOT NULL,
