@@ -28,30 +28,30 @@ CMD:givelicense(playerID, params[], 511)
 				{
 					if (newState)
 					{
-						SendClientMessageEx(targetPlayerID, COLOR_INFO, 513, languageStringID);
-						SendClientMessageEx(playerID, COLOR_INFO, 535, languageStringID, targetPlayerID);
+						SendClientMessageEx(targetPlayerID, COLOR_INFO, "513", languageStringID);
+						SendClientMessageEx(playerID, COLOR_INFO, "535", languageStringID, targetPlayerID);
 					}
 					else
 					{
-						SendClientMessageEx(targetPlayerID, COLOR_INFO, 537, languageStringID);
-						SendClientMessageEx(playerID, COLOR_INFO, 536, languageStringID, targetPlayerID);
+						SendClientMessageEx(targetPlayerID, COLOR_INFO, "537", languageStringID);
+						SendClientMessageEx(playerID, COLOR_INFO, "536", languageStringID, targetPlayerID);
 					}
 				}
 				else
 				{
 					if (newState)
 					{
-						SendClientMessageEx(playerID, COLOR_ERROR, 512, targetPlayerID, languageStringID);
+						SendClientMessageEx(playerID, COLOR_ERROR, "512", targetPlayerID, languageStringID);
 					}
 					else
 					{
-						SendClientMessageEx(playerID, COLOR_ERROR, 538, targetPlayerID, languageStringID);
+						SendClientMessageEx(playerID, COLOR_ERROR, "538", targetPlayerID, languageStringID);
 					}
 				}
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, 539, license);
+				SendClientMessageEx(playerID, COLOR_ERROR, "539", license);
 			}
 		}
 	}

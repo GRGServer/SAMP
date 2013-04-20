@@ -18,9 +18,9 @@ IsBanned(playerID, showMessage)
 	{
 		if (showMessage)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 473);
-			SendClientMessageEx(playerID, COLOR_INFO, 474, GetMySQLField("reason"));
-			SendClientMessageEx(playerID, COLOR_INFO, 475);
+			SendClientMessageEx(playerID, COLOR_ERROR, "473");
+			SendClientMessageEx(playerID, COLOR_INFO, "474", GetMySQLField("reason"));
+			SendClientMessageEx(playerID, COLOR_INFO, "475");
 		}
 	}
 	mysql_free_result();

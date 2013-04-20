@@ -56,7 +56,7 @@ PCMD:spawnvehicle[SPAWNVEHICLE](playerID, params[], 505)
 					}
 					default:
 					{
-						SendClientMessageEx(playerID, COLOR_ERROR, 58);
+						SendClientMessageEx(playerID, COLOR_ERROR, "58");
 						return COMMAND_ERROR;
 					}
 				}
@@ -74,8 +74,8 @@ PCMD:spawnvehicle[SPAWNVEHICLE](playerID, params[], 505)
 				}
 				PVar:playerID[SPAWNVEHICLE_COLOR1] = color1;
 				PVar:playerID[SPAWNVEHICLE_COLOR2] = color2;
-				FormatNew:title[64](LanguageString(playerID, 122), vehicleName);
-				CreateDialog(playerID, "SpawnVehicle", DIALOG_STYLE_LIST, title, vehicleList, LanguageString(playerID, 205), LanguageString(playerID, 165));
+				FormatNew:title[64](LanguageString(playerID, "122"), vehicleName);
+				CreateDialog(playerID, "SpawnVehicle", DIALOG_STYLE_LIST, title, vehicleList, LanguageString(playerID, "205"), LanguageString(playerID, "165"));
 				modelID = -1;
 			}
 			else

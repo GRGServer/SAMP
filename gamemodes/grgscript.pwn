@@ -10,6 +10,7 @@
 #include <filemanager>
 #include <formatnumber>
 #include <geoip>
+#include <imessage>
 #include <MD5>
 #include <md-sort>
 #include <mysql>

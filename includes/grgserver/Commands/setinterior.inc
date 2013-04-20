@@ -7,6 +7,6 @@ PCMD:setinterior[TELEPORT](playerID, params[], 348)
 		return COMMAND_USAGE;
 	}
 	SetPlayerInterior(playerID, interiorID);
-	SendClientMessageEx(playerID, COLOR_INFO, 349, interiorID);
+	SendClientMessageEx(playerID, COLOR_INFO, "349", interiorID);
 	return COMMAND_OK;
 }

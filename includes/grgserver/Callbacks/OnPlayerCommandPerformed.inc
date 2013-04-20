@@ -32,15 +32,15 @@ OnPlayerCommandPerformed(playerID, command[], parameters[], returnCode, isAlias)
 		case COMMAND_ERROR:
 		{
 			PlaySound(playerID, SOUND_COMMAND_ERROR);
-			SendClientMessageEx(playerID, COLOR_ERROR, 143);
+			SendClientMessageEx(playerID, COLOR_ERROR, "143");
 		}
 		case COMMAND_NOT_FOUND:
 		{
 			if (isAlias)
 			{
 				PlaySound(playerID, SOUND_COMMAND_ERROR);
-				SendClientMessageEx(playerID, COLOR_ERROR, 520, command);
-				SendClientMessageEx(playerID, COLOR_ERROR, 82);
+				SendClientMessageEx(playerID, COLOR_ERROR, "520", command);
+				SendClientMessageEx(playerID, COLOR_ERROR, "82");
 			}
 			else
 			{
@@ -73,18 +73,18 @@ OnPlayerCommandPerformed(playerID, command[], parameters[], returnCode, isAlias)
 				else
 				{
 					PlaySound(playerID, SOUND_COMMAND_ERROR);
-					SendClientMessageEx(playerID, COLOR_ERROR, 521);
-					SendClientMessageEx(playerID, COLOR_ERROR, 82);
+					SendClientMessageEx(playerID, COLOR_ERROR, "521");
+					SendClientMessageEx(playerID, COLOR_ERROR, "82");
 				}
 			}
 		}
 		case COMMAND_NOT_IN_VEHICLE:
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 146);
+			SendClientMessageEx(playerID, COLOR_ERROR, "146");
 		}
 		case COMMAND_NPC_ONLY:
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 145);
+			SendClientMessageEx(playerID, COLOR_ERROR, "145");
 		}
 		case COMMAND_OK:
 		{
@@ -97,16 +97,16 @@ OnPlayerCommandPerformed(playerID, command[], parameters[], returnCode, isAlias)
 		case COMMAND_PERMISSION_DENIED:
 		{
 			PlaySound(playerID, SOUND_COMMAND_DENIED);
-			SendClientMessageEx(playerID, COLOR_ERROR, 148);
+			SendClientMessageEx(playerID, COLOR_ERROR, "148");
 			printf("%s tried to execute /%s but has not the required permission!", GetPlayerNameEx(playerID), command);
 		}
 		case COMMAND_PLAYER_NOT_FOUND:
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 147);
+			SendClientMessageEx(playerID, COLOR_ERROR, "147");
 		}
 		case COMMAND_TELEPORTED:
 		{
-			SendClientMessageEx(playerID, COLOR_INFO, 144);
+			SendClientMessageEx(playerID, COLOR_INFO, "144");
 		}
 		case COMMAND_USAGE:
 		{

@@ -1,13 +1,13 @@
 // Constants
 #include <grgserver\compilerconstantscheck.inc>
 #include <grgserver\config.inc>
+#include <grgserver\localconfig.inc>
 #include <grgserver\constants.inc>
 #include <grgserver\macros.inc>
 
 // Structures
 #include <grgserver\Structures\enum_cameraCut.inc>
 #include <grgserver\Structures\enum_distanceCalc.inc>
-#include <grgserver\Structures\enum_languageString.inc>
 #include <grgserver\Structures\enum_naviLocation.inc>
 #include <grgserver\Structures\enum_naviTarget.inc>
 #include <grgserver\Structures\enum_neonType.inc>
@@ -114,7 +114,6 @@
 #include <grgserver\Functions\PlayRandomCameraCuts.inc>
 #include <grgserver\Functions\PlaySound.inc>
 #include <grgserver\Functions\ReconnectNPCs.inc>
-#include <grgserver\Functions\ReloadLanguageStrings.inc>
 #include <grgserver\Functions\ReloadObjects.inc>
 #include <grgserver\Functions\ReloadPermissions.inc>
 #include <grgserver\Functions\ReloadPickup.inc>
@@ -382,7 +381,6 @@
 #include <grgserver\Commands\recnpc.inc>
 #include <grgserver\Commands\reconnectnpcs.inc>
 #include <grgserver\Commands\refuel.inc>
-#include <grgserver\Commands\reloadlanguagestrings.inc>
 #include <grgserver\Commands\reloadobjects.inc>
 #include <grgserver\Commands\reloadpermissions.inc>
 #include <grgserver\Commands\reloadpickups.inc>
@@ -398,7 +396,6 @@
 #include <grgserver\Commands\savevehicle.inc>
 #include <grgserver\Commands\selectlastobject.inc>
 #include <grgserver\Commands\selectproperty.inc>
-#include <grgserver\Commands\selecttext.inc>
 #include <grgserver\Commands\sellvehicle.inc>
 #include <grgserver\Commands\service.inc>
 #include <grgserver\Commands\setinterior.inc>

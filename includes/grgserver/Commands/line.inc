@@ -15,6 +15,6 @@ CMD:line(playerID, params[], 561)
 		ShowDialog:BusLine(playerID);
 		return COMMAND_OK;
 	}
-	SendClientMessageEx(playerID, COLOR_ERROR, 563);
+	SendClientMessageEx(playerID, COLOR_ERROR, "563");
 	return COMMAND_ERROR;
 }

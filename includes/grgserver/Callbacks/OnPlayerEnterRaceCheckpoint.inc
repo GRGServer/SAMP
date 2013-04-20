@@ -9,12 +9,12 @@ public OnPlayerEnterRaceCheckpoint(playerid)
 				new vehicleID = GetPlayerVehicleID(playerid);
 				if (!vehicleID)// Do not allow to enter the checkpoint if the player is not in any vehicle
 				{
-					SendClientMessageEx(playerid, COLOR_ERROR, 612);
+					SendClientMessageEx(playerid, COLOR_ERROR, "612");
 					return false;
 				}
 				if (vehicleID != PVar:playerid[CPMISSION_VEHICLEID])// Do not allow to enter the checkpoint if the vehicleID does not match the current vehicle ID
 				{
-					SendClientMessageEx(playerid, COLOR_ERROR, 613);
+					SendClientMessageEx(playerid, COLOR_ERROR, "613");
 					return false;
 				}
 			}

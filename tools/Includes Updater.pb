@@ -42,6 +42,7 @@ If OpenConsole()
 			AddIncludeGroup("Constants")
 			AddInclude("compilerconstantscheck.inc")
 			AddInclude("config.inc")
+			AddInclude("localconfig.inc")
 			AddInclude("constants.inc")
 			AddInclude("macros.inc")
 			WriteStringN(mainInclude, "")
@@ -75,8 +76,8 @@ EndIf
 ; EnableXP
 ; UseIcon = Includes Updater.ico
 ; Executable = Includes Updater.exe
-; EnableCompileCount = 14
-; EnableBuildCount = 14
+; EnableCompileCount = 15
+; EnableBuildCount = 15
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0

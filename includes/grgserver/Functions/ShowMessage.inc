@@ -1,115 +1,115 @@
 ShowMessage(playerID, messageID, waitTime = 3000)
 {
-	new stringID;
+	new languageStringName[100];
 	switch (messageID)
 	{
 		case 1:
 		{
-			stringID = 276;
+			languageStringName = "276:";
 		}
 		case 2:
 		{
-			stringID = 277;
+			languageStringName = "277";
 		}
 		case 3:
 		{
-			stringID = 278;
+			languageStringName = "278";
 		}
 		case 4:
 		{
-			stringID = 279;
+			languageStringName = "279";
 		}
 		case 5:
 		{
-			stringID = 280;
+			languageStringName = "280";
 		}
 		case 6:
 		{
-			stringID = 292;
+			languageStringName = "292";
 		}
 		case 7:
 		{
-			stringID = 293;
+			languageStringName = "293";
 		}
 		case 8:
 		{
-			stringID = 294;
+			languageStringName = "294";
 		}
 		case 9:
 		{
-			stringID = 564;
+			languageStringName = "564";
 		}
 		case 10:
 		{
-			stringID = 565;
+			languageStringName = "565";
 		}
 		case 11:
 		{
-			stringID = 566;
+			languageStringName = "566";
 		}
 		case 12:
 		{
-			stringID = 567;
+			languageStringName = "567";
 		}
 		case 13:
 		{
-			stringID = 568;
+			languageStringName = "568";
 		}
 		case 14:
 		{
-			stringID = 281;
+			languageStringName = "281";
 		}
 		case 15:
 		{
-			stringID = 569;
+			languageStringName = "569";
 		}
 		case 16:
 		{
-			stringID = 570;
+			languageStringName = "570";
 		}
 		case 17:
 		{
-			stringID = 574;
+			languageStringName = "574";
 		}
 		case 18:
 		{
-			stringID = 575;
+			languageStringName = "575";
 		}
 		case 19:
 		{
-			stringID = 590;
+			languageStringName = "590";
 		}
 		case 20:
 		{
-			stringID = 591;
+			languageStringName = "591";
 		}
 		case 21:
 		{
-			stringID = 594;
+			languageStringName = "594";
 		}
 		case 22:
 		{
-			stringID = 595;
+			languageStringName = "595";
 		}
 		case 23:
 		{
-			stringID = 596;
+			languageStringName = "596";
 		}
 		case 24:
 		{
-			stringID = 597;
+			languageStringName = "597";
 		}
 		case 25:
 		{
-			stringID = 598;
+			languageStringName = "598";
 		}
 		case 26:
 		{
-			stringID = 601;
+			languageStringName = "601";
 		}
 		case 27:
 		{
-			stringID = 602;
+			languageStringName = "602";
 		}
 		case 28:
 		{
@@ -117,38 +117,38 @@ ShowMessage(playerID, messageID, waitTime = 3000)
 			{
 				case DRIVINGSCHOOL_BIKE:
 				{
-					stringID = 604;
+					languageStringName = "604";
 				}
 				case DRIVINGSCHOOL_CAR:
 				{
-					stringID = 603;
+					languageStringName = "603";
 				}
 				case DRIVINGSCHOOL_TRUCK:
 				{
-					stringID = 605;
+					languageStringName = "605";
 				}
 			}
 		}
 		case 29:
 		{
-			stringID = 607;
+			languageStringName = "607";
 		}
 		case 30:
 		{
-			stringID = 608;
+			languageStringName = "608";
 		}
 		case 31:
 		{
-			stringID = 616;
+			languageStringName = "616";
 		}
 		case 32:
 		{
-			stringID = 618;
+			languageStringName = "618";
 		}
 	}
-	if (stringID)
+	if (StrNotNull(languageStringName))
 	{
-		ShowSubtitle(playerID, LanguageString(playerID, stringID));
+		ShowSubtitle(playerID, LanguageString(playerID, languageStringName));
 		SetTimerEx("OnMessageShown", waitTime, false, "dd", playerID, messageID);
 	}
 }

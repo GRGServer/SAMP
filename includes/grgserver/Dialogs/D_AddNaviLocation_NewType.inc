@@ -1,7 +1,7 @@
 ShowDialog:AddNaviLocation_NewType(playerID)
 {
-	FormatNew:string[256](LanguageString(playerID, 382), FILE_LANGUAGESTRINGS);
-	CreateDialog(playerID, "AddNaviLocation_NewType", DIALOG_STYLE_INPUT, LanguageString(playerID, 378), string, "OK", LanguageString(playerID, 171));
+	FormatNew:string[256](LanguageString(playerID, "382"), FILE_LANGUAGESTRINGS);
+	CreateDialog(playerID, "AddNaviLocation_NewType", DIALOG_STYLE_INPUT, LanguageString(playerID, "378"), string, "OK", LanguageString(playerID, "171"));
 }
 
 DialogResponse:AddNaviLocation_NewType(playerID, response, listItem, inputText[])
@@ -19,16 +19,16 @@ DialogResponse:AddNaviLocation_NewType(playerID, response, listItem, inputText[]
 				new Float:posZ;
 				GetPlayerPos(playerID, posX, posY, posZ);
 				MySQLQuery("INSERT INTO `navigationlocations` (`type`, `posX`, `posY`, `posZ`) VALUES('%d', '%f', '%f', '%f')", typeID, posX, posY, posZ);
-				SendClientMessageEx(playerID, COLOR_INFO, 383);
+				SendClientMessageEx(playerID, COLOR_INFO, "383");
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, 143);
+				SendClientMessageEx(playerID, COLOR_ERROR, "143");
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 379);
+			SendClientMessageEx(playerID, COLOR_ERROR, "379");
 			ShowDialog:AddNaviLocation_NewType(playerID);
 		}
 	}

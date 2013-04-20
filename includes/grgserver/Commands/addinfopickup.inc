@@ -8,7 +8,7 @@ PCMD:addinfopickup[MAPPER](playerID, params[], 588)
 	}
 	if (stringID <= 0)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 587);
+		SendClientMessageEx(playerID, COLOR_ERROR, "587");
 		return COMMAND_ERROR;
 	}
 	new Float:posX;
@@ -22,10 +22,10 @@ PCMD:addinfopickup[MAPPER](playerID, params[], 588)
 		MySQLQuery("INSERT INTO `infopickups` (`pickupId`, `stringId`) VALUES('%d', '%d')", pickupID, stringID);
 		if (AddPickup(pickupID, "INFO", posX, posY, posZ))
 		{
-			SendClientMessageEx(playerID, COLOR_INFO, 57, "INFO", pickupID);
+			SendClientMessageEx(playerID, COLOR_INFO, "57", "INFO", pickupID);
 			return COMMAND_OK;
 		}
 	}
-	SendClientMessageEx(playerID, COLOR_INFO, 6);
+	SendClientMessageEx(playerID, COLOR_INFO, "6");
 	return COMMAND_ERROR;
 }

@@ -4,6 +4,6 @@ CMD:friendrequests(playerID, params[], 479)
 	{
 		return COMMAND_OK;
 	}
-	SendClientMessageEx(playerID, COLOR_ERROR, 497);
+	SendClientMessageEx(playerID, COLOR_ERROR, "497");
 	return COMMAND_ERROR;
 }

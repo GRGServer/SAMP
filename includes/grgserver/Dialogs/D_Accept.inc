@@ -14,11 +14,11 @@ ShowDialog:Accept(playerID)
 	mysql_free_result();
 	if (strlen(missionList))
 	{
-		CreateDialog(playerID, "Accept", DIALOG_STYLE_LIST, LanguageString(playerID, 163), missionList, LanguageString(playerID, 164), LanguageString(playerID, 165));
+		CreateDialog(playerID, "Accept", DIALOG_STYLE_LIST, LanguageString(playerID, "163"), missionList, LanguageString(playerID, "164"), LanguageString(playerID, "165"));
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 134);
+		SendClientMessageEx(playerID, COLOR_ERROR, "134");
 	}
 }
 
@@ -31,13 +31,13 @@ DialogResponse:Accept(playerID, response, listItem, inputText[])
 		sscanf(inputText, "p:ds", missionID, text);
 		if (strval(GetMySQLValue("missions", "acceptUserId", "id", val2str(missionID))))
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 12);
+			SendClientMessageEx(playerID, COLOR_ERROR, "12");
 		}
 		else
 		{
 			MySQLQuery("UPDATE `missions` SET `acceptUserId` = '%d' WHERE `id` = '%d'", PVar:playerID[USERID], missionID);
-			SendClientMessageEx(playerID, COLOR_INFO, 15);
-			SendClientMessageEx(GetPlayerByUserID(strval(GetMySQLValue("missions", "creatorUserId", "id", val2str(missionID)))), COLOR_INFO, 1, playerID, missionID);
+			SendClientMessageEx(playerID, COLOR_INFO, "15");
+			SendClientMessageEx(GetPlayerByUserID(strval(GetMySQLValue("missions", "creatorUserId", "id", val2str(missionID)))), COLOR_INFO, "1", playerID, missionID);
 			MySQLQuery("SELECT * FROM `missiondata` WHERE `missionId` = '%d' AND `name` = 'VehicleModelID'", missionID);
 			mysql_store_result();
 			// TODO: Missing code?

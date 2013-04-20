@@ -12,7 +12,7 @@ ShowDialog:OrderVehicle(playerID)
 		Format:vehicleList("%s%s", vehicleList, GetMySQLField("name"));
 	}
 	mysql_free_result();
-	CreateDialog(playerID, "OrderVehicle", DIALOG_STYLE_LIST, LanguageString(playerID, 113), vehicleList, LanguageString(playerID, 413), LanguageString(playerID, 165));
+	CreateDialog(playerID, "OrderVehicle", DIALOG_STYLE_LIST, LanguageString(playerID, "113"), vehicleList, LanguageString(playerID, "413"), LanguageString(playerID, "165"));
 }
 
 DialogResponse:OrderVehicle(playerID, response, listItem, inputText[])
@@ -27,7 +27,7 @@ DialogResponse:OrderVehicle(playerID, response, listItem, inputText[])
 			{
 				AddJobData(missionID, "Type", "GetOrderedVehicle");
 				AddJobData(missionID, "VehicleModelID", val2str(modelID));
-				SendClientMessageEx(playerID, COLOR_INFO, 38, missionID);
+				SendClientMessageEx(playerID, COLOR_INFO, "38", missionID);
 				CreateVehicleEx(modelID, -1557.4092, 114.7485, 3.0939, 136.5509, 12, 41, false);// TODO: Multiple vehicles at the same position
 			}
 		}

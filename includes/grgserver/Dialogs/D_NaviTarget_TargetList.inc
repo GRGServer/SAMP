@@ -9,7 +9,7 @@ ShowDialog:NaviTarget_TargetList(playerID)
 		}
 		AddLine:list("%d:\t%.2fm", listIndex + 1, naviTargets[playerID][listIndex][NAVITARGET_DISTANCE]);
 	}
-	CreateDialog(playerID, "NaviTarget_TargetList", DIALOG_STYLE_LIST, LanguageString(playerID, 247), list, "OK", LanguageString(playerID, 171));
+	CreateDialog(playerID, "NaviTarget_TargetList", DIALOG_STYLE_LIST, LanguageString(playerID, "247"), list, "OK", LanguageString(playerID, "171"));
 }
 
 DialogResponse:NaviTarget_TargetList(playerID, response, listItem, inputText[])
@@ -23,11 +23,11 @@ DialogResponse:NaviTarget_TargetList(playerID, response, listItem, inputText[])
 	{
 		if (CalculateRoute(playerID, naviTargets[playerID][listItem][NAVITARGET_POSX], naviTargets[playerID][listItem][NAVITARGET_POSY], naviTargets[playerID][listItem][NAVITARGET_POSZ]))
 		{
-			SendClientMessageEx(playerID, COLOR_INFO, 414);
+			SendClientMessageEx(playerID, COLOR_INFO, "414");
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 415);
+			SendClientMessageEx(playerID, COLOR_ERROR, "415");
 		}
 	}
 	return true;

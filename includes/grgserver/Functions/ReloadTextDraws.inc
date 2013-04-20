@@ -4,7 +4,7 @@ ReloadTextDraws(playerID)
 	{
 		PlayerTextDrawDestroy(playerID, PTextDraw:playerID[NEEDS_COLUMN1]);
 	}
-	PTextDraw:playerID[NEEDS_COLUMN1] = CreatePlayerTextDraw(playerID, 500, 110, LanguageString(playerID, 631));
+	PTextDraw:playerID[NEEDS_COLUMN1] = CreatePlayerTextDraw(playerID, 500, 110, LanguageString(playerID, "631"));
 	PlayerTextDrawAlignment(playerID, PTextDraw:playerID[NEEDS_COLUMN1], 1);
 	PlayerTextDrawLetterSize(playerID, PTextDraw:playerID[NEEDS_COLUMN1], 0.4, 1.2);
 	PlayerTextDrawFont(playerID, PTextDraw:playerID[NEEDS_COLUMN1], 1);
@@ -37,7 +37,7 @@ ReloadTextDraws(playerID)
 	{
 		PlayerTextDrawDestroy(playerID, PTextDraw:playerID[SPEEDO_COLUMN1]);
 	}
-	PTextDraw:playerID[SPEEDO_COLUMN1] = CreatePlayerTextDraw(playerID, 480, 385, LanguageString(playerID, 160));
+	PTextDraw:playerID[SPEEDO_COLUMN1] = CreatePlayerTextDraw(playerID, 480, 385, LanguageString(playerID, "160"));
 	PlayerTextDrawAlignment(playerID, PTextDraw:playerID[SPEEDO_COLUMN1], 1);
 	PlayerTextDrawLetterSize(playerID, PTextDraw:playerID[SPEEDO_COLUMN1], 0.3, 0.9);
 	PlayerTextDrawFont(playerID, PTextDraw:playerID[SPEEDO_COLUMN1], 1);

@@ -16,17 +16,17 @@ PickupEvent:GASSTATION(playerID, pickupID, eventType)
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, 140);
+					SendClientMessageEx(playerID, COLOR_ERROR, "140");
 				}
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, 146);
+				SendClientMessageEx(playerID, COLOR_ERROR, "146");
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 146);
+			SendClientMessageEx(playerID, COLOR_ERROR, "146");
 		}
 		return true;
 	}

@@ -12,7 +12,7 @@ ShowDialog:FunAction(playerID)
 	AddLine(options, "Drink Wine");
 	AddLine(options, "Smoke Ciggy");
 	AddLine(options, "Pissing");
-	CreateDialog(playerID, "FunAction", DIALOG_STYLE_LIST, "Fun Action", options, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "FunAction", DIALOG_STYLE_LIST, "Fun Action", options, "OK", LanguageString(playerID, "165"));
 }
 
 DialogResponse:FunAction(playerID, response, listItem, inputText[])

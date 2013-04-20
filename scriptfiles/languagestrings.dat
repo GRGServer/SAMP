@@ -1,0 +1,2525 @@
+﻿
+[1]
+en {%p has accepted your job (Order ID: %d)};
+de {%p hat deinen Auftrag (Auftragsnummer: %d) angenommen};
+
+[2]
+en {%s has joined the IRC channel};
+de {%s hat den IRC Channel betreten};
+
+[3]
+en {%p has joined the server};
+de {%p hat den Server betreten};
+
+[4]
+en {%s has left the IRC channel};
+de {%s hat den IRC Channel verlassen};
+
+[5]
+en {Currently revision %d of our game mode is running on this server.};
+de {Auf diesem Server läuft aktuell Revision %d unserer Gamemode.};
+
+[6]
+en {Error while creating the pickup!};
+de {Fehler beim Erstellen des Pickups!};
+
+[7]
+en {%p logged in};
+de {%p hast sich eingeloggt};
+
+[8]
+en {Switch language};
+de {Sprache wechseln};
+
+[9]
+en {The bank has been sold!};
+de {Die Bank wurde verkauft!};
+
+[10]
+en {The property %s (Price: %m) has been saved with ID %d. Remember to set the camera position using /setpropertycam!};
+de {Die Immobilie %s (Preis: %m) wurde unter der ID %d gespeichert. Vergesse nicht, die Kameraposition mit /setpropertycam festzulegen!};
+
+[11]
+en {This bank has been already bought!};
+de {Diese Bank ist bereits gekauft!};
+
+[12]
+en {This job has been already accepted by another player!};
+de {Dieser Auftrag wurde bereits von einem anderen Spieler angenommen!};
+
+[13]
+en {You already own this bank!};
+de {Diese Bank besitzt du Bereits!};
+
+[14]
+en {You don't have enough money!};
+de {Du hast nicht so viel Geld bei dir!};
+
+[15]
+en {You have accepted the job};
+de {Du hast den Auftrag angenommen};
+
+[16]
+en {You have bought the bank};
+de {Du hast die Bank gekauft};
+
+[17]
+en {You have successfully created your bank account and can now transfer money to this account.};
+de {Du hast dein Konto erfolgreich erstellt und kannst nun Geld auf dieses Konto einzahlen.};
+
+[18]
+en {You have terminated your bank account!};
+de {Du hast dein Konto gekündigt!};
+
+[19]
+en {You have to enter the amount!};
+de {Du musst einen Betrag eingeben!};
+
+[20]
+en {Your password has been changed};
+de {Dein Passwort wurde geändert};
+
+[21]
+en {You have transferred %m to your bank account};
+de {Du hast %m auf dein Bankkonto eingezahlt};
+
+[22]
+en {You need %m to buy this property! But you only have %m at you bank account.};
+de {Du benötigst %m um diese Immobilie zu kaufen! Leider hast du nur %m auf deinem Bankkonto.};
+
+[23]
+en {Your current bank balance is %m};
+de {Dein aktuelles Bankguthaben beträgt %m};
+
+[24]
+en {Your language has been switched};
+de {Deine Sprache wurde gewechselt};
+
+[25]
+en {You don't have enough money at your bank!};
+de {Du hast nicht genug Geld auf deiner Bank!};
+
+[26]
+en {You got %m from your bank account};
+de {Du hast %m von deinem Bankkonto abgehoben};
+
+[27]
+en {You need %m to buy this vehicle! But you only have %m at your bank account.};
+de {Du benötigst %m für dieses Fahrzeug! Leider hast du nur %m auf deinem Bankkonto.};
+
+[28]
+en {Property bought};
+de {Immobilie gekauft};
+
+[29]
+en {Camera position saved};
+de {Kameraposition gespeichert};
+
+[30]
+en {The entered password is wrong!};
+de {Das eingegebene Passwort ist falsch!};
+
+[31]
+en {Please use a password with a length between %d and %d!};
+de {Bitte verwende ein Passwort mit einer Länge zwischen %d und %d Zeichen!};
+
+[32]
+en {The entered passwords do not match! Please try again.};
+de {Die eingegebenen Passwörter stimmen nicht überein! Bitte versuche es erneut.};
+
+[33]
+en {Have fun with your new hotel!};
+de {Viel Spaß mit deinem neuen Hotel!};
+
+[34]
+en {No property selected! Go into a property pickup and press ~k~~SNEAK_ABOUT~ to select it.};
+de {Keine Immobilie ausgewählt! Gehe in ein Immobilienpickup und drücke ~k~~SNEAK_ABOUT~ um sie auszuwählen.};
+
+[35]
+en {You have been logged in successfully};
+de {Du wurdest erfolgreich eingeloggt};
+
+[36]
+en {You have to enter your password!};
+de {Du musst dein Passwort eingeben!};
+
+[37]
+en {You can now quit the game};
+de {Du kannst nun das Spiel beenden};
+
+[38]
+en {Job created (Order number: %d)};
+de {Auftrag erstellt (Auftragsnummer: %d)};
+
+[39]
+en {You already hae a job! Please terminate it first.};
+de {Du hast bereits einen Arbeitsplatz! Bitte kündige diesen zuerst.};
+
+[40]
+en {Please use the format DD.MM.YYYY!};
+de {Bitte verwende das Format TT.MM.JJJJ!};
+
+[41]
+en {Invalid date!};
+de {Ungültiges Datum!};
+
+[42]
+en {You have restarted the game mode: %s};
+de {Du hast den Gamemode neugestartet: %s};
+
+[43]
+en {%p has restarted the game mode: %s};
+de {%p hat den Gamemode neugestartet: %s};
+
+[44]
+en {You already own this company!};
+de {Du bist bereits Besitzer dieses Unternehmens!};
+
+[45]
+en {Another player is already owner of this company!};
+de {Ein anderer Spieler ist bereits Besitzer dieses Unternehmens!};
+
+[46]
+en {You are now owner of this company};
+de {Du bist nun Besitzer dieses Unternehmens};
+
+[47]
+en {You need %m to buy this company! But you only have %m at your bank account.};
+de {Du benötigst %m um dieses Unternehmen zu kaufen! Leider hast du nur %m auf deinem Bankkonto.};
+
+[48]
+en {Recording stopped};
+de {Aufnahme gestoppt};
+
+[49]
+en {Stop the current NPC recording};
+de {Aktuelle NPC Aufnahme beenden};
+
+[50]
+en {'%s' has been executed via RCON};
+de {'%s' wurde per RCON ausgeführt};
+
+[51]
+en {Execute RCON command};
+de {RCON Befehl ausführen};
+
+[52]
+en {You are not the driver of this vehicle!};
+de {Du bist nicht der Fahrer dieses Fahrzeugs!};
+
+[53]
+en {The engine of your vehicle has been turned off.};
+de {Der Motor deines Fahrzeuges wurde ausgeschalten.};
+
+[54]
+en {The engine of your vehicle has been turned on.};
+de {Der Motor deines Fahrzeuges wurde gestartet.};
+
+[55]
+en {The engine of your vehicle could not be started (Engine damaged)!};
+de {Der Motor deines Fahrzeuges konnte nicht gestartet werden (Motorschaden)!};
+
+[56]
+en {You are currently in a building! Please exit the building and try it again.};
+de {Du bist aktuell in einem Gebäude! Bitte verlasse das Gebäude und versuche es erneut.};
+
+[57]
+en {The pickup %s has been saved with ID %d};
+de {Das Pickup %s wurde unter der ID %d gespeichert};
+
+[58]
+en {Invalid type!};
+de {Ungültiger Typ!};
+
+[59]
+en {You have the following permissions: %s};
+de {Du hast die folgenden Rechte: %s};
+
+[60]
+en {%p has the following permissions: %s};
+de {%p hat die folgenden Rechte: %s};
+
+[61]
+en {You are not in a building!};
+de {Du bist in keinem Gebäude!};
+
+[62]
+en {The vehicle has been spawned};
+de {Das Fahrzeug wurde gespawnt};
+
+[63]
+en {The color must be between 0 and 127!};
+de {Die Farbe muss zwischen 0 und 127 sein!};
+
+[64]
+en {The vehicle was not found!};
+de {Das Fahrzeug wurde nicht gefunden!};
+
+[65]
+en {The model ID must be between 400 and 611!};
+de {Die Model ID muss zwischen 400 und 611 sein!};
+
+[66]
+en {Current balance: %m};
+de {Aktueller Kontostand: %m};
+
+[67]
+en {Show balance};
+de {Kontostand anzeigen};
+
+[68]
+en {Invalid WeaponID!};
+de {Ungültige WeaponID!};
+
+[69]
+en {Have fun with your new weapon (%s)!};
+de {Viel Spaß mit deiner neuen Waffe (%s)!};
+
+[70]
+en {%p already has the permission '%s'!};
+de {%p hat bereits das Recht '%s'!};
+
+[71]
+en {%p does not have the permission '%s' so it can not be removed!};
+de {%p hatte das Recht '%s' noch nicht und kann daher nicht entfernt werden!};
+
+[72]
+en {You got the permission '%s' from %p};
+de {Du hast das Recht '%s' von %p bekommen};
+
+[73]
+en {You gave the permission '%s' to %p};
+de {Du hast das Recht '%s' an %p gegeben};
+
+[74]
+en {%p has revoked the permission '%s' from you};
+de {%p hat dir das Recht '%s' weggenommen!};
+
+[75]
+en {You have revoked the permission '%s' from %p};
+de {Du hast das Recht '%s' von %p weggenommen};
+
+[76]
+en {The playback of NPC '%p' was stopped.};
+de {Die Wiedergabe von NPC '%p' wurde gestoppt.};
+
+[77]
+en {%d more NPCs are still in use for this recording.};
+de {Es werden noch %d weitere NPCs für diese Aufnahme verwendet.};
+
+[78]
+en {The last NPC has stopped the recording!};
+de {Der letzte NPC hat die Aufnahme gestoppt!};
+
+[79]
+en {The vehicle has been saved with ID %d};
+de {Fahrzeug wurde unter der ID %d gespeichert};
+
+[80]
+en {The price can not be negative!};
+de {Der Preis darf nicht negativ sein!};
+
+[81]
+en {You gave you %m and have now %m};
+de {Du hast dir %m gegeben und hast daher nun %m};
+
+[82]
+en {Use /cmds to see a list of commands};
+de {Verwende /cmds um eine Liste an Befehlen zu sehen};
+
+[83]
+en {The NPC has been successfully saved with ID %d};
+de {Der NPC wurde erfolgreich unter der ID %d gespeichert};
+
+[84]
+en {An error occurred while saving!};
+de {Während dem Speichern ist ein Fehler aufgetreten!};
+
+[85]
+en {Created by Aerox_Tobi (aerox@grgserver.net) and Programie (programie@selfcoders.com)};
+de {Erstellt von Aerox_Tobi (aerox@grgserver.net) und Programie (programie@selfcoders.com)};
+
+[86]
+en {Information about this script};
+de {Informationen über dieses Script};
+
+[87]
+en {Have fun with your new JetPack!};
+de {Viel Spaß mit deinem neuen JetPack!};
+
+[88]
+en {Get a JetPack};
+de {Bekomme ein Jetpack};
+
+[89]
+en {Recording '%s' started with %d more NPCs};
+de {Aufnahme '%s' mit %d weiteren NPCs gestartet};
+
+[90]
+en {Use /stoprec to stop.};
+de {Verwende /stoprec zum stoppen.};
+
+[91]
+en {Your vehicle has been refueled.};
+de {Dein Fahrzeug wurde betankt.};
+
+[92]
+en {You have not enough money!};
+de {Du hast nicht genügend Geld!};
+
+[93]
+en {Show a list with command};
+de {Liste mit Befehlen anzeigen};
+
+[94]
+en {Accept a job};
+de {Annehmen eines Auftrages};
+
+[95]
+en {Create a property};
+de {Immobilie erstellen};
+
+[96]
+en {Create a pickup};
+de {Pickup erstellen};
+
+[97]
+en {Place a NPC without recording at your current position};
+de {NPC ohne Aufnahme an deine aktuelle Position stellen};
+
+[98]
+en {Change account password};
+de {Accountpasswort ändern};
+
+[99]
+en {Show the permissions of yourself or another player};
+de {Rechte von dir oder einem anderen Spieler anzeigen};
+
+[100]
+en {Control NPCs (e.g. start or stop)};
+de {NPCs steuern (z.B. Starten oder stoppen)};
+
+[101]
+en {Leave the current building};
+de {Aktuelles Gebäude verlassen};
+
+[102]
+en {Perform actions like dancing};
+de {Aktion wie z.B. tanzen ausführen};
+
+[103]
+en {Give permissions to a player};
+de {Rechte an einen Spieler geben};
+
+[104]
+en {Give weapons to yourself};
+de {Gebe dir Waffen};
+
+[105]
+en {Restart game mode};
+de {Gamemode neustarten};
+
+[106]
+en {Teleport to another player};
+de {Zu einen anderen Spieler teleportieren};
+
+[107]
+en {Show help};
+de {Hilfe anzeigen};
+
+[108]
+en {Kick a player from the server};
+de {Spieler vom Server kicken};
+
+[109]
+en {Say what you do (e.g. '/me follows an admin' will be shown to all players as '* &lt;Your name&gt; follows an admin')};
+de {Sagen, was du machst (z.B. '/me rennt Admin hinterher' sehen alle Spieler als '*&lt;Dein Name&gt; rennt Admin hinterher')};
+
+[110]
+en {Give money to yourself};
+de {Gebe dir Geld};
+
+[111]
+en {Start or stop the engine of your vehicle};
+de {Starten oder stoppen des Motors deines Fahrzeugs};
+
+[112]
+en {Show the last 10 news of GRG Server};
+de {Letzte 10 News-Einträge von GRG Server anzeigen};
+
+[113]
+en {Order a vehicle};
+de {Fahrzeug bestellen};
+
+[114]
+en {Show information about the pay day};
+de {Informationen über den Zahltag anzeigen};
+
+[115]
+en {Activate web radio};
+de {Webradio aktivieren};
+
+[116]
+en {Create a new NPC recording};
+de {Neue NPC Aufnahme erstellen};
+
+[117]
+en {Reload the data of a player from the database};
+de {Lade die Daten eines Spielers erneut von der Datenbank};
+
+[118]
+en {Save the current vehicle as buyable};
+de {Aktuelles Fahrzeug als kaufbares Fahrzeug speichern};
+
+[119]
+en {Teleport to an interior};
+de {In einen Interior teleportieren};
+
+[120]
+en {Show information about your player};
+de {Informationen über deinen Spieler anzeigen};
+
+[121]
+en {Teleport to a predefined location};
+de {An einen vordefinierten Ort teleportieren};
+
+[122]
+en {Spawn a vehicle [%s]};
+de {Fahrzeug spawnen [%s]};
+
+[123]
+en {Command sent: %s};
+de {Befehl gesendet: %s};
+
+[124]
+en {recordingName, playbackType and autoRepeat  is only required for the command 'start'.};
+de {recordingName, playbackType und autoRepeat wird nur für den Befehl 'start' benötigt.};
+
+[125]
+en {NPC connected};
+de {NPC verbunden};
+
+[126]
+en {Playback started};
+de {Wiedergabe gestartet};
+
+[127]
+en {An update to revision %d is available!};
+de {Es steht ein Update auf Revision %d zur Verfügung!};
+
+[128]
+en {Committed by: %s};
+de {Committet von: %s};
+
+[129]
+en {You have not the permission to use this vehicle!};
+de {Du hast nicht das Recht dieses Fahrzeug zu verwenden!};
+
+[130]
+en {This vehicle is already owned by another player!};
+de {Dieses Fahrzeug besitzt bereits ein anderer Spieler!};
+
+[131]
+en {Invalid radio station!};
+de {Ungültiger Radiosender!};
+
+[132]
+en {The NPC '%s' is not connected! Use /controlnpc %s connect and try again.};
+de {Der NPC '%s' ist nicht verbunden! Verwende /controlnpc %s connect und versuche es erneut.};
+
+[133]
+en {It's pay day! You get %m deposited into your bank account.};
+de {Es ist Zahltag! Du bekommst %m auf deinem Bankkonto gutgeschrieben.};
+
+[134]
+en {There are currently no orders available for your job!};
+de {Es stehen derzeit keine Aufträge in deinem Beruf zur Verfügung!};
+
+[135]
+en {See all news on grgserver.net.};
+de {Sehe dir alle News auf grgserver.net an.};
+
+[136]
+en {The pickup is linked to the target %d and is now selected. Use /settplink to set the target.};
+de {Das Pickup ist mit dem Ziel %d verknüpft und ist nun ausgewählt. Verwende /settplink um das Ziel festzulegen.};
+
+[137]
+en {Usage: /%s};
+de {Verwendung: /%s};
+
+[138]
+en {Welcome to the GRG server!};
+de {Willkommen auf dem GRG Server!};
+
+[139]
+en {You were registered successfully and are now logged in.};
+de {Du wurdest erfolgreich registriert und bist nun eingeloggt.};
+
+[140]
+en {The tank is already full!};
+de {Der Tank ist bereits voll!};
+
+[141]
+en {This house has been already bought by %s!};
+de {Dieses Haus wurde bereits von %s gekauft!};
+
+[142]
+en {Property '%s' selected};
+de {Immobilie '%s' ausgewählt};
+
+[143]
+en {An error occurred while processing the command!};
+de {Es ist ein Fehler bei der Befehlsausführung aufgetreten!};
+
+[144]
+en {You got teleported};
+de {Du wurdest teleportiert};
+
+[145]
+en {This command is only available for NPCs!};
+de {Dieser Befehl ist nur für NPCs verfügbar!};
+
+[146]
+en {You are not in a vehicle!};
+de {Du bist nicht in einem Fahrzeug!};
+
+[147]
+en {Player not found!};
+de {Spieler nicht gefunden!};
+
+[148]
+en {You do not have the required permissions to use this command!};
+de {Du hast nicht die nötigen Rechte um diesen Befehl zu verwenden!};
+
+[149]
+en {List available RCON commands};
+de {Verfügbare RCON Befehle auflisten};
+
+[150]
+en {Reconnect all NPCs};
+de {Alle NPCs neu verbinden};
+
+[151]
+en {Reload all permissions from database};
+de {Alle Berechtigungen von der Datenbank neu laden};
+
+[152]
+en {Reload all pickups from database};
+de {Alle Pickups von der Datenbank neu laden};
+
+[153]
+en {Reload all saved vehicles from database};
+de {Alle gespeicherten Fahrzeuge von der Datenbank neu laden};
+
+[154]
+en {Reload all vehicle models from database};
+de {Alle Fahrzeugmodelle von der Datenbank neu laden};
+
+[155]
+en {Safely restart the game mode};
+de {Gamemode sicher neustarten};
+
+[156]
+en {The game mode has been restarted via RCON};
+de {Der Gamemode wurde per RCON neugestartet};
+
+[157]
+en {Show various information about the MySQL connection};
+de {Verschiedene Informationen über die MySQL Verbindung anzeigen};
+
+[158]
+en {Your vehicle is broken!};
+de {Dein Fahrzeug ist kaputt!};
+
+[159]
+en {The tank of your vehicle is empty!};
+de {Der Tank von deinem Fahrzeug ist leer!};
+
+[160]
+en {~n~Speed:~n~State:~n~Tank:~n~Usage/100km:~n~KM:};
+de {~n~Geschwindigkeit:~n~Zustand:~n~Tank:~n~Verbrauch/100km:~n~KM:};
+
+[161]
+en {%p has left the server (%s)};
+de {%p hat den Server verlassen (%s)};
+
+[162]
+en {Reload all objects};
+de {Alle Objekte neuladen};
+
+[163]
+en {Accept order};
+de {Auftragsannahme};
+
+[164]
+en {Accept};
+de {Annehmen};
+
+[165]
+en {Cancel};
+de {Abbrechen};
+
+[166]
+en {Yes};
+de {Ja};
+
+[167]
+en {No};
+de {Nein};
+
+[168]
+en {Enter name};
+de {Name eingeben};
+
+[169]
+en {Enter the name for the property.};
+de {Gebe den Name für die Immobilie ein.};
+
+[170]
+en {Create};
+de {Erstellen};
+
+[171]
+en {Back};
+de {Zurück};
+
+[172]
+en {Select property type};
+de {Immobilientyp auswählen};
+
+[173]
+en {Bank};
+de {Bank};
+
+[174]
+en {Hotel};
+de {Hotel};
+
+[175]
+en {House};
+de {Haus};
+
+[176]
+en {Police};
+de {Polizei};
+
+[177]
+en {Next};
+de {Weiter};
+
+[178]
+en {Player};
+de {Spieler};
+
+[179]
+en {Press ~k~~CONVERSATION_YES~};
+de {Drücke ~k~~CONVERSATION_YES~};
+
+[180]
+en {Reload all language strings};
+de {Alle Sprachstrings neuladen};
+
+[181]
+en {Create a new camera movement};
+de {Neue Kamerabewegung erstellen};
+
+[182]
+en {Set camera movement position};
+de {Kamerabewegungsposition festlegen};
+
+[183]
+en {Use existing camera movement};
+de {Bereits existierende Kamerabewegung verwenden};
+
+[184]
+en {Failed to create a new entry in the database!};
+de {Fehler beim Erstellen des neuen Eintrags in der Datenbank!};
+
+[185]
+en {New entry %d created. Use /setcampos to define the positions.};
+de {Der neue Eintrag %d wurde erstellt. Verwende /setcampos um die Positionen zu definieren.};
+
+[186]
+en {The position of the camera movement entry %d has been set.};
+de {Die Position des Kamerabewegungseintrags %d wurde festgelegt.};
+
+[187]
+en {Camera movement entry not found!};
+de {Kamerabewegungseintrag nicht gefunden!};
+
+[188]
+en {Camera movement entry %d selected. Use /setcampos to define the positions.};
+de {Kamerabewegungseintrag %d ausgewählt. Verwende /setcampos um die Positionen zu definieren.};
+
+[189]
+en {Play an existing camera movement};
+de {Vorhandene Kamerabewegung abspielen};
+
+[190]
+en {No camera movement entry selected! Use /usecammovement to select one.};
+de {Kein Kamerabewegungseintrag ausgewählt! Verwende /usecammovement um einen auszuwählen.};
+
+[191]
+en {Playback of camera movement %d started};
+de {Wiedergabe der Kamerabewegung %d gestartet};
+
+[192]
+en {Set camera behind your player};
+de {Setze die Kamera wieder hinter deinen Spieler};
+
+[193]
+en {The configuration has been updated.};
+de {Die Konfiguration wurde aktualisiert.};
+
+[194]
+en {Change configuration parameters of the current camera movement};
+de {Konfigurationsparameter der aktuellen Kamerabewegung ändern};
+
+[195]
+en {You got killed by %p};
+de {Du wurdest von %p getötet};
+
+[196]
+en {You killed %p};
+de {Du hast %p getötet};
+
+[197]
+en {Kill a player};
+de {Töte einen Spieler};
+
+[198]
+en {Invalid cut type!};
+de {Ungültiger Schnitttyp!};
+
+[199]
+en {The changes have been saved};
+de {Die Änderungen wurden gespeichert};
+
+[200]
+en {The object is not a streamed object or is already used in another way!};
+de {Das Objekt ist kein gestreamtes Objekt oder wird bereits in einer anderen Funktion verwendet!};
+
+[201]
+en {Edit an object};
+de {Bearbeite ein Objekt};
+
+[202]
+en {Add a new object};
+de {Füge ein neues Objekt hinzu};
+
+[203]
+en {The object %d (%s) has been removed};
+de {Das Objekt %d (%s) wurde entfernt};
+
+[204]
+en {Object %d (%s) selected. You can now edit the object or remove it using ~k~~CONVERSATION_NO~};
+de {Objekt %d (%s) ausgewählt. Du kannst jetzt das Objekt bearbeiten oder es mit ~k~~CONVERSATION_NO~ entfernen};
+
+[205]
+en {Spawn};
+de {Spawnen};
+
+[206]
+en {Bank balance};
+de {Kontostand};
+
+[207]
+en {Withdraw money};
+de {Geld abheben};
+
+[208]
+en {Deposit money};
+de {Geld einzahlen};
+
+[209]
+en {Cancel account};
+de {Konto kündigen};
+
+[210]
+en {New bank account};
+de {Neues Bankkonto};
+
+[211]
+en {You do not own a bank account yet.\nDo you want to create a new one?};
+de {Du hast noch kein Bankkonto.\nMöchtest du ein neues erstellen?};
+
+[212]
+en {Enter the amount how much money you want to deposit to your account.};
+de {Gebe die Menge ein, wie viel du auf dein Konto einzahlen möchtest.};
+
+[213]
+en {Enter the amount how much money you want to withdraw from your account.};
+de {Gebe die Menge ein, wie viel du von deim Konto abheben möchtest.};
+
+[214]
+en {Are you sure to cancel your account?};
+de {Bist du sicher, dass du dein Bankkonto auflösen möchtest?};
+
+[215]
+en {Your bank account must be empty in order to cancel your account.};
+de {Das Konto muss leer sein um es aufzulösen!};
+
+[216]
+en {You now have a bank account at the %s};
+de {Du hast jetzt ein Bankkonto bei der %s};
+
+[217]
+en {Accept job};
+de {Arbeit annehmen};
+
+[218]
+en {Cancel job};
+de {Arbeit kündigen};
+
+[219]
+en {ADAC};
+de {ADAC};
+
+[220]
+en {Army};
+de {Bundeswehr};
+
+[221]
+en {Ambulance};
+de {Sanitäter};
+
+[222]
+en {Estate agent};
+de {Immobilienmarkler};
+
+[223]
+en {Driving instructor};
+de {Fahrlehrer};
+
+[224]
+en {Taxi driver};
+de {Taxifahrer};
+
+[225]
+en {It's pay day but you can't receive money because you don't have a bank account! Get a bank account!};
+de {Es ist Zahltag, aber du kannst kein Geld bekommen, da du kein Bankkonto hast! Lege dir ein Bankkonto zu!};
+
+[226]
+en {Age};
+de {Alter};
+
+[227]
+en {Home location};
+de {Wohnort};
+
+[228]
+en {Mobile phone number};
+de {Handynummer};
+
+[229]
+en {Credit};
+de {Guthaben};
+
+[230]
+en {Occupation};
+de {Beruf};
+
+[231]
+en {Online time};
+de {Onlinezeit};
+
+[232]
+en {Registered since};
+de {Registriert seit};
+
+[233]
+en {Last login};
+de {Letzter Login};
+
+[234]
+en {Personal data};
+de {Personalien};
+
+[235]
+en {This house can be bought.\n\nPrice: $%s};
+de {Dieses Haus kann noch gekauft werden.\n\nPreis: $%s};
+
+[236]
+en {Buy house - %s};
+de {Haus kaufen - %s};
+
+[237]
+en {Buy};
+de {Kaufen};
+
+[238]
+en {How much do you want to fill up (0 - %s)?\n\nCurrent price: $%s/Liter};
+de {Wie viel möchtest du tanken (0 - %s)?\n\nAktueller Preis: $%s/Liter};
+
+[239]
+en {Refuel};
+de {Tanken};
+
+[240]
+en {Change account password};
+de {Accountpasswort ändern};
+
+[241]
+en {Enter your current password.};
+de {Gebe dein aktuelles Passwort ein.};
+
+[242]
+en {Enter your new password.};
+de {Gebe ein neues Passwort ein.};
+
+[243]
+en {Please repeat your new password to verfify.};
+de {Wiederhole zur Sicherheit dein neues Passwort.};
+
+[244]
+en {Do you want to buy this vehicle?\n\nPrice: $%s};
+de {Möchtest du dieses Fahrzeug Kaufen?\n\nPreis: $%s};
+
+[245]
+en {Buy vehicle};
+de {Fahrzeug kaufen};
+
+[246]
+en {Teleport};
+de {Teleportieren};
+
+[247]
+en {Select target};
+de {Ziel auswählen};
+
+[248]
+en {Page};
+de {Seite};
+
+[249]
+en {Restart gamemode};
+de {Gamemode neustarten};
+
+[250]
+en {Please give a reason why you want to restart the gamemode.};
+de {Gebe einen Grund an, warum du den Gamemode neustarten möchtest.};
+
+[251]
+en {Repeat password};
+de {Passwort wiederholen};
+
+[252]
+en {Select radio station};
+de {Radiosender wählen};
+
+[253]
+en {Enter birthdate};
+de {Geburtsdatum eingeben};
+
+[254]
+en {Enter your birthdate in the format DD.MM.YYYY.\n\nExample: 05.02.1990};
+de {Gebe dein Geburtsdatum im Format TT.MM.JJJJ ein.\n\nBeispiel: 05.02.1990};
+
+[255]
+en {Select gender};
+de {Geschlecht auswählen};
+
+[256]
+en {Male};
+de {Männlich};
+
+[257]
+en {Female};
+de {Weiblich};
+
+[258]
+en {Enter home location};
+de {Wohnort eingeben};
+
+[259]
+en {Enter your home location.\n\nNote: This can also be a location in San Andreas.};
+de {Gebe deinen Wohnort ein.\n\nHinweis: Kann auch ein Wohnort in San Andreas sein.};
+
+[260]
+en {Register};
+de {Registrieren};
+
+[261]
+en {You are not registered yet!\n\nPlease enter a new password for your account.};
+de {Du bist noch nicht registriert!\n\nBitte gebe ein neues Passwort für deinen Account ein.};
+
+[262]
+en {Please enter the password of your account.};
+de {Bitte gebe das Passwort von deinem Account ein.};
+
+[263]
+en {Teleport you to the target selected on the map};
+de {Teleportiere dich zu deinem auf der Karte ausgewählten Ziel};
+
+[264]
+en {You have not selected the target on your map!};
+de {Du hast noch nicht das Ziel auf deiner Karte ausgewählt!};
+
+[265]
+en {Your vehicle gets filled up. Please wait...};
+de {Dein Fahrzeug wird getankt. Bitte warten...};
+
+[266]
+en {Buy hotel};
+de {Hotel kaufen};
+
+[267]
+en {Rent a room};
+de {Zimmer mieten};
+
+[268]
+en {Enter};
+de {Betreten};
+
+[269]
+en {Preview};
+de {Vorschauversion};
+
+[270]
+en {This is just a preview of our SA-MP Server!\nSome features may not work or are not free of bugs.\n\nIf you found a bug or have a suggestion, please report it on http://issues.grgserver.net.};
+de {Das ist nur eine Vorschauversion unseres SA-MP Servers!\nEinige Funktionen funktionieren eventuell noch nicht oder sind noch nicht frei von Fehlern!\n\nSolltest du einen Fehler finden oder einen Vorschlag haben, berichte diesen uns bitte auf http://issues.grgserver.net.};
+
+[271]
+en {Fly trough San Andreas};
+de {Fliege durch San Andreas};
+
+[272]
+en {Fly mode activated};
+de {Flugmodus aktiviert};
+
+[273]
+en {Fly mode deactivated};
+de {Flugmodus deaktiviert};
+
+[274]
+en {%d hours later...};
+de {%d Stunden später};
+
+[275]
+en {Go to the air port entrance};
+de {Gehe zum Eingang des Flughafens};
+
+[276]
+en {Halt!!! If you once again try to steal the cucumbers of my sandwich, your head makes a city tour!};
+de {Stillgestanden!!! Wenn du noch einmal meine Gurken vom Pausenbrot klaust, macht dein Kopf eine Stadtrundfahrt!};
+
+[277]
+en {What? I'm new in this city!};
+de {Was? Ich bin neu hier!};
+
+[278]
+en {Yeah yeah, everyone who steals my cucumbers say that!};
+de {Ja ja, das sagen alle die mir meine Gurken klauen!};
+
+[279]
+en {Ehm... I just want to know what I should do now...};
+de {Ehm... Ich möchte eigentlich nur wissen, was ich jetzt machen soll...};
+
+[280]
+en {You are asking what you should do??? Get out of my face before I change my mind with the city tour!};
+de {Du fragst, was du machen sollst??? Hau ab bevor ich mir das mit der Stadtrundfahrt doch noch anders überlege!};
+
+[281]
+en {Go to the bus stop and wait for the next bus};
+de {Gehe zur Bushaltestelle und warte auf den nächsten Bus};
+
+[282]
+en {Set the spawn position of a NPC};
+de {Ändere die Spawnposition von einem NPC};
+
+[283]
+en {The spawn position of the NPC has been changed};
+de {Die Spawnposition von dem NPC wurde geändert};
+
+[284]
+en {NPC not found!};
+de {NPC nicht gefunden!};
+
+[285]
+en {Tow vehicle};
+de {Abschleppen};
+
+[286]
+en {You have to be in a TowTruck!};
+de {Du musst in einem TowTruck sein!};
+
+[287]
+en {You are not the ADAC!};
+de {Du bist nicht beim ADAC!};
+
+[288]
+en {There is no vehicle in range!};
+de {Es befindet sich kein Fahrzeug in der Nähe!};
+
+[289]
+en {Vehicle dettached};
+de {Fahrzeug abgehängt};
+
+[290]
+en {Vehicle attached};
+de {fahrzeug angehängt};
+
+[291]
+en {Go to the exit};
+de {Gehe zum Ausgang};
+
+[292]
+en {This is one of the banks in San Andreas};
+de {Dies ist eine der vielen Banken in San Andreas};
+
+[293]
+en {Here you can create bank accounts which are for example required to get paid at the payday or to buy vehicles and houses};
+de {Hier kannst du Bankkonten anlegen, welche du z.B. benötigst, um am Zahltag Geld zu bekommen oder Fahrzeuge und Häuser zu kaufen};
+
+[294]
+en {You can enter a bank by going into the bank pickup and press ~k~~CONVERSATION_YES~ to pick up the pickup};
+de {Du kannst eine Bank betreten indem du in das Bankenpickup gehst und ~k~~CONVERSATION_YES~ drückst um das Pickup aufzunehmen};
+
+[295]
+en {Goto the bank and create an account};
+de {Gehe zur Bank und erstelle ein Konto};
+
+[296]
+en {Repair vehicle};
+de {Fahrzeug reparieren};
+
+[297]
+en {Refill vehicle};
+de {Fahrzeug tanken};
+
+[298]
+en {Price};
+de {Preis};
+
+[299]
+en {%p has not enought money!};
+de {%p hat nicht genügend Geld!};
+
+[300]
+en {%p is not in any vehicle};
+de {%p ist in keinem Fahrzeug};
+
+[301]
+en {Repair vehicle};
+de {Fahrzeug reparieren};
+
+[302]
+en {%s wants to repair your vehicle for %s\n\nIs that OK?};
+de {%s möchte dein fahrzeug für %s reparieren\n\nIst das OK?};
+
+[303]
+en {The request has been send to the player};
+de {Die Anfrage wurde an den Spieler gesendet};
+
+[304]
+en {Your vehicle has been repaired};
+de {Dein fahrzeug wurde repariert};
+
+[305]
+en {%s has accepted your repair request. You get %s.};
+de {%s hat deine Reparaturanfrage angenommen. Du bekommst %s.};
+
+[306]
+en {%s has rejected your repair request.};
+de {%s hat deine Reparaturannfrage abgelehnt.};
+
+[307]
+en {Years};
+de {Jahre};
+
+[308]
+en {Change the channel in which your messages should be send};
+de {Wechsel den Kanal in welchen deine Nachrichten gesendet werden};
+
+[309]
+en {Current chat channel: %s};
+de {Aktueller Chatkanal: %s};
+
+[310]
+en {All};
+de {Alle};
+
+[311]
+en {In range (max 100m)};
+de {Im Umkreis (max 100m)};
+
+[312]
+en {Change chat channel};
+de {Chatkanal wechseln};
+
+[313]
+en {Chat channel changed to '%s'};
+de {Chatkanal gewechselt auf '%s'};
+
+[314]
+en {There are currently no rooms available};
+de {Es stehen derzeit keine Zimmer zur Verfügung};
+
+[315]
+en {Select room - %s};
+de {Zimmer wählen - %s};
+
+[316]
+en {Your hotel room - %s};
+de {Dein Hotelzimmer - %s};
+
+[317]
+en {Enter hotel room};
+de {Hotelzimmer betreten};
+
+[318]
+en {Cancel hotel room};
+de {Hotelzimmer kündigen};
+
+[319]
+en {Room information};
+de {Informationen über das Zimmer};
+
+[320]
+en {Hourly price: %m};
+de {Stündlicher Preis: %m};
+
+[321]
+en {You have cancelled the hotel room};
+de {Du hast das Hotelzimmer gekündigt};
+
+[322]
+en {You have the permission 'MAPPER' and are now able to add hotel rooms using /addhotelroom};
+de {Du hast die Berechtigung 'MAPPER' und hast nun die Möglichkeit Hotelzimmer mit /addhotelroom hinzuzufügen};
+
+[323]
+en {Add a new hotel room to the current hotel};
+de {Füge ein neues Hotelzimmer zum aktuellen Hotel hinzu};
+
+[324]
+en {You are not in a hotel!};
+de {Du bist nicht in einem Hotel!};
+
+[325]
+en {The hotel room (%d) has been created};
+de {Das Hotelzimmer (%d) wurde erstellt};
+
+[326]
+en {Teleport you to the specified coordinates};
+de {Teleportiere dich zu den angegebenen Koordinaten};
+
+[327]
+en {This vehicle is reserved for a job!};
+de {Dieses Fahrzeug ist für einen Job reserviert!};
+
+[328]
+en {Sell};
+de {Verkaufen};
+
+[329]
+en {Your house - %s};
+de {Dein Haus - %s};
+
+[330]
+en {Your house has been sold!};
+de {Dein Haus wurde verkauft!};
+
+[331]
+en {Reason};
+de {Grund};
+
+[332]
+en {%p has been kicked by %p, Reason: %s};
+de {%p wurde von %p gekickt, Grund: %s};
+
+[333]
+en {Save your current location as teleport location};
+de {Speicher deinen aktuellen Ort als Teleportort};
+
+[334]
+en {The teleport location has been saved. Use /teleport to teleport to the location};
+de {Der Teleportort wurde gespeichert. Verwende /teleport um dich zu dem Ort zu teleportieren};
+
+[335]
+en {Select a property to set various properties like the 'Property bought' camera position};
+de {Wähle eine Immobilie aus um verschiedene Eigenschaften wie die 'Immobilie gekauft' Kameraposition zu definieren};
+
+[336]
+en {Set the 'Property bought' camera position};
+de {Definiere die 'Immobilie gekauft' Kameraposition};
+
+[337]
+en {This pickup is not linked to a property!};
+de {Dieses Pickup ist nicht mit einer Immobilie verknüpft!};
+
+[338]
+en {Press ~k~~SNEAK_ABOUT~ to select the property linked to this pickup};
+de {Drücke ~k~~SNEAK_ABOUT~ um die Immobilie auszuwählen welches mit diesem Pickup verknüpft ist};
+
+[339]
+en {Activate the navigation system};
+de {Aktiviere das Navigationssystem};
+
+[340]
+en {Your vehicle does not have a navigation system!};
+de {Dein fahrzeug hat kein Navigationssystem!};
+
+[341]
+en {Start};
+de {Starten};
+
+[342]
+en {Target on map};
+de {Ziel auf der Karte};
+
+[343]
+en {No target found!};
+de {Kein Ziel gefunden!};
+
+[344]
+en {You have reached your target};
+de {Du hast dein Ziel erreicht};
+
+[345]
+en {Give you infinite health};
+de {Gebe dir unendlich Gesundheit};
+
+[346]
+en {God mode enabled};
+de {Gottmodus aktiviert};
+
+[347]
+en {God mode disabled};
+de {Gottmodus deaktiviert};
+
+[348]
+en {Change your current interior};
+de {Wechsel deinen aktuellen Interior};
+
+[349]
+en {Interior changed to %d};
+de {Interior gewechselt zu %d};
+
+[350]
+en {Teleport you to the next property without camera position};
+de {Teleportiere dich zur nächsten Immobilie ohne Kameraposition};
+
+[351]
+en {You got teleported to the next property (%s). There are %d properties without a camera position.};
+de {Du wurdest zur nächsten Immobilie (%s) teleportiert. Es gibt %d Immobilien ohne Kameraposition};
+
+[352]
+en {There are no more properties without camera position!};
+de {Es gbt keine weiteren Immobilien ohne Kameraposition!};
+
+[353]
+en {Vehicle dealer};
+de {Autohändler};
+
+[354]
+en {You are current no vehicle dealer.\n\nDo you want to accept the job?};
+de {Du bist zurzeit kein Autohändler.\n\nMöchtest du den Job annehmen?};
+
+[355]
+en {You are now vehicle dealer};
+de {Du bist jetzt Autohändler};
+
+[356]
+en {End work};
+de {Arbeit beenden};
+
+[357]
+en {Start work};
+de {Arbeit beginnen};
+
+[358]
+en {Cancel job};
+de {Job kündigen};
+
+[359]
+en {You have cancelled your job};
+de {Du hast deinen Job gekündigt};
+
+[360]
+en {You have ended your working day. Worked hours: %d};
+de {Du hast deinen Arbeitstag beendet. Gearbeitete Stunden: %d};
+
+[361]
+en {Select a weapon};
+de {Wähle eine Waffe aus};
+
+[362]
+en {Dark blue};
+de {Dunkelblau};
+
+[363]
+en {Gold};
+de {Gold};
+
+[364]
+en {Green};
+de {Grün};
+
+[365]
+en {Light blue};
+de {Hellblau};
+
+[366]
+en {Light green};
+de {Hellgrün};
+
+[367]
+en {Orange};
+de {Orange};
+
+[368]
+en {Pink};
+de {Pink};
+
+[369]
+en {Purple};
+de {Lila};
+
+[370]
+en {Red};
+de {Rot};
+
+[371]
+en {Turquoise};
+de {Türkis};
+
+[372]
+en {White};
+de {Weiß};
+
+[373]
+en {Yellow};
+de {Gelb};
+
+[374]
+en {Upgrade your vehicle};
+de {Rüste dein Fahrzeug auf};
+
+[375]
+en {Neon lights};
+de {Neonröhren};
+
+[376]
+en {Add neon lights};
+de {Neonröhren einbauen};
+
+[377]
+en {Select location type};
+de {Orttyp auswählen};
+
+[378]
+en {Add new type};
+de {Neuen Typ hinzufügen};
+
+[379]
+en {You have to enter the name!};
+de {Du musst den Name eingeben!};
+
+[380]
+en {Save you current location as navigation target};
+de {Speicher deinen aktuellen Ort als Navigationsziel};
+
+[381]
+en {Invalid permission: %s};
+de {Ungültige Berechtigung: %s};
+
+[382]
+en {Enter the name for the new type.\n\nUse L:[LanguageStringID] (e.g. L:329) to use a language string defined in %s.};
+de {Gebe den Name für den neuen Typ ein.\n\nVerwende L:[LanguageStringID] (z.B. L:329) um einen Sprachstring aus der %s zu verwenden.};
+
+[383]
+en {The location has been added};
+de {Der Ort wurde hinzugefügt};
+
+[384]
+en {Gas station};
+de {Tankstelle};
+
+[385]
+en {Parking lot};
+de {Parkplatz};
+
+[386]
+en {Train station};
+de {Bahnhof};
+
+[387]
+en {Airport};
+de {Flughafen};
+
+[388]
+en {Format error in line %d};
+de {Formatfehler in Zeile %d};
+
+[389]
+en {Invalid slot!};
+de {Ungültiger Slot!};
+
+[390]
+en {Invalid model ID};
+de {Ungültige Model ID};
+
+[391]
+en {Object removed};
+de {Objekt entfernt};
+
+[392]
+en {Object attached};
+de {Objekt angehängt};
+
+[393]
+en {Attach an object to your vehicle};
+de {Hänge ein Objekt an dein Fahrzeug};
+
+[394]
+en {Remove an attached object from your vehicle};
+de {Entferne ein angehängtes Objekt von deinem Fahrzeug};
+
+[395]
+en {Front headlights};
+de {Frontscheinwerfer};
+
+[396]
+en {The object %d (%s) has been added and selected for editing};
+de {Das Objekt %d (%s) wurde hinzugefügt und zum Bearbeiten ausgewählt};
+
+[397]
+en {Place};
+de {Platz};
+
+[398]
+en {Select your last added object};
+de {Wähle das zuletzt von dir hinzugefügte Objekt aus};
+
+[399]
+en {There are no objects which were added by you!};
+de {Es gibt keine Objekte welche du hinzugefügt hast!};
+
+[400]
+en {Toggle the clock in the top right corner};
+de {Aktiviere/Deaktiviere die Uhr in der oberen rechten Ecke};
+
+[401]
+en {Set the interior spawn point};
+de {Den Spawnpunkt des Interiors festlegen};
+
+[402]
+en {Teleport to the next interior};
+de {Teleportiere dich zum nächsten Interior};
+
+[403]
+en {The spawn position for the interior has been set};
+de {Die Spawnposition für den Interior wurde festgelegt};
+
+[404]
+en {You are not in an interior!};
+de {Du bist in keinem Interior!};
+
+[405]
+en {You are now in interior %d};
+de {Du bist jetzt in Interior %d};
+
+[406]
+en {Set the target of the selected LINK-pickup};
+de {Lege das Ziel für das ausgewählte LINK-Pickup fest};
+
+[407]
+en {No teleport link selected!};
+de {Keine Teleportverknüpfung ausgewählt!};
+
+[408]
+en {The target for the teleport link %d has been set};
+de {Das Ziel für die Teleportverknüpfung wurde festgelegt};
+
+[409]
+en {Send a private message to another player};
+de {Sende eine private Nachricht an einen anderen Spieler};
+
+[410]
+en {You have to give a reason to restart the gamemode!};
+de {Du musst einen Grund angeben um den gamemode neuzustarten!};
+
+[411]
+en {Hospital};
+de {Krankenhaus};
+
+[412]
+en {Show/Hide your current position};
+de {Deine aktuelle Position anzeigen/ausblenden};
+
+[413]
+en {Order};
+de {Bestellen};
+
+[414]
+en {Calculating route};
+de {Die Route wird berechnet};
+
+[415]
+en {No GPS!};
+de {Kein GPS!};
+
+[416]
+en {Turn on or off the lights of your vehicle};
+de {Schalte das Lich von deinem Fahrzeug an oder aus};
+
+[417]
+en {Name of a property};
+de {Name einer Immobilie};
+
+[418]
+en {Enter the name of the target house.};
+de {Gebe den Name des Zielhauses ein.};
+
+[419]
+en {Select house};
+de {Haus auswählen};
+
+[420]
+en {Last net income: $%s};
+de {Letztes Nettoeinkommen: $%s};
+
+[421]
+en {Time elapsed since the last pay day: %s};
+de {Vergangene Zeit seit dem letzten Zahltag: %s};
+
+[422]
+en {Time till the next pay day: %s};
+de {Zeit bis zum nächsten Zahltag: %s};
+
+[423]
+en {Information about the pay day};
+de {Informationen über den Zahltag};
+
+[424]
+en {Use /engine to start the engine of your vehicle.};
+de {Verwende /engine um den Motor deines Fahrzeuges zu starten.};
+
+[425]
+en {No object found!};
+de {Kein Objekt gefunden!};
+
+[426]
+en {Mark an object on your map};
+de {Markiere ein Objekt auf deiner Karte};
+
+[427]
+en {Object not found!};
+de {Objekt nicht gefunden!};
+
+[428]
+en {Speed: ~k~~PED_JUMPING~, ~k~~SNEAK_ABOUT~};
+de {Geschwindigkeit: ~k~~PED_JUMPING~, ~k~~SNEAK_ABOUT~};
+
+[429]
+en {Up / Down: ~k~~PED_SPRINT~, ~k~~PED_DUCK~};
+de {Hoch / Runter: ~k~~PED_SPRINT~, ~k~~PED_DUCK~};
+
+[430]
+en {Move camera: ~k~~GO_FORWARD~, ~k~~GO_BACK~, ~k~~GO_LEFT~, ~k~~GO_RIGHT~};
+de {Kamera bewegen: ~k~~GO_FORWARD~, ~k~~GO_BACK~, ~k~~GO_LEFT~, ~k~~GO_RIGHT~};
+
+[431]
+en {Turn on or off neon lights};
+de {Schalte die Neonröhren an oder aus};
+
+[432]
+en {Your vehicle does not have neon lights!};
+de {Dein Fahrzeug hat keine Neonröhren!};
+
+[433]
+en {The neon lights were turned off};
+de {Die Neonröhren wurden ausgeschalten};
+
+[434]
+en {The neon lights were turned on};
+de {Die Neonröhren wurden eingeschalten};
+
+[435]
+en {The lights of your vehicle were turned off};
+de {Die Lichter von deinem Fahrzeug wurden ausgeschalten};
+
+[436]
+en {The lights of your vehicle were turned on};
+de {Die Lichter von deinem Fahrzeug wurden eingeschalten};
+
+[437]
+en {Vehicle upgrader};
+de {Fahrzeugaufrüster};
+
+[438]
+en {Sit down or stand up};
+de {Hinsetzen oder aufstehen};
+
+[439]
+en {Add a player to your friend list};
+de {Füge einen Spieler zu deiner Freundesliste hinzu};
+
+[440]
+en {%p is already in your friend list!};
+de {%p ist bereits in deiner Freundesliste!};
+
+[441]
+en {%p has confirmed your friend request};
+de {%p hat deine Freundschaftsanfrage angenommen};
+
+[442]
+en {%s has been added to your friend list};
+de {%s wurde zu deiner Freundesliste hinzugefügt};
+
+[443]
+en {%p wants to add you to his/her friend list. Use /friendrequests to accept or decline.};
+de {%p möchte dich zu seiner/ihrer Freundesliste hinzufügen. Verwende /friendrequests zum annehmen or ablehnen.};
+
+[444]
+en {The friend request has been sent to %p};
+de {Die Freunschaftsanfrage wurde an %p gesendet};
+
+[445]
+en {You can not add yourself as a friend!};
+de {Du kannst dich nicht selbst als Freund hinzufügen!};
+
+[446]
+en {Remove a player from your friend list};
+de {Entferne einen Spieler aus deiner Freundesliste};
+
+[447]
+en {%p is not in your friendlist!};
+de {%p ist nicht in deiner Freundesliste!};
+
+[448]
+en {%p has been removed from your friend list};
+de {%p wurde von deiner Freundesliste entfernt};
+
+[449]
+en {%p has removed you from his/her friend list};
+de {%p hat dich von seiner/ihrer Freundesliste entfernt};
+
+[450]
+en {Save information like your current position, skin or vehicle model ID};
+de {Speichere Informationen wie z.B. deine aktuelle Position, Skin oder Fahrzeug Model ID};
+
+[451]
+en {The information has been saved to the file '%s' on the server};
+de {Die Informationen wurden in der Datei '%s' auf dem Server gespeichert};
+
+[452]
+en {Error while writing the file!};
+de {Fehler beim Schreiben der Datei!};
+
+[453]
+en {You are driving too fast! (%d km/h; Max: %d km/h)};
+de {Du fährst zu schnell! (%d km/h; Max: %d km/h)};
+
+[454]
+en {What sense does it make to send yourself a private message?};
+de {Welchen Sinn hat es, dir selbst eine private Nachricht zu senden?};
+
+[455]
+en {Remove the current vehicle from the database};
+de {Entferne das aktuelle Fahrzeug aus der Datenbank};
+
+[456]
+en {This vehicle is not a saved vehicle!};
+de {Dieses Fahrzeug ist kein gespeichertes Fahrzeug!};
+
+[457]
+en {The vehicle has been removed};
+de {Das Fahrzeug wurde entfernt};
+
+[458]
+en {%d objects found};
+de {%d Objekte gefunden};
+
+[459]
+en {List the objects in your environment};
+de {Liste die Objekte in deiner Umgebung auf};
+
+[460]
+en {The navigation system has been turned off};
+de {Das Navigationssystem wurde ausgeschalten};
+
+[461]
+en {The vehicle could not be spawned!};
+de {Das fahrzeug konnte nicht gespawnt werden!};
+
+[462]
+en {%p executed '%s' via RCON};
+de {%p hat '%s' per RCOn ausgeführt};
+
+[463]
+en {Set the position and rotation for the current selected object to move to};
+de {Lege die Position und Rotation des aktuell ausgewählten Objekts fest, an welche es verschoben werden soll};
+
+[464]
+en {No object selected! Select the object using /editobject and move it to the position you want.};
+de {Kein Objekt ausgewählt! Wähle das Objekt mit /editobject aus und verschiebe es an die gewünschte Position.};
+
+[465]
+en {The target position has been saved. You can test the movement using /moveobject %d 1.};
+de {Die Zielposition wurde gespeichert. Du kannst die Bewegung mit /moveobject %d 1 testen.};
+
+[466]
+en {No target position set! Use /setobjectmovepos to set the position.};
+de {Keine Zielposition festgelegt! Verwende /setobjectmovepos um die Position festzulegen.};
+
+[467]
+en {Open a gate or door};
+de {Öffne ein Tor oder eine Tür};
+
+[468]
+en {There is no gate which can be opened!};
+de {Es befindet sich kein Tor in der Umgebung, welches geöffnet werden kann!};
+
+[469]
+en {You do not have the permission to open this gate!};
+de {Du hast nicht das Recht, dieses Tor zu öffnen!};
+
+[470]
+en {The gate will now open};
+de {Das Tor wird geöffnet};
+
+[471]
+en {Ban a player};
+de {Banne einen Spieler};
+
+[472]
+en {%p has been banned by %p, Reason: %s};
+de {%p wurde von %p gebannt, Grund: %s};
+
+[473]
+en {Sorry, but you got banned from this server!};
+de {Entschuldigung, aber du wurdest von diesem Server gebannt!};
+
+[474]
+en {Reason for the ban: %s};
+de {Grund des Bans: %s};
+
+[475]
+en {You got banned by mistake? In this case, please contact us on http://www.grgserver.net.};
+de {Du wurdest irrtümlich gebannt? Dann kontaktiere uns bitte auf http://www.grgserver.net.};
+
+[476]
+en {Lock/Unlock};
+de {Auf-/Zuschließen};
+
+[477]
+en {You have unlocked your house};
+de {Du hast dein Haus aufgeschlossen};
+
+[478]
+en {You have locked your house};
+de {Du hast dein Haus abgeschlossen};
+
+[479]
+en {See your current friendship requests};
+de {Sehe dir deine aktuellen Freundschaftsanfragen};
+
+[480]
+en {Your friend requests (%d)};
+de {Deine Freundschaftsanfragen (%d)};
+
+[481]
+en {This house is locked!};
+de {Das Haus ist abgeschlossen!};
+
+[482]
+en {Mark up to 100 objects on your map};
+de {Markiere bis zu 100 Objekte auf deiner Karte};
+
+[483]
+en {Lock or unlock a vehicle};
+de {Ein Fahrzeug auf- oder abschließen};
+
+[484]
+en {The vehicle has been locked!};
+de {Das Fahrzeug wurde abgeschlossen};
+
+[485]
+en {The vehicle has been unlocked!};
+de {Das Fahrzeug wurde aufgeschlossen};
+
+[486]
+en {Add a speed camera};
+de {Füge einen Blitzer hinzu};
+
+[487]
+en {You are not the owner of this vehicle!};
+de {Du bist nicht der Besitzer dieses Fahrzeugs!};
+
+[488]
+en {Sell your vehicle};
+de {Verkaufe dein Fahrzeug};
+
+[489]
+en {Enter the sale price.};
+de {Gebe den Verkaufspreis an.};
+
+[490]
+en {The price must be positive!};
+de {Der Preis muss positiv sein!};
+
+[491]
+en {You have released your vehicle for sale};
+de {Du hast dein Fahrzeug zum Verkauf freigegeben};
+
+[492]
+en {You have exceeded the cash limit of %m!};
+de {Du hast das Bargeldlimit von %m überschritten!};
+
+[493]
+en {You have bought a vehicle};
+de {Du hast ein Fahrzeug gekauft};
+
+[494]
+en {%p has bought your vehicle};
+de {%p hat dein Fahrzeug gekauft};
+
+[495]
+en {Allow your vehicle to get bought by a vehicle dealer};
+de {Gebe dein Fahrzeug zum Verkauf durch einen Autohändler frei};
+
+[496]
+en {Options};
+de {Optionen};
+
+[497]
+en {There are currently no friendship requests!};
+de {Es bestehen derzeit keine Freundschaftsanfragen!};
+
+[498]
+en {There are %d friendship requests. Use /friendrequests to see them.};
+de {Du hast %d Freundschaftsanfragen. Verwende /friendrequests um diese zu sehen.};
+
+[499]
+en {Decline};
+de {Ablehnen};
+
+[500]
+en {%p has declined your friend request!};
+de {%p hat deine Freundschaftsanfrage abgelehnt!};
+
+[501]
+en {You have declined the friend request of %s!};
+de {Du hast die Freundschaftsanfrage von %s abgelehnt!};
+
+[502]
+en {Select friend};
+de {Freund auswählen};
+
+[503]
+en {You have no players in your friend list! You can add players using /addfriend.};
+de {Du hast keine Spieler in deiner Freundesliste! Du kannst Spieler mit /addfriend hinzufügen.};
+
+[504]
+en {Friend};
+de {Freund};
+
+[505]
+en {Spawn a vehicle};
+de {Fahrzeug spawnen};
+
+[506]
+en {Close};
+de {Schließen};
+
+[507]
+en {Relogin with your current name or a new name};
+de {Logge dich erneut mit deinem aktuellen oder neuen Namen ein};
+
+[508]
+en {Another player with this name is already connected!};
+de {Ein anderer Spieler mit diesem Namen ist bereits verbunden!};
+
+[509]
+en {Your name could not be changed! Your old name will be used.};
+de {Dein Name konnte nicht geändert werden! Dein alter Name wird verwendet.};
+
+[510]
+en {Clear the chat window};
+de {Inhalt des Chatfensters löschen};
+
+[511]
+en {Give license to a player};
+de {Einem Spieler einen Führerschein geben};
+
+[512]
+en {%p already owns that license (%l)!};
+de {%p hat bereits diese Lizens (%l)!};
+
+[513]
+en {You got a %l!};
+de {Du hast einen %l bekommen!};
+
+[514]
+en {You do not have a %l!};
+de {Du hast keinen %l!};
+
+[515]
+en {Create or remove a command alias};
+de {Erstelle oder entferne einen Befehlsalias};
+
+[516]
+en {Use /alias &lt;name&gt; to remove an alias.};
+de {Verwende /alias &lt;Name&gt; um einen Alias wieder zu entfernen.};
+
+[517]
+en {The alias /%s has been created};
+de {Der Alias /%s wurde erstellt};
+
+[518]
+en {The alias /%s has been removed};
+de {Der Alias /%s wurde entfernt};
+
+[519]
+en {Alias /%s not found!};
+de {Alias /%s nicht gefunden!};
+
+[520]
+en {The aliased command %s was not found!};
+de {Der Befehl %s hinter dem Alias wurde nicht gefunden!};
+
+[521]
+en {Command not found!};
+de {Befehl nicht gefunden!};
+
+[522]
+en {Tip: Use /alias to create an alias of a command};
+de {Tipp: Verwende /alias um einen Alias von einem Befehl zu erstellen};
+
+[523]
+en {Gratulation, you have bought your first vehicle!};
+de {Gratulation du hast dein erstes Fahrzeug gekauft!};
+
+[524]
+en {Now search a hotel to live in.};
+de {Suche nun ein Hotel in dem du Wohnen kannst.};
+
+[525]
+en {After that, search for a job.};
+de {Dann suchst du dir einen Beruf.};
+
+[526]
+en {Go into a case pickup and accept the job.};
+de {Gehe in ein Koffer-Pickup und akzeptiere den Beruf.};
+
+[527]
+en {There are many jobs in San Andreas.};
+de {Es gibt sehr viele Berufe in San Andreas.};
+
+[528]
+en {You need help? Contact an admin (Aerox_Tobi, Dani_Prima, Need or Programie).};
+de {Du benötigst Hilfe? Kontaktiere einen Admin (Aerox_Tobi, Dani_Prima, Need or Programie).};
+
+[529]
+en {Have fun while searching your first job.};
+de {Viel Spaß beim Suchen deines ersten Berufs.};
+
+[530]
+en {Car driving license};
+de {Autoführerschein};
+
+[531]
+en {Plane fly license};
+de {Pilotenschein};
+
+[532]
+en {Truck driving license};
+de {LKW Führerschein};
+
+[533]
+en {Bike driving license};
+de {Motorradführerschein};
+
+[534]
+en {Sailing license};
+de {Segelschein};
+
+[535]
+en {You gave a %l to %p};
+de {Du hast einen %l an %p gegeben};
+
+[536]
+en {You revoked the %l from %p!};
+de {Du hast den %l von %p weggenommen!};
+
+[537]
+en {Your %l has been revoked!};
+de {Dein %l wurde weggenommen!};
+
+[538]
+en {%p does not own a %l!};
+de {%p hat noch keinen %l!};
+
+[539]
+en {Invalid license type: %s};
+de {Ungültiger Lizenstyp: %s};
+
+[540]
+en {Command is the command without the slash ( / )!};
+de {Command ist der Befehl ohne Slash ( / )!};
+
+[541]
+en {Example usage: %s};
+de {Beispielanwendung: %s};
+
+[542]
+en {Helicopter flying license};
+de {Helikopterflugschein};
+
+[543]
+en {Train driving license};
+de {Zugführerschein};
+
+[544]
+en {Do not get caught by the police!};
+de {Lass dich nicht von der Polizei erwischen!};
+
+[545]
+en {Remember: Monster trucks are prohibited on the street!};
+de {Denke daran: Monster Trucks sind auf der Strasse verboten!};
+
+[546]
+en {Cannabis plantations transportation};
+de {Hanfplantagentransport};
+
+[547]
+en {Cole transport};
+de {Kohletransport};
+
+[548]
+en {Tank Transport};
+de {Benzin Transport};
+
+[549]
+en {Attach your trailer and drive to the checkpoint};
+de {Hänge deinen Hänger an und fahre zu dem Checkpoint};
+
+[550]
+en {grain transport};
+de {Getreidetransport};
+
+[551]
+en {You have finished your mission and get %m transferred to your bank account.};
+de {Du hast deinen Auftrag gemeistert und bekommst %m auf dein Bankkonto überwiesen.};
+
+[552]
+en {Drive back to select a new route};
+de {Fahre zurück um eine neue Route zu wählen};
+
+[553]
+en {Trucker missions};
+de {LKW-Fahreraufträge};
+
+[554]
+en {Cuff a player};
+de {Einen Spieler fesseln};
+
+[555]
+en {%p has been cuffed};
+de {%p wurde gefesselt};
+
+[556]
+en {%p is not in range!};
+de {%p ist nicht in der Nähe!};
+
+[557]
+en {%p has been released};
+de {%p wurde freigelassen};
+
+[558]
+en {Level must be between 0 and 6!};
+de {Level muss zwischen 0 und 6 sein!};
+
+[559]
+en {The wanted level of %p has been set to %d};
+de {Der Gesucht-Level von %p wurde auf %d gesetzt};
+
+[560]
+en {Set the wanted level of a player};
+de {Setze den Gesucht-Level von einem Spieler};
+
+[561]
+en {Change bus line};
+de {Buslinie wählen};
+
+[562]
+en {Line %d};
+de {Linie %d};
+
+[563]
+en {You are not driving a bus!};
+de {Du fährst keinen Bus!};
+
+[564]
+en {Now take the next bus and drive to the train station};
+de {Steige nun in den nächsten Bus und fahre zum Bahnhof};
+
+[565]
+en {Wait for the bus and drive back to the Las Venturas Airport};
+de {Warte auf den Bus und fahre zurück zum Las Venturas Flughafen};
+
+[566]
+en {Then take bus line 2 and drive to the train station};
+de {Steige dann in Bus Linie 2 und fahre zum Bahnhof};
+
+[567]
+en {Wait for the bus and drive to the train station};
+de {Warte auf den Bus und fahre zum Bahnhof};
+
+[568]
+en {Wait for the train and drive to San Fierro};
+de {Warte auf den Zug und fahre nach San Fierro};
+
+[569]
+en {Wait for the bus and drive to the bank};
+de {Warte auf den Bus und fahre zur Bank};
+
+[570]
+en {Now go to the bank};
+de {Gehe nun zur Bank};
+
+[571]
+en {%p is not a NPC!};
+de {%p ist kein NPC!};
+
+[572]
+en {Last recording length: %s seconds};
+de {Letzte Aufnahmelänge: %s Sekunden};
+
+[573]
+en {Show information about a NPC};
+de {Zeige Informationen über einen NPC};
+
+[574]
+en {Go to the bus stop};
+de {Gehe zur Bushaltestelle};
+
+[575]
+en {Wait for the next bus and drive to the driving school};
+de {Warte auf den nächsten Bus und fahre zur Fahrschule};
+
+[576]
+en {Congratulation!~n~~n~You have finished the tutorial};
+de {Glückwunsch!~n~~n~Du hast das Tutorial abgeschlossen};
+
+[577]
+en {Service};
+de {Dienstleistung};
+
+[578]
+en {Your request has been sent};
+de {Deine Anfrage wurde gesendet};
+
+[579]
+en {Your new PIN for your bank account is %d};
+de {Dein neuer PIN für dein Bankkonto ist %d};
+
+[580]
+en {Enter PIN};
+de {PIN eingeben};
+
+[581]
+en {Enter the PIN of your bank account.};
+de {Gebe die PIN von deinem Bankkonto ein.};
+
+[582]
+en {The PIN must be between %d and %d!};
+de {Die PIN muss zwischen %d und %d sein!};
+
+[583]
+en {The entered PIN is not correct!};
+de {Die eingegebene PIN ist falsch!};
+
+[584]
+en {You have %d more tries};
+de {Du hast noch %d Versuche};
+
+[585]
+en {You have reached the maximum number of wrong tries! Your bank account has been blocked!};
+de {Du hast die Anzahl der maximalen falschen Versuche erreicht! Dein Bankkonto wurde gesperrt!};
+
+[586]
+en {Pickup an ordered vehicle};
+de {Hole ein bestelltes Fahrzeug ab};
+
+[587]
+en {The ID must be positive!};
+de {Die ID muss positiv sein!};
+
+[588]
+en {Add an info pickup};
+de {Erstelle ein Info Pickup};
+
+[589]
+en {This is a junk yard. You will also find old useable vehicles at this place.};
+de {Das ist ein Schrottplatz. Du kannst hier auch alte fahrbare Fahrzeuge finden.};
+
+[590]
+en {You should now get a driving license. But you can also get it later.};
+de {Du solltest nun den Führerschein machen. Aber du kannst ihn auch später machen.};
+
+[591]
+en {After that you can buy a car at the junk yard};
+de {Danach kannst du zum Beispiel auf dem Schrottplatz ein Auto kaufen};
+
+[592]
+en {Select driving license};
+de {Führerschein auswählen};
+
+[593]
+en {You already have all driving licenses you can earn at this driving school!};
+de {Du hast bereits alle Führerscheine welche du in dieser Fahrschule bekommen kannst!};
+
+[594]
+en {So you want to get a driving license?};
+de {So, du möchtest also einen Führerschein machen?};
+
+[595]
+en {First I will explain you the rules.};
+de {Zuerst werde ich dir die Regeln erklären.};
+
+[596]
+en {In the city you can drive up to 50 km/h.};
+de {In der Stadt darfst du bis zu 50 km/h fahren.};
+
+[597]
+en {Outside of the city there is a speed limit of 100 km/h.};
+de {Außerhalb der Stadt gilt ein Geschwindigkeitslimit von 100 km/h.};
+
+[598]
+en {On the highways there are no speed limits.};
+de {Auf der Autobahn gibt es keine Geschwindigkeitsbegrenzung.};
+
+[599]
+en {Driving school};
+de {Fahrschule};
+
+[600]
+en {Are you ready to start to drive?};
+de {Bist du bereit um mit dem Fahren anzufangen?};
+
+[601]
+en {OK, then we will start with your first driving lesson.};
+de {OK, dann fangen wir mal an mit deiner ersten Fahrstunde.};
+
+[602]
+en {Come back later if you are ready to drive.};
+de {Komme später wieder wenn du bereit bist zum Fahren.};
+
+[603]
+en {Enter a car};
+de {Steig in ein Auto};
+
+[604]
+en {Get on a bike};
+de {Steig auf ein Motorrad};
+
+[605]
+en {Enter a truck};
+de {Steig in einen LKW};
+
+[606]
+en {Recording length: %d sec};
+de {Aufnahmelänge: %d sek};
+
+[607]
+en {Go back to your vehicle!};
+de {Steig wieder in dein Fahrzeug!};
+
+[608]
+en {There are currently no free vehicles to drive! Please come back later.};
+de {Leider stehen derzeit keine Fahrzeuge zum Fahren zur Verfügung! Komme später wieder.};
+
+[609]
+en {Link the current vehicle to a job};
+de {Verknüpfe das aktuelle Fahrzeug mit einem Beruf};
+
+[610]
+en {Select job};
+de {Beruf auswählen};
+
+[611]
+en {The vehicle with ID %d has been linked to the job '%s'};
+de {Das Fahrzeug mit der ID %d wurde mit dem Beruf '%s' verknüpft};
+
+[612]
+en {You have to be in a vehicle to use this checkpoint!};
+de {Du musst in einem Fahrzeug sein um diesen Checkpoint zu verwenden!};
+
+[613]
+en {You are not in the required vehicle!};
+de {Du bist nicht in dem erforderlichen Fahrzeug!};
+
+[614]
+en {Add a new mission checkpoint to a mission group};
+de {Füge einen neuen Missionscheckpoint zu einer Missionsgruppe hinzu};
+
+[615]
+en {Checkpoint %d has been added to the mission group '%s'};
+de {Checkpoint %d wurde zur Missionsgruppe '%s' hinzugefügt};
+
+[616]
+en {There is currently no driving mission available for your selected driving license type! Please come back later.};
+de {Es steht zurzeit keine Fahrmission zu deinem gewählten Führerscheintyp zur Verfügung! Komme später wieder.};
+
+[617]
+en {~y~Congratulation!~n~~n~You have finished the ~g~practical driving test~y~};
+de {~y~Glückwunsch!~n~~n~Du hast die ~g~praktische Fahrprüfung~y~ abgeschlossen};
+
+[618]
+en {You already have a driving license, so I will skip the common basics.};
+de {Du hast bereits einen Führerschein, daher werde ich die Gmeinsamkeiten überspringen.};
+
+[619]
+en {Show the number of connected players and NPCs};
+de {Zeige die Anzahl der verbundenen Spieler und NPCs};
+
+[620]
+en {There are currently %d players and %d NPCs online};
+de {Es sind zurzeit %d Spieler und %d NPCs online};
+
+[621]
+en {Logged in players: %d};
+de {Eingeloggte Spieler: %d};
+
+[622]
+en {Show current orders};
+de {Zeige aktuelle Bestellungen};
+
+[623]
+en {Kill yourself};
+de {Töte dich selbst};
+
+[624]
+en {Current recording position: %d sec};
+de {Aktuelle Aufnahmeposition: %d sek};
+
+[625]
+en {See /payday for more details};
+de {Siehe /payday für mehr Details};
+
+[626]
+en {When you need Eat};
+de {Wann brauchst du Essen};
+
+[627]
+en {Last Eat};
+de {Zuletzt Gegessen};
+
+[628]
+en {Eat};
+de {Essen};
+
+[629]
+en {Select Text};
+de {Text Auswählen};
+
+[630]
+en {Select your Text};
+de {Wähle deinen Text aus.};
+
+[631]
+en {Hunger:~n~Thirst:~n~Bladder:~n~Energy:};
+de {Hunger:~n~Durst:~n~Harndrang:~n~Energie:};
+

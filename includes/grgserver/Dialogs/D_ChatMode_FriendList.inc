@@ -10,12 +10,12 @@ ShowDialog:ChatMode_FriendList(playerID)
 		{
 			AddLine(list, GetMySQLField("username"));
 		}
-		CreateDialog(playerID, "ChatMode_FriendList", DIALOG_STYLE_LIST, LanguageString(playerID, 502), list, "OK", LanguageString(playerID, 171));
+		CreateDialog(playerID, "ChatMode_FriendList", DIALOG_STYLE_LIST, LanguageString(playerID, "502"), list, "OK", LanguageString(playerID, "171"));
 	}
 	mysql_free_result();
 	if (!rows)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 503);
+		SendClientMessageEx(playerID, COLOR_ERROR, "503");
 		ShowDialog:ChatMode(playerID);
 	}
 }
@@ -29,7 +29,7 @@ DialogResponse:ChatMode_FriendList(playerID, response, listItem, inputText[])
 		{
 			SetPVarStr:playerID[CHATMODE][STRINGLENGTH_CHATMODE]("PLAYER");
 			PVar:playerID[CHATMODE_USERID] = friendUserID;
-			SendClientMessageEx(playerID, COLOR_INFO, 313, GetChatModeName(playerID, PVar:playerID[CHATMODE]));
+			SendClientMessageEx(playerID, COLOR_INFO, "313", GetChatModeName(playerID, PVar:playerID[CHATMODE]));
 		}
 	}
 	else

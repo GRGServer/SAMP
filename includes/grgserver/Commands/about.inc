@@ -18,6 +18,6 @@
 
 CMD:about(playerID, params[], 86)
 {
-	SendClientMessageEx(playerID, COLOR_INFO, 85);
+	SendClientMessageEx(playerID, COLOR_INFO, "85");
 	return COMMAND_OK;
 }

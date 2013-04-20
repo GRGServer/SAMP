@@ -11,7 +11,7 @@ PCMD:addobject[MAPPER](playerID, params[], 202)
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 427);
+			SendClientMessageEx(playerID, COLOR_ERROR, "427");
 			return COMMAND_ERROR;
 		}
 	}
@@ -46,14 +46,14 @@ PCMD:addobject[MAPPER](playerID, params[], 202)
 
 	if (!count)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 427);
+		SendClientMessageEx(playerID, COLOR_ERROR, "427");
 		return COMMAND_ERROR;
 	}
 
 	if (count > 1)
 	{
 		format(PVar:playerID[OBJEDITOR_FILENAME], PVAR_OBJEDITOR_FILENAME, "%s", filename);
-		CreateDialog(playerID, "AddObject", DIALOG_STYLE_LIST, LanguageString(playerID, 202), objectList, LanguageString(playerID, 170), LanguageString(playerID, 165));
+		CreateDialog(playerID, "AddObject", DIALOG_STYLE_LIST, LanguageString(playerID, "202"), objectList, LanguageString(playerID, "170"), LanguageString(playerID, "165"));
 	}
 	else
 	{

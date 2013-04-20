@@ -4,7 +4,7 @@ CMD:navi(playerID, params[], 339)
 	{
 		PVar:playerID[GPS_ENABLED] = false;
 		DisablePlayerRaceCheckpoint(playerID);
-		SendClientMessageEx(playerID, COLOR_INFO, 460);
+		SendClientMessageEx(playerID, COLOR_INFO, "460");
 		return COMMAND_OK;
 	}
 	new vehicleID = GetPlayerVehicleID(playerID);
@@ -17,7 +17,7 @@ CMD:navi(playerID, params[], 339)
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 340);
+			SendClientMessageEx(playerID, COLOR_ERROR, "340");
 			return COMMAND_ERROR;
 		}
 	}

@@ -25,16 +25,16 @@ ShowDialog:SelectInterior(playerID, dialogID, startID)
 	{
 		case 1:
 		{
-			Format:interiors("%s\n%s", interiors, LanguageString(playerID, 177));
+			Format:interiors("%s\n%s", interiors, LanguageString(playerID, "177"));
 		}
 		case 2:
 		{
-			Format:interiors("%s\n%s", interiors, LanguageString(playerID, 177));
+			Format:interiors("%s\n%s", interiors, LanguageString(playerID, "177"));
 		}
 	}
-	FormatNew:string[30]("%s (%s %d)", LanguageString(playerID, 247), LanguageString(playerID, 248), page);
+	FormatNew:string[30]("%s (%s %d)", LanguageString(playerID, "247"), LanguageString(playerID, "248"), page);
 	PVar:playerID[SELECTINTERIOR_ID] = dialogID;
-	CreateDialog(playerID, "SelectInterior", DIALOG_STYLE_LIST, string, interiors, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "SelectInterior", DIALOG_STYLE_LIST, string, interiors, "OK", LanguageString(playerID, "165"));
 }
 
 DialogResponse:SelectInterior(playerID, response, listItem, inputText[])
@@ -44,12 +44,12 @@ DialogResponse:SelectInterior(playerID, response, listItem, inputText[])
 		OnInteriorDialogSelect(playerID,  PVar:playerID[SELECTINTERIOR_ID], 0);
 		return true;
 	}
-	if (IsStr(inputText, LanguageString(playerID, 171)))
+	if (IsStr(inputText, LanguageString(playerID, "171")))
 	{
 		ShowDialog:SelectInterior(playerID,  PVar:playerID[SELECTINTERIOR_ID], 0);
 		return true;
 	}
-	if (IsStr(inputText, LanguageString(playerID, 177)))
+	if (IsStr(inputText, LanguageString(playerID, "177")))
 	{
 		ShowDialog:SelectInterior(playerID,  PVar:playerID[SELECTINTERIOR_ID], 75);
 		return true;

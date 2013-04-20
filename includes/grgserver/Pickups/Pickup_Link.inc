@@ -27,7 +27,7 @@ PickupEvent:LINK(playerID, pickupID, eventType)
 			}
 			if (permissions[playerID][PERMISSION_MAPPER])
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, 136, PVar:playerID[TELEPORT_LINKID]);
+				SendClientMessageEx(playerID, COLOR_INFO, "136", PVar:playerID[TELEPORT_LINKID]);
 			}
 			return true;
 		}

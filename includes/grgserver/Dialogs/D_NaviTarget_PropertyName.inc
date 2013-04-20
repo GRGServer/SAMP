@@ -1,6 +1,6 @@
 ShowDialog:NaviTarget_PropertyName(playerID)
 {
-	CreateDialog(playerID, "NaviTarget_PropertyName", DIALOG_STYLE_INPUT, LanguageString(playerID, 417), LanguageString(playerID, 418), "OK", LanguageString(playerID, 171));
+	CreateDialog(playerID, "NaviTarget_PropertyName", DIALOG_STYLE_INPUT, LanguageString(playerID, "417"), LanguageString(playerID, "418"), "OK", LanguageString(playerID, "171"));
 }
 
 DialogResponse:NaviTarget_PropertyName(playerID, response, listItem, inputText[])
@@ -16,11 +16,11 @@ DialogResponse:NaviTarget_PropertyName(playerID, response, listItem, inputText[]
 			{
 				if (CalculateRoute(playerID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ"))))
 				{
-					SendClientMessageEx(playerID, COLOR_INFO, 414);
+					SendClientMessageEx(playerID, COLOR_INFO, "414");
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, 415);
+					SendClientMessageEx(playerID, COLOR_ERROR, "415");
 				}
 			}
 			else

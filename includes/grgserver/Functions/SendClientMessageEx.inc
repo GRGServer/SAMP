@@ -1,4 +1,4 @@
-SendClientMessageEx(playerID, color, languageStringID, { _, Float, Text3D, Menu, Text, DB, DBResult, bool, File, hex, bit, bit_byte, Bit }:...)
+SendClientMessageEx(playerID, color, languageStringName[], { _, Float, Text3D, Menu, Text, DB, DBResult, bool, File, hex, bit, bit_byte, Bit }:...)
 {
 	if (playerID == INVALID_PLAYER_ID)
 	{
@@ -6,7 +6,7 @@ SendClientMessageEx(playerID, color, languageStringID, { _, Float, Text3D, Menu,
 	}
 	new targetString[256];
 	new message[256];
-	strcat(message, LanguageString(playerID, languageStringID));
+	strcat(message, LanguageString(playerID, languageStringName));
 	new length = strlen(message);
 	new argumentIndex = 2;
 	for (new character = 0; character < length; character++)
@@ -44,7 +44,9 @@ SendClientMessageEx(playerID, color, languageStringID, { _, Float, Text3D, Menu,
 					case 'l':
 					{
 						argumentIndex++;
-						strcat(targetString, LanguageString(playerID, getarg(argumentIndex)));
+						new string[256];
+						GetStringArg(argumentIndex, string);
+						strcat(targetString, LanguageString(playerID, string));
 						isFormatChar = true;
 					}
 					case 'm':

@@ -19,13 +19,13 @@ CMD:refuel(playerID, params[], 297)
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, 300, targetPlayerID);
+				SendClientMessageEx(playerID, COLOR_ERROR, "300", targetPlayerID);
 				return COMMAND_ERROR;
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 300, targetPlayerID);
+			SendClientMessageEx(playerID, COLOR_ERROR, "300", targetPlayerID);
 			return COMMAND_ERROR;
 		}
 	}

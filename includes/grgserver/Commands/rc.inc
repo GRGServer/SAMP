@@ -10,10 +10,10 @@ PCMD:rc[SERVERADMIN](playerID, params[], 51)
 	{
 		if (playerID != targetPlayerID && permissions[targetPlayerID][PERMISSION_SERVERADMIN])
 		{
-			SendClientMessageEx(targetPlayerID, COLOR_INFO, 462, playerID, params);
+			SendClientMessageEx(targetPlayerID, COLOR_INFO, "462", playerID, params);
 		}
 	}
-	SendClientMessageEx(playerID, COLOR_INFO, 50, params);
+	SendClientMessageEx(playerID, COLOR_INFO, "50", params);
 	SendRconCommand(params);
 	return COMMAND_OK;
 }

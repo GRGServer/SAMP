@@ -21,11 +21,11 @@ PCMD:checkpermissions[ADMIN](playerid, params[], 99)
 		}
 		if (targetPlayerID == playerid)
 		{
-			SendClientMessageEx(playerid, COLOR_INFO, 59, string);
+			SendClientMessageEx(playerid, COLOR_INFO, "59", string);
 		}
 		else
 		{
-			SendClientMessageEx(playerid, COLOR_INFO, 60, targetPlayerID, string);
+			SendClientMessageEx(playerid, COLOR_INFO, "60", targetPlayerID, string);
 		}
 		return COMMAND_OK;
 	}

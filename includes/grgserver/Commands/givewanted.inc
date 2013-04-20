@@ -15,11 +15,11 @@ CMD:givewanted(playerID, params[], 560)
 		}
 		if (level < 0 || level > 6)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 558);
+			SendClientMessageEx(playerID, COLOR_ERROR, "558");
 			return COMMAND_ERROR;
 		}
 		SetPlayerWantedLevel(targetPlayerID, level);
-		SendClientMessageEx(playerID, COLOR_INFO, 559, targetPlayerID, level);
+		SendClientMessageEx(playerID, COLOR_INFO, "559", targetPlayerID, level);
 		return COMMAND_OK;
 	}
 	return COMMAND_PERMISSION_DENIED;

@@ -59,9 +59,9 @@ CMD:saveinfo(playerID, params[], 450)
 		fseek(file, 0, seek_end);
 		fwrite(file, lines);
 		fclose(file);
-		SendClientMessageEx(playerID, COLOR_INFO, 451, FILE_SAVEINFO);
+		SendClientMessageEx(playerID, COLOR_INFO, "451", FILE_SAVEINFO);
 		return COMMAND_OK;
 	}
-	SendClientMessageEx(playerID, COLOR_INFO, 452);
+	SendClientMessageEx(playerID, COLOR_INFO, "452");
 	return COMMAND_ERROR;
 }

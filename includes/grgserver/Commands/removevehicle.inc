@@ -7,7 +7,7 @@ PCMD:removevehicle[MAPPER](playerID, params[], 455)
 	}
 	if (!VehicleProperty:vehicleID[SAVEID])
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 456);
+		SendClientMessageEx(playerID, COLOR_ERROR, "456");
 		return COMMAND_ERROR;
 	}
 	MySQLQuery("DELETE FROM `vehiclecomponents` WHERE `vehicleId` = '%d'", VehicleProperty:vehicleID[SAVEID]);
@@ -15,6 +15,6 @@ PCMD:removevehicle[MAPPER](playerID, params[], 455)
 	MySQLQuery("DELETE FROM `originalvehicles` WHERE `id` = '%d'", VehicleProperty:vehicleID[SAVEID]);
 	VehicleProperty:vehicleID[SAVEID] = 0;
 	DestroyVehicle(vehicleID);
-	SendClientMessageEx(playerID, COLOR_INFO, 457);
+	SendClientMessageEx(playerID, COLOR_INFO, "457");
 	return COMMAND_OK;
 }

@@ -8,13 +8,13 @@ CMD:relogin(playerID, params[], 507)
 	new checkPlayerID = GetPlayerID(params);
 	if (checkPlayerID != INVALID_PLAYER_ID && checkPlayerID != playerID)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 508);
+		SendClientMessageEx(playerID, COLOR_ERROR, "508");
 		return COMMAND_ERROR;
 	}
 	OnPlayerDisconnect(playerID, 3);
 	if (SetPlayerName(playerID, params) == -1)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 509);
+		SendClientMessageEx(playerID, COLOR_ERROR, "509");
 	}
 	ForceClassSelection(playerID);
 	TogglePlayerSpectating(playerID, true);

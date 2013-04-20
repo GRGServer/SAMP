@@ -1,23 +1,18 @@
-LanguageString(playerID, stringID)
+LanguageString(playerID, stringName[])
 {
 	new string[STRINGLENGTH_LANGUAGESTRING];
 	if (playerID == INVALID_PLAYER_ID)
 	{
-		strcat(string, languageStrings[stringID][LANGUAGESTRING_ENGLISH]);
+		imessage(string, stringName, "en");
 	}
 	else
 	{
-		switch (PVar:playerID[LANGUAGE])
-		{
-			case LANGUAGE_ENGLISH:
-			{
-				strcat(string, languageStrings[stringID][LANGUAGESTRING_ENGLISH]);
-			}
-			case LANGUAGE_GERMAN:
-			{
-				strcat(string, languageStrings[stringID][LANGUAGESTRING_GERMAN]);
-			}
-		}
+		imessage(string, stringName, PVar:playerID[LANGUAGE]);
 	}
+	if (!StrNotNull(string))
+	{
+		printf("Invalid language string: %s", stringName);
+	}
+	string = str_replace("\\n", "\n", string);
 	return string;
 }

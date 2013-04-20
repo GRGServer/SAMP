@@ -34,7 +34,7 @@
 
 // Files
 #define FILE_COMMANDS					"commands.txt"
-#define FILE_LANGUAGESTRINGS				"languagestrings.xml"
+#define FILE_LANGUAGESTRINGS				"scriptfiles/languagestrings.dat"
 #define FILE_LASTCHANGES				"svn_changes"
 #define FILE_OBJECTMODELS				"objectmodels.dat"
 #define FILE_RUNNINGREVISION				"running_revision"
@@ -83,12 +83,6 @@
 #define JOB_VEHICLEDEALER				1
 
 
-// Language configuration
-#define LANGUAGE_ENGLISH				0
-#define LANGUAGE_GERMAN					1
-#define LANGUAGE_MAXSTRINGS				700
-
-
 // Light objects
 #define LIGHTOBJECT_MAXCOLORS				2
 
@@ -102,20 +96,6 @@
 #define MAX_NAVITARGETS					10// Number of selectable navi targets
 #define MAX_NPC_MULTIRECS				10// Number of recordings asigned to a MultiRec NPC
 #define MAX_OBJECTMODELID				20000// Highest object model ID = Size of objectModels array because the array index is the modelID
-
-
-// MySQL database credentials for public server
-#define MYSQL_PUBLIC_DATABASE				"grg_server"
-#define MYSQL_PUBLIC_HOST				"127.0.0.1"
-#define MYSQL_PUBLIC_PASSWORD				"9wLjVfZLJPHbnS5A"
-#define MYSQL_PUBLIC_USERNAME				"grg_server"
-
-
-// MySQL database credentials for development server
-#define MYSQL_DEV_DATABASE				"grg_server_dev"
-#define MYSQL_DEV_HOST					"127.0.0.1"
-#define MYSQL_DEV_PASSWORD				"5jEwD2n2DFxW7u6x"
-#define MYSQL_DEV_USERNAME				"grg_server_dev"
 
 
 // Player needs
@@ -175,6 +155,7 @@
 #define STRINGLENGTH_DATETIME				20
 #define STRINGLENGTH_DIALOGNAME				MAX_FUNCTION_NAME - 4// 4 = "DR_" + 1 (For 0 byte)
 #define STRINGLENGTH_JOBNAME				100
+#define STRINGLENGTH_LANGUAGE				3
 #define STRINGLENGTH_LANGUAGESTRING			256
 #define STRINGLENGTH_LOCATION				100
 #define STRINGLENGTH_NUMBERPLATE			8

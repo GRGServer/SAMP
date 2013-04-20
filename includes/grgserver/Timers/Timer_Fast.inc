@@ -97,7 +97,7 @@ Timer:Fast()
 				}
 				if (!seatID && VehicleProperty:vehicleID[CURRENTFUEL] <= 0)
 				{
-					GameTextForPlayer(playerID, LanguageString(playerID, 159), 3000, 5);
+					GameTextForPlayer(playerID, LanguageString(playerID, "159"), 3000, 5);
 				}
 				new Float:fuelPercentage = floatmul(floatdiv(VehicleProperty:vehicleID[CURRENTFUEL], vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]), 100);
 				if (healthPercentage > 65)
@@ -117,7 +117,7 @@ Timer:Fast()
 				}
 				if (!seatID && healthPercentage <= VEHICLE_MINHEALTH && GetVehicleEngineState(vehicleID))
 				{
-					GameTextForPlayer(playerID, LanguageString(playerID, 158), 3000, 5);
+					GameTextForPlayer(playerID, LanguageString(playerID, "158"), 3000, 5);
 				}
 				if (fuelPercentage > 70)
 				{
@@ -162,7 +162,7 @@ Timer:Fast()
 						if (!PVar:playerID[SPEEDCAM_LIMITREACHED] && PVar:playerID[SPEEDCAM_SPEEDLIMIT] && VehicleProperty:vehicleID[SPEED] > PVar:playerID[SPEEDCAM_SPEEDLIMIT])
 						{
 							PVar:playerID[SPEEDCAM_LIMITREACHED] = true;
-							SendClientMessageEx(playerID, COLOR_ERROR, 453, VehicleProperty:vehicleID[SPEED], PVar:playerID[SPEEDCAM_SPEEDLIMIT]);
+							SendClientMessageEx(playerID, COLOR_ERROR, "453", VehicleProperty:vehicleID[SPEED], PVar:playerID[SPEEDCAM_SPEEDLIMIT]);
 						}
 					}
 					else

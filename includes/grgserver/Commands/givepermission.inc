@@ -26,7 +26,7 @@ PCMD:givepermission[SERVERADMIN](playerID, params[], 103)
 				new permissionID = GetPermissionByName(permission);
 				if (permissionID == -1)
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, 381, permission);
+					SendClientMessageEx(playerID, COLOR_ERROR, "381", permission);
 				}
 				else
 				{
@@ -34,11 +34,11 @@ PCMD:givepermission[SERVERADMIN](playerID, params[], 103)
 					{
 						if (newState)
 						{
-							SendClientMessageEx(playerID, COLOR_ERROR, 70, targetPlayerID, permission);
+							SendClientMessageEx(playerID, COLOR_ERROR, "70", targetPlayerID, permission);
 						}
 						else
 						{
-							SendClientMessageEx(playerID, COLOR_ERROR, 71, targetPlayerID, permission);
+							SendClientMessageEx(playerID, COLOR_ERROR, "71", targetPlayerID, permission);
 						}
 						return COMMAND_ERROR;
 					}
@@ -57,14 +57,14 @@ PCMD:givepermission[SERVERADMIN](playerID, params[], 103)
 					permissions[targetPlayerID][enum_permission:permissionID] = newState;
 					if (newState)
 					{
-						SendClientMessageEx(targetPlayerID, COLOR_INFO, 72, permission, playerID);
-						SendClientMessageEx(playerID, COLOR_INFO, 73, permission, targetPlayerID);
+						SendClientMessageEx(targetPlayerID, COLOR_INFO, "72", permission, playerID);
+						SendClientMessageEx(playerID, COLOR_INFO, "73", permission, targetPlayerID);
 						printf("%s got permission %s by %s", GetPlayerNameEx(targetPlayerID), permission, GetPlayerNameEx(playerID));
 					}
 					else
 					{
-						SendClientMessageEx(targetPlayerID, COLOR_INFO, 74, playerID, permission);
-						SendClientMessageEx(playerID, COLOR_INFO, 75, permission, targetPlayerID);
+						SendClientMessageEx(targetPlayerID, COLOR_INFO, "74", playerID, permission);
+						SendClientMessageEx(playerID, COLOR_INFO, "75", permission, targetPlayerID);
 						printf("%s has revoked the permission %s of %s", GetPlayerNameEx(playerID), permission, GetPlayerNameEx(targetPlayerID));
 					}
 				}

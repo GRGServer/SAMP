@@ -34,7 +34,7 @@ CMD:addfriend(playerID, params[], 439)
 	}
 	if (playerID == targetPlayerID)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 445);
+		SendClientMessageEx(playerID, COLOR_ERROR, "445");
 		return COMMAND_ERROR;
 	}
 	new alreadyInList;
@@ -44,11 +44,11 @@ CMD:addfriend(playerID, params[], 439)
 	mysql_free_result();
 	if (alreadyInList)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 440, targetPlayerID);
+		SendClientMessageEx(playerID, COLOR_ERROR, "440", targetPlayerID);
 		return COMMAND_ERROR;
 	}
 	MySQLQuery("INSERT INTO `friends` (`userId1`, `userId2`) VALUES('%d', '%d')", PVar:playerID[USERID], PVar:targetPlayerID[USERID]);
-	SendClientMessageEx(targetPlayerID, COLOR_INFO, 443, playerID, playerID);
-	SendClientMessageEx(playerID, COLOR_INFO, 444, targetPlayerID);
+	SendClientMessageEx(targetPlayerID, COLOR_INFO, "443", playerID, playerID);
+	SendClientMessageEx(playerID, COLOR_INFO, "444", targetPlayerID);
 	return COMMAND_OK;
 }

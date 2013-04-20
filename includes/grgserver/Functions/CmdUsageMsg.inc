@@ -3,7 +3,7 @@ CmdUsageMsg(playerID, command[], ...)
 	new value[256];
 	new parameters;
 	parameters = numargs();
-	FormatNew:string[256](LanguageString(playerID, 137), command);
+	FormatNew:string[256](LanguageString(playerID, "137"), command);
 	for (new index = 2; index < parameters; index++)
 	{
 		GetStringArg(index, value);

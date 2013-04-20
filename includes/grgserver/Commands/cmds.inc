@@ -8,12 +8,12 @@ CMD:cmds(playerID, params[] , 93)
 		{
 			new type;
 			new command[MAX_FUNCTION_NAME];
-			new infoTextID;
+			new languageStringName[100];
 			new permission[30];
 			RemoveNewLine(string);
-			if (sscanf(string, "cssd", type, command, permission, infoTextID))
+			if (sscanf(string, "csss", type, command, permission, languageStringName))
 			{
-				sscanf(string, "csd", type, command, infoTextID);
+				sscanf(string, "css", type, command, languageStringName);
 			}
 			if (type)
 			{
@@ -46,12 +46,12 @@ CMD:cmds(playerID, params[] , 93)
 							command[character] = ' ';
 						}
 					}*/
-					Format:string("%s{FF8C55} - %s", command, LanguageString(playerID, infoTextID));
+					Format:string("%s{FF8C55} - %s", command, LanguageString(playerID, languageStringName));
 					SendClientMessage(playerID, COLOR_INFO, string);
 				}
 			}
 		}
-		SendClientMessageEx(playerID, COLOR_INFO, 522);
+		SendClientMessageEx(playerID, COLOR_INFO, "522");
 		return COMMAND_OK;
 	}
 	else

@@ -23,7 +23,7 @@ SendMessageToChannel(playerID, channel[], message[], targetPlayerID = INVALID_PL
 	{
 		PlayerLoop(loopPlayerID)
 		{
-			Format:string("[%s@%s] %s", GetPlayerNameEx(playerID), LanguageString(loopPlayerID, 310), message);
+			Format:string("[%s@%s] %s", GetPlayerNameEx(playerID), LanguageString(loopPlayerID, "310"), message);
 			SendClientMessage(loopPlayerID, COLOR_CHAT_ALL, string);
 		}
 		Format:string("[%s] %s", GetPlayerNameEx(playerID), message);
@@ -62,7 +62,7 @@ SendMessageToChannel(playerID, channel[], message[], targetPlayerID = INVALID_PL
 	{
 		if (targetPlayerID == INVALID_PLAYER_ID)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 147);
+			SendClientMessageEx(playerID, COLOR_ERROR, "147");
 			return false;
 		}
 		Format:string("[%s -> %s] %s", GetPlayerNameEx(playerID), GetPlayerNameEx(targetPlayerID), message);

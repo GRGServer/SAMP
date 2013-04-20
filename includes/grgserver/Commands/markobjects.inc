@@ -38,6 +38,6 @@ PCMD:markobjects[MAPPER](playerID, params[], 482)
 		return COMMAND_OK;
 	}
 
-	SendClientMessageEx(playerID, COLOR_ERROR, 425);
+	SendClientMessageEx(playerID, COLOR_ERROR, "425");
 	return COMMAND_ERROR;
 }

@@ -15,9 +15,9 @@ GetNavigationLocationTypeByName(playerID, name[])
 		while (FetchMySQLRow())
 		{
 			new checkCharacter;
-			new languageStringID;
-			sscanf(GetMySQLField("name"), "p:cd", checkCharacter, languageStringID);
-			if (IsStr(name, LanguageString(playerID, languageStringID)))
+			new languageStringName[100];
+			sscanf(GetMySQLField("name"), "p:cs", checkCharacter, languageStringName);
+			if (IsStr(name, LanguageString(playerID, languageStringName)))
 			{
 				typeID = strval(GetMySQLField("id"));
 				break;

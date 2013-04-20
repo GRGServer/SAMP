@@ -8,7 +8,7 @@ ShowDialog:SetVehicleJob(playerID)
 		AddLine:jobs("%s\t%s", GetMySQLField("id"), GetMySQLField("name"));
 	}
 	mysql_free_result();
-	CreateDialog(playerID, "SetVehicleJob", DIALOG_STYLE_LIST, LanguageString(playerID, 610), jobs, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "SetVehicleJob", DIALOG_STYLE_LIST, LanguageString(playerID, "610"), jobs, "OK", LanguageString(playerID, "165"));
 }
 
 DialogResponse:SetVehicleJob(playerID, response, listItem, inputText[])
@@ -20,7 +20,7 @@ DialogResponse:SetVehicleJob(playerID, response, listItem, inputText[])
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (!vehicleID)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 146);
+		SendClientMessageEx(playerID, COLOR_ERROR, "146");
 		return true;
 	}
 	new jobID;

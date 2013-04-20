@@ -36,7 +36,7 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 		{
 			if (IsStr(vehicleModels[modelID - 400][VEHICLEMODEL_TYPE], "Monster Truck"))
 			{
-				SendClientMessageEx(playerID, COLOR_WARNING, 545);
+				SendClientMessageEx(playerID, COLOR_WARNING, "545");
 			}
 			else
 			{
@@ -45,8 +45,8 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 				{
 					if (!HasLicense(playerID, vehicleModels[modelID - 400][VEHICLEMODEL_TYPE]) && !(PVar:playerID[CPMISSION_ID] && strfind(GetCheckpointMissionNameByID(PVar:playerID[CPMISSION_ID]), "DrivingSchool", true, 0) == 0))
 					{
-						SendClientMessageEx(playerID, COLOR_WARNING, 514, languageStringID);
-						SendClientMessageEx(playerID, COLOR_WARNING, 544);
+						SendClientMessageEx(playerID, COLOR_WARNING, "514", languageStringID);
+						SendClientMessageEx(playerID, COLOR_WARNING, "544");
 					}
 				}
 			}
@@ -82,7 +82,7 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 	}
 	if (!isPassenger && !GetVehicleEngineState(vehicleID))
 	{
-		SendClientMessageEx(playerID, COLOR_INFO, 424);
+		SendClientMessageEx(playerID, COLOR_INFO, "424");
 	}
 	return true;
 }

@@ -16,7 +16,7 @@ AddNPCRecorderPlayback(playerID, recordingName[], recordingType)
 	new npcPlayerID = GetPlayerID(npcPlayerName);
 	if (npcPlayerID == INVALID_PLAYER_ID)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 132, npcPlayerName, npcPlayerName);
+		SendClientMessageEx(playerID, COLOR_ERROR, "132", npcPlayerName, npcPlayerName);
 	}
 	else
 	{

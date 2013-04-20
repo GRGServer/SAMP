@@ -17,7 +17,7 @@ TogglePlayerVehicleEngine(playerID)
 {
 	if (GetPlayerState(playerID) != PLAYER_STATE_DRIVER)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 52);
+		SendClientMessageEx(playerID, COLOR_ERROR, "52");
 		return false;
 	}
 	new vehicleID = GetPlayerVehicleID(playerID);
@@ -28,7 +28,7 @@ TogglePlayerVehicleEngine(playerID)
 	if (GetVehicleEngineState(vehicleID))
 	{
 		SetVehicleEngineState(vehicleID, false);
-		SendClientMessageEx(playerID, COLOR_INFO, 53);
+		SendClientMessageEx(playerID, COLOR_INFO, "53");
 		return true;
 	}
 	new Float:health;
@@ -40,9 +40,9 @@ TogglePlayerVehicleEngine(playerID)
 		{
 			PlayRadioStation(playerID, VehicleProperty:vehicleID[RADIOSTATIONID]);
 		}
-		SendClientMessageEx(playerID, COLOR_INFO, 54);
+		SendClientMessageEx(playerID, COLOR_INFO, "54");
 		return true;
 	}
-	SendClientMessageEx(playerID, COLOR_ERROR, 55);
+	SendClientMessageEx(playerID, COLOR_ERROR, "55");
 	return false;
 }

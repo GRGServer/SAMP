@@ -7,6 +7,6 @@ PCMD:selectlastobject[MAPPER](playerID, params[], 398)
 		return COMMAND_OK;
 	}
 
-	SendClientMessageEx(playerID, COLOR_ERROR, 425);
+	SendClientMessageEx(playerID, COLOR_ERROR, "425");
 	return COMMAND_ERROR;
 }

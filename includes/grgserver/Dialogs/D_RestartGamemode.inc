@@ -1,6 +1,6 @@
 ShowDialog:RestartGamemode(playerID)
 {
-	CreateDialog(playerID, "RestartGamemode", DIALOG_STYLE_INPUT, LanguageString(playerID, 249), LanguageString(playerID, 250), "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "RestartGamemode", DIALOG_STYLE_INPUT, LanguageString(playerID, "249"), LanguageString(playerID, "250"), "OK", LanguageString(playerID, "165"));
 }
 
 DialogResponse:RestartGamemode(playerID, response, listItem, inputText[])
@@ -11,7 +11,7 @@ DialogResponse:RestartGamemode(playerID, response, listItem, inputText[])
 	}
 	if (!StrNotNull(inputText))
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 410);
+		SendClientMessageEx(playerID, COLOR_ERROR, "410");
 		return false;
 	}
 	RestartGameMode(playerID, inputText);

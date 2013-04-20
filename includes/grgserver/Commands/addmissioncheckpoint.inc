@@ -51,6 +51,6 @@ PCMD:addmissioncheckpoint[MAPPER](playerID, params[], 614)
 	new checkpointID = strval(GetMySQLField("maxId")) + 1;
 	mysql_free_result();
 	MySQLQuery("INSERT INTO `missioncheckpoints` (`missionId`, `checkpointId`, `posX`, `posY`, `posZ`) VALUES('%d', '%d', '%f', '%f', '%f')", missionID, checkpointID, posX, posY, posZ);
-	SendClientMessageEx(playerID, COLOR_INFO, 615, checkpointID, params);
+	SendClientMessageEx(playerID, COLOR_INFO, "615", checkpointID, params);
 	return COMMAND_OK;
 }

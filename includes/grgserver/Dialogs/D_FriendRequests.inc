@@ -10,8 +10,8 @@ ShowDialog:FriendRequests(playerID)
 		{
 			AddLine(list, GetMySQLField("username"));
 		}
-		FormatNew:title[64](LanguageString(playerID, 480), rows);
-		CreateDialog(playerID, "FriendRequests", DIALOG_STYLE_LIST, title, list, LanguageString(playerID, 496), LanguageString(playerID, 165));
+		FormatNew:title[64](LanguageString(playerID, "480"), rows);
+		CreateDialog(playerID, "FriendRequests", DIALOG_STYLE_LIST, title, list, LanguageString(playerID, "496"), LanguageString(playerID, "165"));
 	}
 	mysql_free_result();
 	return rows;

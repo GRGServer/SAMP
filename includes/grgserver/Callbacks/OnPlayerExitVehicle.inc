@@ -7,7 +7,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	{
 		PVar:playerid[GPS_ENABLED] = false;
 		DisablePlayerRaceCheckpoint(playerid);
-		SendClientMessageEx(playerid, COLOR_INFO, 460);
+		SendClientMessageEx(playerid, COLOR_INFO, "460");
 	}
 	return true;
 }

@@ -11,12 +11,12 @@ PCMD:moveobject[MAPPER](playerID, params[], 0)
 	{
 		case -2:
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 466);
+			SendClientMessageEx(playerID, COLOR_ERROR, "466");
 			return COMMAND_ERROR;
 		}
 		case -1:
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 427);
+			SendClientMessageEx(playerID, COLOR_ERROR, "427");
 			return COMMAND_ERROR;
 		}
 		case true:

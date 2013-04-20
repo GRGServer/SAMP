@@ -7,7 +7,7 @@ CMD:sellvehicle(playerID, params[], 488)
 	}
 	if (!CheckVehiclePermission(playerID, vehicleID, false))
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 487);
+		SendClientMessageEx(playerID, COLOR_ERROR, "487");
 		return COMMAND_ERROR;
 	}
 	ShowDialog:SellVehicle(playerID);

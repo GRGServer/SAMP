@@ -28,12 +28,12 @@ PCMD:controlnpc[NPCADMIN](playerID, params[], 100)
 	if (sscanf(params, "ss", targetPlayerName, command))
 	{
 		CmdUsageMsg(playerID, "controlnpc", "Playername", "Command");
-		SendClientMessageEx(playerID, COLOR_INFO, 124);
+		SendClientMessageEx(playerID, COLOR_INFO, "124");
 		return COMMAND_USAGE;
 	}
 	if (!strcmp(command, "connect", true))
 	{
-		SendClientMessageEx(playerID, COLOR_INFO, 125);
+		SendClientMessageEx(playerID, COLOR_INFO, "125");
 		ConnectNPC(targetPlayerName, NPC_SCRIPTNAME);
 		return COMMAND_OK;
 	}
@@ -42,11 +42,11 @@ PCMD:controlnpc[NPCADMIN](playerID, params[], 100)
 		new npcPlayerID = GetPlayerID(targetPlayerName);
 		if (IsStr(command, "status"))
 		{
-			SendClientMessageEx(playerID, COLOR_INFO, 624, PVar:npcPlayerID[NPC_RECORDINGPOSITION]);
-			SendClientMessageEx(playerID, COLOR_INFO, 606, PVar:npcPlayerID[NPC_RECORDINGLENGTH]);
+			SendClientMessageEx(playerID, COLOR_INFO, "624", PVar:npcPlayerID[NPC_RECORDINGPOSITION]);
+			SendClientMessageEx(playerID, COLOR_INFO, "606", PVar:npcPlayerID[NPC_RECORDINGLENGTH]);
 			return COMMAND_OK;
 		}
-		SendClientMessageEx(playerID, COLOR_INFO, 123, command);
+		SendClientMessageEx(playerID, COLOR_INFO, "123", command);
 		SendNPCCommand(npcPlayerID, command);
 		return COMMAND_OK;
 	}

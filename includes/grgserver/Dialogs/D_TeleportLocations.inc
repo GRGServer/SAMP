@@ -12,7 +12,7 @@ ShowDialog:TeleportLocations(playerID)
 		Format:locations("%s%s", locations, GetMySQLField("name"));
 	}
 	mysql_free_result();
-	CreateDialog(playerID, "TeleportLocations", DIALOG_STYLE_LIST, LanguageString(playerID, 246), locations, "OK", LanguageString(playerID, 165));
+	CreateDialog(playerID, "TeleportLocations", DIALOG_STYLE_LIST, LanguageString(playerID, "246"), locations, "OK", LanguageString(playerID, "165"));
 }
 
 DialogResponse:TeleportLocations(playerID, response, listItem, inputText[])

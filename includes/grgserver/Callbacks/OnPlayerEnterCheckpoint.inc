@@ -59,7 +59,7 @@ public OnPlayerEnterCheckpoint(playerid)
 		case CHECKPOINT_NAVITARGET:
 		{
 			DisablePlayerCheckpoint(playerid);
-			SendClientMessageEx(playerid, COLOR_INFO, 344);
+			SendClientMessageEx(playerid, COLOR_INFO, "344");
 			PlaySound(playerid, SOUND_NAVITARGETREACHED);
 		}
 		case CHECKPOINT_TUTORIAL_BANK:
@@ -101,7 +101,7 @@ public OnPlayerEnterCheckpoint(playerid)
 		{
 			DisablePlayerCheckpoint(playerid);
 			PlayAudio(playerid, "mission_complete2.ogg");
-			GameTextForPlayer(playerid, LanguageString(playerid, 576), 5000, 3);
+			GameTextForPlayer(playerid, LanguageString(playerid, "576"), 5000, 3);
 			SetPlayerCameraPos(playerid, -2084.015136, -70.748046, 34.384109);
 			SetPlayerCameraLookAt(playerid, -2092.510986, -77.142700, 36.228786);
 			TogglePlayerControllable(playerid, false);
@@ -149,32 +149,32 @@ public OnPlayerEnterCheckpoint(playerid)
 		{
 			DisablePlayerCheckpoint(playerid);
 			new Float:bank = 300.00;
-			SendClientMessageEx(playerid, COLOR_INFO, 551, bank);
-			SendClientMessageEx(playerid, COLOR_INFO, 552);
+			SendClientMessageEx(playerid, COLOR_INFO, "551", bank);
+			SendClientMessageEx(playerid, COLOR_INFO, "552");
 			GivePlayerMoneyEx(playerid, MONEY_BANK, bank);
 		}
 		case CHECKPOINT_ORDEREND2:
 		{
 			DisablePlayerCheckpoint(playerid);
 			new Float:bank2 = 600.00;
-			SendClientMessageEx(playerid, COLOR_INFO, 551, bank2);
-			SendClientMessageEx(playerid, COLOR_INFO, 552);
+			SendClientMessageEx(playerid, COLOR_INFO, "551", bank2);
+			SendClientMessageEx(playerid, COLOR_INFO, "552");
 			GivePlayerMoneyEx(playerid, MONEY_BANK, bank2);
 		}
 		case CHECKPOINT_ORDEREND3:
 		{
 			DisablePlayerCheckpoint(playerid);
 			new Float:bank3 = 1200.00;
-			SendClientMessageEx(playerid, COLOR_INFO, 551, bank3);
-			SendClientMessageEx(playerid, COLOR_INFO, 552);
+			SendClientMessageEx(playerid, COLOR_INFO, "551", bank3);
+			SendClientMessageEx(playerid, COLOR_INFO, "552");
 			GivePlayerMoneyEx(playerid, MONEY_BANK, bank3);
 		}
 		case CHECKPOINT_ORDEREND4:
 		{
 			DisablePlayerCheckpoint(playerid);
 			new Float:bank4 = 900.00;
-			SendClientMessageEx(playerid, COLOR_INFO, 551, bank4);
-			SendClientMessageEx(playerid, COLOR_INFO, 552);
+			SendClientMessageEx(playerid, COLOR_INFO, "551", bank4);
+			SendClientMessageEx(playerid, COLOR_INFO, "552");
 			GivePlayerMoneyEx(playerid, MONEY_BANK, bank4);
 		}
 		case CHECKPOINT_VEHICLEMARKER:

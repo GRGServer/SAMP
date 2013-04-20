@@ -12,9 +12,9 @@ PCMD:npcinfo[NPCADMIN](playerID, params[], 573)
 	}
 	if (!IsPlayerNPC(npcPlayerID))
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 571, npcPlayerID);
+		SendClientMessageEx(playerID, COLOR_ERROR, "571", npcPlayerID);
 		return COMMAND_ERROR;
 	}
-	SendClientMessageEx(playerID, COLOR_INFO, 572, FormatNumber(PVar:npcPlayerID[NPC_RECORDINGLENGTH]));
+	SendClientMessageEx(playerID, COLOR_INFO, "572", FormatNumber(PVar:npcPlayerID[NPC_RECORDINGLENGTH]));
 	return COMMAND_OK;
 }

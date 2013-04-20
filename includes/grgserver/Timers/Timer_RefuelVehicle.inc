@@ -43,16 +43,16 @@ Timer:RefuelVehicle(playerID, Float:totalAmount)
 					SetTimerEx("Timer_RefuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, floatsub(totalAmount, amount));
 					return true;
 				}
-				SendClientMessageEx(playerID, COLOR_INFO, 91);
+				SendClientMessageEx(playerID, COLOR_INFO, "91");
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, 146);
+				SendClientMessageEx(playerID, COLOR_ERROR, "146");
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, 92);
+			SendClientMessageEx(playerID, COLOR_ERROR, "92");
 		}
 	}
 	TogglePlayerControllable(playerID, true);

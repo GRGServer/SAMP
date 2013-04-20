@@ -12,12 +12,12 @@ PCMD:giveweapon[ADMIN](playerID, params[], 104)
 	}
 	if (GivePlayerWeaponEx(playerID, weaponID, ammo))
 	{
-		SendClientMessageEx(playerID, COLOR_INFO, 69, weapons[weaponID][WEAPON_NAME]);
+		SendClientMessageEx(playerID, COLOR_INFO, "69", weapons[weaponID][WEAPON_NAME]);
 		return COMMAND_OK;
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 68);
+		SendClientMessageEx(playerID, COLOR_ERROR, "68");
 		return COMMAND_ERROR;
 	}
 }

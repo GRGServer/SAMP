@@ -8,7 +8,7 @@ CMD:exit(playerid, params[], 101)
 		}
 		else
 		{
-			SendClientMessageEx(playerid, COLOR_ERROR, 61);
+			SendClientMessageEx(playerid, COLOR_ERROR, "61");
 			return COMMAND_ERROR;
 		}
 	}

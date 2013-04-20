@@ -6,7 +6,7 @@ PCMD:nocamproperty[MAPPER](playerID, params[], 350)
 	if (rows)
 	{
 		SetPlayerPos(playerID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")));
-		SendClientMessageEx(playerID, COLOR_INFO, 351, GetMySQLField("name"), rows);
+		SendClientMessageEx(playerID, COLOR_INFO, "351", GetMySQLField("name"), rows);
 	}
 	mysql_free_result();
 	if (rows)
@@ -15,7 +15,7 @@ PCMD:nocamproperty[MAPPER](playerID, params[], 350)
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, 352);
+		SendClientMessageEx(playerID, COLOR_ERROR, "352");
 		return COMMAND_ERROR;
 	}
 }
