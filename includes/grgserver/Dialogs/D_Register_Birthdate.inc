@@ -10,7 +10,7 @@ DialogResponse:Register_Birthdate(playerID, response, listItem, inputText[])
 		new day;
 		new month;
 		new year;
-		if (sscanf(inputText, "p.ddd", day, month, year))
+		if (sscanf(inputText, "p<.>ddd", day, month, year))
 		{
 			SendClientMessageEx(playerID, COLOR_ERROR, "40");
 			ShowDialog:Register_Birthdate(playerID);

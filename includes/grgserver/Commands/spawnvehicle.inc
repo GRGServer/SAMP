@@ -13,9 +13,9 @@ PCMD:spawnvehicle[SPAWNVEHICLE](playerID, params[], 505)
 		}
 		else
 		{
-			if (sscanf(params, "sdd", vehicleName, color1, color2))
+			if (sscanf(params, "s[20]dd", vehicleName, color1, color2))
 			{
-				if (!sscanf(params, "s", vehicleName))
+				if (!sscanf(params, "s[20]", vehicleName))
 				{
 					color1 = -1;
 					color2 = -1;
@@ -28,7 +28,7 @@ PCMD:spawnvehicle[SPAWNVEHICLE](playerID, params[], 505)
 			}
 			new type;
 			new parameter[16];
-			if (sscanf(vehicleName, "p:cs", type, parameter))
+			if (sscanf(vehicleName, "p<:>cs[16]", type, parameter))
 			{
 				MySQLQuery("SELECT * FROM `vehiclemodels` WHERE `name` LIKE '%s' LIMIT 100", str_replace("*", "%%", MySQLEscapeString(vehicleName)));
 				mysql_store_result();

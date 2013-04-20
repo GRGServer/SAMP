@@ -26,7 +26,7 @@
 #include <a_sampdb>
 
 // Limits and internal constants
-#define MAX_PLAYER_NAME							(24)
+#define MAX_PLAYER_NAME							24
 #define MAX_PLAYERS								(500)
 #define MAX_VEHICLES							(2000)
 #define INVALID_PLAYER_ID						(0xFFFF)

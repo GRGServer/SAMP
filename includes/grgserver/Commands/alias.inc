@@ -22,9 +22,9 @@ CMD:alias(playerID, params[], 515)
 {
 	new name[32];
 	new command[256];
-	if (sscanf(params, "ss", name, command))
+	if (sscanf(params, "s[32]s[256]", name, command))
 	{
-		if (sscanf(params, "s", name))
+		if (sscanf(params, "s[32]", name))
 		{
 			CmdUsageMsg(playerID, "alias", "Name", "Command");
 			SendClientMessageEx(playerID, COLOR_INFO, "540");

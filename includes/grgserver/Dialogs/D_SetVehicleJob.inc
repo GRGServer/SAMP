@@ -25,7 +25,7 @@ DialogResponse:SetVehicleJob(playerID, response, listItem, inputText[])
 	}
 	new jobID;
 	new jobName[STRINGLENGTH_JOBNAME];
-	sscanf(inputText, "%d\t%s", jobID, jobName);
+	sscanf(inputText, "p<\t>ds[" #STRINGLENGTH_JOBNAME "]", jobID, jobName);
 	VehicleProperty:vehicleID[JOBID] = jobID;
 	return true;
 }

@@ -8,8 +8,8 @@ ShowDialog:AddNaviLocation_Type(playerID)
 		new string[256];
 		strcat(string, GetMySQLField("name"));
 		new checkCharacter;
-		new languageStringName[100];
-		if (!sscanf(string, "p:cs", checkCharacter, languageStringName))
+		new languageStringName[STRINGLENGTH_LANGUAGESTRINGNAME];
+		if (!sscanf(string, "p<:>cs[" #STRINGLENGTH_LANGUAGESTRINGNAME "]", checkCharacter, languageStringName))
 		{
 			if (checkCharacter == 'L')
 			{

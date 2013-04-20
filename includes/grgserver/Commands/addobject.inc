@@ -2,7 +2,7 @@ PCMD:addobject[MAPPER](playerID, params[], 202)
 {
 	new modelID;
 	new filename[STRINGLENGTH_OBJECTFILENAME];
-	if (!sscanf(params, "ds", modelID, filename))
+	if (!sscanf(params, "ds[" #STRINGLENGTH_OBJECTFILENAME "]", modelID, filename))
 	{
 		if (modelID >= 0 && modelID < sizeof(objectModels) && StrNotNull(objectModels[modelID]))
 		{
@@ -17,7 +17,7 @@ PCMD:addobject[MAPPER](playerID, params[], 202)
 	}
 
 	new modelName[100];
-	if (sscanf(params, "ss", modelName, filename))
+	if (sscanf(params, "s[100]s[" #STRINGLENGTH_OBJECTFILENAME "]", modelName, filename))
 	{
 		CmdUsageMsg(playerID, "addobject", "modelID/ModelName", "Filename");
 		return COMMAND_USAGE;

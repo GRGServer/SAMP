@@ -56,7 +56,7 @@ OnPlayerCommandPerformed(playerID, command[], parameters[], returnCode, isAlias)
 				{
 					new aliasParameters[256];
 					new aliasCommand[MAX_FUNCTION_NAME];
-					if (!sscanf(aliasCommandText, "ss", aliasCommand, aliasParameters))
+					if (!sscanf(aliasCommandText, "s[256]s[" #MAX_FUNCTION_NAME "]", aliasCommand, aliasParameters))
 					{
 						if (StrNotNull(parameters))
 						{

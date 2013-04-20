@@ -32,7 +32,7 @@ Timer:Slow()
 		new committerName[100];
 		new commitDate[50];
 		new lineCount[20];
-		sscanf(string, "p|ssss", revisionString, committerName, commitDate, lineCount);
+		sscanf(string, "p<|>s[10]s[100]s[50]s[20]", revisionString, committerName, commitDate, lineCount);
 		new revision = Str2Val(revisionString);
 		if (revision > COMPILER_SVN_REVISION)
 		{

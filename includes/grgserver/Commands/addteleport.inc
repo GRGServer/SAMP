@@ -1,7 +1,7 @@
 PCMD:addteleport[TELEPORT](playerID, params[], 333)
 {
 	new name[100];
-	if (sscanf(params, "s", name))
+	if (sscanf(params, "s[100]", name))
 	{
 		CmdUsageMsg(playerID, "addteleport", "Name");
 		return COMMAND_USAGE;

@@ -26,7 +26,7 @@ DialogResponse:Hotel_RoomList(playerID, response, listItem, inputText[])
 	if (response)
 	{
 		new string[256];
-		sscanf(inputText, "p:ds", PVar:playerID[HOTEL_ROOMID], string);
+		sscanf(inputText, "p<:>ds[256]", PVar:playerID[HOTEL_ROOMID], string);
 		MySQLQuery("UPDATE `hotelrooms` SET `ownerUserId` = '%d' WHERE `propertyId` = '%d' AND `roomId` = '%d'", PVar:playerID[USERID], PVar:playerID[CURRENTPROPERTYID], PVar:playerID[HOTEL_ROOMID]);
 		TeleportToInterior(playerID, HOTEL_ROOM_INTERIOR);
 		SetPlayerVirtualWorld(playerID, playerID);

@@ -21,7 +21,7 @@ DialogResponse:GiveWeapon(playerID, response, listItem, inputText[])
 	{
 		new weaponID;
 		new name[STRINGLENGTH_WEAPONNAME];
-		sscanf(inputText, "p:ds", weaponID, name);
+		sscanf(inputText, "p<:>ds[" #STRINGLENGTH_WEAPONNAME "]", weaponID, name);
 		if (GivePlayerWeaponEx(playerID, weaponID))
 		{
 			SendClientMessageEx(playerID, COLOR_INFO, "69", weapons[weaponID][WEAPON_NAME]);

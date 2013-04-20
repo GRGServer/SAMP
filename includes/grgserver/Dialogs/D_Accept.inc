@@ -28,7 +28,7 @@ DialogResponse:Accept(playerID, response, listItem, inputText[])
 	{
 		new missionID;
 		new text[100];
-		sscanf(inputText, "p:ds", missionID, text);
+		sscanf(inputText, "p<:>ds[100]", missionID, text);
 		if (strval(GetMySQLValue("missions", "acceptUserId", "id", val2str(missionID))))
 		{
 			SendClientMessageEx(playerID, COLOR_ERROR, "12");

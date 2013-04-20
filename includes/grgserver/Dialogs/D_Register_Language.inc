@@ -11,7 +11,8 @@ DialogResponse:Register_Language(playerID, response, listItem, inputText[])
 	if (response)
 	{
 		new languageName[STRINGLENGTH_LANGUAGE];
-		sscanf(inputText, "p\tss", languageName);
+		new languageTitle[100];
+		sscanf(inputText, "p<\t>s[" #STRINGLENGTH_LANGUAGE "]s[100]", languageName, languageTitle);
 		PVar:playerID[LANGUAGE] = languageName;
 		ShowDialog:PreviewInfo(playerID);
 	}

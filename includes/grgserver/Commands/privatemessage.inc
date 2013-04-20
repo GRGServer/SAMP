@@ -2,7 +2,7 @@ CMD:privatemessage(playerID, params[], 409)
 {
 	new targetPlayerID;
 	new message[128];
-	if (sscanf(params, "us", targetPlayerID, message))
+	if (sscanf(params, "us[128]", targetPlayerID, message))
 	{
 		CmdUsageMsg(playerID, "privatemessage", "PlayerID/Name", "Text");
 		return COMMAND_USAGE;

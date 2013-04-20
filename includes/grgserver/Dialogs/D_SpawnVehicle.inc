@@ -6,7 +6,7 @@ DialogResponse:SpawnVehicle(playerID, response, listItem, inputText[])
 	{
 		new modelID;
 		new name[STRINGLENGTH_VEHICLENAME];
-		if (!sscanf(inputText, "p:ds", modelID, name))
+		if (!sscanf(inputText, "p<:>ds[" #STRINGLENGTH_VEHICLENAME "]", modelID, name))
 		{
 			if (modelID)
 			{

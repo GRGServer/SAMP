@@ -5,8 +5,8 @@ FormatDate(sqlDateString[], showTime = true)
 	new day;
 	new month;
 	new year;
-	sscanf(sqlDateString, "ss", string, time);
-	sscanf(string, "p-ddd", year, month, day);
+	sscanf(sqlDateString, "s[" #STRINGLENGTH_DATETIME + 2 "s[10]", string, time);
+	sscanf(string, "p<->ddd", year, month, day);
 	Format:string("%02d.%02d.%d", day, month, year);
 	if (showTime)
 	{

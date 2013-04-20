@@ -8,12 +8,12 @@ CMD:cmds(playerID, params[] , 93)
 		{
 			new type;
 			new command[MAX_FUNCTION_NAME];
-			new languageStringName[100];
+			new languageStringName[STRINGLENGTH_LANGUAGESTRINGNAME];
 			new permission[30];
 			RemoveNewLine(string);
-			if (sscanf(string, "p\tcsss", type, command, permission, languageStringName))
+			if (sscanf(string, "p<\t>cs[" #MAX_FUNCTION_NAME "]s[30]s[" #STRINGLENGTH_LANGUAGESTRINGNAME "]", type, command, permission, languageStringName))
 			{
-				sscanf(string, "p\tcss", type, command, languageStringName);
+				sscanf(string, "p<\t>cs[" #MAX_FUNCTION_NAME "]s[" #STRINGLENGTH_LANGUAGESTRINGNAME "]", type, command, languageStringName);
 			}
 			if (type)
 			{
@@ -39,7 +39,7 @@ CMD:cmds(playerID, params[] , 93)
 				{
 					/* TODO: Show command list in two columns
 					new commandLength = strlen(command);
-					for (new character = 0; character < MAX_FUNC_NAME; character++)
+					for (new character = 0; character < MAX_FUNCTION_NAME; character++)
 					{
 						if (character >= commandLength)
 						{

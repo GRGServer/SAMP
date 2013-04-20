@@ -25,7 +25,7 @@ PCMD:controlnpc[NPCADMIN](playerID, params[], 100)
 {
 	new command[256];
 	new targetPlayerName[MAX_PLAYER_NAME];
-	if (sscanf(params, "ss", targetPlayerName, command))
+	if (sscanf(params, "s[" #MAX_PLAYER_NAME "]s[256]", targetPlayerName, command))
 	{
 		CmdUsageMsg(playerID, "controlnpc", "Playername", "Command");
 		SendClientMessageEx(playerID, COLOR_INFO, "124");

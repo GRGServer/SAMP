@@ -25,7 +25,7 @@ NCMD:npccmd(playerID, params[], 0)
 {
 	new command[256];
 	new parameters[256];
-	sscanf(params, "ss", command, parameters);
+	sscanf(params, "s[256]s[256]", command, parameters);
 	if (IsStr(command, "reclength"))
 	{
 		PVar:playerID[NPC_RECORDINGLENGTH] = strval(parameters);

@@ -4,7 +4,7 @@ PCMD:addpickup[MAPPER](playerID, params[], 96)
 	new Float:posX;
 	new Float:posY;
 	new Float:posZ;
-	if (sscanf(params, "s", type))
+	if (sscanf(params, "s[256]", type))
 	{
 		CmdUsageMsg(playerID, "addpickup", "Type");
 		return COMMAND_USAGE;

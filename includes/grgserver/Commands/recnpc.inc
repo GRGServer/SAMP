@@ -6,13 +6,13 @@ PCMD:recnpc[NPCADMIN](playerid, params[], 116)
 	new playbackName1[256];
 	new playbackName2[256];
 	new playbackName3[256];
-	if (sscanf(params, "ssss", recordingName, playbackName1, playbackName2, playbackName3))
+	if (sscanf(params, "s[256]s[256]s[256]s[256]", recordingName, playbackName1, playbackName2, playbackName3))
 	{
-		if (sscanf(params, "sss", recordingName, playbackName1, playbackName2))
+		if (sscanf(params, "s[256]s[256]s[256]", recordingName, playbackName1, playbackName2))
 		{
-			if (sscanf(params, "ss", recordingName, playbackName1))
+			if (sscanf(params, "s[256]s[256]", recordingName, playbackName1))
 			{
-				if (sscanf(params, "s", recordingName))
+				if (sscanf(params, "s[256]", recordingName))
 				{
 					CmdUsageMsg(playerid, "recnpc", "recordingName", "[playbackName1]", "[playbackName2]", "[playbackName3]");
 					return COMMAND_USAGE;

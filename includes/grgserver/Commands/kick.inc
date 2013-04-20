@@ -2,7 +2,7 @@ PCMD:kick[MODERATOR](playerID, params[], 108)
 {
 	new targetPlayerID;
 	new reason[256];
-	if (sscanf(params, "us", targetPlayerID, reason))
+	if (sscanf(params, "us[256]", targetPlayerID, reason))
 	{
 		CmdUsageMsg(playerID, "kick", "PlayerID/Name", LanguageString(playerID, "331"));
 		return COMMAND_USAGE;

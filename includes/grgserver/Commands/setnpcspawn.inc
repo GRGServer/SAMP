@@ -1,7 +1,7 @@
 PCMD:setnpcspawn[NPCADMIN](playerID, params[], 282)
 {
 	new npcName[MAX_PLAYER_NAME];
-	if (sscanf(params, "s", npcName))
+	if (sscanf(params, "s[" #MAX_PLAYER_NAME "]", npcName))
 	{
 		CmdUsageMsg(playerID, "setnpcspawn", "Name");
 		return COMMAND_USAGE;

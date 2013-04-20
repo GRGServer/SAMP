@@ -75,12 +75,12 @@ public OnGameModeInit()
 		if (objectModelsFile)
 		{
 			new objectModelsCount;
-			new line[256];
+			new line[30];
 			while (fread(objectModelsFile, line))
 			{
 				new modelID;
 				new name[STRINGLENGTH_OBJECTMODELNAME];
-				if (sscanf(line, "p\tds", modelID, name))
+				if (sscanf(line, "p<\t>ds[" #STRINGLENGTH_OBJECTMODELNAME "]", modelID, name))
 				{
 					print("  File format error!");
 				}
@@ -112,7 +112,7 @@ public OnGameModeInit()
 				new weaponID;
 				new ammo;
 				new name[STRINGLENGTH_WEAPONNAME];
-				if (sscanf(line, "p\tdsd", weaponID, name, ammo))
+				if (sscanf(line, "p<\t>ds[" #STRINGLENGTH_WEAPONNAME "]d", weaponID, name, ammo))
 				{
 					print("  File format error!");
 				}
@@ -152,7 +152,7 @@ public OnGameModeInit()
 				new Float:endX;
 				new Float:endY;
 				new Float:endZ;
-				if (sscanf(line, "p\tsffffff", name, startX, startY, startZ, endX, endY, endZ))
+				if (sscanf(line, "p<\t>s[" #STRINGLENGTH_ZONENAME "]ffffff", name, startX, startY, startZ, endX, endY, endZ))
 				{
 					print("  File format error!");
 				}

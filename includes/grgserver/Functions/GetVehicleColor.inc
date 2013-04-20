@@ -26,9 +26,9 @@ GetVehicleColor(modelID, &color1, &color2)
 	new elements = explode(vehicleModels[modelID - 400][VEHICLEMODEL_COLORS], colors, '|');
 	new color3;// Not used in SA-MP
 	new color4;// Not used in SA-MP
-	if (sscanf(colors[random(elements)], "p,dddd", color1, color2, color3, color4))
+	if (sscanf(colors[random(elements)], "p<,>dddd", color1, color2, color3, color4))
 	{
-		if (sscanf(colors[random(elements)], "p,dd", color1, color2))
+		if (sscanf(colors[random(elements)], "p<,>dd", color1, color2))
 		{
 			return false;
 		}

@@ -1,7 +1,7 @@
 PCMD:addstaticnpc[NPCADMIN](playerid, params[], 97)
 {
 	new playerName[MAX_PLAYER_NAME];
-	if (sscanf(params, "s", playerName))
+	if (sscanf(params, "s[" #MAX_PLAYER_NAME "]", playerName))
 	{
 		CmdUsageMsg(playerid, "addstaticnpc", "Playername");
 		return COMMAND_USAGE;

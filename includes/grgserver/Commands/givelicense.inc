@@ -2,7 +2,7 @@ CMD:givelicense(playerID, params[], 511)
 {
 	new targetPlayerID;
 	new licenseString[256];
-	if (sscanf(params, "us", targetPlayerID, licenseString))
+	if (sscanf(params, "us[256]", targetPlayerID, licenseString))
 	{
 		CmdUsageMsg(playerID, "givelicense", "PlayerID/Name", "Bike|Boat|Car|Plane|Truck");
 		return COMMAND_USAGE;
