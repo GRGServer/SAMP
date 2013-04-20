@@ -11,9 +11,9 @@ CMD:cmds(playerID, params[] , 93)
 			new languageStringName[100];
 			new permission[30];
 			RemoveNewLine(string);
-			if (sscanf(string, "csss", type, command, permission, languageStringName))
+			if (sscanf(string, "p\tcsss", type, command, permission, languageStringName))
 			{
-				sscanf(string, "css", type, command, languageStringName);
+				sscanf(string, "p\tcss", type, command, languageStringName);
 			}
 			if (type)
 			{

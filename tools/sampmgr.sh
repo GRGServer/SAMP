@@ -315,9 +315,13 @@ case "$ACTION" in
 		rm -f $COMMANDLIST
 		cd $SAMPPATH/includes/grgserver/Commands
 		for FILE in *.inc; do
-			sed -nr 's/^CMD:([a-zA-Z0-9]+)\(([^,]+),([^,]+),([ 0-9]+)\)/- \1  \4/p' $FILE >> $COMMANDLIST
-			sed -nr 's/^PCMD:([a-zA-Z0-9]+)\[([A-Z]+)\]\(([^,]+),([^,]+),([ 0-9]+)\)/P \1 \2 \5/p' $FILE >> $COMMANDLIST
+			sed -nr 's/^CMD:([a-zA-Z0-9]+)\(([^,]+),([^,]+),([ a-zA-Z0-9]+)\)/-\t\1\t\t\4/p' $FILE >> $COMMANDLIST
+			sed -nr 's/^PCMD:([a-zA-Z0-9]+)\[([A-Z]+)\]\(([^,]+),([^,]+),([ a-zA-Z0-9]+)\)/P\t\1\t\2\t\5/p' $FILE >> $COMMANDLIST
 		done
+
+		dos2unix $COMMANDLIST
+
+		chown samp:samp $COMMANDLIST
 	;;
 
 	gmx)
