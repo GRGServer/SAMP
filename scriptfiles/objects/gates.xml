@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <objects>
-    <object id="310" model="968" interior="0" posX="1544.699951" posY="-1630.780029" posZ="13.082798" rotX="0.000000" rotY="90.000000" rotZ="90.000000">
-        <move posX="1544.699951" posY="-1630.810058" posZ="13.112799" rotX="0.000000" rotY="0.000000" rotZ="90.000000" speed="0.009999" timeout="5000" />
+    <object id="310" model="968" interior="0" posX="1544.699951" posY="-1630.780029" posZ="13.082798" rotX="-1.600000" rotY="0.099986" rotZ="90.000000">
+        <move posX="1544.699951" posY="-1630.810058" posZ="13.112798" rotX="0.000000" rotY="0.000000" rotZ="90.000000" speed="0.009998" timeout="5000" />
     </object>
     <object id="1647" model="969" interior="0" posX="2857.199951" posY="2616.449951" posZ="9.981266" rotX="0.000000" rotY="0.000000" rotZ="-90.000000">
-        <move posX="2857.199951" posY="2607.479980" posZ="9.981269" rotX="0.000000" rotY="0.000000" rotZ="-90.000000" speed="1.000000" timeout="5000" />
+        <move posX="2857.199951" posY="2607.479980" posZ="9.981268" rotX="0.000000" rotY="0.000000" rotZ="-90.000000" speed="1.000000" timeout="5000" />
     </object>
     <object id="1686" model="980" interior="0" posX="2497.310058" posY="2773.159912" posZ="12.598500" rotX="0.000000" rotY="0.000000" rotZ="90.000000">
         <move posX="2497.310058" posY="2784.389892" posZ="12.598500" rotX="0.000000" rotY="0.000000" rotZ="90.000000" speed="1.000000" timeout="5000" />
     </object>
     <object id="1691" model="969" interior="0" posX="1584.719970" posY="-1638.119995" posZ="12.524497" rotX="0.000000" rotY="0.000000" rotZ="0.000000">
-        <move posX="1592.670043" posY="-1638.119995" posZ="12.524499" rotX="0.000000" rotY="0.000000" rotZ="0.000000" speed="1.000000" timeout="5000" />
+        <move posX="1592.670043" posY="-1638.119995" posZ="12.524498" rotX="0.000000" rotY="0.000000" rotZ="0.000000" speed="1.000000" timeout="5000" />
     </object>
     <object id="1766" model="980" interior="0" posX="1961.949951" posY="-2189.780029" posZ="15.306900" rotX="0.000000" rotY="0.000000" rotZ="0.000000">
-        <move posX="1972.680053" posY="-2189.780029" posZ="15.326899" rotX="0.000000" rotY="0.000000" rotZ="0.000000" speed="1.000000" timeout="5000" />
+        <move posX="1972.680053" posY="-2189.780029" posZ="15.326898" rotX="0.000000" rotY="0.000000" rotZ="0.000000" speed="1.000000" timeout="5000" />
     </object>
     <object id="1834" model="969" interior="0" posX="-1489.520019" posY="1008.150024" posZ="6.347496" rotX="0.000000" rotY="0.000000" rotZ="90.000000">
-        <move posX="-1489.510009" posY="1016.960021" posZ="6.347499" rotX="0.000000" rotY="0.000000" rotZ="90.000000" speed="1.000000" timeout="5000" />
+        <move posX="-1489.510009" posY="1016.960021" posZ="6.347498" rotX="0.000000" rotY="0.000000" rotZ="90.000000" speed="1.000000" timeout="5000" />
     </object>
     <object id="1835" model="969" interior="0" posX="-1489.569946" posY="1007.909973" posZ="6.337500" rotX="0.000000" rotY="0.000000" rotZ="-90.000000">
         <move posX="-1489.420043" posY="999.051025" posZ="6.337500" rotX="0.000000" rotY="0.000000" rotZ="-90.000000" speed="1.000000" timeout="5000" />

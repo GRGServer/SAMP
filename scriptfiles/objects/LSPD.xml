@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<objects>
+    <object id="2385" model="2886" interior="0" posX="1584.375366" posY="-1637.863525" posZ="13.912817" rotX="0.000000" rotY="0.000000" rotZ="-175.099975" />
+    <object id="2386" model="1344" interior="0" posX="1522.812377" posY="-1613.782592" posZ="13.333842" rotX="4.099957" rotY="1.800006" rotZ="-136.400009" />
+    <object id="2387" model="1343" interior="0" posX="1520.774047" posY="-1598.467529" posZ="13.256871" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
+</objects>
