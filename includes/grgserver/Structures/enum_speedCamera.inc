@@ -1,0 +1,5 @@
+enum enum_speedCamera
+{
+	SPEEDCAMERA_OBJECTID,
+	SPEEDCAMERA_SPEEDLIMIT
+}

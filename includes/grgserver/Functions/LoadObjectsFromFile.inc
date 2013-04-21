@@ -10,22 +10,13 @@
  * <remarks>
  *	The XML file must have the following structure:
  *	<objects>
- *		<object>
- *			<id>The internal ID</id>
- *			<modelId>ID of the model</modelId>
- *			<position>
- *				<x>0</x>
- *				<y>0</y>
- *				<z>0</z>
- *			</position>
- *			<rotation>
- *				<x>0</x>
- *				<y>0</y>
- *				<z>0</z>
- *			</rotation>
- *			<interior>0</interior>
+ *		<object id="The internal ID" model="ID of the model" posX="0" posY="0" posZ="0" rotX="0" rotY="0" rotZ="0" interior="0">
+ *			<move posX="0" posY="0" posZ="0" rotX="0" rotY="0" rotZ="0" speed="0.1" timeout="1000"/>
+ *			<speedcamera speedLimit="50"/>
  *		</object>
  *	</objects>
+ *	The move-element is optional (Required if you want to move the object using MoveObjectEx)
+ *	The speedcamera-Element is only used and required for speed camera objects (Model 18880)
  * </remarks>
  */
 
@@ -53,7 +44,7 @@ LoadObjectsFromFile(filename[])
 		new id = strval(value);
 
 		XML_GetAttribute(objectNode, "model", value);
-		new modelId = strval(value);
+		new modelID = strval(value);
 
 		XML_GetAttribute(objectNode, "interior", value);
 		new interior = strval(value);
@@ -106,7 +97,7 @@ LoadObjectsFromFile(filename[])
 			moveTimeout = strval(value);
 		}
 
-		new objectID = CreateDynamicObject(modelId, position[0], position[1], position[2], rotation[0], rotation[1], rotation[2], -1, interior, -1, STREAMER_OBJECTDISTANCE);
+		new objectID = CreateDynamicObject(modelID, position[0], position[1], position[2], rotation[0], rotation[1], rotation[2], -1, interior, -1, STREAMER_OBJECTDISTANCE);
 		Streamer_SetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID, OBJECTTYPE_NORMAL);
 
 		new arrayIndex = objectID - 1;// The first object created with CreateDynamicObject gets ID 1, but the first array index in dynamicObjects array is 0
@@ -122,6 +113,30 @@ LoadObjectsFromFile(filename[])
 		dynamicObjects[arrayIndex][OBJECT_MOVEROT] = moveRotation;
 		dynamicObjects[arrayIndex][OBJECT_MOVESPEED] = moveSpeed;
 		dynamicObjects[arrayIndex][OBJECT_MOVETIMEOUT] = moveTimeout;
+
+		if (modelID == SPEEDCAMERA_OBJECTMODEL)// This object has the speed camera model
+		{
+			new XMLNode:speedcameraNode = XML_GetFirstChild(objectNode, "speedcamera");
+			if (speedcameraNode)
+			{
+				XML_GetAttribute(speedcameraNode, "speedLimit", value);
+				new speedLimit = strval(value);
+
+				Foreach(speedCamerasArrayIndex, speedCameras)
+				{
+					if (!speedCameras[speedCamerasArrayIndex][SPEEDCAMERA_OBJECTID])
+					{
+						speedCameras[speedCamerasArrayIndex][SPEEDCAMERA_OBJECTID] = objectID;
+						speedCameras[speedCamerasArrayIndex][SPEEDCAMERA_SPEEDLIMIT] = speedLimit;
+						break;
+					}
+				}
+			}
+			else
+			{
+				printf("Missing speedcamera element for object %d!", id);
+			}
+		}
 
 		if (id >= nextDynamicObjectID)
 		{

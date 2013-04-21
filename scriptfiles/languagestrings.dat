@@ -432,8 +432,8 @@ en {Kick a player from the server};
 de {Spieler vom Server kicken};
 
 [109]
-en {Say what you do (e.g. '/me follows an admin' will be shown to all players as '* &lt;Your name&gt; follows an admin')};
-de {Sagen, was du machst (z.B. '/me rennt Admin hinterher' sehen alle Spieler als '*&lt;Dein Name&gt; rennt Admin hinterher')};
+en {Say what you do (e.g. '/me follows an admin' will be shown to all players as '* <Your name> follows an admin')};
+de {Sagen, was du machst (z.B. '/me rennt Admin hinterher' sehen alle Spieler als '*<Dein Name> rennt Admin hinterher')};
 
 [110]
 en {Give money to yourself};
@@ -2060,8 +2060,8 @@ en {Create or remove a command alias};
 de {Erstelle oder entferne einen Befehlsalias};
 
 [516]
-en {Use /alias &lt;name&gt; to remove an alias.};
-de {Verwende /alias &lt;Name&gt; um einen Alias wieder zu entfernen.};
+en {Use /alias <name> to remove an alias.};
+de {Verwende /alias <Name> um einen Alias wieder zu entfernen.};
 
 [517]
 en {The alias /%s has been created};
@@ -2115,23 +2115,23 @@ de {Du benötigst Hilfe? Kontaktiere einen Admin (Aerox_Tobi, Dani_Prima, Need o
 en {Have fun while searching your first job.};
 de {Viel Spaß beim Suchen deines ersten Berufs.};
 
-[530]
+[LICENSE_CAR]
 en {Car driving license};
 de {Autoführerschein};
 
-[531]
+[LICENSE_PLANE]
 en {Plane fly license};
 de {Pilotenschein};
 
-[532]
+[LICENSE_TRUCK]
 en {Truck driving license};
 de {LKW Führerschein};
 
-[533]
+[LICENSE_BIKE]
 en {Bike driving license};
 de {Motorradführerschein};
 
-[534]
+[LICENSE_SAILING]
 en {Sailing license};
 de {Segelschein};
 
@@ -2522,4 +2522,8 @@ de {Wähle deinen Text aus.};
 [631]
 en {Hunger:~n~Thirst:~n~Bladder:~n~Energy:};
 de {Hunger:~n~Durst:~n~Harndrang:~n~Energie:};
+
+[SPEEDCAMERA_NOFREESLOTFOUND]
+en {Limit of %d speed cameras reached! Increase MAX_SPEEDCAMERAS to add more speed cameras.};
+de {Limit von %d Blitzern erreicht! Erhöhe MAX_SPEEDCAMERAS um weitere Blitzer hinzuzufügen.};
 

@@ -18,6 +18,7 @@
 #include <grgserver\Structures\enum_pickupLoader.inc>
 #include <grgserver\Structures\enum_playerVariable.inc>
 #include <grgserver\Structures\enum_radioStation.inc>
+#include <grgserver\Structures\enum_speedCamera.inc>
 #include <grgserver\Structures\enum_stdObj.inc>
 #include <grgserver\Structures\enum_vehicle.inc>
 #include <grgserver\Structures\enum_vehicleModel.inc>
@@ -39,6 +40,7 @@
 #include <grgserver\Functions\CalculateAge.inc>
 #include <grgserver\Functions\CalculateRoute.inc>
 #include <grgserver\Functions\CheckGatePermission.inc>
+#include <grgserver\Functions\CheckSpeedCamera.inc>
 #include <grgserver\Functions\CheckVehiclePermission.inc>
 #include <grgserver\Functions\CmdUsageMsg.inc>
 #include <grgserver\Functions\CreateDialog.inc>
@@ -55,7 +57,6 @@
 #include <grgserver\Functions\GetCheckpointMissionByName.inc>
 #include <grgserver\Functions\GetCheckpointMissionNameByID.inc>
 #include <grgserver\Functions\GetClosestGate.inc>
-#include <grgserver\Functions\GetClosestObjectByModel.inc>
 #include <grgserver\Functions\GetClosestPickup.inc>
 #include <grgserver\Functions\GetClosestVehicleInRange.inc>
 #include <grgserver\Functions\GetColor.inc>
@@ -96,7 +97,7 @@
 #include <grgserver\Functions\IsVehicleLocked.inc>
 #include <grgserver\Functions\LanguageString.inc>
 #include <grgserver\Functions\LeaveProperty.inc>
-#include <grgserver\Functions\LicenseLanguageStringID.inc>
+#include <grgserver\Functions\LicenseLanguageStringName.inc>
 #include <grgserver\Functions\LoadMySQLVehicle.inc>
 #include <grgserver\Functions\LoadObjectsFromFile.inc>
 #include <grgserver\Functions\LoadPlayer.inc>

@@ -96,6 +96,7 @@
 #define MAX_NAVITARGETS					10// Number of selectable navi targets
 #define MAX_NPC_MULTIRECS				10// Number of recordings asigned to a MultiRec NPC
 #define MAX_OBJECTMODELID				20000// Highest object model ID = Size of objectModels array because the array index is the modelID
+#define MAX_SPEEDCAMERAS				100// Maximum number of speed cameras
 
 
 // Player needs
@@ -133,6 +134,12 @@
 #define SOUND_NAVITARGETREACHED				1057
 #define SOUND_OBJECTPLACED				31810
 #define SOUND_PICKUPEVENT				1150
+
+
+// Speed camera configuration
+#define SPEEDCAMERA_DISTANCE				40
+#define SPEEDCAMERA_OBJECTMODEL				18880
+#define SPEEDCAMERA_TOLERANCE				5
 
 
 // Spawn properties

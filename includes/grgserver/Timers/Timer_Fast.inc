@@ -143,32 +143,7 @@ Timer:Fast()
 				inVehicle = true;
 				if (VehicleProperty:vehicleID[SPEED] && !seatID)
 				{
-					distance = 0;
-					new objectID = GetClosestObjectByModel(playerID, 18880, distance);// Search closest speed camera
-					if (objectID && distance <= 40)
-					{
-						if (objectID != PVar:playerID[SPEEDCAM_INRANGE])
-						{
-							PVar:playerID[SPEEDCAM_INRANGE] = objectID;
-							MySQLQuery("SELECT * FROM `speedcameras` WHERE `objectId` = '%d'", dynamicObjects[objectID - 1][OBJECT_ID]);
-							mysql_store_result();
-							PVar:playerID[SPEEDCAM_SPEEDLIMIT] = strval(GetMySQLField("speedLimit"));
-							mysql_free_result();
-							if (!PVar:playerID[SPEEDCAM_SPEEDLIMIT])
-							{
-								printf("Speed camera object without speed camera data found or speed limit is zero (Object %d)", objectID);
-							}
-						}
-						if (!PVar:playerID[SPEEDCAM_LIMITREACHED] && PVar:playerID[SPEEDCAM_SPEEDLIMIT] && VehicleProperty:vehicleID[SPEED] > PVar:playerID[SPEEDCAM_SPEEDLIMIT])
-						{
-							PVar:playerID[SPEEDCAM_LIMITREACHED] = true;
-							SendClientMessageEx(playerID, COLOR_ERROR, "453", VehicleProperty:vehicleID[SPEED], PVar:playerID[SPEEDCAM_SPEEDLIMIT]);
-						}
-					}
-					else
-					{
-						PVar:playerID[SPEEDCAM_LIMITREACHED] = false;
-					}
+					CheckSpeedCamera(playerID);
 				}
 			}
 		}

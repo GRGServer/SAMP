@@ -61,12 +61,6 @@ CREATE TABLE `cmdaliases` (
   UNIQUE KEY `Index` (`userId`,`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `config` (
-  `Name` varchar(200) NOT NULL,
-  `Value` varchar(200) NOT NULL,
-  PRIMARY KEY (`Name`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 CREATE TABLE `friends` (
   `userId1` int(11) NOT NULL,
   `userId2` int(11) NOT NULL,
@@ -87,17 +81,6 @@ CREATE TABLE `infopickups` (
   `stringId` int(11) NOT NULL,
   PRIMARY KEY (`pickupId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-CREATE TABLE `interiors` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `posX` float NOT NULL,
-  `posY` float NOT NULL,
-  `posZ` float NOT NULL,
-  `angle` float NOT NULL,
-  `interior` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 CREATE TABLE `jobs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -161,19 +144,6 @@ CREATE TABLE `moneytransactions` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
-CREATE TABLE `moveobjects` (
-  `objectId` int(11) NOT NULL,
-  `posX` float NOT NULL,
-  `posY` float NOT NULL,
-  `posZ` float NOT NULL,
-  `rotX` float NOT NULL,
-  `rotY` float NOT NULL,
-  `rotZ` float NOT NULL,
-  `speed` float NOT NULL,
-  `timeout` int(11) NOT NULL,
-  PRIMARY KEY (`objectId`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 CREATE TABLE `navigationlocations` (
   `type` int(11) NOT NULL,
   `posX` float NOT NULL,
@@ -224,27 +194,6 @@ CREATE TABLE `npcs` (
   `autoConnect` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `Name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
-
-CREATE TABLE `objectmodels` (
-  `id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `Name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-CREATE TABLE `objects` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `modelId` int(11) NOT NULL,
-  `posX` float NOT NULL,
-  `posY` float NOT NULL,
-  `posZ` float NOT NULL,
-  `rotX` float NOT NULL,
-  `rotY` float NOT NULL,
-  `rotZ` float NOT NULL,
-  `interior` int(11) NOT NULL,
-  `source` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
 CREATE TABLE `originalvehicles` (
@@ -305,35 +254,6 @@ CREATE TABLE `properties` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `PickupID` (`pickupId`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
-
-CREATE TABLE `radiostations` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `url` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `Name` (`name`,`url`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
-
-CREATE TABLE `removedstdobjects` (
-  `modelId` int(11) NOT NULL,
-  `posX` float NOT NULL,
-  `posY` float NOT NULL,
-  `posZ` float NOT NULL,
-  `radius` float NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-CREATE TABLE `sfx_reference` (
-  `id` int(11) NOT NULL,
-  `group` varchar(200) NOT NULL,
-  `text` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-CREATE TABLE `speedcameras` (
-  `objectId` int(11) NOT NULL,
-  `speedLimit` int(11) NOT NULL,
-  PRIMARY KEY (`objectId`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `teleports` (
   `name` varchar(100) NOT NULL,

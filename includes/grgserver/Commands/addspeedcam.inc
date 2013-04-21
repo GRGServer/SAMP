@@ -6,11 +6,33 @@ PCMD:addspeedcam[MAPPER](playerID, params[], 486)
 		CmdUsageMsg(playerID, "addspeedcam", "SpeedLimit");
 		return COMMAND_USAGE;
 	}
-	new objectID = AddObject(playerID, 18880, "speedcameras");
+
+	new speedCamerasSlot = -1;
+	Foreach(arrayIndex, speedCameras)
+	{
+		if (!speedCameras[arrayIndex][SPEEDCAMERA_OBJECTID])
+		{
+			speedCamerasSlot = arrayIndex;
+			break;
+		}
+	}
+
+	if (speedCamerasSlot == -1)
+	{
+		SendClientMessageEx(playerID, COLOR_ERROR, "SPEEDCAMERA_NOFREESLOTFOUND", sizeof(speedCameras));
+		return COMMAND_ERROR;
+	}
+
+	new objectID = AddObject(playerID, SPEEDCAMERA_OBJECTMODEL, "speedcameras");
 	if (objectID)
 	{
-		MySQLQuery("INSERT INTO `speedcameras` (`objectId`, `speedLimit`) VALUES('%d', '%d')", dynamicObjects[objectID - 1][OBJECT_ID], speedLimit);
+		speedCameras[speedCamerasSlot][SPEEDCAMERA_OBJECTID] = objectID;
+		speedCameras[speedCamerasSlot][SPEEDCAMERA_SPEEDLIMIT] = speedLimit;
+
+		SaveObjects("speedcameras");
+
 		return COMMAND_OK;
 	}
+
 	return COMMAND_ERROR;
 }
