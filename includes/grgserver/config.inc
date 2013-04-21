@@ -15,6 +15,9 @@
 
 
 // Colors
+#define COLOR_BAR_CRITICAL				0x600000FF
+#define COLOR_BAR_OK					0x006000FF
+#define COLOR_BAR_WARNING				0x606000FF
 #define COLOR_CHAT_ADMINS				0x9EAFA0FF
 #define COLOR_CHAT_ALL					0xAAFFAAFF
 #define COLOR_CHAT_INRANGE				0xFFFFFFFF
@@ -105,8 +108,8 @@
 #define NEEDS_HUNGER					0.02
 #define NEEDS_THIRST					0.03
 
-#define NEEDS_CRITICAL					15
-#define NEEDS_WARNING					25
+#define NEEDS_CRITICAL					30
+#define NEEDS_WARNING					50
 
 
 // News configuration
@@ -189,6 +192,7 @@
 #define TIMER_FAST					250// 1/4 seconds
 #define TIMER_FLYCAM					10// Ultra fast to have a smooth fly cam (Only runs while fly cam is enabled)
 #define TIMER_HIDERADIODISPLAY				3000// Hide radio display after 3 seconds
+#define TIMER_PEE					1000// Interval of pee update (Only runs while a player is pissing)
 #define TIMER_PICKUPTIMEOUT				2000// Only show pickup message if the player didn't pick up a pickup before the timeout of 2 seconds has been reached
 #define TIMER_SLOW					5000// 5 seconds
 #define TIMER_STABLECHECK				600000// Mark server as stable after 10 minutes

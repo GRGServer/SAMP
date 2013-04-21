@@ -115,6 +115,7 @@
 #include <grgserver\Functions\PlayRadioStation.inc>
 #include <grgserver\Functions\PlayRandomCameraCuts.inc>
 #include <grgserver\Functions\PlaySound.inc>
+#include <grgserver\Functions\PlayerPee.inc>
 #include <grgserver\Functions\ReconnectNPCs.inc>
 #include <grgserver\Functions\ReloadObjects.inc>
 #include <grgserver\Functions\ReloadPermissions.inc>
@@ -125,7 +126,6 @@
 #include <grgserver\Functions\ReloadVehicles.inc>
 #include <grgserver\Functions\RemoveNewLine.inc>
 #include <grgserver\Functions\RemoveVehicleLightObjects.inc>
-#include <grgserver\Functions\RepeatCharacter.inc>
 #include <grgserver\Functions\ResetPlayerVariables.inc>
 #include <grgserver\Functions\RestartGameMode.inc>
 #include <grgserver\Functions\RotatePlayer.inc>
@@ -139,6 +139,7 @@
 #include <grgserver\Functions\SetPlayerCheckpointEx.inc>
 #include <grgserver\Functions\SetPlayerMoney.inc>
 #include <grgserver\Functions\SetPlayerPosEx.inc>
+#include <grgserver\Functions\SetPlayerProgressBar3ColorState.inc>
 #include <grgserver\Functions\SetPlayerRaceCheckpointEx.inc>
 #include <grgserver\Functions\SetVehicleEngineState.inc>
 #include <grgserver\Functions\SetVehicleLightsState.inc>
@@ -302,6 +303,7 @@
 #include <grgserver\Timers\Timer_FlyCam.inc>
 #include <grgserver\Timers\Timer_HideRadioDisplay.inc>
 #include <grgserver\Timers\Timer_MoveObject.inc>
+#include <grgserver\Timers\Timer_Pee.inc>
 #include <grgserver\Timers\Timer_PickupTimeout.inc>
 #include <grgserver\Timers\Timer_RandomCameraCutsFader.inc>
 #include <grgserver\Timers\Timer_RefuelVehicle.inc>
@@ -375,6 +377,7 @@
 #include <grgserver\Commands\opengate.inc>
 #include <grgserver\Commands\ordervehicle.inc>
 #include <grgserver\Commands\payday.inc>
+#include <grgserver\Commands\pee.inc>
 #include <grgserver\Commands\playcam.inc>
 #include <grgserver\Commands\players.inc>
 #include <grgserver\Commands\privatemessage.inc>

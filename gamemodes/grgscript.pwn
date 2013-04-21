@@ -14,6 +14,7 @@
 #include <MD5>
 #include <md-sort>
 #include <mysql>
+#include <progressbars>
 #include <regex>
 #include <routeconnector>
 #include <sscanf>

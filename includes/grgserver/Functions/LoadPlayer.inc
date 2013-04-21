@@ -19,7 +19,7 @@ LoadPlayer(playerID)
 	PVar:playerID[LASTNEWSID] = strval(GetMySQLField("lastNewsId"));
 	PVar:playerID[LASTPAYDAY] = strval(GetMySQLField("lastPayDay"));
 	PVar:playerID[NEEDS_BLADDER] = floatstr(GetMySQLField("bladder"));
-	PVar:playerID[NEEDS_ENERGY] = floatstr(GetMySQLField("hunger"));
+	PVar:playerID[NEEDS_ENERGY] = floatstr(GetMySQLField("energy"));
 	PVar:playerID[NEEDS_HUNGER] = floatstr(GetMySQLField("hunger"));
 	PVar:playerID[NEEDS_THIRST] = floatstr(GetMySQLField("thirst"));
 	PVar:playerID[ONLINESINCE] = gettime();
@@ -41,22 +41,22 @@ LoadPlayer(playerID)
 
 	if (PVar:playerID[NEEDS_BLADDER] <= 0)
 	{
-		PVar:playerID[NEEDS_BLADDER] = 100;
+		PVar:playerID[NEEDS_BLADDER] = 0;
 	}
 
 	if (PVar:playerID[NEEDS_ENERGY] <= 0)
 	{
-		PVar:playerID[NEEDS_ENERGY] = 100;
+		PVar:playerID[NEEDS_ENERGY] = 0;
 	}
 
 	if (PVar:playerID[NEEDS_HUNGER] <= 0)
 	{
-		PVar:playerID[NEEDS_HUNGER] = 100;
+		PVar:playerID[NEEDS_HUNGER] = 0;
 	}
 
 	if (PVar:playerID[NEEDS_THIRST] <= 0)
 	{
-		PVar:playerID[NEEDS_THIRST] = 100;
+		PVar:playerID[NEEDS_THIRST] = 0;
 	}
 
 	mysql_free_result();

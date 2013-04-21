@@ -10,10 +10,12 @@ public OnPlayerDisconnect(playerid, reason)
 		{
 			SavePlayer(playerid);
 		}
+
 		if (PVar:playerid[FLYCAM_DUMMYOBJECT])
 		{
 			DestroyDynamicObject(PVar:playerid[FLYCAM_DUMMYOBJECT]);
 		}
+
 		new reasonString[16];
 		switch (reason)
 		{
@@ -34,6 +36,7 @@ public OnPlayerDisconnect(playerid, reason)
 				strcat(reasonString, "Relogin");
 			}
 		}
+
 		PlayerLoop(playerID)
 		{
 			if (!IsPlayerNPC(playerID) && playerID != playerid)
@@ -41,13 +44,21 @@ public OnPlayerDisconnect(playerid, reason)
 				SendClientMessageEx(playerID, COLOR_JOINLEAVE, "161", playerid, reasonString);
 			}
 		}
+
+		DestroyPlayerProgressBar(playerid, PVar:playerid[PROGRESSBAR_NEEDS_ENERGY]);
+		DestroyPlayerProgressBar(playerid, PVar:playerid[PROGRESSBAR_NEEDS_HUNGER]);
+		DestroyPlayerProgressBar(playerid, PVar:playerid[PROGRESSBAR_NEEDS_THIRST]);
+
+		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[NEEDS_TEXT]);
 		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[RADIOSTATION]);
 		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[SPEEDO_COLUMN1]);
 		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[SPEEDO_COLUMN2]);
 		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[VEHICLENAME]);
 		PlayerTextDrawDestroy(playerid, PTextDraw:playerid[SCREENFADER]);
 	}
+
 	StopAudioStreamForPlayer(playerid);
 	ResetPlayerVariables(playerid);
+
 	return true;
 }

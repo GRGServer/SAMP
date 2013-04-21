@@ -11,7 +11,6 @@ ShowDialog:FunAction(playerID)
 	AddLine(options, "Drink Sprunk");
 	AddLine(options, "Drink Wine");
 	AddLine(options, "Smoke Ciggy");
-	AddLine(options, "Pissing");
 	CreateDialog(playerID, "FunAction", DIALOG_STYLE_LIST, "Fun Action", options, "OK", LanguageString(playerID, "165"));
 }
 
@@ -42,8 +41,6 @@ DialogResponse:FunAction(playerID, response, listItem, inputText[])
 				action = SPECIAL_ACTION_DRINK_WINE;
 			case 9:// Smoke Ciggy
 				action = SPECIAL_ACTION_SMOKE_CIGGY;
-			case 10:// Pissing
-				action = SPECIAL_ACTION_PISSING;
 		}
 		SetPlayerSpecialAction(playerID, action);
 	}

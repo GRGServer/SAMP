@@ -2495,35 +2495,23 @@ de {Töte dich selbst};
 en {Current recording position: %d sec};
 de {Aktuelle Aufnahmeposition: %d sek};
 
-[625]
+[PAYDAY_INFO_DETAILS]
 en {See /payday for more details};
 de {Siehe /payday für mehr Details};
 
-[626]
-en {When you need Eat};
-de {Wann brauchst du Essen};
-
-[627]
-en {Last Eat};
-de {Zuletzt Gegessen};
-
-[628]
-en {Eat};
-de {Essen};
-
-[629]
-en {Select Text};
-de {Text Auswählen};
-
-[630]
-en {Select your Text};
-de {Wähle deinen Text aus.};
-
-[631]
+[TD_HUNGER_THIRST_BLADDER_ENERGY]
 en {Hunger:~n~Thirst:~n~Bladder:~n~Energy:};
 de {Hunger:~n~Durst:~n~Harndrang:~n~Energie:};
 
 [SPEEDCAMERA_NOFREESLOTFOUND]
 en {Limit of %d speed cameras reached! Increase MAX_SPEEDCAMERAS to add more speed cameras.};
 de {Limit von %d Blitzern erreicht! Erhöhe MAX_SPEEDCAMERAS um weitere Blitzer hinzuzufügen.};
+
+[PEE_STARTFULL]
+en {Your player could not hold it any longer. Use /pee to cancel.};
+de {Dein Spieler konnte es nicht länger halten. Verwende /pee zum abbrechen.};
+
+[CMD_PEE]
+en {Start to pee};
+de {Anfangen zu pinkeln};
 
