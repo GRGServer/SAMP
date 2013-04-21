@@ -57,8 +57,14 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 		{
 			CancelEdit(playerid);
 
+			new arrayIndex = PVar:playerid[OBJEDITOR_CURRENTOBJECTID] - 1;
+
 			new modelID = Streamer_GetIntData(STREAMER_TYPE_OBJECT, PVar:playerid[OBJEDITOR_CURRENTOBJECTID], E_STREAMER_MODEL_ID);
 			DestroyDynamicObject(PVar:playerid[OBJEDITOR_CURRENTOBJECTID]);
+
+			new fileName[STRINGLENGTH_OBJECTFILENAME];
+			new objectID = dynamicObjects[arrayIndex][OBJECT_ID];
+			strcat(fileName, dynamicObjects[arrayIndex][OBJECT_FILENAME]);
 
 			// Unset all enum variables in the object element
 			Count(enumField, sizeof(dynamicObjects[]))
@@ -66,10 +72,12 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				dynamicObjects[PVar:playerid[OBJEDITOR_CURRENTOBJECTID] - 1][enum_object:enumField] = 0;
 			}
 
+			SaveObjects(fileName);
+
 			UpdateObjectsForAllPlayers();
 			SelectObject(playerid);
 
-			SendClientMessageEx(playerid, COLOR_INFO, "203", dynamicObjects[PVar:playerid[OBJEDITOR_CURRENTOBJECTID] - 1][OBJECT_ID], objectModels[modelID]);
+			SendClientMessageEx(playerid, COLOR_INFO, "203", objectID, objectModels[modelID]);
 
 			PVar:playerid[OBJEDITOR_CURRENTOBJECTID] = 0;
 

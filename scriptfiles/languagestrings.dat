@@ -2515,3 +2515,15 @@ de {Dein Spieler konnte es nicht länger halten. Verwende /pee zum abbrechen.};
 en {Start to pee};
 de {Anfangen zu pinkeln};
 
+[CMD_MOVEOBJECTS]
+en {Move all objects by the given coordinates in the given objects file};
+de {Verschiebe alle Objekte um die angegebenen Koordinaten in der angegebenen Datei};
+
+[MOVEOBJECTS_INFO]
+en {%d objects were moved};
+de {%d Objekte wurden verschoben};
+
+[FILENAME]
+en {Filename};
+de {Dateiname};
+

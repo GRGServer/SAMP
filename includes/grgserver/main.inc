@@ -366,6 +366,7 @@
 #include <grgserver\Commands\mengine.inc>
 #include <grgserver\Commands\money.inc>
 #include <grgserver\Commands\moveobject.inc>
+#include <grgserver\Commands\moveobjects.inc>
 #include <grgserver\Commands\mysqlstatus.inc>
 #include <grgserver\Commands\navi.inc>
 #include <grgserver\Commands\neon.inc>
