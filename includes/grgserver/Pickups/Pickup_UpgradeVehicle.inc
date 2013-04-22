@@ -27,5 +27,5 @@ PickupEvent:UPGRADEVEHICLE(playerID, pickupID, eventType)
 
 PickupModelID:UPGRADEVEHICLE(pickupID)
 {
-	return 1318;
+	return 19130;
 }
