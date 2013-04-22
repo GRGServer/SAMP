@@ -98,7 +98,7 @@
 #define MAX_MONEY					100000.00
 #define MAX_NAVITARGETS					10// Number of selectable navi targets
 #define MAX_NPC_MULTIRECS				10// Number of recordings asigned to a MultiRec NPC
-#define MAX_OBJECTMODELID				6000000// Highest object model ID = Size of objectModels array because the array index is the modelID
+#define MAX_OBJECTMODELID				500000// Highest object model ID = Size of objectModels array because the array index is the modelID
 #define MAX_SPEEDCAMERAS				100// Maximum number of speed cameras
 
 
