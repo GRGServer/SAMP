@@ -304,6 +304,24 @@ case "$ACTION" in
 		echo "" >> $CUSTOMINC
 		echo "#include <grgserver\\main.inc>" >> $CUSTOMINC
 
+		LOCALCONFIGINC="$SAMPPATH/includes/grgserver/localconfig.inc"
+		echo "// Generated using sampmgr" > $LOCALCONFIGINC
+		echo "" >> $LOCALCONFIGINC
+		echo "#define MYSQL_HOST \"127.0.0.1\"" >> $LOCALCONFIGINC
+		case "$ENVIRONMENT" in
+			dev)
+				echo "#define MYSQL_USERNAME \"grg_server_dev\"" >> $LOCALCONFIGINC
+				echo "#define MYSQL_DATABASE \"grg_server_dev\"" >> $LOCALCONFIGINC
+				echo "#define MYSQL_PASSWORD \"5jEwD2n2DFxW7u6x\"" >> $LOCALCONFIGINC
+			;;
+
+			live)
+				echo "#define MYSQL_USERNAME \"grg_server\"" >> $LOCALCONFIGINC
+				echo "#define MYSQL_DATABASE \"grg_server\"" >> $LOCALCONFIGINC
+				echo "#define MYSQL_PASSWORD \"9wLjVfZLJPHbnS5A\"" >> $LOCALCONFIGINC
+			;;
+		esac
+
 		compilePawn filterscripts
 		compilePawn gamemodes
 		compilePawn npcmodes
