@@ -415,6 +415,7 @@
 #include <grgserver\Commands\showinterior.inc>
 #include <grgserver\Commands\showorder.inc>
 #include <grgserver\Commands\showpos.inc>
+#include <grgserver\Commands\sierene.inc>
 #include <grgserver\Commands\sit.inc>
 #include <grgserver\Commands\spawnvehicle.inc>
 #include <grgserver\Commands\stats.inc>

@@ -31,6 +31,7 @@ LoadMySQLVehicle(isStatic, isSavedVehicle, playerID = INVALID_PLAYER_ID)
 		AdminPrint(playerID, COLOR_ERROR, "  Can not create vehicle '%d' (ModelID %d)!", strval(GetMySQLField("id")), strval(GetMySQLField("modelId")));
 		return false;
 	}
+	VehicleProperty:vehicleID[SIERENLIGHTID] = strval(GetMySQLField("siereneLightId"));
 	VehicleProperty:vehicleID[FRONTLIGHTID] = strval(GetMySQLField("frontLightId"));
 	VehicleProperty:vehicleID[HASNAVI] = strval(GetMySQLField("hasNavi"));
 	VehicleProperty:vehicleID[JOBID] = strval(GetMySQLField("jobId"));
