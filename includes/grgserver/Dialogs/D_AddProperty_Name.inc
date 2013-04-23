@@ -1,6 +1,6 @@
 ShowDialog:AddProperty_Name(playerID)
 {
-	CreateDialog(playerID, "AddProperty_Name", DIALOG_STYLE_INPUT, LanguageString(playerID, "168"), LanguageString(playerID, "169"), LanguageString(playerID, "170"), LanguageString(playerID, "BACK"));
+	CreateDialog(playerID, "AddProperty_Name", DIALOG_STYLE_INPUT, LanguageString(playerID, StringID:168("")), LanguageString(playerID, StringID:169("")), LanguageString(playerID, StringID:170("")), LanguageString(playerID, StringID:171("")));
 }
 
 DialogResponse:AddProperty_Name(playerID, response, listItem, inputText[])
@@ -23,16 +23,16 @@ DialogResponse:AddProperty_Name(playerID, response, listItem, inputText[])
 				{
 					MySQLQuery("INSERT INTO `bankbranches` (`propertyId`, `bankId`) SELECT '%d', `id` FROM `banks` ORDER BY RAND() LIMIT 1", propertyID);
 				}
-				SendClientMessageEx(playerID, COLOR_INFO, "10", inputText, PVar:playerID[ADDPROPERTY_PRICE], propertyID);
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:10(""), inputText, PVar:playerID[ADDPROPERTY_PRICE], propertyID);
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, "6");
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:6(""));
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "6");
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:6(""));
 		}
 	}
 	else

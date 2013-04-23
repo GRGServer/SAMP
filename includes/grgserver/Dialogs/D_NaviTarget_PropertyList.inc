@@ -8,7 +8,7 @@ ShowDialog:NaviTarget_PropertyList(playerID, searchString[])
 		AddLine(list, GetMySQLField("name"));
 	}
 	mysql_free_result();
-	CreateDialog(playerID, "NaviTarget_PropertyList", DIALOG_STYLE_LIST, LanguageString(playerID, "419"), list, "OK", LanguageString(playerID, "BACK"));
+	CreateDialog(playerID, "NaviTarget_PropertyList", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:419("")), list, "OK", LanguageString(playerID, StringID:171("")));
 }
 
 DialogResponse:NaviTarget_PropertyList(playerID, response, listItem, inputText[])
@@ -21,16 +21,16 @@ DialogResponse:NaviTarget_PropertyList(playerID, response, listItem, inputText[]
 		{
 			if (CalculateRoute(playerID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ"))))
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, "414");
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:414(""));
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, "415");
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:415(""));
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "343");
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:343(""));
 		}
 		mysql_free_result();
 	}

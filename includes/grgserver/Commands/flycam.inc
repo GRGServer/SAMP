@@ -1,4 +1,4 @@
-PCMD:flycam[MAPPER](playerID, params[], 271)
+PCMD:flycam[MAPPER](playerID, params[], StringID:271(""))
 {
 	if (PVar:playerID[FLYCAM_DUMMYOBJECT])
 	{
@@ -14,7 +14,7 @@ PCMD:flycam[MAPPER](playerID, params[], 271)
 		DestroyDynamicObject(PVar:playerID[FLYCAM_DUMMYOBJECT]);
 		SetCameraBehindPlayer(playerID);
 		ClearAnimations(playerID);
-		SendClientMessageEx(playerID, COLOR_INFO, "273");
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:273(""));
 		PVar:playerID[FLYCAM_DUMMYOBJECT] = 0;
 	}
 	else
@@ -30,10 +30,10 @@ PCMD:flycam[MAPPER](playerID, params[], 271)
 		AttachCameraToDynamicObject(playerID, objectID);
 		Streamer_SetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID, OBJECTTYPE_FLYCAMDUMMY);
 		PVar:playerID[FLYCAM_TIMER] = SetTimerEx("Timer_FlyCam", TIMER_FLYCAM, true, "d", playerID);
-		SendClientMessageEx(playerID, COLOR_INFO, "272");
-		SendClientMessageEx(playerID, COLOR_INFO, "428");
-		SendClientMessageEx(playerID, COLOR_INFO, "429");
-		SendClientMessageEx(playerID, COLOR_INFO, "430");
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:272(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:428(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:429(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:430(""));
 	}
 	return COMMAND_OK;
 }

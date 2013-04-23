@@ -30,7 +30,7 @@ ReloadTextDraws(playerID)
 	{
 		PlayerTextDrawDestroy(playerID, PTextDraw:playerID[NEEDS_TEXT]);
 	}
-	PTextDraw:playerID[NEEDS_TEXT] = CreatePlayerTextDraw(playerID, 500, 110, LanguageString(playerID, "TD_HUNGER_THIRST_BLADDER_ENERGY"));
+	PTextDraw:playerID[NEEDS_TEXT] = CreatePlayerTextDraw(playerID, 500, 110, LanguageString(playerID, StringID:631("")));
 	PlayerTextDrawAlignment(playerID, PTextDraw:playerID[NEEDS_TEXT], 1);
 	PlayerTextDrawLetterSize(playerID, PTextDraw:playerID[NEEDS_TEXT], 0.3, 1.2);
 	PlayerTextDrawFont(playerID, PTextDraw:playerID[NEEDS_TEXT], 1);
@@ -56,7 +56,7 @@ ReloadTextDraws(playerID)
 	{
 		PlayerTextDrawDestroy(playerID, PTextDraw:playerID[SPEEDO_COLUMN1]);
 	}
-	PTextDraw:playerID[SPEEDO_COLUMN1] = CreatePlayerTextDraw(playerID, 480, 385, LanguageString(playerID, "160"));
+	PTextDraw:playerID[SPEEDO_COLUMN1] = CreatePlayerTextDraw(playerID, 480, 385, LanguageString(playerID, StringID:160("")));
 	PlayerTextDrawAlignment(playerID, PTextDraw:playerID[SPEEDO_COLUMN1], 1);
 	PlayerTextDrawLetterSize(playerID, PTextDraw:playerID[SPEEDO_COLUMN1], 0.3, 0.9);
 	PlayerTextDrawFont(playerID, PTextDraw:playerID[SPEEDO_COLUMN1], 1);

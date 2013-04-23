@@ -16,7 +16,7 @@
  * </returns>
  */
 
-PCMD:addnavilocation[NAVI](playerID, params[], 380)
+PCMD:addnavilocation[NAVI](playerID, params[], StringID:380(""))
 {
 	ShowDialog:AddNaviLocation_Type(playerID);
 	return COMMAND_OK;

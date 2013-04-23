@@ -1,14 +1,14 @@
-CMD:language(playerid, params[], 8)
+CMD:language(playerid, params[], StringID:8(""))
 {
-	if (strcmp(PVar:playerid[LANGUAGE], "de"))
+	if (PVar:playerid[LANGUAGE] == LANGUAGE_ENGLISH)
 	{
-		PVar:playerid[LANGUAGE] = "de";
+		PVar:playerid[LANGUAGE] = LANGUAGE_GERMAN;
 	}
 	else
 	{
-		PVar:playerid[LANGUAGE] = "en";
+		PVar:playerid[LANGUAGE] = LANGUAGE_ENGLISH;
 	}
 	ReloadTextDraws(playerid);
-	SendClientMessageEx(playerid, COLOR_INFO, "24");
+	SendClientMessageEx(playerid, COLOR_INFO, StringID:24(""));
 	return COMMAND_OK;
 }

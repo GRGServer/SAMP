@@ -42,8 +42,8 @@ Timer:Slow()
 			{
 				if (permissions[playerID][PERMISSION_SERVERADMIN])
 				{
-					SendClientMessageEx(playerID, COLOR_SYSTEM, "127", revision);
-					SendClientMessageEx(playerID, COLOR_SYSTEM, "128", committerName);
+					SendClientMessageEx(playerID, COLOR_SYSTEM, StringID:127(""), revision);
+					SendClientMessageEx(playerID, COLOR_SYSTEM, StringID:128(""), committerName);
 					SendClientMessage(playerID, COLOR_SYSTEM, "*** SVN Changelog:");
 				}
 			}

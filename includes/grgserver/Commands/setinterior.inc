@@ -1,4 +1,4 @@
-PCMD:setinterior[TELEPORT](playerID, params[], 348)
+PCMD:setinterior[TELEPORT](playerID, params[], StringID:348(""))
 {
 	new interiorID;
 	if (sscanf(params, "d", interiorID))
@@ -7,6 +7,6 @@ PCMD:setinterior[TELEPORT](playerID, params[], 348)
 		return COMMAND_USAGE;
 	}
 	SetPlayerInterior(playerID, interiorID);
-	SendClientMessageEx(playerID, COLOR_INFO, "349", interiorID);
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:349(""), interiorID);
 	return COMMAND_OK;
 }

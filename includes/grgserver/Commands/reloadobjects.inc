@@ -1,4 +1,4 @@
-PCMD:reloadobjects[SERVERADMIN](playerID, params[], 162)
+PCMD:reloadobjects[SERVERADMIN](playerID, params[], StringID:162(""))
 {
 	ReloadObjects(playerID);
 	return COMMAND_OK;

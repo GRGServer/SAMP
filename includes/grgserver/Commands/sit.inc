@@ -1,4 +1,4 @@
-CMD:sit(playerID, params[], 438)
+CMD:sit(playerID, params[], StringID:438(""))
 {
 	new Float:rotation;
 	sscanf(params, "f", rotation);

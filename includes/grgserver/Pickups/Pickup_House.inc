@@ -14,7 +14,7 @@ PickupEvent:HOUSE(playerID, pickupID, eventType)
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, "141", GetMySQLValue("users", "username", "id", val2str(ownerUserID)));
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:141(""), GetMySQLValue("users", "username", "id", val2str(ownerUserID)));
 				}
 			}
 			else
@@ -28,7 +28,7 @@ PickupEvent:HOUSE(playerID, pickupID, eventType)
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, "22", price, bankMoney);
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:22(""), price, bankMoney);
 				}
 			}
 			return true;
@@ -37,7 +37,7 @@ PickupEvent:HOUSE(playerID, pickupID, eventType)
 		{
 			if (permissions[playerID][PERMISSION_MAPPER])
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, "338");
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:338(""));
 			}
 			return false;
 		}

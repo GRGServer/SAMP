@@ -18,7 +18,7 @@
  * </returns>
  */
 
-CMD:engine(playerID, params[], 111)
+CMD:engine(playerID, params[], StringID:111(""))
 {
 	if (!IsPlayerInAnyVehicle(playerID))
 	{

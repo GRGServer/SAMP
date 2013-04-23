@@ -2,6 +2,7 @@ new addLineString[256];
 new clientMessageString[256];
 new distanceCalcArray[MAX_DISTANCECALCELEMENTS][enum_distanceCalc];
 new dynamicObjects[MAX_DYNAMIC_OBJECTS][enum_object];
+new languageStrings[MAX_LANGUAGE_STRINGS][enum_languageString];
 new maxPlayers;
 new naviTargets[MAX_PLAYERS][MAX_NAVITARGETS][enum_naviTarget];
 new nextDynamicObjectID;

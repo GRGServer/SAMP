@@ -12,12 +12,12 @@ PickupEvent:UPGRADEVEHICLE(playerID, pickupID, eventType)
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, "52");
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:52(""));
 				}
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, "146");
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:146(""));
 			}
 			return true;
 		}

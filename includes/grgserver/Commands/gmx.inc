@@ -16,7 +16,7 @@
  * </returns>
  */
 
-PCMD:gmx[SERVERADMIN](playerID, params[], 105)
+PCMD:gmx[SERVERADMIN](playerID, params[], StringID:105(""))
 {
 	if (GetConnectedPlayers(true, false) > 1)
 	{

@@ -1,6 +1,6 @@
 ShowNews(playerID, lastID)
 {
-	MySQLQuery("SELECT `id`, `date`, LEFT(`text_%s`, 255) AS `text` FROM `news` WHERE `id` > '%d' ORDER BY `date` DESC LIMIT %d", PVar:playerID[LANGUAGE], lastID, NEWS_MAXIMUM);
+	MySQLQuery("SELECT `id`, `date`, LEFT(`text_%s`, 255) AS `text` FROM `news` WHERE `id` > '%d' ORDER BY `date` DESC LIMIT %d", GetLanguageName(PVar:playerID[LANGUAGE]), lastID, NEWS_MAXIMUM);
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
@@ -20,5 +20,5 @@ ShowNews(playerID, lastID)
 	}
 	mysql_free_result();
 	PVar:playerID[LASTNEWSID] = lastID;
-	SendClientMessageEx(playerID, COLOR_INFO, "135");
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:135(""));
 }

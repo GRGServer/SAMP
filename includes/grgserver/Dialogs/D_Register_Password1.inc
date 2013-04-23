@@ -1,6 +1,6 @@
 ShowDialog:Register_Password1(playerID)
 {
-	CreateDialog(playerID, "Register_Password1", DIALOG_STYLE_PASSWORD, LanguageString(playerID, "260"), LanguageString(playerID, "261"), LanguageString(playerID, "NEXT"), LanguageString(playerID, "BACK"));
+	CreateDialog(playerID, "Register_Password1", DIALOG_STYLE_PASSWORD, LanguageString(playerID, StringID:260("")), LanguageString(playerID, StringID:261("")), LanguageString(playerID, StringID:177("")), LanguageString(playerID, StringID:171("")));
 }
 
 DialogResponse:Register_Password1(playerID, response, listItem, inputText[])
@@ -14,7 +14,7 @@ DialogResponse:Register_Password1(playerID, response, listItem, inputText[])
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "31", REGISTER_PASSWORD_MIN, REGISTER_PASSWORD_MAX);
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:31(""), REGISTER_PASSWORD_MIN, REGISTER_PASSWORD_MAX);
 			ShowDialog:Register_Password1(playerID);
 		}
 	}

@@ -1,4 +1,4 @@
-CMD:cmds(playerID, params[] , 93)
+CMD:cmds(playerID, params[], StringID:93(""))
 {
 	if (fexist(FILE_COMMANDS))
 	{
@@ -7,12 +7,12 @@ CMD:cmds(playerID, params[] , 93)
 		while (fread(file, string))
 		{
 			new command[MAX_FUNCTION_NAME];
-			new languageStringName[STRINGLENGTH_LANGUAGESTRINGNAME];
+			new languageStringID;
 			new permission[30];
 			RemoveNewLine(string);
-			if (sscanf(string, "p<\t>s[" #MAX_FUNCTION_NAME "]s[30]s[" #STRINGLENGTH_LANGUAGESTRINGNAME "]", command, permission, languageStringName))
+			if (sscanf(string, "p<\t>s[" #MAX_FUNCTION_NAME "]s[30]d", command, permission, languageStringID))
 			{
-				if (sscanf(string, "p<\t>s[" #MAX_FUNCTION_NAME "]s[" #STRINGLENGTH_LANGUAGESTRINGNAME "]", command, languageStringName))
+				if (sscanf(string, "p<\t>s[" #MAX_FUNCTION_NAME "]d", command, languageStringID))
 				{
 					continue;
 				}
@@ -37,20 +37,11 @@ CMD:cmds(playerID, params[] , 93)
 			}
 			if (showCommand)
 			{
-				/* TODO: Show command list in two columns
-				new commandLength = strlen(command);
-				for (new character = 0; character < MAX_FUNCTION_NAME; character++)
-				{
-					if (character >= commandLength)
-					{
-						command[character] = ' ';
-					}
-				}*/
-				Format:string("%s{FF8C55} - %s", command, LanguageString(playerID, languageStringName));
+				Format:string("%s{FF8C55} - %s", command, LanguageString(playerID, languageStringID));
 				SendClientMessage(playerID, COLOR_INFO, string);
 			}
 		}
-		SendClientMessageEx(playerID, COLOR_INFO, "522");
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:522(""));
 		return COMMAND_OK;
 	}
 	else

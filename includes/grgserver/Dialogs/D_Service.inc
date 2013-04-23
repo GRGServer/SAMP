@@ -1,11 +1,11 @@
 ShowDialog:Service(playerID)
 {
 	new options[1024];
-	AddLine(options, LanguageString(playerID, "176"));// Item 1
+	AddLine(options, LanguageString(playerID, StringID:176("")));// Item 1
 	AddLine(options, "ADAC");// Item 2
 	AddLine(options, "Taxi");// Item 3
-	AddLine(options, LanguageString(playerID, "221"));// Item 4
-	CreateDialog(playerID, "Service", DIALOG_STYLE_LIST, LanguageString(playerID, "577"), options, LanguageString(playerID, "164"), LanguageString(playerID, "165"));
+	AddLine(options, LanguageString(playerID, StringID:221("")));// Item 4
+	CreateDialog(playerID, "Service", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:577("")), options, LanguageString(playerID, StringID:164("")), LanguageString(playerID, StringID:165("")));
 }
 
 DialogResponse:Service(playerID, response, listItem, inputText[])
@@ -16,7 +16,7 @@ DialogResponse:Service(playerID, response, listItem, inputText[])
 		{
 			case 0:
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, "578");
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:578(""));
 				new missionID = CreateJob(playerID, JOB_POLICE);
 				if (missionID)
 				{
@@ -26,7 +26,7 @@ DialogResponse:Service(playerID, response, listItem, inputText[])
 			}
 			case 1:
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, "578");
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:578(""));
 				new missionID = CreateJob(playerID, JOB_ADAC);
 				if (missionID)
 				{
@@ -36,7 +36,7 @@ DialogResponse:Service(playerID, response, listItem, inputText[])
 			}
 			case 2:
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, "578");
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:578(""));
 				new missionID = CreateJob(playerID, JOB_TAXI);
 				if (missionID)
 				{
@@ -46,7 +46,7 @@ DialogResponse:Service(playerID, response, listItem, inputText[])
 			}
 			case 3: 
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, "578");
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:578(""));
 				new missionID = CreateJob(playerID, JOB_PARAMEDIC);
 				if (missionID)
 				{

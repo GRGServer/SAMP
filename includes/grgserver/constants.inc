@@ -93,6 +93,14 @@ enum
 }
 
 
+// Language IDs
+enum
+{
+	LANGUAGE_ENGLISH,
+	LANGUAGE_GERMAN
+}
+
+
 // Money types
 enum
 {

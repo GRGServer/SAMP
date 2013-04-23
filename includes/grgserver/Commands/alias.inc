@@ -18,7 +18,7 @@
  * </remarks>
  */
 
-CMD:alias(playerID, params[], 515)
+CMD:alias(playerID, params[], StringID:515(""))
 {
 	new name[32];
 	new command[256];
@@ -27,21 +27,21 @@ CMD:alias(playerID, params[], 515)
 		if (sscanf(params, "s[32]", name))
 		{
 			CmdUsageMsg(playerID, "alias", "Name", "Command");
-			SendClientMessageEx(playerID, COLOR_INFO, "540");
-			SendClientMessageEx(playerID, COLOR_INFO, "541", "/alias inf spawnvehicle infernus");
-			SendClientMessageEx(playerID, COLOR_INFO, "516");
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:540(""));
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:541(""), "/alias inf spawnvehicle infernus");
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:516(""));
 			return COMMAND_USAGE;
 		}
 		MySQLQuery("DELETE FROM `cmdaliases` WHERE `userId` = '%d' AND `name` = '%s'", PVar:playerID[USERID], MySQLEscapeString(name));
 		if (mysql_affected_rows())
 		{
-			SendClientMessageEx(playerID, COLOR_INFO, "518", name);
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:518(""), name);
 			return COMMAND_OK;
 		}
-		SendClientMessageEx(playerID, COLOR_ERROR, "519", name);
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:519(""), name);
 		return COMMAND_ERROR;
 	}
 	MySQLQuery("REPLACE INTO `cmdaliases` (`userId`, `name`, `command`) VALUES('%d', '%s', '%s')", PVar:playerID[USERID], MySQLEscapeString(name), MySQLEscapeString(command));
-	SendClientMessageEx(playerID, COLOR_INFO, "517", name);
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:517(""), name);
 	return COMMAND_OK;
 }

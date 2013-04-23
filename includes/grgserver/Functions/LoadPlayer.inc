@@ -15,7 +15,7 @@ LoadPlayer(playerID)
 	PVar:playerID[GODMODE] = strval(GetMySQLField("godMode"));
 	PVar:playerID[INTUTORIAL] = strval(GetMySQLField("inTutorial"));
 	PVar:playerID[JOBID] = strval(GetMySQLField("jobId"));
-	strcat(PVar:playerID[LANGUAGE], GetMySQLField("language"), STRINGLENGTH_LANGUAGE);
+	PVar:playerID[LANGUAGE] = GetLanguageID(GetMySQLField("language"));
 	PVar:playerID[LASTNEWSID] = strval(GetMySQLField("lastNewsId"));
 	PVar:playerID[LASTPAYDAY] = strval(GetMySQLField("lastPayDay"));
 	PVar:playerID[NEEDS_BLADDER] = floatstr(GetMySQLField("bladder"));

@@ -1,4 +1,4 @@
-PCMD:addspeedcam[MAPPER](playerID, params[], 486)
+PCMD:addspeedcam[MAPPER](playerID, params[], StringID:486(""))
 {
 	new speedLimit;
 	if (sscanf(params, "d", speedLimit))
@@ -19,7 +19,7 @@ PCMD:addspeedcam[MAPPER](playerID, params[], 486)
 
 	if (speedCamerasSlot == -1)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, "SPEEDCAMERA_NOFREESLOTFOUND", sizeof(speedCameras));
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:633(""), sizeof(speedCameras));
 		return COMMAND_ERROR;
 	}
 

@@ -1,4 +1,4 @@
-PCMD:recnpc[NPCADMIN](playerid, params[], 116)
+PCMD:recnpc[NPCADMIN](playerid, params[], StringID:116(""))
 {
 	new npcs;
 	new recordingType;
@@ -53,7 +53,7 @@ PCMD:recnpc[NPCADMIN](playerid, params[], 116)
 		npcs++;
 	}
 	StartRecordingPlayerData(playerid, recordingType, recordingName);
-	SendClientMessageEx(playerid, COLOR_INFO, "89", recordingName, npcs);
-	SendClientMessageEx(playerid, COLOR_INFO, "90");
+	SendClientMessageEx(playerid, COLOR_INFO, StringID:89(""), recordingName, npcs);
+	SendClientMessageEx(playerid, COLOR_INFO, StringID:90(""));
 	return COMMAND_OK;
 }

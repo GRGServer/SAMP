@@ -38,7 +38,7 @@ SetPlayerMoney(playerID, type, Float:amount, add = false)
 			if (PVar:playerID[MONEY] > MAX_MONEY)
 			{
 				PVar:playerID[MONEY] = MAX_MONEY;
-				SendClientMessageEx(playerID, COLOR_ERROR, "492", MAX_MONEY);
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:492(""), MAX_MONEY);
 				printf("%s reached MAX_MONEY (%2f)", GetPlayerNameEx(playerID), MAX_MONEY);
 			}
 			ResetPlayerMoney(playerID);

@@ -16,11 +16,11 @@ public OnPlayerEditDynamicObject(playerid, objectid, response, Float:x, Float:y,
 				GetDynamicObjectPos(objectid, dynamicObjects[objectid - 1][OBJECT_POS][0], dynamicObjects[objectid - 1][OBJECT_POS][1], dynamicObjects[objectid - 1][OBJECT_POS][2]);
 				GetDynamicObjectRot(objectid, dynamicObjects[objectid - 1][OBJECT_ROT][0], dynamicObjects[objectid - 1][OBJECT_ROT][1], dynamicObjects[objectid - 1][OBJECT_ROT][2]);
 				SaveObjects(dynamicObjects[objectid - 1][OBJECT_FILENAME]);
-				SendClientMessageEx(playerid, COLOR_INFO, "199");
+				SendClientMessageEx(playerid, COLOR_INFO, StringID:199(""));
 			}
 			else
 			{
-				SendClientMessageEx(playerid, COLOR_ERROR, "200");
+				SendClientMessageEx(playerid, COLOR_ERROR, StringID:200(""));
 			}
 
 			PVar:playerid[OBJEDITOR_CURRENTOBJECTID] = 0;

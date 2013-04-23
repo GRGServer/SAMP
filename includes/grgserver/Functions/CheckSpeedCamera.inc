@@ -30,7 +30,7 @@ CheckSpeedCamera(playerID)
 		if (!PVar:playerID[SPEEDCAM_LIMITREACHED])
 		{
 			PVar:playerID[SPEEDCAM_LIMITREACHED] = true;
-			SendClientMessageEx(playerID, COLOR_ERROR, "453", VehicleProperty:vehicleID[SPEED], speedCameras[closestSpeedCamera][SPEEDCAMERA_SPEEDLIMIT]);
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:453(""), VehicleProperty:vehicleID[SPEED], speedCameras[closestSpeedCamera][SPEEDCAMERA_SPEEDLIMIT]);
 		}
 	}
 	else

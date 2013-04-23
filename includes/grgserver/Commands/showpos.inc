@@ -1,4 +1,4 @@
-PCMD:showpos[ADMIN](playerID, params[], 412)
+PCMD:showpos[ADMIN](playerID, params[], StringID:412(""))
 {
 	if (PVar:playerID[SHOWPOS])
 	{

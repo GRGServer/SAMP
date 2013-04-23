@@ -1,12 +1,12 @@
 ShowDialog:Police_Options(playerID)
 {
-	FormatNew:title[20](LanguageString(playerID, "553"));
+	FormatNew:title[20](LanguageString(playerID, StringID:553("")));
 	new options[1024];
-	AddLine(options, LanguageString(playerID, "268"));// Item 1
-	AddLine(options, LanguageString(playerID, "328"));// Item 2
-	AddLine(options, LanguageString(playerID, "476"));// Item 3
-	AddLine(options, LanguageString(playerID, "549"));// Item 4
-	CreateDialog(playerID, "Police Options", DIALOG_STYLE_LIST, title, options, LanguageString(playerID, "164"), LanguageString(playerID, "165"));
+	AddLine(options, LanguageString(playerID, StringID:268("")));// Item 1
+	AddLine(options, LanguageString(playerID, StringID:328("")));// Item 2
+	AddLine(options, LanguageString(playerID, StringID:476("")));// Item 3
+	AddLine(options, LanguageString(playerID, StringID:549("")));// Item 4
+	CreateDialog(playerID, "Police Options", DIALOG_STYLE_LIST, title, options, LanguageString(playerID, StringID:164("")), LanguageString(playerID, StringID:165("")));
 }
 
 DialogResponse:Police_Options(playerID, response, listItem, inputText[])
@@ -23,7 +23,7 @@ DialogResponse:Police_Options(playerID, response, listItem, inputText[])
 				mysql_free_result();
 				if (isLocked)
 				{
-					SendClientMessage(playerID, COLOR_ERROR, LanguageString(playerID, "481"));
+					SendClientMessage(playerID, COLOR_ERROR, LanguageString(playerID, StringID:481("")));
 				}
 				else
 				{
@@ -40,7 +40,7 @@ DialogResponse:Police_Options(playerID, response, listItem, inputText[])
 				mysql_free_result();
 				GivePlayerMoneyEx(playerID, MONEY_BANK, price);
 				ReloadPickup(pickupID);
-				SendClientMessageEx(playerID, COLOR_INFO, "330");
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:330(""));
 			}
 			case 2:
 			{
@@ -50,13 +50,13 @@ DialogResponse:Police_Options(playerID, response, listItem, inputText[])
 				mysql_free_result();
 				if (isLocked)
 				{
-					SendClientMessage(playerID, COLOR_INFO, LanguageString(playerID, "477"));
+					SendClientMessage(playerID, COLOR_INFO, LanguageString(playerID, StringID:477("")));
 					MySQLQuery("UPDATE `properties` SET `locked`= '0' WHERE `id` = '%d'", PVar:playerID[DIALOGPROPERTYID]);
 				}
 				else
 				{
 					MySQLQuery("UPDATE `properties` SET `locked` = '1' WHERE `id`= '%d'", PVar:playerID[DIALOGPROPERTYID]);
-					SendClientMessage(playerID, COLOR_INFO, LanguageString(playerID, "478"));
+					SendClientMessage(playerID, COLOR_INFO, LanguageString(playerID, StringID:478("")));
 				}
 			}
 			case 3: 

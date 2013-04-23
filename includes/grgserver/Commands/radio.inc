@@ -1,4 +1,4 @@
-CMD:radio(playerID, params[], 115)
+CMD:radio(playerID, params[], StringID:115(""))
 {
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (vehicleID)

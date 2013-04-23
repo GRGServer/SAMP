@@ -1,4 +1,4 @@
-CMD:payday(playerID, params[], 114)
+CMD:payday(playerID, params[], StringID:114(""))
 {
 	ShowDialog:PaydayInfo(playerID);
 	return COMMAND_OK;

@@ -1,4 +1,4 @@
-CMD:removefriend(playerID, params[], 446)
+CMD:removefriend(playerID, params[], StringID:446(""))
 {
 	new targetPlayerID;
 	if (sscanf(params, "u", targetPlayerID))
@@ -16,11 +16,11 @@ CMD:removefriend(playerID, params[], 446)
 	mysql_free_result();
 	if (!isInList)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, "447", targetPlayerID);
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:447(""), targetPlayerID);
 		return COMMAND_ERROR;
 	}
 	MySQLQuery("DELETE FROM `friends` WHERE (`userId1` = '%d' AND `userId2` = '%d') OR (`userId2` = '%d' AND `userId1` = '%d')", PVar:playerID[USERID], PVar:targetPlayerID[USERID], PVar:playerID[USERID], PVar:targetPlayerID[USERID]);
-	SendClientMessageEx(playerID, COLOR_INFO, "448", targetPlayerID);
-	SendClientMessageEx(targetPlayerID, COLOR_INFO, "449", playerID);
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:448(""), targetPlayerID);
+	SendClientMessageEx(targetPlayerID, COLOR_INFO, StringID:449(""), playerID);
 	return COMMAND_OK;
 }

@@ -1,4 +1,4 @@
-CMD:accept(playerID, params[], 94)
+CMD:accept(playerID, params[], StringID:94(""))
 {
 	switch (PVar:playerID[JOBID])
 	{

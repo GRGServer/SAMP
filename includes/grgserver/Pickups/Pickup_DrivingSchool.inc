@@ -6,7 +6,7 @@ PickupEvent:DRIVINGSCHOOL(playerID, pickupID, eventType)
 		{
 			if (HasLicense(playerID, "Car") && HasLicense(playerID, "Trucker") && HasLicense(playerID, "Bike"))
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, "593");
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:593(""));
 			}
 			else
 			{

@@ -1,4 +1,4 @@
-PCMD:coordtp[TELEPORT](playerID, params[], 326)
+PCMD:coordtp[TELEPORT](playerID, params[], StringID:326(""))
 {
 	new Float:posX;
 	new Float:posY;
@@ -9,6 +9,6 @@ PCMD:coordtp[TELEPORT](playerID, params[], 326)
 		return COMMAND_USAGE;
 	}
 	SetPlayerPosFindZ(playerID, posX, posY, posZ);
-	SendClientMessageEx(playerID, COLOR_INFO, "144");
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:144(""));
 	return COMMAND_OK;
 }

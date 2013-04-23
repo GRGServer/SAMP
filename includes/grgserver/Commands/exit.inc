@@ -1,4 +1,4 @@
-CMD:exit(playerid, params[], 101)
+CMD:exit(playerid, params[], StringID:101(""))
 {
 	if (PVar:playerid[SHOWINTERIOR_OLDINTERIOR] == -1)
 	{
@@ -8,7 +8,7 @@ CMD:exit(playerid, params[], 101)
 		}
 		else
 		{
-			SendClientMessageEx(playerid, COLOR_ERROR, "61");
+			SendClientMessageEx(playerid, COLOR_ERROR, StringID:61(""));
 			return COMMAND_ERROR;
 		}
 	}

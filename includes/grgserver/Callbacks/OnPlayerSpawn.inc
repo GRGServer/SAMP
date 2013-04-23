@@ -98,7 +98,7 @@ public OnPlayerSpawn(playerid)
 		mysql_free_result();
 		if (rows)
 		{
-			SendClientMessageEx(playerid, COLOR_INFO, "498", rows);
+			SendClientMessageEx(playerid, COLOR_INFO, StringID:498(""), rows);
 		}
 		StartScreenFader(playerid, 0, 0, 0, -5, 0, FADE_LOGIN, 1);
 		return true;

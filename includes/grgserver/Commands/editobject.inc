@@ -1,4 +1,4 @@
-PCMD:editobject[MAPPER](playerID, params[], 201)
+PCMD:editobject[MAPPER](playerID, params[], StringID:201(""))
 {
 	new objectID;
 	if (sscanf(params, "d", objectID))
@@ -9,7 +9,7 @@ PCMD:editobject[MAPPER](playerID, params[], 201)
 
 	if (objectID <= 0 || objectID > CountDynamicObjects() || Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID) != OBJECTTYPE_NORMAL)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, "427");
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:427(""));
 		return COMMAND_ERROR;
 	}
 

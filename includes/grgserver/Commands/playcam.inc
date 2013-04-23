@@ -1,4 +1,4 @@
-CMD:playcam(playerID, params[], 0)
+CMD:playcam(playerID, params[], StringID:0(""))
 {
 	new Float:startPosX;
 	new Float:startPosY;

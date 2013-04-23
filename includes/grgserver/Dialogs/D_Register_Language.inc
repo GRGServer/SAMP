@@ -10,15 +10,15 @@ DialogResponse:Register_Language(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
-		new languageName[STRINGLENGTH_LANGUAGE];
+		new languageName[3];
 		new languageTitle[100];
-		sscanf(inputText, "p<\t>s[" #STRINGLENGTH_LANGUAGE "]s[100]", languageName, languageTitle);
-		PVar:playerID[LANGUAGE] = languageName;
+		sscanf(inputText, "p<\t>s[3]s[100]", languageName, languageTitle);
+		PVar:playerID[LANGUAGE] = GetLanguageID(languageName);
 		ShowDialog:PreviewInfo(playerID);
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_INFO, "37");
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:37(""));
 		Kick(playerID);
 	}
 }

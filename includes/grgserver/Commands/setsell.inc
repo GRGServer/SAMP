@@ -1,4 +1,4 @@
-CMD:setsell(playerID, params[], 495)
+CMD:setsell(playerID, params[], StringID:495(""))
 {
 	if (PVar:playerID[JOBID] != JOB_VEHICLEDEALER)
 	{

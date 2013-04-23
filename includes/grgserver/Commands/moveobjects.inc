@@ -1,4 +1,4 @@
-PCMD:moveobjects[MAPPER](playerID, params[], CMD_MOVEOBJECTS)
+PCMD:moveobjects[MAPPER](playerID, params[], StringID:636(""))
 {
 	new fileName[STRINGLENGTH_OBJECTFILENAME];
 	new Float:x;
@@ -7,7 +7,7 @@ PCMD:moveobjects[MAPPER](playerID, params[], CMD_MOVEOBJECTS)
 
 	if (sscanf(params, "s[" #STRINGLENGTH_OBJECTFILENAME "]fff", fileName, x, y, z))
 	{
-		CmdUsageMsg(playerID, "moveobjects", LanguageString(playerID, "FILENAME"), "X", "Y", "Z");
+		CmdUsageMsg(playerID, "moveobjects", LanguageString(playerID, StringID:634("")), "X", "Y", "Z");
 		return COMMAND_USAGE;
 	}
 
@@ -26,6 +26,6 @@ PCMD:moveobjects[MAPPER](playerID, params[], CMD_MOVEOBJECTS)
 
 	UpdateObjectsForAllPlayers();
 
-	SendClientMessageEx(playerID, COLOR_INFO, "MOVEOBJECTS_INFO", count);
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:635(""), count);
 	return COMMAND_OK;
 }

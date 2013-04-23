@@ -37,7 +37,7 @@ public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 			{
 				if (subID)
 				{
-					GameTextForPlayer(playerID, LanguageString(playerID, "617"), 5000, 3);
+					GameTextForPlayer(playerID, LanguageString(playerID, StringID:617("")), 5000, 3);
 					SetTimerEx("Timer_ScreenFader", 3000, false, "dddddddd", playerID, 0, 0, 0, 5, 0, FADE_DRVSCHOOL_END2, 0);
 				}
 				else
@@ -202,7 +202,7 @@ public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 				{
 					TogglePlayerControllable(playerID, true);
 					SetCameraBehindPlayer(playerID);
-					ShowSubtitle(playerID, LanguageString(playerID, "291"));
+					ShowSubtitle(playerID, LanguageString(playerID, StringID:291("")));
 				}
 				else
 				{
@@ -210,7 +210,7 @@ public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 					SetPlayerPosEx(playerID, 1.6918, 26.2581, 1199.5938, 1);
 					SetPlayerFacingAngle(playerID, 0.0);
 					SetCameraBehindPlayer(playerID);
-					FormatNew:string[256](LanguageString(playerID, "274"), 7);
+					FormatNew:string[256](LanguageString(playerID, StringID:274("")), 7);
 					GameTextForPlayer(playerID, string, 8000, 1);
 					SetTimerEx("Timer_ScreenFader", 8000, false, "dddddddd", playerID, 0, 0, 0, -5, 0, FADE_START_INPLANE2, 1);
 				}
@@ -221,7 +221,7 @@ public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 				{
 					TogglePlayerControllable(playerID, true);
 					SetCameraBehindPlayer(playerID);
-					ShowSubtitle(playerID, LanguageString(playerID, "275"));
+					ShowSubtitle(playerID, LanguageString(playerID, StringID:275("")));
 				}
 				else
 				{
@@ -249,7 +249,7 @@ public OnScreenFadeStop(playerID, extraID, subID, isTimer)
 			{
 				if (subID)
 				{
-					ShowSubtitle(playerID, LanguageString(playerID, "295"));
+					ShowSubtitle(playerID, LanguageString(playerID, StringID:295("")));
 					TogglePlayerControllable(playerID, true);
 				}
 				else

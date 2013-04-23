@@ -1,7 +1,7 @@
 ShowDialog:ADAC(playerID)
 {
-	FormatNew:options[50]("%s\n%s", LanguageString(playerID, "217"), LanguageString(playerID, "218"));
-	CreateDialog(playerID, "ADAC", DIALOG_STYLE_LIST, LanguageString(playerID, "219"), options, LanguageString(playerID, "NEXT"), LanguageString(playerID, "165"));
+	FormatNew:options[50]("%s\n%s", LanguageString(playerID, StringID:217("")), LanguageString(playerID, StringID:218("")));
+	CreateDialog(playerID, "ADAC", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:219("")), options, LanguageString(playerID, StringID:177("")), LanguageString(playerID, StringID:165("")));
 }
 
 DialogResponse:ADAC(playerID, response, listItem, inputText[])

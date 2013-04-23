@@ -1,4 +1,4 @@
-PCMD:goto[TELEPORT](playerid, params[], 106)
+PCMD:goto[TELEPORT](playerid, params[], StringID:106(""))
 {
 	new targetPlayerID;
 	if (sscanf(params, "u", targetPlayerID))

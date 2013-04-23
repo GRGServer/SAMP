@@ -1,4 +1,4 @@
-PCMD:setjob[MAPPER](playerID, params[], 609)
+PCMD:setjob[MAPPER](playerID, params[], StringID:609(""))
 {
 	if (!IsPlayerInAnyVehicle(playerID))
 	{

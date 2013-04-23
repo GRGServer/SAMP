@@ -22,7 +22,7 @@ Timer:SpawnPlayer(playerID)
 	mysql_store_result();
 	if (strval(GetMySQLField("id")))
 	{
-		strcat(PVar:playerID[LANGUAGE], GetMySQLField("language"), STRINGLENGTH_LANGUAGE);
+		PVar:playerID[LANGUAGE] = GetLanguageID(GetMySQLField("language"));
 		PVar:playerID[REGISTERED] = true;
 		ShowDialog:PreviewInfo(playerID);
 	}
@@ -32,24 +32,24 @@ Timer:SpawnPlayer(playerID)
 		strcat(countryCode, GetPlayerCountryCode(playerID));
 		if (strlen(countryCode) && (!strcmp(countryCode, "AT", true) || !strcmp(countryCode, "CH", true) || !strcmp(countryCode, "DE", true)))
 		{
-			PVar:playerID[LANGUAGE] = "de";
+			PVar:playerID[LANGUAGE] = LANGUAGE_GERMAN;
 		}
 		else
 		{
-			PVar:playerID[LANGUAGE] = "en";
+			PVar:playerID[LANGUAGE] = LANGUAGE_ENGLISH;
 		}
 		PVar:playerID[REGISTERED] = false;
 		PlaySound(playerID, musicSoundIDs[random(sizeof(musicSoundIDs))]);
 		ShowDialog:Register_Language(playerID);
 	}
 	mysql_free_result();
-	SendClientMessageEx(playerID, COLOR_SYSTEM, "138");
-	SendClientMessageEx(playerID, COLOR_SYSTEM, "5", COMPILER_SVN_REVISION);
+	SendClientMessageEx(playerID, COLOR_SYSTEM, StringID:138(""));
+	SendClientMessageEx(playerID, COLOR_SYSTEM, StringID:5(""), COMPILER_SVN_REVISION);
 	PlayerLoop(currentPlayerID)
 	{
 		if (!IsPlayerNPC(currentPlayerID) && currentPlayerID != playerID)
 		{
-			SendClientMessageEx(currentPlayerID, COLOR_JOINLEAVE, "3", playerID);
+			SendClientMessageEx(currentPlayerID, COLOR_JOINLEAVE, StringID:3(""), playerID);
 		}
 	}
 	ReloadTextDraws(playerID);

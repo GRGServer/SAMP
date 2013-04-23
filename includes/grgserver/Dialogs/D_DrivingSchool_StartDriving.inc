@@ -1,6 +1,6 @@
 ShowDialog:DrivingSchool_StartDriving(playerID)
 {
-	CreateDialog(playerID, "DrivingSchool_StartDriving", DIALOG_STYLE_MSGBOX, LanguageString(playerID, "599"), LanguageString(playerID, "600"), LanguageString(playerID, "166"), LanguageString(playerID, "167"));
+	CreateDialog(playerID, "DrivingSchool_StartDriving", DIALOG_STYLE_MSGBOX, LanguageString(playerID, StringID:599("")), LanguageString(playerID, StringID:600("")), LanguageString(playerID, StringID:166("")), LanguageString(playerID, StringID:167("")));
 }
 
 DialogResponse:DrivingSchool_StartDriving(playerID, response, listItem, inputText[])

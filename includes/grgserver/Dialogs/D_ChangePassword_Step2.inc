@@ -1,6 +1,6 @@
 ShowDialog:ChangePassword_Step2(playerID)
 {
-	CreateDialog(playerID, "ChangePassword_Step2", DIALOG_STYLE_PASSWORD, LanguageString(playerID, "240"), LanguageString(playerID, "242"), LanguageString(playerID, "NEXT"), LanguageString(playerID, "BACK"));
+	CreateDialog(playerID, "ChangePassword_Step2", DIALOG_STYLE_PASSWORD, LanguageString(playerID, StringID:240("")), LanguageString(playerID, StringID:242("")), LanguageString(playerID, StringID:177("")), LanguageString(playerID, StringID:171("")));
 }
 
 DialogResponse:ChangePassword_Step2(playerID, response, listItem, inputText[])
@@ -14,7 +14,7 @@ DialogResponse:ChangePassword_Step2(playerID, response, listItem, inputText[])
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "31", REGISTER_PASSWORD_MIN, REGISTER_PASSWORD_MAX);
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:31(""), REGISTER_PASSWORD_MIN, REGISTER_PASSWORD_MAX);
 			ShowDialog:ChangePassword_Step2(playerID);
 		}
 	}

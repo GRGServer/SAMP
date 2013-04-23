@@ -51,12 +51,12 @@ PayDay(playerID)
 			MoneyTransaction(playerID, CASHTRANS_VEHICLETAX, 0, 0, -vehicleTax);
 			MoneyTransaction(playerID, CASHTRANS_POWERTAX, 0, 0, -powerTax);
 			MoneyTransaction(playerID, CASHTRANS_PAYDAY, 0, 0, salaryWithoutTax);
-			SendClientMessageEx(playerID, COLOR_INFO, "133", salaryWithoutTax);
-			SendClientMessageEx(playerID, COLOR_INFO, "PAYDAY_INFO_DETAILS");
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:133(""), salaryWithoutTax);
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:625(""));
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "225");
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:225(""));
 		}
 	}
 }

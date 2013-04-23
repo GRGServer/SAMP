@@ -9,6 +9,7 @@
 #include <grgserver\Structures\enum_cameraCut.inc>
 #include <grgserver\Structures\enum_distanceCalc.inc>
 #include <grgserver\Structures\enum_interior.inc>
+#include <grgserver\Structures\enum_languageString.inc>
 #include <grgserver\Structures\enum_naviLocation.inc>
 #include <grgserver\Structures\enum_naviTarget.inc>
 #include <grgserver\Structures\enum_neonType.inc>
@@ -62,6 +63,9 @@
 #include <grgserver\Functions\GetColor.inc>
 #include <grgserver\Functions\GetConnectedPlayers.inc>
 #include <grgserver\Functions\GetDistanceBetweenPoints.inc>
+#include <grgserver\Functions\GetLanguageID.inc>
+#include <grgserver\Functions\GetLanguageName.inc>
+#include <grgserver\Functions\GetLicenseLanguageStringID.inc>
 #include <grgserver\Functions\GetMissionName.inc>
 #include <grgserver\Functions\GetMySQLField.inc>
 #include <grgserver\Functions\GetMySQLValue.inc>
@@ -97,7 +101,6 @@
 #include <grgserver\Functions\IsVehicleLocked.inc>
 #include <grgserver\Functions\LanguageString.inc>
 #include <grgserver\Functions\LeaveProperty.inc>
-#include <grgserver\Functions\LicenseLanguageStringName.inc>
 #include <grgserver\Functions\LoadMySQLVehicle.inc>
 #include <grgserver\Functions\LoadObjectsFromFile.inc>
 #include <grgserver\Functions\LoadPlayer.inc>
@@ -117,6 +120,7 @@
 #include <grgserver\Functions\PlaySound.inc>
 #include <grgserver\Functions\PlayerPee.inc>
 #include <grgserver\Functions\ReconnectNPCs.inc>
+#include <grgserver\Functions\ReloadLanguageStrings.inc>
 #include <grgserver\Functions\ReloadObjects.inc>
 #include <grgserver\Functions\ReloadPermissions.inc>
 #include <grgserver\Functions\ReloadPickup.inc>
@@ -415,7 +419,7 @@
 #include <grgserver\Commands\showinterior.inc>
 #include <grgserver\Commands\showorder.inc>
 #include <grgserver\Commands\showpos.inc>
-#include <grgserver\Commands\sierene.inc>
+#include <grgserver\Commands\siren.inc>
 #include <grgserver\Commands\sit.inc>
 #include <grgserver\Commands\spawnvehicle.inc>
 #include <grgserver\Commands\stats.inc>

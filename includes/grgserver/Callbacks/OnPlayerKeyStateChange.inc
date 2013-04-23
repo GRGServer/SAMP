@@ -77,7 +77,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			UpdateObjectsForAllPlayers();
 			SelectObject(playerid);
 
-			SendClientMessageEx(playerid, COLOR_INFO, "203", objectID, objectModels[modelID]);
+			SendClientMessageEx(playerid, COLOR_INFO, StringID:203(""), objectID, objectModels[modelID]);
 
 			PVar:playerid[OBJEDITOR_CURRENTOBJECTID] = 0;
 
@@ -103,11 +103,11 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 				if (mysql_num_rows())
 				{
 					PVar:playerid[SELECTEDPROPERTYID] = strval(GetMySQLField("id"));
-					SendClientMessageEx(playerid, COLOR_INFO, "142", GetMySQLField("name"));
+					SendClientMessageEx(playerid, COLOR_INFO, StringID:142(""), GetMySQLField("name"));
 				}
 				else
 				{
-					SendClientMessageEx(playerid, COLOR_INFO, "337");
+					SendClientMessageEx(playerid, COLOR_INFO, StringID:337(""));
 				}
 				mysql_free_result();
 

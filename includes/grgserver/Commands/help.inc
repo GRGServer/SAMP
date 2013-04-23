@@ -1,5 +1,5 @@
-CMD:help(playerid, params[], 107)
+CMD:help(playerid, params[], StringID:107(""))
 {
-	SendClientMessageEx(playerid, COLOR_INFO, "82");
+	SendClientMessageEx(playerid, COLOR_INFO, StringID:82(""));
 	return COMMAND_OK;
 }

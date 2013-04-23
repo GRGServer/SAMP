@@ -1,4 +1,4 @@
-CMD:ordervehicle(playerID, params[], 113)
+CMD:ordervehicle(playerID, params[], StringID:113(""))
 {
 	if (PVar:playerID[JOBID] == JOB_VEHICLEDEALER)
 	{

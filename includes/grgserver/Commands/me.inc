@@ -1,4 +1,4 @@
-CMD:me(playerid, params[], 109)
+CMD:me(playerid, params[], StringID:109(""))
 {
 	if (strlen(params))
 	{

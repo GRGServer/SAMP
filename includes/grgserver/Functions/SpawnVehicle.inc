@@ -4,7 +4,7 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 	{
 		if (showMessage)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "64");
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:64(""));
 		}
 		return false;
 	}
@@ -12,7 +12,7 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 	{
 		if (showMessage)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "65");
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:65(""));
 		}
 		return false;
 	}
@@ -20,7 +20,7 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 	{
 		if (showMessage)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "63");
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:63(""));
 		}
 		return false;
 	}
@@ -35,7 +35,7 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 	{
 		if (showMessage)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "461");
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:461(""));
 		}
 		return false;
 	}
@@ -45,7 +45,7 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 	PutPlayerInVehicle(playerID, vehicleID, 0);
 	if (showMessage)
 	{
-		SendClientMessageEx(playerID, COLOR_INFO, "62");
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:62(""));
 	}
 	return true;
 }

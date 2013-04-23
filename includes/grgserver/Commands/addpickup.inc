@@ -1,4 +1,4 @@
-PCMD:addpickup[MAPPER](playerID, params[], 96)
+PCMD:addpickup[MAPPER](playerID, params[], StringID:96(""))
 {
 	new type[256];
 	new Float:posX;
@@ -19,22 +19,22 @@ PCMD:addpickup[MAPPER](playerID, params[], 96)
 		{
 			if (AddPickup(pickupID, type, posX, posY, posZ))
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, "57", type, pickupID);
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:57(""), type, pickupID);
 				return COMMAND_OK;
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, "6");
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:6(""));
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "6");
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:6(""));
 		}
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, "58");
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:58(""));
 	}
 	return COMMAND_ERROR;
 }

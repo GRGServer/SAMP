@@ -1,9 +1,9 @@
-PCMD:savevehicle[MAPPER](playerID, params[], 118)
+PCMD:savevehicle[MAPPER](playerID, params[], StringID:118(""))
 {
 	new Float:price;
 	if (sscanf(params, "f", price))
 	{
-		CmdUsageMsg(playerID, "savevehicle", LanguageString(playerID, "298"));
+		CmdUsageMsg(playerID, "savevehicle", LanguageString(playerID, StringID:298("")));
 		return COMMAND_USAGE;
 	}
 	if (price >= 0)
@@ -33,7 +33,7 @@ PCMD:savevehicle[MAPPER](playerID, params[], 118)
 				}
 				VehicleProperty:vehicleID[PRICE] = price;
 				SaveVehicle(vehicleID, GetPlayerInterior(playerID), true);
-				SendClientMessageEx(playerID, COLOR_INFO, "79", VehicleProperty:vehicleID[SAVEID]);
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:79(""), VehicleProperty:vehicleID[SAVEID]);
 				return COMMAND_OK;
 			}
 			else
@@ -48,7 +48,7 @@ PCMD:savevehicle[MAPPER](playerID, params[], 118)
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, "80");
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:80(""));
 	}
 	return COMMAND_ERROR;
 }

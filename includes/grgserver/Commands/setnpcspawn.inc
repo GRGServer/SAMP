@@ -1,4 +1,4 @@
-PCMD:setnpcspawn[NPCADMIN](playerID, params[], 282)
+PCMD:setnpcspawn[NPCADMIN](playerID, params[], StringID:282(""))
 {
 	new npcName[MAX_PLAYER_NAME];
 	if (sscanf(params, "s[" #MAX_PLAYER_NAME "]", npcName))
@@ -29,12 +29,12 @@ PCMD:setnpcspawn[NPCADMIN](playerID, params[], 282)
 	mysql_free_result();
 	if (id)
 	{
-		SendClientMessageEx(playerID, COLOR_INFO, "283");
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:283(""));
 		return COMMAND_OK;
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, "284");
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:284(""));
 		return COMMAND_ERROR;
 	}
 }

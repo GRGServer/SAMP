@@ -1,6 +1,6 @@
 ShowDialog:Register_Birthdate(playerID)
 {
-	CreateDialog(playerID, "Register_Birthdate", DIALOG_STYLE_INPUT, LanguageString(playerID, "253"), LanguageString(playerID, "254"), LanguageString(playerID, "NEXT"), LanguageString(playerID, "BACK"));
+	CreateDialog(playerID, "Register_Birthdate", DIALOG_STYLE_INPUT, LanguageString(playerID, StringID:253("")), LanguageString(playerID, StringID:254("")), LanguageString(playerID, StringID:177("")), LanguageString(playerID, StringID:171("")));
 }
 
 DialogResponse:Register_Birthdate(playerID, response, listItem, inputText[])
@@ -12,7 +12,7 @@ DialogResponse:Register_Birthdate(playerID, response, listItem, inputText[])
 		new year;
 		if (sscanf(inputText, "p<.>ddd", day, month, year))
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "40");
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:40(""));
 			ShowDialog:Register_Birthdate(playerID);
 		}
 		else
@@ -24,7 +24,7 @@ DialogResponse:Register_Birthdate(playerID, response, listItem, inputText[])
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, "41");
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:41(""));
 				ShowDialog:Register_Birthdate(playerID);
 			}
 		}

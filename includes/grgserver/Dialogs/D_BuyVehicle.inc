@@ -1,7 +1,7 @@
 ShowDialog:BuyVehicle(playerID, Float:price)
 {
-	FormatNew:string[100](LanguageString(playerID, "244"), FormatMoney(price));
-	CreateDialog(playerID, "BuyVehicle", DIALOG_STYLE_MSGBOX, LanguageString(playerID, "245"), string, LanguageString(playerID, "166"), LanguageString(playerID, "167"));
+	FormatNew:string[100](LanguageString(playerID, StringID:244("")), FormatMoney(price));
+	CreateDialog(playerID, "BuyVehicle", DIALOG_STYLE_MSGBOX, LanguageString(playerID, StringID:245("")), string, LanguageString(playerID, StringID:166("")), LanguageString(playerID, StringID:167("")));
 }
 
 DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
@@ -42,7 +42,7 @@ DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 				else
 				{
 					GivePlayerMoneyEx(sellerID, MONEY_BANK, VehicleProperty:vehicleID[PRICE]);
-					SendClientMessageEx(sellerID, COLOR_INFO, "494", playerID);
+					SendClientMessageEx(sellerID, COLOR_INFO, StringID:494(""), playerID);
 				}
 			}
 			if (!isSavedVehicle)
@@ -53,25 +53,25 @@ DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 			VehicleProperty:vehicleID[SELLERUSERID] = 0;
 			VehicleProperty:vehicleID[COLOR1] = VehicleProperty:vehicleID[CURRENTCOLOR1];
 			VehicleProperty:vehicleID[COLOR2] = VehicleProperty:vehicleID[CURRENTCOLOR2];
-			SendClientMessageEx(playerID, COLOR_INFO, "493");
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:493(""));
 			MySQLQuery("SELECT `vehicleBought` FROM `users` WHERE `id` = '%d'", PVar:playerID[USERID]);
 			mysql_store_result();
 			new vehicleBought = strval(GetMySQLField("vehicleBought"));
 			mysql_free_result();
 			if (!vehicleBought)
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, "523");
-				SendClientMessageEx(playerID, COLOR_INFO, "524");
-				SendClientMessageEx(playerID, COLOR_INFO, "525");
-				SendClientMessageEx(playerID, COLOR_INFO, "526");
-				SendClientMessageEx(playerID, COLOR_INFO, "527");
-				SendClientMessageEx(playerID, COLOR_INFO, "528");
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:523(""));
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:524(""));
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:525(""));
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:526(""));
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:527(""));
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:528(""));
 				MySQLQuery("UPDATE `users` SET `vehicleBought` = '1' WHERE `id` = '%d'", PVar:playerID[USERID]);
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "27", VehicleProperty:vehicleID[PRICE], bankMoney);
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:27(""), VehicleProperty:vehicleID[PRICE], bankMoney);
 		}
 	}
 	return true;

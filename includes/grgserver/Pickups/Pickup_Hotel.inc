@@ -21,10 +21,10 @@ PickupEvent:HOTEL(playerID, pickupID, eventType)
 			{
 				if (!ShowDialog:Hotel_RoomList(playerID))
 				{
-					SendClientMessageEx(playerID, COLOR_INFO, "314");
+					SendClientMessageEx(playerID, COLOR_INFO, StringID:314(""));
 					if (permissions[playerID][PERMISSION_MAPPER])
 					{
-						SendClientMessageEx(playerID, COLOR_INFO, "322");
+						SendClientMessageEx(playerID, COLOR_INFO, StringID:322(""));
 					}
 					else
 					{
@@ -38,7 +38,7 @@ PickupEvent:HOTEL(playerID, pickupID, eventType)
 		{
 			if (permissions[playerID][PERMISSION_MAPPER])
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, "338");
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:338(""));
 			}
 			return false;
 		}

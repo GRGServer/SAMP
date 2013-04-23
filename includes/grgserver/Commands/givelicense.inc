@@ -1,4 +1,4 @@
-CMD:givelicense(playerID, params[], 511)
+CMD:givelicense(playerID, params[], StringID:511(""))
 {
 	new targetPlayerID;
 	new licenseString[256];
@@ -25,24 +25,24 @@ CMD:givelicense(playerID, params[], 511)
 			{
 				if (newState)
 				{
-					SendClientMessageEx(targetPlayerID, COLOR_INFO, "513", LicenseLanguageStringName(license));
-					SendClientMessageEx(playerID, COLOR_INFO, "535", LicenseLanguageStringName(license), targetPlayerID);
+					SendClientMessageEx(targetPlayerID, COLOR_INFO, StringID:513(""), GetLicenseLanguageStringID(license));
+					SendClientMessageEx(playerID, COLOR_INFO, StringID:535(""), GetLicenseLanguageStringID(license), targetPlayerID);
 				}
 				else
 				{
-					SendClientMessageEx(targetPlayerID, COLOR_INFO, "537", LicenseLanguageStringName(license));
-					SendClientMessageEx(playerID, COLOR_INFO, "536", LicenseLanguageStringName(license), targetPlayerID);
+					SendClientMessageEx(targetPlayerID, COLOR_INFO, StringID:537(""), GetLicenseLanguageStringID(license));
+					SendClientMessageEx(playerID, COLOR_INFO, StringID:536(""), GetLicenseLanguageStringID(license), targetPlayerID);
 				}
 			}
 			else
 			{
 				if (newState)
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, "512", targetPlayerID, LicenseLanguageStringName(license));
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:512(""), targetPlayerID, GetLicenseLanguageStringID(license));
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, "538", targetPlayerID, LicenseLanguageStringName(license));
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:538(""), targetPlayerID, GetLicenseLanguageStringID(license));
 				}
 			}
 		}

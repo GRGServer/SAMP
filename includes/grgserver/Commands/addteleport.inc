@@ -1,4 +1,4 @@
-PCMD:addteleport[TELEPORT](playerID, params[], 333)
+PCMD:addteleport[TELEPORT](playerID, params[], StringID:333(""))
 {
 	new name[100];
 	if (sscanf(params, "s[100]", name))
@@ -13,6 +13,6 @@ PCMD:addteleport[TELEPORT](playerID, params[], 333)
 	GetPlayerPos(playerID, posX, posY, posZ);
 	GetPlayerFacingAngle(playerID, angle);
 	MySQLQuery("INSERT INTO `teleports` (`name`, `posX`, `posY`, `posZ`, `angle`, `interior`) VALUES('%s', '%f', '%f', '%f', '%f', '%d')", name, posX, posY, posZ, angle, GetPlayerInterior(playerID));
-	SendClientMessageEx(playerID, COLOR_INFO, "334");
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:334(""));
 	return COMMAND_OK;
 }

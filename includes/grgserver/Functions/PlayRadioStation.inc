@@ -14,6 +14,6 @@ PlayRadioStation(playerID, radioStationID)
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, "131");
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:131(""));
 	}
 }

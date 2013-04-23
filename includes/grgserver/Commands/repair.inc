@@ -1,4 +1,4 @@
-CMD:repair(playerID, params[], 296)
+CMD:repair(playerID, params[], StringID:296(""))
 {
 	if (PVar:playerID[JOBID] == JOB_ADAC)
 	{
@@ -6,7 +6,7 @@ CMD:repair(playerID, params[], 296)
 		new Float:price;
 		if (sscanf(params, "uf", targetPlayerID, price))
 		{
-			CmdUsageMsg(playerID, "repair", "Playername/ID", LanguageString(playerID, "298"));
+			CmdUsageMsg(playerID, "repair", "Playername/ID", LanguageString(playerID, StringID:298("")));
 			return COMMAND_USAGE;
 		}
 		if (PVar:targetPlayerID[MONEY] >= price)
@@ -16,18 +16,18 @@ CMD:repair(playerID, params[], 296)
 				PVar:targetPlayerID[REPAIR_EXECUTOR] = playerID;
 				PVar:targetPlayerID[REPAIR_PRICE] = price;
 				ShowDialog:Repair(targetPlayerID);
-				SendClientMessageEx(playerID, COLOR_INFO, "303");
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:303(""));
 				return COMMAND_OK;
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, "300", targetPlayerID);
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:300(""), targetPlayerID);
 				return COMMAND_ERROR;
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "299", targetPlayerID);
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:299(""), targetPlayerID);
 			return COMMAND_ERROR;
 		}
 	}

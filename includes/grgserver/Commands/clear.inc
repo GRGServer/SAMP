@@ -1,4 +1,4 @@
-CMD:clear(playerID, params[], 510)
+CMD:clear(playerID, params[], StringID:510(""))
 {
 	for (new line = 0; line < 10; line++)
 	{

@@ -177,9 +177,7 @@ public OnGameModeInit()
 		print("  Zone file does not exist!");
 	}
 
-	print("* Loading language strings...");
-	init_ifile(FILE_LANGUAGESTRINGS);
-
+	ReloadLanguageStrings();
 	ReloadObjects();
 	ReconnectNPCs();
 	ReloadVehicleModels();

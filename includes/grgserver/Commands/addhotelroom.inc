@@ -19,7 +19,7 @@
  * </returns>
  */
 
-PCMD:addhotelroom[MAPPER](playerID, params[], 323)
+PCMD:addhotelroom[MAPPER](playerID, params[], StringID:323(""))
 {
 	new validHotel;
 	if (PVar:playerID[CURRENTPROPERTYID])
@@ -31,13 +31,13 @@ PCMD:addhotelroom[MAPPER](playerID, params[], 323)
 	}
 	if (!validHotel)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, "324");
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:324(""));
 		return COMMAND_ERROR;
 	}
 	new Float:price;
 	if (sscanf(params, "f", price))
 	{
-		CmdUsageMsg(playerID, "addhotelroom", LanguageString(playerID, "298"));
+		CmdUsageMsg(playerID, "addhotelroom", LanguageString(playerID, StringID:298("")));
 		return COMMAND_USAGE;
 	}
 	MySQLQuery("SELECT IFNULL(MAX(roomId), 0) AS `highestRoomId` FROM `hotelrooms` WHERE `propertyId` = '%d'", PVar:playerID[CURRENTPROPERTYID]);
@@ -45,6 +45,6 @@ PCMD:addhotelroom[MAPPER](playerID, params[], 323)
 	new roomID = strval(GetMySQLField("highestRoomId")) + 1;
 	mysql_free_result();
 	MySQLQuery("INSERT INTO `hotelrooms` (`propertyId`, `roomId`, `price`) VALUES('%d', '%d', '%f')", PVar:playerID[CURRENTPROPERTYID], roomID, price);
-	SendClientMessageEx(playerID, COLOR_INFO, "325", roomID);
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:325(""), roomID);
 	return COMMAND_OK;
 }

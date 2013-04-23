@@ -1,7 +1,7 @@
 ShowDialog:Taxi(playerID)
 {
-	FormatNew:options[50]("%s\n%s", LanguageString(playerID, "217"), LanguageString(playerID, "218"));
-	CreateDialog(playerID, "Taxi", DIALOG_STYLE_LIST, LanguageString(playerID, "224"), options, LanguageString(playerID, "NEXT"), LanguageString(playerID, "165"));
+	FormatNew:options[50]("%s\n%s", LanguageString(playerID, StringID:217("")), LanguageString(playerID, StringID:218("")));
+	CreateDialog(playerID, "Taxi", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:224("")), options, LanguageString(playerID, StringID:177("")), LanguageString(playerID, StringID:165("")));
 }
 
 DialogResponse:Taxi(playerID, response, listItem, inputText[])

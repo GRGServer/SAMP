@@ -1,4 +1,4 @@
-CMD:stats(playerID, params[], 120)
+CMD:stats(playerID, params[], StringID:120(""))
 {
 	ShowDialog:Stats(playerID);
 	return COMMAND_OK;

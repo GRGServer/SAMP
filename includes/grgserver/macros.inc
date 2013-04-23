@@ -103,6 +103,9 @@ for (new i_%0 = 0; ; ++i_%0) \
 // StartTimer:name(functionName, repeat)
 #define StartTimer:%0(%1,%2) SetTimer(%1, TIMER_%0, %2)
 
+// StringID:ID("englishString")
+#define StringID:%0(%1) %0
+
 // Timer:name(parameters)
 #define Timer:%0(%1) forward Timer_%0(%1); public Timer_%0(%1)
 

@@ -1,4 +1,4 @@
-PCMD:addstaticnpc[NPCADMIN](playerid, params[], 97)
+PCMD:addstaticnpc[NPCADMIN](playerid, params[], StringID:97(""))
 {
 	new playerName[MAX_PLAYER_NAME];
 	if (sscanf(params, "s[" #MAX_PLAYER_NAME "]", playerName))
@@ -17,12 +17,12 @@ PCMD:addstaticnpc[NPCADMIN](playerid, params[], 97)
 	if (id > 0)
 	{
 		ConnectNPC(playerName, NPC_SCRIPTNAME);
-		SendClientMessageEx(playerid, COLOR_INFO, "83", id);
+		SendClientMessageEx(playerid, COLOR_INFO, StringID:83(""), id);
 		return COMMAND_OK;
 	}
 	else
 	{
-		SendClientMessageEx(playerid, COLOR_ERROR, "84");
+		SendClientMessageEx(playerid, COLOR_ERROR, StringID:84(""));
 	}
 	return COMMAND_ERROR;
 }

@@ -1,4 +1,4 @@
-CMD:news(playerid, params[], 112)
+CMD:news(playerid, params[], StringID:112(""))
 {
 	ShowNews(playerid, 0);
 	return COMMAND_OK;

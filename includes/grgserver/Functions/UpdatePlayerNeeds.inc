@@ -20,7 +20,7 @@ UpdatePlayerNeeds(playerID)
 	if (PVar:playerID[NEEDS_BLADDER] <= 0)
 	{
 		PVar:playerID[NEEDS_BLADDER] = 0;
-		SendClientMessageEx(playerID, COLOR_WARNING, "PEE_STARTFULL");
+		SendClientMessageEx(playerID, COLOR_WARNING, StringID:632(""));
 		PlayerPee(playerID, true);
 	}
 	if (PVar:playerID[NEEDS_ENERGY] <= 0)

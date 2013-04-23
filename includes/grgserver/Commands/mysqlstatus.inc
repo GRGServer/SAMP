@@ -1,4 +1,4 @@
-PCMD:mysqlstatus[SERVERADMIN](playerID, params[], 0)
+PCMD:mysqlstatus[SERVERADMIN](playerID, params[], StringID:0(""))
 {
 	new string[256];
 	mysql_error(string);

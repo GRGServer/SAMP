@@ -1,4 +1,4 @@
-PCMD:settplink[MAPPER](playerID, params[], 406)
+PCMD:settplink[MAPPER](playerID, params[], StringID:406(""))
 {
 	if (PVar:playerID[TELEPORT_LINKID])
 	{
@@ -9,12 +9,12 @@ PCMD:settplink[MAPPER](playerID, params[], 406)
 		GetPlayerPos(playerID, posX, posY, posZ);
 		GetPlayerFacingAngle(playerID, angle);
 		MySQLQuery("UPDATE `tplinks` SET `posX` = '%f', `posY` = '%f', `posZ` = '%f', `angle` = '%f', `interior` = '%d' WHERE `id` = '%d'", posX, posY, posZ, angle, GetPlayerInterior(playerID), PVar:playerID[TELEPORT_LINKID]);
-		SendClientMessageEx(playerID, COLOR_INFO, "408", PVar:playerID[TELEPORT_LINKID]);
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:408(""), PVar:playerID[TELEPORT_LINKID]);
 		return COMMAND_OK;
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, "407");
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:407(""));
 		return COMMAND_ERROR;
 	}
 }

@@ -1,4 +1,4 @@
-CMD:lockvehicle(playerID, params[], 483)
+CMD:lockvehicle(playerID, params[], StringID:483(""))
 {
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (!vehicleID)
@@ -10,7 +10,7 @@ CMD:lockvehicle(playerID, params[], 483)
 		vehicleID = GetClosestVehicleInRange(posX, posY, posZ, 5);
 		if (!vehicleID)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "288");
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:288(""));
 			return COMMAND_ERROR;
 		}
 	}
@@ -18,7 +18,7 @@ CMD:lockvehicle(playerID, params[], 483)
 	{
 		if (VehicleProperty:vehicleID[OWNERUSERID] != PVar:playerID[USERID])
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "487");
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:487(""));
 			return COMMAND_ERROR;
 		}
 	}
@@ -32,12 +32,12 @@ CMD:lockvehicle(playerID, params[], 483)
 	if (IsVehicleLocked(vehicleID))
 	{
 		LockVehicle(vehicleID, false);
-		SendClientMessageEx(playerID, COLOR_INFO, "485");
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:485(""));
 	}
 	else
 	{
 		LockVehicle(vehicleID, true);
-		SendClientMessageEx(playerID, COLOR_INFO, "484");
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:484(""));
 	}
 	return COMMAND_OK;
 }

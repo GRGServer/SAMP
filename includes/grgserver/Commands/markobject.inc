@@ -1,4 +1,4 @@
-PCMD:markobject[MAPPER](playerID, params[], 426)
+PCMD:markobject[MAPPER](playerID, params[], StringID:426(""))
 {
 	new objectID;
 	if (sscanf(params, "d", objectID))
@@ -9,7 +9,7 @@ PCMD:markobject[MAPPER](playerID, params[], 426)
 
 	if (objectID <= 0 || objectID > CountDynamicObjects() || Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_EXTRA_ID) != OBJECTTYPE_NORMAL)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, "427");
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:427(""));
 		return COMMAND_ERROR;
 	}
 

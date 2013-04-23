@@ -8,26 +8,26 @@ ShowDialog:AddNaviLocation_Type(playerID)
 		new string[256];
 		strcat(string, GetMySQLField("name"));
 		new checkCharacter;
-		new languageStringName[STRINGLENGTH_LANGUAGESTRINGNAME];
-		if (!sscanf(string, "p<:>cs[" #STRINGLENGTH_LANGUAGESTRINGNAME "]", checkCharacter, languageStringName))
+		new languageStringID;
+		if (!sscanf(string, "p<:>cd", checkCharacter, languageStringID))
 		{
 			if (checkCharacter == 'L')
 			{
-				Format:string(LanguageString(playerID, languageStringName));
+				Format:string(LanguageString(playerID, languageStringID));
 			}
 		}
 		AddLine(options, string);
 	}
 	mysql_free_result();
-	AddLine(options, LanguageString(playerID, "378"));
-	CreateDialog(playerID, "AddNaviLocation_Type", DIALOG_STYLE_LIST, LanguageString(playerID, "377"), options, "OK", LanguageString(playerID, "165"));
+	AddLine(options, LanguageString(playerID, StringID:378("")));
+	CreateDialog(playerID, "AddNaviLocation_Type", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:377("")), options, "OK", LanguageString(playerID, StringID:165("")));
 }
 
 DialogResponse:AddNaviLocation_Type(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
-		if (IsStr(inputText, LanguageString(playerID, "378")))
+		if (IsStr(inputText, LanguageString(playerID, StringID:378(""))))
 		{
 			ShowDialog:AddNaviLocation_NewType(playerID);
 		}
@@ -41,11 +41,11 @@ DialogResponse:AddNaviLocation_Type(playerID, response, listItem, inputText[])
 				new Float:posZ;
 				GetPlayerPos(playerID, posX, posY, posZ);
 				MySQLQuery("INSERT INTO `navigationlocations` (`type`, `posX`, `posY`, `posZ`) VALUES('%d', '%f', '%f', '%f')", typeID, posX, posY, posZ);
-				SendClientMessageEx(playerID, COLOR_INFO, "383");
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:383(""));
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, "143");
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:143(""));
 			}
 		}
 	}

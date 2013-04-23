@@ -40,7 +40,7 @@ CheckVehiclePermission(playerID, vehicleID, showBuyDialog)
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "129", GetPermissionName(PERMISSION_SPAWNVEHICLE));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:129(""), GetPermissionName(PERMISSION_SPAWNVEHICLE));
 			return false;
 		}
 	}
@@ -52,7 +52,7 @@ CheckVehiclePermission(playerID, vehicleID, showBuyDialog)
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "327");
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:327(""));
 			return false;
 		}
 	}
@@ -64,7 +64,7 @@ CheckVehiclePermission(playerID, vehicleID, showBuyDialog)
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, "130");
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:130(""));
 			return false;
 		}
 	}
@@ -80,6 +80,6 @@ CheckVehiclePermission(playerID, vehicleID, showBuyDialog)
 	{
 		return true;
 	}
-	SendClientMessageEx(playerID, COLOR_ERROR, "129", GetPermissionName(PERMISSION_SPAWNVEHICLE));
+	SendClientMessageEx(playerID, COLOR_ERROR, StringID:129(""), GetPermissionName(PERMISSION_SPAWNVEHICLE));
 	return false;
 }
