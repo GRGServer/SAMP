@@ -2,7 +2,6 @@
 <objects>
     <object id="2490" model="4883" interior="0" posX="2044.102539" posY="-3577.750000" posZ="9.553290" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
     <object id="2500" model="4651" interior="0" posX="2113.462646" posY="-3644.245605" posZ="1.344956" rotX="0.000000" rotY="0.000000" rotZ="-6.599997" />
-    <object id="2615" model="4562" interior="0" posX="1975.188354" posY="-3632.513427" posZ="0.030571" rotX="0.000000" rotY="-0.002074" rotZ="87.699981" />
     <object id="2498" model="4652" interior="0" posX="1968.203125" posY="-3569.167968" posZ="1.343603" rotX="0.000000" rotY="0.000000" rotZ="179.598999" />
     <object id="2499" model="4651" interior="0" posX="2122.654785" posY="-3618.621582" posZ="1.329360" rotX="0.000000" rotY="0.000000" rotZ="5.600037" />
     <object id="2501" model="3455" interior="0" posX="1987.845947" posY="-3606.610351" posZ="4.017642" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
@@ -16,16 +15,12 @@
     <object id="0" model="6316" interior="0" posX="2035.000000" posY="-2937.199951" posZ="5.199995" rotX="0.000000" rotY="0.000000" rotZ="275.998535" />
     <object id="0" model="6316" interior="0" posX="2033.099975" posY="-2868.199951" posZ="5.199995" rotX="0.000000" rotY="0.000000" rotZ="275.998535" />
     <object id="0" model="6316" interior="0" posX="2032.300048" posY="-2841.000000" posZ="5.199995" rotX="0.000000" rotY="0.000000" rotZ="275.998535" />
-    <object id="0" model="3307" interior="0" posX="2008.800048" posY="-3547.600097" posZ="2.699999" rotX="0.000000" rotY="0.000000" rotZ="270.000000" />
-    <object id="0" model="3307" interior="0" posX="1984.099975" posY="-3547.380859" posZ="2.679999" rotX="0.000000" rotY="0.000000" rotZ="270.000000" />
-    <object id="0" model="3307" interior="0" posX="1959.557983" posY="-3547.650390" posZ="2.749999" rotX="0.000000" rotY="0.000000" rotZ="272.000000" />
-    <object id="0" model="3307" interior="0" posX="1934.960449" posY="-3548.329833" posZ="2.709999" rotX="0.000000" rotY="0.000000" rotZ="271.999511" />
     <object id="0" model="4654" interior="0" posX="1792.099609" posY="-3505.199218" posZ="7.300000" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
-    <object id="0" model="4710" interior="0" posX="1802.099975" posY="-3388.500000" posZ="11.899992" rotX="0.000000" rotY="0.000000" rotZ="269.250000" />
+    <object id="0" model="4710" interior="0" posX="1802.099975" posY="-3388.500000" posZ="11.899991" rotX="0.000000" rotY="0.000000" rotZ="269.250000" />
     <object id="0" model="4654" interior="0" posX="1912.000000" posY="-3649.799804" posZ="7.000000" rotX="0.000000" rotY="0.000000" rotZ="181.246948" />
     <object id="0" model="4654" interior="0" posX="1929.599609" posY="-3651.599609" posZ="7.250000" rotX="0.000000" rotY="0.000000" rotZ="181.246948" />
     <object id="0" model="7009" interior="0" posX="1814.699951" posY="-3398.300048" posZ="21.700000" rotX="0.000000" rotY="0.000000" rotZ="265.748291" />
-    <object id="0" model="7010" interior="0" posX="1823.000000" posY="-3364.100097" posZ="13.660000" rotX="0.000000" rotY="0.000000" rotZ="254.000000" />
+    <object id="0" model="7010" interior="0" posX="1823.000000" posY="-3364.100097" posZ="13.659999" rotX="0.000000" rotY="0.000000" rotZ="254.000000" />
     <object id="0" model="7244" interior="0" posX="1871.800048" posY="-3303.300048" posZ="3.129997" rotX="0.000000" rotY="0.000000" rotZ="254.750000" />
     <object id="0" model="3064" interior="0" posX="1883.000000" posY="-3358.100097" posZ="6.199995" rotX="0.000000" rotY="0.000000" rotZ="320.000000" />
     <object id="0" model="3064" interior="0" posX="1882.900024" posY="-3355.399902" posZ="6.199995" rotX="0.000000" rotY="0.000000" rotZ="162.000000" />
@@ -43,7 +38,7 @@
     <object id="0" model="3488" interior="0" posX="1889.800048" posY="-3545.800048" posZ="8.000000" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
     <object id="0" model="3486" interior="0" posX="1827.159667" posY="-3610.900146" posZ="8.199995" rotX="0.000000" rotY="0.000000" rotZ="179.994506" />
     <object id="2502" model="11318" interior="0" posX="1735.400024" posY="-3740.899902" posZ="14.500000" rotX="0.000000" rotY="0.000000" rotZ="166.888916" />
-    <object id="0" model="5853" interior="0" posX="1864.099975" posY="-3733.399902" posZ="13.899992" rotX="0.000000" rotY="1.000000" rotZ="82.000000" />
+    <object id="0" model="5853" interior="0" posX="1864.099975" posY="-3733.399902" posZ="13.899991" rotX="0.000000" rotY="1.000000" rotZ="82.000000" />
     <object id="0" model="7520" interior="0" posX="1856.199951" posY="-3713.600097" posZ="11.000000" rotX="0.000000" rotY="0.000000" rotZ="82.000000" />
     <object id="0" model="9899" interior="0" posX="1733.400024" posY="-3399.800048" posZ="24.399999" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
     <object id="0" model="4876" interior="0" posX="2030.599975" posY="-3756.300048" posZ="5.000000" rotX="0.000000" rotY="3.988037" rotZ="351.985473" />
@@ -59,7 +54,7 @@
     <object id="0" model="4146" interior="0" posX="1927.500000" posY="-3758.699951" posZ="11.600000" rotX="0.000000" rotY="0.000000" rotZ="276.998291" />
     <object id="0" model="3997" interior="0" posX="1736.900024" posY="-3380.100097" posZ="11.300000" rotX="0.000000" rotY="0.000000" rotZ="81.997924" />
     <object id="0" model="3997" interior="0" posX="1874.000000" posY="-3285.100097" posZ="11.800000" rotX="0.000000" rotY="0.000000" rotZ="295.989013" />
-    <object id="0" model="4562" interior="0" posX="1791.699951" posY="-3297.000000" posZ="10.399992" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
+    <object id="0" model="4562" interior="0" posX="1791.699951" posY="-3297.000000" posZ="10.399991" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
     <object id="0" model="4562" interior="0" posX="1737.500000" posY="-3496.500000" posZ="0.000000" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
     <object id="0" model="4562" interior="0" posX="1752.199951" posY="-3505.800048" posZ="0.000000" rotX="0.000000" rotY="346.000000" rotZ="92.000000" />
     <object id="0" model="4562" interior="0" posX="1752.699951" posY="-3523.600097" posZ="0.000000" rotX="0.000000" rotY="351.997924" rotZ="91.999511" />
@@ -73,14 +68,11 @@
     <object id="0" model="4562" interior="0" posX="1774.599975" posY="-3262.399902" posZ="-31.799999" rotX="0.000000" rotY="270.000000" rotZ="267.971191" />
     <object id="0" model="4562" interior="0" posX="1891.400024" posY="-3348.500000" posZ="-31.799999" rotX="0.000000" rotY="270.000000" rotZ="345.976135" />
     <object id="0" model="4562" interior="0" posX="1942.000000" posY="-3305.699951" posZ="-31.799999" rotX="0.000000" rotY="270.000000" rotZ="255.975952" />
-    <object id="0" model="3997" interior="0" posX="1930.099975" posY="-3772.899902" posZ="11.300000" rotX="0.000000" rotY="0.000000" rotZ="87.996459" />
     <object id="0" model="4562" interior="0" posX="1980.199951" posY="-3653.399902" posZ="0.000000" rotX="0.000000" rotY="345.997924" rotZ="270.000000" />
     <object id="0" model="4562" interior="0" posX="2019.599975" posY="-3644.399902" posZ="-35.000000" rotX="0.000000" rotY="270.000000" rotZ="359.983459" />
     <object id="0" model="4562" interior="0" posX="2069.199951" posY="-3573.100097" posZ="-37.000000" rotX="0.000000" rotY="270.000000" rotZ="359.733276" />
-    <object id="0" model="4562" interior="0" posX="2069.500000" posY="-3503.500000" posZ="-33.000000" rotX="0.000000" rotY="270.000000" rotZ="359.983459" />
     <object id="0" model="4562" interior="0" posX="2065.899902" posY="-3450.100097" posZ="-33.000000" rotX="0.000000" rotY="270.000000" rotZ="359.983459" />
     <object id="0" model="4562" interior="0" posX="2065.399902" posY="-3390.100097" posZ="-33.000000" rotX="0.000000" rotY="268.000000" rotZ="357.983520" />
-    <object id="0" model="4562" interior="0" posX="2066.899902" posY="-3337.199951" posZ="-33.000000" rotX="0.000000" rotY="267.994934" rotZ="357.978515" />
     <object id="0" model="4562" interior="0" posX="2069.000000" posY="-3277.899902" posZ="-33.000000" rotX="0.000000" rotY="265.994934" rotZ="359.978515" />
     <object id="0" model="9836" interior="0" posX="1992.599975" posY="-3382.199951" posZ="19.000000" rotX="0.000000" rotY="0.000000" rotZ="356.000000" />
     <object id="0" model="9593" interior="0" posX="1894.300048" posY="-3374.399902" posZ="38.099998" rotX="0.000000" rotY="0.000000" rotZ="356.000000" />
@@ -89,13 +81,6 @@
     <object id="0" model="4113" interior="0" posX="1969.099975" posY="-3506.100097" posZ="46.799999" rotX="0.000000" rotY="0.000000" rotZ="3.993530" />
     <object id="0" model="4113" interior="0" posX="1913.099975" posY="-3511.300048" posZ="46.799999" rotX="0.000000" rotY="0.000000" rotZ="3.993530" />
     <object id="0" model="4113" interior="0" posX="1856.800048" posY="-3503.899902" posZ="46.799999" rotX="0.000000" rotY="0.000000" rotZ="5.993041" />
-    <object id="0" model="4562" interior="0" posX="1780.099975" posY="-3377.500000" posZ="-30.000000" rotX="0.000000" rotY="270.000000" rotZ="179.988952" />
-    <object id="0" model="4562" interior="0" posX="1785.900024" posY="-3363.500000" posZ="-27.000000" rotX="0.000000" rotY="270.000000" rotZ="171.983520" />
-    <object id="0" model="4562" interior="0" posX="1793.300048" posY="-3359.300048" posZ="-23.000000" rotX="0.000000" rotY="270.000000" rotZ="161.979980" />
-    <object id="0" model="4562" interior="0" posX="1780.599975" posY="-3384.300048" posZ="-30.000000" rotX="0.000000" rotY="270.000000" rotZ="179.983459" />
-    <object id="0" model="4562" interior="0" posX="1781.000000" posY="-3389.399902" posZ="-25.000000" rotX="0.000000" rotY="270.000000" rotZ="179.983520" />
-    <object id="0" model="4562" interior="0" posX="1780.900024" posY="-3396.800048" posZ="-30.000000" rotX="0.000000" rotY="270.000000" rotZ="179.983459" />
-    <object id="0" model="4562" interior="0" posX="1780.900024" posY="-3405.300048" posZ="-30.000000" rotX="0.000000" rotY="270.000000" rotZ="179.983520" />
     <object id="0" model="4562" interior="0" posX="1762.400024" posY="-3336.500000" posZ="-15.000000" rotX="0.000000" rotY="270.000000" rotZ="75.976440" />
     <object id="0" model="4562" interior="0" posX="1709.300048" posY="-3323.300048" posZ="-15.000000" rotX="0.000000" rotY="270.000000" rotZ="75.975952" />
     <object id="0" model="11301" interior="0" posX="1691.400024" posY="-3730.600097" posZ="18.899999" rotX="0.000000" rotY="0.000000" rotZ="166.750000" />
@@ -122,14 +107,14 @@
     <object id="2498" model="4652" interior="0" posX="1968.203125" posY="-3569.167968" posZ="1.343603" rotX="0.000000" rotY="0.000000" rotZ="179.598999" />
     <object id="2499" model="4651" interior="0" posX="2122.654785" posY="-3618.621582" posZ="1.329360" rotX="0.000000" rotY="0.000000" rotZ="5.600037" />
     <object id="2501" model="3455" interior="0" posX="1987.845947" posY="-3606.610351" posZ="4.017642" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
-    <object id="0" model="3307" interior="0" posX="2008.800048" posY="-3547.600097" posZ="2.200000" rotX="0.000000" rotY="0.000000" rotZ="270.000000" />
-    <object id="0" model="3307" interior="0" posX="1984.099975" posY="-3545.399902" posZ="2.200000" rotX="0.000000" rotY="0.000000" rotZ="270.000000" />
-    <object id="0" model="3307" interior="0" posX="1959.500000" posY="-3546.000000" posZ="2.200000" rotX="0.000000" rotY="0.000000" rotZ="272.000000" />
-    <object id="0" model="3307" interior="0" posX="1934.899414" posY="-3546.599609" posZ="2.200000" rotX="0.000000" rotY="0.000000" rotZ="271.999511" />
+    <object id="0" model="3307" interior="0" posX="2008.800048" posY="-3547.789794" posZ="2.859999" rotX="0.000000" rotY="0.000000" rotZ="270.000000" />
+    <object id="0" model="3307" interior="0" posX="1984.099975" posY="-3547.431396" posZ="2.829999" rotX="0.000000" rotY="0.000000" rotZ="270.000000" />
+    <object id="0" model="3307" interior="0" posX="1959.287475" posY="-3547.896484" posZ="2.849999" rotX="0.000000" rotY="0.000000" rotZ="-91.000038" />
+    <object id="0" model="3307" interior="0" posX="1934.888549" posY="-3547.230224" posZ="2.799999" rotX="0.000000" rotY="0.000000" rotZ="-91.000480" />
     <object id="0" model="4182" interior="0" posX="1851.199951" posY="-3576.699951" posZ="1.349997" rotX="0.000000" rotY="0.500000" rotZ="269.500000" />
     <object id="0" model="4654" interior="0" posX="1792.099609" posY="-3505.199218" posZ="7.300000" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
-    <object id="0" model="4710" interior="0" posX="1802.099975" posY="-3388.500000" posZ="11.899994" rotX="0.000000" rotY="0.000000" rotZ="269.250000" />
-    <object id="0" model="4871" interior="0" posX="1885.099609" posY="-3441.599609" posZ="11.859996" rotX="0.000000" rotY="0.000000" rotZ="355.995483" />
+    <object id="0" model="4710" interior="0" posX="1802.099975" posY="-3388.500000" posZ="11.899993" rotX="0.000000" rotY="0.000000" rotZ="269.250000" />
+    <object id="0" model="4871" interior="0" posX="1885.099609" posY="-3441.599609" posZ="11.859995" rotX="0.000000" rotY="0.000000" rotZ="355.995483" />
     <object id="0" model="4654" interior="0" posX="1912.000000" posY="-3649.799804" posZ="7.000000" rotX="0.000000" rotY="0.000000" rotZ="181.246948" />
     <object id="0" model="4654" interior="0" posX="1929.599609" posY="-3651.599609" posZ="7.250000" rotX="0.000000" rotY="0.000000" rotZ="181.246948" />
     <object id="0" model="7009" interior="0" posX="1814.699951" posY="-3398.300048" posZ="21.700000" rotX="0.000000" rotY="0.000000" rotZ="265.748291" />
@@ -147,15 +132,12 @@
     <object id="0" model="4558" interior="0" posX="1822.699218" posY="-3510.399414" posZ="14.000000" rotX="6.998291" rotY="0.000000" rotZ="357.989501" />
     <object id="0" model="4113" interior="0" posX="1881.399414" posY="-3467.699218" posZ="46.799999" rotX="0.000000" rotY="0.000000" rotZ="5.993041" />
     <object id="0" model="4113" interior="0" posX="1935.799804" posY="-3471.299804" posZ="46.799999" rotX="0.000000" rotY="0.000000" rotZ="3.993530" />
-    <object id="0" model="3488" interior="0" posX="1910.800048" posY="-3545.300048" posZ="8.000000" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
-    <object id="0" model="3488" interior="0" posX="1889.800048" posY="-3545.800048" posZ="8.000000" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
     <object id="0" model="3488" interior="0" posX="1869.199218" posY="-3546.299804" posZ="8.000000" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
     <object id="0" model="3488" interior="0" posX="1848.800048" posY="-3546.000000" posZ="8.000000" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
     <object id="0" model="3488" interior="0" posX="1828.000000" posY="-3546.399902" posZ="8.000000" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
     <object id="0" model="3486" interior="0" posX="1887.599975" posY="-3610.899902" posZ="8.199995" rotX="0.000000" rotY="0.000000" rotZ="180.000000" />
-    <object id="0" model="3486" interior="0" posX="1857.300048" posY="-3610.899902" posZ="8.199995" rotX="0.000000" rotY="0.000000" rotZ="179.994506" />
     <object id="2502" model="11318" interior="0" posX="1735.400024" posY="-3740.899902" posZ="14.500000" rotX="0.000000" rotY="0.000000" rotZ="166.888916" />
-    <object id="0" model="5853" interior="0" posX="1864.099609" posY="-3733.399414" posZ="13.899994" rotX="0.000000" rotY="0.999755" rotZ="81.996459" />
+    <object id="0" model="5853" interior="0" posX="1864.099609" posY="-3733.404541" posZ="13.600044" rotX="0.000000" rotY="0.999755" rotZ="81.996459" />
     <object id="0" model="7520" interior="0" posX="1856.199951" posY="-3713.600097" posZ="11.000000" rotX="0.000000" rotY="0.000000" rotZ="82.000000" />
     <object id="0" model="9899" interior="0" posX="1733.400024" posY="-3399.800048" posZ="24.399999" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
     <object id="0" model="4876" interior="0" posX="2030.599975" posY="-3756.300048" posZ="5.000000" rotX="0.000000" rotY="3.988037" rotZ="351.985473" />
@@ -172,7 +154,7 @@
     <object id="0" model="4146" interior="0" posX="1773.099975" posY="-3753.899902" posZ="11.500000" rotX="0.000000" rotY="0.000000" rotZ="267.247924" />
     <object id="0" model="3997" interior="0" posX="1736.900024" posY="-3380.100097" posZ="11.300000" rotX="0.000000" rotY="0.000000" rotZ="81.997924" />
     <object id="0" model="3997" interior="0" posX="1874.000000" posY="-3285.100097" posZ="11.800000" rotX="0.000000" rotY="0.000000" rotZ="295.989013" />
-    <object id="0" model="4562" interior="0" posX="1791.699951" posY="-3297.000000" posZ="10.399994" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
+    <object id="0" model="4562" interior="0" posX="1791.699951" posY="-3297.000000" posZ="10.399993" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
     <object id="0" model="4562" interior="0" posX="1737.500000" posY="-3496.500000" posZ="0.000000" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
     <object id="0" model="4562" interior="0" posX="1752.199951" posY="-3505.800048" posZ="0.000000" rotX="0.000000" rotY="346.000000" rotZ="92.000000" />
     <object id="0" model="4562" interior="0" posX="1752.699951" posY="-3523.600097" posZ="0.000000" rotX="0.000000" rotY="351.997924" rotZ="91.999511" />
@@ -199,13 +181,6 @@
     <object id="0" model="4113" interior="0" posX="1969.099975" posY="-3506.100097" posZ="46.799999" rotX="0.000000" rotY="0.000000" rotZ="3.993530" />
     <object id="0" model="4113" interior="0" posX="1913.099975" posY="-3511.300048" posZ="46.799999" rotX="0.000000" rotY="0.000000" rotZ="3.993530" />
     <object id="0" model="4113" interior="0" posX="1856.800048" posY="-3503.899902" posZ="46.799999" rotX="0.000000" rotY="0.000000" rotZ="5.993041" />
-    <object id="0" model="4562" interior="0" posX="1780.099975" posY="-3377.500000" posZ="-30.000000" rotX="0.000000" rotY="270.000000" rotZ="179.988952" />
-    <object id="0" model="4562" interior="0" posX="1785.900024" posY="-3363.500000" posZ="-27.000000" rotX="0.000000" rotY="270.000000" rotZ="171.983520" />
-    <object id="0" model="4562" interior="0" posX="1793.300048" posY="-3359.300048" posZ="-23.000000" rotX="0.000000" rotY="270.000000" rotZ="161.979980" />
-    <object id="0" model="4562" interior="0" posX="1780.599975" posY="-3384.300048" posZ="-30.000000" rotX="0.000000" rotY="270.000000" rotZ="179.983459" />
-    <object id="0" model="4562" interior="0" posX="1781.000000" posY="-3389.399902" posZ="-25.000000" rotX="0.000000" rotY="270.000000" rotZ="179.983520" />
-    <object id="0" model="4562" interior="0" posX="1780.900024" posY="-3396.800048" posZ="-30.000000" rotX="0.000000" rotY="270.000000" rotZ="179.983459" />
-    <object id="0" model="4562" interior="0" posX="1780.900024" posY="-3405.300048" posZ="-30.000000" rotX="0.000000" rotY="270.000000" rotZ="179.983520" />
     <object id="0" model="4562" interior="0" posX="1762.400024" posY="-3336.500000" posZ="-15.000000" rotX="0.000000" rotY="270.000000" rotZ="75.976440" />
     <object id="0" model="4562" interior="0" posX="1709.300048" posY="-3323.300048" posZ="-15.000000" rotX="0.000000" rotY="270.000000" rotZ="75.975952" />
     <object id="0" model="11301" interior="0" posX="1691.400024" posY="-3730.600097" posZ="18.899999" rotX="0.000000" rotY="0.000000" rotZ="166.750000" />
@@ -306,18 +281,19 @@
     <object id="2603" model="19127" interior="0" posX="1752.539306" posY="-3748.512451" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-20.699985" />
     <object id="2604" model="19127" interior="0" posX="1748.604003" posY="-3747.977294" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-20.699985" />
     <object id="2605" model="19127" interior="0" posX="1742.510742" posY="-3767.548095" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.399984" />
-    <object id="2606" model="19127" interior="0" posX="1745.077392" posY="-3768.245117" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199977" />
-    <object id="2607" model="19127" interior="0" posX="1747.527465" posY="-3768.910644" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199977" />
-    <object id="2608" model="19127" interior="0" posX="1749.891723" posY="-3769.552734" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199977" />
-    <object id="2609" model="19127" interior="0" posX="1752.381713" posY="-3770.230224" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199977" />
-    <object id="2610" model="19127" interior="0" posX="1751.756591" posY="-3772.340087" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199977" />
-    <object id="2611" model="19127" interior="0" posX="1750.582153" posY="-3776.663330" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199977" />
-    <object id="2612" model="19127" interior="0" posX="1750.138916" posY="-3778.749755" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199977" />
+    <object id="2606" model="19127" interior="0" posX="1745.077392" posY="-3768.245117" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199976" />
+    <object id="2607" model="19127" interior="0" posX="1747.527465" posY="-3768.910644" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199976" />
+    <object id="2608" model="19127" interior="0" posX="1749.891723" posY="-3769.552734" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199976" />
+    <object id="2609" model="19127" interior="0" posX="1752.381713" posY="-3770.230224" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199976" />
+    <object id="2610" model="19127" interior="0" posX="1751.756591" posY="-3772.340087" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199976" />
+    <object id="2611" model="19127" interior="0" posX="1750.582153" posY="-3776.663330" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199976" />
+    <object id="2612" model="19127" interior="0" posX="1750.138916" posY="-3778.749755" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199976" />
     <object id="2587" model="19127" interior="0" posX="1758.985595" posY="-3709.883789" posZ="13.841732" rotX="0.000000" rotY="0.000000" rotZ="-4.499999" />
     <object id="2588" model="19127" interior="0" posX="1769.826660" posY="-3716.711425" posZ="13.961730" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
-    <object id="2613" model="19127" interior="0" posX="1749.601684" posY="-3780.728515" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199977" />
-    <object id="2614" model="19127" interior="0" posX="1747.450927" posY="-3780.216308" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199977" />
+    <object id="2613" model="19127" interior="0" posX="1749.601684" posY="-3780.728515" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199976" />
+    <object id="2614" model="19127" interior="0" posX="1747.450927" posY="-3780.216308" posZ="13.921730" rotX="0.000000" rotY="0.000000" rotZ="-15.199976" />
     <object id="2591" model="18646" interior="0" posX="1836.568603" posY="-3601.867431" posZ="2.526873" rotX="0.000000" rotY="0.000000" rotZ="0.000000" />
     <object id="3134" model="3486" interior="0" posX="1857.300048" posY="-3610.899902" posZ="8.199995" rotX="0.000000" rotY="0.000000" rotZ="179.994506" />
     <object id="3301" model="4113" interior="0" posX="1881.399414" posY="-3467.699218" posZ="46.799999" rotX="0.000000" rotY="0.000000" rotZ="5.993041" />
+    <object id="3584" model="4113" interior="0" posX="1969.099975" posY="-3506.100097" posZ="46.799999" rotX="0.000000" rotY="0.000000" rotZ="3.993530" />
 </objects>
