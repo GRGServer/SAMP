@@ -6,7 +6,7 @@ DialogResponse:AddObject(playerID, response, listItem, inputText[])
 	{
 		new modelID;
 		new name[STRINGLENGTH_OBJECTMODELNAME];
-		if (!sscanf(inputText, "p<:>ds[" #STRINGLENGTH_OBJECTMODELNAME "]", modelID, name))
+		if (!sscanf(inputText, "p<\t>ds[" #STRINGLENGTH_OBJECTMODELNAME "]", modelID, name))
 		{
 			if (modelID)
 			{

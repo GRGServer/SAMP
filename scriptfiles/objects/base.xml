@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<objects>
+    <object id="2632" model="18766" interior="0" posX="1769.897949" posY="-3709.759033" posZ="11.106692" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2633" model="18766" interior="0" posX="1770.480590" posY="-3705.017578" posZ="11.060409" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2634" model="18766" interior="0" posX="1770.965576" posY="-3700.294433" posZ="11.032955" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2635" model="18766" interior="0" posX="1772.283813" posY="-3695.544189" posZ="11.083074" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2636" model="18766" interior="0" posX="1763.248779" posY="-3693.176025" posZ="11.122374" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2637" model="18766" interior="0" posX="1761.999633" posY="-3698.212158" posZ="10.996248" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2638" model="18766" interior="0" posX="1760.850585" posY="-3702.592529" posZ="10.886025" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2639" model="18766" interior="0" posX="1759.668334" posY="-3707.098632" posZ="10.772639" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2640" model="18766" interior="0" posX="1750.567138" posY="-3704.783447" posZ="10.750144" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2641" model="18766" interior="0" posX="1752.240356" posY="-3699.786621" posZ="10.878903" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2642" model="18766" interior="0" posX="1753.067260" posY="-3696.634521" posZ="10.958227" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2643" model="18766" interior="0" posX="1754.444580" posY="-3691.383056" posZ="11.090349" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2644" model="18766" interior="0" posX="1755.601074" posY="-3686.973632" posZ="11.201306" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2645" model="18766" interior="0" posX="1742.606079" posY="-3702.694580" posZ="10.731918" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2646" model="18766" interior="0" posX="1743.757934" posY="-3697.910400" posZ="10.851403" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2647" model="18766" interior="0" posX="1743.917846" posY="-3693.477539" posZ="10.954608" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2648" model="18766" interior="0" posX="1744.622558" posY="-3690.003662" posZ="11.040307" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2649" model="18766" interior="0" posX="1746.129516" posY="-3684.693115" posZ="11.174860" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2651" model="18766" interior="0" posX="1747.174804" posY="-3680.708740" posZ="11.275105" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2652" model="18766" interior="0" posX="1756.886474" posY="-3682.071777" posZ="11.324666" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2653" model="18766" interior="0" posX="1764.488159" posY="-3688.725830" posZ="11.234945" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2654" model="18766" interior="0" posX="1765.591064" posY="-3684.520507" posZ="11.340787" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2655" model="18766" interior="0" posX="1773.452880" posY="-3691.087890" posZ="11.255225" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2656" model="18766" interior="0" posX="1774.508300" posY="-3687.064941" posZ="11.356442" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2657" model="18766" interior="0" posX="1736.491210" posY="-3682.887451" posZ="11.136165" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2663" model="18766" interior="0" posX="1708.194702" posY="-3680.769531" posZ="11.032567" rotX="90.699966" rotY="5.000001" rotZ="-19.899993" />
+    <object id="2659" model="18766" interior="0" posX="1727.553955" posY="-3680.542968" posZ="11.115705" rotX="90.699966" rotY="5.000001" rotZ="-19.899993" />
+    <object id="2660" model="18766" interior="0" posX="1717.861694" posY="-3677.961425" posZ="11.105029" rotX="90.699966" rotY="5.000001" rotZ="-19.899993" />
+    <object id="2661" model="18766" interior="0" posX="1717.245727" posY="-3682.920166" posZ="11.045513" rotX="90.699966" rotY="5.000001" rotZ="-19.899993" />
+    <object id="2662" model="18766" interior="0" posX="1709.512329" posY="-3675.739501" posZ="11.095829" rotX="90.699966" rotY="5.000001" rotZ="-19.899993" />
+    <object id="2664" model="18766" interior="0" posX="1706.541015" posY="-3674.796142" posZ="10.692840" rotX="3.399952" rotY="0.000001" rotZ="84.199981" />
+    <object id="2668" model="18766" interior="0" posX="1706.331909" posY="-3679.846679" posZ="10.779405" rotX="1.599952" rotY="0.000001" rotZ="170.499847" />
+    <object id="2667" model="18766" interior="0" posX="1705.438720" posY="-3681.411376" posZ="10.718345" rotX="3.399952" rotY="0.000001" rotZ="84.199981" />
+    <object id="2669" model="18766" interior="0" posX="1737.590820" posY="-3679.207275" posZ="11.229886" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2670" model="18766" interior="0" posX="1728.146972" posY="-3676.189941" posZ="11.220610" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2671" model="18766" interior="0" posX="1718.763305" posY="-3673.728271" posZ="11.199125" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2672" model="18766" interior="0" posX="1710.716186" posY="-3671.615478" posZ="11.180702" rotX="91.400001" rotY="5.200000" rotZ="-19.899990" />
+    <object id="2673" model="18766" interior="0" posX="1707.065429" posY="-3670.225097" posZ="10.689281" rotX="3.399952" rotY="0.000001" rotZ="84.199981" />
+</objects>

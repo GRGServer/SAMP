@@ -33,7 +33,7 @@ PCMD:addobject[MAPPER](playerID, params[], StringID:202(""))
 			{
 				strcat(objectList, "\n");
 			}
-			Format:objectList("%s%s:%s", objectList, currentModelID, objectModels[currentModelID]);
+			Format:objectList("%s%d\t%s", objectList, currentModelID, objectModels[currentModelID]);
 			modelID = currentModelID;
 
 			count++;
