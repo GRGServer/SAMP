@@ -1,4 +1,4 @@
-PCMD:addstaticnpc[NPCADMIN](playerid, params[], StringID:97(""))
+PCMD:addstaticnpc[NPCADMIN](playerid, params[], StringID:97("Place a NPC without recording at your current position"))
 {
 	new playerName[MAX_PLAYER_NAME];
 	if (sscanf(params, "s[" #MAX_PLAYER_NAME "]", playerName))
@@ -17,12 +17,12 @@ PCMD:addstaticnpc[NPCADMIN](playerid, params[], StringID:97(""))
 	if (id > 0)
 	{
 		ConnectNPC(playerName, NPC_SCRIPTNAME);
-		SendClientMessageEx(playerid, COLOR_INFO, StringID:83(""), id);
+		SendClientMessageEx(playerid, COLOR_INFO, StringID:83("The NPC has been successfully saved with ID %d"), id);
 		return COMMAND_OK;
 	}
 	else
 	{
-		SendClientMessageEx(playerid, COLOR_ERROR, StringID:84(""));
+		SendClientMessageEx(playerid, COLOR_ERROR, StringID:84("An error occurred while saving!"));
 	}
 	return COMMAND_ERROR;
 }

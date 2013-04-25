@@ -20,7 +20,7 @@
  * </returns>
  */
 
-CMD:addfriend(playerID, params[], StringID:439(""))
+CMD:addfriend(playerID, params[], StringID:439("Add a player to your friend list"))
 {
 	new targetPlayerID;
 	if (sscanf(params, "u", targetPlayerID))
@@ -34,7 +34,7 @@ CMD:addfriend(playerID, params[], StringID:439(""))
 	}
 	if (playerID == targetPlayerID)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, StringID:445(""));
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:445("You can not add yourself as a friend!"));
 		return COMMAND_ERROR;
 	}
 	new alreadyInList;
@@ -44,11 +44,11 @@ CMD:addfriend(playerID, params[], StringID:439(""))
 	mysql_free_result();
 	if (alreadyInList)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, StringID:440(""), targetPlayerID);
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:440("%p is already in your friend list!"), targetPlayerID);
 		return COMMAND_ERROR;
 	}
 	MySQLQuery("INSERT INTO `friends` (`userId1`, `userId2`) VALUES('%d', '%d')", PVar:playerID[USERID], PVar:targetPlayerID[USERID]);
-	SendClientMessageEx(targetPlayerID, COLOR_INFO, StringID:443(""), playerID, playerID);
-	SendClientMessageEx(playerID, COLOR_INFO, StringID:444(""), targetPlayerID);
+	SendClientMessageEx(targetPlayerID, COLOR_INFO, StringID:443("%p wants to add you to his/her friend list. Use /friendrequests to accept or decline."), playerID, playerID);
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:444("The friend request has been sent to %p"), targetPlayerID);
 	return COMMAND_OK;
 }

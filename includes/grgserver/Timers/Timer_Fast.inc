@@ -97,7 +97,7 @@ Timer:Fast()
 				}
 				if (!seatID && VehicleProperty:vehicleID[CURRENTFUEL] <= 0)
 				{
-					GameTextForPlayer(playerID, LanguageString(playerID, StringID:159("")), 3000, 5);
+					GameTextForPlayer(playerID, LanguageString(playerID, StringID:159("The tank of your vehicle is empty!")), 3000, 5);
 				}
 				new Float:fuelPercentage = floatmul(floatdiv(VehicleProperty:vehicleID[CURRENTFUEL], vehicleModels[modelID - 400][VEHICLEMODEL_MAXFUEL]), 100);
 				if (healthPercentage > 65)
@@ -117,7 +117,7 @@ Timer:Fast()
 				}
 				if (!seatID && healthPercentage <= VEHICLE_MINHEALTH && GetVehicleEngineState(vehicleID))
 				{
-					GameTextForPlayer(playerID, LanguageString(playerID, StringID:158("")), 3000, 5);
+					GameTextForPlayer(playerID, LanguageString(playerID, StringID:158("Your vehicle is broken!")), 3000, 5);
 				}
 				if (fuelPercentage > 70)
 				{

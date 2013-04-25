@@ -21,7 +21,7 @@
  * </remarks>
  */
 
-NCMD:npccmd(playerID, params[], StringID:0(""))
+NCMD:npccmd(playerID, params[], StringID:0("Undefined language string ID!"))
 {
 	new command[256];
 	new parameters[256];
@@ -48,7 +48,7 @@ NCMD:npccmd(playerID, params[], StringID:0(""))
 			new realPlayerID = PVar:playerID[RECORDNPCFORPLAYER];
 			PVar:playerID[RECORDNPCFORPLAYER] = INVALID_PLAYER_ID;
 			Kick(playerID);
-			SendClientMessageEx(realPlayerID, COLOR_INFO, StringID:76(""), playerID);
+			SendClientMessageEx(realPlayerID, COLOR_INFO, StringID:76("The playback of NPC '%p' was stopped."), playerID);
 			PlayerLoop(currentPlayerID)
 			{
 				if (IsPlayerNPC(currentPlayerID) && PVar:currentPlayerID[RECORDNPCFORPLAYER] != INVALID_PLAYER_ID && PVar:currentPlayerID[RECORDNPCFORPLAYER] == realPlayerID)
@@ -58,12 +58,12 @@ NCMD:npccmd(playerID, params[], StringID:0(""))
 			}
 			if (npcs)
 			{
-				SendClientMessageEx(realPlayerID, COLOR_INFO, StringID:77(""), npcs);
+				SendClientMessageEx(realPlayerID, COLOR_INFO, StringID:77("%d more NPCs are still in use for this recording."), npcs);
 			}
 			else
 			{
 				StopRecordingPlayerData(realPlayerID);
-				SendClientMessageEx(realPlayerID, COLOR_INFO, StringID:78(""));
+				SendClientMessageEx(realPlayerID, COLOR_INFO, StringID:78("The last NPC has stopped the recording!"));
 			}
 		}
 		return COMMAND_OK;

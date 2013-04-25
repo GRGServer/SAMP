@@ -1,4 +1,4 @@
-PCMD:addobject[MAPPER](playerID, params[], StringID:202(""))
+PCMD:addobject[MAPPER](playerID, params[], StringID:202("Add a new object"))
 {
 	new modelID;
 	new filename[STRINGLENGTH_OBJECTFILENAME];
@@ -11,7 +11,7 @@ PCMD:addobject[MAPPER](playerID, params[], StringID:202(""))
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:427(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:427("Object not found!"));
 			return COMMAND_ERROR;
 		}
 	}
@@ -46,14 +46,14 @@ PCMD:addobject[MAPPER](playerID, params[], StringID:202(""))
 
 	if (!count)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, StringID:427(""));
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:427("Object not found!"));
 		return COMMAND_ERROR;
 	}
 
 	if (count > 1)
 	{
 		format(PVar:playerID[OBJEDITOR_FILENAME], PVAR_OBJEDITOR_FILENAME, "%s", filename);
-		CreateDialog(playerID, "AddObject", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:202("")), objectList, LanguageString(playerID, StringID:170("")), LanguageString(playerID, StringID:165("")));
+		CreateDialog(playerID, "AddObject", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:202("Add a new object")), objectList, LanguageString(playerID, StringID:170("Create")), LanguageString(playerID, StringID:165("Cancel")));
 	}
 	else
 	{

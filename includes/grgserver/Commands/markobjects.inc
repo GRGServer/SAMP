@@ -1,4 +1,4 @@
-PCMD:markobjects[MAPPER](playerID, params[], StringID:482(""))
+PCMD:markobjects[MAPPER](playerID, params[], StringID:482("Mark up to 100 objects on your map"))
 {
 	new modelID;
 	if (sscanf(params, "d", modelID))
@@ -38,6 +38,6 @@ PCMD:markobjects[MAPPER](playerID, params[], StringID:482(""))
 		return COMMAND_OK;
 	}
 
-	SendClientMessageEx(playerID, COLOR_ERROR, StringID:425(""));
+	SendClientMessageEx(playerID, COLOR_ERROR, StringID:425("No object found!"));
 	return COMMAND_ERROR;
 }

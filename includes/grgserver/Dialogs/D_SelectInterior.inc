@@ -26,16 +26,16 @@ ShowDialog:SelectInterior(playerID, dialogID, firstPage = true)
 
 	if (firstPage)
 	{
-		Format:interiorList("%s\n%s", interiorList, LanguageString(playerID, StringID:177("")));
+		Format:interiorList("%s\n%s", interiorList, LanguageString(playerID, StringID:177("Next")));
 	}
 	else
 	{
-		Format:interiorList("%s\n%s", interiorList, LanguageString(playerID, StringID:171("")));
+		Format:interiorList("%s\n%s", interiorList, LanguageString(playerID, StringID:171("Back")));
 	}
 
-	FormatNew:string[30]("%s", LanguageString(playerID, StringID:247("")));
+	FormatNew:string[30]("%s", LanguageString(playerID, StringID:247("Select target")));
 	PVar:playerID[SELECTINTERIOR_ID] = dialogID;
-	CreateDialog(playerID, "SelectInterior", DIALOG_STYLE_LIST, string, interiorList, "OK", LanguageString(playerID, StringID:165("")));
+	CreateDialog(playerID, "SelectInterior", DIALOG_STYLE_LIST, string, interiorList, "OK", LanguageString(playerID, StringID:165("Cancel")));
 }
 
 DialogResponse:SelectInterior(playerID, response, listItem, inputText[])
@@ -45,12 +45,12 @@ DialogResponse:SelectInterior(playerID, response, listItem, inputText[])
 		OnInteriorDialogSelect(playerID,  PVar:playerID[SELECTINTERIOR_ID], 0);
 		return true;
 	}
-	if (IsStr(inputText, LanguageString(playerID, StringID:171(""))))
+	if (IsStr(inputText, LanguageString(playerID, StringID:171("Back"))))
 	{
 		ShowDialog:SelectInterior(playerID,  PVar:playerID[SELECTINTERIOR_ID], true);
 		return true;
 	}
-	if (IsStr(inputText, LanguageString(playerID, StringID:177(""))))
+	if (IsStr(inputText, LanguageString(playerID, StringID:177("Next"))))
 	{
 		ShowDialog:SelectInterior(playerID,  PVar:playerID[SELECTINTERIOR_ID], false);
 		return true;

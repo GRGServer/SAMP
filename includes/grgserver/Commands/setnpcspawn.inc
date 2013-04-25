@@ -1,4 +1,4 @@
-PCMD:setnpcspawn[NPCADMIN](playerID, params[], StringID:282(""))
+PCMD:setnpcspawn[NPCADMIN](playerID, params[], StringID:282("Set the spawn position of a NPC"))
 {
 	new npcName[MAX_PLAYER_NAME];
 	if (sscanf(params, "s[" #MAX_PLAYER_NAME "]", npcName))
@@ -29,12 +29,12 @@ PCMD:setnpcspawn[NPCADMIN](playerID, params[], StringID:282(""))
 	mysql_free_result();
 	if (id)
 	{
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:283(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:283("The spawn position of the NPC has been changed"));
 		return COMMAND_OK;
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, StringID:284(""));
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:284("NPC not found!"));
 		return COMMAND_ERROR;
 	}
 }

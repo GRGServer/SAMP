@@ -1,4 +1,4 @@
-PCMD:addspeedcam[MAPPER](playerID, params[], StringID:486(""))
+PCMD:addspeedcam[MAPPER](playerID, params[], StringID:486("Add a speed camera"))
 {
 	new speedLimit;
 	if (sscanf(params, "d", speedLimit))
@@ -19,7 +19,7 @@ PCMD:addspeedcam[MAPPER](playerID, params[], StringID:486(""))
 
 	if (speedCamerasSlot == -1)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, StringID:633(""), sizeof(speedCameras));
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:633("Limit of %d speed cameras reached! Increase MAX_SPEEDCAMERAS to add more speed cameras."), sizeof(speedCameras));
 		return COMMAND_ERROR;
 	}
 

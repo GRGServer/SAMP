@@ -27,7 +27,7 @@ PickupEvent:LINK(playerID, pickupID, eventType)
 			}
 			if (permissions[playerID][PERMISSION_MAPPER])
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:136(""), PVar:playerID[TELEPORT_LINKID]);
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:136("The pickup is linked to the target %d and is now selected. Use /settplink to set the target."), PVar:playerID[TELEPORT_LINKID]);
 			}
 			return true;
 		}

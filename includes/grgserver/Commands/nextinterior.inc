@@ -1,4 +1,4 @@
-PCMD:nextinterior[TELEPORT](playerID, params[], StringID:402(""))
+PCMD:nextinterior[TELEPORT](playerID, params[], StringID:402("Teleport to the next interior"))
 {
 	new interiorID;
 	sscanf(params, "d", interiorID);
@@ -14,6 +14,6 @@ PCMD:nextinterior[TELEPORT](playerID, params[], StringID:402(""))
 	{
 		TeleportToInterior(playerID, 1);
 	}
-	SendClientMessageEx(playerID, COLOR_INFO, StringID:405(""), PVar:playerID[CURRENTINTERIOR]);
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:405("You are now in interior %d"), PVar:playerID[CURRENTINTERIOR]);
 	return COMMAND_OK;
 }

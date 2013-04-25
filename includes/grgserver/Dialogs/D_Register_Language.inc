@@ -18,7 +18,7 @@ DialogResponse:Register_Language(playerID, response, listItem, inputText[])
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:37(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:37("You can now quit the game"));
 		Kick(playerID);
 	}
 }

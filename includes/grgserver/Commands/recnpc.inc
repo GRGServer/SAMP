@@ -1,4 +1,4 @@
-PCMD:recnpc[NPCADMIN](playerid, params[], StringID:116(""))
+PCMD:recnpc[NPCADMIN](playerid, params[], StringID:116("Create a new NPC recording"))
 {
 	new npcs;
 	new recordingType;
@@ -53,7 +53,7 @@ PCMD:recnpc[NPCADMIN](playerid, params[], StringID:116(""))
 		npcs++;
 	}
 	StartRecordingPlayerData(playerid, recordingType, recordingName);
-	SendClientMessageEx(playerid, COLOR_INFO, StringID:89(""), recordingName, npcs);
-	SendClientMessageEx(playerid, COLOR_INFO, StringID:90(""));
+	SendClientMessageEx(playerid, COLOR_INFO, StringID:89("Recording '%s' started with %d more NPCs"), recordingName, npcs);
+	SendClientMessageEx(playerid, COLOR_INFO, StringID:90("Use /stoprec to stop."));
 	return COMMAND_OK;
 }

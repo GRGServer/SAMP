@@ -18,7 +18,7 @@
  * </returns>
  */
 
-CMD:engine(playerID, params[], StringID:111(""))
+CMD:engine(playerID, params[], StringID:111("Start or stop the engine of your vehicle"))
 {
 	if (!IsPlayerInAnyVehicle(playerID))
 	{

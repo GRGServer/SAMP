@@ -17,28 +17,38 @@
 	#Menu_SearchNext
 	#Edit_Window
 	#Edit_Text1
+	#Edit_Text2
+	#Edit_Text3
 	#Edit_ID
+	#Edit_EnglishString
+	#Edit_GermanString
+	#Edit_IgnoreUnused
 	#Edit_OK
 	#Edit_Cancel
-	#Edit_FirstTextGadget
 EndEnumeration
-
-#Edit_FirstStringGadget = #Edit_FirstTextGadget + 100
 
 #Title = "Language String Editor"
 
-Structure Languages
-	englishName.s
-	localName.s
-	tagName.s
+Structure Options
+	preserveCount.l
+EndStructure
+
+Structure Strings
+	stringID.l
+	englishString.s
+	germanString.s
+	ignoreUnused.b
 EndStructure
 
 Global editItemID
 Global fileChanged
 Global listColumn
+Global serverRoot$
 Global xmlFile$
 
-Global NewList Languages.Languages()
+Global Options.Options
+
+Global NewList Strings.Strings()
 
 Procedure IsEqual(value1, value2)
 	If value1 = value2
@@ -60,9 +70,8 @@ Procedure UpdateWindowSize(window)
 	Select window
 		Case #Edit_Window
 			ResizeGadget(#Edit_ID, #PB_Ignore, #PB_Ignore, WindowWidth(#Edit_Window) - 100, #PB_Ignore)
-			ForEach Languages()
-				ResizeGadget(#Edit_FirstStringGadget + ListIndex(Languages()), #PB_Ignore, #PB_Ignore, WindowWidth(#Edit_Window) - 100, #PB_Ignore)
-			Next
+			ResizeGadget(#Edit_EnglishString, #PB_Ignore, #PB_Ignore, WindowWidth(#Edit_Window) - 100, #PB_Ignore)
+			ResizeGadget(#Edit_GermanString, #PB_Ignore, #PB_Ignore, WindowWidth(#Edit_Window) - 100, #PB_Ignore)
 			ResizeGadget(#Edit_OK, WindowWidth(#Edit_Window) - 220, #PB_Ignore, #PB_Ignore, #PB_Ignore)
 			ResizeGadget(#Edit_Cancel, WindowWidth(#Edit_Window) - 110, #PB_Ignore, #PB_Ignore, #PB_Ignore)
 		Case #Window
@@ -87,49 +96,52 @@ Procedure IsDuplicateStringID(stringID, ignoreItemID)
 	Next
 EndProcedure
 
+Procedure FindEmptySlot()
+	stringID = -1
+	Repeat
+		stringID + 1
+		useID = #True
+		For currentItem = 0 To CountGadgetItems(#List) - 1
+			If Val(GetGadgetItemText(#List, currentItem, 0)) = stringID
+				useID = #False
+			EndIf
+		Next
+	Until useID
+	ProcedureReturn stringID
+EndProcedure
+
 Procedure EditItem(item)
 	editItemID = item
-	items = CountGadgetItems(#List)
 	If item = -1
 		title$ = "Add language string"
-		stringID = -1
-		Repeat
-			stringID + 1
-			useID = #True
-			For currentItem = 0 To items - 1
-				If Val(GetGadgetItemText(#List, currentItem, 0)) = stringID
-					useID = #False
-				EndIf
-			Next
-		Until useID
+		stringID = FindEmptySlot()
+		englishString$ = ""
+		germanString$ = ""
+		ignoreUnused = #False
 	Else
 		title$ = "Edit language string"
 		stringID = Val(GetGadgetItemText(#List, item, 0))
+		englishString$ = GetGadgetItemText(#List, item, 1)
+		germanString$ = GetGadgetItemText(#List, item, 2)
+		ignoreUnused = GetGadgetItemData(#List, item)
 	EndIf
 	If OpenWindow(#Edit_Window, 100, 100, 500, 200, title$, #PB_Window_MinimizeGadget | #PB_Window_MaximizeGadget | #PB_Window_SizeGadget | #PB_Window_WindowCentered, WindowID(#Window))
 		TextGadget(#Edit_Text1, 10, 10, 70, 20, "ID:")
-		posY = 40
-		ForEach Languages()
-			TextGadget(#Edit_FirstTextGadget + ListIndex(Languages()), 10, posY, 70, 20, Languages()\englishName + " string:")
-			posY + 30
-		Next
+		TextGadget(#Edit_Text2, 10, 40, 70, 20, "English:")
+		TextGadget(#Edit_Text3, 10, 70, 70, 20, "English:")
 		StringGadget(#Edit_ID, 90, 10, 0, 20, Str(stringID), #PB_String_Numeric)
-		ForEach Languages()
-			If item = -1
-				string$ = ""
-			Else
-				string$ = GetGadgetItemText(#List, item, ListIndex(Languages()) + 1)
-			EndIf
-			StringGadget(#Edit_FirstStringGadget + ListIndex(Languages()), 90, GadgetY(#Edit_FirstTextGadget + ListIndex(Languages())), 0, 20, string$)
-		Next
-		ButtonGadget(#Edit_OK, 0, posY, 100, 30, "OK")
-		ButtonGadget(#Edit_Cancel, 0, posY, 100, 30, "Cancel")
+		StringGadget(#Edit_EnglishString, 90, 40, 0, 20, englishString$)
+		StringGadget(#Edit_GermanString, 90, 70, 0, 20, germanString$)
+		CheckBoxGadget(#Edit_IgnoreUnused, 90, 100, 100, 20, "Ignore unused")
+		ButtonGadget(#Edit_OK, 0, 100, 100, 30, "OK")
+		ButtonGadget(#Edit_Cancel, 0, 100, 100, 30, "Cancel")
 		DisableWindow(#Window, #True)
-		ResizeWindow(#Edit_Window, #PB_Ignore, #PB_Ignore, #PB_Ignore, posY + 40)
+		ResizeWindow(#Edit_Window, #PB_Ignore, #PB_Ignore, #PB_Ignore, 140)
 		WindowBounds(#Edit_Window, 230, WindowHeight(#Edit_Window), #PB_Ignore, WindowHeight(#Edit_Window))
 		UpdateWindowSize(#Edit_Window)
 		AddKeyboardShortcut(#Edit_Window, #PB_Shortcut_Return, #Edit_OK)
 		AddKeyboardShortcut(#Edit_Window, #PB_Shortcut_Escape, #Edit_Cancel)
+		SetGadgetState(#Edit_IgnoreUnused, ignoreUnused)
 	EndIf
 EndProcedure
 
@@ -147,16 +159,17 @@ Procedure EditOK()
 			MessageRequester("Duplicate string ID", "The string ID " + Str(stringID) + " already exists in the list!", #MB_ICONERROR)
 		Else
 			If editItemID = -1
-				line$ = Str(stringID)
-				ForEach Languages()
-					line$ + Chr(10) + GetGadgetText(#Edit_FirstStringGadget + ListIndex(Languages()))
-				Next
-				AddGadgetItem(#List, -1, line$)
+				AddGadgetItem(#List, -1, Str(stringID))
+				editItemID = CountGadgetItems(#List) - 1
+			EndIf
+			SetGadgetItemText(#List, editItemID, Str(stringID), 0)
+			SetGadgetItemText(#List, editItemID, GetGadgetText(#Edit_EnglishString), 1)
+			SetGadgetItemText(#List, editItemID, GetGadgetText(#Edit_GermanString), 2)
+			SetGadgetItemData(#List, editItemID, GetGadgetState(#Edit_IgnoreUnused))
+			If GetGadgetState(#Edit_IgnoreUnused)
+				SetGadgetItemColor(#List, editItemID, #PB_Gadget_BackColor, RGB(255, 200, 200), -1)
 			Else
-				SetGadgetItemText(#List, editItemID, Str(stringID), 0)
-				ForEach Languages()
-					SetGadgetItemText(#List, editItemID, GetGadgetText(#Edit_FirstStringGadget + ListIndex(Languages())), ListIndex(Languages()) + 1)
-				Next
+				SetGadgetItemColor(#List, editItemID, #PB_Gadget_BackColor, -1, -1)
 			EndIf
 			CloseEditWindow()
 			SetFileChangedState(#True)
@@ -174,56 +187,110 @@ Procedure FindListItem(gadget, item, column, searchString$)
 	ProcedureReturn FindString(LCase(GetGadgetItemText(gadget, item, column)), LCase(searchString$))
 EndProcedure
 
+Procedure AddString(stringID, englishString$, germanString$, addNotExisting, ignoreUnused)
+	alreadyExisting = #False
+	ForEach Strings()
+		If Strings()\englishString = englishString$
+			Strings()\ignoreUnused = ignoreUnused
+			If germanString$
+				Strings()\germanString = germanString$
+			EndIf
+			alreadyExisting = #True
+			Break
+		EndIf
+	Next
+	If Not alreadyExisting
+		If addNotExisting
+			If stringID = -1
+				stringID = FindEmptySlot()
+			EndIf
+			AddElement(Strings())
+			Strings()\stringID = stringID
+			Strings()\englishString = englishString$
+			Strings()\germanString = germanString$
+			Strings()\ignoreUnused = ignoreUnused
+		Else
+			AddGadgetItem(#InfoList, -1, "String ID " + Str(stringID) + " is not used anymore: " + englishString$)
+		EndIf
+	EndIf
+EndProcedure
+
+Procedure ScanStringsInFile(fileName$)
+	stringIDRegEx = CreateRegularExpression(#PB_Any, "StringID:([0-9\-]+)\(" + Chr(34) + "(.*?)" + Chr(34) + "\)")
+	idRegEx = CreateRegularExpression(#PB_Any, "StringID:([0-9\-]+)")
+	stringRegEx = CreateRegularExpression(#PB_Any, Chr(34) + "(.*?)" + Chr(34))
+	file = ReadFile(#PB_Any, fileName$)
+	If IsFile(file)
+		Repeat
+			lineIndex + 1
+			line$ = ReadString(file)
+			Dim matches$(0)
+			count = ExtractRegularExpression(stringIDRegEx, line$, matches$())
+			For match = 0 To count - 1
+				Dim ids$(0)
+				ExtractRegularExpression(idRegEx, matches$(match), ids$())
+				stringID = Val(RemoveString(ids$(0), "StringID:"))
+				Dim strings$(0)
+				ExtractRegularExpression(stringRegEx, matches$(match), strings$())
+				string$ = Trim(strings$(0), Chr(34))
+				If string$
+					AddString(stringID, string$, "", #True, #False)
+				Else
+					AddGadgetItem(#InfoList, -1, "Warning: Missing text for string ID " + Str(stringID) + " in " +fileName$ + ":" + Str(lineIndex))
+				EndIf
+			Next
+		Until Eof(file)
+		CloseFile(file)
+	Else
+		AddGadgetItem(#InfoList, -1, "Error: Unable to read file: " + fileName$)
+	EndIf
+EndProcedure
+
+Procedure ScanStringsInDirectory(path$)
+	dir = ExamineDirectory(#PB_Any, path$, "*.*")
+	If IsDirectory(dir)
+		While NextDirectoryEntry(dir)
+			name$ = DirectoryEntryName(dir)
+			If name$ <> "." And name$ <> ".."
+				Select DirectoryEntryType(dir)
+					Case #PB_DirectoryEntry_File
+						If GetExtensionPart(name$) = "inc"
+							ScanStringsInFile(path$ + "\" + name$)
+						EndIf
+					Case #PB_DirectoryEntry_Directory
+						ScanStringsInDirectory(path$ + "\" + name$)
+				EndSelect
+			EndIf
+		Wend
+		FinishDirectory(dir)
+	EndIf
+EndProcedure
+
 Procedure LoadLanguageStrings()
+	ClearGadgetItems(#List)
+	ScanStringsInDirectory(serverRoot$ + "includes\grgserver")
 	If LoadXML(#XML, xmlFile$)
 		If XMLStatus(#XML) = #PB_XML_Success
 			*mainNode = MainXMLNode(#XML)
 			If *mainNode
-				ClearGadgetItems(#List)
-				*languagesNode = XMLNodeFromPath(*mainNode, "languages")
-				If *languagesNode
-					*languageNode = ChildXMLNode(*languagesNode)
-					For column = listColumn To 1 Step -1
-						RemoveGadgetColumn(#List, column)
-					Next
-					listColumn = 0
-					ClearList(Languages())
-					While *languageNode
-						listColumn + 1
-						AddElement(Languages())
-						Languages()\tagName = GetXMLNodeName(*languageNode)
-						Languages()\englishName = GetXMLAttribute(*languageNode, "name")
-						Languages()\localName = GetXMLNodeText(*languageNode)
-						AddGadgetColumn(#List, listColumn, GetXMLAttribute(*languageNode, "name"), 300)
-						*languageNode = NextXMLNode(*languageNode)
-					Wend
-					*stringNode = XMLNodeFromPath(*mainNode, "string")
-					While *stringNode
-						stringID = Val(GetXMLAttribute(*stringNode, "id"))
-						If IsDuplicateStringID(stringID, -1)
-							AddGadgetItem(#InfoList, -1, "Duplicate string ID " + Str(stringID))
-						Else
-							line$ = Str(stringID)
-							ForEach Languages()
-								string$ = ""
-								*languageNode = XMLNodeFromPath(*stringNode, Languages()\tagName)
-								If *languageNode
-									string$ = TrimEx(GetXMLNodeText(*languageNode))
-								EndIf
-								If Not string$
-									AddGadgetItem(#InfoList, -1, "Missing " + Languages()\englishName + " language string for string ID " + Str(stringID))
-								EndIf
-								line$ + Chr(10) + string$
-							Next
-							AddGadgetItem(#List, -1, line$)
-						EndIf
-						*stringNode = NextXMLNode(*stringNode)
-					Wend
-					SetFileChangedState(#False)
-					result = #True
-				Else
-					MessageRequester("No languages node", "No language definition found in XML file!", #MB_ICONERROR)
-				EndIf
+				*stringNode = XMLNodeFromPath(*mainNode, "string")
+				While *stringNode
+					stringID = Val(GetXMLAttribute(*stringNode, "id"))
+					ignoreUnused = Val(GetXMLAttribute(*stringNode, "ignoreUnused"))
+					englishString$ = ""
+					*languageNode = XMLNodeFromPath(*stringNode, "en")
+					If *languageNode
+						englishString$ = TrimEx(GetXMLNodeText(*languageNode))
+					EndIf
+					germanString$ = ""
+					*languageNode = XMLNodeFromPath(*stringNode, "de")
+					If *languageNode
+						germanString$ = TrimEx(GetXMLNodeText(*languageNode))
+					EndIf
+					AddString(stringID, englishString$, germanString$, ignoreUnused, ignoreUnused)
+					*stringNode = NextXMLNode(*stringNode)
+				Wend
+				SetFileChangedState(#False)
 			Else
 				MessageRequester("No main node", "No main node found in XML file!", #MB_ICONERROR)
 			EndIf
@@ -238,48 +305,60 @@ Procedure LoadLanguageStrings()
 			MessageRequester("XML error", message$, #MB_ICONERROR)
 		EndIf
 		FreeXML(#XML)
-	Else
-		MessageRequester("Error", "Can not load XML file!", #MB_ICONERROR)
 	EndIf
-	ProcedureReturn result
+	SortStructuredList(Strings(), #PB_Sort_Ascending, OffsetOf(Strings\stringID), #PB_Long)
+	highestStringID = 0
+	ForEach Strings()
+		highestStringID = Strings()\stringID
+		AddGadgetItem(#List, -1, Str(Strings()\stringID) + Chr(10) + Strings()\englishString + Chr(10) + Strings()\germanString)
+		If Strings()\ignoreUnused
+			item = CountGadgetItems(#List) - 1
+			SetGadgetItemColor(#List, item, #PB_Gadget_BackColor, RGB(255, 200, 200), -1)
+			SetGadgetItemData(#List, item, #True)
+		EndIf
+	Next
+	AddGadgetItem(#InfoList, -1, "Note: MAX_LANGUAGE_STRINGS should be at least " + highestStringID + ".")
 EndProcedure
 
+; Procedure SaveLanguageStrings()
+; 	file = CreateFile(#PB_Any, xmlFile$)
+; 	If IsFile(file)
+; 		WriteStringN(file, "<?xml version=" + Chr(34) + "1.0" + Chr(34) + " encoding=" + Chr(34) + "ISO-8859-1" + Chr(34) + "?>")
+; 		WriteStringN(file, "<languagestrings>")
+; 		For item = 0 To CountGadgetItems(#List) - 1
+; 			WriteStringN(file, Chr(9) + "<string id=" + Chr(34) + GetGadgetItemText(#List, item, 0) + Chr(34) + ">")
+; 			WriteStringN(file, Chr(9) + Chr(9) +"<en>" + EscapeXMLCharacters(GetGadgetItemText(#List, item, 1)) + "</en>")
+; 			WriteStringN(file, Chr(9) + Chr(9) +"<de>" + EscapeXMLCharacters(GetGadgetItemText(#List, item, 2)) + "</de>")
+; 			WriteStringN(file, Chr(9) + "</string>")
+; 		Next
+; 		WriteString(file, "</languagestrings>")
+; 		CloseFile(file)
+; 		SetFileChangedState(#False)
+; 		ProcedureReturn #True
+; 	EndIf
+; EndProcedure
+
 Procedure SaveLanguageStrings()
-	Structure TempList
-		id.l
-		List stringList.s()
-	EndStructure
-	NewList TempList.TempList()
-	For item = 0 To CountGadgetItems(#List) - 1
-		AddElement(TempList())
-		TempList()\id = Val(GetGadgetItemText(#List, item, 0))
-		ForEach Languages()
-			AddElement(TempList()\stringList())
-			TempList()\stringList() = GetGadgetItemText(#List, item, ListIndex(Languages()) + 1)
+	xml = CreateXML(#PB_Any, #PB_Ascii)
+	If IsXML(xml)
+		*mainNode = CreateXMLNode(RootXMLNode(xml))
+		SetXMLNodeName(*mainNode, "languagestrings")
+		For item = 0 To CountGadgetItems(#List) - 1
+			*stringNode = CreateXMLNode(*mainNode)
+			SetXMLNodeName(*stringNode, "string")
+			SetXMLAttribute(*stringNode, "id", GetGadgetItemText(#List, item, 0))
+			If GetGadgetItemData(#List, item)
+				SetXMLAttribute(*stringNode, "ignoreUnused", "1")
+			EndIf
+			*englishNode = CreateXMLNode(*stringNode)
+			SetXMLNodeName(*englishNode, "en")
+			SetXMLNodeText(*englishNode, GetGadgetItemText(#List, item, 1))
+			*germanNode = CreateXMLNode(*stringNode)
+			SetXMLNodeName(*germanNode, "de")
+			SetXMLNodeText(*germanNode, GetGadgetItemText(#List, item, 2))
 		Next
-	Next
-	SortStructuredList(TempList(), #PB_Sort_Ascending, OffsetOf(TempList\id), #PB_Sort_Long)
-	file = CreateFile(#PB_Any, xmlFile$)
-	If IsFile(file)
-		WriteStringN(file, "<?xml version=" + Chr(34) + "1.0" + Chr(34) + " encoding=" + Chr(34) + "ISO-8859-1" + Chr(34) + "?>")
-		WriteStringN(file, "<languagestrings>")
-		WriteStringN(file, Chr(9) + "<languages>")
-		ForEach Languages()
-			WriteStringN(file, Chr(9) + Chr(9) +"<" + Languages()\tagName + " name=" + Chr(34) + Languages()\englishName + Chr(34) + ">" + Languages()\localName + "</" + Languages()\tagName + ">")
-		Next
-		WriteStringN(file, Chr(9) + "</languages>")
-		ForEach TempList()
-			WriteStringN(file, Chr(9) + "<string id=" + Chr(34) + Str(TempList()\id) + Chr(34) + ">")
-			language = 0
-			ForEach TempList()\stringList()
-				SelectElement(Languages(), language)
-				WriteStringN(file, Chr(9) + Chr(9) +"<" + Languages()\tagName + ">" + EscapeXMLCharacters(TempList()\stringList()) + "</" + Languages()\tagName + ">")
-				language + 1
-			Next
-			WriteStringN(file, Chr(9) + "</string>")
-		Next
-		WriteString(file, "</languagestrings>")
-		CloseFile(file)
+		FormatXML(xml, #PB_XML_LinuxNewline | #PB_XML_ReIndent | #PB_XML_ReFormat, 4)
+		SaveXML(xml, xmlFile$)
 		SetFileChangedState(#False)
 		ProcedureReturn #True
 	EndIf
@@ -339,12 +418,13 @@ Procedure SearchStringInList(string$)
 	EndIf
 EndProcedure
 
-xmlFile$ = ProgramParameter()
-If Not xmlFile$
+serverRoot$ = ProgramParameter()
+If serverRoot$ = ""
 	mainPath$ = GetPathPart(ProgramFilename())
 	serverRoot$ = GetPathPart(Left(mainPath$, Len(mainPath$) - 1))
-	xmlFile$ = serverRoot$ + "scriptfiles\languagestrings.xml"
 EndIf
+
+xmlFile$ = serverRoot$ + "scriptfiles\languagestrings.xml"
 
 If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #PB_Window_MaximizeGadget | #PB_Window_SizeGadget | #PB_Window_ScreenCentered)
 	If CreateMenu(#Menu, WindowID(#Window))
@@ -366,6 +446,8 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 		DisableMenuItem(#Menu, #Menu_Delete, #True)
 	EndIf
 	ListIconGadget(#List, 0, 0, 0, 0, "ID", 50, #PB_ListIcon_FullRowSelect)
+	AddGadgetColumn(#List, 1, "English", 300)
+	AddGadgetColumn(#List, 2, "German", 300)
 	ListViewGadget(#InfoList, 0, 0, 0, 0)
 	SplitterGadget(#Splitter, 0, 0, 0, 0, #List, #InfoList, #PB_Splitter_Separator)
 	UpdateWindowSize(#Window)
@@ -375,9 +457,8 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 	AddKeyboardShortcut(#Window, #PB_Shortcut_Control | #PB_Shortcut_G, #Menu_Goto)
 	AddKeyboardShortcut(#Window, #PB_Shortcut_Control | #PB_Shortcut_F, #Menu_Search)
 	AddKeyboardShortcut(#Window, #PB_Shortcut_F3, #Menu_SearchNext)
-	If Not LoadLanguageStrings()
-		End
-	EndIf
+	SetGadgetState(#Splitter, 400)
+	LoadLanguageStrings()
 	Repeat
 		Select WaitWindowEvent()
 			Case #PB_Event_Gadget
@@ -503,16 +584,16 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 		EndSelect
 	ForEver
 EndIf
-; IDE Options = PureBasic 4.60 (Windows - x86)
-; CursorPosition = 239
-; FirstLine = 227
-; Folding = ---
+; IDE Options = PureBasic 5.11 (Windows - x86)
+; CursorPosition = 340
+; FirstLine = 331
+; Folding = ----
 ; EnableXP
 ; UseIcon = Language String Editor.ico
 ; Executable = Language String Editor.exe
-; CommandLine = X:\Projects\SAMP-Server\scriptfiles\languagestrings.xml
-; EnableCompileCount = 122
-; EnableBuildCount = 9
+; CommandLine = X:\Projects\SAMP-Server\
+; EnableCompileCount = 235
+; EnableBuildCount = 10
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0

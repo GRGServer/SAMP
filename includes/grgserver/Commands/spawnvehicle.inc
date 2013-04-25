@@ -1,4 +1,4 @@
-PCMD:spawnvehicle[SPAWNVEHICLE](playerID, params[], StringID:505(""))
+PCMD:spawnvehicle[SPAWNVEHICLE](playerID, params[], StringID:505("Spawn a vehicle"))
 {
 	new vehicleName[20];
 	new modelID;
@@ -56,7 +56,7 @@ PCMD:spawnvehicle[SPAWNVEHICLE](playerID, params[], StringID:505(""))
 					}
 					default:
 					{
-						SendClientMessageEx(playerID, COLOR_ERROR, StringID:58(""));
+						SendClientMessageEx(playerID, COLOR_ERROR, StringID:58("Invalid type!"));
 						return COMMAND_ERROR;
 					}
 				}
@@ -74,8 +74,8 @@ PCMD:spawnvehicle[SPAWNVEHICLE](playerID, params[], StringID:505(""))
 				}
 				PVar:playerID[SPAWNVEHICLE_COLOR1] = color1;
 				PVar:playerID[SPAWNVEHICLE_COLOR2] = color2;
-				FormatNew:title[64](LanguageString(playerID, StringID:122("")), vehicleName);
-				CreateDialog(playerID, "SpawnVehicle", DIALOG_STYLE_LIST, title, vehicleList, LanguageString(playerID, StringID:205("")), LanguageString(playerID, StringID:165("")));
+				FormatNew:title[64](LanguageString(playerID, StringID:122("Spawn a vehicle [%s]")), vehicleName);
+				CreateDialog(playerID, "SpawnVehicle", DIALOG_STYLE_LIST, title, vehicleList, LanguageString(playerID, StringID:205("Spawn")), LanguageString(playerID, StringID:165("Cancel")));
 				modelID = -1;
 			}
 			else

@@ -14,7 +14,7 @@ PickupEvent:HOUSE(playerID, pickupID, eventType)
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, StringID:141(""), GetMySQLValue("users", "username", "id", val2str(ownerUserID)));
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:141("This house has been already bought by %s!"), GetMySQLValue("users", "username", "id", val2str(ownerUserID)));
 				}
 			}
 			else
@@ -28,7 +28,7 @@ PickupEvent:HOUSE(playerID, pickupID, eventType)
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, StringID:22(""), price, bankMoney);
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:22("You need %m to buy this property! But you only have %m at you bank account."), price, bankMoney);
 				}
 			}
 			return true;
@@ -37,7 +37,7 @@ PickupEvent:HOUSE(playerID, pickupID, eventType)
 		{
 			if (permissions[playerID][PERMISSION_MAPPER])
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:338(""));
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:338("Press ~k~~SNEAK_ABOUT~ to select the property linked to this pickup"));
 			}
 			return false;
 		}

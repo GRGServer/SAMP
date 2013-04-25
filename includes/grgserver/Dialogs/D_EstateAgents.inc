@@ -1,7 +1,7 @@
 ShowDialog:EstateAgents(playerID)
 {
-	FormatNew:options[50]("%s\n%s", LanguageString(playerID, StringID:217("")), LanguageString(playerID, StringID:218("")));
-	CreateDialog(playerID, "EstateAgents", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:222("")), options, LanguageString(playerID, StringID:177("")), LanguageString(playerID, StringID:165("")));
+	FormatNew:options[50]("%s\n%s", LanguageString(playerID, StringID:217("Accept job")), LanguageString(playerID, StringID:218("Cancel job")));
+	CreateDialog(playerID, "EstateAgents", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:222("Estate agent")), options, LanguageString(playerID, StringID:177("Next")), LanguageString(playerID, StringID:165("Cancel")));
 }
 
 DialogResponse:EstateAgents(playerID, response, listItem, inputText[])

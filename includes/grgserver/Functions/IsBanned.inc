@@ -18,9 +18,9 @@ IsBanned(playerID, showMessage)
 	{
 		if (showMessage)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:473(""));
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:474(""), GetMySQLField("reason"));
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:475(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:473("Sorry, but you got banned from this server!"));
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:474("Reason for the ban: %s"), GetMySQLField("reason"));
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:475("You got banned by mistake? In this case, please contact us on http://www.grgserver.net."));
 		}
 	}
 	mysql_free_result();

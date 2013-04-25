@@ -1,6 +1,6 @@
 ShowDialog:Register_Birthdate(playerID)
 {
-	CreateDialog(playerID, "Register_Birthdate", DIALOG_STYLE_INPUT, LanguageString(playerID, StringID:253("")), LanguageString(playerID, StringID:254("")), LanguageString(playerID, StringID:177("")), LanguageString(playerID, StringID:171("")));
+	CreateDialog(playerID, "Register_Birthdate", DIALOG_STYLE_INPUT, LanguageString(playerID, StringID:253("Enter birthdate")), LanguageString(playerID, StringID:254("Enter your birthdate in the format DD.MM.YYYY.\n\nExample: 05.02.1990")), LanguageString(playerID, StringID:177("Next")), LanguageString(playerID, StringID:171("Back")));
 }
 
 DialogResponse:Register_Birthdate(playerID, response, listItem, inputText[])
@@ -12,7 +12,7 @@ DialogResponse:Register_Birthdate(playerID, response, listItem, inputText[])
 		new year;
 		if (sscanf(inputText, "p<.>ddd", day, month, year))
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:40(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:40("Please use the format DD.MM.YYYY!"));
 			ShowDialog:Register_Birthdate(playerID);
 		}
 		else
@@ -24,7 +24,7 @@ DialogResponse:Register_Birthdate(playerID, response, listItem, inputText[])
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, StringID:41(""));
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:41("Invalid date!"));
 				ShowDialog:Register_Birthdate(playerID);
 			}
 		}

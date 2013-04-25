@@ -7,7 +7,7 @@ public OnPlayerExitVehicle(playerid, vehicleid)
 	{
 		PVar:playerid[GPS_ENABLED] = false;
 		DisablePlayerRaceCheckpoint(playerid);
-		SendClientMessageEx(playerid, COLOR_INFO, StringID:460(""));
+		SendClientMessageEx(playerid, COLOR_INFO, StringID:460("The navigation system has been turned off"));
 	}
 	return true;
 }

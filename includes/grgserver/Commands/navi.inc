@@ -1,10 +1,10 @@
-CMD:navi(playerID, params[], StringID:339(""))
+CMD:navi(playerID, params[], StringID:339("Activate the navigation system"))
 {
 	if (PVar:playerID[GPS_ENABLED])
 	{
 		PVar:playerID[GPS_ENABLED] = false;
 		DisablePlayerRaceCheckpoint(playerID);
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:460(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:460("The navigation system has been turned off"));
 		return COMMAND_OK;
 	}
 	new vehicleID = GetPlayerVehicleID(playerID);
@@ -17,7 +17,7 @@ CMD:navi(playerID, params[], StringID:339(""))
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:340(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:340("Your vehicle does not have a navigation system!"));
 			return COMMAND_ERROR;
 		}
 	}

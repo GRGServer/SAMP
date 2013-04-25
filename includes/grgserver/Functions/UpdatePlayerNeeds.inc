@@ -20,7 +20,7 @@ UpdatePlayerNeeds(playerID)
 	if (PVar:playerID[NEEDS_BLADDER] <= 0)
 	{
 		PVar:playerID[NEEDS_BLADDER] = 0;
-		SendClientMessageEx(playerID, COLOR_WARNING, StringID:632(""));
+		SendClientMessageEx(playerID, COLOR_WARNING, StringID:632("Your player could not hold it any longer. Use /pee to cancel."));
 		PlayerPee(playerID, true);
 	}
 	if (PVar:playerID[NEEDS_ENERGY] <= 0)

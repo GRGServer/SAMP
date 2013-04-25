@@ -1,4 +1,4 @@
-PCMD:setinterior[TELEPORT](playerID, params[], StringID:348(""))
+PCMD:setinterior[TELEPORT](playerID, params[], StringID:348("Change your current interior"))
 {
 	new interiorID;
 	if (sscanf(params, "d", interiorID))
@@ -7,6 +7,6 @@ PCMD:setinterior[TELEPORT](playerID, params[], StringID:348(""))
 		return COMMAND_USAGE;
 	}
 	SetPlayerInterior(playerID, interiorID);
-	SendClientMessageEx(playerID, COLOR_INFO, StringID:349(""), interiorID);
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:349("Interior changed to %d"), interiorID);
 	return COMMAND_OK;
 }

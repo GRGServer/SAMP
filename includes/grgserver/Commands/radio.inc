@@ -1,4 +1,4 @@
-CMD:radio(playerID, params[], StringID:115(""))
+CMD:radio(playerID, params[], StringID:115("Activate web radio"))
 {
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (vehicleID)

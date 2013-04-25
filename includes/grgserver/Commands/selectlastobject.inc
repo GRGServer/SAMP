@@ -1,4 +1,4 @@
-PCMD:selectlastobject[MAPPER](playerID, params[], StringID:398(""))
+PCMD:selectlastobject[MAPPER](playerID, params[], StringID:398("Select your last added object"))
 {
 	new objectID = PVar:playerID[LASTOBJECT];
 	if (objectID)
@@ -7,6 +7,6 @@ PCMD:selectlastobject[MAPPER](playerID, params[], StringID:398(""))
 		return COMMAND_OK;
 	}
 
-	SendClientMessageEx(playerID, COLOR_ERROR, StringID:425(""));
+	SendClientMessageEx(playerID, COLOR_ERROR, StringID:425("No object found!"));
 	return COMMAND_ERROR;
 }

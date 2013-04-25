@@ -20,5 +20,5 @@ ShowNews(playerID, lastID)
 	}
 	mysql_free_result();
 	PVar:playerID[LASTNEWSID] = lastID;
-	SendClientMessageEx(playerID, COLOR_INFO, StringID:135(""));
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:135("See all news on grgserver.net."));
 }

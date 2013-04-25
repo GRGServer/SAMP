@@ -1,4 +1,4 @@
-CMD:lockvehicle(playerID, params[], StringID:483(""))
+CMD:lockvehicle(playerID, params[], StringID:483("Lock or unlock a vehicle"))
 {
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (!vehicleID)
@@ -10,7 +10,7 @@ CMD:lockvehicle(playerID, params[], StringID:483(""))
 		vehicleID = GetClosestVehicleInRange(posX, posY, posZ, 5);
 		if (!vehicleID)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:288(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:288("There is no vehicle in range!"));
 			return COMMAND_ERROR;
 		}
 	}
@@ -18,7 +18,7 @@ CMD:lockvehicle(playerID, params[], StringID:483(""))
 	{
 		if (VehicleProperty:vehicleID[OWNERUSERID] != PVar:playerID[USERID])
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:487(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:487("You are not the owner of this vehicle!"));
 			return COMMAND_ERROR;
 		}
 	}
@@ -32,12 +32,12 @@ CMD:lockvehicle(playerID, params[], StringID:483(""))
 	if (IsVehicleLocked(vehicleID))
 	{
 		LockVehicle(vehicleID, false);
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:485(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:485("The vehicle has been unlocked!"));
 	}
 	else
 	{
 		LockVehicle(vehicleID, true);
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:484(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:484("The vehicle has been locked!"));
 	}
 	return COMMAND_OK;
 }

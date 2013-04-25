@@ -1,4 +1,4 @@
-CMD:toggleclock(playerID, params[], StringID:400(""))
+CMD:toggleclock(playerID, params[], StringID:400("Toggle the clock in the top right corner"))
 {
 	if (PVar:playerID[SHOWCLOCK])
 	{

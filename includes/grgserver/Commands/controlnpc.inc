@@ -21,19 +21,19 @@
  * </returns>
  */
 
-PCMD:controlnpc[NPCADMIN](playerID, params[], StringID:100(""))
+PCMD:controlnpc[NPCADMIN](playerID, params[], StringID:100("Control NPCs (e.g. start or stop)"))
 {
 	new command[256];
 	new targetPlayerName[MAX_PLAYER_NAME];
 	if (sscanf(params, "s[" #MAX_PLAYER_NAME "]s[256]", targetPlayerName, command))
 	{
 		CmdUsageMsg(playerID, "controlnpc", "Playername", "Command");
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:124(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:124("recordingName, playbackType and autoRepeat  is only required for the command 'start'."));
 		return COMMAND_USAGE;
 	}
 	if (!strcmp(command, "connect", true))
 	{
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:125(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:125("NPC connected"));
 		ConnectNPC(targetPlayerName, NPC_SCRIPTNAME);
 		return COMMAND_OK;
 	}
@@ -42,11 +42,11 @@ PCMD:controlnpc[NPCADMIN](playerID, params[], StringID:100(""))
 		new npcPlayerID = GetPlayerID(targetPlayerName);
 		if (IsStr(command, "status"))
 		{
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:624(""), PVar:npcPlayerID[NPC_RECORDINGPOSITION]);
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:606(""), PVar:npcPlayerID[NPC_RECORDINGLENGTH]);
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:624("Current recording position: %d sec"), PVar:npcPlayerID[NPC_RECORDINGPOSITION]);
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:606("Recording length: %d sec"), PVar:npcPlayerID[NPC_RECORDINGLENGTH]);
 			return COMMAND_OK;
 		}
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:123(""), command);
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:123("Command sent: %s"), command);
 		SendNPCCommand(npcPlayerID, command);
 		return COMMAND_OK;
 	}

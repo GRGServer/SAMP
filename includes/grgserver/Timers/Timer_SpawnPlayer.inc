@@ -43,13 +43,13 @@ Timer:SpawnPlayer(playerID)
 		ShowDialog:Register_Language(playerID);
 	}
 	mysql_free_result();
-	SendClientMessageEx(playerID, COLOR_SYSTEM, StringID:138(""));
-	SendClientMessageEx(playerID, COLOR_SYSTEM, StringID:5(""), COMPILER_SVN_REVISION);
+	SendClientMessageEx(playerID, COLOR_SYSTEM, StringID:138("Welcome to the GRG server!"));
+	SendClientMessageEx(playerID, COLOR_SYSTEM, StringID:5("Currently revision %d of our game mode is running on this server."), COMPILER_SVN_REVISION);
 	PlayerLoop(currentPlayerID)
 	{
 		if (!IsPlayerNPC(currentPlayerID) && currentPlayerID != playerID)
 		{
-			SendClientMessageEx(currentPlayerID, COLOR_JOINLEAVE, StringID:3(""), playerID);
+			SendClientMessageEx(currentPlayerID, COLOR_JOINLEAVE, StringID:3("%p has joined the server"), playerID);
 		}
 	}
 	ReloadTextDraws(playerID);

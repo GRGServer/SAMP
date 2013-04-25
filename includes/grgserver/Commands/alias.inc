@@ -18,7 +18,7 @@
  * </remarks>
  */
 
-CMD:alias(playerID, params[], StringID:515(""))
+CMD:alias(playerID, params[], StringID:515("Create or remove a command alias"))
 {
 	new name[32];
 	new command[256];
@@ -27,21 +27,21 @@ CMD:alias(playerID, params[], StringID:515(""))
 		if (sscanf(params, "s[32]", name))
 		{
 			CmdUsageMsg(playerID, "alias", "Name", "Command");
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:540(""));
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:541(""), "/alias inf spawnvehicle infernus");
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:516(""));
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:540("Command is the command without the slash ( / )!"));
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:541("Example usage: %s"), "/alias inf spawnvehicle infernus");
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:516("Use /alias <name> to remove an alias."));
 			return COMMAND_USAGE;
 		}
 		MySQLQuery("DELETE FROM `cmdaliases` WHERE `userId` = '%d' AND `name` = '%s'", PVar:playerID[USERID], MySQLEscapeString(name));
 		if (mysql_affected_rows())
 		{
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:518(""), name);
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:518("The alias /%s has been removed"), name);
 			return COMMAND_OK;
 		}
-		SendClientMessageEx(playerID, COLOR_ERROR, StringID:519(""), name);
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:519("Alias /%s not found!"), name);
 		return COMMAND_ERROR;
 	}
 	MySQLQuery("REPLACE INTO `cmdaliases` (`userId`, `name`, `command`) VALUES('%d', '%s', '%s')", PVar:playerID[USERID], MySQLEscapeString(name), MySQLEscapeString(command));
-	SendClientMessageEx(playerID, COLOR_INFO, StringID:517(""), name);
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:517("The alias /%s has been created"), name);
 	return COMMAND_OK;
 }

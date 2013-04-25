@@ -33,7 +33,7 @@ public OnPlayerClosestNodeIDChange(playerid, old_NodeID, new_NodeID)
 		if (GetPlayerDistanceFromPoint(playerid, currentCPPosX, currentCPPosY, currentCPPosZ) > 50)
 		{
 			PVar:playerid[GPS_ISCALCULATING] = true;
-			SendClientMessageEx(playerid, COLOR_INFO, StringID:414(""));
+			SendClientMessageEx(playerid, COLOR_INFO, StringID:414("Calculating route"));
 			CalculatePath(new_NodeID, PVar:playerid[GPS_TARGETNODEID], playerid);
 		}
 	}

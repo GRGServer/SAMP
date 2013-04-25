@@ -4,12 +4,12 @@ PickupEvent:PAYNSPRAY(playerID, pickupID, eventType)
 	{
 		if (!IsPlayerInAnyVehicle(playerID))
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:146(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:146("You are not in a vehicle!"));
 			return true;
 		}
 		if (GetPlayerVehicleSeat(playerID) > 0)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:52(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:52("You are not the driver of this vehicle!"));
 			return true;
 		}
 		SendClientMessage(playerID, COLOR_SYSTEM, "To be continued...");

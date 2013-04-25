@@ -3,9 +3,9 @@ ShowDialog:BusLine(playerID)
 	new options[1024];
 	Count1(line, 5)
 	{
-		AddLine:options(LanguageString(playerID, StringID:562("")), line);
+		AddLine:options(LanguageString(playerID, StringID:562("Line %d")), line);
 	}
-	CreateDialog(playerID, "BusLine", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:561("")), options, "OK", LanguageString(playerID, StringID:165("")));
+	CreateDialog(playerID, "BusLine", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:561("Change bus line")), options, "OK", LanguageString(playerID, StringID:165("Cancel")));
 }
 
 DialogResponse:BusLine(playerID, response, listItem, inputText[])

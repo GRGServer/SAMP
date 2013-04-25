@@ -1,4 +1,4 @@
-CMD:setsell(playerID, params[], StringID:495(""))
+CMD:setsell(playerID, params[], StringID:495("Allow your vehicle to get bought by a vehicle dealer"))
 {
 	if (PVar:playerID[JOBID] != JOB_VEHICLEDEALER)
 	{

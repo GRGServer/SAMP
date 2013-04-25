@@ -36,14 +36,14 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 		{
 			if (IsStr(vehicleModels[modelID - 400][VEHICLEMODEL_TYPE], "Monster Truck"))
 			{
-				SendClientMessageEx(playerID, COLOR_WARNING, StringID:545(""));
+				SendClientMessageEx(playerID, COLOR_WARNING, StringID:545("Remember: Monster trucks are prohibited on the street!"));
 			}
 			else
 			{
 				if (!HasLicense(playerID, vehicleModels[modelID - 400][VEHICLEMODEL_TYPE]) && !(PVar:playerID[CPMISSION_ID] && strfind(GetCheckpointMissionNameByID(PVar:playerID[CPMISSION_ID]), "DrivingSchool", true, 0) == 0))
 				{
-					SendClientMessageEx(playerID, COLOR_WARNING, StringID:514(""), GetLicenseLanguageStringID(vehicleModels[modelID - 400][VEHICLEMODEL_TYPE]));
-					SendClientMessageEx(playerID, COLOR_WARNING, StringID:544(""));
+					SendClientMessageEx(playerID, COLOR_WARNING, StringID:514("You do not have a %l!"), GetLicenseLanguageStringID(vehicleModels[modelID - 400][VEHICLEMODEL_TYPE]));
+					SendClientMessageEx(playerID, COLOR_WARNING, StringID:544("Do not get caught by the police!"));
 				}
 			}
 		}
@@ -78,7 +78,7 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 	}
 	if (!isPassenger && !GetVehicleEngineState(vehicleID))
 	{
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:424(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:424("Use /engine to start the engine of your vehicle."));
 	}
 	return true;
 }

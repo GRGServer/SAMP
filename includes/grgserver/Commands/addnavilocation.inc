@@ -16,7 +16,7 @@
  * </returns>
  */
 
-PCMD:addnavilocation[NAVI](playerID, params[], StringID:380(""))
+PCMD:addnavilocation[NAVI](playerID, params[], StringID:380("Save you current location as navigation target"))
 {
 	ShowDialog:AddNaviLocation_Type(playerID);
 	return COMMAND_OK;

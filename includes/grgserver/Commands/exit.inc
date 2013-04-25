@@ -1,4 +1,4 @@
-CMD:exit(playerid, params[], StringID:101(""))
+CMD:exit(playerid, params[], StringID:101("Leave the current building"))
 {
 	if (PVar:playerid[SHOWINTERIOR_OLDINTERIOR] == -1)
 	{
@@ -8,7 +8,7 @@ CMD:exit(playerid, params[], StringID:101(""))
 		}
 		else
 		{
-			SendClientMessageEx(playerid, COLOR_ERROR, StringID:61(""));
+			SendClientMessageEx(playerid, COLOR_ERROR, StringID:61("You are not in a building!"));
 			return COMMAND_ERROR;
 		}
 	}

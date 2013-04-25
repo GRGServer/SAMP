@@ -1,4 +1,4 @@
-CMD:sellvehicle(playerID, params[], StringID:488(""))
+CMD:sellvehicle(playerID, params[], StringID:488("Sell your vehicle"))
 {
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (!vehicleID)
@@ -7,7 +7,7 @@ CMD:sellvehicle(playerID, params[], StringID:488(""))
 	}
 	if (!CheckVehiclePermission(playerID, vehicleID, false))
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, StringID:487(""));
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:487("You are not the owner of this vehicle!"));
 		return COMMAND_ERROR;
 	}
 	ShowDialog:SellVehicle(playerID);

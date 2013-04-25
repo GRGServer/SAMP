@@ -14,11 +14,11 @@ ShowDialog:Accept(playerID)
 	mysql_free_result();
 	if (strlen(missionList))
 	{
-		CreateDialog(playerID, "Accept", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:163("")), missionList, LanguageString(playerID, StringID:164("")), LanguageString(playerID, StringID:165("")));
+		CreateDialog(playerID, "Accept", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:163("Accept order")), missionList, LanguageString(playerID, StringID:164("Accept")), LanguageString(playerID, StringID:165("Cancel")));
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, StringID:134(""));
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:134("There are currently no orders available for your job!"));
 	}
 }
 
@@ -31,13 +31,13 @@ DialogResponse:Accept(playerID, response, listItem, inputText[])
 		sscanf(inputText, "p<:>ds[100]", missionID, text);
 		if (strval(GetMySQLValue("missions", "acceptUserId", "id", val2str(missionID))))
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:12(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:12("This job has been already accepted by another player!"));
 		}
 		else
 		{
 			MySQLQuery("UPDATE `missions` SET `acceptUserId` = '%d' WHERE `id` = '%d'", PVar:playerID[USERID], missionID);
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:15(""));
-			SendClientMessageEx(GetPlayerByUserID(strval(GetMySQLValue("missions", "creatorUserId", "id", val2str(missionID)))), COLOR_INFO, StringID:1(""), playerID, missionID);
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:15("You have accepted the job"));
+			SendClientMessageEx(GetPlayerByUserID(strval(GetMySQLValue("missions", "creatorUserId", "id", val2str(missionID)))), COLOR_INFO, StringID:1("%p has accepted your job (Order ID: %d)"), playerID, missionID);
 			MySQLQuery("SELECT * FROM `missiondata` WHERE `missionId` = '%d' AND `name` = 'VehicleModelID'", missionID);
 			mysql_store_result();
 			// TODO: Missing code?

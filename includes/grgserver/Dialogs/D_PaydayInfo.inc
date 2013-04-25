@@ -6,10 +6,10 @@ ShowDialog:PaydayInfo(playerID)
 	new Float:amount = floatstr(GetMySQLField("amount"));
 	mysql_free_result();
 	new string[256];
-	AddLine:string(LanguageString(playerID, StringID:420("")), FormatMoney(amount));
-	AddLine:string(LanguageString(playerID, StringID:421("")), FormatTime(difference));
-	AddLine:string(LanguageString(playerID, StringID:422("")), FormatTime(PAYDAY_INTERVAL - difference));
-	CreateDialog(playerID, "PaydayInfo", DIALOG_STYLE_MSGBOX, LanguageString(playerID, StringID:423("")), string, "OK", "");
+	AddLine:string(LanguageString(playerID, StringID:420("Last net income: $%s")), FormatMoney(amount));
+	AddLine:string(LanguageString(playerID, StringID:421("Time elapsed since the last pay day: %s")), FormatTime(difference));
+	AddLine:string(LanguageString(playerID, StringID:422("Time till the next pay day: %s")), FormatTime(PAYDAY_INTERVAL - difference));
+	CreateDialog(playerID, "PaydayInfo", DIALOG_STYLE_MSGBOX, LanguageString(playerID, StringID:423("Information about the pay day")), string, "OK", "");
 }
 
 DialogResponse:PaydayInfo(playerID, response, listItem, inputText[])

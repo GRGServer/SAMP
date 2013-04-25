@@ -27,7 +27,7 @@ AddObject(playerID, modelID, filename[], copyFromCurrent = false)
 	UpdateObjectsForAllPlayers();
 
 	PlaySound(playerID, SOUND_OBJECTPLACED);
-	SendClientMessageEx(playerID, COLOR_INFO, StringID:396(""), dynamicObjects[objectID - 1][OBJECT_ID], objectModels[modelID]);
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:396("The object %d (%s) has been added and selected for editing"), dynamicObjects[objectID - 1][OBJECT_ID], objectModels[modelID]);
 
 	OnPlayerSelectDynamicObject(playerID, objectID, modelID, position[0], position[1], position[2]);
 

@@ -1,4 +1,4 @@
-CMD:line(playerID, params[], StringID:561(""))
+CMD:line(playerID, params[], StringID:561("Change bus line"))
 {
 	if (PVar:playerID[JOBID] != JOB_BUSDRIVER)
 	{
@@ -15,6 +15,6 @@ CMD:line(playerID, params[], StringID:561(""))
 		ShowDialog:BusLine(playerID);
 		return COMMAND_OK;
 	}
-	SendClientMessageEx(playerID, COLOR_ERROR, StringID:563(""));
+	SendClientMessageEx(playerID, COLOR_ERROR, StringID:563("You are not driving a bus!"));
 	return COMMAND_ERROR;
 }

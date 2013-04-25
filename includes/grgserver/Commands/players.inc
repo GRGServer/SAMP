@@ -16,14 +16,14 @@
  * </returns>
  */
 
-PCMD:players[SERVERADMIN](playerID, params[], StringID:619(""))
+PCMD:players[SERVERADMIN](playerID, params[], StringID:619("Show the number of connected players and NPCs"))
 {
 	new loggedIn;
 	LoggedInPlayers(currentPlayerID)
 	{
 		loggedIn++;
 	}
-	SendClientMessageEx(playerID, COLOR_INFO, StringID:620(""), GetConnectedPlayers(true, false), GetConnectedPlayers(false, true));
-	SendClientMessageEx(playerID, COLOR_INFO, StringID:621(""), loggedIn);
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:620("There are currently %d players and %d NPCs online"), GetConnectedPlayers(true, false), GetConnectedPlayers(false, true));
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:621("Logged in players: %d"), loggedIn);
 	return COMMAND_OK;
 }

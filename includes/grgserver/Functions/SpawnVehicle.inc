@@ -4,7 +4,7 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 	{
 		if (showMessage)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:64(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:64("The vehicle was not found!"));
 		}
 		return false;
 	}
@@ -12,7 +12,7 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 	{
 		if (showMessage)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:65(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:65("The model ID must be between 400 and 611!"));
 		}
 		return false;
 	}
@@ -20,7 +20,7 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 	{
 		if (showMessage)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:63(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:63("The color must be between 0 and 127!"));
 		}
 		return false;
 	}
@@ -35,7 +35,7 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 	{
 		if (showMessage)
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:461(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:461("The vehicle could not be spawned!"));
 		}
 		return false;
 	}
@@ -45,7 +45,7 @@ SpawnVehicle(playerID, modelID, color1, color2, showMessage)
 	PutPlayerInVehicle(playerID, vehicleID, 0);
 	if (showMessage)
 	{
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:62(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:62("The vehicle has been spawned"));
 	}
 	return true;
 }

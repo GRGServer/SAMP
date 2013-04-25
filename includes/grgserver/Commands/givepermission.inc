@@ -1,4 +1,4 @@
-PCMD:givepermission[SERVERADMIN](playerID, params[], StringID:103(""))
+PCMD:givepermission[SERVERADMIN](playerID, params[], StringID:103("Give permissions to a player"))
 {
 	new targetPlayerID;
 	new permissionString[16];
@@ -26,7 +26,7 @@ PCMD:givepermission[SERVERADMIN](playerID, params[], StringID:103(""))
 				new permissionID = GetPermissionByName(permission);
 				if (permissionID == -1)
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, StringID:381(""), permission);
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:381("Invalid permission: %s"), permission);
 				}
 				else
 				{
@@ -34,11 +34,11 @@ PCMD:givepermission[SERVERADMIN](playerID, params[], StringID:103(""))
 					{
 						if (newState)
 						{
-							SendClientMessageEx(playerID, COLOR_ERROR, StringID:70(""), targetPlayerID, permission);
+							SendClientMessageEx(playerID, COLOR_ERROR, StringID:70("%p already has the permission '%s'!"), targetPlayerID, permission);
 						}
 						else
 						{
-							SendClientMessageEx(playerID, COLOR_ERROR, StringID:71(""), targetPlayerID, permission);
+							SendClientMessageEx(playerID, COLOR_ERROR, StringID:71("%p does not have the permission '%s' so it can not be removed!"), targetPlayerID, permission);
 						}
 						return COMMAND_ERROR;
 					}
@@ -57,14 +57,14 @@ PCMD:givepermission[SERVERADMIN](playerID, params[], StringID:103(""))
 					permissions[targetPlayerID][enum_permission:permissionID] = newState;
 					if (newState)
 					{
-						SendClientMessageEx(targetPlayerID, COLOR_INFO, StringID:72(""), permission, playerID);
-						SendClientMessageEx(playerID, COLOR_INFO, StringID:73(""), permission, targetPlayerID);
+						SendClientMessageEx(targetPlayerID, COLOR_INFO, StringID:72("You got the permission '%s' from %p"), permission, playerID);
+						SendClientMessageEx(playerID, COLOR_INFO, StringID:73("You gave the permission '%s' to %p"), permission, targetPlayerID);
 						printf("%s got permission %s by %s", GetPlayerNameEx(targetPlayerID), permission, GetPlayerNameEx(playerID));
 					}
 					else
 					{
-						SendClientMessageEx(targetPlayerID, COLOR_INFO, StringID:74(""), playerID, permission);
-						SendClientMessageEx(playerID, COLOR_INFO, StringID:75(""), permission, targetPlayerID);
+						SendClientMessageEx(targetPlayerID, COLOR_INFO, StringID:74("%p has revoked the permission '%s' from you"), playerID, permission);
+						SendClientMessageEx(playerID, COLOR_INFO, StringID:75("You have revoked the permission '%s' from %p"), permission, targetPlayerID);
 						printf("%s has revoked the permission %s of %s", GetPlayerNameEx(playerID), permission, GetPlayerNameEx(targetPlayerID));
 					}
 				}

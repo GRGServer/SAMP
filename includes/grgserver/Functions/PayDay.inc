@@ -51,12 +51,12 @@ PayDay(playerID)
 			MoneyTransaction(playerID, CASHTRANS_VEHICLETAX, 0, 0, -vehicleTax);
 			MoneyTransaction(playerID, CASHTRANS_POWERTAX, 0, 0, -powerTax);
 			MoneyTransaction(playerID, CASHTRANS_PAYDAY, 0, 0, salaryWithoutTax);
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:133(""), salaryWithoutTax);
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:625(""));
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:133("It's pay day! You get %m deposited into your bank account."), salaryWithoutTax);
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:625("See /payday for more details"));
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:225(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:225("It's pay day but you can't receive money because you don't have a bank account! Get a bank account!"));
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ShowDialog:Login(playerID)
 {
-	CreateDialog(playerID, "Login", DIALOG_STYLE_PASSWORD, "Login", LanguageString(playerID, StringID:262("")), "OK", LanguageString(playerID, StringID:165("")));
+	CreateDialog(playerID, "Login", DIALOG_STYLE_PASSWORD, "Login", LanguageString(playerID, StringID:262("Please enter the password of your account.")), "OK", LanguageString(playerID, StringID:165("Cancel")));
 }
 
 DialogResponse:Login(playerID, response, listItem, inputText[])
@@ -17,7 +17,7 @@ DialogResponse:Login(playerID, response, listItem, inputText[])
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, StringID:30(""));
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:30("The entered password is wrong!"));
 				ShowDialog:Login(playerID);
 			}
 			mysql_free_result();
@@ -29,12 +29,12 @@ DialogResponse:Login(playerID, response, listItem, inputText[])
 				{
 					if (currentPlayerID != playerID)
 					{
-						SendClientMessageEx(currentPlayerID, COLOR_JOINLEAVE, StringID:7(""), playerID);
+						SendClientMessageEx(currentPlayerID, COLOR_JOINLEAVE, StringID:7("%p logged in"), playerID);
 					}
 				}
 				LoadPlayer(playerID);
 				ReloadTextDraws(playerID);
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:35(""));
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:35("You have been logged in successfully"));
 				PVar:playerID[PLAYRANDOMCAMERACUTS] = false;
 				if (PVar:playerID[INTUTORIAL])// The player is still in the tutorial (e.g. Quit game while in tutorial)
 				{
@@ -47,19 +47,19 @@ DialogResponse:Login(playerID, response, listItem, inputText[])
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, StringID:36(""));
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:36("You have to enter your password!"));
 				ShowDialog:Login(playerID);
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:36(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:36("You have to enter your password!"));
 			ShowDialog:Login(playerID);
 		}
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:37(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:37("You can now quit the game"));
 		Kick(playerID);
 	}
 	return true;

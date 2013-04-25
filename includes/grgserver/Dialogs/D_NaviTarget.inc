@@ -1,12 +1,12 @@
 ShowDialog:NaviTarget(playerID)
 {
 	new targets[2048];
-	AddLine(targets, LanguageString(playerID, StringID:173("")));// Bank
-	AddLine(targets, LanguageString(playerID, StringID:384("")));// Gas station
-	AddLine(targets, LanguageString(playerID, StringID:411("")));// Hospital
-	AddLine(targets, LanguageString(playerID, StringID:174("")));// Hotel
-	AddLine(targets, LanguageString(playerID, StringID:175("")));// House
-	AddLine(targets, LanguageString(playerID, StringID:437("")));// Vehicle upgrader
+	AddLine(targets, LanguageString(playerID, StringID:173("Bank")));// Bank
+	AddLine(targets, LanguageString(playerID, StringID:384("Gas station")));// Gas station
+	AddLine(targets, LanguageString(playerID, StringID:411("Hospital")));// Hospital
+	AddLine(targets, LanguageString(playerID, StringID:174("Hotel")));// Hotel
+	AddLine(targets, LanguageString(playerID, StringID:175("House")));// House
+	AddLine(targets, LanguageString(playerID, StringID:437("Vehicle upgrader")));// Vehicle upgrader
 	MySQLQuery("SELECT `name` FROM `navigationlocationtypes` ORDER BY `name` ASC");
 	mysql_store_result();
 	while (FetchMySQLRow())
@@ -25,9 +25,9 @@ ShowDialog:NaviTarget(playerID)
 		AddLine(targets, string);
 	}
 	mysql_free_result();
-	AddLine(targets, LanguageString(playerID, StringID:342("")));// Target on map
-	AddLine(targets, LanguageString(playerID, StringID:417("")));// Name of a property
-	CreateDialog(playerID, "NaviTarget", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:247("")), targets, "OK", LanguageString(playerID, StringID:165("")));
+	AddLine(targets, LanguageString(playerID, StringID:342("Target on map")));// Target on map
+	AddLine(targets, LanguageString(playerID, StringID:417("Name of a property")));// Name of a property
+	CreateDialog(playerID, "NaviTarget", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:247("Select target")), targets, "OK", LanguageString(playerID, StringID:165("Cancel")));
 }
 
 DialogResponse:NaviTarget(playerID, response, listItem, inputText[])
@@ -41,27 +41,27 @@ DialogResponse:NaviTarget(playerID, response, listItem, inputText[])
 		distanceCalcArray[index][DISTANCECALC_DISTANCE] = 6000.0;
 	}
 	new pickupType[STRINGLENGTH_PICKUPTYPE];
-	if (IsStr(inputText, LanguageString(playerID, StringID:173(""))))// Bank
+	if (IsStr(inputText, LanguageString(playerID, StringID:173("Bank"))))// Bank
 	{
 		strcat(pickupType, "BANK");
 	}
-	if (IsStr(inputText, LanguageString(playerID, StringID:384(""))))// Gas station
+	if (IsStr(inputText, LanguageString(playerID, StringID:384("Gas station"))))// Gas station
 	{
 		strcat(pickupType, "GASSTATION");
 	}
-	if (IsStr(inputText, LanguageString(playerID, StringID:411(""))))// Hospital
+	if (IsStr(inputText, LanguageString(playerID, StringID:411("Hospital"))))// Hospital
 	{
 		strcat(pickupType, "HOSPITAL");
 	}
-	if (IsStr(inputText, LanguageString(playerID, StringID:174(""))))// Hotel
+	if (IsStr(inputText, LanguageString(playerID, StringID:174("Hotel"))))// Hotel
 	{
 		strcat(pickupType, "HOTEL");
 	}
-	if (IsStr(inputText, LanguageString(playerID, StringID:175(""))))// House
+	if (IsStr(inputText, LanguageString(playerID, StringID:175("House"))))// House
 	{
 		strcat(pickupType, "HOUSE");
 	}
-	if (IsStr(inputText, LanguageString(playerID, StringID:437(""))))// Vehicle upgrader
+	if (IsStr(inputText, LanguageString(playerID, StringID:437("Vehicle upgrader"))))// Vehicle upgrader
 	{
 		strcat(pickupType, "UPGRADEVEHICLE");
 	}
@@ -89,7 +89,7 @@ DialogResponse:NaviTarget(playerID, response, listItem, inputText[])
 		return true;
 	}
 	new Float:target[3];
-	if (IsStr(inputText, LanguageString(playerID, StringID:342(""))))// Target on map
+	if (IsStr(inputText, LanguageString(playerID, StringID:342("Target on map"))))// Target on map
 	{
 		if (PVar:playerID[MAP_POSX] && PVar:playerID[MAP_POSY] && PVar:playerID[MAP_POSZ])
 		{
@@ -99,11 +99,11 @@ DialogResponse:NaviTarget(playerID, response, listItem, inputText[])
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:264(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:264("You have not selected the target on your map!"));
 			return false;
 		}
 	}
-	if (IsStr(inputText, LanguageString(playerID, StringID:417(""))))// Name of a property
+	if (IsStr(inputText, LanguageString(playerID, StringID:417("Name of a property"))))// Name of a property
 	{
 		ShowDialog:NaviTarget_PropertyName(playerID);
 		return true;
@@ -145,16 +145,16 @@ DialogResponse:NaviTarget(playerID, response, listItem, inputText[])
 	{
 		if (CalculateRoute(playerID, target[0], target[1], target[2]))
 		{
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:414(""));
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:414("Calculating route"));
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:415(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:415("No GPS!"));
 		}
 	}
 	else
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, StringID:343(""));
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:343("No target found!"));
 	}
 	return true;
 }

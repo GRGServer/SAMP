@@ -16,17 +16,17 @@ PickupEvent:GASSTATION(playerID, pickupID, eventType)
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, StringID:140(""));
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:140("The tank is already full!"));
 				}
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, StringID:146(""));
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:146("You are not in a vehicle!"));
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:146(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:146("You are not in a vehicle!"));
 		}
 		return true;
 	}

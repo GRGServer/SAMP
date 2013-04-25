@@ -1,7 +1,7 @@
 ShowDialog:Hospital(playerID)
 {
-	FormatNew:options[50]("%s\n%s", LanguageString(playerID, StringID:217("")), LanguageString(playerID, StringID:218("")));
-	CreateDialog(playerID, "Hospital", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:221("")), options, LanguageString(playerID, StringID:177("")), LanguageString(playerID, StringID:165("")));
+	FormatNew:options[50]("%s\n%s", LanguageString(playerID, StringID:217("Accept job")), LanguageString(playerID, StringID:218("Cancel job")));
+	CreateDialog(playerID, "Hospital", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:221("Ambulance")), options, LanguageString(playerID, StringID:177("Next")), LanguageString(playerID, StringID:165("Cancel")));
 }
 
 DialogResponse:Hospital(playerID, response, listItem, inputText[])

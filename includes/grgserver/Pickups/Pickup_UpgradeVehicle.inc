@@ -12,12 +12,12 @@ PickupEvent:UPGRADEVEHICLE(playerID, pickupID, eventType)
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, StringID:52(""));
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:52("You are not the driver of this vehicle!"));
 				}
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, StringID:146(""));
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:146("You are not in a vehicle!"));
 			}
 			return true;
 		}

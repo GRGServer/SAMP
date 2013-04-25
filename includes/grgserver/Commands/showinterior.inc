@@ -1,8 +1,8 @@
-PCMD:showinterior[TELEPORT](playerid, params[], StringID:119(""))
+PCMD:showinterior[TELEPORT](playerid, params[], StringID:119("Teleport to an interior"))
 {
 	if (PVar:playerid[CURRENTPROPERTYID])
 	{
-		SendClientMessageEx(playerid, COLOR_ERROR, StringID:56(""));
+		SendClientMessageEx(playerid, COLOR_ERROR, StringID:56("You are currently in a building! Please exit the building and try it again."));
 		return COMMAND_ERROR;
 	}
 	else

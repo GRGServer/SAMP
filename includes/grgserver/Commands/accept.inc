@@ -1,4 +1,4 @@
-CMD:accept(playerID, params[], StringID:94(""))
+CMD:accept(playerID, params[], StringID:94("Accept a job"))
 {
 	switch (PVar:playerID[JOBID])
 	{

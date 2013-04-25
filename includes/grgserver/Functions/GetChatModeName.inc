@@ -7,11 +7,11 @@ GetChatModeName(playerID, chatMode[])
 	}
 	if (IsStr(chatMode, "ALL"))
 	{
-		strcat(name, LanguageString(playerID, StringID:310("")));
+		strcat(name, LanguageString(playerID, StringID:310("All")));
 	}
 	if (IsStr(chatMode, "INRANGE"))
 	{
-		strcat(name, LanguageString(playerID, StringID:311("")));
+		strcat(name, LanguageString(playerID, StringID:311("In range (max 100m)")));
 	}
 	if (IsStr(chatMode, "JOB"))
 	{
@@ -19,7 +19,7 @@ GetChatModeName(playerID, chatMode[])
 	}
 	if (IsStr(chatMode, "PLAYER"))
 	{
-		strcat(name, LanguageString(playerID, StringID:178("")));
+		strcat(name, LanguageString(playerID, StringID:178("Player")));
 	}
 	return name;
 }

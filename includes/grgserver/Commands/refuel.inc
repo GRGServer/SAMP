@@ -1,4 +1,4 @@
-CMD:refuel(playerID, params[], StringID:297(""))
+CMD:refuel(playerID, params[], StringID:297("Refill vehicle"))
 {
 	if (PVar:playerID[JOBID] == JOB_ADAC)
 	{
@@ -19,13 +19,13 @@ CMD:refuel(playerID, params[], StringID:297(""))
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, StringID:300(""), targetPlayerID);
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:300("%p is not in any vehicle"), targetPlayerID);
 				return COMMAND_ERROR;
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:300(""), targetPlayerID);
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:300("%p is not in any vehicle"), targetPlayerID);
 			return COMMAND_ERROR;
 		}
 	}

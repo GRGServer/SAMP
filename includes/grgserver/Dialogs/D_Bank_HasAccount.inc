@@ -1,11 +1,11 @@
 ShowDialog:Bank_HasAccount(playerID)
 {
 	new options[1024];
-	AddLine(options, LanguageString(playerID, StringID:206("")));// Bank balance
-	AddLine(options, LanguageString(playerID, StringID:207("")));// Withdraw money
-	AddLine(options, LanguageString(playerID, StringID:208("")));// Deposit money
-	AddLine(options, LanguageString(playerID, StringID:209("")));// Cancel account
-	CreateDialog(playerID, "Bank_HasAccount", DIALOG_STYLE_LIST, "Bank", options, "OK", LanguageString(playerID, StringID:165("")));
+	AddLine(options, LanguageString(playerID, StringID:206("Bank balance")));// Bank balance
+	AddLine(options, LanguageString(playerID, StringID:207("Withdraw money")));// Withdraw money
+	AddLine(options, LanguageString(playerID, StringID:208("Deposit money")));// Deposit money
+	AddLine(options, LanguageString(playerID, StringID:209("Cancel account")));// Cancel account
+	CreateDialog(playerID, "Bank_HasAccount", DIALOG_STYLE_LIST, "Bank", options, "OK", LanguageString(playerID, StringID:165("Cancel")));
 }
 
 DialogResponse:Bank_HasAccount(playerID, response, listItem, inputText[])
@@ -16,7 +16,7 @@ DialogResponse:Bank_HasAccount(playerID, response, listItem, inputText[])
 		{
 			case 0:// Bank balance
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:23(""), GetBankMoney(playerID));
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:23("Your current bank balance is %m"), GetBankMoney(playerID));
 				ShowDialog:Bank_HasAccount(playerID);
 			}
 			case 1:// Withdraw money
@@ -33,7 +33,7 @@ DialogResponse:Bank_HasAccount(playerID, response, listItem, inputText[])
 				ShowDialog:Bank_PINWRITE(playerID);
 				if (GetBankMoney(playerID) > 0)
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, StringID:215(""));
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:215("Your bank account must be empty in order to cancel your account."));
 					ShowDialog:Bank_HasAccount(playerID);
 				}
 				else

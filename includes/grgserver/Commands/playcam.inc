@@ -1,4 +1,4 @@
-CMD:playcam(playerID, params[], StringID:0(""))
+CMD:playcam(playerID, params[], StringID:0("Undefined language string ID!"))
 {
 	new Float:startPosX;
 	new Float:startPosY;

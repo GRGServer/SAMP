@@ -1,4 +1,4 @@
-CMD:me(playerid, params[], StringID:109(""))
+CMD:me(playerid, params[], StringID:109("Say what you do (e.g. '/me follows an admin' will be shown to all players as '* <Your name> follows an admin')"))
 {
 	if (strlen(params))
 	{

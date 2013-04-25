@@ -24,10 +24,18 @@ ReloadLanguageStrings(playerID = INVALID_PLAYER_ID)
 			translationNode = XML_GetFirstChild(stringNode, "en");
 			if (translationNode)
 			{
-				XML_GetValue(XML_GetFirstChild(translationNode), value);
-				value = str_replace("\\n", "\n", value);
-				value = str_replace("\\t", "\t", value);
-				strcat(languageStrings[stringID][LANGUAGESTRING_ENGLISH], value, STRINGLENGTH_LANGUAGESTRING);
+				new XMLNode:textNode = XML_GetFirstChild(translationNode);
+				if (textNode)
+				{
+					XML_GetValue(textNode, value);
+					value = str_replace("\\n", "\n", value);
+					value = str_replace("\\t", "\t", value);
+					strcat(languageStrings[stringID][LANGUAGESTRING_ENGLISH], value, STRINGLENGTH_LANGUAGESTRING);
+				}
+				else
+				{
+					AdminPrint(playerID, COLOR_ERROR, "  en-Element of string %d is empty!", stringID);
+				}
 			}
 			else
 			{
@@ -36,10 +44,18 @@ ReloadLanguageStrings(playerID = INVALID_PLAYER_ID)
 			translationNode = XML_GetFirstChild(stringNode, "de");
 			if (translationNode)
 			{
-				XML_GetValue(XML_GetFirstChild(translationNode), value);
-				value = str_replace("\\n", "\n", value);
-				value = str_replace("\\t", "\t", value);
-				strcat(languageStrings[stringID][LANGUAGESTRING_GERMAN], value, STRINGLENGTH_LANGUAGESTRING);
+				new XMLNode:textNode = XML_GetFirstChild(translationNode);
+				if (textNode)
+				{
+					XML_GetValue(textNode, value);
+					value = str_replace("\\n", "\n", value);
+					value = str_replace("\\t", "\t", value);
+					strcat(languageStrings[stringID][LANGUAGESTRING_GERMAN], value, STRINGLENGTH_LANGUAGESTRING);
+				}
+				else
+				{
+					AdminPrint(playerID, COLOR_ERROR, "  en-Element of string %d is empty!", stringID);
+				}
 			}
 			else
 			{

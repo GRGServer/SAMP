@@ -21,10 +21,10 @@ PickupEvent:HOTEL(playerID, pickupID, eventType)
 			{
 				if (!ShowDialog:Hotel_RoomList(playerID))
 				{
-					SendClientMessageEx(playerID, COLOR_INFO, StringID:314(""));
+					SendClientMessageEx(playerID, COLOR_INFO, StringID:314("There are currently no rooms available"));
 					if (permissions[playerID][PERMISSION_MAPPER])
 					{
-						SendClientMessageEx(playerID, COLOR_INFO, StringID:322(""));
+						SendClientMessageEx(playerID, COLOR_INFO, StringID:322("You have the permission 'MAPPER' and are now able to add hotel rooms using /addhotelroom"));
 					}
 					else
 					{
@@ -38,7 +38,7 @@ PickupEvent:HOTEL(playerID, pickupID, eventType)
 		{
 			if (permissions[playerID][PERMISSION_MAPPER])
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:338(""));
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:338("Press ~k~~SNEAK_ABOUT~ to select the property linked to this pickup"));
 			}
 			return false;
 		}

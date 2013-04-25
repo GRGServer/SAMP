@@ -1,4 +1,4 @@
-CMD:language(playerid, params[], StringID:8(""))
+CMD:language(playerid, params[], StringID:8("Switch language"))
 {
 	if (PVar:playerid[LANGUAGE] == LANGUAGE_ENGLISH)
 	{
@@ -9,6 +9,6 @@ CMD:language(playerid, params[], StringID:8(""))
 		PVar:playerid[LANGUAGE] = LANGUAGE_ENGLISH;
 	}
 	ReloadTextDraws(playerid);
-	SendClientMessageEx(playerid, COLOR_INFO, StringID:24(""));
+	SendClientMessageEx(playerid, COLOR_INFO, StringID:24("Your language has been switched"));
 	return COMMAND_OK;
 }

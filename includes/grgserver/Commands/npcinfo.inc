@@ -1,4 +1,4 @@
-PCMD:npcinfo[NPCADMIN](playerID, params[], StringID:573(""))
+PCMD:npcinfo[NPCADMIN](playerID, params[], StringID:573("Show information about a NPC"))
 {
 	new npcPlayerID;
 	if (sscanf(params, "u", npcPlayerID))
@@ -12,9 +12,9 @@ PCMD:npcinfo[NPCADMIN](playerID, params[], StringID:573(""))
 	}
 	if (!IsPlayerNPC(npcPlayerID))
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, StringID:571(""), npcPlayerID);
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:571("%p is not a NPC!"), npcPlayerID);
 		return COMMAND_ERROR;
 	}
-	SendClientMessageEx(playerID, COLOR_INFO, StringID:572(""), FormatNumber(PVar:npcPlayerID[NPC_RECORDINGLENGTH]));
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:572("Last recording length: %s seconds"), FormatNumber(PVar:npcPlayerID[NPC_RECORDINGLENGTH]));
 	return COMMAND_OK;
 }

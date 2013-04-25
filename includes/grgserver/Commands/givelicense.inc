@@ -1,4 +1,4 @@
-CMD:givelicense(playerID, params[], StringID:511(""))
+CMD:givelicense(playerID, params[], StringID:511("Give license to a player"))
 {
 	new targetPlayerID;
 	new licenseString[256];
@@ -25,24 +25,24 @@ CMD:givelicense(playerID, params[], StringID:511(""))
 			{
 				if (newState)
 				{
-					SendClientMessageEx(targetPlayerID, COLOR_INFO, StringID:513(""), GetLicenseLanguageStringID(license));
-					SendClientMessageEx(playerID, COLOR_INFO, StringID:535(""), GetLicenseLanguageStringID(license), targetPlayerID);
+					SendClientMessageEx(targetPlayerID, COLOR_INFO, StringID:513("You got a %l!"), GetLicenseLanguageStringID(license));
+					SendClientMessageEx(playerID, COLOR_INFO, StringID:535("You gave a %l to %p"), GetLicenseLanguageStringID(license), targetPlayerID);
 				}
 				else
 				{
-					SendClientMessageEx(targetPlayerID, COLOR_INFO, StringID:537(""), GetLicenseLanguageStringID(license));
-					SendClientMessageEx(playerID, COLOR_INFO, StringID:536(""), GetLicenseLanguageStringID(license), targetPlayerID);
+					SendClientMessageEx(targetPlayerID, COLOR_INFO, StringID:537("Your %l has been revoked!"), GetLicenseLanguageStringID(license));
+					SendClientMessageEx(playerID, COLOR_INFO, StringID:536("You revoked the %l from %p!"), GetLicenseLanguageStringID(license), targetPlayerID);
 				}
 			}
 			else
 			{
 				if (newState)
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, StringID:512(""), targetPlayerID, GetLicenseLanguageStringID(license));
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:512("%p already owns that license (%l)!"), targetPlayerID, GetLicenseLanguageStringID(license));
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, StringID:538(""), targetPlayerID, GetLicenseLanguageStringID(license));
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:538("%p does not own a %l!"), targetPlayerID, GetLicenseLanguageStringID(license));
 				}
 			}
 		}

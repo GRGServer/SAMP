@@ -1,4 +1,4 @@
-CMD:siren(playerID, params[], StringID:0(""))
+CMD:siren(playerID, params[], StringID:0("Undefined language string ID!"))
 {
 	new vehicleID = GetPlayerVehicleID(playerID);
 	if (!vehicleID)

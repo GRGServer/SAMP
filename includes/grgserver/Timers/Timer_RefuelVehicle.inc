@@ -43,16 +43,16 @@ Timer:RefuelVehicle(playerID, Float:totalAmount)
 					SetTimerEx("Timer_RefuelVehicle", GASSTATION_REFUELSPEED, false, "df", playerID, floatsub(totalAmount, amount));
 					return true;
 				}
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:91(""));
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:91("Your vehicle has been refueled."));
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, StringID:146(""));
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:146("You are not in a vehicle!"));
 			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:92(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:92("You have not enough money!"));
 		}
 	}
 	TogglePlayerControllable(playerID, true);

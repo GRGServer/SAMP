@@ -1,4 +1,4 @@
-CMD:cmds(playerID, params[], StringID:93(""))
+CMD:cmds(playerID, params[], StringID:93("Show a list with command"))
 {
 	if (fexist(FILE_COMMANDS))
 	{
@@ -41,7 +41,7 @@ CMD:cmds(playerID, params[], StringID:93(""))
 				SendClientMessage(playerID, COLOR_INFO, string);
 			}
 		}
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:522(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:522("Tip: Use /alias to create an alias of a command"));
 		return COMMAND_OK;
 	}
 	else

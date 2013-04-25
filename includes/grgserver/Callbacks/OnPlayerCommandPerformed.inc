@@ -32,15 +32,15 @@ OnPlayerCommandPerformed(playerID, command[], parameters[], returnCode, isAlias)
 		case COMMAND_ERROR:
 		{
 			PlaySound(playerID, SOUND_COMMAND_ERROR);
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:143(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:143("An error occurred while processing the command!"));
 		}
 		case COMMAND_NOT_FOUND:
 		{
 			if (isAlias)
 			{
 				PlaySound(playerID, SOUND_COMMAND_ERROR);
-				SendClientMessageEx(playerID, COLOR_ERROR, StringID:520(""), command);
-				SendClientMessageEx(playerID, COLOR_ERROR, StringID:82(""));
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:520("The aliased command %s was not found!"), command);
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:82("Use /cmds to see a list of commands"));
 			}
 			else
 			{
@@ -73,18 +73,18 @@ OnPlayerCommandPerformed(playerID, command[], parameters[], returnCode, isAlias)
 				else
 				{
 					PlaySound(playerID, SOUND_COMMAND_ERROR);
-					SendClientMessageEx(playerID, COLOR_ERROR, StringID:521(""));
-					SendClientMessageEx(playerID, COLOR_ERROR, StringID:82(""));
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:521("Command not found!"));
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:82("Use /cmds to see a list of commands"));
 				}
 			}
 		}
 		case COMMAND_NOT_IN_VEHICLE:
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:146(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:146("You are not in a vehicle!"));
 		}
 		case COMMAND_NPC_ONLY:
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:145(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:145("This command is only available for NPCs!"));
 		}
 		case COMMAND_OK:
 		{
@@ -97,16 +97,16 @@ OnPlayerCommandPerformed(playerID, command[], parameters[], returnCode, isAlias)
 		case COMMAND_PERMISSION_DENIED:
 		{
 			PlaySound(playerID, SOUND_COMMAND_DENIED);
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:148(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:148("You do not have the required permissions to use this command!"));
 			printf("%s tried to execute /%s but has not the required permission!", GetPlayerNameEx(playerID), command);
 		}
 		case COMMAND_PLAYER_NOT_FOUND:
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:147(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:147("Player not found!"));
 		}
 		case COMMAND_TELEPORTED:
 		{
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:144(""));
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:144("You got teleported"));
 		}
 		case COMMAND_USAGE:
 		{

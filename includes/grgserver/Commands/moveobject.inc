@@ -1,4 +1,4 @@
-PCMD:moveobject[MAPPER](playerID, params[], StringID:0(""))
+PCMD:moveobject[MAPPER](playerID, params[], StringID:0("Undefined language string ID!"))
 {
 	new objectID;
 	new direction;
@@ -11,12 +11,12 @@ PCMD:moveobject[MAPPER](playerID, params[], StringID:0(""))
 	{
 		case -2:
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:466(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:466("No target position set! Use /setobjectmovepos to set the position."));
 			return COMMAND_ERROR;
 		}
 		case -1:
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:427(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:427("Object not found!"));
 			return COMMAND_ERROR;
 		}
 		case true:

@@ -1,4 +1,4 @@
-PCMD:reloadplayer[ADMIN](playerid, params[], StringID:117(""))
+PCMD:reloadplayer[ADMIN](playerid, params[], StringID:117("Reload the data of a player from the database"))
 {
 	new targetPlayerID;
 	if (sscanf(params, "u", targetPlayerID))

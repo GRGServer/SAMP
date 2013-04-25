@@ -12,7 +12,7 @@ ShowDialog:GiveWeapon(playerID)
 			Format:weaponList("%s%d: %s", weaponList, weaponID, weapons[weaponID][WEAPON_NAME]);
 		}
 	}
-	CreateDialog(playerID, "GiveWeapon", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:361("")), weaponList, "OK", LanguageString(playerID, StringID:165("")));
+	CreateDialog(playerID, "GiveWeapon", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:361("Select a weapon")), weaponList, "OK", LanguageString(playerID, StringID:165("Cancel")));
 }
 
 DialogResponse:GiveWeapon(playerID, response, listItem, inputText[])
@@ -24,11 +24,11 @@ DialogResponse:GiveWeapon(playerID, response, listItem, inputText[])
 		sscanf(inputText, "p<:>ds[" #STRINGLENGTH_WEAPONNAME "]", weaponID, name);
 		if (GivePlayerWeaponEx(playerID, weaponID))
 		{
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:69(""), weapons[weaponID][WEAPON_NAME]);
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:69("Have fun with your new weapon (%s)!"), weapons[weaponID][WEAPON_NAME]);
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:68(""));
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:68("Invalid WeaponID!"));
 		}
 	}
 }

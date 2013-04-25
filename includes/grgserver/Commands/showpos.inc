@@ -1,4 +1,4 @@
-PCMD:showpos[ADMIN](playerID, params[], StringID:412(""))
+PCMD:showpos[ADMIN](playerID, params[], StringID:412("Show/Hide your current position"))
 {
 	if (PVar:playerID[SHOWPOS])
 	{

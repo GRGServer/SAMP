@@ -1,4 +1,4 @@
-PCMD:setjob[MAPPER](playerID, params[], StringID:609(""))
+PCMD:setjob[MAPPER](playerID, params[], StringID:609("Link the current vehicle to a job"))
 {
 	if (!IsPlayerInAnyVehicle(playerID))
 	{

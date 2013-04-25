@@ -1,6 +1,6 @@
 ShowDialog:NaviTarget_PropertyName(playerID)
 {
-	CreateDialog(playerID, "NaviTarget_PropertyName", DIALOG_STYLE_INPUT, LanguageString(playerID, StringID:417("")), LanguageString(playerID, StringID:418("")), "OK", LanguageString(playerID, StringID:171("")));
+	CreateDialog(playerID, "NaviTarget_PropertyName", DIALOG_STYLE_INPUT, LanguageString(playerID, StringID:417("Name of a property")), LanguageString(playerID, StringID:418("Enter the name of the target house.")), "OK", LanguageString(playerID, StringID:171("Back")));
 }
 
 DialogResponse:NaviTarget_PropertyName(playerID, response, listItem, inputText[])
@@ -16,11 +16,11 @@ DialogResponse:NaviTarget_PropertyName(playerID, response, listItem, inputText[]
 			{
 				if (CalculateRoute(playerID, floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ"))))
 				{
-					SendClientMessageEx(playerID, COLOR_INFO, StringID:414(""));
+					SendClientMessageEx(playerID, COLOR_INFO, StringID:414("Calculating route"));
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, StringID:415(""));
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:415("No GPS!"));
 				}
 			}
 			else

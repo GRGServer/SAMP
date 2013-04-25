@@ -1,4 +1,4 @@
-PCMD:checkpermissions[ADMIN](playerid, params[], StringID:99(""))
+PCMD:checkpermissions[ADMIN](playerid, params[], StringID:99("Show the permissions of yourself or another player"))
 {
 	new targetPlayerID;
 	new string[1024];
@@ -21,11 +21,11 @@ PCMD:checkpermissions[ADMIN](playerid, params[], StringID:99(""))
 		}
 		if (targetPlayerID == playerid)
 		{
-			SendClientMessageEx(playerid, COLOR_INFO, StringID:59(""), string);
+			SendClientMessageEx(playerid, COLOR_INFO, StringID:59("You have the following permissions: %s"), string);
 		}
 		else
 		{
-			SendClientMessageEx(playerid, COLOR_INFO, StringID:60(""), targetPlayerID, string);
+			SendClientMessageEx(playerid, COLOR_INFO, StringID:60("%p has the following permissions: %s"), targetPlayerID, string);
 		}
 		return COMMAND_OK;
 	}

@@ -17,7 +17,7 @@ TogglePlayerVehicleEngine(playerID)
 {
 	if (GetPlayerState(playerID) != PLAYER_STATE_DRIVER)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, StringID:52(""));
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:52("You are not the driver of this vehicle!"));
 		return false;
 	}
 	new vehicleID = GetPlayerVehicleID(playerID);
@@ -28,7 +28,7 @@ TogglePlayerVehicleEngine(playerID)
 	if (GetVehicleEngineState(vehicleID))
 	{
 		SetVehicleEngineState(vehicleID, false);
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:53(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:53("The engine of your vehicle has been turned off."));
 		return true;
 	}
 	new Float:health;
@@ -40,9 +40,9 @@ TogglePlayerVehicleEngine(playerID)
 		{
 			PlayRadioStation(playerID, VehicleProperty:vehicleID[RADIOSTATIONID]);
 		}
-		SendClientMessageEx(playerID, COLOR_INFO, StringID:54(""));
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:54("The engine of your vehicle has been turned on."));
 		return true;
 	}
-	SendClientMessageEx(playerID, COLOR_ERROR, StringID:55(""));
+	SendClientMessageEx(playerID, COLOR_ERROR, StringID:55("The engine of your vehicle could not be started (Engine damaged)!"));
 	return false;
 }

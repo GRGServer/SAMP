@@ -1,4 +1,4 @@
-CMD:privatemessage(playerID, params[], StringID:409(""))
+CMD:privatemessage(playerID, params[], StringID:409("Send a private message to another player"))
 {
 	new targetPlayerID;
 	new message[128];
@@ -13,7 +13,7 @@ CMD:privatemessage(playerID, params[], StringID:409(""))
 	}
 	if (playerID == targetPlayerID)
 	{
-		SendClientMessageEx(playerID, COLOR_ERROR, StringID:454(""));
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:454("What sense does it make to send yourself a private message?"));
 		return COMMAND_ERROR;
 	}
 	SendMessageToChannel(playerID, "PLAYER", message, targetPlayerID);

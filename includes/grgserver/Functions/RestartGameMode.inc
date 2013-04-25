@@ -23,10 +23,10 @@ RestartGameMode(playerID, reason[])
 		SavePlayer(currentPlayerID);
 		if (currentPlayerID != playerID)
 		{
-			SendClientMessageEx(currentPlayerID, COLOR_INFO, StringID:43(""), playerID, reason);
+			SendClientMessageEx(currentPlayerID, COLOR_INFO, StringID:43("%p has restarted the game mode: %s"), playerID, reason);
 		}
 	}
-	SendClientMessageEx(playerID, COLOR_INFO, StringID:42(""), reason);
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:42("You have restarted the game mode: %s"), reason);
 	printf("%s has restarted the gamemode: %s", GetPlayerNameEx(playerID), reason);
 	SendRconCommand("gmx");
 }

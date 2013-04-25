@@ -19,15 +19,15 @@ ShowDialog:AddNaviLocation_Type(playerID)
 		AddLine(options, string);
 	}
 	mysql_free_result();
-	AddLine(options, LanguageString(playerID, StringID:378("")));
-	CreateDialog(playerID, "AddNaviLocation_Type", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:377("")), options, "OK", LanguageString(playerID, StringID:165("")));
+	AddLine(options, LanguageString(playerID, StringID:378("Add new type")));
+	CreateDialog(playerID, "AddNaviLocation_Type", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:377("Select location type")), options, "OK", LanguageString(playerID, StringID:165("Cancel")));
 }
 
 DialogResponse:AddNaviLocation_Type(playerID, response, listItem, inputText[])
 {
 	if (response)
 	{
-		if (IsStr(inputText, LanguageString(playerID, StringID:378(""))))
+		if (IsStr(inputText, LanguageString(playerID, StringID:378("Add new type"))))
 		{
 			ShowDialog:AddNaviLocation_NewType(playerID);
 		}
@@ -41,11 +41,11 @@ DialogResponse:AddNaviLocation_Type(playerID, response, listItem, inputText[])
 				new Float:posZ;
 				GetPlayerPos(playerID, posX, posY, posZ);
 				MySQLQuery("INSERT INTO `navigationlocations` (`type`, `posX`, `posY`, `posZ`) VALUES('%d', '%f', '%f', '%f')", typeID, posX, posY, posZ);
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:383(""));
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:383("The location has been added"));
 			}
 			else
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, StringID:143(""));
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:143("An error occurred while processing the command!"));
 			}
 		}
 	}
