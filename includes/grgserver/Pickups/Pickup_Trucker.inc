@@ -6,7 +6,7 @@ PickupEvent:TRUCKER(playerID, pickupID, eventType)
 		{
 			if (PVar:playerID[JOBID] == JOB_TRUCKER)
 			{
-				ShowDialog:Trucker_Options(playerID);// TODO: Recreate dialogs
+				//ShowDialog:Trucker_Options(playerID);// TODO: Recreate dialogs
 			}
 			else
 			{
