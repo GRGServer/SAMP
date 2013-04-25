@@ -18,6 +18,6 @@
 
 CMD:about(playerID, params[], StringID:86("Information about this script"))
 {
-	SendClientMessageEx(playerID, COLOR_INFO, StringID:-1("Created by Aerox_Tobi (aerox@grgserver.net) and Programie (programie@selfcoders.com)"));
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:85("Created by Aerox_Tobi (aerox@grgserver.net) and Programie (programie@selfcoders.com)"));
 	return COMMAND_OK;
 }
