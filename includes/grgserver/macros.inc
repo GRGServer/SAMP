@@ -61,6 +61,10 @@ for (new i_%0 = 0; ; ++i_%0) \
 // IsStr(string1, string2)
 #define IsStr(%0,%1) (strlen(%0) && strlen(%1) && !strcmp(%0, %1, true))
 
+// LanguageStringLimit(number)
+// Language String Editor searches for this and replaces the number with the required number of strings
+#define LanguageStringLimit(%0) %0
+
 // LoadPermission:permissionField(playerID, tableField)
 #define LoadPermission:%0(%1,%2) permissions[%1][PERMISSION_%0] = strval(GetMySQLField(%2))
 

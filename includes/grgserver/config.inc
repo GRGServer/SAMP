@@ -95,7 +95,7 @@
 #define MAX_DYNAMIC_OBJECTS				15000
 #define MAX_FUNCTION_NAME				32
 #define MAX_GPS_NODES					500
-#define MAX_LANGUAGE_STRINGS				700
+#define MAX_LANGUAGE_STRINGS				LanguageStringLimit(700)
 #define MAX_MONEY					100000.00
 #define MAX_NAVITARGETS					10// Number of selectable navi targets
 #define MAX_NPC_MULTIRECS				10// Number of recordings asigned to a MultiRec NPC
