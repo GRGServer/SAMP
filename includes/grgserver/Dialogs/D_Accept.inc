@@ -1,7 +1,7 @@
 ShowDialog:Accept(playerID)
 {
 	new missionList[2048];
-	MySQLQuery("SELECT * FROM `missions` WHERE `jobId` = '%d' AND `acceptUserId` = '0' ORDER BY `id` ASC", PVar:playerID[JOBID]);
+	MySQLQuery("SELECT * FROM `missions` WHERE `missionjobId` = '%d' AND `acceptUserId` = '0' ORDER BY `id` ASC", PVar:playerID[JOBID]);
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
