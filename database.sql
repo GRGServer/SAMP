@@ -169,33 +169,6 @@ CREATE TABLE `news` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
-CREATE TABLE `npcmultirecs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `npcId` int(11) NOT NULL,
-  `recording` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `Name` (`recording`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
-
-CREATE TABLE `npcs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(24) NOT NULL,
-  `skin` int(11) NOT NULL,
-  `recording` varchar(200) NOT NULL,
-  `vehicleId` int(11) NOT NULL,
-  `spawnPosX` float NOT NULL,
-  `spawnPosY` float NOT NULL,
-  `spawnPosZ` float NOT NULL,
-  `spawnAngle` float NOT NULL,
-  `groupId` int(11) NOT NULL,
-  `startDelay` int(11) NOT NULL,
-  `startOnConnect` tinyint(1) NOT NULL,
-  `autoRepeat` tinyint(1) NOT NULL,
-  `autoConnect` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `Name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
-
 CREATE TABLE `originalvehicles` (
   `id` int(11) NOT NULL,
   `modelId` int(11) NOT NULL,
