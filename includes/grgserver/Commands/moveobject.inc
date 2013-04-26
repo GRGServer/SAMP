@@ -1,4 +1,4 @@
-PCMD:moveobject[MAPPER](playerID, params[], StringID:0("Undefined language string ID!"))
+PCMD:moveobject[MAPPER](playerID, params[], StringID:11("Move the specified object to the target"))
 {
 	new objectID;
 	new direction;

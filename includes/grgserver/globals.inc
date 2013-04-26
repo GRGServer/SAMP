@@ -6,6 +6,7 @@ new languageStrings[MAX_LANGUAGE_STRINGS][enum_languageString];
 new maxPlayers;
 new naviTargets[MAX_PLAYERS][MAX_NAVITARGETS][enum_naviTarget];
 new nextDynamicObjectID;
+new npcs[MAX_NPCS][enum_npc];
 new objectModels[MAX_OBJECTMODELID][STRINGLENGTH_OBJECTMODELNAME];
 new oldHour = -1;
 new oldMinute = -1;

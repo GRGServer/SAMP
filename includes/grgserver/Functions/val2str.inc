@@ -1,5 +1,6 @@
-stock val2str(value)
+val2str(value)
 {
-	FormatNew:string[30]("%d", value);
+	new string[30];
+	valstr(string, value);
 	return string;
 }

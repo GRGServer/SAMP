@@ -1,17 +1,12 @@
 #include <a_npc>
-#include <sscanf>
+#include <sscanf_old>
 #include <grgserver/config>
 
 new recordingName[256];
 new playbackType;
+new plabackTimer;
 new autoRepeat;
 new startTime;
-
-public OnNPCModeInit()
-{
-	SetTimer("ReportRecordingPosition", 10000, true);
-	return true;
-}
 
 public OnClientMessage(color, text[])
 {
@@ -62,7 +57,11 @@ public OnClientMessage(color, text[])
 		}
 		if (startNow)
 		{
-			SetTimer("StartRecordingPlaybackTimer", startDelay, false);
+			if (plabackTimer)
+			{
+				KillTimer(plabackTimer);
+			}
+			plabackTimer = SetTimer("StartRecordingPlaybackTimer", startDelay, false);
 		}
 		return true;
 	}
@@ -130,15 +129,4 @@ public StartRecordingPlaybackTimer()
 {
 	StartRecordingPlayback(playbackType, recordingName);
 	startTime = gettime();
-}
-
-forward ReportRecordingPosition();
-public ReportRecordingPosition()
-{
-	if (startTime)
-	{
-		new command[50];
-		format(command, sizeof(command), "/npccmd recpos %d", gettime() - startTime);
-		SendCommand(command);
-	}
 }

@@ -9,7 +9,7 @@ ShowDialog:VehicleDealer_Options(playerID)
 	{
 		AddLine(options, LanguageString(playerID, StringID:357("Start work")));
 	}
-	AddLine(options, LanguageString(playerID, StringID:358("Cancel job")));
+	AddLine(options, LanguageString(playerID, StringID:218("Cancel job")));
 	CreateDialog(playerID, "VehicleDealer_Options", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:353("Vehicle dealer")), options, "OK", LanguageString(playerID, StringID:165("Cancel")));
 }
 
@@ -29,7 +29,7 @@ DialogResponse:VehicleDealer_Options(playerID, response, listItem, inputText[])
 			PVar:playerID[WORKSTARTTIME] = gettime();
 			SetPlayerSkin(playerID, 187);
 		}
-		if (!strcmp(inputText, LanguageString(playerID, StringID:358("Cancel job"))))// Cancel job
+		if (!strcmp(inputText, LanguageString(playerID, StringID:218("Cancel job"))))// Cancel job
 		{
 			PVar:playerID[JOBID] = JOB_UNEMPLOYED;
 			SendClientMessageEx(playerID, COLOR_INFO, StringID:359("You have cancelled your job"));

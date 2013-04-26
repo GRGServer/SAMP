@@ -1,7 +1,7 @@
 ShowDialog:Repair(playerID)
 {
 	FormatNew:string[100](LanguageString(playerID, StringID:302("%s wants to repair your vehicle for %s\n\nIs that OK?")), GetPlayerNameEx(PVar:playerID[REPAIR_EXECUTOR]), FormatMoney(PVar:playerID[REPAIR_PRICE]));
-	CreateDialog(playerID, "Repair", DIALOG_STYLE_MSGBOX, LanguageString(playerID, StringID:301("Repair vehicle")), string, LanguageString(playerID, StringID:166("Yes")), LanguageString(playerID, StringID:167("No")));
+	CreateDialog(playerID, "Repair", DIALOG_STYLE_MSGBOX, LanguageString(playerID, StringID:296("Repair vehicle")), string, LanguageString(playerID, StringID:166("Yes")), LanguageString(playerID, StringID:167("No")));
 }
 
 DialogResponse:Repair(playerID, response, listItem, inputText[])

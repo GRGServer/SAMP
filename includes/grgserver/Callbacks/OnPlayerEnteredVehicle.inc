@@ -53,29 +53,6 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 			NextMissionCheckpoint(playerID, true);
 		}
 	}
-	if (modelID == 420)
-	{
-		new npcPlayerID;
-		MySQLQuery("SELECT * FROM `npcs` WHERE `vehicleId` = '%d'", VehicleProperty:vehicleID[SAVEID]);
-		mysql_store_result();
-		if (mysql_num_rows())
-		{
-			npcPlayerID = GetPlayerID(GetMySQLField("name"));
-		}
-		mysql_free_result();
-		if (npcPlayerID != INVALID_PLAYER_ID)
-		{
-			if (isPassenger)
-			{
-				SendNPCCommand(npcPlayerID, "start");
-				return true;
-			}
-			else
-			{
-				return false;
-			}
-		}
-	}
 	if (!isPassenger && !GetVehicleEngineState(vehicleID))
 	{
 		SendClientMessageEx(playerID, COLOR_INFO, StringID:424("Use /engine to start the engine of your vehicle."));

@@ -39,41 +39,9 @@ ShowMessage(playerID, messageID, waitTime = 3000)
 		{
 			languageStringID = StringID:564("Now take the next bus and drive to the train station");
 		}
-		case 10:
-		{
-			languageStringID = StringID:565("Wait for the bus and drive back to the Las Venturas Airport");
-		}
-		case 11:
-		{
-			languageStringID = StringID:566("Then take bus line 2 and drive to the train station");
-		}
-		case 12:
-		{
-			languageStringID = StringID:567("Wait for the bus and drive to the train station");
-		}
-		case 13:
-		{
-			languageStringID = StringID:568("Wait for the train and drive to San Fierro");
-		}
 		case 14:
 		{
 			languageStringID = StringID:281("Go to the bus stop and wait for the next bus");
-		}
-		case 15:
-		{
-			languageStringID = StringID:569("Wait for the bus and drive to the bank");
-		}
-		case 16:
-		{
-			languageStringID = StringID:570("Now go to the bank");
-		}
-		case 17:
-		{
-			languageStringID = StringID:574("Go to the bus stop");
-		}
-		case 18:
-		{
-			languageStringID = StringID:575("Wait for the next bus and drive to the driving school");
 		}
 		case 19:
 		{
@@ -128,18 +96,6 @@ ShowMessage(playerID, messageID, waitTime = 3000)
 					languageStringID = StringID:605("Enter a truck");
 				}
 			}
-		}
-		case 29:
-		{
-			languageStringID = StringID:607("Go back to your vehicle!");
-		}
-		case 30:
-		{
-			languageStringID = StringID:608("There are currently no free vehicles to drive! Please come back later.");
-		}
-		case 31:
-		{
-			languageStringID = StringID:616("There is currently no driving mission available for your selected driving license type! Please come back later.");
 		}
 		case 32:
 		{

@@ -1,6 +1,6 @@
 /**
  * <summary>
- *	Command which gets called by a NPC if something changed (e.g. the NPC recording ended and is not defined as auto repeat).
+ *	Command which gets called by a NPC if something changed.
  * </summary>
  *
  * <param name="playerID">
@@ -21,52 +21,27 @@
  * </remarks>
  */
 
-NCMD:npccmd(playerID, params[], StringID:0("Undefined language string ID!"))
+NCMD:npccmd(playerID, params[], StringID:9("Report status to the server"))
 {
 	new command[256];
 	new parameters[256];
 	sscanf(params, "s[256]s[256]", command, parameters);
-	if (IsStr(command, "reclength"))
+
+	new npcName[MAX_PLAYER_NAME];
+	GetPlayerName(playerID, npcName, sizeof(npcName));
+
+	Foreach(arrayIndex, npcs)
 	{
-		PVar:playerID[NPC_RECORDINGLENGTH] = strval(parameters);
-		return COMMAND_OK;
-	}
-	if (IsStr(command, "recpos"))
-	{
-		PVar:playerID[NPC_RECORDINGPOSITION] = strval(parameters);
-		return COMMAND_OK;
-	}
-	if (IsStr(command, "stopped"))
-	{
-		if (PVar:playerID[NPC_RECORDINGSLOT] && PlayNextNPCRecording(playerID))
+		if (IsStr(npcs[arrayIndex][NPC_NAME], npcName))
 		{
-			return COMMAND_OK;
+			if (IsStr(command, "reclength"))
+			{
+				npcs[arrayIndex][NPC_RECORDINGLENGTH] = strval(parameters);
+				return COMMAND_OK;
+			}
+			break;
 		}
-		if (PVar:playerID[RECORDNPCFORPLAYER] != INVALID_PLAYER_ID)
-		{
-			new npcs;
-			new realPlayerID = PVar:playerID[RECORDNPCFORPLAYER];
-			PVar:playerID[RECORDNPCFORPLAYER] = INVALID_PLAYER_ID;
-			Kick(playerID);
-			SendClientMessageEx(realPlayerID, COLOR_INFO, StringID:76("The playback of NPC '%p' was stopped."), playerID);
-			PlayerLoop(currentPlayerID)
-			{
-				if (IsPlayerNPC(currentPlayerID) && PVar:currentPlayerID[RECORDNPCFORPLAYER] != INVALID_PLAYER_ID && PVar:currentPlayerID[RECORDNPCFORPLAYER] == realPlayerID)
-				{
-					npcs++;
-				}
-			}
-			if (npcs)
-			{
-				SendClientMessageEx(realPlayerID, COLOR_INFO, StringID:77("%d more NPCs are still in use for this recording."), npcs);
-			}
-			else
-			{
-				StopRecordingPlayerData(realPlayerID);
-				SendClientMessageEx(realPlayerID, COLOR_INFO, StringID:78("The last NPC has stopped the recording!"));
-			}
-		}
-		return COMMAND_OK;
 	}
+
 	return COMMAND_ERROR;
 }

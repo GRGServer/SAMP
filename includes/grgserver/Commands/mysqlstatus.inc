@@ -1,4 +1,4 @@
-PCMD:mysqlstatus[SERVERADMIN](playerID, params[], StringID:0("Undefined language string ID!"))
+PCMD:mysqlstatus[SERVERADMIN](playerID, params[], StringID:13("Show information about the current MySQL status"))
 {
 	new string[256];
 	mysql_error(string);

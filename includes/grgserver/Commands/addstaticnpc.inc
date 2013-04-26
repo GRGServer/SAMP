@@ -1,28 +1,30 @@
-PCMD:addstaticnpc[NPCADMIN](playerid, params[], StringID:97("Place a NPC without recording at your current position"))
+PCMD:addstaticnpc[NPCADMIN](playerID, params[], StringID:97("Place a NPC without recording at your current position"))
 {
-	new playerName[MAX_PLAYER_NAME];
-	if (sscanf(params, "s[" #MAX_PLAYER_NAME "]", playerName))
+	new npcName[MAX_PLAYER_NAME];
+	if (sscanf(params, "s[" #MAX_PLAYER_NAME "]", npcName))
 	{
-		CmdUsageMsg(playerid, "addstaticnpc", "Playername");
+		CmdUsageMsg(playerID, "addstaticnpc", "Name");
 		return COMMAND_USAGE;
 	}
-	new Float:posX;
-	new Float:posY;
-	new Float:posZ;
-	new Float:angle;
-	GetPlayerPos(playerid, posX, posY, posZ);
-	GetPlayerFacingAngle(playerid, angle);
-	MySQLQuery("INSERT INTO `npcs` (`name`, `spawnPosX`, `spawnPosY`, `spawnPosZ`, `spawnAngle`, `autoConnect`) VALUES('%s', '%f', '%f', '%f', '%f', '1')", MySQLEscapeString(playerName), posX, posY, posZ, angle);
-	new id = mysql_insert_id();
-	if (id > 0)
+
+	Foreach(arrayIndex, npcs)
 	{
-		ConnectNPC(playerName, NPC_SCRIPTNAME);
-		SendClientMessageEx(playerid, COLOR_INFO, StringID:83("The NPC has been successfully saved with ID %d"), id);
+		if (StrNotNull(npcs[arrayIndex][NPC_NAME]))
+		{
+			continue;
+		}
+
+		strcat(npcs[arrayIndex][NPC_NAME], npcName, MAX_PLAYER_NAME);
+		GetPlayerPos(playerID, npcs[arrayIndex][NPC_SPAWNPOS][0], npcs[arrayIndex][NPC_SPAWNPOS][1], npcs[arrayIndex][NPC_SPAWNPOS][2]);
+		GetPlayerFacingAngle(playerID, npcs[arrayIndex][NPC_SPAWNANGLE]);
+
+		ConnectNPC(npcName, NPC_SCRIPTNAME);
+		SaveNPCs();
+
+		SendClientMessageEx(playerID, COLOR_INFO, StringID:2("The NPC has been added"));
 		return COMMAND_OK;
 	}
-	else
-	{
-		SendClientMessageEx(playerid, COLOR_ERROR, StringID:84("An error occurred while saving!"));
-	}
+
+	SendClientMessageEx(playerID, COLOR_ERROR, StringID:4("No more free NPC slots available! Increase MAX_NPCS and try again"));
 	return COMMAND_ERROR;
 }

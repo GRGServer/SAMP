@@ -24,60 +24,46 @@ public OnPlayerSpawn(playerid)
 {
 	if (IsPlayerNPC(playerid))// The player is a NPC
 	{
-		MySQLQuery("SELECT * FROM `npcs` WHERE `name` = '%s'", MySQLEscapeString(GetPlayerNameEx(playerid)));
-		mysql_store_result();
-		SetPlayerSkin(playerid, strval(GetMySQLField("skin")));
-		new vehicleID = GetVehicleBySaveID(strval(GetMySQLField("vehicleId")));
-		if (vehicleID)
+		new playerName[MAX_PLAYER_NAME];
+		GetPlayerName(playerid, playerName, sizeof(playerName));
+		Foreach(arrayIndex, npcs)
 		{
-			PVar:playerid[NPC_RECORDINGTYPE] = PLAYER_RECORDING_TYPE_DRIVER;
-			PutPlayerInVehicle(playerid, vehicleID, 0);
-			SetVehicleEngineState(vehicleID, true);
-		}
-		else
-		{
-			PVar:playerid[NPC_RECORDINGTYPE] = PLAYER_RECORDING_TYPE_ONFOOT;
-		}
-		new tryMultiRecForID;
-		new startOnConnect = strval(GetMySQLField("startOnConnect"));
-		PVar:playerid[NPC_AUTOREPEAT] = strval(GetMySQLField("autoRepeat"));
-		if (floatstr(GetMySQLField("spawnPosX")) || floatstr(GetMySQLField("spawnPosY")) || floatstr(GetMySQLField("spawnPosZ")))
-		{
-			FormatNew:command[100]("teleport %s %s %s %s", GetMySQLField("spawnPosX"), GetMySQLField("spawnPosY"), GetMySQLField("spawnPosZ"), GetMySQLField("spawnAngle"));
-			SendNPCCommand(playerid, command);
-			tryMultiRecForID = 0;
-		}
-		if (strlen(GetMySQLField("recording")))
-		{
-			FormatNew:command[40]("setrec %s %d %d %d %d", GetMySQLField("recording"), PVar:playerid[NPC_RECORDINGTYPE], PVar:playerid[NPC_AUTOREPEAT], startOnConnect, strval(GetMySQLField("startDelay")));
-			SendNPCCommand(playerid, command);
-		}
-		else
-		{
-			tryMultiRecForID = strval(GetMySQLField("id"));
-		}
-		mysql_free_result();
-		if (tryMultiRecForID)
-		{
-			new slot;
-			MySQLQuery("SELECT * FROM `npcmultirecs` WHERE `npcId` = '%d'", tryMultiRecForID);
-			mysql_store_result();
-			while (FetchMySQLRow())
+			if (!IsStr(npcs[arrayIndex][NPC_NAME], playerName))
 			{
-				PVar:playerid[NPC_RECORDINGS][slot] = strval(GetMySQLField("id"));
-				slot++;
+				continue;// This is not the connected NPC -> Jump to the next one in the array
 			}
-			mysql_free_result();
-			if (slot)
+
+			SetPlayerSkin(playerid, npcs[arrayIndex][NPC_SKIN]);
+
+			new recordingType;
+			if (npcs[arrayIndex][NPC_VEHICLEID])
 			{
-				if (startOnConnect)
-				{
-					PlayNextNPCRecording(playerid);
-				}
+				recordingType = PLAYER_RECORDING_TYPE_DRIVER;
+				PutPlayerInVehicle(playerid, npcs[arrayIndex][NPC_VEHICLEID], 0);
+				SetVehicleEngineState(npcs[arrayIndex][NPC_VEHICLEID], true);
 			}
+			else
+			{
+				recordingType = PLAYER_RECORDING_TYPE_ONFOOT;
+			}
+
+			if (StrNotNull(npcs[arrayIndex][NPC_RECORDING]))// Check if a recording is defined
+			{
+				FormatNew:command[100]("setrec %s %d %d %d %d", npcs[arrayIndex][NPC_RECORDING], recordingType, npcs[arrayIndex][NPC_AUTOREPEAT], npcs[arrayIndex][NPC_AUTOSTART], npcs[arrayIndex][NPC_STARTDELAY]);
+				SendNPCCommand(playerid, command);
+			}
+
+			if (npcs[arrayIndex][NPC_SPAWNPOS][0] || npcs[arrayIndex][NPC_SPAWNPOS][1] || npcs[arrayIndex][NPC_SPAWNPOS][2])// Check if a spawn position is defined
+			{
+				FormatNew:command[100]("teleport %f %f %f %f", npcs[arrayIndex][NPC_SPAWNPOS][0], npcs[arrayIndex][NPC_SPAWNPOS][1], npcs[arrayIndex][NPC_SPAWNPOS][2], npcs[arrayIndex][NPC_SPAWNANGLE]);
+				SendNPCCommand(playerid, command);
+			}
+
+			break;
 		}
 		return true;
 	}
+
 	SetPlayerSkin(playerid, PVar:playerid[SKIN]);
 	if (PVar:playerid[SHOWCLOCK])
 	{

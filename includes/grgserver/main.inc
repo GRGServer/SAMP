@@ -13,6 +13,7 @@
 #include <grgserver\Structures\enum_naviLocation.inc>
 #include <grgserver\Structures\enum_naviTarget.inc>
 #include <grgserver\Structures\enum_neonType.inc>
+#include <grgserver\Structures\enum_npc.inc>
 #include <grgserver\Structures\enum_object.inc>
 #include <grgserver\Structures\enum_permission.inc>
 #include <grgserver\Structures\enum_pickup.inc>
@@ -33,7 +34,6 @@
 // Functions
 #include <grgserver\Functions\AddJobData.inc>
 #include <grgserver\Functions\AddLine.inc>
-#include <grgserver\Functions\AddNPCRecorderPlayback.inc>
 #include <grgserver\Functions\AddNeonLight.inc>
 #include <grgserver\Functions\AddObject.inc>
 #include <grgserver\Functions\AddPickup.inc>
@@ -78,7 +78,6 @@
 #include <grgserver\Functions\GetPlayerNameEx.inc>
 #include <grgserver\Functions\GetPlayerVersionEx.inc>
 #include <grgserver\Functions\GetPlayerZone.inc>
-#include <grgserver\Functions\GetVehicleBySaveID.inc>
 #include <grgserver\Functions\GetVehicleColor.inc>
 #include <grgserver\Functions\GetVehicleEngineState.inc>
 #include <grgserver\Functions\GetVehicleLightsState.inc>
@@ -102,6 +101,7 @@
 #include <grgserver\Functions\LanguageString.inc>
 #include <grgserver\Functions\LeaveProperty.inc>
 #include <grgserver\Functions\LoadMySQLVehicle.inc>
+#include <grgserver\Functions\LoadNPCs.inc>
 #include <grgserver\Functions\LoadObjectsFromFile.inc>
 #include <grgserver\Functions\LoadPlayer.inc>
 #include <grgserver\Functions\LoadPlayerPermissions.inc>
@@ -114,12 +114,10 @@
 #include <grgserver\Functions\PayDay.inc>
 #include <grgserver\Functions\PickupEvent.inc>
 #include <grgserver\Functions\PlayAudio.inc>
-#include <grgserver\Functions\PlayNextNPCRecording.inc>
 #include <grgserver\Functions\PlayRadioStation.inc>
 #include <grgserver\Functions\PlayRandomCameraCuts.inc>
 #include <grgserver\Functions\PlaySound.inc>
 #include <grgserver\Functions\PlayerPee.inc>
-#include <grgserver\Functions\ReconnectNPCs.inc>
 #include <grgserver\Functions\ReloadLanguageStrings.inc>
 #include <grgserver\Functions\ReloadObjects.inc>
 #include <grgserver\Functions\ReloadPermissions.inc>
@@ -133,6 +131,7 @@
 #include <grgserver\Functions\ResetPlayerVariables.inc>
 #include <grgserver\Functions\RestartGameMode.inc>
 #include <grgserver\Functions\RotatePlayer.inc>
+#include <grgserver\Functions\SaveNPCs.inc>
 #include <grgserver\Functions\SaveObjects.inc>
 #include <grgserver\Functions\SavePlayer.inc>
 #include <grgserver\Functions\SaveVehicle.inc>
@@ -155,7 +154,6 @@
 #include <grgserver\Functions\ShowSubtitle.inc>
 #include <grgserver\Functions\SpawnVehicle.inc>
 #include <grgserver\Functions\StartCheckpointMission.inc>
-#include <grgserver\Functions\StartNPCPlayback.inc>
 #include <grgserver\Functions\StopRadioStation.inc>
 #include <grgserver\Functions\Str2Val.inc>
 #include <grgserver\Functions\StrNotNull.inc>
@@ -167,6 +165,7 @@
 #include <grgserver\Functions\UpdateObjectsForAllPlayers.inc>
 #include <grgserver\Functions\UpdatePlayerNeeds.inc>
 #include <grgserver\Functions\explode.inc>
+#include <grgserver\Functions\float2str.inc>
 #include <grgserver\Functions\str_replace.inc>
 #include <grgserver\Functions\strtoupper.inc>
 #include <grgserver\Functions\val2str.inc>
@@ -340,7 +339,6 @@
 #include <grgserver\Commands\checkpermissions.inc>
 #include <grgserver\Commands\clear.inc>
 #include <grgserver\Commands\cmds.inc>
-#include <grgserver\Commands\controlnpc.inc>
 #include <grgserver\Commands\coordtp.inc>
 #include <grgserver\Commands\cuff.inc>
 #include <grgserver\Commands\editobject.inc>
@@ -391,7 +389,6 @@
 #include <grgserver\Commands\radio.inc>
 #include <grgserver\Commands\rc.inc>
 #include <grgserver\Commands\recnpc.inc>
-#include <grgserver\Commands\reconnectnpcs.inc>
 #include <grgserver\Commands\refuel.inc>
 #include <grgserver\Commands\reloadobjects.inc>
 #include <grgserver\Commands\reloadpermissions.inc>

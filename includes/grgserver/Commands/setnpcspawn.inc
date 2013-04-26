@@ -6,35 +6,30 @@ PCMD:setnpcspawn[NPCADMIN](playerID, params[], StringID:282("Set the spawn posit
 		CmdUsageMsg(playerID, "setnpcspawn", "Name");
 		return COMMAND_USAGE;
 	}
-	MySQLQuery("SELECT * FROM `npcs` WHERE `name` = '%s'", MySQLEscapeString(npcName));
-	mysql_store_result();
-	new id = strval(GetMySQLField("id"));
-	if (id)
+
+	Foreach(arrayIndex, npcs)
 	{
-		new Float:posX;
-		new Float:posY;
-		new Float:posZ;
-		new Float:angle;
-		GetPlayerPos(playerID, posX, posY, posZ);
+		if (!IsStr(npcs[arrayIndex][NPC_NAME], npcName))
+		{
+			continue;
+		}
+
+		GetPlayerPos(playerID, npcs[arrayIndex][NPC_SPAWNPOS][0], npcs[arrayIndex][NPC_SPAWNPOS][1], npcs[arrayIndex][NPC_SPAWNPOS][2]);
 		if (IsPlayerInAnyVehicle(playerID))
 		{
-			GetVehicleZAngle(GetPlayerVehicleID(playerID), angle);
+			GetVehicleZAngle(GetPlayerVehicleID(playerID), npcs[arrayIndex][NPC_SPAWNANGLE]);
 		}
 		else
 		{
-			GetPlayerFacingAngle(playerID, angle);
+			GetPlayerFacingAngle(playerID, npcs[arrayIndex][NPC_SPAWNANGLE]);
 		}
-		MySQLQuery("UPDATE `npcs` SET `spawnPosX` = '%f', `spawnPosY` = '%f', `spawnPosZ` = '%f', `spawnAngle` = '%f' WHERE `id` = '%d'", posX, posY, posZ, angle, id);
-	}
-	mysql_free_result();
-	if (id)
-	{
+
+		SaveNPCs();
+
 		SendClientMessageEx(playerID, COLOR_INFO, StringID:283("The spawn position of the NPC has been changed"));
 		return COMMAND_OK;
 	}
-	else
-	{
-		SendClientMessageEx(playerID, COLOR_ERROR, StringID:284("NPC not found!"));
-		return COMMAND_ERROR;
-	}
+
+	SendClientMessageEx(playerID, COLOR_ERROR, StringID:284("NPC not found!"));
+	return COMMAND_ERROR;
 }

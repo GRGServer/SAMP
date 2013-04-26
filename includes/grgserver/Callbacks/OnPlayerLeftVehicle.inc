@@ -13,7 +13,7 @@ OnPlayerLeftVehicle(playerID, vehicleID, isPassenger)
 		new Float:posZ;
 		GetVehiclePos(vehicleID, posX, posY, posZ);
 		DisablePlayerRaceCheckpoint(playerID);
-		SetPlayerCheckpointEx(playerID, CHECKPOINT_VEHICLEMARKER, posX, posY, posZ, 5);
-		ShowMessage(playerID, 29, 3000);
+		SetVehicleParamsForPlayer(vehicleID, playerID, true, false);
+		ShowSubtitle(playerID, LanguageString(playerID, StringID:607("Go back to your vehicle!")));
 	}
 }

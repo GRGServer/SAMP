@@ -35,7 +35,9 @@ EndEnumeration
 
 #Color_IgnoreUnused_Background = $00FFFF
 #Color_IgnoreUnused_Text = $000000
-#Color_Unused_Background = $0000CC
+#Color_NotTranslated_Background = $0000CC
+#Color_NotTranslated_Text = $FFFFFF
+#Color_Unused_Background = $000000
 #Color_Unused_Text = $FFFFFF
 
 Structure References
@@ -150,6 +152,9 @@ Procedure ReloadList()
 		ElseIf Strings(item)\englishString = ""
 			SetGadgetItemColor(#List, item, #PB_Gadget_BackColor, #Color_Unused_Background, -1)
 			SetGadgetItemColor(#List, item, #PB_Gadget_FrontColor, #Color_Unused_Text, -1)
+		ElseIf Strings(item)\germanString = ""
+			SetGadgetItemColor(#List, item, #PB_Gadget_BackColor, #Color_NotTranslated_Background, -1)
+			SetGadgetItemColor(#List, item, #PB_Gadget_FrontColor, #Color_NotTranslated_Text, -1)
 		EndIf
 	Next
 EndProcedure
@@ -490,7 +495,7 @@ Procedure LoadLanguageStrings()
 		Strings(stringID)\englishString = AssignStrings()\englishString
 		Strings(stringID)\germanString = AssignStrings()\germanString
 		Strings(stringID)\ignoreUnused= AssignStrings()\ignoreUnused
-		Strings(stringID)\references() = AssignStrings()\references()
+		CopyList(AssignStrings()\references(), Strings(stringID)\references())
 	Next
 	ClearList(AssignStrings())
 	ReloadList()
@@ -836,15 +841,15 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 	ForEver
 EndIf
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 168
-; FirstLine = 156
+; CursorPosition = 39
+; FirstLine = 15
 ; Folding = -----
 ; EnableXP
 ; UseIcon = Language String Editor.ico
 ; Executable = Language String Editor.exe
 ; CommandLine = X:\Projects\SAMP-Server\
-; EnableCompileCount = 331
-; EnableBuildCount = 13
+; EnableCompileCount = 340
+; EnableBuildCount = 15
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0

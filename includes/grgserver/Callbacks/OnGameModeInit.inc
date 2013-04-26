@@ -177,9 +177,9 @@ public OnGameModeInit()
 		print("  Zone file does not exist!");
 	}
 
+	LoadNPCs();
 	ReloadLanguageStrings();
 	ReloadObjects();
-	ReconnectNPCs();
 	ReloadVehicleModels();
 	ReloadVehicles(true);
 	ReloadPickups();

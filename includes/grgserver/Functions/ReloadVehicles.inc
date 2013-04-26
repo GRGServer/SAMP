@@ -22,6 +22,10 @@ ReloadVehicles(isStatic, playerID = !INVALID_PLAYER_ID)
 	AdminPrint(playerID, COLOR_INFO, "* Destroying vehicles...");
 	Count1(vehicleID, MAX_VEHICLES)
 	{
+		if (VehicleProperty:vehicleID[NPC_ONLY])// We should not remove NPC vehicles
+		{
+			continue;
+		}
 		new modelID = GetVehicleModel(vehicleID);
 		if (modelID)
 		{
@@ -84,23 +88,4 @@ ReloadVehicles(isStatic, playerID = !INVALID_PLAYER_ID)
 	}
 	mysql_free_result();
 	AdminPrint(playerID, COLOR_INFO, "  %d vehicle components added", count);
-	count = 0;
-	AdminPrint(playerID, COLOR_INFO, "* Put NPCs in vehicles...");
-	mysql_query("SELECT * FROM `npcs` WHERE `vehicleId`");
-	mysql_store_result();
-	while (FetchMySQLRow())
-	{
-		new vehicleID = GetVehicleBySaveID(strval(GetMySQLField("vehicleId")));
-		if (vehicleID)
-		{
-			new npcPlayerID = GetPlayerID(GetMySQLField("id"));
-			if (npcPlayerID)
-			{
-				PutPlayerInVehicle(npcPlayerID, vehicleID, 0);
-				count++;
-			}
-		}
-	}
-	mysql_free_result();
-	AdminPrint(playerID, COLOR_INFO, "  %d NPCs put in vehicles", count);
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<npcs>
+	<!-- Bus drivers -->
+	<npc name="LVBus1a" skin="253">
+		<recording name="LVBus1" startDelay="0" autoStart="1" autoRepeat="1"/>
+		<vehicle model="431" color1="-1" color2="-1"/>
+	</npc>
+	<npc name="LVBus1b" skin="253">
+		<recording name="LVBus1" startDelay="185000" autoStart="1" autoRepeat="1"/>
+		<vehicle model="431" color1="-1" color2="-1"/>
+	</npc>
+	<npc name="LVBus2a" skin="253">
+		<recording name="LVBus2" startDelay="0" autoStart="1" autoRepeat="1"/>
+		<vehicle model="431" color1="-1" color2="-1"/>
+	</npc>
+	<npc name="LVBus2b" skin="253">
+		<recording name="LVBus2" startDelay="170000" autoStart="1" autoRepeat="1"/>
+		<vehicle model="431" color1="-1" color2="-1"/>
+	</npc>
+	<npc name="SFBus1a" skin="253">
+		<recording name="SFBus1" startDelay="0" autoStart="1" autoRepeat="1"/>
+		<vehicle model="431" color1="-1" color2="-1"/>
+	</npc>
+	<npc name="SFBus1b" skin="253">
+		<recording name="SFBus1" startDelay="101000" autoStart="1" autoRepeat="1"/>
+		<vehicle model="431" color1="-1" color2="-1"/>
+	</npc>
+	
+	<!-- Train drivers -->
+	<npc name="Train1" skin="7">
+		<recording name="Train" startDelay="0" autoStart="1" autoRepeat="1"/>
+		<vehicle model="538" color1="1" color2="1"/>
+	</npc>
+	<npc name="Train2" skin="7">
+		<recording name="Train" startDelay="519000" autoStart="1" autoRepeat="1"/>
+		<vehicle model="538" color1="0" color2="1"/>
+	</npc>
+	<npc name="SFTram" skin="7">
+		<recording name="SFTram" startDelay="0" autoStart="1" autoRepeat="1"/>
+		<vehicle model="449" color1="0" color2="1"/>
+	</npc>
+	
+	<!-- Static NPCs -->
+	<npc name="ADAC_LV_Guard" skin="71">
+		<spawn posX="2856.86" posY="2617.36" posZ="10.8203" angle="270.698"/>
+	</npc>
+	<npc name="DrivingSchoolOffice" skin="44">
+		<spawn posX="-2034.8" posY="-118.2" posZ="1035.17" angle="281.421"/>
+	</npc>
+	<npc name="LVAP_Guard" skin="71">
+		<spawn posX="1713.64" posY="1620.83" posZ="10.1172" angle="203.645"/>
+	</npc>
+</npcs>

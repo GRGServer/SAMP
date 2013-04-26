@@ -1,6 +1,6 @@
 ShowDialog:ChangePassword_Step3(playerID)
 {
-	CreateDialog(playerID, "ChangePassword_Step3", DIALOG_STYLE_PASSWORD, LanguageString(playerID, StringID:240("Change account password")), LanguageString(playerID, StringID:243("Please repeat your new password to verfify.")), "OK", LanguageString(playerID, StringID:171("Back")));
+	CreateDialog(playerID, "ChangePassword_Step3", DIALOG_STYLE_PASSWORD, LanguageString(playerID, StringID:98("Change account password")), LanguageString(playerID, StringID:243("Please repeat your new password to verfify.")), "OK", LanguageString(playerID, StringID:171("Back")));
 }
 
 DialogResponse:ChangePassword_Step3(playerID, response, listItem, inputText[])

@@ -42,12 +42,12 @@ public OnPlayerEnterCheckpoint(playerid)
 				}
 				else
 				{
-					ShowMessage(playerid, 30, 3000);
+					SendClientMessageEx(playerid, COLOR_ERROR, StringID:608("There are currently no free vehicles to drive! Please come back later."));
 				}
 			}
 			else
 			{
-				ShowMessage(playerid, 31, 3000);
+				SendClientMessageEx(playerid, COLOR_ERROR, StringID:616("There is currently no driving mission available for your selected driving license type! Please come back later."));
 			}
 		}
 		case CHECKPOINT_INPLANE_EXIT:
@@ -71,30 +71,30 @@ public OnPlayerEnterCheckpoint(playerid)
 		case CHECKPOINT_TUTORIAL_BUS1:
 		{
 			DisablePlayerCheckpoint(playerid);
-			ShowMessage(playerid, 15, 3000);
+			ShowSubtitle(playerid, LanguageString(playerid, StringID:569("Wait for the bus and drive to the bank")));
 			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_BUS1_EXIT, 1077.860839, 1199.208374, 10.820312, 1.5);
 		}
 		case CHECKPOINT_TUTORIAL_BUS1_EXIT:
 		{
 			DisablePlayerCheckpoint(playerid);
-			ShowMessage(playerid, 16, 3000);
+			ShowSubtitle(playerid, LanguageString(playerid, StringID:570("Now go to the bank")));
 			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_BANK, 1047.7939, 1025.5156, 11.0, 1.5);
 		}
 		case CHECKPOINT_TUTORIAL_BUS2:
 		{
 			DisablePlayerCheckpoint(playerid);
-			ShowMessage(playerid, 10, 3000);
+			ShowSubtitle(playerid, LanguageString(playerid, StringID:565("Wait for the bus and drive back to the Las Venturas Airport.~n~Then take bus line 2 and drive to the train station.")));
 		}
 		case CHECKPOINT_TUTORIAL_BUS3:
 		{
 			DisablePlayerCheckpoint(playerid);
 			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_TRAIN1, 2859.574218, 1290.556030, 11.390625, 1.5);
-			ShowMessage(playerid, 12, 3000);
+			ShowSubtitle(playerid, LanguageString(playerid, StringID:567("Wait for the bus and drive to the train station")));
 		}
 		case CHECKPOINT_TUTORIAL_BUS4:
 		{
 			DisablePlayerCheckpoint(playerid);
-			ShowMessage(playerid, 18, 3000);
+			ShowSubtitle(playerid, LanguageString(playerid, StringID:575("Wait for the next bus and drive to the driving school")));
 			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_BUS4_EXIT, -2090.970947, -77.046791, 35.320312, 1.5);
 		}
 		case CHECKPOINT_TUTORIAL_BUS4_EXIT:
@@ -116,13 +116,13 @@ public OnPlayerEnterCheckpoint(playerid)
 		case CHECKPOINT_TUTORIAL_TRAIN1:
 		{
 			DisablePlayerCheckpoint(playerid);
-			ShowMessage(playerid, 13, 3000);
+			ShowSubtitle(playerid, LanguageString(playerid, StringID:568("Wait for the train and drive to San Fierro")));
 			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_TRAIN1_EXIT, -1952.286376, 137.548049, 26.281250, 1.5);
 		}
 		case CHECKPOINT_TUTORIAL_TRAIN1_EXIT:
 		{
 			DisablePlayerCheckpoint(playerid);
-			ShowMessage(playerid, 17, 3000);
+			ShowSubtitle(playerid, LanguageString(playerid, StringID:574("Go to the bus stop")));
 			SetPlayerCheckpointEx(playerid, CHECKPOINT_TUTORIAL_BUS4, -1986.010742, 149.384109, 27.687500, 1.5);
 		}
 		case CHECKPOINT_TRAILER1:
