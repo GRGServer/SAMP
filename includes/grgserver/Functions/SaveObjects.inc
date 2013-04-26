@@ -31,7 +31,9 @@ SaveObjects(filename[])
 			Format:value("%d", Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_MODEL_ID));
 			XML_SetAttribute(objectNode, "model", value);
 
-			Format:value("%d", Streamer_GetIntData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_INTERIOR_ID));
+			new objectInteriors[5];
+			Streamer_GetArrayData(STREAMER_TYPE_OBJECT, objectID, E_STREAMER_INTERIOR_ID, objectInteriors, sizeof(objectInteriors));// Interiors are stored in an array (An object can be visible in multiple interiors)
+			Format:value("%d", objectInteriors[0]);// We only use one interior for each object, so element 0 has the correct interior ID
 			XML_SetAttribute(objectNode, "interior", value);
 
 			Format:value("%f", dynamicObjects[arrayIndex][OBJECT_POS][0]);

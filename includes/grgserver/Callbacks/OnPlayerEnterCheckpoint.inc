@@ -182,4 +182,6 @@ public OnPlayerEnterCheckpoint(playerid)
 			// Does nothing (Also does *NOT* remove the checkpoint!)
 		}
 	}
+
+	return true;
 }
