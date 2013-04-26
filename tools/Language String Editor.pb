@@ -16,6 +16,10 @@
 	#Menu_Search
 	#Menu_SearchNext
 	#Menu_ShowReferences
+	#Menu_Show_IgnoreUnused
+	#Menu_Show_NotTranslated
+	#Menu_Show_OK
+	#Menu_Show_Unused
 	#Edit_Window
 	#Edit_Text1
 	#Edit_Text2
@@ -145,16 +149,37 @@ EndProcedure
 Procedure ReloadList()
 	ClearGadgetItems(#List)
 	For item = 0 To ArraySize(Strings())
-		AddGadgetItem(#List, -1, Str(item) + Chr(10) + Strings(item)\englishString + Chr(10) + Strings(item)\germanString + Chr(10) + Str(ListSize(Strings(item)\references())))
+		showEntry = #False
 		If Strings(item)\ignoreUnused
-			SetGadgetItemColor(#List, item, #PB_Gadget_BackColor, #Color_IgnoreUnused_Background, -1)
-			SetGadgetItemColor(#List, item, #PB_Gadget_FrontColor, #Color_IgnoreUnused_Text, -1)
+			backgroundColor = #Color_IgnoreUnused_Background
+			textColor = #Color_IgnoreUnused_Text
+			If GetMenuItemState(#Menu, #Menu_Show_IgnoreUnused)
+				showEntry = #True
+			EndIf
 		ElseIf Strings(item)\englishString = ""
-			SetGadgetItemColor(#List, item, #PB_Gadget_BackColor, #Color_Unused_Background, -1)
-			SetGadgetItemColor(#List, item, #PB_Gadget_FrontColor, #Color_Unused_Text, -1)
+			backgroundColor = #Color_Unused_Background
+			textColor = #Color_Unused_Text
+			If GetMenuItemState(#Menu, #Menu_Show_Unused)
+				showEntry = #True
+			EndIf
 		ElseIf Strings(item)\germanString = ""
-			SetGadgetItemColor(#List, item, #PB_Gadget_BackColor, #Color_NotTranslated_Background, -1)
-			SetGadgetItemColor(#List, item, #PB_Gadget_FrontColor, #Color_NotTranslated_Text, -1)
+			backgroundColor = #Color_NotTranslated_Background
+			textColor = #Color_NotTranslated_Text
+			If GetMenuItemState(#Menu, #Menu_Show_NotTranslated)
+				showEntry = #True
+			EndIf
+		Else
+			backgroundColor = -1
+			textColor = -1
+			If GetMenuItemState(#Menu, #Menu_Show_OK)
+				showEntry = #True
+			EndIf
+		EndIf
+		If showEntry
+			AddGadgetItem(#List, -1, Str(item) + Chr(10) + Strings(item)\englishString + Chr(10) + Strings(item)\germanString + Chr(10) + Str(ListSize(Strings(item)\references())))
+			listItem = CountGadgetItems(#List) - 1
+			SetGadgetItemColor(#List, listItem, #PB_Gadget_BackColor, backgroundColor, -1)
+			SetGadgetItemColor(#List, listItem, #PB_Gadget_FrontColor, textColor, -1)
 		EndIf
 	Next
 EndProcedure
@@ -663,9 +688,20 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 		MenuItem(#Menu_SearchNext, "Search next" + Chr(9) + "F3")
 		MenuBar()
 		MenuItem(#Menu_ShowReferences, "Show references" + Chr(9) + "Ctrl+R")
+		MenuTitle("View")
+		OpenSubMenu("Show")
+		MenuItem(#Menu_Show_IgnoreUnused, "Show ignore unused")
+		MenuItem(#Menu_Show_NotTranslated, "Show not translated")
+		MenuItem(#Menu_Show_OK, "Show OK")
+		MenuItem(#Menu_Show_Unused, "Show unused")
+		CloseSubMenu()
 		DisableMenuItem(#Menu, #Menu_Edit, #True)
 		DisableMenuItem(#Menu, #Menu_Delete, #True)
 		DisableMenuItem(#Menu, #Menu_ShowReferences, #True)
+		SetMenuItemState(#Menu, #Menu_Show_IgnoreUnused, #True)
+		SetMenuItemState(#Menu, #Menu_Show_NotTranslated, #True)
+		SetMenuItemState(#Menu, #Menu_Show_OK, #True)
+		SetMenuItemState(#Menu, #Menu_Show_Unused, #True)
 	EndIf
 	ListIconGadget(#List, 0, 0, 0, 0, "ID", 50, #PB_ListIcon_FullRowSelect)
 	AddGadgetColumn(#List, 1, "English", 300)
@@ -817,6 +853,18 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 						If item <> -1
 							ShowReferences(Val(GetGadgetItemText(#List, item, 0)))
 						EndIf
+					Case #Menu_Show_IgnoreUnused
+						SetMenuItemState(#Menu, #Menu_Show_IgnoreUnused, IsEqual(GetMenuItemState(#Menu, #Menu_Show_IgnoreUnused), #False))
+						ReloadList()
+					Case #Menu_Show_NotTranslated
+						SetMenuItemState(#Menu, #Menu_Show_NotTranslated, IsEqual(GetMenuItemState(#Menu, #Menu_Show_NotTranslated), #False))
+						ReloadList()
+					Case #Menu_Show_OK
+						SetMenuItemState(#Menu, #Menu_Show_OK, IsEqual(GetMenuItemState(#Menu, #Menu_Show_OK), #False))
+						ReloadList()
+					Case #Menu_Show_Unused
+						SetMenuItemState(#Menu, #Menu_Show_Unused, IsEqual(GetMenuItemState(#Menu, #Menu_Show_Unused), #False))
+						ReloadList()
 					Case #Edit_OK
 						EditOK()
 					Case #Edit_Cancel
@@ -841,15 +889,15 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 	ForEver
 EndIf
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 39
-; FirstLine = 15
+; CursorPosition = 176
+; FirstLine = 148
 ; Folding = -----
 ; EnableXP
 ; UseIcon = Language String Editor.ico
 ; Executable = Language String Editor.exe
 ; CommandLine = X:\Projects\SAMP-Server\
-; EnableCompileCount = 340
-; EnableBuildCount = 15
+; EnableCompileCount = 350
+; EnableBuildCount = 16
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0
