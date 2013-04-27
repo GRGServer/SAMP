@@ -36,7 +36,7 @@ SaveVehicle(vehicleID, interior, asOriginalVehicle = false)
 		
 		if (asOriginalVehicle)
 		{
-			strcat(preSQL, "UPDATE `originalvehicles`");
+			strcat(preSQL, "UPDATE `vehicles`");
 		}
 		else
 		{

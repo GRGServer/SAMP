@@ -17,6 +17,7 @@ PCMD:savevehicle[MAPPER](playerID, params[], StringID:118("Save the current vehi
 			new Float:health;
 			new vehicleID = GetPlayerVehicleID(playerID);
 			new modelID = GetVehicleModel(vehicleID);
+			new NumberPlate = random(30);
 			if (modelID >= 400 && modelID <= 611)
 			{
 				GetVehiclePos(vehicleID, posX, posY, posZ);
@@ -24,7 +25,7 @@ PCMD:savevehicle[MAPPER](playerID, params[], StringID:118("Save the current vehi
 				GetVehicleHealth(vehicleID, health);
 				if (!VehicleProperty:vehicleID[SAVEID])
 				{
-					MySQLQuery("INSERT INTO `originalvehicles` (`modelId`) VALUES('%d')", modelID);
+					MySQLQuery("INSERT INTO `vehicles`(`numberplate`, `modelId`) VALUES ('ND-%d','%d')", NumberPlate, modelID);
 					VehicleProperty:vehicleID[SAVEID] = mysql_insert_id();
 				}
 				if (!VehicleProperty:vehicleID[SAVEID])
