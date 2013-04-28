@@ -28,6 +28,7 @@
 #define SPECIAL_ACTION_DRINK_WINE		22
 #define SPECIAL_ACTION_DRINK_SPRUNK		23
 #define SPECIAL_ACTION_CUFFED			24
+#define SPECIAL_ACTION_CARRY			25
 
 #define FIGHT_STYLE_NORMAL				4
 #define FIGHT_STYLE_BOXING				5
@@ -148,6 +149,9 @@ native PlayerTextDrawSetSelectable(playerid, PlayerText:text, set);
 native PlayerTextDrawShow(playerid, PlayerText:text);
 native PlayerTextDrawHide(playerid, PlayerText:text);
 native PlayerTextDrawSetString(playerid, PlayerText:text, string[]);
+native PlayerTextDrawSetPreviewModel(playerid, PlayerText:text, modelindex);
+native PlayerTextDrawSetPreviewRot(playerid, PlayerText:text, Float:fRotX, Float:fRotY, Float:fRotZ, Float:fZoom = 1.0);
+native PlayerTextDrawSetPreviewVehCol(playerid, PlayerText:text, color1, color2);
 
 // Per-player variable system (PVars)
 native SetPVarInt(playerid, varname[], int_value);

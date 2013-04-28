@@ -88,7 +88,8 @@ native ShowPlayerMarkers(mode);
 native GameModeExit();
 native SetWorldTime(hour);
 native GetWeaponName(weaponid, const weapon[], len);
-native EnableTirePopping(enable);
+native EnableTirePopping(enable); // deprecated function
+native EnableVehicleFriendlyFire();
 native AllowInteriorWeapons(allow);
 native SetWeather(weatherid);
 native SetGravity(Float:gravity);
@@ -133,6 +134,9 @@ native DisableMenuRow(Menu:menuid, row);
 native Menu:GetPlayerMenu(playerid);
 
 // Text Draw
+#define TEXT_DRAW_FONT_SPRITE_DRAW	 4
+#define TEXT_DRAW_FONT_MODEL_PREVIEW 5
+
 native Text:TextDrawCreate(Float:x, Float:y, text[]);
 native TextDrawDestroy(Text:text);
 native TextDrawLetterSize(Text:text, Float:x, Float:y);
@@ -152,6 +156,9 @@ native TextDrawHideForPlayer(playerid, Text:text);
 native TextDrawShowForAll(Text:text);
 native TextDrawHideForAll(Text:text);
 native TextDrawSetString(Text:text, string[]);
+native TextDrawSetPreviewModel(Text:text, modelindex);
+native TextDrawSetPreviewRot(Text:text, Float:fRotX, Float:fRotY, Float:fRotZ, Float:fZoom = 1.0);
+native TextDrawSetPreviewVehCol(Text:text, color1, color2);
 
 // Gang Zones
 native GangZoneCreate(Float:minx, Float:miny, Float:maxx, Float:maxy);
