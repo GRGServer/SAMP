@@ -34,7 +34,7 @@ ReloadLanguageStrings(playerID = INVALID_PLAYER_ID)
 				}
 				else
 				{
-					AdminPrint(playerID, COLOR_ERROR, "  en-Element of string %d is empty!", stringID);
+					AdminPrint(playerID, COLOR_ERROR, "  Missing English language string for string %d", stringID);
 				}
 			}
 			else
@@ -54,7 +54,7 @@ ReloadLanguageStrings(playerID = INVALID_PLAYER_ID)
 				}
 				else
 				{
-					AdminPrint(playerID, COLOR_ERROR, "  en-Element of string %d is empty!", stringID);
+					AdminPrint(playerID, COLOR_ERROR, "  Missing German language string for string %d", stringID);
 				}
 			}
 			else

@@ -385,6 +385,8 @@ case "$ACTION" in
 
 	start)
 		echo "Starting SAMP-Server ($ENVIRONMENT)..."
+		mv $SAMPPATH/mysql_log.txt $SAMPPATH/mysql_log.txt.old
+		mv $SAMPPATH/server_log.txt $SAMPPATH/server_log.txt.old
 		$DAEMONCMD_START
 		case "$?" in
 			0)
