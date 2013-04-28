@@ -137,6 +137,14 @@
             Es ist dir nicht erlaubt, dieses fahrzeug zu fahren!
         </de>
     </string>
+    <string id="17">
+        <en>
+            Shop
+        </en>
+        <de>
+            Laden
+        </de>
+    </string>
     <string id="19">
         <en>
             You have to enter the amount!
