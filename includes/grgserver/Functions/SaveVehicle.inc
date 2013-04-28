@@ -37,6 +37,8 @@ SaveVehicle(vehicleID, interior)
 		Format:sqlQuery("%s `health` = '%f', `mileAge` = '%f', `hasNavi` = '%d', `locked` = '%d', `price` = '%f',", sqlQuery, health, VehicleProperty:vehicleID[MILEAGE], VehicleProperty:vehicleID[HASNAVI], IsVehicleLocked(vehicleID), VehicleProperty:vehicleID[PRICE]);
 		Format:sqlQuery("%s `currentFuel` = '%f', `sellerUserId` = '%d', `ownerUserId` = '%d', `radioStationId` = '%d'", sqlQuery, VehicleProperty:vehicleID[CURRENTFUEL], VehicleProperty:vehicleID[SELLERUSERID], VehicleProperty:vehicleID[OWNERUSERID], VehicleProperty:vehicleID[RADIOSTATIONID]);
 
+		Format:sqlQuery("%s WHERE `id` = '%d'", sqlQuery, VehicleProperty:vehicleID[SAVEID]);
+
 		MySQLQuery(sqlQuery);
 	}
 }
