@@ -268,6 +268,7 @@
 #include <grgserver\Dialogs\D_Service.inc>
 #include <grgserver\Dialogs\D_SetSell.inc>
 #include <grgserver\Dialogs\D_SetVehicleJob.inc>
+#include <grgserver\Dialogs\D_Shop.inc>
 #include <grgserver\Dialogs\D_ShowOrder.inc>
 #include <grgserver\Dialogs\D_SpawnVehicle.inc>
 #include <grgserver\Dialogs\D_Stats.inc>
@@ -296,6 +297,7 @@
 #include <grgserver\Pickups\Pickup_PayNSpray.inc>
 #include <grgserver\Pickups\Pickup_Place.inc>
 #include <grgserver\Pickups\Pickup_Police.inc>
+#include <grgserver\Pickups\Pickup_Shop.inc>
 #include <grgserver\Pickups\Pickup_Taxi.inc>
 #include <grgserver\Pickups\Pickup_Trucker.inc>
 #include <grgserver\Pickups\Pickup_UpgradeVehicle.inc>
