@@ -17,6 +17,7 @@ new playerVariables[MAX_PLAYERS][enum_playerVariable];
 new speedCameras[MAX_SPEEDCAMERAS][enum_speedCamera];
 new sqlQuery[1024];
 new vehicles[MAX_VEHICLES][enum_vehicle];
+new vehicleColors[212][MAX_VEHICLE_COLORS][2];
 new vehicleLightObjects[MAX_VEHICLES][enum_neonType][LIGHTOBJECT_MAXCOLORS];
 new vehicleModels[212][enum_vehicleModel];
 new weapons[47][enum_weapon];

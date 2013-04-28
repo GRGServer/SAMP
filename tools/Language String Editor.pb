@@ -272,12 +272,14 @@ Procedure EditOK()
 	Strings(stringID)\ignoreUnused = ignoreUnused
 	ReloadList()
 	CloseEditWindow()
+	For item = 0 To CountGadgetItems(#List) - 1
+		If Val(GetGadgetItemText(#List, item, 0)) = stringID
+			SetGadgetState(#List, item)
+			Break
+		EndIf
+	Next
 	SetFileChangedState(#True)
 	ProcedureReturn #True
-EndProcedure
-
-Procedure FindListItem(gadget, item, column, searchString$) 
-	ProcedureReturn FindString(LCase(GetGadgetItemText(gadget, item, column)), LCase(searchString$))
 EndProcedure
 
 Procedure AddString(stringID, englishString$, germanString$, addNotExisting, ignoreUnused, referenceFileName$, referenceLine, referenceContent$)
@@ -623,41 +625,32 @@ Procedure CheckQuit()
 	EndIf
 EndProcedure
 
-Procedure SearchStringInList(string$)
-	startingItem = GetGadgetState(#List) + 1
-	If startingItem >= CountGadgetItems(#List)
-		startingItem = 0
+Procedure SearchString(string$)
+	startingID = Val(GetGadgetItemText(#List, GetGadgetState(#List) + 1, 0))
+	If startingID > ArraySize(Strings())
+		startingID = 0
 	EndIf
-	foundItem = -1
-	For item = startingItem To CountGadgetItems(#List) - 1
-		For column = 1 To listColumn
-			If FindListItem(#List, item, column, string$)
-				foundItem = item
-				Break
-			EndIf
-		Next
-		If foundItem <> -1
-			Break
-		EndIf
-	Next
-	If foundItem = -1 And startingItem > 0
-		For item = 0 To startingItem -1
-			For column = 1 To listColumn
-				If FindListItem(#List, item, column, string$)
-					foundItem = item
-					Break
+	For stringID = startingID To ArraySize(Strings())
+		If FindString(Strings(stringID)\englishString, string$, 1, #PB_String_NoCase) Or FindString(Strings(stringID)\germanString, string$, 1, #PB_String_NoCase)
+			For item = 0 To CountGadgetItems(#List) - 1
+				If Val(GetGadgetItemText(#List, item, 0)) = stringID
+					SetGadgetState(#List, item)
+					ProcedureReturn #True
 				EndIf
 			Next
-			If foundItem <> -1
-				Break
-			EndIf
-		Next
-	EndIf
-	If foundItem = -1
-		MessageRequester("Search string", "The entered string '" + string$ + "' was not found!", #MB_ICONERROR)
-	Else
-		SetGadgetState(#List, foundItem)
-	EndIf
+		EndIf
+	Next
+	MessageRequester("Search string", "The entered string '" + string$ + "' was not found!", #MB_ICONERROR)
+EndProcedure
+
+Procedure SearchStringID(stringID)
+	For item = 0 To CountGadgetItems(#List) - 1
+		If Val(GetGadgetItemText(#List, item, 0)) = stringID
+			SetGadgetState(#List, item)
+			ProcedureReturn #True
+		EndIf
+	Next
+	MessageRequester("Search string", "The string ID " + Str(stringID) + " was not found!", #MB_ICONERROR)
 EndProcedure
 
 nppExecutable$ = Trim(GetRegValue(#HKEY_LOCAL_MACHINE, "SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\notepad++.exe", ""), Chr(34))
@@ -804,30 +797,7 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 						If string$
 							stringID = Val(string$)
 							If Str(stringID) = string$
-								startingItem = GetGadgetState(#List) + 1
-								If startingItem >= CountGadgetItems(#List)
-									startingItem = 0
-								EndIf
-								foundItem = -1
-								For item = startingItem To CountGadgetItems(#List) - 1
-									If FindListItem(#List, item, 0, string$)
-										foundItem = item
-										Break
-									EndIf
-								Next
-								If foundItem = -1 And startingItem > 0
-									For item = 0 To startingItem -1
-										If FindListItem(#List, item, 0, string$)
-											foundItem = item
-											Break
-										EndIf
-									Next
-								EndIf
-								If foundItem = -1
-									MessageRequester("Goto string ID", "The entered string ID '" + string$ + "' was not found!", #MB_ICONERROR)
-								Else
-									SetGadgetState(#List, foundItem)
-								EndIf
+								SearchStringID(stringID)
 							Else
 								MessageRequester("Not a number", "The entered text is not a number!", #MB_ICONERROR)
 							EndIf
@@ -836,16 +806,16 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 						string$ = Trim(InputRequester("Search string", "Enter the string you want to search for.", searchedString$))
 						If string$
 							searchedString$ = string$
-							SearchStringInList(string$)
+							SearchString(string$)
 						EndIf
 					Case #Menu_SearchNext
 						If searchedString$
-							SearchStringInList(searchedString$)
+							SearchString(searchedString$)
 						Else
 							string$ = Trim(InputRequester("Search string", "Enter the string you want to search for.", searchedString$))
 							If string$
 								searchedString$ = string$
-								SearchStringInList(string$)
+								SearchString(string$)
 							EndIf
 						EndIf
 					Case #Menu_ShowReferences
@@ -889,15 +859,15 @@ If OpenWindow(#Window, 100, 100, 800, 500, #Title, #PB_Window_MinimizeGadget | #
 	ForEver
 EndIf
 ; IDE Options = PureBasic 5.11 (Windows - x86)
-; CursorPosition = 176
-; FirstLine = 148
+; CursorPosition = 633
+; FirstLine = 627
 ; Folding = -----
 ; EnableXP
 ; UseIcon = Language String Editor.ico
 ; Executable = Language String Editor.exe
 ; CommandLine = X:\Projects\SAMP-Server\
-; EnableCompileCount = 350
-; EnableBuildCount = 16
+; EnableCompileCount = 357
+; EnableBuildCount = 18
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0

@@ -32,6 +32,11 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 	new modelID = GetVehicleModel(vehicleID);
 	if (!isPassenger)
 	{
+		if (VehicleProperty:vehicleID[NPC_ONLY])
+		{
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:16("You are not allowed to drive this vehicle!"));
+			return false;
+		}
 		if (modelID >= 400 && modelID <= 611)
 		{
 			if (IsStr(vehicleModels[modelID - 400][VEHICLEMODEL_TYPE], "Monster Truck"))
@@ -57,5 +62,6 @@ OnPlayerEnteredVehicle(playerID, vehicleID, isPassenger)
 	{
 		SendClientMessageEx(playerID, COLOR_INFO, StringID:424("Use /engine to start the engine of your vehicle."));
 	}
+	SetVehicleParamsForPlayer(vehicleID, playerID, false, false);
 	return true;
 }

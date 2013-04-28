@@ -100,7 +100,6 @@
 #include <grgserver\Functions\IsVehicleLocked.inc>
 #include <grgserver\Functions\LanguageString.inc>
 #include <grgserver\Functions\LeaveProperty.inc>
-#include <grgserver\Functions\LoadMySQLVehicle.inc>
 #include <grgserver\Functions\LoadNPCs.inc>
 #include <grgserver\Functions\LoadObjectsFromFile.inc>
 #include <grgserver\Functions\LoadPlayer.inc>
@@ -402,7 +401,6 @@
 #include <grgserver\Commands\repair.inc>
 #include <grgserver\Commands\resetcam.inc>
 #include <grgserver\Commands\saveinfo.inc>
-#include <grgserver\Commands\savevehicle.inc>
 #include <grgserver\Commands\selectlastobject.inc>
 #include <grgserver\Commands\selectproperty.inc>
 #include <grgserver\Commands\sellvehicle.inc>

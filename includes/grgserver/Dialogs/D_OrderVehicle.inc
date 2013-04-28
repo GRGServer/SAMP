@@ -1,17 +1,10 @@
 ShowDialog:OrderVehicle(playerID)
 {
 	new vehicleList[2048];
-	mysql_query("SELECT `name` FROM `vehiclemodels` ORDER BY `name` ASC");
-	mysql_store_result();
-	while (FetchMySQLRow())
+	Foreach(arrayIndex, vehicleModels)
 	{
-		if (strlen(vehicleList))
-		{
-			Format:vehicleList("%s\n", vehicleList);
-		}
-		Format:vehicleList("%s%s", vehicleList, GetMySQLField("name"));
+		AddLine(vehicleList, vehicleModels[arrayIndex][VEHICLEMODEL_NAME]);
 	}
-	mysql_free_result();
 	CreateDialog(playerID, "OrderVehicle", DIALOG_STYLE_LIST, LanguageString(playerID, StringID:113("Order a vehicle")), vehicleList, LanguageString(playerID, StringID:413("Order")), LanguageString(playerID, StringID:165("Cancel")));
 }
 

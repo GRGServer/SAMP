@@ -6,7 +6,7 @@ OnPlayerLeftVehicle(playerID, vehicleID, isPassenger)
 	{
 		SetCameraBehindPlayer(playerID);// Fixes not setting camera behind player after leaving a tram
 	}
-	if (PVar:playerID[CPMISSION_VEHICLEID] == vehicleID)
+	if (PVar:playerID[CPMISSION_VEHICLEID] && PVar:playerID[CPMISSION_VEHICLEID] == vehicleID)
 	{
 		new Float:posX;
 		new Float:posY;

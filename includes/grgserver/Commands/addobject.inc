@@ -27,7 +27,7 @@ PCMD:addobject[MAPPER](playerID, params[], StringID:202("Add a new object"))
 	new objectList[2048];
 	Foreach(currentModelID, objectModels)
 	{
-		if (strfind(objectModels[currentModelID], modelName, false) != -1)
+		if (strfind(objectModels[currentModelID], modelName, true) != -1)
 		{
 			if (strlen(objectList))
 			{

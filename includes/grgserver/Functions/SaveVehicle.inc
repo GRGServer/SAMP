@@ -10,21 +10,12 @@
  * <param name="interior">
  *	The interior where the vehicle should be spawned on load.
  * </param>
- *
- * <param name="asOriginalVehicle">
- *	<item name="true">
- *		Save the vehicle in the originalvehicles table<br />
- *		<b>IMPORTANT: Only use on dev server and in permission controlled commands like /savevehicle!</b>
- *	</item>
- *	<item name="false">Save the vehicle in the vehicles table (This is the default value if not specified)</item>
- * </param>
  */
 
-SaveVehicle(vehicleID, interior, asOriginalVehicle = false)
+SaveVehicle(vehicleID, interior)
 {
 	if (VehicleProperty:vehicleID[SAVEID])
 	{
-		new preSQL[30];
 		new Float:health;
 		new Float:posX; 
 		new Float:posY;
@@ -33,29 +24,19 @@ SaveVehicle(vehicleID, interior, asOriginalVehicle = false)
 		GetVehicleHealth(vehicleID, health);
 		GetVehiclePos(vehicleID, posX, posY, posZ);
 		GetVehicleZAngle(vehicleID, angle);
-		
-		if (asOriginalVehicle)
-		{
-			strcat(preSQL, "UPDATE `vehicles`");
-		}
-		else
-		{
-			strcat(preSQL, "UPDATE `vehicles`");
-		}
-		
+
+		Format:sqlQuery("UPDATE `vehicles` SET");
+
 		// Position
-		MySQLQuery("%s SET `posX` = '%f', `posY` = '%f', `posZ` = '%f', `angle` = '%f', `interior` = '%d' WHERE `id` = '%d'", preSQL, posX, posY, posZ, angle, interior, VehicleProperty:vehicleID[SAVEID]);
-		
+		Format:sqlQuery("%s `posX` = '%f', `posY` = '%f', `posZ` = '%f', `angle` = '%f', `interior` = '%d'", sqlQuery, posX, posY, posZ, angle, interior);
+
 		// Visual
-		MySQLQuery("%s SET `color1` = '%d', `color2` = '%d', `paintjobId` = '%d', `frontLightId` = '%d', `neonLightId` = '%d' WHERE `id` = '%d'", preSQL, VehicleProperty:vehicleID[COLOR1], VehicleProperty:vehicleID[COLOR2], VehicleProperty:vehicleID[PAINTJOBID], VehicleProperty:vehicleID[FRONTLIGHTID], VehicleProperty:vehicleID[NEONLIGHTID], VehicleProperty:vehicleID[SAVEID]);
-		
-		// Other common properties (originalvehicles and vehicles)
-		MySQLQuery("%s SET `health` = '%f', `mileAge` = '%f', `hasNavi` = '%d', `locked` = '%d', `price` = '%f' WHERE `id` = '%d'", preSQL, health, VehicleProperty:vehicleID[MILEAGE], VehicleProperty:vehicleID[HASNAVI], IsVehicleLocked(vehicleID), VehicleProperty:vehicleID[PRICE], VehicleProperty:vehicleID[SAVEID]);
-		
-		// Saved vehicles properties (Properties not available for originalvehicles)
-		if (!asOriginalVehicle)
-		{
-			MySQLQuery("%s SET `currentFuel` = '%f', `sellerUserId` = '%d', `ownerUserId` = '%d', `radioStationId` = '%d' WHERE `id` = '%d'", preSQL, VehicleProperty:vehicleID[CURRENTFUEL], VehicleProperty:vehicleID[SELLERUSERID], VehicleProperty:vehicleID[OWNERUSERID], VehicleProperty:vehicleID[RADIOSTATIONID], VehicleProperty:vehicleID[SAVEID]);
-		}
+		Format:sqlQuery("%s `color1` = '%d', `color2` = '%d', `paintjobId` = '%d', `frontLightId` = '%d', `neonLightId` = '%d'", sqlQuery, VehicleProperty:vehicleID[COLOR1], VehicleProperty:vehicleID[COLOR2], VehicleProperty:vehicleID[PAINTJOBID], VehicleProperty:vehicleID[FRONTLIGHTID], VehicleProperty:vehicleID[NEONLIGHTID]);
+
+		// Other properties
+		Format:sqlQuery("%s `health` = '%f', `mileAge` = '%f', `hasNavi` = '%d', `locked` = '%d', `price` = '%f'", sqlQuery, health, VehicleProperty:vehicleID[MILEAGE], VehicleProperty:vehicleID[HASNAVI], IsVehicleLocked(vehicleID), VehicleProperty:vehicleID[PRICE]);
+		Format:sqlQuery("%s `currentFuel` = '%f', `sellerUserId` = '%d', `ownerUserId` = '%d', `radioStationId` = '%d'", sqlQuery, VehicleProperty:vehicleID[CURRENTFUEL], VehicleProperty:vehicleID[SELLERUSERID], VehicleProperty:vehicleID[OWNERUSERID], VehicleProperty:vehicleID[RADIOSTATIONID]);
+
+		MySQLQuery(sqlQuery);
 	}
 }

@@ -1,0 +1,1608 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<vehiclemodels>
+	<model id="400" name="Landstalker" type="Car" fuelUsage="8.5" maxFuel="100">
+		<color color1="4" color2="1"/>
+		<color color1="123" color2="1"/>
+		<color color1="113" color2="1"/>
+		<color color1="101" color2="1"/>
+		<color color1="75" color2="1"/>
+		<color color1="62" color2="1"/>
+		<color color1="40" color2="1"/>
+		<color color1="36" color2="1"/>
+	</model>
+	<model id="401" name="Bravura" type="Car" fuelUsage="8.5" maxFuel="60">
+		<color color1="41" color2="41"/>
+		<color color1="47" color2="47"/>
+		<color color1="52" color2="52"/>
+		<color color1="66" color2="66"/>
+		<color color1="74" color2="74"/>
+		<color color1="87" color2="87"/>
+		<color color1="91" color2="91"/>
+		<color color1="113" color2="113"/>
+	</model>
+	<model id="402" name="Buffalo" type="Car" fuelUsage="8.5" maxFuel="90">
+		<color color1="10" color2="10"/>
+		<color color1="13" color2="13"/>
+		<color color1="22" color2="22"/>
+		<color color1="30" color2="30"/>
+		<color color1="39" color2="39"/>
+		<color color1="90" color2="90"/>
+		<color color1="98" color2="98"/>
+		<color color1="110" color2="110"/>
+	</model>
+	<model id="403" name="Linerunner" type="Truck" fuelUsage="50.8" maxFuel="160">
+		<color color1="36" color2="1"/>
+		<color color1="37" color2="1"/>
+		<color color1="30" color2="1"/>
+		<color color1="28" color2="1"/>
+		<color color1="25" color2="1"/>
+		<color color1="40" color2="1"/>
+		<color color1="101" color2="1"/>
+		<color color1="113" color2="1"/>
+	</model>
+	<model id="404" name="Pereniel" type="Car" fuelUsage="5.9" maxFuel="50">
+		<color color1="113" color2="39"/>
+		<color color1="119" color2="50"/>
+		<color color1="123" color2="92"/>
+		<color color1="109" color2="100"/>
+		<color color1="101" color2="101"/>
+		<color color1="95" color2="105"/>
+		<color color1="83" color2="110"/>
+		<color color1="66" color2="25"/>
+	</model>
+	<model id="405" name="Sentinel" type="Car" fuelUsage="6.3" maxFuel="70">
+		<color color1="11" color2="1"/>
+		<color color1="24" color2="1"/>
+		<color color1="36" color2="1"/>
+		<color color1="40" color2="1"/>
+		<color color1="75" color2="1"/>
+		<color color1="91" color2="1"/>
+		<color color1="123" color2="1"/>
+		<color color1="4" color2="1"/>
+	</model>
+	<model id="406" name="Dumper" type="Truck" fuelUsage="13.5" maxFuel="130">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="407" name="Firetruck" type="Truck" fuelUsage="15.2" maxFuel="180">
+		<color color1="3" color2="1"/>
+	</model>
+	<model id="408" name="Trashmaster" type="Truck" fuelUsage="10.5" maxFuel="120">
+		<color color1="26" color2="26"/>
+	</model>
+	<model id="409" name="Stretch" type="Car" fuelUsage="7.1" maxFuel="60">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="410" name="Manana" type="Car" fuelUsage="3.5" maxFuel="40">
+		<color color1="4" color2="1"/>
+		<color color1="9" color2="1"/>
+		<color color1="10" color2="1"/>
+		<color color1="25" color2="1"/>
+		<color color1="36" color2="1"/>
+		<color color1="40" color2="1"/>
+		<color color1="45" color2="1"/>
+		<color color1="84" color2="1"/>
+	</model>
+	<model id="411" name="Infernus" type="Car" fuelUsage="10.5" maxFuel="90">
+		<color color1="12" color2="1"/>
+		<color color1="64" color2="1"/>
+		<color color1="123" color2="1"/>
+		<color color1="116" color2="1"/>
+		<color color1="112" color2="1"/>
+		<color color1="106" color2="1"/>
+		<color color1="80" color2="1"/>
+		<color color1="75" color2="1"/>
+	</model>
+	<model id="412" name="Voodoo" type="Car" fuelUsage="5.5" maxFuel="60">
+		<color color1="9" color2="1"/>
+		<color color1="10" color2="8"/>
+		<color color1="11" color2="1"/>
+		<color color1="25" color2="8"/>
+		<color color1="27" color2="1"/>
+		<color color1="29" color2="8"/>
+		<color color1="30" color2="1"/>
+		<color color1="37" color2="8"/>
+	</model>
+	<model id="413" name="Pony" type="Car" fuelUsage="4.5" maxFuel="80">
+		<color color1="87" color2="1"/>
+		<color color1="88" color2="1"/>
+		<color color1="91" color2="1"/>
+		<color color1="105" color2="1"/>
+		<color color1="109" color2="1"/>
+		<color color1="119" color2="1"/>
+		<color color1="4" color2="1"/>
+		<color color1="25" color2="1"/>
+	</model>
+	<model id="414" name="Mule" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="25" color2="1"/>
+		<color color1="28" color2="1"/>
+		<color color1="43" color2="1"/>
+		<color color1="67" color2="1"/>
+		<color color1="72" color2="1"/>
+		<color color1="9" color2="1"/>
+		<color color1="95" color2="1"/>
+		<color color1="24" color2="1"/>
+	</model>
+	<model id="415" name="Cheetah" type="Car" fuelUsage="9.5" maxFuel="80">
+		<color color1="20" color2="1"/>
+		<color color1="25" color2="1"/>
+		<color color1="36" color2="1"/>
+		<color color1="40" color2="1"/>
+		<color color1="62" color2="1"/>
+		<color color1="75" color2="1"/>
+		<color color1="92" color2="1"/>
+		<color color1="0" color2="1"/>
+	</model>
+	<model id="416" name="Ambulance" type="Car" fuelUsage="10.5" maxFuel="90">
+		<color color1="1" color2="3"/>
+	</model>
+	<model id="417" name="Leviathan" type="Helicopter" fuelUsage="50" maxFuel="7000">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="418" name="Moonbeam" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="119" color2="119"/>
+		<color color1="117" color2="227"/>
+		<color color1="114" color2="114"/>
+		<color color1="108" color2="108"/>
+		<color color1="95" color2="95"/>
+		<color color1="81" color2="81"/>
+		<color color1="61" color2="61"/>
+		<color color1="41" color2="41"/>
+	</model>
+	<model id="419" name="Esperanto" type="Car" fuelUsage="4.5" maxFuel="60">
+		<color color1="45" color2="75"/>
+		<color color1="47" color2="76"/>
+		<color color1="33" color2="75"/>
+		<color color1="13" color2="76"/>
+		<color color1="54" color2="75"/>
+		<color color1="69" color2="76"/>
+		<color color1="59" color2="75"/>
+		<color color1="87" color2="76"/>
+	</model>
+	<model id="420" name="Taxi" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="6" color2="1"/>
+	</model>
+	<model id="421" name="Washington" type="Car" fuelUsage="5.5" maxFuel="40">
+		<color color1="4" color2="1"/>
+		<color color1="13" color2="1"/>
+		<color color1="25" color2="1"/>
+		<color color1="30" color2="1"/>
+		<color color1="36" color2="1"/>
+		<color color1="40" color2="1"/>
+		<color color1="75" color2="1"/>
+		<color color1="95" color2="1"/>
+	</model>
+	<model id="422" name="Bobcat" type="Car" fuelUsage="8.5" maxFuel="50">
+		<color color1="96" color2="25"/>
+		<color color1="97" color2="25"/>
+		<color color1="101" color2="25"/>
+		<color color1="111" color2="31"/>
+		<color color1="113" color2="36"/>
+		<color color1="83" color2="57"/>
+		<color color1="67" color2="59"/>
+	</model>
+	<model id="423" name="Mr Whoopee" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="16"/>
+		<color color1="1" color2="56"/>
+		<color color1="1" color2="17"/>
+		<color color1="1" color2="53"/>
+		<color color1="1" color2="5"/>
+		<color color1="1" color2="35"/>
+	</model>
+	<model id="424" name="BF Injection" type="Car" fuelUsage="5.5" maxFuel="30">
+		<color color1="1" color2="0"/>
+		<color color1="2" color2="2"/>
+		<color color1="3" color2="2"/>
+		<color color1="3" color2="6"/>
+		<color color1="6" color2="16"/>
+		<color color1="15" color2="30"/>
+		<color color1="24" color2="53"/>
+		<color color1="35" color2="61"/>
+	</model>
+	<model id="425" name="Hunter" type="Helicopter" fuelUsage="50" maxFuel="70000">
+		<color color1="43" color2="0"/>
+	</model>
+	<model id="426" name="Premier" type="Car" fuelUsage="6.5" maxFuel="60">
+		<color color1="37" color2="37"/>
+		<color color1="42" color2="42"/>
+		<color color1="53" color2="53"/>
+		<color color1="62" color2="62"/>
+		<color color1="7" color2="7"/>
+		<color color1="10" color2="10"/>
+		<color color1="11" color2="11"/>
+		<color color1="15" color2="15"/>
+	</model>
+	<model id="427" name="Enforcer" type="Car" fuelUsage="15.9" maxFuel="130">
+		<color color1="0" color2="1"/>
+	</model>
+	<model id="428" name="Securicar" type="Car" fuelUsage="15.9" maxFuel="130">
+		<color color1="4" color2="75"/>
+	</model>
+	<model id="429" name="Banshee" type="Car" fuelUsage="12.5" maxFuel="90">
+		<color color1="12" color2="12"/>
+		<color color1="13" color2="13"/>
+		<color color1="14" color2="14"/>
+		<color color1="1" color2="2"/>
+		<color color1="2" color2="1"/>
+		<color color1="1" color2="3"/>
+		<color color1="3" color2="1"/>
+		<color color1="10" color2="10"/>
+	</model>
+	<model id="430" name="Predator" type="Boat" fuelUsage="8.5" maxFuel="200">
+		<color color1="46" color2="26"/>
+	</model>
+	<model id="431" name="Bus" type="Car" fuelUsage="15.5" maxFuel="80">
+		<color color1="71" color2="59"/>
+		<color color1="75" color2="59"/>
+		<color color1="92" color2="72"/>
+		<color color1="47" color2="74"/>
+		<color color1="55" color2="83"/>
+		<color color1="59" color2="83"/>
+		<color color1="71" color2="87"/>
+		<color color1="82" color2="87"/>
+	</model>
+	<model id="432" name="Rhino" type="Car" fuelUsage="80.5" maxFuel="700">
+		<color color1="43" color2="0"/>
+	</model>
+	<model id="433" name="Barracks" type="Truck" fuelUsage="80.5" maxFuel="800">
+		<color color1="43" color2="0"/>
+	</model>
+	<model id="434" name="Hotknife" type="Car" fuelUsage="10.3" maxFuel="110">
+		<color color1="1" color2="1"/>
+		<color color1="12" color2="12"/>
+		<color color1="2" color2="2"/>
+		<color color1="6" color2="6"/>
+		<color color1="4" color2="4"/>
+		<color color1="46" color2="46"/>
+		<color color1="53" color2="53"/>
+	</model>
+	<model id="435" name="Artict1" type="Trailer" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="436" name="Previon" type="Car" fuelUsage="5.5" maxFuel="50">
+		<color color1="83" color2="1"/>
+		<color color1="87" color2="1"/>
+		<color color1="92" color2="1"/>
+		<color color1="95" color2="1"/>
+		<color color1="109" color2="1"/>
+		<color color1="119" color2="45"/>
+		<color color1="11" color2="1"/>
+	</model>
+	<model id="437" name="Coach" type="Car" fuelUsage="15.5" maxFuel="90">
+		<color color1="54" color2="7"/>
+		<color color1="79" color2="7"/>
+		<color color1="87" color2="7"/>
+		<color color1="95" color2="16"/>
+		<color color1="98" color2="20"/>
+		<color color1="105" color2="20"/>
+		<color color1="123" color2="20"/>
+		<color color1="125" color2="21"/>
+	</model>
+	<model id="438" name="Cabbie" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="6" color2="76"/>
+	</model>
+	<model id="439" name="Stallion" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="57" color2="8"/>
+		<color color1="8" color2="17"/>
+		<color color1="43" color2="21"/>
+		<color color1="54" color2="38"/>
+		<color color1="67" color2="8"/>
+		<color color1="37" color2="78"/>
+		<color color1="65" color2="79"/>
+		<color color1="25" color2="78"/>
+	</model>
+	<model id="440" name="Rumpo" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="34" color2="34"/>
+		<color color1="32" color2="32"/>
+		<color color1="20" color2="20"/>
+		<color color1="110" color2="110"/>
+		<color color1="66" color2="66"/>
+		<color color1="84" color2="84"/>
+		<color color1="118" color2="118"/>
+		<color color1="121" color2="121"/>
+	</model>
+	<model id="441" name="RC Bandit" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="2" color2="96"/>
+		<color color1="79" color2="42"/>
+		<color color1="82" color2="54"/>
+		<color color1="67" color2="86"/>
+		<color color1="126" color2="96"/>
+		<color color1="70" color2="96"/>
+		<color color1="110" color2="54"/>
+		<color color1="67" color2="98"/>
+	</model>
+	<model id="442" name="Romero" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+		<color color1="11" color2="105"/>
+		<color color1="25" color2="109"/>
+		<color color1="36" color2="0"/>
+		<color color1="40" color2="36"/>
+		<color color1="75" color2="36"/>
+		<color color1="0" color2="36"/>
+		<color color1="0" color2="109"/>
+	</model>
+	<model id="443" name="Packer" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="4" color2="1"/>
+		<color color1="20" color2="1"/>
+		<color color1="24" color2="1"/>
+		<color color1="25" color2="1"/>
+		<color color1="36" color2="1"/>
+		<color color1="40" color2="1"/>
+		<color color1="54" color2="1"/>
+		<color color1="84" color2="1"/>
+	</model>
+	<model id="444" name="Monster" type="Monster Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="32" color2="36"/>
+		<color color1="32" color2="42"/>
+		<color color1="32" color2="53"/>
+		<color color1="32" color2="66"/>
+		<color color1="32" color2="14"/>
+		<color color1="32" color2="32"/>
+	</model>
+	<model id="445" name="Admiral" type="Car" fuelUsage="6.9" maxFuel="50">
+		<color color1="34" color2="34"/>
+		<color color1="35" color2="35"/>
+		<color color1="37" color2="37"/>
+		<color color1="39" color2="39"/>
+		<color color1="41" color2="41"/>
+		<color color1="43" color2="43"/>
+		<color color1="45" color2="45"/>
+		<color color1="47" color2="47"/>
+	</model>
+	<model id="446" name="Squalo" type="Boat" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+		<color color1="0" color2="1"/>
+		<color color1="1" color2="5"/>
+		<color color1="1" color2="1"/>
+		<color color1="3" color2="3"/>
+		<color color1="0" color2="1"/>
+		<color color1="1" color2="22"/>
+		<color color1="1" color2="1"/>
+		<color color1="1" color2="35"/>
+		<color color1="1" color2="1"/>
+		<color color1="1" color2="44"/>
+		<color color1="1" color2="1"/>
+		<color color1="1" color2="53"/>
+		<color color1="1" color2="1"/>
+		<color color1="1" color2="57"/>
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="447" name="Seasparrow" type="Helicopter" fuelUsage="50" maxFuel="70">
+		<color color1="75" color2="2"/>
+	</model>
+	<model id="448" name="Pizzaboy" type="Bike" fuelUsage="8.5" maxFuel="70">
+		<color color1="3" color2="6"/>
+	</model>
+	<model id="449" name="Tram" type="Train" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="74"/>
+	</model>
+	<model id="450" name="artict2" type="Trailer" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="451" name="Turismo" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="123" color2="123"/>
+		<color color1="125" color2="125"/>
+		<color color1="36" color2="36"/>
+		<color color1="16" color2="16"/>
+		<color color1="18" color2="18"/>
+		<color color1="46" color2="46"/>
+		<color color1="61" color2="61"/>
+		<color color1="75" color2="75"/>
+	</model>
+	<model id="452" name="Speeder" type="Boat" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="3"/>
+		<color color1="1" color2="5"/>
+		<color color1="1" color2="16"/>
+		<color color1="1" color2="22"/>
+		<color color1="1" color2="35"/>
+		<color color1="1" color2="44"/>
+		<color color1="1" color2="53"/>
+		<color color1="1" color2="57"/>
+	</model>
+	<model id="453" name="Reefer" type="Boat" fuelUsage="8.5" maxFuel="70">
+		<color color1="56" color2="56"/>
+	</model>
+	<model id="454" name="Tropic" type="Boat" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="455" name="Flatbed" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="84" color2="15"/>
+		<color color1="84" color2="58"/>
+		<color color1="84" color2="31"/>
+		<color color1="32" color2="74"/>
+		<color color1="43" color2="31"/>
+		<color color1="1" color2="31"/>
+		<color color1="77" color2="31"/>
+		<color color1="32" color2="74"/>
+	</model>
+	<model id="456" name="Yankee" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="84" color2="63"/>
+		<color color1="91" color2="63"/>
+		<color color1="102" color2="65"/>
+		<color color1="105" color2="72"/>
+		<color color1="110" color2="93"/>
+		<color color1="121" color2="93"/>
+		<color color1="12" color2="95"/>
+		<color color1="23" color2="1"/>
+	</model>
+	<model id="457" name="Caddy" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="58" color2="1"/>
+		<color color1="2" color2="1"/>
+		<color color1="63" color2="1"/>
+		<color color1="18" color2="1"/>
+		<color color1="32" color2="1"/>
+		<color color1="45" color2="1"/>
+		<color color1="13" color2="1"/>
+		<color color1="34" color2="1"/>
+	</model>
+	<model id="458" name="Solair" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="91" color2="1"/>
+		<color color1="101" color2="1"/>
+		<color color1="109" color2="1"/>
+		<color color1="113" color2="1"/>
+		<color color1="4" color2="1"/>
+		<color color1="25" color2="1"/>
+		<color color1="30" color2="1"/>
+		<color color1="36" color2="1"/>
+	</model>
+	<model id="459" name="Berkley's RC Van" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="26" color2="26"/>
+		<color color1="28" color2="28"/>
+		<color color1="44" color2="44"/>
+		<color color1="51" color2="51"/>
+		<color color1="57" color2="57"/>
+		<color color1="72" color2="72"/>
+		<color color1="106" color2="106"/>
+		<color color1="112" color2="112"/>
+	</model>
+	<model id="460" name="Skimmer" type="Plane" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="3"/>
+		<color color1="1" color2="9"/>
+		<color color1="1" color2="18"/>
+		<color color1="1" color2="30"/>
+		<color color1="17" color2="23"/>
+		<color color1="46" color2="23"/>
+		<color color1="46" color2="32"/>
+		<color color1="57" color2="34"/>
+	</model>
+	<model id="461" name="PCJ-600" type="Bike" fuelUsage="8.5" maxFuel="70">
+		<color color1="36" color2="1"/>
+		<color color1="37" color2="1"/>
+		<color color1="43" color2="1"/>
+		<color color1="53" color2="1"/>
+		<color color1="61" color2="1"/>
+		<color color1="75" color2="1"/>
+		<color color1="79" color2="1"/>
+		<color color1="88" color2="1"/>
+	</model>
+	<model id="462" name="Faggio" type="Bike" fuelUsage="8.5" maxFuel="70">
+		<color color1="12" color2="12"/>
+		<color color1="13" color2="13"/>
+		<color color1="14" color2="14"/>
+		<color color1="1" color2="2"/>
+		<color color1="2" color2="1"/>
+		<color color1="1" color2="3"/>
+		<color color1="3" color2="1"/>
+		<color color1="10" color2="10"/>
+	</model>
+	<model id="463" name="Freeway" type="Bike" fuelUsage="8.5" maxFuel="70">
+		<color color1="79" color2="79"/>
+		<color color1="84" color2="84"/>
+		<color color1="7" color2="7"/>
+		<color color1="11" color2="11"/>
+		<color color1="19" color2="19"/>
+		<color color1="22" color2="22"/>
+		<color color1="36" color2="36"/>
+		<color color1="53" color2="53"/>
+	</model>
+	<model id="464" name="RC Baron" type="Plane" fuelUsage="8.5" maxFuel="70">
+		<color color1="14" color2="75"/>
+	</model>
+	<model id="465" name="RC Raider" type="Helicopter" fuelUsage="50" maxFuel="70">
+		<color color1="14" color2="75"/>
+	</model>
+	<model id="466" name="Glendale" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="467" name="Oceanic" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="51" color2="1"/>
+		<color color1="58" color2="8"/>
+		<color color1="60" color2="1"/>
+		<color color1="68" color2="8"/>
+		<color color1="2" color2="1"/>
+		<color color1="13" color2="8"/>
+		<color color1="22" color2="1"/>
+		<color color1="36" color2="8"/>
+	</model>
+	<model id="468" name="Sanchez" type="Bike" fuelUsage="8.5" maxFuel="70">
+		<color color1="6" color2="6"/>
+		<color color1="46" color2="46"/>
+		<color color1="53" color2="53"/>
+		<color color1="3" color2="3"/>
+	</model>
+	<model id="469" name="Sparrow" type="Helicopter" fuelUsage="50" maxFuel="70">
+		<color color1="1" color2="3"/>
+	</model>
+	<model id="470" name="Patriot" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="43" color2="0"/>
+	</model>
+	<model id="471" name="Quad" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="120" color2="117"/>
+		<color color1="103" color2="111"/>
+		<color color1="120" color2="114"/>
+		<color color1="74" color2="91"/>
+		<color color1="120" color2="112"/>
+		<color color1="74" color2="83"/>
+		<color color1="120" color2="113"/>
+		<color color1="66" color2="71"/>
+	</model>
+	<model id="472" name="Coastguard" type="Boat" fuelUsage="8.5" maxFuel="70">
+		<color color1="56" color2="15"/>
+		<color color1="56" color2="53"/>
+	</model>
+	<model id="473" name="Dinghy" type="Boat" fuelUsage="8.5" maxFuel="70">
+		<color color1="56" color2="15"/>
+		<color color1="56" color2="53"/>
+	</model>
+	<model id="474" name="Hermes" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="97" color2="1"/>
+		<color color1="81" color2="1"/>
+		<color color1="105" color2="1"/>
+		<color color1="110" color2="1"/>
+		<color color1="91" color2="1"/>
+		<color color1="74" color2="1"/>
+		<color color1="84" color2="1"/>
+		<color color1="83" color2="1"/>
+	</model>
+	<model id="475" name="Sabre" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="2" color2="39"/>
+		<color color1="9" color2="39"/>
+		<color color1="17" color2="1"/>
+		<color color1="21" color2="1"/>
+		<color color1="33" color2="0"/>
+		<color color1="37" color2="0"/>
+		<color color1="41" color2="29"/>
+		<color color1="56" color2="29"/>
+	</model>
+	<model id="476" name="Rustler" type="Plane" fuelUsage="8.5" maxFuel="70">
+		<color color1="6" color2="7"/>
+		<color color1="7" color2="6"/>
+		<color color1="1" color2="6"/>
+		<color color1="89" color2="91"/>
+		<color color1="119" color2="117"/>
+		<color color1="103" color2="102"/>
+		<color color1="77" color2="87"/>
+		<color color1="71" color2="77"/>
+	</model>
+	<model id="477" name="ZR3 50" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="92" color2="1"/>
+		<color color1="94" color2="1"/>
+		<color color1="101" color2="1"/>
+		<color color1="121" color2="1"/>
+		<color color1="0" color2="1"/>
+		<color color1="22" color2="1"/>
+		<color color1="36" color2="1"/>
+		<color color1="75" color2="1"/>
+	</model>
+	<model id="478" name="Walton" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="72" color2="1"/>
+		<color color1="66" color2="1"/>
+		<color color1="59" color2="1"/>
+		<color color1="45" color2="1"/>
+		<color color1="40" color2="1"/>
+		<color color1="39" color2="1"/>
+		<color color1="35" color2="1"/>
+		<color color1="20" color2="1"/>
+	</model>
+	<model id="479" name="Regina" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="27" color2="36"/>
+		<color color1="59" color2="36"/>
+		<color color1="60" color2="35"/>
+		<color color1="55" color2="41"/>
+		<color color1="54" color2="31"/>
+		<color color1="49" color2="23"/>
+		<color color1="45" color2="32"/>
+		<color color1="40" color2="29"/>
+	</model>
+	<model id="480" name="Comet" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="73" color2="45"/>
+		<color color1="12" color2="12"/>
+		<color color1="2" color2="2"/>
+		<color color1="6" color2="6"/>
+		<color color1="4" color2="4"/>
+		<color color1="46" color2="46"/>
+		<color color1="53" color2="53"/>
+	</model>
+	<model id="481" name="BMX" type="BMX" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+		<color color1="3" color2="3"/>
+		<color color1="6" color2="6"/>
+		<color color1="46" color2="46"/>
+		<color color1="65" color2="9"/>
+		<color color1="14" color2="1"/>
+		<color color1="12" color2="9"/>
+		<color color1="26" color2="1"/>
+	</model>
+	<model id="482" name="Burrito" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="41" color2="41"/>
+		<color color1="48" color2="48"/>
+		<color color1="52" color2="52"/>
+		<color color1="64" color2="64"/>
+		<color color1="71" color2="71"/>
+		<color color1="85" color2="85"/>
+		<color color1="10" color2="10"/>
+		<color color1="62" color2="62"/>
+	</model>
+	<model id="483" name="Camper" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="31"/>
+		<color color1="1" color2="0"/>
+		<color color1="1" color2="31"/>
+		<color color1="1" color2="0"/>
+		<color color1="1" color2="20"/>
+		<color color1="3" color2="0"/>
+		<color color1="1" color2="5"/>
+		<color color1="0" color2="0"/>
+		<color color1="0" color2="6"/>
+		<color color1="3" color2="0"/>
+		<color color1="3" color2="6"/>
+		<color color1="3" color2="0"/>
+		<color color1="16" color2="0"/>
+		<color color1="8" color2="0"/>
+		<color color1="17" color2="0"/>
+		<color color1="120" color2="0"/>
+	</model>
+	<model id="484" name="Marquis" type="Boat" fuelUsage="8.5" maxFuel="70">
+		<color color1="12" color2="35"/>
+		<color color1="50" color2="32"/>
+		<color color1="40" color2="26"/>
+		<color color1="66" color2="36"/>
+	</model>
+	<model id="485" name="Baggage" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="73"/>
+		<color color1="1" color2="74"/>
+		<color color1="1" color2="75"/>
+		<color color1="1" color2="76"/>
+		<color color1="1" color2="77"/>
+		<color color1="1" color2="78"/>
+		<color color1="1" color2="79"/>
+	</model>
+	<model id="486" name="Dozer" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="487" name="Maverick" type="Helicopter" fuelUsage="50" maxFuel="70">
+		<color color1="26" color2="14"/>
+		<color color1="29" color2="42"/>
+		<color color1="26" color2="57"/>
+		<color color1="54" color2="29"/>
+		<color color1="26" color2="3"/>
+		<color color1="3" color2="29"/>
+		<color color1="12" color2="39"/>
+		<color color1="74" color2="35"/>
+	</model>
+	<model id="488" name="News Chopper" type="Helicopter" fuelUsage="50" maxFuel="70">
+		<color color1="2" color2="26"/>
+		<color color1="2" color2="29"/>
+	</model>
+	<model id="489" name="Rancher" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="13" color2="118"/>
+		<color color1="14" color2="123"/>
+		<color color1="120" color2="123"/>
+		<color color1="112" color2="120"/>
+		<color color1="84" color2="110"/>
+		<color color1="76" color2="102"/>
+	</model>
+	<model id="490" name="FBI Rancher" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="491" name="Virgo" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="40" color2="65"/>
+		<color color1="71" color2="72"/>
+		<color color1="52" color2="66"/>
+		<color color1="64" color2="72"/>
+		<color color1="30" color2="72"/>
+		<color color1="60" color2="72"/>
+	</model>
+	<model id="492" name="Greenwood" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="30" color2="26"/>
+		<color color1="77" color2="26"/>
+		<color color1="81" color2="27"/>
+		<color color1="24" color2="55"/>
+		<color color1="28" color2="56"/>
+		<color color1="49" color2="59"/>
+		<color color1="52" color2="69"/>
+		<color color1="71" color2="107"/>
+	</model>
+	<model id="493" name="Jetmax" type="Boat" fuelUsage="8.5" maxFuel="70">
+		<color color1="36" color2="13"/>
+	</model>
+	<model id="494" name="Hotring" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="36" color2="117"/>
+		<color color1="36" color2="13"/>
+		<color color1="42" color2="30"/>
+		<color color1="42" color2="33"/>
+		<color color1="54" color2="36"/>
+		<color color1="75" color2="79"/>
+		<color color1="92" color2="101"/>
+		<color color1="98" color2="109"/>
+	</model>
+	<model id="495" name="Sandking" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="123" color2="124"/>
+		<color color1="119" color2="122"/>
+		<color color1="118" color2="117"/>
+		<color color1="116" color2="115"/>
+		<color color1="114" color2="108"/>
+		<color color1="101" color2="106"/>
+		<color color1="88" color2="99"/>
+		<color color1="5" color2="6"/>
+	</model>
+	<model id="496" name="Blista Compact" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="74" color2="72"/>
+		<color color1="66" color2="72"/>
+		<color color1="53" color2="56"/>
+		<color color1="37" color2="19"/>
+		<color color1="22" color2="22"/>
+		<color color1="20" color2="20"/>
+		<color color1="9" color2="14"/>
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="497" name="Police Maverick" type="Helicopter" fuelUsage="50" maxFuel="70">
+		<color color1="0" color2="1"/>
+	</model>
+	<model id="498" name="Boxville" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="11" color2="123"/>
+		<color color1="13" color2="120"/>
+		<color color1="20" color2="117"/>
+		<color color1="24" color2="112"/>
+		<color color1="27" color2="107"/>
+		<color color1="36" color2="105"/>
+		<color color1="37" color2="107"/>
+		<color color1="43" color2="93"/>
+	</model>
+	<model id="499" name="Benson" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="109" color2="25"/>
+		<color color1="109" color2="32"/>
+		<color color1="112" color2="32"/>
+		<color color1="10" color2="32"/>
+		<color color1="30" color2="44"/>
+		<color color1="32" color2="52"/>
+		<color color1="84" color2="66"/>
+		<color color1="84" color2="69"/>
+	</model>
+	<model id="500" name="Mesa" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="75" color2="84"/>
+		<color color1="40" color2="84"/>
+		<color color1="40" color2="110"/>
+		<color color1="28" color2="119"/>
+		<color color1="25" color2="119"/>
+		<color color1="21" color2="119"/>
+		<color color1="13" color2="119"/>
+		<color color1="4" color2="119"/>
+	</model>
+	<model id="501" name="RC Goblin" type="Helicopter" fuelUsage="50" maxFuel="70">
+		<color color1="14" color2="75"/>
+	</model>
+	<model id="502" name="Hotring Racer A" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="7" color2="94"/>
+		<color color1="36" color2="88"/>
+		<color color1="51" color2="75"/>
+		<color color1="53" color2="75"/>
+		<color color1="58" color2="67"/>
+		<color color1="75" color2="67"/>
+		<color color1="75" color2="61"/>
+		<color color1="79" color2="62"/>
+	</model>
+	<model id="503" name="Hotring Racer B" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="83" color2="66"/>
+		<color color1="87" color2="74"/>
+		<color color1="87" color2="75"/>
+		<color color1="98" color2="83"/>
+		<color color1="101" color2="100"/>
+		<color color1="103" color2="101"/>
+		<color color1="117" color2="116"/>
+		<color color1="123" color2="36"/>
+	</model>
+	<model id="504" name="Bloodring Banger" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="51" color2="39"/>
+		<color color1="57" color2="38"/>
+		<color color1="45" color2="29"/>
+		<color color1="34" color2="9"/>
+		<color color1="65" color2="9"/>
+		<color color1="14" color2="1"/>
+		<color color1="12" color2="9"/>
+		<color color1="26" color2="1"/>
+	</model>
+	<model id="505" name="Rancher" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="13" color2="118"/>
+		<color color1="14" color2="123"/>
+		<color color1="120" color2="123"/>
+		<color color1="112" color2="120"/>
+		<color color1="84" color2="110"/>
+		<color color1="76" color2="102"/>
+	</model>
+	<model id="506" name="Super GT" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="3" color2="3"/>
+		<color color1="6" color2="6"/>
+		<color color1="7" color2="7"/>
+		<color color1="52" color2="52"/>
+		<color color1="76" color2="76"/>
+	</model>
+	<model id="507" name="Elegant" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="37" color2="37"/>
+		<color color1="42" color2="42"/>
+		<color color1="53" color2="53"/>
+		<color color1="62" color2="62"/>
+		<color color1="7" color2="7"/>
+		<color color1="10" color2="10"/>
+		<color color1="11" color2="11"/>
+		<color color1="15" color2="15"/>
+	</model>
+	<model id="508" name="Journey" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="509" name="Bike" type="BMX" fuelUsage="8.5" maxFuel="70">
+		<color color1="7" color2="1"/>
+		<color color1="74" color2="1"/>
+		<color color1="61" color2="1"/>
+		<color color1="16" color2="1"/>
+		<color color1="25" color2="1"/>
+		<color color1="30" color2="1"/>
+		<color color1="36" color2="1"/>
+		<color color1="53" color2="1"/>
+	</model>
+	<model id="510" name="Mountain Bike" type="BMX" fuelUsage="8.5" maxFuel="70">
+		<color color1="43" color2="43"/>
+		<color color1="46" color2="46"/>
+		<color color1="39" color2="39"/>
+		<color color1="28" color2="28"/>
+		<color color1="16" color2="16"/>
+		<color color1="6" color2="6"/>
+		<color color1="5" color2="5"/>
+		<color color1="2" color2="2"/>
+	</model>
+	<model id="511" name="Beagle" type="Plane" fuelUsage="8.5" maxFuel="70">
+		<color color1="3" color2="90"/>
+		<color color1="4" color2="90"/>
+		<color color1="7" color2="68"/>
+		<color color1="8" color2="66"/>
+		<color color1="12" color2="60"/>
+		<color color1="27" color2="97"/>
+		<color color1="34" color2="51"/>
+		<color color1="37" color2="51"/>
+	</model>
+	<model id="512" name="Cropdust" type="Plane" fuelUsage="8.5" maxFuel="70">
+		<color color1="17" color2="39"/>
+		<color color1="15" color2="123"/>
+		<color color1="32" color2="112"/>
+		<color color1="45" color2="88"/>
+		<color color1="52" color2="71"/>
+		<color color1="57" color2="67"/>
+		<color color1="61" color2="96"/>
+		<color color1="96" color2="96"/>
+	</model>
+	<model id="513" name="Stunt" type="Plane" fuelUsage="8.5" maxFuel="70">
+		<color color1="38" color2="51"/>
+		<color color1="21" color2="36"/>
+		<color color1="21" color2="34"/>
+		<color color1="30" color2="34"/>
+		<color color1="54" color2="34"/>
+		<color color1="55" color2="20"/>
+		<color color1="48" color2="18"/>
+		<color color1="51" color2="6"/>
+	</model>
+	<model id="514" name="Petro" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="10" color2="1"/>
+		<color color1="25" color2="1"/>
+		<color color1="28" color2="1"/>
+		<color color1="36" color2="1"/>
+		<color color1="40" color2="1"/>
+		<color color1="54" color2="1"/>
+		<color color1="75" color2="1"/>
+		<color color1="113" color2="1"/>
+	</model>
+	<model id="515" name="RoadTrain" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="13" color2="76"/>
+		<color color1="24" color2="77"/>
+		<color color1="63" color2="78"/>
+		<color color1="42" color2="76"/>
+		<color color1="54" color2="77"/>
+		<color color1="39" color2="78"/>
+		<color color1="11" color2="76"/>
+		<color color1="62" color2="77"/>
+	</model>
+	<model id="516" name="Nebula" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="116" color2="1"/>
+		<color color1="119" color2="1"/>
+		<color color1="122" color2="1"/>
+		<color color1="4" color2="1"/>
+		<color color1="9" color2="1"/>
+		<color color1="24" color2="1"/>
+		<color color1="27" color2="1"/>
+		<color color1="36" color2="1"/>
+	</model>
+	<model id="517" name="Majestic" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="37" color2="36"/>
+		<color color1="36" color2="36"/>
+		<color color1="40" color2="36"/>
+		<color color1="43" color2="41"/>
+		<color color1="47" color2="41"/>
+		<color color1="51" color2="72"/>
+		<color color1="54" color2="75"/>
+		<color color1="55" color2="84"/>
+	</model>
+	<model id="518" name="Buccaneer" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="2" color2="39"/>
+		<color color1="9" color2="39"/>
+		<color color1="17" color2="1"/>
+		<color color1="21" color2="1"/>
+		<color color1="33" color2="0"/>
+		<color color1="37" color2="0"/>
+		<color color1="41" color2="29"/>
+		<color color1="56" color2="29"/>
+	</model>
+	<model id="519" name="Shamal" type="Plane" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="520" name="Hydra" type="Plane" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="521" name="FCR-900" type="Bike" fuelUsage="8.5" maxFuel="70">
+		<color color1="74" color2="74"/>
+		<color color1="75" color2="13"/>
+		<color color1="87" color2="118"/>
+		<color color1="92" color2="3"/>
+		<color color1="115" color2="118"/>
+		<color color1="25" color2="118"/>
+		<color color1="36" color2="0"/>
+		<color color1="118" color2="118"/>
+	</model>
+	<model id="522" name="NRG-500" type="Bike" fuelUsage="8.5" maxFuel="70">
+		<color color1="3" color2="3"/>
+		<color color1="3" color2="8"/>
+		<color color1="6" color2="25"/>
+		<color color1="7" color2="79"/>
+		<color color1="8" color2="82"/>
+		<color color1="36" color2="105"/>
+		<color color1="39" color2="106"/>
+		<color color1="51" color2="118"/>
+	</model>
+	<model id="523" name="HPV1000" type="Bike" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="524" name="Cement Truck" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="60" color2="24"/>
+		<color color1="23" color2="0"/>
+		<color color1="61" color2="27"/>
+		<color color1="123" color2="0"/>
+		<color color1="65" color2="31"/>
+		<color color1="31" color2="0"/>
+		<color color1="61" color2="61"/>
+		<color color1="30" color2="0"/>
+		<color color1="81" color2="35"/>
+		<color color1="23" color2="0"/>
+		<color color1="62" color2="61"/>
+		<color color1="62" color2="0"/>
+		<color color1="83" color2="66"/>
+		<color color1="64" color2="0"/>
+		<color color1="83" color2="64"/>
+		<color color1="64" color2="0"/>
+	</model>
+	<model id="525" name="Tow Truck" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+		<color color1="17" color2="20"/>
+		<color color1="18" color2="20"/>
+		<color color1="22" color2="30"/>
+		<color color1="36" color2="43"/>
+		<color color1="44" color2="51"/>
+		<color color1="52" color2="54"/>
+	</model>
+	<model id="526" name="Fortune" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="2" color2="39"/>
+		<color color1="9" color2="39"/>
+		<color color1="17" color2="1"/>
+		<color color1="21" color2="1"/>
+		<color color1="33" color2="0"/>
+		<color color1="37" color2="0"/>
+		<color color1="41" color2="29"/>
+		<color color1="56" color2="29"/>
+	</model>
+	<model id="527" name="Cadrona" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="52" color2="1"/>
+		<color color1="53" color2="1"/>
+		<color color1="66" color2="1"/>
+		<color color1="75" color2="1"/>
+		<color color1="76" color2="1"/>
+		<color color1="81" color2="1"/>
+		<color color1="95" color2="1"/>
+		<color color1="109" color2="1"/>
+	</model>
+	<model id="528" name="FBI Truck" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="529" name="Willard" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="37" color2="37"/>
+		<color color1="42" color2="42"/>
+		<color color1="53" color2="53"/>
+		<color color1="62" color2="62"/>
+		<color color1="7" color2="7"/>
+		<color color1="10" color2="10"/>
+		<color color1="11" color2="11"/>
+		<color color1="15" color2="15"/>
+	</model>
+	<model id="530" name="Forklift" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="110" color2="1"/>
+		<color color1="111" color2="1"/>
+		<color color1="112" color2="1"/>
+		<color color1="114" color2="1"/>
+		<color color1="119" color2="1"/>
+		<color color1="122" color2="1"/>
+		<color color1="4" color2="1"/>
+		<color color1="13" color2="1"/>
+	</model>
+	<model id="531" name="Tractor" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="2" color2="35"/>
+		<color color1="36" color2="2"/>
+		<color color1="51" color2="53"/>
+		<color color1="91" color2="2"/>
+		<color color1="11" color2="22"/>
+		<color color1="40" color2="35"/>
+	</model>
+	<model id="532" name="Combine" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="533" name="Feltzer" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="73" color2="1"/>
+		<color color1="74" color2="1"/>
+		<color color1="75" color2="1"/>
+		<color color1="77" color2="1"/>
+		<color color1="79" color2="1"/>
+		<color color1="83" color2="1"/>
+		<color color1="84" color2="1"/>
+		<color color1="91" color2="1"/>
+	</model>
+	<model id="534" name="Remington" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="37" color2="37"/>
+		<color color1="42" color2="42"/>
+		<color color1="53" color2="53"/>
+		<color color1="62" color2="62"/>
+		<color color1="7" color2="7"/>
+		<color color1="10" color2="10"/>
+		<color color1="11" color2="11"/>
+		<color color1="15" color2="15"/>
+	</model>
+	<model id="535" name="Slamvan" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="3" color2="1"/>
+		<color color1="28" color2="1"/>
+		<color color1="31" color2="1"/>
+		<color color1="55" color2="1"/>
+		<color color1="66" color2="1"/>
+		<color color1="97" color2="1"/>
+		<color color1="123" color2="1"/>
+		<color color1="118" color2="1"/>
+	</model>
+	<model id="536" name="Blade" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="9" color2="1"/>
+		<color color1="12" color2="1"/>
+		<color color1="26" color2="96"/>
+		<color color1="30" color2="96"/>
+		<color color1="32" color2="1"/>
+		<color color1="37" color2="1"/>
+		<color color1="57" color2="96"/>
+		<color color1="71" color2="96"/>
+	</model>
+	<model id="537" name="Freight" type="Train" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="538" name="Streak" type="Train" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="539" name="Vortex" type="Plane" fuelUsage="8.5" maxFuel="70">
+		<color color1="96" color2="67"/>
+		<color color1="86" color2="70"/>
+		<color color1="79" color2="74"/>
+		<color color1="70" color2="86"/>
+		<color color1="61" color2="98"/>
+		<color color1="75" color2="75"/>
+		<color color1="75" color2="91"/>
+	</model>
+	<model id="540" name="Vincent" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="37" color2="37"/>
+		<color color1="42" color2="42"/>
+		<color color1="53" color2="53"/>
+		<color color1="62" color2="62"/>
+		<color color1="7" color2="7"/>
+		<color color1="10" color2="10"/>
+		<color color1="11" color2="11"/>
+		<color color1="15" color2="15"/>
+	</model>
+	<model id="541" name="Bullet" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="51" color2="1"/>
+		<color color1="58" color2="8"/>
+		<color color1="60" color2="1"/>
+		<color color1="68" color2="8"/>
+		<color color1="2" color2="1"/>
+		<color color1="13" color2="8"/>
+		<color color1="22" color2="1"/>
+		<color color1="36" color2="8"/>
+	</model>
+	<model id="542" name="Clover" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="13" color2="118"/>
+		<color color1="24" color2="118"/>
+		<color color1="31" color2="93"/>
+		<color color1="32" color2="92"/>
+		<color color1="45" color2="92"/>
+		<color color1="113" color2="92"/>
+		<color color1="119" color2="113"/>
+		<color color1="122" color2="113"/>
+	</model>
+	<model id="543" name="Sadler" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="76" color2="8"/>
+		<color color1="32" color2="8"/>
+		<color color1="43" color2="8"/>
+		<color color1="67" color2="8"/>
+		<color color1="11" color2="11"/>
+		<color color1="8" color2="90"/>
+		<color color1="2" color2="2"/>
+		<color color1="83" color2="13"/>
+	</model>
+	<model id="544" name="Firetruck" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="3" color2="1"/>
+	</model>
+	<model id="545" name="Hustler" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="26" color2="26"/>
+	</model>
+	<model id="546" name="Intruder" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="62" color2="37"/>
+		<color color1="78" color2="38"/>
+		<color color1="2" color2="62"/>
+		<color color1="3" color2="87"/>
+		<color color1="2" color2="78"/>
+		<color color1="113" color2="78"/>
+		<color color1="119" color2="62"/>
+		<color color1="7" color2="78"/>
+	</model>
+	<model id="547" name="Primo" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="122" color2="1"/>
+		<color color1="123" color2="1"/>
+		<color color1="125" color2="1"/>
+		<color color1="10" color2="1"/>
+		<color color1="24" color2="1"/>
+		<color color1="37" color2="1"/>
+		<color color1="55" color2="1"/>
+		<color color1="66" color2="1"/>
+	</model>
+	<model id="548" name="Cargobob" type="Helicopter" fuelUsage="50" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="549" name="Tampa" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="74" color2="39"/>
+		<color color1="72" color2="39"/>
+		<color color1="75" color2="39"/>
+		<color color1="79" color2="39"/>
+		<color color1="83" color2="36"/>
+		<color color1="84" color2="36"/>
+		<color color1="89" color2="35"/>
+		<color color1="91" color2="35"/>
+	</model>
+	<model id="550" name="Sunrise" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="37" color2="37"/>
+		<color color1="42" color2="42"/>
+		<color color1="53" color2="53"/>
+		<color color1="62" color2="62"/>
+		<color color1="7" color2="7"/>
+		<color color1="10" color2="10"/>
+		<color color1="11" color2="11"/>
+		<color color1="15" color2="15"/>
+	</model>
+	<model id="551" name="Merit" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="67" color2="1"/>
+		<color color1="72" color2="1"/>
+		<color color1="75" color2="1"/>
+		<color color1="83" color2="1"/>
+		<color color1="91" color2="1"/>
+		<color color1="101" color2="1"/>
+		<color color1="109" color2="1"/>
+		<color color1="20" color2="1"/>
+	</model>
+	<model id="552" name="Utility" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="56" color2="56"/>
+		<color color1="49" color2="49"/>
+		<color color1="26" color2="124"/>
+	</model>
+	<model id="553" name="Nevada" type="Plane" fuelUsage="8.5" maxFuel="70">
+		<color color1="38" color2="9"/>
+		<color color1="55" color2="23"/>
+		<color color1="61" color2="74"/>
+		<color color1="71" color2="87"/>
+		<color color1="91" color2="87"/>
+		<color color1="98" color2="114"/>
+		<color color1="102" color2="119"/>
+		<color color1="111" color2="3"/>
+	</model>
+	<model id="554" name="Yosemite" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="53" color2="32"/>
+		<color color1="15" color2="32"/>
+		<color color1="45" color2="32"/>
+		<color color1="34" color2="30"/>
+		<color color1="65" color2="32"/>
+		<color color1="14" color2="32"/>
+		<color color1="12" color2="32"/>
+		<color color1="43" color2="32"/>
+	</model>
+	<model id="555" name="Windsor" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="51" color2="1"/>
+		<color color1="58" color2="1"/>
+		<color color1="60" color2="1"/>
+		<color color1="68" color2="1"/>
+		<color color1="2" color2="1"/>
+		<color color1="13" color2="1"/>
+		<color color1="22" color2="1"/>
+		<color color1="36" color2="1"/>
+	</model>
+	<model id="556" name="Monster A" type="Monster Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="557" name="Monster B" type="Monster Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="558" name="Uranus" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="112" color2="1"/>
+		<color color1="116" color2="1"/>
+		<color color1="117" color2="1"/>
+		<color color1="24" color2="1"/>
+		<color color1="30" color2="1"/>
+		<color color1="35" color2="1"/>
+		<color color1="36" color2="1"/>
+		<color color1="40" color2="1"/>
+	</model>
+	<model id="559" name="Jester" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="51" color2="1"/>
+		<color color1="58" color2="8"/>
+		<color color1="60" color2="1"/>
+		<color color1="68" color2="8"/>
+		<color color1="2" color2="1"/>
+		<color color1="13" color2="8"/>
+		<color color1="22" color2="1"/>
+		<color color1="36" color2="8"/>
+	</model>
+	<model id="560" name="Sultan" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="52" color2="39"/>
+		<color color1="9" color2="39"/>
+		<color color1="17" color2="1"/>
+		<color color1="21" color2="1"/>
+		<color color1="33" color2="0"/>
+		<color color1="37" color2="0"/>
+		<color color1="41" color2="29"/>
+		<color color1="56" color2="29"/>
+	</model>
+	<model id="561" name="Stratum" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="57" color2="8"/>
+		<color color1="8" color2="17"/>
+		<color color1="43" color2="21"/>
+		<color color1="54" color2="38"/>
+		<color color1="67" color2="8"/>
+		<color color1="37" color2="78"/>
+		<color color1="65" color2="79"/>
+		<color color1="25" color2="78"/>
+	</model>
+	<model id="562" name="Elegy" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="36" color2="1"/>
+		<color color1="35" color2="1"/>
+		<color color1="17" color2="1"/>
+		<color color1="11" color2="1"/>
+		<color color1="116" color2="1"/>
+		<color color1="113" color2="1"/>
+		<color color1="101" color2="1"/>
+		<color color1="92" color2="1"/>
+	</model>
+	<model id="563" name="Raindance" type="Helicopter" fuelUsage="50" maxFuel="70">
+		<color color1="1" color2="6"/>
+	</model>
+	<model id="564" name="RC Tiger" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="565" name="Flash" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="37" color2="37"/>
+		<color color1="42" color2="42"/>
+		<color color1="53" color2="53"/>
+		<color color1="62" color2="62"/>
+		<color color1="7" color2="7"/>
+		<color color1="10" color2="10"/>
+		<color color1="11" color2="11"/>
+		<color color1="15" color2="15"/>
+	</model>
+	<model id="566" name="Tahoma" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="109" color2="1"/>
+		<color color1="30" color2="8"/>
+		<color color1="95" color2="1"/>
+		<color color1="84" color2="8"/>
+		<color color1="83" color2="1"/>
+		<color color1="72" color2="8"/>
+		<color color1="71" color2="1"/>
+		<color color1="52" color2="8"/>
+	</model>
+	<model id="567" name="Savanna" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="97" color2="96"/>
+		<color color1="88" color2="64"/>
+		<color color1="90" color2="96"/>
+		<color color1="93" color2="64"/>
+		<color color1="97" color2="96"/>
+		<color color1="99" color2="81"/>
+		<color color1="102" color2="114"/>
+		<color color1="114" color2="1"/>
+	</model>
+	<model id="568" name="Bandito" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="2" color2="39"/>
+		<color color1="9" color2="39"/>
+		<color color1="17" color2="1"/>
+		<color color1="21" color2="1"/>
+		<color color1="33" color2="0"/>
+		<color color1="37" color2="0"/>
+		<color color1="41" color2="29"/>
+		<color color1="56" color2="29"/>
+	</model>
+	<model id="569" name="Freight" type="Train" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="570" name="StreakC" type="Train" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="571" name="Kart" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="2" color2="35"/>
+		<color color1="36" color2="2"/>
+		<color color1="51" color2="53"/>
+		<color color1="91" color2="2"/>
+		<color color1="11" color2="22"/>
+		<color color1="40" color2="35"/>
+	</model>
+	<model id="572" name="Mower" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="94" color2="1"/>
+		<color color1="101" color2="1"/>
+		<color color1="116" color2="1"/>
+		<color color1="117" color2="1"/>
+		<color color1="4" color2="1"/>
+		<color color1="25" color2="1"/>
+		<color color1="30" color2="1"/>
+		<color color1="37" color2="1"/>
+	</model>
+	<model id="573" name="Duneride" type="Monster Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="91" color2="38"/>
+		<color color1="115" color2="43"/>
+		<color color1="85" color2="6"/>
+		<color color1="79" color2="7"/>
+		<color color1="78" color2="8"/>
+		<color color1="77" color2="18"/>
+		<color color1="79" color2="18"/>
+		<color color1="86" color2="24"/>
+	</model>
+	<model id="574" name="Sweeper" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="26" color2="26"/>
+	</model>
+	<model id="575" name="Broadway" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="12" color2="1"/>
+		<color color1="19" color2="96"/>
+		<color color1="31" color2="64"/>
+		<color color1="25" color2="96"/>
+		<color color1="38" color2="1"/>
+		<color color1="51" color2="96"/>
+		<color color1="57" color2="1"/>
+		<color color1="66" color2="96"/>
+	</model>
+	<model id="576" name="Tornado" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="67" color2="1"/>
+		<color color1="68" color2="96"/>
+		<color color1="72" color2="1"/>
+		<color color1="74" color2="8"/>
+		<color color1="75" color2="96"/>
+		<color color1="76" color2="8"/>
+		<color color1="79" color2="1"/>
+		<color color1="84" color2="96"/>
+	</model>
+	<model id="577" name="AT-400" type="Plane" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="3"/>
+		<color color1="8" color2="7"/>
+		<color color1="8" color2="10"/>
+		<color color1="8" color2="16"/>
+		<color color1="23" color2="31"/>
+		<color color1="40" color2="44"/>
+	</model>
+	<model id="578" name="DFT-30" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="579" name="Huntley" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="37" color2="37"/>
+		<color color1="42" color2="42"/>
+		<color color1="53" color2="53"/>
+		<color color1="62" color2="62"/>
+		<color color1="7" color2="7"/>
+		<color color1="10" color2="10"/>
+		<color color1="11" color2="11"/>
+		<color color1="15" color2="15"/>
+	</model>
+	<model id="580" name="Stafford" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="92" color2="92"/>
+		<color color1="81" color2="81"/>
+		<color color1="67" color2="67"/>
+		<color color1="66" color2="66"/>
+		<color color1="61" color2="61"/>
+		<color color1="53" color2="53"/>
+		<color color1="51" color2="51"/>
+		<color color1="47" color2="47"/>
+		<color color1="43" color2="43"/>
+	</model>
+	<model id="581" name="BF-400" type="Bike" fuelUsage="8.5" maxFuel="70">
+		<color color1="54" color2="1"/>
+		<color color1="58" color2="1"/>
+		<color color1="66" color2="1"/>
+		<color color1="72" color2="1"/>
+		<color color1="75" color2="1"/>
+		<color color1="87" color2="1"/>
+		<color color1="101" color2="1"/>
+		<color color1="36" color2="1"/>
+	</model>
+	<model id="582" name="Newsvan" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="41" color2="10"/>
+		<color color1="41" color2="20"/>
+		<color color1="49" color2="11"/>
+		<color color1="56" color2="123"/>
+		<color color1="110" color2="113"/>
+		<color color1="112" color2="116"/>
+		<color color1="114" color2="118"/>
+		<color color1="119" color2="101"/>
+	</model>
+	<model id="583" name="Tug" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="584" name="Petrol Trailer" type="Trailer" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="585" name="Emperor" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="37" color2="37"/>
+		<color color1="42" color2="42"/>
+		<color color1="53" color2="53"/>
+		<color color1="62" color2="62"/>
+		<color color1="7" color2="7"/>
+		<color color1="10" color2="10"/>
+		<color color1="11" color2="11"/>
+		<color color1="15" color2="15"/>
+	</model>
+	<model id="586" name="Wayfarer" type="Bike" fuelUsage="8.5" maxFuel="70">
+		<color color1="119" color2="1"/>
+		<color color1="122" color2="1"/>
+		<color color1="8" color2="1"/>
+		<color color1="10" color2="1"/>
+		<color color1="13" color2="1"/>
+		<color color1="25" color2="1"/>
+		<color color1="27" color2="1"/>
+		<color color1="32" color2="1"/>
+	</model>
+	<model id="587" name="Euros" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="36" color2="1"/>
+		<color color1="40" color2="1"/>
+		<color color1="43" color2="1"/>
+		<color color1="53" color2="1"/>
+		<color color1="72" color2="1"/>
+		<color color1="75" color2="1"/>
+		<color color1="95" color2="1"/>
+		<color color1="101" color2="1"/>
+	</model>
+	<model id="588" name="Hotdog" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="589" name="Club" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="37" color2="37"/>
+		<color color1="31" color2="31"/>
+		<color color1="23" color2="23"/>
+		<color color1="22" color2="22"/>
+		<color color1="7" color2="7"/>
+		<color color1="124" color2="124"/>
+		<color color1="114" color2="114"/>
+		<color color1="112" color2="112"/>
+	</model>
+	<model id="590" name="Freight Box" type="Train" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="591" name="Artict3" type="Trailer" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="592" name="Andromada" type="Plane" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="593" name="Dodo" type="Plane" fuelUsage="8.5" maxFuel="70">
+		<color color1="51" color2="1"/>
+		<color color1="58" color2="8"/>
+		<color color1="60" color2="1"/>
+		<color color1="68" color2="8"/>
+		<color color1="2" color2="1"/>
+		<color color1="13" color2="8"/>
+		<color color1="22" color2="1"/>
+		<color color1="36" color2="8"/>
+	</model>
+	<model id="594" name="RC Cam" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="595" name="Launch" type="Boat" fuelUsage="8.5" maxFuel="70">
+		<color color1="112" color2="20"/>
+	</model>
+	<model id="596" name="Police Car (LSPD)" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="1"/>
+	</model>
+	<model id="597" name="Police Car (SFPD)" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="1"/>
+	</model>
+	<model id="598" name="Police Car (LVPD)" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="1"/>
+	</model>
+	<model id="599" name="Police Ranger" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="1"/>
+	</model>
+	<model id="600" name="Picador" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="81" color2="8"/>
+		<color color1="32" color2="8"/>
+		<color color1="43" color2="8"/>
+		<color color1="67" color2="8"/>
+		<color color1="11" color2="11"/>
+		<color color1="8" color2="90"/>
+		<color color1="2" color2="2"/>
+		<color color1="83" color2="13"/>
+	</model>
+	<model id="601" name="S.W.A.T. Van" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="602" name="Alpha" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="58" color2="1"/>
+		<color color1="69" color2="1"/>
+		<color color1="75" color2="77"/>
+		<color color1="18" color2="1"/>
+		<color color1="32" color2="1"/>
+		<color color1="45" color2="45"/>
+		<color color1="13" color2="1"/>
+		<color color1="34" color2="1"/>
+	</model>
+	<model id="603" name="Phoenix" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="58" color2="1"/>
+		<color color1="69" color2="1"/>
+		<color color1="75" color2="77"/>
+		<color color1="18" color2="1"/>
+		<color color1="32" color2="1"/>
+		<color color1="45" color2="45"/>
+		<color color1="13" color2="1"/>
+		<color color1="34" color2="1"/>
+	</model>
+	<model id="604" name="Glendale" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="605" name="Sadler" type="Car" fuelUsage="8.5" maxFuel="70">
+		<color color1="61" color2="8"/>
+		<color color1="32" color2="8"/>
+		<color color1="43" color2="8"/>
+		<color color1="67" color2="8"/>
+		<color color1="11" color2="11"/>
+		<color color1="8" color2="90"/>
+		<color color1="2" color2="2"/>
+		<color color1="83" color2="13"/>
+	</model>
+	<model id="606" name="Luggage Trailer A" type="Trailer" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="607" name="Luggage Trailer B" type="Trailer" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="608" name="Stair Trailer" type="Trailer" fuelUsage="8.5" maxFuel="70">
+		<color color1="1" color2="1"/>
+	</model>
+	<model id="609" name="Boxville" type="Truck" fuelUsage="8.5" maxFuel="70">
+		<color color1="11" color2="123"/>
+		<color color1="13" color2="120"/>
+		<color color1="20" color2="117"/>
+		<color color1="24" color2="112"/>
+		<color color1="27" color2="107"/>
+		<color color1="36" color2="105"/>
+		<color color1="37" color2="107"/>
+		<color color1="43" color2="93"/>
+	</model>
+	<model id="610" name="Farm Plow" type="Trailer" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+	<model id="611" name="Utility Trailer" type="Trailer" fuelUsage="8.5" maxFuel="70">
+		<color color1="0" color2="0"/>
+	</model>
+</vehiclemodels>

@@ -38,32 +38,43 @@ ReloadVehicles(isStatic, playerID = !INVALID_PLAYER_ID)
 		VehicleProperty:vehicleID[JOBID] = 0;
 		VehicleProperty:vehicleID[SAVEID] = 0;
 	}
-	AdminPrint(playerID, COLOR_INFO, "* Loading saved vehicles...");
+
+	AdminPrint(playerID, COLOR_INFO, "* Loading vehicles...");
 	new count;
 	mysql_query("SELECT * FROM `vehicles`");
 	mysql_store_result();
 	while (FetchMySQLRow())
 	{
-		if (LoadMySQLVehicle(isStatic, true, playerID))
+		new vehicleID = CreateVehicleEx(strval(GetMySQLField("modelId")), floatstr(GetMySQLField("posX")), floatstr(GetMySQLField("posY")), floatstr(GetMySQLField("posZ")), floatstr(GetMySQLField("angle")), strval(GetMySQLField("color1")), strval(GetMySQLField("color2")), isStatic);
+		if (vehicleID)
 		{
+			VehicleProperty:vehicleID[FRONTLIGHTID] = strval(GetMySQLField("frontLightId"));
+			VehicleProperty:vehicleID[HASNAVI] = strval(GetMySQLField("hasNavi"));
+			VehicleProperty:vehicleID[JOBID] = strval(GetMySQLField("jobId"));
+			VehicleProperty:vehicleID[MILEAGE] = floatstr(GetMySQLField("mileAge"));
+			VehicleProperty:vehicleID[NEONLIGHTID] = strval(GetMySQLField("neonLightId"));
+			VehicleProperty:vehicleID[PAINTJOBID] = strval(GetMySQLField("paintjobId"));
+			VehicleProperty:vehicleID[PRICE] = floatstr(GetMySQLField("price"));
+			VehicleProperty:vehicleID[SAVEID] = strval(GetMySQLField("id"));
+			SetVehicleHealth(vehicleID, floatstr(GetMySQLField("health")));
+			LinkVehicleToInterior(vehicleID, strval(GetMySQLField("interior")));
+			LockVehicle(vehicleID, strval(GetMySQLField("locked")));
+			ChangeVehiclePaintjob(vehicleID, VehicleProperty:vehicleID[PAINTJOBID]);
+			VehicleProperty:vehicleID[CURRENTFUEL] = floatstr(GetMySQLField("currentFuel"));
+			VehicleProperty:vehicleID[OWNERUSERID] = strval(GetMySQLField("ownerUserId"));
+			VehicleProperty:vehicleID[RADIOSTATIONID] = strval(GetMySQLField("radioStationId"));
+			VehicleProperty:vehicleID[SELLERUSERID] = strval(GetMySQLField("sellerUserId"));
+			SetVehicleNumberPlate(vehicleID, GetMySQLField("numberplate"));
 			count++;
+		}
+		else
+		{
+			AdminPrint(playerID, COLOR_ERROR, "  Can not create vehicle '%d' (ModelID %d)!", strval(GetMySQLField("id")), strval(GetMySQLField("modelId")));
 		}
 	}
 	mysql_free_result();
 	AdminPrint(playerID, COLOR_INFO, "  %d vehicles loaded", count);
-	count = 0;
-	AdminPrint(playerID, COLOR_INFO, "* Loading original vehicles...");
-	mysql_query("SELECT `originalvehicles`.* FROM `originalvehicles` LEFT JOIN `vehicles` ON `vehicles`.`id` = `originalvehicles`.`id` WHERE `vehicles`.`id` IS NULL");
-	mysql_store_result();
-	while (FetchMySQLRow())
-	{
-		if (LoadMySQLVehicle(isStatic, false, playerID))
-		{
-			count++;
-		}
-	}
-	mysql_free_result();
-	AdminPrint(playerID, COLOR_INFO, "  %d vehicles loaded", count);
+
 	count = 0;
 	AdminPrint(playerID, COLOR_INFO, "* Adding vehicle components...");
 	mysql_query("SELECT * FROM `vehiclecomponents`");

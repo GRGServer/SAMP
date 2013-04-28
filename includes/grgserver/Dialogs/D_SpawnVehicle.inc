@@ -1,4 +1,4 @@
-// Dialog is created at another location
+// Dialog is created at another location (e.g. PCMD:spawnvehicle)
 
 DialogResponse:SpawnVehicle(playerID, response, listItem, inputText[])
 {
@@ -6,7 +6,7 @@ DialogResponse:SpawnVehicle(playerID, response, listItem, inputText[])
 	{
 		new modelID;
 		new name[STRINGLENGTH_VEHICLENAME];
-		if (!sscanf(inputText, "p<:>ds[" #STRINGLENGTH_VEHICLENAME "]", modelID, name))
+		if (!sscanf(inputText, "p<\t>ds[" #STRINGLENGTH_VEHICLENAME "]", modelID, name))
 		{
 			if (modelID)
 			{

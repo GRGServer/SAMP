@@ -129,6 +129,14 @@
             Du hast den Auftrag angenommen
         </de>
     </string>
+    <string id="16">
+        <en>
+            You are not allowed to drive this vehicle!
+        </en>
+        <de>
+            Es ist dir nicht erlaubt, dieses fahrzeug zu fahren!
+        </de>
+    </string>
     <string id="19">
         <en>
             You have to enter the amount!
@@ -521,22 +529,6 @@
             Du hast das Recht '%s' von %p weggenommen
         </de>
     </string>
-    <string id="79">
-        <en>
-            The vehicle has been saved with ID %d
-        </en>
-        <de>
-            Fahrzeug wurde unter der ID %d gespeichert
-        </de>
-    </string>
-    <string id="80">
-        <en>
-            The price can not be negative!
-        </en>
-        <de>
-            Der Preis darf nicht negativ sein!
-        </de>
-    </string>
     <string id="81">
         <en>
             You gave you %m and have now %m
@@ -807,14 +799,6 @@
         </en>
         <de>
             Lade die Daten eines Spielers erneut von der Datenbank
-        </de>
-    </string>
-    <string id="118">
-        <en>
-            Save the current vehicle as buyable
-        </en>
-        <de>
-            Aktuelles Fahrzeug als kaufbares Fahrzeug speichern
         </de>
     </string>
     <string id="119">
