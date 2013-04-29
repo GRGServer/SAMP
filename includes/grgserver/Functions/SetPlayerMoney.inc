@@ -4,32 +4,28 @@ SetPlayerMoney(playerID, type, Float:amount, add = false)
 	{
 		case MONEY_BANK:// Money on bank account
 		{
-			MySQLQuery("SELECT `bankAccountId` FROM `users` WHERE `id` = '%d'", PVar:playerID[USERID]);
-			mysql_store_result();
-			new bankAccountID = strval(GetMySQLField("bankAccountId"));
-			mysql_free_result();
-			if (bankAccountID)
+			if (PVar:playerID[BANK_ID])
 			{
 				if (add)
 				{
-					MySQLQuery("UPDATE `bankaccounts` SET `money` = `money` + '%f' WHERE `id` = '%d'", amount, bankAccountID);
+					PVar:playerID[BANK_MONEY] = PVar:playerID[BANK_MONEY] + amount;
 				}
 				else
 				{
-					MySQLQuery("UPDATE `bankaccounts` SET `money` = '%f' WHERE `id` = '%d'", amount, bankAccountID);
+					PVar:playerID[BANK_MONEY] = amount;
 				}
 				return true;
 			}
 			else
 			{
-				return SetPlayerMoney(playerID, MONEY_CASH, amount, add);
+				PVar:playerID[BANK_MONEY] = 0;
 			}
 		}
 		case MONEY_CASH:// Directly usable money (Shown on the player's screen)
 		{
 			if (add)
 			{
-				PVar:playerID[MONEY] = floatadd(PVar:playerID[MONEY], amount);
+				PVar:playerID[MONEY] = PVar:playerID[MONEY] + amount;
 			}
 			else
 			{

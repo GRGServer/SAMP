@@ -7,7 +7,7 @@ PickupEvent:BANK(playerID, pickupID, eventType)
 			TeleportToInterior(playerID, 85);
 			PVar:playerID[CURRENTPROPERTYID] = strval(GetMySQLValue("properties", "id", "pickupId", val2str(pickups[pickupID][PICKUP_ID])));
 			SetPlayerVirtualWorld(playerID, PVar:playerID[CURRENTPROPERTYID]);
-			if (strval(GetMySQLValue("users", "bankAccountId", "id", val2str(PVar:playerID[USERID]))))
+			if (PVar:playerID[BANK_ID])
 			{
 				ShowDialog:Bank_PIN(playerID);
 			}

@@ -54,6 +54,7 @@ Timer:Fast()
 			}
 		}
 	}
+
 	Count(playerID, maxPlayers)
 	{
 		if (IsPlayerNPC(playerID))
@@ -66,12 +67,6 @@ Timer:Fast()
 			continue;
 		}
 		new inVehicle;
-		new onlineTime = GetOnlineTime(playerID);
-		if (onlineTime - PVar:playerID[LASTPAYDAY] >= PAYDAY_INTERVAL)
-		{
-			PVar:playerID[LASTPAYDAY] = onlineTime;
-			PayDay(playerID);
-		}
 		new zone = GetPlayerZone(playerID, true);
 		if (zone != -1)
 		{

@@ -12,13 +12,13 @@
     <object id="1556" model="18880" interior="0" posX="1042.310058" posY="-1820.859985" posZ="12.492794" rotX="0.000000" rotY="0.000000" rotZ="-108.900001">
         <speedcamera speedLimit="50" />
     </object>
-    <object id="1557" model="18880" interior="0" posX="1969.640014" posY="-1923.670043" posZ="12.246893" rotX="0.000000" rotY="0.000000" rotZ="-35.299999">
+    <object id="1557" model="18880" interior="0" posX="1969.640014" posY="-1923.670043" posZ="12.246892" rotX="0.000000" rotY="0.000000" rotZ="-35.299999">
         <speedcamera speedLimit="50" />
     </object>
-    <object id="1558" model="18880" interior="0" posX="2102.330078" posY="-1607.319946" posZ="12.079793" rotX="0.000000" rotY="0.000000" rotZ="-60.900001">
+    <object id="1558" model="18880" interior="0" posX="2102.330078" posY="-1607.319946" posZ="12.079792" rotX="0.000000" rotY="0.000000" rotZ="-60.900001">
         <speedcamera speedLimit="50" />
     </object>
-    <object id="1559" model="18880" interior="0" posX="2332.129882" posY="-1668.359985" posZ="12.527093" rotX="0.000000" rotY="0.000000" rotZ="135.500000">
+    <object id="1559" model="18880" interior="0" posX="2332.129882" posY="-1668.359985" posZ="12.527092" rotX="0.000000" rotY="0.000000" rotZ="135.500000">
         <speedcamera speedLimit="50" />
     </object>
     <object id="1562" model="18880" interior="0" posX="-1143.390014" posY="-866.265014" posZ="69.583602" rotX="0.000000" rotY="0.000000" rotZ="69.000000">
@@ -47,5 +47,23 @@
     </object>
     <object id="4375" model="18880" interior="0" posX="2068.779296" posY="-3221.780517" posZ="43.109592" rotX="0.000000" rotY="0.000000" rotZ="-38.699996">
         <speedcamera speedLimit="156" />
+    </object>
+    <object id="4376" model="18880" interior="0" posX="1098.496459" posY="2047.158447" posZ="9.410447" rotX="0.000000" rotY="0.000000" rotZ="113.400009">
+        <speedcamera speedLimit="50" />
+    </object>
+    <object id="4377" model="18880" interior="0" posX="2203.104492" posY="2358.362792" posZ="9.160309" rotX="0.000000" rotY="0.000000" rotZ="-13.400000">
+        <speedcamera speedLimit="50" />
+    </object>
+    <object id="4378" model="18880" interior="0" posX="2127.821289" posY="35.563293" posZ="24.155923" rotX="0.000000" rotY="0.000000" rotZ="115.400047">
+        <speedcamera speedLimit="50" />
+    </object>
+    <object id="4379" model="18880" interior="0" posX="-307.404479" posY="-2811.552246" posZ="55.113914" rotX="0.000000" rotY="0.000000" rotZ="93.700035">
+        <speedcamera speedLimit="100" />
+    </object>
+    <object id="4380" model="18880" interior="0" posX="-2280.830322" posY="-2227.976806" posZ="27.030767" rotX="0.000000" rotY="0.000000" rotZ="141.200073">
+        <speedcamera speedLimit="100" />
+    </object>
+    <object id="4381" model="18880" interior="0" posX="-2795.430419" posY="-468.052429" posZ="5.163142" rotX="0.000000" rotY="0.000000" rotZ="2.000004">
+        <speedcamera speedLimit="100" />
     </object>
 </objects>

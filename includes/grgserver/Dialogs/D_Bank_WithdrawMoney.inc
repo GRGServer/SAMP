@@ -15,8 +15,7 @@ DialogResponse:Bank_WithdrawMoney(playerID, response, listItem, inputText[])
 		else
 		{
 			new Float:money = floatstr(inputText);
-			new Float:bankMoney = GetBankMoney(playerID);
-			if(money > bankMoney)
+			if(money > PVar:playerID[BANK_MONEY])
 			{
 				SendClientMessageEx(playerID, COLOR_ERROR, StringID:25("You don't have enough money at your bank!"));
 				ShowDialog:Bank_WithdrawMoney(playerID);

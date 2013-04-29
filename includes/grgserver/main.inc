@@ -53,7 +53,6 @@
 #include <grgserver\Functions\FetchMySQLRow.inc>
 #include <grgserver\Functions\FormatDate.inc>
 #include <grgserver\Functions\FormatTime.inc>
-#include <grgserver\Functions\GetBankMoney.inc>
 #include <grgserver\Functions\GetChatModeName.inc>
 #include <grgserver\Functions\GetCheckpointMissionByName.inc>
 #include <grgserver\Functions\GetCheckpointMissionNameByID.inc>
@@ -105,7 +104,6 @@
 #include <grgserver\Functions\LoadPlayer.inc>
 #include <grgserver\Functions\LoadPlayerPermissions.inc>
 #include <grgserver\Functions\LockVehicle.inc>
-#include <grgserver\Functions\MoneyTransaction.inc>
 #include <grgserver\Functions\MoveObjectEx.inc>
 #include <grgserver\Functions\MySQLBan.inc>
 #include <grgserver\Functions\MySQLEscapeString.inc>
@@ -223,7 +221,6 @@
 #include <grgserver\Dialogs\D_Bank_HasAccount.inc>
 #include <grgserver\Dialogs\D_Bank_NewAccount.inc>
 #include <grgserver\Dialogs\D_Bank_PIN.inc>
-#include <grgserver\Dialogs\D_Bank_PINWRITE.inc>
 #include <grgserver\Dialogs\D_Bank_WithdrawMoney.inc>
 #include <grgserver\Dialogs\D_BusLine.inc>
 #include <grgserver\Dialogs\D_BuyHouse.inc>
@@ -321,7 +318,6 @@
 
 // Commands
 #include <grgserver\Commands\about.inc>
-#include <grgserver\Commands\accept.inc>
 #include <grgserver\Commands\addfriend.inc>
 #include <grgserver\Commands\addhotelroom.inc>
 #include <grgserver\Commands\addinfopickup.inc>
@@ -369,6 +365,7 @@
 #include <grgserver\Commands\markobjects.inc>
 #include <grgserver\Commands\me.inc>
 #include <grgserver\Commands\mengine.inc>
+#include <grgserver\Commands\missions.inc>
 #include <grgserver\Commands\money.inc>
 #include <grgserver\Commands\moveobject.inc>
 #include <grgserver\Commands\moveobjects.inc>

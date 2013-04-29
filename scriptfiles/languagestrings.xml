@@ -627,10 +627,10 @@
     </string>
     <string id="94">
         <en>
-            Accept a job
+            Show available missions
         </en>
         <de>
-            Annehmen eines Auftrages
+            Zeige verfügbare Missionen
         </de>
     </string>
     <string id="95">
@@ -3647,54 +3647,6 @@
         </en>
         <de>
             Tipp: Verwende /alias um einen Alias von einem Befehl zu erstellen
-        </de>
-    </string>
-    <string id="523">
-        <en>
-            Gratulation, you have bought your first vehicle!
-        </en>
-        <de>
-            Gratulation du hast dein erstes Fahrzeug gekauft!
-        </de>
-    </string>
-    <string id="524">
-        <en>
-            Now search a hotel to live in.
-        </en>
-        <de>
-            Suche nun ein Hotel in dem du Wohnen kannst.
-        </de>
-    </string>
-    <string id="525">
-        <en>
-            After that, search for a job.
-        </en>
-        <de>
-            Dann suchst du dir einen Beruf.
-        </de>
-    </string>
-    <string id="526">
-        <en>
-            Go into a case pickup and accept the job.
-        </en>
-        <de>
-            Gehe in ein Koffer-Pickup und akzeptiere den Beruf.
-        </de>
-    </string>
-    <string id="527">
-        <en>
-            There are many jobs in San Andreas.
-        </en>
-        <de>
-            Es gibt sehr viele Berufe in San Andreas.
-        </de>
-    </string>
-    <string id="528">
-        <en>
-            You need help? Contact an admin (Aerox_Tobi, Dani_Prima, Need or Programie).
-        </en>
-        <de>
-            Du benötigst Hilfe? Kontaktiere einen Admin (Aerox_Tobi, Dani_Prima, Need or Programie).
         </de>
     </string>
     <string id="530">

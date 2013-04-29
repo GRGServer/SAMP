@@ -7,21 +7,6 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 
-CREATE TABLE `applications` (
-  `jobId` int(11) NOT NULL,
-  `userId` int(11) NOT NULL,
-  UNIQUE KEY `UNIQUE` (`jobId`,`userId`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-CREATE TABLE `bankaccounts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `bankId` int(11) NOT NULL,
-  `pin` int(11) NOT NULL,
-  `pinAttempts` int(11) NOT NULL,
-  `money` float NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
-
 CREATE TABLE `bankbranches` (
   `propertyId` int(11) NOT NULL,
   `bankId` int(11) NOT NULL,
@@ -169,27 +154,6 @@ CREATE TABLE `news` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
-CREATE TABLE `originalvehicles` (
-  `id` int(11) NOT NULL,
-  `modelId` int(11) NOT NULL,
-  `color1` int(11) NOT NULL,
-  `color2` int(11) NOT NULL,
-  `angle` float NOT NULL,
-  `posX` float NOT NULL,
-  `posY` float NOT NULL,
-  `posZ` float NOT NULL,
-  `locked` int(11) NOT NULL,
-  `frontLightId` int(11) NOT NULL,
-  `hasNavi` int(11) NOT NULL,
-  `jobId` int(11) NOT NULL,
-  `mileAge` int(11) NOT NULL,
-  `neonLightId` int(11) NOT NULL,
-  `paintjobId` int(11) NOT NULL,
-  `price` int(11) NOT NULL,
-  `health` int(11) NOT NULL,
-  `interior` int(11) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 CREATE TABLE `permissions` (
   `userId` int(11) NOT NULL,
   `admin` tinyint(1) NOT NULL,
@@ -255,44 +219,43 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(32) NOT NULL,
   `password` varchar(32) NOT NULL,
-  `sessionId` varchar(32) NOT NULL,
-  `language` varchar(2) NOT NULL,
+  `sessionId` varchar(32) NOT NULL DEFAULT '',
+  `language` varchar(2) NOT NULL DEFAULT 'en',
   `gender` varchar(1) NOT NULL,
   `birthDate` date NOT NULL,
-  `location` varchar(100) NOT NULL,
-  `mobilePhoneNumber` int(11) NOT NULL,
-  `money` float(16,2) NOT NULL,
-  `bankMoney` float(16,2) NOT NULL,
-  `health` float NOT NULL,
+  `location` varchar(100) NOT NULL DEFAULT '',
+  `mobilePhoneNumber` int(11) NOT NULL DEFAULT '0',
+  `money` float(16,2) NOT NULL DEFAULT '0.00',
+  `bankId` int(11) NOT NULL DEFAULT '0',
+  `bankMoney` float(16,2) NOT NULL DEFAULT '0.00',
+  `bankPin` int(11) NOT NULL DEFAULT '0',
+  `bankPinAttempts` int(11) NOT NULL DEFAULT '0',
+  `health` float NOT NULL DEFAULT '100',
   `skin` int(11) NOT NULL,
-  `godMode` tinyint(1) NOT NULL,
-  `chatMode` varchar(16) NOT NULL,
+  `godMode` tinyint(1) NOT NULL DEFAULT '0',
+  `chatMode` varchar(16) NOT NULL DEFAULT 'RANGE',
   `chatModeUserId` int(11) NOT NULL,
-  `currentPropertyId` int(11) NOT NULL,
+  `currentPropertyId` int(11) NOT NULL DEFAULT '0',
   `posX` float NOT NULL,
   `posY` float NOT NULL,
   `posZ` float NOT NULL,
   `angle` float NOT NULL,
-  `interior` int(11) NOT NULL,
-  `bankId` int(11) NOT NULL,
-  `bankAccountId` int(11) NOT NULL,
-  `jobId` int(11) NOT NULL,
+  `interior` int(11) NOT NULL DEFAULT '0',
+  `jobId` int(11) NOT NULL DEFAULT '0',
   `registerTime` datetime NOT NULL,
   `loginTime` datetime NOT NULL,
-  `onlineTime` int(11) NOT NULL,
-  `clientVersion` varchar(50) NOT NULL,
-  `lastPayDay` int(11) NOT NULL,
-  `lastNewsId` int(11) NOT NULL,
-  `showClock` tinyint(1) NOT NULL,
-  `inTutorial` tinyint(1) NOT NULL,
-  `deaths` int(11) NOT NULL,
-  `wantedLevel` int(11) NOT NULL,
-  `vehicleBought` tinyint(1) NOT NULL,
-  `spawnVehicle` int(11) NOT NULL,
-  `bladder` float NOT NULL,
-  `energy` float NOT NULL,
-  `hunger` float NOT NULL,
-  `thirst` float NOT NULL,
+  `onlineTime` int(11) NOT NULL DEFAULT '0',
+  `clientVersion` varchar(50) NOT NULL DEFAULT '',
+  `lastPayDay` int(11) NOT NULL DEFAULT '0',
+  `lastNewsId` int(11) NOT NULL DEFAULT '0',
+  `showClock` tinyint(1) NOT NULL DEFAULT '1',
+  `inTutorial` tinyint(1) NOT NULL DEFAULT '1',
+  `deaths` int(11) NOT NULL DEFAULT '0',
+  `wantedLevel` int(11) NOT NULL DEFAULT '0',
+  `bladder` float NOT NULL DEFAULT '100',
+  `energy` float NOT NULL DEFAULT '100',
+  `hunger` float NOT NULL DEFAULT '100',
+  `thirst` float NOT NULL DEFAULT '100',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
@@ -301,17 +264,6 @@ CREATE TABLE `vehiclecomponents` (
   `slot` int(11) NOT NULL,
   `component` int(11) NOT NULL,
   UNIQUE KEY `UNIQUE` (`vehicleId`,`slot`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-CREATE TABLE `vehiclemodels` (
-  `id` int(11) NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `type` varchar(16) NOT NULL,
-  `colors` varchar(100) NOT NULL,
-  `fuelUsage` float NOT NULL,
-  `maxFuel` float NOT NULL,
-  `tax` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 CREATE TABLE `vehicles` (

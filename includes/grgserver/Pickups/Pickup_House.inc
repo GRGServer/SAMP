@@ -20,15 +20,14 @@ PickupEvent:HOUSE(playerID, pickupID, eventType)
 			else
 			{
 				new Float:price = floatstr(GetMySQLValue("properties", "price", "pickupId", val2str(pickups[pickupID][PICKUP_ID])));
-				new Float:bankMoney = GetBankMoney(playerID);
-				if (price <= bankMoney)
+				if (price <= PVar:playerID[BANK_MONEY])
 				{
 					PVar:playerID[DIALOGPROPERTYID] = strval(GetMySQLValue("properties", "id", "pickupId", val2str(pickups[pickupID][PICKUP_ID])));
 					ShowDialog:BuyHouse(playerID, price);
 				}
 				else
 				{
-					SendClientMessageEx(playerID, COLOR_ERROR, StringID:22("You need %m to buy this property! But you only have %m at you bank account."), price, bankMoney);
+					SendClientMessageEx(playerID, COLOR_ERROR, StringID:22("You need %m to buy this property! But you only have %m at you bank account."), price, PVar:playerID[BANK_MONEY]);
 				}
 			}
 			return true;

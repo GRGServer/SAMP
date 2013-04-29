@@ -14,7 +14,9 @@ PCMD:markobjects[MAPPER](playerID, params[], StringID:482("Mark up to 100 object
 	{
 		if (Streamer_GetIntData(STREAMER_TYPE_OBJECT, arrayIndex + 1, E_STREAMER_MODEL_ID) == modelID)
 		{
-			foundObjects[count] = dynamicObjects[arrayIndex][OBJECT_POS];
+			foundObjects[count][0] = dynamicObjects[arrayIndex][OBJECT_POS][0];
+			foundObjects[count][1] = dynamicObjects[arrayIndex][OBJECT_POS][1];
+			foundObjects[count][2] = dynamicObjects[arrayIndex][OBJECT_POS][2];
 			count++;
 			if (count >= 100)
 			{

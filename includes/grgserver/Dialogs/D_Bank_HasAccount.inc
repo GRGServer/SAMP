@@ -16,12 +16,11 @@ DialogResponse:Bank_HasAccount(playerID, response, listItem, inputText[])
 		{
 			case 0:// Bank balance
 			{
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:23("Your current bank balance is %m"), GetBankMoney(playerID));
+				SendClientMessageEx(playerID, COLOR_INFO, StringID:23("Your current bank balance is %m"), PVar:playerID[BANK_MONEY]);
 				ShowDialog:Bank_HasAccount(playerID);
 			}
 			case 1:// Withdraw money
 			{
-				ShowDialog:Bank_PINWRITE(playerID);
 				ShowDialog:Bank_WithdrawMoney(playerID);
 			}
 			case 2:// Deposit money
@@ -30,8 +29,7 @@ DialogResponse:Bank_HasAccount(playerID, response, listItem, inputText[])
 			}
 			case 3:// Cancel account
 			{
-				ShowDialog:Bank_PINWRITE(playerID);
-				if (GetBankMoney(playerID) > 0)
+				if (PVar:playerID[BANK_MONEY] > 0)
 				{
 					SendClientMessageEx(playerID, COLOR_ERROR, StringID:215("Your bank account must be empty in order to cancel your account."));
 					ShowDialog:Bank_HasAccount(playerID);

@@ -17,12 +17,8 @@ DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 		{
 			return false;
 		}
-		MySQLQuery("SELECT `id` FROM `vehicles` WHERE `id` = '%d'", VehicleProperty:vehicleID[SAVEID]);
-		mysql_store_result();
-		new isSavedVehicle = mysql_num_rows();
-		mysql_free_result();
-		new Float:bankMoney = GetBankMoney(playerID);
-		if (VehicleProperty:vehicleID[PRICE] <= bankMoney)
+
+		if (VehicleProperty:vehicleID[PRICE] <= PVar:playerID[BANK_MONEY])
 		{
 			GivePlayerMoneyEx(playerID, MONEY_BANK, -VehicleProperty:vehicleID[PRICE]);
 			if (VehicleProperty:vehicleID[SELLERUSERID])
@@ -30,14 +26,7 @@ DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 				new sellerID = GetPlayerByUserID(VehicleProperty:vehicleID[SELLERUSERID]);
 				if (sellerID == INVALID_PLAYER_ID)
 				{
-					MySQLQuery("SELECT `bankAccountId` FROM `users` WHERE `id` = '%d'", VehicleProperty:vehicleID[SELLERUSERID]);
-					mysql_store_result();
-					new bankAccountID = strval(GetMySQLField("bankAccountId"));
-					mysql_free_result();
-					if (bankAccountID)
-					{
-						MySQLQuery("UPDATE `bankaccounts` SET `money` = `money` + '%f' WHERE `id` = '%d'", VehicleProperty:vehicleID[PRICE], bankAccountID);
-					}
+					MySQLQuery("UPDATE `users` SET `money` = `money` + '%f' WHERE `id` = '%d'", VehicleProperty:vehicleID[PRICE], VehicleProperty:vehicleID[SELLERUSERID]);
 				}
 				else
 				{
@@ -45,33 +34,17 @@ DialogResponse:BuyVehicle(playerID, response, listItem, inputText[])
 					SendClientMessageEx(sellerID, COLOR_INFO, StringID:494("%p has bought your vehicle"), playerID);
 				}
 			}
-			if (!isSavedVehicle)
-			{
-				MySQLQuery("INSERT INTO `vehicles` (`id`, `numberplate`) VALUES('%d', '%s')", VehicleProperty:vehicleID[SAVEID], CreateUniqueNumberplateText());
-			}
+
 			VehicleProperty:vehicleID[OWNERUSERID] = PVar:playerID[USERID];
 			VehicleProperty:vehicleID[SELLERUSERID] = 0;
 			VehicleProperty:vehicleID[COLOR1] = VehicleProperty:vehicleID[CURRENTCOLOR1];
 			VehicleProperty:vehicleID[COLOR2] = VehicleProperty:vehicleID[CURRENTCOLOR2];
+
 			SendClientMessageEx(playerID, COLOR_INFO, StringID:493("You have bought a vehicle"));
-			MySQLQuery("SELECT `vehicleBought` FROM `users` WHERE `id` = '%d'", PVar:playerID[USERID]);
-			mysql_store_result();
-			new vehicleBought = strval(GetMySQLField("vehicleBought"));
-			mysql_free_result();
-			if (!vehicleBought)
-			{
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:523("Gratulation, you have bought your first vehicle!"));
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:524("Now search a hotel to live in."));
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:525("After that, search for a job."));
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:526("Go into a case pickup and accept the job."));
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:527("There are many jobs in San Andreas."));
-				SendClientMessageEx(playerID, COLOR_INFO, StringID:528("You need help? Contact an admin (Aerox_Tobi, Dani_Prima, Need or Programie)."));
-				MySQLQuery("UPDATE `users` SET `vehicleBought` = '1' WHERE `id` = '%d'", PVar:playerID[USERID]);
-			}
 		}
 		else
 		{
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:27("You need %m to buy this vehicle! But you only have %m at your bank account."), VehicleProperty:vehicleID[PRICE], bankMoney);
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:27("You need %m to buy this vehicle! But you only have %m at your bank account."), VehicleProperty:vehicleID[PRICE], PVar:playerID[BANK_MONEY]);
 		}
 	}
 	return true;

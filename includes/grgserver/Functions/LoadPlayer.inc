@@ -1,12 +1,7 @@
 LoadPlayer(playerID)
 {
-	PVar:playerID[LANGUAGE] = 0;
-
 	MySQLQuery("SELECT * FROM `users` WHERE `id` = '%d'", PVar:playerID[USERID]);
 	mysql_store_result();
-
-	new bankAccountId = strval(GetMySQLField("bankAccountId"));
-	new Float:cashMoney = floatstr(GetMySQLField("money"));
 	
 	SetPVarStr:playerID[CHATMODE][STRINGLENGTH_CHATMODE](GetMySQLField("chatMode"));
 	PVar:playerID[CHATMODE_USERID] = strval(GetMySQLField("chatModeUserId"));
@@ -26,8 +21,13 @@ LoadPlayer(playerID)
 	PVar:playerID[ONLINETIME] = strval(GetMySQLField("onlineTime"));
 	PVar:playerID[SKIN] = strval(GetMySQLField("skin"));
 	PVar:playerID[SHOWCLOCK] = strval(GetMySQLField("showClock"));
-	
-	PVar:playerID[VEHICLEBOUGHT] = strval(GetMySQLField("vehicleBought"));
+	SetPlayerMoney(playerID, MONEY_CASH, floatstr(GetMySQLField("money")));
+
+	// Bank stuff
+	PVar:playerID[BANK_ID] = strval(GetMySQLField("bankId"));
+	PVar:playerID[BANK_PIN] = strval(GetMySQLField("bankPin"));
+	PVar:playerID[BANK_PIN_ATTEMPTS] = strval(GetMySQLField("bankPinAttempts"));
+	SetPlayerMoney(playerID, MONEY_BANK, floatstr(GetMySQLField("bankMoney")));
 
 	SetPlayerSkin(playerID, PVar:playerID[SKIN]);
 	SetPlayerWantedLevel(playerID, strval(GetMySQLField("wantedLevel")));
@@ -60,15 +60,6 @@ LoadPlayer(playerID)
 	}
 
 	mysql_free_result();
-
-	MySQLQuery("SELECT `money` FROM `bankaccounts` WHERE `id` = '%d'", bankAccountId);
-	mysql_store_result();
-
-	new Float:bankMoney = floatstr(GetMySQLField("money"));
-	mysql_free_result();
-
-	SetPlayerMoney(playerID, MONEY_BANK, bankMoney);
-	SetPlayerMoney(playerID, MONEY_CASH, cashMoney);
 
 	MySQLQuery("SELECT * FROM `permissions` WHERE `userId` = '%d'", PVar:playerID[USERID]);
 	mysql_store_result();

@@ -21,7 +21,17 @@ Timer:Slow()
 		OnServerTimeChange(hour, minute, TIMECHANGE_MINUTE);
 		oldMinute = minute;
 	}
-	//mysql_ping();
+
+	Count(playerID, maxPlayers)
+	{
+		new onlineTime = GetOnlineTime(playerID);
+		if (onlineTime - PVar:playerID[LASTPAYDAY] >= PAYDAY_INTERVAL)
+		{
+			PVar:playerID[LASTPAYDAY] = onlineTime;
+			PayDay(playerID);
+		}
+	}
+
 	if (fexist(FILE_UPDATENOTIFICATION))
 	{
 		new string[256];
@@ -66,6 +76,7 @@ Timer:Slow()
 		fclose(file);
 		fremove(FILE_UPDATENOTIFICATION);
 	}
+
 	LoggedInPlayers(playerID)
 	{
 		UpdatePlayerNeeds(playerID);
