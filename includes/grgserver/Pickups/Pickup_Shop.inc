@@ -12,5 +12,5 @@ PickupEvent:SHOP(playerID, pickupID, eventType)
 
 PickupModelID:SHOP(pickupID)
 {
-	return 19130;
+	return 19326;
 }

@@ -12,13 +12,13 @@
     <object id="1556" model="18880" interior="0" posX="1042.310058" posY="-1820.859985" posZ="12.492794" rotX="0.000000" rotY="0.000000" rotZ="-108.900001">
         <speedcamera speedLimit="50" />
     </object>
-    <object id="1557" model="18880" interior="0" posX="1969.640014" posY="-1923.670043" posZ="12.246894" rotX="0.000000" rotY="0.000000" rotZ="-35.299999">
+    <object id="1557" model="18880" interior="0" posX="1969.640014" posY="-1923.670043" posZ="12.246893" rotX="0.000000" rotY="0.000000" rotZ="-35.299999">
         <speedcamera speedLimit="50" />
     </object>
-    <object id="1558" model="18880" interior="0" posX="2102.330078" posY="-1607.319946" posZ="12.079794" rotX="0.000000" rotY="0.000000" rotZ="-60.900001">
+    <object id="1558" model="18880" interior="0" posX="2102.330078" posY="-1607.319946" posZ="12.079793" rotX="0.000000" rotY="0.000000" rotZ="-60.900001">
         <speedcamera speedLimit="50" />
     </object>
-    <object id="1559" model="18880" interior="0" posX="2332.129882" posY="-1668.359985" posZ="12.527094" rotX="0.000000" rotY="0.000000" rotZ="135.500000">
+    <object id="1559" model="18880" interior="0" posX="2332.129882" posY="-1668.359985" posZ="12.527093" rotX="0.000000" rotY="0.000000" rotZ="135.500000">
         <speedcamera speedLimit="50" />
     </object>
     <object id="1562" model="18880" interior="0" posX="-1143.390014" posY="-866.265014" posZ="69.583602" rotX="0.000000" rotY="0.000000" rotZ="69.000000">
@@ -41,5 +41,11 @@
     </object>
     <object id="2489" model="18880" interior="0" posX="372.017181" posY="-1693.075683" posZ="6.099864" rotX="0.000000" rotY="0.000000" rotZ="66.599967">
         <speedcamera speedLimit="100" />
+    </object>
+    <object id="4374" model="18880" interior="0" posX="2019.652954" posY="-3534.988281" posZ="1.345185" rotX="0.000000" rotY="0.000000" rotZ="2.483648">
+        <speedcamera speedLimit="70" />
+    </object>
+    <object id="4375" model="18880" interior="0" posX="2068.779296" posY="-3221.780517" posZ="43.109592" rotX="0.000000" rotY="0.000000" rotZ="-38.699996">
+        <speedcamera speedLimit="156" />
     </object>
 </objects>
