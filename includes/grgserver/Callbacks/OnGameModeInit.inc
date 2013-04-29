@@ -75,7 +75,7 @@ public OnGameModeInit()
 		if (objectModelsFile)
 		{
 			new objectModelsCount;
-			new line[30];
+			new line[STRINGLENGTH_OBJECTMODELNAME + 10];
 			while (fread(objectModelsFile, line))
 			{
 				new modelID;

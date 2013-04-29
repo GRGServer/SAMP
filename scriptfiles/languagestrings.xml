@@ -145,6 +145,14 @@
             Laden
         </de>
     </string>
+    <string id="18">
+        <en>
+            You can now edit the object using the GUI, clone it (Key ~k~~SNEAK_ABOUT~) or remove it (Key ~k~~CONVERSATION_NO~)
+        </en>
+        <de>
+            Du kannst jetzt das Objekt über die GUI bearbeiten, es klonen (Taste ~k~~SNEAK_ABOUT~) oder es entfernen (Key ~k~~CONVERSATION_NO~)
+        </de>
+    </string>
     <string id="19">
         <en>
             You have to enter the amount!
@@ -1283,10 +1291,10 @@
     </string>
     <string id="204">
         <en>
-            Object %d (%s) selected. You can now edit the object or remove it using ~k~~CONVERSATION_NO~
+            Object %d (%s) from file '%s' selected
         </en>
         <de>
-            Objekt %d (%s) ausgewählt. Du kannst jetzt das Objekt bearbeiten oder es mit ~k~~CONVERSATION_NO~ entfernen
+            Objekt %d (%s) von Datei '%s' ausgewählt
         </de>
     </string>
     <string id="205">
