@@ -101,13 +101,6 @@ CREATE TABLE `missioncheckpoints` (
   UNIQUE KEY `Checkpoint` (`missionId`,`checkpointId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `missiondata` (
-  `missionId` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `value` varchar(200) NOT NULL,
-  UNIQUE KEY `UNIQUE` (`missionId`,`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
 CREATE TABLE `missions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `jobId` int(11) NOT NULL,
@@ -115,6 +108,8 @@ CREATE TABLE `missions` (
   `acceptUserId` int(11) NOT NULL,
   `creationTime` datetime NOT NULL,
   `acceptTime` datetime NOT NULL,
+  `type` varchar(100) NOT NULL,
+  `data` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
