@@ -1,15 +1,11 @@
 CMD:missions(playerID, params[], StringID:94("Show available missions"))
 {
-	switch (PVar:playerID[JOBID])
+	if (!PVar:playerID[JOBID])
 	{
-		case JOB_TAXI, JOB_ADAC, JOB_PARAMEDIC, JOB_POLICE, JOB_TRUCKER:
-		{
-			ShowDialog:Accept(playerID);
-		}
-		default:
-		{
-			return COMMAND_PERMISSION_DENIED;
-		}
+		SendClientMessageEx(playerID, COLOR_ERROR, StringID:33("You do not have a job!"));
+		return COMMAND_ERROR;
 	}
+
+	ShowDialog:Missions(playerID);
 	return COMMAND_OK;
 }

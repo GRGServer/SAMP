@@ -65,7 +65,7 @@
 #include <grgserver\Functions\GetLanguageID.inc>
 #include <grgserver\Functions\GetLanguageName.inc>
 #include <grgserver\Functions\GetLicenseLanguageStringID.inc>
-#include <grgserver\Functions\GetMissionName.inc>
+#include <grgserver\Functions\GetMissionData.inc>
 #include <grgserver\Functions\GetMySQLField.inc>
 #include <grgserver\Functions\GetMySQLValue.inc>
 #include <grgserver\Functions\GetNavigationLocationTypeByName.inc>
@@ -209,7 +209,6 @@
 
 // Dialogs
 #include <grgserver\Dialogs\D_ADAC.inc>
-#include <grgserver\Dialogs\D_Accept.inc>
 #include <grgserver\Dialogs\D_AddNaviLocation_NewType.inc>
 #include <grgserver\Dialogs\D_AddNaviLocation_Type.inc>
 #include <grgserver\Dialogs\D_AddObject.inc>
@@ -242,6 +241,7 @@
 #include <grgserver\Dialogs\D_Hotel_RoomList.inc>
 #include <grgserver\Dialogs\D_House.inc>
 #include <grgserver\Dialogs\D_Login.inc>
+#include <grgserver\Dialogs\D_Missions.inc>
 #include <grgserver\Dialogs\D_NaviTarget.inc>
 #include <grgserver\Dialogs\D_NaviTarget_PropertyList.inc>
 #include <grgserver\Dialogs\D_NaviTarget_PropertyName.inc>

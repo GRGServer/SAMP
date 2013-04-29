@@ -265,6 +265,14 @@
             Die eingegebenen Passwörter stimmen nicht überein! Bitte versuche es erneut.
         </de>
     </string>
+    <string id="33">
+        <en>
+            You do not have a job!
+        </en>
+        <de>
+            Du hast keine Arbeit!
+        </de>
+    </string>
     <string id="34">
         <en>
             No property selected! Go into a property pickup and press ~k~~SNEAK_ABOUT~ to select it.
@@ -899,10 +907,10 @@
     </string>
     <string id="134">
         <en>
-            There are currently no orders available for your job!
+            There are currently no missions available for your job!
         </en>
         <de>
-            Es stehen derzeit keine Aufträge in deinem Beruf zur Verfügung!
+            Aktuell stehen keine Missionen für deinen Job zur Verfügung!
         </de>
     </string>
     <string id="135">
@@ -4087,11 +4095,9 @@
     </string>
     <string id="586">
         <en>
-            Pickup an ordered vehicle
+            Pickup an ordered vehicle (%s)
         </en>
-        <de>
-            Hole ein bestelltes Fahrzeug ab
-        </de>
+        <de/>
     </string>
     <string id="587">
         <en>

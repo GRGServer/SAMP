@@ -9,7 +9,7 @@ ShowDialog:Trucker_Options(playerID)
 		{
 			Format:missionList("%s\n", missionList);
 		}
-		Format:missionList("%s%s: %s", missionList, GetMySQLField("id"), LanguageString(playerID, GetMissionName(strval(GetMySQLField("id")))));
+		//Format:missionList("%s%s: %s", missionList, GetMySQLField("id"), LanguageString(playerID, GetMissionName(strval(GetMySQLField("id")))));
 	}
 	mysql_free_result();
 	if (strlen(missionList))
