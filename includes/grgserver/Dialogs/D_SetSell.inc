@@ -21,9 +21,17 @@ DialogResponse:SetSell(playerID, response, listItem, inputText[])
 		SendClientMessageEx(playerID, COLOR_ERROR, StringID:490("The price must be positive!"));
 		return false;
 	}
-	SendClientMessage(playerID, COLOR_SYSTEM, "Coming soon");
-	// TODO: Rewrite code
-	//SendClientMessageEx(playerID, COLOR_INFO, StringID:491("You have released your vehicle for sale"));
-	//RemovePlayerFromVehicle(playerID);
+	new color1, color2;
+	new Float:X,
+		Float:Y,
+		Float:Z,
+		Float:health = 100.00;
+	GetPlayerPos(playerID, X, Y, Z);
+	MySQLQuery("INSERT INTO `vehicles`(`numberplate`, `posX`, `posY`, `posZ`, `health`, `modelId`, `color1`, `color2`) VALUES ('ND-%d%d%d%d', '%f', '%f', '%f', '%f', '%d', '%d', '%d')",random(5),random(5),random(5),random(5), X, Y, Z, health, vehicleID, color1, color2);
+	VehicleProperty:vehicleID[OWNERUSERID] = 0;
+	VehicleProperty:vehicleID[PRICE] = price;
+	VehicleProperty:vehicleID[SELLERUSERID] = PVar:playerID[USERID];
+	SendClientMessageEx(playerID, COLOR_INFO, StringID:491("You have released your vehicle for sale"));
+	RemovePlayerFromVehicle(playerID);
 	return true;
 }
