@@ -1,5 +1,5 @@
-CreateJob(playerID, jobID)
+CreateJob(playerID, jobID, modelID)
 {
-	MySQLQuery("INSERT INTO `missions` (`jobId`, `creatorUserId`, `creationTime`) VALUES ('%d', '%d', NOW())", jobID, PVar:playerID[USERID]);
+	MySQLQuery("INSERT INTO `missions` (`jobId`, `data`, `type`,`creatorUserId`, `creationTime`) VALUES ('%d', '%d','GetOrderedVehicle', '%d', NOW())", jobID, modelID, PVar:playerID[USERID]);
 	return mysql_insert_id();
 }

@@ -16,8 +16,9 @@ DialogResponse:Service(playerID, response, listItem, inputText[])
 		{
 			case 0:
 			{
+				new modelID;
 				SendClientMessageEx(playerID, COLOR_INFO, StringID:578("Your request has been sent"));
-				new missionID = CreateJob(playerID, JOB_POLICE);
+				new missionID = CreateJob(playerID, JOB_POLICE, modelID);
 				if (missionID)
 				{
 					AddJobData(missionID, "Type", "GetOrderPolice");
@@ -27,7 +28,8 @@ DialogResponse:Service(playerID, response, listItem, inputText[])
 			case 1:
 			{
 				SendClientMessageEx(playerID, COLOR_INFO, StringID:578("Your request has been sent"));
-				new missionID = CreateJob(playerID, JOB_ADAC);
+				new modelID;
+				new missionID = CreateJob(playerID, JOB_ADAC, modelID);
 				if (missionID)
 				{
 					AddJobData(missionID, "Type", "GetOrderADAC");
@@ -37,7 +39,8 @@ DialogResponse:Service(playerID, response, listItem, inputText[])
 			case 2:
 			{
 				SendClientMessageEx(playerID, COLOR_INFO, StringID:578("Your request has been sent"));
-				new missionID = CreateJob(playerID, JOB_TAXI);
+				new modelID;
+				new missionID = CreateJob(playerID, JOB_TAXI, modelID);
 				if (missionID)
 				{
 					AddJobData(missionID, "Type", "GetOrderTaxi");
@@ -47,7 +50,8 @@ DialogResponse:Service(playerID, response, listItem, inputText[])
 			case 3: 
 			{
 				SendClientMessageEx(playerID, COLOR_INFO, StringID:578("Your request has been sent"));
-				new missionID = CreateJob(playerID, JOB_PARAMEDIC);
+				new modelID;
+				new missionID = CreateJob(playerID, JOB_PARAMEDIC, modelID);
 				if (missionID)
 				{
 					AddJobData(missionID, "Type", "GetOrderPolice");

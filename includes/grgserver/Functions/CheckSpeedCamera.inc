@@ -29,8 +29,16 @@ CheckSpeedCamera(playerID)
 	{
 		if (!PVar:playerID[SPEEDCAM_LIMITREACHED])
 		{
+			new price = VehicleProperty:vehicleID[SPEED]/100*14;
 			PVar:playerID[SPEEDCAM_LIMITREACHED] = true;
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:453("You are driving too fast! (%d km/h; Max: %d km/h)"), VehicleProperty:vehicleID[SPEED], speedCameras[closestSpeedCamera][SPEEDCAMERA_SPEEDLIMIT]);
+			SendClientMessageEx(playerID, COLOR_ERROR, StringID:453("You are driving too fast! (%d km/h; Max: %d km/h) it Cost %f"), VehicleProperty:vehicleID[SPEED], speedCameras[closestSpeedCamera][SPEEDCAMERA_SPEEDLIMIT], price);
+			PVar:playerID[MONEY] = -price;
+			PVar:playerID[DOTS] = PVar:playerID[DOTS]+1;
+			if (PVar:playerID[DOTS] >= 3)
+			{
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:39("You have lost your Car License! You have to mutch Dots!"));
+				// TODO: Remove License
+			}
 		}
 	}
 	else

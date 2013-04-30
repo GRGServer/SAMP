@@ -15,7 +15,7 @@ DialogResponse:OrderVehicle(playerID, response, listItem, inputText[])
 		new modelID = strval(GetMySQLValue("vehiclemodels", "id", "name", inputText));
 		if (modelID)
 		{
-			new missionID = CreateJob(playerID, JOB_VEHICLEDEALER);
+			new missionID = CreateJob(playerID, JOB_TRUCKER, modelID);
 			if (missionID)
 			{
 				AddJobData(missionID, "Type", "GetOrderedVehicle");

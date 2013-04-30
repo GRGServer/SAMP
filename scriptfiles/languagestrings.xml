@@ -313,6 +313,14 @@
             Auftrag erstellt (Auftragsnummer: %d)
         </de>
     </string>
+    <string id="39">
+        <en>
+            You have Lost your Car License! You Have to mutch Dots!
+        </en>
+        <de>
+            Du hast dein Auto Schein verloren! Du hast zu viele Punkte!
+        </de>
+    </string>
     <string id="40">
         <en>
             Please use the format DD.MM.YYYY!
@@ -907,10 +915,10 @@
     </string>
     <string id="134">
         <en>
-            There are currently no missions available for your job!
+            There are currently no orders available for your job!
         </en>
         <de>
-            Aktuell stehen keine Missionen für deinen Job zur Verfügung!
+            Es ist keine Arbeit in deinem Beruf Verfügbar!
         </de>
     </string>
     <string id="135">

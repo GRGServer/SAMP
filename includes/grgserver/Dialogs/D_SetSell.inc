@@ -21,16 +21,16 @@ DialogResponse:SetSell(playerID, response, listItem, inputText[])
 		SendClientMessageEx(playerID, COLOR_ERROR, StringID:490("The price must be positive!"));
 		return false;
 	}
-	new color1, color2;
 	new Float:X,
 		Float:Y,
 		Float:Z,
-		Float:health = 100.00;
-	GetPlayerPos(playerID, X, Y, Z);
-	MySQLQuery("INSERT INTO `vehicles`(`numberplate`, `posX`, `posY`, `posZ`, `health`, `modelId`, `color1`, `color2`) VALUES ('ND-%d%d%d%d', '%f', '%f', '%f', '%f', '%d', '%d', '%d')",random(5),random(5),random(5),random(5), X, Y, Z, health, vehicleID, color1, color2);
-	VehicleProperty:vehicleID[OWNERUSERID] = 0;
-	VehicleProperty:vehicleID[PRICE] = price;
-	VehicleProperty:vehicleID[SELLERUSERID] = PVar:playerID[USERID];
+		Float:Angle,
+		Float:health = 10000.00,
+		Float:currentfuel = 100.00;
+	new modelID = GetVehicleModel(vehicleID);
+	GetVehiclePos(vehicleID, X, Y, Z);
+	GetVehicleZAngle(vehicleID, Angle);
+	MySQLQuery("INSERT INTO `vehicles`(`numberplate`, `posX`, `posY`, `posZ`, `angle`, `price`, `health`, `modelId`, `color1`, `color2`, `currentFuel`) VALUES ('ND-%d%d%d%d', '%f', '%f', '%f', '%f', '%f', '%f', '%d', '%d', '%d', '%f')",random(5),random(5),random(5),random(5), X, Y, Z, Angle, price, health, modelID, 23+random(10), 23+random(10), currentfuel);
 	SendClientMessageEx(playerID, COLOR_INFO, StringID:491("You have released your vehicle for sale"));
 	RemovePlayerFromVehicle(playerID);
 	return true;

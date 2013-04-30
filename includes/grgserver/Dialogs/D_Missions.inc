@@ -84,14 +84,8 @@ DialogResponse:Missions(playerID, response, listItem, inputText[])
 
 			if (IsStr(type, "GetOrderedVehicle"))
 			{
-				new modelID;
-				Foreach(arrayIndex, missionData)
-				{
-					if (IsStr(missionData[arrayIndex][0], "modelId"))
-					{
-						modelID = strval(missionData[arrayIndex][1]);
-					}
-				}
+				new modelID = MySQLQuery("SELECT `data` FROM `missions`");
+				mysql_store_result();
 				if (modelID >= 400 && modelID <= 611)
 				{
 					printf("Create vehicle %d", modelID);
