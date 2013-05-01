@@ -195,7 +195,6 @@ CREATE TABLE `teleports` (
   `angle` float NOT NULL,
   `interior` int(11) NOT NULL,
   PRIMARY KEY (`name`),
-  UNIQUE KEY `Name` (`name`),
   UNIQUE KEY `Position` (`posX`,`posY`,`posZ`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
