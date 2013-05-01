@@ -247,6 +247,7 @@ CREATE TABLE `users` (
   `inTutorial` tinyint(1) NOT NULL DEFAULT '1',
   `deaths` int(11) NOT NULL DEFAULT '0',
   `wantedLevel` int(11) NOT NULL DEFAULT '0',
+  `speedLimitPoints` int(11) NOT NULL DEFAULT '0',
   `bladder` float NOT NULL DEFAULT '100',
   `energy` float NOT NULL DEFAULT '100',
   `hunger` float NOT NULL DEFAULT '100',
