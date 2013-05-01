@@ -21,7 +21,7 @@ LoadPlayer(playerID)
 	PVar:playerID[ONLINETIME] = strval(GetMySQLField("onlineTime"));
 	PVar:playerID[SKIN] = strval(GetMySQLField("skin"));
 	PVar:playerID[SHOWCLOCK] = strval(GetMySQLField("showClock"));
-	PVar:playerID[DOTS] = strval(GetMySQLField("Dots"));
+	PVar:playerID[SPEEDLIMITPOINTS] = strval(GetMySQLField("speedLimitPoints"));
 	SetPlayerMoney(playerID, MONEY_CASH, floatstr(GetMySQLField("money")));
 
 	// Bank stuff

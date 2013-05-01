@@ -103,6 +103,7 @@
 #define MAX_NPCS					20// Number of NPCs (Should be the same as maxnpc in server.cfg)
 #define MAX_OBJECTMODELID				20000// Highest object model ID = Size of objectModels array because the array index is the modelID
 #define MAX_SPEEDCAMERAS				100// Maximum number of speed cameras
+#define MAX_SPEEDLIMITPOINTS				3// Maximum number of speed limit points a player can earn before losing the driving license
 #define MAX_VEHICLE_COLORS				16// Maximum vehicle colors slots per vehicle model
 
 

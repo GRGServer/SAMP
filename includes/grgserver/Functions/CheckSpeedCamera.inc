@@ -29,15 +29,19 @@ CheckSpeedCamera(playerID)
 	{
 		if (!PVar:playerID[SPEEDCAM_LIMITREACHED])
 		{
-			new price = VehicleProperty:vehicleID[SPEED]/100*14;
+			new speedDifference = VehicleProperty:vehicleID[SPEED] - speedCameras[closestSpeedCamera][SPEEDCAMERA_SPEEDLIMIT];
+			new Float:price = float(speedDifference);
+			new vehicleType[STRINGLENGTH_VEHICLETYPE];
+			strcat(vehicleType, vehicleModels[GetVehicleModel(vehicleID) - 400][VEHICLEMODEL_TYPE]);
 			PVar:playerID[SPEEDCAM_LIMITREACHED] = true;
-			SendClientMessageEx(playerID, COLOR_ERROR, StringID:453("You are driving too fast! (%d km/h; Max: %d km/h) it Cost %f"), VehicleProperty:vehicleID[SPEED], speedCameras[closestSpeedCamera][SPEEDCAMERA_SPEEDLIMIT], price);
-			PVar:playerID[MONEY] = -price;
-			PVar:playerID[DOTS] = PVar:playerID[DOTS]+1;
-			if (PVar:playerID[DOTS] >= 3)
+			PVar:playerID[SPEEDLIMITPOINTS]++;
+			SendClientMessageEx(playerID, COLOR_WARNING, StringID:453("You are driving too fast and have to pay %m! (%d km/h; Max: %d km/h)"), price, VehicleProperty:vehicleID[SPEED], speedCameras[closestSpeedCamera][SPEEDCAMERA_SPEEDLIMIT]);
+			SendClientMessageEx(playerID, COLOR_WARNING, StringID:39("Your speed limit points were increased to %d points!"), PVar:playerID[SPEEDLIMITPOINTS]);
+			GivePlayerMoneyEx(playerID, MONEY_CASH, -price);
+			if (PVar:playerID[SPEEDLIMITPOINTS] >= MAX_SPEEDLIMITPOINTS && HasLicense(playerID, vehicleType))
 			{
-				SendClientMessageEx(playerID, COLOR_ERROR, StringID:39("You have lost your Car License! You have to mutch Dots!"));
-				// TODO: Remove License
+				MySQLQuery("DELETE FROM `licenses` WHERE `userId` = '%d' AND `type` = '%s'", PVar:playerID[USERID], MySQLEscapeString(vehicleType));
+				SendClientMessageEx(playerID, COLOR_ERROR, StringID:44("You now have reached the limit of %d speed limit points and lost your driving license!"), MAX_SPEEDLIMITPOINTS);
 			}
 		}
 	}

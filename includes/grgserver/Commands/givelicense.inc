@@ -1,4 +1,4 @@
-CMD:givelicense(playerID, params[], StringID:511("Give license to a player"))
+CMD:givelicense(playerID, params[], StringID:511("Give license to a player"))// TODO: No permission check!
 {
 	new targetPlayerID;
 	new licenseString[256];

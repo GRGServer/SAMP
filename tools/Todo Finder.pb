@@ -8,19 +8,23 @@
 					Case #PB_DirectoryEntry_Directory
 						ScanDir(path$ + name$ + "\")
 					Case #PB_DirectoryEntry_File
-						file$ = path$ + name$
-						file = ReadFile(#PB_Any, file$)
-						If IsFile(file)
-							lineNo = 0
-							Repeat
-								lineNo + 1
-								line$ = Trim(RemoveString(ReadString(file), Chr(9)))
-								position = FindString(UCase(line$), "// TODO:")
-								If position
-									PrintN(file$ + "(" + Str(lineNo) + "): todo " + Trim(Mid(line$, position + 8)))
-								EndIf
-							Until Eof(file)
-							CloseFile(file)
+						If LCase(GetExtensionPart(name$)) = "inc" Or LCase(GetExtensionPart(name$)) = "pwn"
+							file$ = path$ + name$
+							file = ReadFile(#PB_Any, file$)
+							If IsFile(file)
+								lineNo = 0
+								Repeat
+									lineNo + 1
+									line$ = RemoveString(ReadString(file), Chr(9))
+									search$ = "// TODO:"
+									position = FindString(line$, search$, 1, #PB_String_NoCase)
+									If position
+										position + Len(search$)
+										PrintN(file$ + "(" + Str(lineNo) + ") : todo " + Trim(Mid(line$, position)))
+									EndIf
+								Until Eof(file)
+								CloseFile(file)
+							EndIf
 						EndIf
 				EndSelect
 			EndIf
@@ -29,23 +33,23 @@
 	EndIf
 EndProcedure
 
-mainPath$ = GetPathPart(ProgramFilename())
-serverRoot$ = GetPathPart(Left(mainPath$, Len(mainPath$) - 1))
-includesPath$ = serverRoot$ + "includes\"
-
-includesPath$ = "X:\Projects\SAMP-Server\includes\"
-
-If OpenConsole()
-	ScanDir(includesPath$)
+serverRoot$ = ProgramParameter()
+If serverRoot$ = ""
+	mainPath$ = GetPathPart(ProgramFilename())
+	serverRoot$ = GetPathPart(Left(mainPath$, Len(mainPath$) - 1))
 EndIf
-; IDE Options = PureBasic 4.60 (Windows - x86)
-; CursorPosition = 18
+
+If OpenConsole("Todo Finder")
+	ScanDir(serverRoot$)
+EndIf
+; IDE Options = PureBasic 5.11 (Windows - x86)
+; CursorPosition = 21
 ; Folding = -
 ; EnableXP
 ; UseIcon = Todo Finder.ico
 ; Executable = Todo Finder.exe
-; EnableCompileCount = 5
-; EnableBuildCount = 5
+; EnableCompileCount = 17
+; EnableBuildCount = 13
 ; EnableExeConstant
 ; IncludeVersionInfo
 ; VersionField0 = 1,0,0,0

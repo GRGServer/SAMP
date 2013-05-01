@@ -315,10 +315,10 @@
     </string>
     <string id="39">
         <en>
-            You have Lost your Car License! You Have to mutch Dots!
+            Your speed limit points were increased to %d points!
         </en>
         <de>
-            Du hast dein Auto Schein verloren! Du hast zu viele Punkte!
+            Deine Geschwindigkeitspunkte wurden auf %d Punkte erhöht!
         </de>
     </string>
     <string id="40">
@@ -351,6 +351,14 @@
         </en>
         <de>
             %p hat den Gamemode neugestartet: %s
+        </de>
+    </string>
+    <string id="44">
+        <en>
+            You now have reached the limit of %d speed limit points and lost your driving license!
+        </en>
+        <de>
+            Du hast nun das Limit von %d Geschwindigkeitspunkten erreicht und dein Führerschein verloren!
         </de>
     </string>
     <string id="48">
@@ -915,10 +923,10 @@
     </string>
     <string id="134">
         <en>
-            There are currently no orders available for your job!
+            There are currently no missions available for your job!
         </en>
         <de>
-            Es ist keine Arbeit in deinem Beruf Verfügbar!
+            Es stehen aktuell keine Aufträge für deinen Job zur Verfügung!
         </de>
     </string>
     <string id="135">
@@ -3131,10 +3139,10 @@
     </string>
     <string id="453">
         <en>
-            You are driving too fast! (%d km/h; Max: %d km/h)
+            You are driving too fast and have to pay %m! (%d km/h; Max: %d km/h)
         </en>
         <de>
-            Du fährst zu schnell! (%d km/h; Max: %d km/h)
+            Du fährst zu schnell und must %m zahlen! (%d km/h; Max: %d km/h)
         </de>
     </string>
     <string id="454">
