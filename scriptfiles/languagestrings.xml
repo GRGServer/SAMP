@@ -361,6 +361,14 @@
             Du hast nun das Limit von %d Geschwindigkeitspunkten erreicht und dein Führerschein verloren!
         </de>
     </string>
+    <string id="45">
+        <en>
+            Order Vehcle
+        </en>
+        <de>
+            Bestelle Fahrzeug
+        </de>
+    </string>
     <string id="48">
         <en>
             Recording stopped
@@ -923,11 +931,9 @@
     </string>
     <string id="134">
         <en>
-            There are currently no missions available for your job!
+            There are currently no orders available for your job!
         </en>
-        <de>
-            Es stehen aktuell keine Aufträge für deinen Job zur Verfügung!
-        </de>
+        <de/>
     </string>
     <string id="135">
         <en>

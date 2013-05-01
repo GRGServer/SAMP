@@ -2,8 +2,15 @@ PickupEvent:ESTATEAGENTS(playerID, pickupID, eventType)
 {
 	if (eventType == PICKUPEVENT_KEYPRESS)
 	{
-		ShowDialog:EstateAgents(playerID);
-		return true;
+		if (PVar:playerID[JOBID] == JOB_ESTATEAGENTS)
+		{
+			ShowDialog:EstateAgents(playerID);
+			return true;
+		}
+		else
+		{
+			ShowDialog:EstateAgents_Options(playerID);
+		}
 	}
 	return false;
 }

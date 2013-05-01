@@ -209,12 +209,14 @@
 
 // Dialogs
 #include <grgserver\Dialogs\D_ADAC.inc>
+#include <grgserver\Dialogs\D_ADAC_Options.inc>
 #include <grgserver\Dialogs\D_AddNaviLocation_NewType.inc>
 #include <grgserver\Dialogs\D_AddNaviLocation_Type.inc>
 #include <grgserver\Dialogs\D_AddObject.inc>
 #include <grgserver\Dialogs\D_AddProperty_Name.inc>
 #include <grgserver\Dialogs\D_AddProperty_Type.inc>
 #include <grgserver\Dialogs\D_Army.inc>
+#include <grgserver\Dialogs\D_Army_Options.inc>
 #include <grgserver\Dialogs\D_Bank_CancelAccount.inc>
 #include <grgserver\Dialogs\D_Bank_DepositMoney.inc>
 #include <grgserver\Dialogs\D_Bank_HasAccount.inc>
@@ -232,6 +234,7 @@
 #include <grgserver\Dialogs\D_DrivingSchool.inc>
 #include <grgserver\Dialogs\D_DrivingSchool_StartDriving.inc>
 #include <grgserver\Dialogs\D_EstateAgents.inc>
+#include <grgserver\Dialogs\D_EstateAgents_Options.inc>
 #include <grgserver\Dialogs\D_FriendRequests.inc>
 #include <grgserver\Dialogs\D_FriendRequests_Options.inc>
 #include <grgserver\Dialogs\D_FunAction.inc>

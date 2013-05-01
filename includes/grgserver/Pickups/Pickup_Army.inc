@@ -4,8 +4,15 @@ PickupEvent:ARMY(playerID, pickupID, eventType)
 	{
 		case PICKUPEVENT_KEYPRESS:
 		{
-			ShowDialog:Army(playerID);
-			return true;
+			if (PVar:playerID[JOBID] == JOB_ARMEE)
+			{
+				ShowDialog:Army(playerID);
+				return true;
+			}
+			else
+			{
+				ShowDialog:Army_Options(playerID);
+			}
 		}
 	}
 	return false;

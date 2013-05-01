@@ -2,7 +2,14 @@ PickupEvent:ADAC(playerID, pickupID, eventType)
 {
 	if (eventType == PICKUPEVENT_KEYPRESS)
 	{
-		ShowDialog:ADAC(playerID);
+		if (PVar:playerID[JOBID] == JOB_ADAC)
+		{
+			ShowDialog:ADAC(playerID);
+		}
+		else
+		{
+			ShowDialog:ADAC_Options(playerID);
+		}
 	}
 }
 

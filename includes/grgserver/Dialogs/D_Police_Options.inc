@@ -5,7 +5,7 @@ ShowDialog:Police_Options(playerID)
 	AddLine(options, LanguageString(playerID, StringID:268("Enter")));// Item 1
 	AddLine(options, LanguageString(playerID, StringID:328("Sell")));// Item 2
 	AddLine(options, LanguageString(playerID, StringID:476("Lock/Unlock")));// Item 3
-	AddLine(options, LanguageString(playerID, StringID:549("Attach your trailer and drive to the checkpoint")));// Item 4
+	AddLine(options, LanguageString(playerID, StringID:45("Order Vehcle")));// Item 4
 	CreateDialog(playerID, "Police Options", DIALOG_STYLE_LIST, title, options, LanguageString(playerID, StringID:164("Accept")), LanguageString(playerID, StringID:165("Cancel")));
 }
 
@@ -61,7 +61,7 @@ DialogResponse:Police_Options(playerID, response, listItem, inputText[])
 			}
 			case 3: 
 			{
-				SendClientMessage(playerID, COLOR_INFO, "Comming soon....");
+				ShowDialog:OrderVehicle(playerID);
 			}
 		}
 	}
