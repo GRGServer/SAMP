@@ -84,13 +84,19 @@ DialogResponse:Missions(playerID, response, listItem, inputText[])
 
 			if (IsStr(type, "GetOrderedVehicle"))
 			{
-				new modelID = MySQLQuery("SELECT `data` FROM `missions`");
-				mysql_store_result();
+				new modelID;
+				Foreach(arrayIndex, missionData)
+				{
+					if (IsStr(missionData[arrayIndex][0], "modelId"))
+					{
+						modelID = strval(missionData[arrayIndex][1]);
+					}
+				}
 				if (modelID >= 400 && modelID <= 611)
 				{
 					printf("Create vehicle %d", modelID);
-					CreateVehicleEx(modelID, -1557.4092, 114.7485, 3.0939, 136.5509, 12, 41, false);// TODO: Multiple vehicles at the same position
-					SetPlayerCheckpoint(playerID,  -1557.4092, 114.7485, 3.0939, 0.5);
+					new vehicleID = CreateVehicleEx(modelID, -1557.4092, 114.7485, 3.0939, 136.5509, 12, 41, false);// TODO: Multiple vehicles at the same position
+					SetVehicleParamsForPlayer(vehicleID, playerID, true, false);
 				}
 				else
 				{
