@@ -173,7 +173,8 @@ new radioStations[][enum_radioStation] =
 	{"Technobase.fm", "http://listen.technobase.fm/dsl.pls"},
 	{"Blackbeats.FM", "http://stream.blackbeatslive.de/;stream.nsv&type=mp3"},
 	{"HyperSheep FM", "http://selfcoders.com:8000/listen.pls?sid=3"},
-	{"Hot 108 Jamz", "http://scfire-mtc-aa05.stream.aol.com:80/stream/1071"}
+	{"Hot 108 Jamz", "http://scfire-mtc-aa05.stream.aol.com:80/stream/1071"},
+	{"Nightcore Radio", "http://stream.nightcoreradio.com:9040/main_stream.m3u"}
 };
 
 // Removed standard objects (GTA San Andreas objects)
