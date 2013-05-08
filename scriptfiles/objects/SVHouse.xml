@@ -26,11 +26,10 @@
     <object id="4486" model="996" interior="0" posX="1806.187133" posY="-3917.887939" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="74.799995" />
     <object id="4487" model="996" interior="0" posX="1811.318115" posY="-3899.002929" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="74.799995" />
     <object id="4489" model="996" interior="0" posX="1816.145019" posY="-3881.236572" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="74.799995" />
-    <object id="4490" model="996" interior="0" posX="1819.051391" posY="-3873.297119" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="4.899994" />
-    <object id="4491" model="996" interior="0" posX="1828.507202" posY="-3872.488037" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="4.899994" />
-    <object id="4492" model="996" interior="0" posX="1838.719726" posY="-3871.610839" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="4.899994" />
-    <object id="4493" model="996" interior="0" posX="1848.404418" posY="-3870.781494" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="4.899994" />
-    <object id="4494" model="996" interior="0" posX="1857.411010" posY="-3870.011962" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="4.899994" />
+    <object id="4490" model="996" interior="0" posX="1819.029174" posY="-3873.037597" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="4.899993" />
+    <object id="4492" model="996" interior="0" posX="1838.704345" posY="-3871.430664" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="3.299994" />
+    <object id="4493" model="996" interior="0" posX="1848.404418" posY="-3870.781494" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="4.899993" />
+    <object id="4494" model="996" interior="0" posX="1857.411010" posY="-3870.011962" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="4.899993" />
     <object id="4519" model="996" interior="0" posX="1858.743164" posY="-3919.419677" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="93.500053" />
     <object id="4520" model="996" interior="0" posX="1858.245727" posY="-3911.284179" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="93.500053" />
     <object id="4521" model="996" interior="0" posX="1857.669555" posY="-3901.861572" posZ="36.110321" rotX="0.000000" rotY="0.000000" rotZ="93.500053" />
