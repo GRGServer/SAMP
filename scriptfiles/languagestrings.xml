@@ -369,6 +369,22 @@
             Bestelle Fahrzeug
         </de>
     </string>
+    <string id="46">
+        <en>
+            Another vehicle has been already spawned!
+        </en>
+        <de>
+            Ein anderes Fahrzeug wurde bereits gespawnt!
+        </de>
+    </string>
+    <string id="47">
+        <en>
+            Please try again later
+        </en>
+        <de>
+            Bitte versuche es später erneut
+        </de>
+    </string>
     <string id="48">
         <en>
             Recording stopped
@@ -931,9 +947,11 @@
     </string>
     <string id="134">
         <en>
-            There are currently no orders available for your job!
+            There are currently no missions available for your job!
         </en>
-        <de/>
+        <de>
+            Es stehen aktuell keine Missionen für deinen Job zur Verfügung!
+        </de>
     </string>
     <string id="135">
         <en>
@@ -4117,9 +4135,11 @@
     </string>
     <string id="586">
         <en>
-            Pickup an ordered vehicle (%s)
+            Pickup an ordered car (%s)
         </en>
-        <de/>
+        <de>
+            Hole ein bestelltes Auto ab (%s)
+        </de>
     </string>
     <string id="587">
         <en>

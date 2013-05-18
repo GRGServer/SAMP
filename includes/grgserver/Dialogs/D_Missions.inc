@@ -14,7 +14,7 @@ ShowDialog:Missions(playerID)
 		strcat(type, GetMySQLField("type"));
 		GetMissionData(GetMySQLField("data"), missionData);
 
-		if (IsStr(type, "GetOrderedVehicle"))
+		if (IsStr(type, "GetOrderedCar"))
 		{
 			new modelID;
 			Foreach(arrayIndex, missionData)
@@ -26,11 +26,18 @@ ShowDialog:Missions(playerID)
 			}
 			if (modelID >= 400 && modelID <= 611)
 			{
-				Format:missionTitle(LanguageString(playerID, StringID:586("Pickup an ordered vehicle (%s)")), vehicleModels[modelID - 400][VEHICLEMODEL_NAME]);
+				if (IsStr(vehicleModels[modelID - 400][VEHICLEMODEL_TYPE], "Car"))
+				{
+					Format:missionTitle(LanguageString(playerID, StringID:586("Pickup an ordered car (%s)")), vehicleModels[modelID - 400][VEHICLEMODEL_NAME]);
+				}
+				else
+				{
+					printf("WARNING: %s is not a car!", vehicleModels[modelID - 400][VEHICLEMODEL_NAME]);
+				}
 			}
 			else
 			{
-				printf("WARNING: Invalid vehicle model ID (%d) for mission %d", modelID, missionID);
+				printf("WARNING: Invalid vehicle model ID (%d) for mission %d!", modelID, missionID);
 			}
 			validType = true;
 		}
@@ -72,17 +79,13 @@ DialogResponse:Missions(playerID, response, listItem, inputText[])
 		}
 		else
 		{
-			accepted = true;
-			SendClientMessageEx(playerID, COLOR_INFO, StringID:15("You have accepted the job"));
-			SendClientMessageEx(GetPlayerByUserID(strval(GetMySQLField("creatorUserId"))), COLOR_INFO, StringID:1("%p has accepted your job (Order ID: %d)"), playerID, missionID);
-
 			new type[100];
 			new missionData[20][2][32];
 
 			strcat(type, GetMySQLField("type"));
 			GetMissionData(GetMySQLField("data"), missionData);
 
-			if (IsStr(type, "GetOrderedVehicle"))
+			if (IsStr(type, "GetOrderedCar"))
 			{
 				new modelID;
 				Foreach(arrayIndex, missionData)
@@ -94,13 +97,28 @@ DialogResponse:Missions(playerID, response, listItem, inputText[])
 				}
 				if (modelID >= 400 && modelID <= 611)
 				{
-					printf("Create vehicle %d", modelID);
-					new vehicleID = CreateVehicleEx(modelID, -1557.4092, 114.7485, 3.0939, 136.5509, 12, 41, false);// TODO: Multiple vehicles at the same position
-					SetVehicleParamsForPlayer(vehicleID, playerID, true, false);
+					if (IsStr(vehicleModels[modelID - 400][VEHICLEMODEL_TYPE], "Car"))
+					{
+						if (GetClosestVehicleInRange(ORDER_CAR_SPAWN_POSX, ORDER_CAR_SPAWN_POSY, ORDER_CAR_SPAWN_POSZ, ORDER_CAR_MINDISTANCE))
+						{
+							SendClientMessageEx(playerID, COLOR_ERROR, StringID:46("Another vehicle has been already spawned!"));
+							SendClientMessageEx(playerID, COLOR_ERROR, StringID:47("Please try again later"));
+						}
+						else
+						{
+							new vehicleID = CreateVehicleEx(modelID, ORDER_CAR_SPAWN_POSX, ORDER_CAR_SPAWN_POSY, ORDER_CAR_SPAWN_POSZ, ORDER_CAR_SPAWN_ANGLE, -1, -1, false);
+							SetVehicleParamsForPlayer(vehicleID, playerID, true, false);
+							accepted = true;
+						}
+					}
+					else
+					{
+						printf("WARNING: %s is not a car!", vehicleModels[modelID - 400][VEHICLEMODEL_NAME]);
+					}
 				}
 				else
 				{
-					printf("WARNING: Invalid vehicle model ID (%d) for mission %d", modelID, missionID);
+					printf("WARNING: Invalid vehicle model ID (%d) for mission %d!", modelID, missionID);
 				}
 			}
 		}
@@ -108,6 +126,8 @@ DialogResponse:Missions(playerID, response, listItem, inputText[])
 
 		if (accepted)
 		{
+			SendClientMessageEx(playerID, COLOR_INFO, StringID:15("You have accepted the job"));
+			SendClientMessageEx(GetPlayerByUserID(strval(GetMySQLField("creatorUserId"))), COLOR_INFO, StringID:1("%p has accepted your job (Order ID: %d)"), playerID, missionID);
 			MySQLQuery("UPDATE `missions` SET `acceptUserId` = '%d', `acceptTime` = NOW() WHERE `id` = '%d'", PVar:playerID[USERID], missionID);
 		}
 	}

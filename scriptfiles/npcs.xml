@@ -25,22 +25,6 @@
 		<recording name="SFBus1" startDelay="101000" autoStart="1" autoRepeat="1"/>
 		<vehicle model="431" color1="-1" color2="-1"/>
 	</npc>
-	<npc name="LS_SVBus1a" skin="253">
-		<recording name="LS_SVBus" startDelay="0" autoStart="1" autoRepeat="1"/>
-		<vehicle model="431" color1="-1" color2="-1"/>
-	</npc>
-	<npc name="LS_SVBus1b" skin="253">
-		<recording name="LS_SVBus" startDelay="101000" autoStart="1" autoRepeat="1"/>
-		<vehicle model="431" color1="-1" color2="-1"/>
-	</npc>
-	<npc name="SVBus1a" skin="253">
-		<recording name="SVBus" startDelay="0" autoStart="1" autoRepeat="1"/>
-		<vehicle model="431" color1="-1" color2="-1"/>
-	</npc>
-	<npc name="SVBus1b" skin="253">
-		<recording name="SVBus" startDelay="101000" autoStart="1" autoRepeat="1"/>
-		<vehicle model="431" color1="-1" color2="-1"/>
-	</npc>
 		
 	<!-- Train drivers -->
 	<npc name="Train1" skin="7">

@@ -127,6 +127,14 @@
 #define NPC_SCRIPTNAME					"npcplayer"// NPC Mode without .amx
 
 
+// Ordering
+#define ORDER_CAR_MINDISTANCE				1// Minimum distance from the spawn position to another vehicle
+#define ORDER_CAR_SPAWN_ANGLE				136.5509
+#define ORDER_CAR_SPAWN_POSX				-1557.4092
+#define ORDER_CAR_SPAWN_POSY				114.7485
+#define ORDER_CAR_SPAWN_POSZ				3.0939
+
+
 // Pay Day configuration
 #define PAYDAY_INTERVAL					3600// 1 hour
 
