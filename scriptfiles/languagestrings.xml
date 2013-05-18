@@ -2897,14 +2897,6 @@
             Haus auswählen
         </de>
     </string>
-    <string id="420">
-        <en>
-            Last net income: $%s
-        </en>
-        <de>
-            Letztes Nettoeinkommen: $%s
-        </de>
-    </string>
     <string id="421">
         <en>
             Time elapsed since the last pay day: %s

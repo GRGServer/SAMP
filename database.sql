@@ -113,17 +113,6 @@ CREATE TABLE `missions` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
 
-CREATE TABLE `moneytransactions` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `userId` int(11) NOT NULL,
-  `date` datetime NOT NULL,
-  `type` varchar(32) NOT NULL,
-  `from` int(11) NOT NULL,
-  `to` int(11) NOT NULL,
-  `amount` float NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1;
-
 CREATE TABLE `navigationlocations` (
   `type` int(11) NOT NULL,
   `posX` float NOT NULL,
