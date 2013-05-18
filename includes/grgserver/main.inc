@@ -304,6 +304,7 @@
 #include <grgserver\Pickups\Pickup_VehicleDealer.inc>
 
 // Timers
+#include <grgserver\Timers\Timer_ConnectNPC.inc>
 #include <grgserver\Timers\Timer_EveryMinute.inc>
 #include <grgserver\Timers\Timer_Fast.inc>
 #include <grgserver\Timers\Timer_FlyCam.inc>

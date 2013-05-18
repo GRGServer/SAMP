@@ -123,6 +123,7 @@
 
 
 // NPC configuration
+#define NPC_CONNECT_DELAY				250// Connection delay for each NPC
 #define NPC_SCRIPTNAME					"npcplayer"// NPC Mode without .amx
 
 

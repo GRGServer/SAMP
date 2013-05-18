@@ -74,7 +74,7 @@ LoadNPCs()
 			npcs[arrayIndex][NPC_SPAWNANGLE] = floatstr(value);
 		}
 
-		ConnectNPC(npcs[arrayIndex][NPC_NAME], NPC_SCRIPTNAME);
+		SetTimerEx("Timer_ConnectNPC", arrayIndex * NPC_CONNECT_DELAY, false, "d", arrayIndex);
 
 		npcNode = XML_GetNextSibling(npcNode, "npc");
 		arrayIndex++;
